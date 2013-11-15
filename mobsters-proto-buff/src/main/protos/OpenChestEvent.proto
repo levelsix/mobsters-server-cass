@@ -1,0 +1,29 @@
+
+import "FullUserProto.proto";
+
+package proto;
+
+option java_package = "com.lvl6.mobsters.eventprotos";
+option java_outer_classname = "OpenChestEventProto";
+
+
+message OpenChestRequestProto {
+	optional MinimumUserProto mup = 1;
+	optional string chestId = 2;
+	optional bool usedKey = 3;
+}
+
+message OpenChestResponseProto {
+	optional MinimumUserProto mup = 1;
+	optional string equipName = 2;
+	optional OpenChestStatus status = 3;
+	
+	
+	enum OpenChestStatus {
+		SUCCESS = 0;
+		FAIL_NOT_ENOUGH_GEMS = 1;
+		FAIL_NOT_ENOUGH_KEYS = 2;
+		FAIL_OTHER = 3;
+		
+	} 
+}

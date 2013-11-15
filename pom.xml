@@ -1,19 +1,19 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.lvl6.aoc2</groupId>
-	<artifactId>aoc2-server</artifactId>
+	<groupId>com.lvl6.mobsters</groupId>
+	<artifactId>mobsters-server</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
-	<name>AoC 2 Server</name>
-	<description>AoC 2 Server Main project</description>
+	<name>Mobsters Server</name>
+	<description>Mobsters Server Main project</description>
 	<modules>
-		<module>aoc2-data-model</module>
-		<module>aoc2-proto-buff</module>
-		<module>aoc2-services</module>
-		<module>aoc2-amqp</module>
-		<module>aoc2-controllers</module>
-		<module>aoc2-webapp</module>
+		<module>mobsters-data-model</module>
+		<module>mobsters-proto-buff</module>
+		<module>mobsters-services</module>
+		<module>mobsters-amqp</module>
+		<module>mobsters-controllers</module>
+		<module>mobsters-webapp</module>
 	</modules>
 	<organization>
 		<name>Lvl 6</name>
@@ -28,7 +28,7 @@
 	<properties>
 		<!-- Cassandra -->
 		<cassandra.clusterName>Test Cluster</cassandra.clusterName>
-		<cassandra.keyspaceName>aoc2dev</cassandra.keyspaceName>
+		<cassandra.keyspaceName>mobstersdev</cassandra.keyspaceName>
 		<cassandra.cqlVersion>3.0.0</cassandra.cqlVersion>
 		<cassandra.targetCassandraVersion>1.2</cassandra.targetCassandraVersion>
 		<cassandra.connectionPoolName>MainConnectionPool</cassandra.connectionPoolName>
@@ -39,7 +39,7 @@
 
 
 		<!-- Hazelcast -->
-		<hazelcast.group>aoc2</hazelcast.group>
+		<hazelcast.group>mobsters</hazelcast.group>
 		<hazelcast.pass>lvl6</hazelcast.pass>
 		<hazelcast.config>dev</hazelcast.config>
 		<hazelcast.port>8701</hazelcast.port>
@@ -56,15 +56,15 @@
 		<lvl6.application.version>0.1f</lvl6.application.version>
 		<apns.path.to.cert>/usr/share/tomcat7/???</apns.path.to.cert>
 		<apns.cert.password>robashen123</apns.cert.password>
-        <lvl6.server.log.location>/var/log/tomcat7/aoc2</lvl6.server.log.location>
-        <application.release.name>AoC2</application.release.name>
+        <lvl6.server.log.location>/var/log/tomcat7/mobsters</lvl6.server.log.location>
+        <application.release.name>mobsters</application.release.name>
 
 
 		<!-- AMQP -->
 		<amqp.host>robot.lvl6.com</amqp.host>
 		<amqp.user>lvl6server</amqp.user>
 		<amqp.pass>devserver</amqp.pass>
-		<amqp.vhost>devaoc2</amqp.vhost>
+		<amqp.vhost>devmobsters</amqp.vhost>
 		<amqp.exchange>gamemessages</amqp.exchange>
 		<amqp.chat.exchange>chatmessages</amqp.chat.exchange>
 		<amqp.client.messages.routing.key>messagesFromPlayers</amqp.client.messages.routing.key>

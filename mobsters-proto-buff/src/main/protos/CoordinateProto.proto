@@ -1,0 +1,10 @@
+
+package proto;
+
+option java_package = "com.lvl6.mobsters.noneventprotos";
+option java_outer_classname = "Coordiante";
+
+message CoordinateProto {
+	optional int32 x = 1;
+	optional int32 y = 2;
+}

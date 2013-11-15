@@ -1,0 +1,36 @@
+import "FullUserProto.proto";
+import "DungeonProto.proto";
+
+
+package proto;
+
+option java_package = "com.lvl6.mobsters.eventprotos";
+option java_outer_classname = "LevelUpEventProto";
+
+message LevelUpRequestProto {
+	optional MinimumUserProto mup = 1;
+	repeated DungeonProto allDungeonRooms = 2;
+}
+
+message LevelUpResponseProto {
+	optional MinimumUserProto mup = 1;
+	optional LevelUpStatus status = 2;
+	optional int32 newLevel = 3;
+	optional int32 newNextLevel = 4;
+	optional int32 experienceRequiredForNewNextLevel = 5;
+	repeated DungeonProto dungeonsNewlyAvailableToUser = 6;
+//	repeated FullSpellProto spellsNewlyAvailableToUser = 7;
+	optional int32 newHp = 8;
+	optional int32 newMana = 9;
+	optional int32 newAttack = 10;
+	optional int32 newDefense = 11;
+
+	enum LevelUpStatus {
+		SUCCESS=0;
+		FAIL_NOT_ENOUGH_EXP = 1;
+		FAIL_ALREADY_AT_MAX_LEVEL = 2;
+		FAIL_OTHER = 3;
+	}
+}
+	
+	

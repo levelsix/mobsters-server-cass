@@ -1,0 +1,11 @@
+
+package proto;
+
+option java_package = "com.lvl6.mobsters.noneventprotos";
+option java_outer_classname = "SpellFunctionEnum";
+
+enum SpellFunctionType {
+	ATTACK = 0;
+	BUFF = 1;
+	HEAL = 2;
+}

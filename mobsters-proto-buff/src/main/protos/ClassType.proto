@@ -1,0 +1,13 @@
+
+package proto;
+
+option java_package = "com.lvl6.mobsters.noneventprotos";
+option java_outer_classname = "ClassEnum";
+
+enum ClassType {
+	WARRIOR = 0;
+	ARCHER = 1;
+	WIZARD = 2;
+	ALL = 3;
+	NOOB = 4;
+}

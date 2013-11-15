@@ -1,0 +1,13 @@
+
+package proto;
+
+option java_package = "com.lvl6.mobsters.noneventprotos";
+option java_outer_classname = "MonsterEnum";
+
+//Example placeholder values until we have
+//action assets
+enum MonsterType {
+	GOBLIN = 0;
+	TROLL = 1;
+	DRAGON = 2;
+}
