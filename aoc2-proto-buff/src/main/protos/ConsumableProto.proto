@@ -1,0 +1,26 @@
+
+import "ResourceType.proto";
+
+package proto;
+
+option java_package = "com.lvl6.aoc2.noneventprotos";
+option java_outer_classname = "Consumable";
+
+message ConsumableProto {
+	optional int32 consumeID = 1;
+	optional int32 health = 2;
+	optional int32 mana = 3;
+	//Reserve 4-15 for other effects
+
+	optional int32 cost = 16;
+	optional int32 limit = 17;
+	optional int32 timeToCreate = 18;
+	required ResourceType resourceToCreate = 19;
+	optional int32 baseSpeedUpBuildCost = 20;
+}
+
+enum ConsumableType {
+	HEALTH = 0;
+	MANA = 1;
+	
+}

@@ -1,0 +1,32 @@
+import "FullUserProto.proto";
+
+package proto;
+
+option java_package = "com.lvl6.aoc2.eventprotos";
+option java_outer_classname = "PurchaseGoldOrTonicEventProto";
+
+message PurchaseGoldOrTonicRequestProto {
+	optional MinimumUserProto mup = 1;
+	optional bool isGold = 2;
+	optional int32 purchaseType = 3;
+
+	}
+
+message PurchaseGoldOrTonicResponseProto {
+	optional MinimumUserProto mup = 1;
+	optional PurchaseGoldOrTonicStatus status = 2;
+	
+	enum PurchaseGoldOrTonicStatus {
+		SUCCESS = 0;
+		FAIL_NOT_ENOUGH_GEMS = 1;
+		FAIL_ALREADY_MAX_RESOURCE = 2;
+		FAIL_OTHER = 3;
+	} 
+}
+
+enum PurchaseType {
+	TEN_PERCENT = 1;
+	FIFTY_PERCENT = 2;
+	HUNDRED_PERCENT = 3;
+}
+

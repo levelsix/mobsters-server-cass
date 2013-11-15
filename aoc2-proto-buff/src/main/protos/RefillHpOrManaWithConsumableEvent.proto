@@ -1,0 +1,27 @@
+
+import "FullUserProto.proto";
+
+package proto;
+
+option java_package = "com.lvl6.aoc2.eventprotos";
+option java_outer_classname = "RefillHpOrManaWithConsumableEventProto";
+
+message RefillHpOrManaWithConsumableRequestProto {
+	optional MinimumUserProto mup = 1;
+	optional string userConsumableId = 2;
+}
+
+message RefillHpOrManaWithConsumableResponseProto {
+	optional MinimumUserProto mup = 1;
+	optional RefillHpOrManaWithConsumableStatus status = 2;
+	
+	enum RefillHpOrManaWithConsumableStatus {
+		SUCCESS = 0;
+		FAIL_ALREADY_AT_MAX_HP = 1;
+		FAIL_ALREADY_AT_MAX_MANA = 2;
+		FAIL_NO_POT_EXISTS = 3;
+		FAIL_NOT_ENOUGH_POTS = 4;
+		FAIL_OTHER = 5;
+		
+	} 
+}

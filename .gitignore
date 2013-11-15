@@ -1,0 +1,54 @@
+*.class
+
+# Package Files #
+*.jar
+*.war
+*.ear
+#project specific
+src/com/lvl6/properties/DBProperties.java
+src/com/lvl6/properties/APNSProperties.java
+scripts/DBProperties.php
+scripts/referral_code_checks/referral_code_logs
+
+#java specific
+*.class
+
+#eclipse
+.project
+.classpath
+.settings/
+.cache/
+.cache
+**.cache/
+**.cache
+
+
+
+
+target/
+*/target/
+
+#generated files
+bin/
+gen/
+
+*/target/*
+target/
+
+## generic files to ignore
+*~
+*.lock
+*.DS_Store
+*.swp
+*.out
+*.cache
+#*.p12
+
+## 
+runOnTomcat.sh
+
+
+**/.settings/
+**/.project
+**/.classpath
+

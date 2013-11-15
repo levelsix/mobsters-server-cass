@@ -1,0 +1,41 @@
+
+import "FullUserProto.proto";
+
+package proto;
+
+option java_package = "com.lvl6.aoc2.eventprotos";
+option java_outer_classname = "TrainOrUpgradeSpellEventProto";
+
+message TrainOrUpgradeSpellRequestProto {
+	optional MinimumUserProto mup = 1;
+	optional string spellId = 2;
+	optional bool usingGems = 3;
+}
+
+message TrainOrUpgradeSpellResponseProto {
+	optional MinimumUserProto mup = 1;
+	optional TrainOrUpgradeSpellStatus status = 2;
+	
+	
+	enum TrainOrUpgradeSpellStatus {
+		SUCCESS = 0;
+		FAIL_INSUFFICIENT_RESOURCES = 1;
+		FAIL_NOT_AT_REQUIRED_LEVEL = 2;
+		FAIL_MAXED_TRAINING = 3; //no open slots
+		FAIL_SPELL_AT_MAX_LEVEL = 4;
+		FAIL_CANT_UPGRADE_WHILE_TRAINING = 5;
+		FAIL_WRONG_CLASS_TYPE = 6;
+		FAIL_MISSING_PREREQUISITE_SPELL = 7;
+		FAIL_NOT_ENOUGH_GEMS = 8;
+		FAIL_OTHER = 9;
+	}
+}
+
+enum ResourceCostType {
+	GOLD = 0;
+	TONIC = 1;
+	
+}
+
+
+

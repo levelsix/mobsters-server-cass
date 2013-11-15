@@ -1,0 +1,37 @@
+
+import "ResourceType.proto";
+import "CoordinateProto.proto";
+
+package proto;
+
+option java_package = "com.lvl6.aoc2.noneventprotos";
+option java_outer_classname = "Structure";
+
+message StructureProto {
+	optional string id = 16;
+	optional int32 structureID = 1;
+	optional StructureFunction function = 2;
+	optional int32 buildCost = 3;
+	optional int32 buildTime = 4;
+	required ResourceType buildResource = 5;
+	optional int32 upgradeTownHallLevel = 6;
+	optional CoordinateProto size = 7;
+	optional int32 buildSpeedUpBaseCost = 8;
+	optional int32 functionValue = 9;
+	required ResourceType functionResource = 10;
+	optional int32 speedUpFunctionBaseCost = 11;
+	optional int32 capacity = 12;
+	optional int32 level = 13;
+	optional string name = 14;
+	optional string imageName = 15;
+
+	enum StructureFunction {
+		TOWN_HALL = 0;
+		INCOME = 1;
+		STORAGE = 2;
+		BLACKSMITH = 3;
+		LIBRARY = 4;
+		FUSION = 5;
+		DECORATION = 6;
+	}
+}

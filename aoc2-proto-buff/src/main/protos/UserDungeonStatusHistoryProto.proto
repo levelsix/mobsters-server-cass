@@ -1,0 +1,30 @@
+
+import "FullUserProto.proto";
+
+package proto;
+
+option java_package = "com.lvl6.aoc2.eventprotos";
+option java_outer_classname = "UserDungeonStatusHistoryProto";
+
+message UserDungeonStatusHistoryRequestProto {
+	optional MinimumUserProto mup = 1;
+	optional int32 userHp = 2;
+	optional int32 userMana = 3;
+	optional int32 actionsPerformed = 4; //calculating damage to equips 
+	optional string dungeonRoomName = 5;
+	//optional int32 monstersRemaining = 6;
+}
+
+message UserDungeonStatusHistoryResponseProto {
+	optional MinimumUserProto mup = 1;
+	optional UserDungeonStatusHistoryStatus status = 2;
+		
+	enum UserDungeonStatusHistoryStatus {
+		SUCCESS = 0;
+		FAIL_NEGATIVE_HP_OR_MANA = 1;
+		FAIL_NO_ACTIONS_PERFORMED = 2;
+		FAIL_NO_MONSTERS_DEFEATED = 3;
+		FAIL_OTHER = 4;
+	} 
+}
+

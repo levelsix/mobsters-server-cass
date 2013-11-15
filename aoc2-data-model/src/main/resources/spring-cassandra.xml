@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/aop 
+	http://www.springframework.org/schema/aop/spring-aop.xsd
+	http://www.springframework.org/schema/data/jpa
+    	http://www.springframework.org/schema/data/jpa/spring-jpa.xsd
+    	http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+	http://www.springframework.org/schema/tx 
+	http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+		">
+
+	<import resource="classpath:spring-hazelcast.xml" />
+
+	<context:annotation-config />
+	<context:component-scan base-package="com.lvl6.aoc2" />
+	
+
+	<bean id="cassandra" scope="singleton" class="com.lvl6.aoc2.cassandra.Cassandra">
+		<property name="clusterName" value="${cassandra.clusterName}" />
+		<property name="keyspaceName" value="${cassandra.keyspaceName}" />
+		<property name="cqlVersion" value="${cassandra.cqlVersion}" />
+		<property name="targetCassandraVersion" value="${cassandra.targetCassandraVersion}" />
+		<property name="connectionPoolName" value="${cassandra.connectionPoolName}" />
+		<property name="seeds" value="${cassandra.seeds}" />
+		<property name="connectionsPerHost" value="${cassandra.connectionsPerHost}" />
+		<property name="port" value="${cassandra.port}" />
+		<property name="createTables" value="${cassandra.createTables}" />
+	</bean>
+	
+	
+	<bean id="globals" class="com.lvl6.aoc2.properties.Globals">
+	
+	</bean>
+</beans>

@@ -1,0 +1,32 @@
+
+import "FullUserProto.proto";
+
+package proto;
+
+option java_package = "com.lvl6.aoc2.eventprotos";
+option java_outer_classname = "SpeedUpBuildOrUpgradeStructureEventProto";
+
+//user can build more buildings later on
+
+message SpeedUpBuildOrUpgradeStructureRequestProto {
+	optional MinimumUserProto mup = 1;
+	optional string userStructureId = 2;
+	optional bool isBuild = 3;
+	optional int32 minutesRemaining = 4;
+	optional bool finishedConstructing = 5;
+}
+
+message SpeedUpBuildOrUpgradeStructureResponseProto {
+	optional MinimumUserProto mup = 1;
+	optional bool finishedConstructing = 2;
+	optional SpeedUpBuildOrUpgradeStructureStatus status = 3;
+	
+	
+	enum SpeedUpBuildOrUpgradeStructureStatus {
+		SUCCESS = 0;
+		FAIL_NOT_ENOUGH_GEMS = 1;
+		FAIL_QUEUE_TIME_IS_ZERO = 2;
+		FAIL_OTHER = 3;
+		
+	} 
+}

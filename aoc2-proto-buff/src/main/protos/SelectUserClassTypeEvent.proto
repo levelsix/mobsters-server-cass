@@ -1,0 +1,27 @@
+
+import "ClassType.proto";
+
+package proto;
+
+option java_package = "com.lvl6.aoc2.eventprotos";
+option java_outer_classname = "SelectUserClassTypeEventProto";
+
+//for when user goes from NOOB to one of three classes
+//or one of the three classes and their respective higher classes
+message SelectUserClassTypeRequestProto {
+	//optional user object = 1;
+	optional ClassType classType = 2;
+}
+
+message SelectUserClassTypeResponseProto {
+	//optional user object = 1;
+	optional SelectUserClassTypeStatus status = 2;
+	
+	
+	enum SelectUserClassTypeStatus {
+		SUCCESS = 0;
+		FAIL_WRONG_CLASS_TYPE = 1;
+		FAIL_TOO_LOW_LEVEL = 2;
+		FAIL_OTHER = 3;
+	} 
+}

@@ -1,0 +1,29 @@
+import "ResourceType.proto";
+import "FullUserProto.proto";
+
+package proto;
+
+option java_package = "com.lvl6.aoc2.eventprotos";
+option java_outer_classname = "RetrieveResourceEventProto";
+
+message RetrieveResourceRequestProto {
+	optional MinimumUserProto mup = 1;
+	optional string structureId = 2;
+	
+}
+
+message RetrieveResourceResponseProto {
+	optional MinimumUserProto mup = 1;
+	optional RetrieveResourceStatus status = 2;
+	
+	
+	enum RetrieveResourceStatus {
+		SUCCESS = 0;
+		FAIL_NO_STRUCTURE_OR_USER_EXISTS = 1;
+		FAIL_NOT_LONG_ENOUGH = 2;
+		FAIL_OTHER = 3;
+	}
+}
+
+
+

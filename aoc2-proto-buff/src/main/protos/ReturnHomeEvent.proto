@@ -1,0 +1,27 @@
+import "UserConsumablesProto.proto";
+import "FullUserProto.proto";
+
+package proto;
+
+option java_package = "com.lvl6.aoc2.eventprotos";
+option java_outer_classname = "ReturnHomeEventProto";
+
+message ReturnHomeRequestProto {
+	optional MinimumUserProto mup = 1;
+	optional int32 userHp = 2;
+	optional int32 userMana = 3;
+	optional int32 actionsPerformed = 4; //calculating damage to equips 
+	
+	}
+
+message ReturnHomeResponseProto {
+	optional MinimumUserProto mup = 1;
+	optional ReturnHomeStatus status = 2;
+	
+	
+	enum ReturnHomeStatus {
+		SUCCESS = 0;
+		FAIL_USER_DEAD = 1;
+		FAIL_OTHER = 2;
+	} 
+}

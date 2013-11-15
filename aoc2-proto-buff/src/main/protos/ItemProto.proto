@@ -1,0 +1,15 @@
+
+package proto;
+
+option java_package = "com.lvl6.aoc2.noneventprotos";
+option java_outer_classname = "Item";
+
+message ItemProto {
+	optional string itemName = 1;
+	optional int32 itemType = 2;
+}
+
+enum itemType {
+	QUEST_ITEMS = 0;
+	FIRST_RELEASED_KEY = 1;
+}

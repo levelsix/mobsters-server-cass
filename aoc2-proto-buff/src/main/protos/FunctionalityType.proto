@@ -1,0 +1,14 @@
+
+package proto;
+
+option java_package = "com.lvl6.aoc2.noneventprotos";
+option java_outer_classname = "FunctionalityTypeEnum";
+
+enum FunctionalityType {
+	RESOURCE_COLLECTOR = 0;
+	RESOURCE_STORAGE = 1;
+	LIBRARY = 2;  //train spells
+	BLACKSMITH = 3;  //fix durability here
+	STORAGE = 4;  //user's inventory
+	WIZARD = 5;  //where you forge/fuse items
+}

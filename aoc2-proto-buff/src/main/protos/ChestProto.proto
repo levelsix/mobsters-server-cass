@@ -1,0 +1,16 @@
+
+package proto;
+
+option java_package = "com.lvl6.aoc2.noneventprotos";
+option java_outer_classname = "Chest";
+
+message ChestProto {
+	optional string chestID = 1;
+	optional string equipID = 2;
+	optional int32 equipChance = 3;
+}
+
+enum Chests {
+	FIRST_RELEASED_CHEST = 1;
+	
+}

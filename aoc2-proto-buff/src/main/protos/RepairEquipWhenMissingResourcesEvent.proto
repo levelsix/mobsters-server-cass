@@ -1,0 +1,27 @@
+
+import "FullUserProto.proto";
+
+
+package proto;
+
+option java_package = "com.lvl6.aoc2.eventprotos";
+option java_outer_classname = "RepairEquipWhenMissingResourcesEventProto";
+
+message RepairEquipWhenMissingResourcesRequestProto {
+	optional MinimumUserProto mup = 1;
+	optional string userEquipId = 2;
+	optional int64 clientTimeMillis = 3;
+}
+
+message RepairEquipWhenMissingResourcesResponseProto {
+	optional MinimumUserProto mup = 1;
+	optional RepairEquipWhenMissingResourcesStatus status = 2;
+	
+	
+	enum RepairEquipWhenMissingResourcesStatus {
+		SUCCESS = 0;
+		FAIL_NOT_ENOUGH_GEMS = 1; 
+		FAIL_OTHER = 3;
+		
+	} 
+}

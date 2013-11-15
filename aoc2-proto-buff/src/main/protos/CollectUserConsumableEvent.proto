@@ -1,0 +1,28 @@
+import "UserConsumableQueueProto.proto";
+import "FullUserProto.proto";
+
+package proto;
+
+option java_package = "com.lvl6.aoc2.eventprotos";
+option java_outer_classname = "CollectUserConsumableEventProto";
+
+
+message CollectUserConsumableRequestProto {
+	optional MinimumUserProto mup = 1;
+	repeated UserConsumableQueueProto ucqpList = 2;
+}
+
+message CollectUserConsumableResponseProto {
+	optional MinimumUserProto mup = 1;
+	repeated UserConsumableQueueProto ucqpList2 = 2;
+	optional CollectUserConsumableStatus status = 3;
+	
+	
+	enum CollectUserConsumableStatus {
+		SUCCESS = 0;
+		FAIL_NOT_COMPLETE = 1;
+		FAIL_OTHER = 2;
+		
+	} 
+}
+

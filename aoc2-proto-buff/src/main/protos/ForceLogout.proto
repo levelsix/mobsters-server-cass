@@ -1,0 +1,9 @@
+package proto;
+
+option java_package = "com.lvl6.aoc2.eventprotos";
+option java_outer_classname = "ForceLogoutEventProto";
+
+message ForceLogoutResponseProto {
+	optional string userId = 1; //not sure if this is even needed
+	optional string udid = 2; //the device that caused this event being sent
+}

@@ -1,0 +1,29 @@
+import "UserEquipRepairProto.proto";
+import "FullUserProto.proto";
+
+package proto;
+
+option java_package = "com.lvl6.aoc2.eventprotos";
+option java_outer_classname = "SpeedUpRepairEquipEventProto";
+
+//user can build more buildings later on
+
+message SpeedUpRepairEquipRequestProto {
+	optional MinimumUserProto mup = 1;
+	repeated UserEquipRepairProto equipsInQueue = 2;
+	
+}
+
+message SpeedUpRepairEquipResponseProto {
+	optional MinimumUserProto mup = 1;
+	optional SpeedUpRepairEquipStatus status = 2;
+	
+	
+	enum SpeedUpRepairEquipStatus {
+		SUCCESS = 0;
+		FAIL_NOT_ENOUGH_GEMS = 1;
+		FAIL_QUEUE_TIME_IS_ZERO = 2;
+		FAIL_OTHER = 3;
+		
+	} 
+}

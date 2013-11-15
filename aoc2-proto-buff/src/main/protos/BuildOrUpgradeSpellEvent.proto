@@ -1,0 +1,32 @@
+
+package proto;
+
+option java_package = "com.lvl6.aoc2.eventprotos";
+option java_outer_classname = "BuildOrUpgradeSpellEventProto";
+
+//user can only build one spell at a time
+message BuildOrUpgradeSpellRequestProto {
+	//optional user object = 1;
+	optional string spellId = 2;
+	optional int32 slotNum = 3;
+	optional bool speedUp = 4; //if user pays the extra gems(?) to finish the spell
+	
+	//controller checks:
+	//level of the spell building making sure the spell being leveled up
+	//does not exceed level specified by the building for the spell 
+}
+
+message BuildOrUpgradeSpellResponseProto {
+	//optional user object = 1;
+	optional BuildOrUpgradeSpellStatus status = 2;
+	
+	
+	enum BuildOrUpgradeSpellStatus {
+		SUCCESS = 0;
+		FAIL_INSUFFICIENT_RESOURCE = 1;
+		FAIL_SLOT_IN_USE = 2;
+		FAIL_WRONG_CLASS_TYPE_FOR_SPELL = 3;
+		FAIL_TOO_LOW_LEVEL_FOR_SPELL = 4;
+		FAIL_OTHER = 5;
+	} 
+}

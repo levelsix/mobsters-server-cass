@@ -1,0 +1,50 @@
+
+import "FullUserProto.proto";
+import "UserConsumableQueueProto.proto";
+
+package proto;
+
+option java_package = "com.lvl6.aoc2.eventprotos";
+option java_outer_classname = "BuildConsumableEventProto";
+
+//user can queue up pots
+//assuming client sends the whole queue at once, not each 
+//pot user puts-into/takes-out-of the queue
+
+//server will check: delete, update, new, in that order 
+message BuildConsumableRequestProto {
+	optional MinimumUserProto mup = 1;
+	
+	//what user deleted from the queue, the ones the server already knows about
+	//(need to have the 'id' property set) 
+	repeated UserConsumableQueueProto ucqDelete = 2; 
+	
+	//the ones the server already knows about
+	//only set if the queue time or start time changes
+	//(need to have the 'id' property set) 
+	repeated UserConsumableQueueProto ucqUpdate = 3;
+	
+	//the ones the server doesn't know about
+	repeated UserConsumableQueueProto ucqNew = 4; 
+	
+	optional bool usingGems = 5;
+	
+	//just for the hell of it
+	optional int64 clientTimeMillis = 6;
+}
+
+message BuildConsumableResponseProto {
+	optional MinimumUserProto mup = 1;
+	optional BuildConsumableStatus status = 2;
+	
+	
+	enum BuildConsumableStatus {
+		SUCCESS = 0;
+		FAIL_UNSYNCHRONIZED_TIMES = 1; //not expecting many of these issues
+		FAIL_NOT_ENOUGH_TONIC = 2;
+		
+		FAIL_OTHER = 3;
+		
+		
+	} 
+}

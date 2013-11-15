@@ -1,0 +1,16 @@
+
+package proto;
+
+option java_package = "com.lvl6.aoc2.noneventprotos";
+option java_outer_classname = "UserConsumableQueue";
+
+message UserConsumableQueueProto {
+	optional string userConsumableQueueID = 1;
+	optional string userID = 2;
+	optional string consumableId = 3;
+	optional int32 quantity = 4;
+	optional int64 expectedStartMillis = 6; //time equip should start being repaired
+	optional int64 queuedTimeMillis = 7;    //time goes into queue
+	optional bool isFinishedBuilding = 8;
+	
+}

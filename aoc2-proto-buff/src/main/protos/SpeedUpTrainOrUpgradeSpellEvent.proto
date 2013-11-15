@@ -1,0 +1,27 @@
+
+import "FullUserProto.proto";
+
+package proto;
+
+option java_package = "com.lvl6.aoc2.eventprotos";
+option java_outer_classname = "SpeedUpTrainOrUpgradeSpellEventProto";
+
+message SpeedUpTrainOrUpgradeSpellRequestProto {
+	optional MinimumUserProto mup = 1;
+	optional string spellId = 2;
+}
+
+message SpeedUpTrainOrUpgradeSpellResponseProto {
+	optional MinimumUserProto mup = 1;
+	optional SpeedUpTrainOrUpgradeSpellStatus status = 2;
+	
+	
+	enum SpeedUpTrainOrUpgradeSpellStatus {
+		SUCCESS = 0;
+		FAIL_NOT_ENOUGH_GEMS = 1;
+		FAIL_OTHER = 9;
+	}
+}
+
+
+

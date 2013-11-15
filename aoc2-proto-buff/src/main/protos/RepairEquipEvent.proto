@@ -1,0 +1,53 @@
+
+import "FullUserProto.proto";
+import "UserEquipmentProto.proto";
+import "UserEquipRepairProto.proto";
+
+package proto;
+
+option java_package = "com.lvl6.aoc2.eventprotos";
+option java_outer_classname = "RepairEquipEventProto";
+
+//user can queue up repairs
+//assuming client sends the whole queue at once, not each 
+//equip user puts-into/takes-out-of the queue
+
+//server will check: delete, update, new, in that order 
+message RepairEquipRequestProto {
+	optional MinimumUserProto mup = 1;
+	
+	//what user deleted from the queue, the ones the server already knows about
+	//(need to have the 'id' property set) 
+	repeated UserEquipRepairProto uerpDelete = 2; 
+	
+	//the ones the server already knows about
+	//only set if the queue time or start time changes
+	//(need to have the 'id' property set) 
+	repeated UserEquipRepairProto uerpUpdate = 3;
+	
+	//the ones the server doesn't know about
+	repeated UserEquipRepairProto uerpNew = 4;
+	
+	repeated string equipsBeingRepairedId = 5; 
+	
+	optional bool usingGems = 6;
+	
+	//just for the hell of it
+	optional int64 clientTimeMillis = 7;
+}
+
+message RepairEquipResponseProto {
+	optional MinimumUserProto mup = 1;
+	optional RepairEquipStatus status = 2;
+	
+	
+	enum RepairEquipStatus {
+		SUCCESS = 0;
+		FAIL_UNSYNCHRONIZED_TIMES = 1; //not expecting many of these issues
+		FAIL_NOT_ENOUGH_RESOURCES = 2;
+		FAIL_OTHER = 3;
+		
+		//FAIL_NOT_DAMAGED = 1; //client should make sure durability is not at full
+		//FAIL_MAXED_QUEUE_LIMIT = 3;
+	} 
+}

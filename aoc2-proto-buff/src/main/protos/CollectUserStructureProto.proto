@@ -1,0 +1,26 @@
+import "FullUserProto.proto";
+
+package proto;
+
+option java_package = "com.lvl6.aoc2.eventprotos";
+option java_outer_classname = "CollectUserStructureEventProto";
+
+
+message CollectUserStructureRequestProto {
+	optional MinimumUserProto mup = 1;
+	optional string userStructureId = 2;
+}
+
+message CollectUserStructureResponseProto {
+	optional MinimumUserProto mup = 1;
+	optional CollectUserStructureStatus status = 3;
+	
+	
+	enum CollectUserStructureStatus {
+		SUCCESS = 0;
+		FAIL_NOT_COMPLETE = 1;
+		FAIL_OTHER = 2;
+		
+	} 
+}
+

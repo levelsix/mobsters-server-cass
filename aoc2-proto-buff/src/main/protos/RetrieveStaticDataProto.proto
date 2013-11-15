@@ -1,0 +1,28 @@
+import "FullUserProto.proto";
+
+package proto;
+
+option java_package = "com.lvl6.aoc2.eventprotos";
+option java_outer_classname = "RetrieveStaticDataProto";
+
+message RetrieveStaticDataRequestProto {
+	optional MinimumUserProto mup = 1;
+//	repeated uuid dungeonIds = 2;
+	optional int32 hp = 3;
+	optional int32 mana = 4;
+	optional int32 attack = 5;
+	optional int32 defense = 6;
+//	repeated uuid spellIds = 7;
+	
+}
+
+message RetrieveStaticDataResponseProto {
+	optional MinimumUserProto mup = 1;
+//	repeated FullDungeonProto dungeons = 2;
+	optional int32 userHp = 3;
+	optional int32 userMana = 4;
+	optional int32 userAttack = 5;
+	optional int32 userDefense = 6;
+//	repeated uuid userSpells = 8;
+
+}

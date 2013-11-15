@@ -1,0 +1,32 @@
+import "FullUserProto.proto";
+import "UserEquipmentProto.proto";
+import "UserConsumablesProto.proto";
+
+
+package proto;
+
+option java_package = "com.lvl6.aoc2.eventprotos";
+option java_outer_classname = "StartDungeonEventProto";
+
+message StartDungeonRequestProto {
+	optional MinimumUserProto mup = 1;
+	repeated UserEquipmentProto uerList = 2;	//all user equips
+	repeated UserConsumablesProto ucpList = 3;
+	optional string combatRoomId = 4;
+	
+}
+
+message StartDungeonResponseProto {
+	optional MinimumUserProto mup = 1;
+	optional StartDungeonStatus status = 2;
+	
+	enum StartDungeonStatus {
+		SUCCESS = 0;
+		FAIL_NO_HP = 1;
+		FAIL_NOT_AT_REQUIRED_LEVEL = 2;
+		FAIL_EQUIP_STORAGE_FULL = 3;
+		FAIL_ZERO_DURABILITY_EQUIP = 4;
+		FAIL_OTHER = 5;
+		
+	} 
+}

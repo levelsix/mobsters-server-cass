@@ -1,0 +1,14 @@
+
+package proto;
+
+option java_package = "com.lvl6.aoc2.noneventprotos";
+option java_outer_classname = "RoomReward";
+
+message RoomRewardProto {
+	optional int32 dungeonID = 1;
+	optional int32 roomID = 2;
+	optional int32 chestID = 3;
+	optional int32 chestDropChance = 4;
+	repeated int32 equipIDs = 5;
+	optional int32 equipDropChance = 6;
+}

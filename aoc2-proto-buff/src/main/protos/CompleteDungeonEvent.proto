@@ -1,0 +1,29 @@
+import "ItemProto.proto";
+import "FullUserProto.proto";
+import "EquipmentProto.proto";
+import "ChestProto.proto";
+
+package proto;
+
+option java_package = "com.lvl6.aoc2.eventprotos";
+option java_outer_classname = "CompleteDungeonEventProto";
+
+message CompleteDungeonRequestProto {
+	optional MinimumUserProto mup = 1;
+	repeated ChestProto chestGained = 2;
+	repeated EquipmentProto equipsGained = 3;
+	repeated ItemProto itemsGained = 4;
+	optional string dungeonRoomName = 5;
+}
+
+message CompleteDungeonResponseProto {
+	optional MinimumUserProto mup = 1;
+	optional CompleteDungeonStatus status = 2;
+	
+	enum CompleteDungeonStatus {
+		SUCCESS = 0;
+		FAIL_CHEST_OR_EQUIPS_DONT_EXIST = 1;
+		FAIL_OTHER = 2;
+		
+	} 
+}
