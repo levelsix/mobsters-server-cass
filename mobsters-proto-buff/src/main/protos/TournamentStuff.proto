@@ -11,7 +11,7 @@ option java_outer_classname = "TournamentStuffProto";
 //DO NOT USE ID AS THE NAME OF A PROPERTY IN ANY PROTO
 
 message TournamentEventProto {
-	optional int32 eventId = 1;
+	optional string eventUuid = 1;
 	optional int64 startDate = 2;
 	optional int64 endDate = 3;
 	optional string eventName = 4;
@@ -22,7 +22,7 @@ message TournamentEventProto {
 //------------------------------------------------------------------------------------------
 
 message TournamentEventRewardProto {
-	optional int32 tournamentEventId = 1;
+	optional string tournamentEventUuid = 1;
 	optional int32 minRank = 2;
 	optional int32 maxRank = 3;
 	optional int32 goldRewarded = 4;

@@ -2817,10 +2817,10 @@ public final class EventUserProto {
     com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto getSender();
     com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProtoOrBuilder getSenderOrBuilder();
     
-    // repeated int32 requestedUserIds = 2;
-    java.util.List<java.lang.Integer> getRequestedUserIdsList();
-    int getRequestedUserIdsCount();
-    int getRequestedUserIds(int index);
+    // repeated string requestedUserUuids = 2;
+    java.util.List<String> getRequestedUserUuidsList();
+    int getRequestedUserUuidsCount();
+    String getRequestedUserUuids(int index);
     
     // optional bool includeCurMonsterTeam = 3;
     boolean hasIncludeCurMonsterTeam();
@@ -2868,18 +2868,18 @@ public final class EventUserProto {
       return sender_;
     }
     
-    // repeated int32 requestedUserIds = 2;
-    public static final int REQUESTEDUSERIDS_FIELD_NUMBER = 2;
-    private java.util.List<java.lang.Integer> requestedUserIds_;
-    public java.util.List<java.lang.Integer>
-        getRequestedUserIdsList() {
-      return requestedUserIds_;
+    // repeated string requestedUserUuids = 2;
+    public static final int REQUESTEDUSERUUIDS_FIELD_NUMBER = 2;
+    private com.google.protobuf.LazyStringList requestedUserUuids_;
+    public java.util.List<String>
+        getRequestedUserUuidsList() {
+      return requestedUserUuids_;
     }
-    public int getRequestedUserIdsCount() {
-      return requestedUserIds_.size();
+    public int getRequestedUserUuidsCount() {
+      return requestedUserUuids_.size();
     }
-    public int getRequestedUserIds(int index) {
-      return requestedUserIds_.get(index);
+    public String getRequestedUserUuids(int index) {
+      return requestedUserUuids_.get(index);
     }
     
     // optional bool includeCurMonsterTeam = 3;
@@ -2894,7 +2894,7 @@ public final class EventUserProto {
     
     private void initFields() {
       sender_ = com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto.getDefaultInstance();
-      requestedUserIds_ = java.util.Collections.emptyList();;
+      requestedUserUuids_ = com.google.protobuf.LazyStringArrayList.EMPTY;
       includeCurMonsterTeam_ = false;
     }
     private byte memoizedIsInitialized = -1;
@@ -2912,8 +2912,8 @@ public final class EventUserProto {
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
         output.writeMessage(1, sender_);
       }
-      for (int i = 0; i < requestedUserIds_.size(); i++) {
-        output.writeInt32(2, requestedUserIds_.get(i));
+      for (int i = 0; i < requestedUserUuids_.size(); i++) {
+        output.writeBytes(2, requestedUserUuids_.getByteString(i));
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         output.writeBool(3, includeCurMonsterTeam_);
@@ -2933,12 +2933,12 @@ public final class EventUserProto {
       }
       {
         int dataSize = 0;
-        for (int i = 0; i < requestedUserIds_.size(); i++) {
+        for (int i = 0; i < requestedUserUuids_.size(); i++) {
           dataSize += com.google.protobuf.CodedOutputStream
-            .computeInt32SizeNoTag(requestedUserIds_.get(i));
+            .computeBytesSizeNoTag(requestedUserUuids_.getByteString(i));
         }
         size += dataSize;
-        size += 1 * getRequestedUserIdsList().size();
+        size += 1 * getRequestedUserUuidsList().size();
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         size += com.google.protobuf.CodedOutputStream
@@ -3075,7 +3075,7 @@ public final class EventUserProto {
           senderBuilder_.clear();
         }
         bitField0_ = (bitField0_ & ~0x00000001);
-        requestedUserIds_ = java.util.Collections.emptyList();;
+        requestedUserUuids_ = com.google.protobuf.LazyStringArrayList.EMPTY;
         bitField0_ = (bitField0_ & ~0x00000002);
         includeCurMonsterTeam_ = false;
         bitField0_ = (bitField0_ & ~0x00000004);
@@ -3126,10 +3126,11 @@ public final class EventUserProto {
           result.sender_ = senderBuilder_.build();
         }
         if (((bitField0_ & 0x00000002) == 0x00000002)) {
-          requestedUserIds_ = java.util.Collections.unmodifiableList(requestedUserIds_);
+          requestedUserUuids_ = new com.google.protobuf.UnmodifiableLazyStringList(
+              requestedUserUuids_);
           bitField0_ = (bitField0_ & ~0x00000002);
         }
-        result.requestedUserIds_ = requestedUserIds_;
+        result.requestedUserUuids_ = requestedUserUuids_;
         if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
           to_bitField0_ |= 0x00000002;
         }
@@ -3153,13 +3154,13 @@ public final class EventUserProto {
         if (other.hasSender()) {
           mergeSender(other.getSender());
         }
-        if (!other.requestedUserIds_.isEmpty()) {
-          if (requestedUserIds_.isEmpty()) {
-            requestedUserIds_ = other.requestedUserIds_;
+        if (!other.requestedUserUuids_.isEmpty()) {
+          if (requestedUserUuids_.isEmpty()) {
+            requestedUserUuids_ = other.requestedUserUuids_;
             bitField0_ = (bitField0_ & ~0x00000002);
           } else {
-            ensureRequestedUserIdsIsMutable();
-            requestedUserIds_.addAll(other.requestedUserIds_);
+            ensureRequestedUserUuidsIsMutable();
+            requestedUserUuids_.addAll(other.requestedUserUuids_);
           }
           onChanged();
         }
@@ -3206,18 +3207,9 @@ public final class EventUserProto {
               setSender(subBuilder.buildPartial());
               break;
             }
-            case 16: {
-              ensureRequestedUserIdsIsMutable();
-              requestedUserIds_.add(input.readInt32());
-              break;
-            }
             case 18: {
-              int length = input.readRawVarint32();
-              int limit = input.pushLimit(length);
-              while (input.getBytesUntilLimit() > 0) {
-                addRequestedUserIds(input.readInt32());
-              }
-              input.popLimit(limit);
+              ensureRequestedUserUuidsIsMutable();
+              requestedUserUuids_.add(input.readBytes());
               break;
             }
             case 24: {
@@ -3321,49 +3313,60 @@ public final class EventUserProto {
         return senderBuilder_;
       }
       
-      // repeated int32 requestedUserIds = 2;
-      private java.util.List<java.lang.Integer> requestedUserIds_ = java.util.Collections.emptyList();;
-      private void ensureRequestedUserIdsIsMutable() {
+      // repeated string requestedUserUuids = 2;
+      private com.google.protobuf.LazyStringList requestedUserUuids_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+      private void ensureRequestedUserUuidsIsMutable() {
         if (!((bitField0_ & 0x00000002) == 0x00000002)) {
-          requestedUserIds_ = new java.util.ArrayList<java.lang.Integer>(requestedUserIds_);
+          requestedUserUuids_ = new com.google.protobuf.LazyStringArrayList(requestedUserUuids_);
           bitField0_ |= 0x00000002;
          }
       }
-      public java.util.List<java.lang.Integer>
-          getRequestedUserIdsList() {
-        return java.util.Collections.unmodifiableList(requestedUserIds_);
+      public java.util.List<String>
+          getRequestedUserUuidsList() {
+        return java.util.Collections.unmodifiableList(requestedUserUuids_);
       }
-      public int getRequestedUserIdsCount() {
-        return requestedUserIds_.size();
+      public int getRequestedUserUuidsCount() {
+        return requestedUserUuids_.size();
       }
-      public int getRequestedUserIds(int index) {
-        return requestedUserIds_.get(index);
+      public String getRequestedUserUuids(int index) {
+        return requestedUserUuids_.get(index);
       }
-      public Builder setRequestedUserIds(
-          int index, int value) {
-        ensureRequestedUserIdsIsMutable();
-        requestedUserIds_.set(index, value);
+      public Builder setRequestedUserUuids(
+          int index, String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  ensureRequestedUserUuidsIsMutable();
+        requestedUserUuids_.set(index, value);
         onChanged();
         return this;
       }
-      public Builder addRequestedUserIds(int value) {
-        ensureRequestedUserIdsIsMutable();
-        requestedUserIds_.add(value);
+      public Builder addRequestedUserUuids(String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  ensureRequestedUserUuidsIsMutable();
+        requestedUserUuids_.add(value);
         onChanged();
         return this;
       }
-      public Builder addAllRequestedUserIds(
-          java.lang.Iterable<? extends java.lang.Integer> values) {
-        ensureRequestedUserIdsIsMutable();
-        super.addAll(values, requestedUserIds_);
+      public Builder addAllRequestedUserUuids(
+          java.lang.Iterable<String> values) {
+        ensureRequestedUserUuidsIsMutable();
+        super.addAll(values, requestedUserUuids_);
         onChanged();
         return this;
       }
-      public Builder clearRequestedUserIds() {
-        requestedUserIds_ = java.util.Collections.emptyList();;
+      public Builder clearRequestedUserUuids() {
+        requestedUserUuids_ = com.google.protobuf.LazyStringArrayList.EMPTY;
         bitField0_ = (bitField0_ & ~0x00000002);
         onChanged();
         return this;
+      }
+      void addRequestedUserUuids(com.google.protobuf.ByteString value) {
+        ensureRequestedUserUuidsIsMutable();
+        requestedUserUuids_.add(value);
+        onChanged();
       }
       
       // optional bool includeCurMonsterTeam = 3;
@@ -5344,21 +5347,21 @@ public final class EventUserProto {
       "ailableStructs\030\003 \003(\0132\031.proto.FullStructu",
       "reProto\"h\n\rLevelUpStatus\022\013\n\007SUCCESS\020\001\022 \n" +
       "\034NOT_ENOUGH_EXP_TO_NEXT_LEVEL\020\002\022\030\n\024ALREA" +
-      "DY_AT_MAX_LEVEL\020\003\022\016\n\nOTHER_FAIL\020\004\"\207\001\n#Re" +
+      "DY_AT_MAX_LEVEL\020\003\022\016\n\nOTHER_FAIL\020\004\"\211\001\n#Re" +
       "trieveUsersForUserIdsRequestProto\022\'\n\006sen" +
-      "der\030\001 \001(\0132\027.proto.MinimumUserProto\022\030\n\020re" +
-      "questedUserIds\030\002 \003(\005\022\035\n\025includeCurMonste" +
-      "rTeam\030\003 \001(\010\"\262\001\n$RetrieveUsersForUserIdsR" +
-      "esponseProto\022\'\n\006sender\030\001 \001(\0132\027.proto.Min" +
-      "imumUserProto\022,\n\016requestedUsers\030\002 \003(\0132\024." +
-      "proto.FullUserProto\0223\n\007curTeam\030\003 \003(\0132\".p",
-      "roto.UserCurrentMonsterTeamProto\"=\n\022Logo" +
-      "utRequestProto\022\'\n\006sender\030\001 \001(\0132\027.proto.M" +
-      "inimumUserProto\"_\n\035UpdateClientUserRespo" +
-      "nseProto\022$\n\006sender\030\001 \001(\0132\024.proto.FullUse" +
-      "rProto\022\030\n\020timeOfUserUpdate\030\002 \001(\003B/\n\035com." +
-      "lvl6.mobsters.eventprotosB\016EventUserProt" +
-      "o"
+      "der\030\001 \001(\0132\027.proto.MinimumUserProto\022\032\n\022re" +
+      "questedUserUuids\030\002 \003(\t\022\035\n\025includeCurMons" +
+      "terTeam\030\003 \001(\010\"\262\001\n$RetrieveUsersForUserId" +
+      "sResponseProto\022\'\n\006sender\030\001 \001(\0132\027.proto.M" +
+      "inimumUserProto\022,\n\016requestedUsers\030\002 \003(\0132" +
+      "\024.proto.FullUserProto\0223\n\007curTeam\030\003 \003(\0132\"",
+      ".proto.UserCurrentMonsterTeamProto\"=\n\022Lo" +
+      "goutRequestProto\022\'\n\006sender\030\001 \001(\0132\027.proto" +
+      ".MinimumUserProto\"_\n\035UpdateClientUserRes" +
+      "ponseProto\022$\n\006sender\030\001 \001(\0132\024.proto.FullU" +
+      "serProto\022\030\n\020timeOfUserUpdate\030\002 \001(\003B/\n\035co" +
+      "m.lvl6.mobsters.eventprotosB\016EventUserPr" +
+      "oto"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -5402,7 +5405,7 @@ public final class EventUserProto {
           internal_static_proto_RetrieveUsersForUserIdsRequestProto_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_proto_RetrieveUsersForUserIdsRequestProto_descriptor,
-              new java.lang.String[] { "Sender", "RequestedUserIds", "IncludeCurMonsterTeam", },
+              new java.lang.String[] { "Sender", "RequestedUserUuids", "IncludeCurMonsterTeam", },
               com.lvl6.mobsters.eventprotos.EventUserProto.RetrieveUsersForUserIdsRequestProto.class,
               com.lvl6.mobsters.eventprotos.EventUserProto.RetrieveUsersForUserIdsRequestProto.Builder.class);
           internal_static_proto_RetrieveUsersForUserIdsResponseProto_descriptor =

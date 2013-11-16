@@ -11,9 +11,9 @@ public final class EventChatProto {
   public interface SendAdminMessageResponseProtoOrBuilder
       extends com.google.protobuf.MessageOrBuilder {
     
-    // optional int32 senderId = 1;
-    boolean hasSenderId();
-    int getSenderId();
+    // optional string senderUuid = 1;
+    boolean hasSenderUuid();
+    String getSenderUuid();
     
     // optional string message = 2;
     boolean hasMessage();
@@ -48,14 +48,36 @@ public final class EventChatProto {
     }
     
     private int bitField0_;
-    // optional int32 senderId = 1;
-    public static final int SENDERID_FIELD_NUMBER = 1;
-    private int senderId_;
-    public boolean hasSenderId() {
+    // optional string senderUuid = 1;
+    public static final int SENDERUUID_FIELD_NUMBER = 1;
+    private java.lang.Object senderUuid_;
+    public boolean hasSenderUuid() {
       return ((bitField0_ & 0x00000001) == 0x00000001);
     }
-    public int getSenderId() {
-      return senderId_;
+    public String getSenderUuid() {
+      java.lang.Object ref = senderUuid_;
+      if (ref instanceof String) {
+        return (String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        String s = bs.toStringUtf8();
+        if (com.google.protobuf.Internal.isValidUtf8(bs)) {
+          senderUuid_ = s;
+        }
+        return s;
+      }
+    }
+    private com.google.protobuf.ByteString getSenderUuidBytes() {
+      java.lang.Object ref = senderUuid_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8((String) ref);
+        senderUuid_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
     }
     
     // optional string message = 2;
@@ -91,7 +113,7 @@ public final class EventChatProto {
     }
     
     private void initFields() {
-      senderId_ = 0;
+      senderUuid_ = "";
       message_ = "";
     }
     private byte memoizedIsInitialized = -1;
@@ -107,7 +129,7 @@ public final class EventChatProto {
                         throws java.io.IOException {
       getSerializedSize();
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        output.writeInt32(1, senderId_);
+        output.writeBytes(1, getSenderUuidBytes());
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         output.writeBytes(2, getMessageBytes());
@@ -123,7 +145,7 @@ public final class EventChatProto {
       size = 0;
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(1, senderId_);
+          .computeBytesSize(1, getSenderUuidBytes());
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         size += com.google.protobuf.CodedOutputStream
@@ -253,7 +275,7 @@ public final class EventChatProto {
       
       public Builder clear() {
         super.clear();
-        senderId_ = 0;
+        senderUuid_ = "";
         bitField0_ = (bitField0_ & ~0x00000001);
         message_ = "";
         bitField0_ = (bitField0_ & ~0x00000002);
@@ -298,7 +320,7 @@ public final class EventChatProto {
         if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
           to_bitField0_ |= 0x00000001;
         }
-        result.senderId_ = senderId_;
+        result.senderUuid_ = senderUuid_;
         if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
           to_bitField0_ |= 0x00000002;
         }
@@ -319,8 +341,8 @@ public final class EventChatProto {
       
       public Builder mergeFrom(com.lvl6.mobsters.eventprotos.EventChatProto.SendAdminMessageResponseProto other) {
         if (other == com.lvl6.mobsters.eventprotos.EventChatProto.SendAdminMessageResponseProto.getDefaultInstance()) return this;
-        if (other.hasSenderId()) {
-          setSenderId(other.getSenderId());
+        if (other.hasSenderUuid()) {
+          setSenderUuid(other.getSenderUuid());
         }
         if (other.hasMessage()) {
           setMessage(other.getMessage());
@@ -356,9 +378,9 @@ public final class EventChatProto {
               }
               break;
             }
-            case 8: {
+            case 10: {
               bitField0_ |= 0x00000001;
-              senderId_ = input.readInt32();
+              senderUuid_ = input.readBytes();
               break;
             }
             case 18: {
@@ -372,25 +394,40 @@ public final class EventChatProto {
       
       private int bitField0_;
       
-      // optional int32 senderId = 1;
-      private int senderId_ ;
-      public boolean hasSenderId() {
+      // optional string senderUuid = 1;
+      private java.lang.Object senderUuid_ = "";
+      public boolean hasSenderUuid() {
         return ((bitField0_ & 0x00000001) == 0x00000001);
       }
-      public int getSenderId() {
-        return senderId_;
+      public String getSenderUuid() {
+        java.lang.Object ref = senderUuid_;
+        if (!(ref instanceof String)) {
+          String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
+          senderUuid_ = s;
+          return s;
+        } else {
+          return (String) ref;
+        }
       }
-      public Builder setSenderId(int value) {
-        bitField0_ |= 0x00000001;
-        senderId_ = value;
+      public Builder setSenderUuid(String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000001;
+        senderUuid_ = value;
         onChanged();
         return this;
       }
-      public Builder clearSenderId() {
+      public Builder clearSenderUuid() {
         bitField0_ = (bitField0_ & ~0x00000001);
-        senderId_ = 0;
+        senderUuid_ = getDefaultInstance().getSenderUuid();
         onChanged();
         return this;
+      }
+      void setSenderUuid(com.google.protobuf.ByteString value) {
+        bitField0_ |= 0x00000001;
+        senderUuid_ = value;
+        onChanged();
       }
       
       // optional string message = 2;
@@ -2907,9 +2944,9 @@ public final class EventChatProto {
     com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto getSender();
     com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProtoOrBuilder getSenderOrBuilder();
     
-    // optional int32 recipientId = 2;
-    boolean hasRecipientId();
-    int getRecipientId();
+    // optional string recipientUuid = 2;
+    boolean hasRecipientUuid();
+    String getRecipientUuid();
     
     // optional string content = 3;
     boolean hasContent();
@@ -2957,14 +2994,36 @@ public final class EventChatProto {
       return sender_;
     }
     
-    // optional int32 recipientId = 2;
-    public static final int RECIPIENTID_FIELD_NUMBER = 2;
-    private int recipientId_;
-    public boolean hasRecipientId() {
+    // optional string recipientUuid = 2;
+    public static final int RECIPIENTUUID_FIELD_NUMBER = 2;
+    private java.lang.Object recipientUuid_;
+    public boolean hasRecipientUuid() {
       return ((bitField0_ & 0x00000002) == 0x00000002);
     }
-    public int getRecipientId() {
-      return recipientId_;
+    public String getRecipientUuid() {
+      java.lang.Object ref = recipientUuid_;
+      if (ref instanceof String) {
+        return (String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        String s = bs.toStringUtf8();
+        if (com.google.protobuf.Internal.isValidUtf8(bs)) {
+          recipientUuid_ = s;
+        }
+        return s;
+      }
+    }
+    private com.google.protobuf.ByteString getRecipientUuidBytes() {
+      java.lang.Object ref = recipientUuid_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8((String) ref);
+        recipientUuid_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
     }
     
     // optional string content = 3;
@@ -3001,7 +3060,7 @@ public final class EventChatProto {
     
     private void initFields() {
       sender_ = com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto.getDefaultInstance();
-      recipientId_ = 0;
+      recipientUuid_ = "";
       content_ = "";
     }
     private byte memoizedIsInitialized = -1;
@@ -3020,7 +3079,7 @@ public final class EventChatProto {
         output.writeMessage(1, sender_);
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        output.writeInt32(2, recipientId_);
+        output.writeBytes(2, getRecipientUuidBytes());
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
         output.writeBytes(3, getContentBytes());
@@ -3040,7 +3099,7 @@ public final class EventChatProto {
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(2, recipientId_);
+          .computeBytesSize(2, getRecipientUuidBytes());
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
         size += com.google.protobuf.CodedOutputStream
@@ -3177,7 +3236,7 @@ public final class EventChatProto {
           senderBuilder_.clear();
         }
         bitField0_ = (bitField0_ & ~0x00000001);
-        recipientId_ = 0;
+        recipientUuid_ = "";
         bitField0_ = (bitField0_ & ~0x00000002);
         content_ = "";
         bitField0_ = (bitField0_ & ~0x00000004);
@@ -3230,7 +3289,7 @@ public final class EventChatProto {
         if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
           to_bitField0_ |= 0x00000002;
         }
-        result.recipientId_ = recipientId_;
+        result.recipientUuid_ = recipientUuid_;
         if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
           to_bitField0_ |= 0x00000004;
         }
@@ -3254,8 +3313,8 @@ public final class EventChatProto {
         if (other.hasSender()) {
           mergeSender(other.getSender());
         }
-        if (other.hasRecipientId()) {
-          setRecipientId(other.getRecipientId());
+        if (other.hasRecipientUuid()) {
+          setRecipientUuid(other.getRecipientUuid());
         }
         if (other.hasContent()) {
           setContent(other.getContent());
@@ -3300,9 +3359,9 @@ public final class EventChatProto {
               setSender(subBuilder.buildPartial());
               break;
             }
-            case 16: {
+            case 18: {
               bitField0_ |= 0x00000002;
-              recipientId_ = input.readInt32();
+              recipientUuid_ = input.readBytes();
               break;
             }
             case 26: {
@@ -3406,25 +3465,40 @@ public final class EventChatProto {
         return senderBuilder_;
       }
       
-      // optional int32 recipientId = 2;
-      private int recipientId_ ;
-      public boolean hasRecipientId() {
+      // optional string recipientUuid = 2;
+      private java.lang.Object recipientUuid_ = "";
+      public boolean hasRecipientUuid() {
         return ((bitField0_ & 0x00000002) == 0x00000002);
       }
-      public int getRecipientId() {
-        return recipientId_;
+      public String getRecipientUuid() {
+        java.lang.Object ref = recipientUuid_;
+        if (!(ref instanceof String)) {
+          String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
+          recipientUuid_ = s;
+          return s;
+        } else {
+          return (String) ref;
+        }
       }
-      public Builder setRecipientId(int value) {
-        bitField0_ |= 0x00000002;
-        recipientId_ = value;
+      public Builder setRecipientUuid(String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000002;
+        recipientUuid_ = value;
         onChanged();
         return this;
       }
-      public Builder clearRecipientId() {
+      public Builder clearRecipientUuid() {
         bitField0_ = (bitField0_ & ~0x00000002);
-        recipientId_ = 0;
+        recipientUuid_ = getDefaultInstance().getRecipientUuid();
         onChanged();
         return this;
+      }
+      void setRecipientUuid(com.google.protobuf.ByteString value) {
+        bitField0_ |= 0x00000002;
+        recipientUuid_ = value;
+        onChanged();
       }
       
       // optional string content = 3;
@@ -4193,13 +4267,9 @@ public final class EventChatProto {
     com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto getSender();
     com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProtoOrBuilder getSenderOrBuilder();
     
-    // optional int32 otherUserId = 2;
-    boolean hasOtherUserId();
-    int getOtherUserId();
-    
-    // optional int32 beforePrivateChatId = 3;
-    boolean hasBeforePrivateChatId();
-    int getBeforePrivateChatId();
+    // optional string otherUserUuid = 2;
+    boolean hasOtherUserUuid();
+    String getOtherUserUuid();
   }
   public static final class RetrievePrivateChatPostsRequestProto extends
       com.google.protobuf.GeneratedMessage
@@ -4243,30 +4313,41 @@ public final class EventChatProto {
       return sender_;
     }
     
-    // optional int32 otherUserId = 2;
-    public static final int OTHERUSERID_FIELD_NUMBER = 2;
-    private int otherUserId_;
-    public boolean hasOtherUserId() {
+    // optional string otherUserUuid = 2;
+    public static final int OTHERUSERUUID_FIELD_NUMBER = 2;
+    private java.lang.Object otherUserUuid_;
+    public boolean hasOtherUserUuid() {
       return ((bitField0_ & 0x00000002) == 0x00000002);
     }
-    public int getOtherUserId() {
-      return otherUserId_;
+    public String getOtherUserUuid() {
+      java.lang.Object ref = otherUserUuid_;
+      if (ref instanceof String) {
+        return (String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        String s = bs.toStringUtf8();
+        if (com.google.protobuf.Internal.isValidUtf8(bs)) {
+          otherUserUuid_ = s;
+        }
+        return s;
+      }
     }
-    
-    // optional int32 beforePrivateChatId = 3;
-    public static final int BEFOREPRIVATECHATID_FIELD_NUMBER = 3;
-    private int beforePrivateChatId_;
-    public boolean hasBeforePrivateChatId() {
-      return ((bitField0_ & 0x00000004) == 0x00000004);
-    }
-    public int getBeforePrivateChatId() {
-      return beforePrivateChatId_;
+    private com.google.protobuf.ByteString getOtherUserUuidBytes() {
+      java.lang.Object ref = otherUserUuid_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8((String) ref);
+        otherUserUuid_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
     }
     
     private void initFields() {
       sender_ = com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto.getDefaultInstance();
-      otherUserId_ = 0;
-      beforePrivateChatId_ = 0;
+      otherUserUuid_ = "";
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -4284,10 +4365,7 @@ public final class EventChatProto {
         output.writeMessage(1, sender_);
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        output.writeInt32(2, otherUserId_);
-      }
-      if (((bitField0_ & 0x00000004) == 0x00000004)) {
-        output.writeInt32(3, beforePrivateChatId_);
+        output.writeBytes(2, getOtherUserUuidBytes());
       }
       getUnknownFields().writeTo(output);
     }
@@ -4304,11 +4382,7 @@ public final class EventChatProto {
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(2, otherUserId_);
-      }
-      if (((bitField0_ & 0x00000004) == 0x00000004)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(3, beforePrivateChatId_);
+          .computeBytesSize(2, getOtherUserUuidBytes());
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -4441,10 +4515,8 @@ public final class EventChatProto {
           senderBuilder_.clear();
         }
         bitField0_ = (bitField0_ & ~0x00000001);
-        otherUserId_ = 0;
+        otherUserUuid_ = "";
         bitField0_ = (bitField0_ & ~0x00000002);
-        beforePrivateChatId_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000004);
         return this;
       }
       
@@ -4494,11 +4566,7 @@ public final class EventChatProto {
         if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
           to_bitField0_ |= 0x00000002;
         }
-        result.otherUserId_ = otherUserId_;
-        if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
-          to_bitField0_ |= 0x00000004;
-        }
-        result.beforePrivateChatId_ = beforePrivateChatId_;
+        result.otherUserUuid_ = otherUserUuid_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -4518,11 +4586,8 @@ public final class EventChatProto {
         if (other.hasSender()) {
           mergeSender(other.getSender());
         }
-        if (other.hasOtherUserId()) {
-          setOtherUserId(other.getOtherUserId());
-        }
-        if (other.hasBeforePrivateChatId()) {
-          setBeforePrivateChatId(other.getBeforePrivateChatId());
+        if (other.hasOtherUserUuid()) {
+          setOtherUserUuid(other.getOtherUserUuid());
         }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
@@ -4564,14 +4629,9 @@ public final class EventChatProto {
               setSender(subBuilder.buildPartial());
               break;
             }
-            case 16: {
+            case 18: {
               bitField0_ |= 0x00000002;
-              otherUserId_ = input.readInt32();
-              break;
-            }
-            case 24: {
-              bitField0_ |= 0x00000004;
-              beforePrivateChatId_ = input.readInt32();
+              otherUserUuid_ = input.readBytes();
               break;
             }
           }
@@ -4670,46 +4730,40 @@ public final class EventChatProto {
         return senderBuilder_;
       }
       
-      // optional int32 otherUserId = 2;
-      private int otherUserId_ ;
-      public boolean hasOtherUserId() {
+      // optional string otherUserUuid = 2;
+      private java.lang.Object otherUserUuid_ = "";
+      public boolean hasOtherUserUuid() {
         return ((bitField0_ & 0x00000002) == 0x00000002);
       }
-      public int getOtherUserId() {
-        return otherUserId_;
+      public String getOtherUserUuid() {
+        java.lang.Object ref = otherUserUuid_;
+        if (!(ref instanceof String)) {
+          String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
+          otherUserUuid_ = s;
+          return s;
+        } else {
+          return (String) ref;
+        }
       }
-      public Builder setOtherUserId(int value) {
-        bitField0_ |= 0x00000002;
-        otherUserId_ = value;
+      public Builder setOtherUserUuid(String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000002;
+        otherUserUuid_ = value;
         onChanged();
         return this;
       }
-      public Builder clearOtherUserId() {
+      public Builder clearOtherUserUuid() {
         bitField0_ = (bitField0_ & ~0x00000002);
-        otherUserId_ = 0;
+        otherUserUuid_ = getDefaultInstance().getOtherUserUuid();
         onChanged();
         return this;
       }
-      
-      // optional int32 beforePrivateChatId = 3;
-      private int beforePrivateChatId_ ;
-      public boolean hasBeforePrivateChatId() {
-        return ((bitField0_ & 0x00000004) == 0x00000004);
-      }
-      public int getBeforePrivateChatId() {
-        return beforePrivateChatId_;
-      }
-      public Builder setBeforePrivateChatId(int value) {
-        bitField0_ |= 0x00000004;
-        beforePrivateChatId_ = value;
+      void setOtherUserUuid(com.google.protobuf.ByteString value) {
+        bitField0_ |= 0x00000002;
+        otherUserUuid_ = value;
         onChanged();
-        return this;
-      }
-      public Builder clearBeforePrivateChatId() {
-        bitField0_ = (bitField0_ & ~0x00000004);
-        beforePrivateChatId_ = 0;
-        onChanged();
-        return this;
       }
       
       // @@protoc_insertion_point(builder_scope:proto.RetrievePrivateChatPostsRequestProto)
@@ -4741,17 +4795,13 @@ public final class EventChatProto {
     com.lvl6.mobsters.noneventprotos.ChatProto.GroupChatMessageProtoOrBuilder getPostsOrBuilder(
         int index);
     
-    // optional int32 beforePrivateChatId = 3;
-    boolean hasBeforePrivateChatId();
-    int getBeforePrivateChatId();
-    
     // optional .proto.RetrievePrivateChatPostsResponseProto.RetrievePrivateChatPostsStatus status = 4;
     boolean hasStatus();
     com.lvl6.mobsters.eventprotos.EventChatProto.RetrievePrivateChatPostsResponseProto.RetrievePrivateChatPostsStatus getStatus();
     
-    // optional int32 otherUserId = 5;
-    boolean hasOtherUserId();
-    int getOtherUserId();
+    // optional string otherUserUuid = 5;
+    boolean hasOtherUserUuid();
+    String getOtherUserUuid();
   }
   public static final class RetrievePrivateChatPostsResponseProto extends
       com.google.protobuf.GeneratedMessage
@@ -4885,42 +4935,53 @@ public final class EventChatProto {
       return posts_.get(index);
     }
     
-    // optional int32 beforePrivateChatId = 3;
-    public static final int BEFOREPRIVATECHATID_FIELD_NUMBER = 3;
-    private int beforePrivateChatId_;
-    public boolean hasBeforePrivateChatId() {
-      return ((bitField0_ & 0x00000002) == 0x00000002);
-    }
-    public int getBeforePrivateChatId() {
-      return beforePrivateChatId_;
-    }
-    
     // optional .proto.RetrievePrivateChatPostsResponseProto.RetrievePrivateChatPostsStatus status = 4;
     public static final int STATUS_FIELD_NUMBER = 4;
     private com.lvl6.mobsters.eventprotos.EventChatProto.RetrievePrivateChatPostsResponseProto.RetrievePrivateChatPostsStatus status_;
     public boolean hasStatus() {
-      return ((bitField0_ & 0x00000004) == 0x00000004);
+      return ((bitField0_ & 0x00000002) == 0x00000002);
     }
     public com.lvl6.mobsters.eventprotos.EventChatProto.RetrievePrivateChatPostsResponseProto.RetrievePrivateChatPostsStatus getStatus() {
       return status_;
     }
     
-    // optional int32 otherUserId = 5;
-    public static final int OTHERUSERID_FIELD_NUMBER = 5;
-    private int otherUserId_;
-    public boolean hasOtherUserId() {
-      return ((bitField0_ & 0x00000008) == 0x00000008);
+    // optional string otherUserUuid = 5;
+    public static final int OTHERUSERUUID_FIELD_NUMBER = 5;
+    private java.lang.Object otherUserUuid_;
+    public boolean hasOtherUserUuid() {
+      return ((bitField0_ & 0x00000004) == 0x00000004);
     }
-    public int getOtherUserId() {
-      return otherUserId_;
+    public String getOtherUserUuid() {
+      java.lang.Object ref = otherUserUuid_;
+      if (ref instanceof String) {
+        return (String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        String s = bs.toStringUtf8();
+        if (com.google.protobuf.Internal.isValidUtf8(bs)) {
+          otherUserUuid_ = s;
+        }
+        return s;
+      }
+    }
+    private com.google.protobuf.ByteString getOtherUserUuidBytes() {
+      java.lang.Object ref = otherUserUuid_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8((String) ref);
+        otherUserUuid_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
     }
     
     private void initFields() {
       sender_ = com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto.getDefaultInstance();
       posts_ = java.util.Collections.emptyList();
-      beforePrivateChatId_ = 0;
       status_ = com.lvl6.mobsters.eventprotos.EventChatProto.RetrievePrivateChatPostsResponseProto.RetrievePrivateChatPostsStatus.SUCCESS;
-      otherUserId_ = 0;
+      otherUserUuid_ = "";
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -4941,13 +5002,10 @@ public final class EventChatProto {
         output.writeMessage(2, posts_.get(i));
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        output.writeInt32(3, beforePrivateChatId_);
-      }
-      if (((bitField0_ & 0x00000004) == 0x00000004)) {
         output.writeEnum(4, status_.getNumber());
       }
-      if (((bitField0_ & 0x00000008) == 0x00000008)) {
-        output.writeInt32(5, otherUserId_);
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        output.writeBytes(5, getOtherUserUuidBytes());
       }
       getUnknownFields().writeTo(output);
     }
@@ -4968,15 +5026,11 @@ public final class EventChatProto {
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(3, beforePrivateChatId_);
+          .computeEnumSize(4, status_.getNumber());
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeEnumSize(4, status_.getNumber());
-      }
-      if (((bitField0_ & 0x00000008) == 0x00000008)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(5, otherUserId_);
+          .computeBytesSize(5, getOtherUserUuidBytes());
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -5116,12 +5170,10 @@ public final class EventChatProto {
         } else {
           postsBuilder_.clear();
         }
-        beforePrivateChatId_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000004);
         status_ = com.lvl6.mobsters.eventprotos.EventChatProto.RetrievePrivateChatPostsResponseProto.RetrievePrivateChatPostsStatus.SUCCESS;
+        bitField0_ = (bitField0_ & ~0x00000004);
+        otherUserUuid_ = "";
         bitField0_ = (bitField0_ & ~0x00000008);
-        otherUserId_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000010);
         return this;
       }
       
@@ -5180,15 +5232,11 @@ public final class EventChatProto {
         if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
           to_bitField0_ |= 0x00000002;
         }
-        result.beforePrivateChatId_ = beforePrivateChatId_;
+        result.status_ = status_;
         if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
           to_bitField0_ |= 0x00000004;
         }
-        result.status_ = status_;
-        if (((from_bitField0_ & 0x00000010) == 0x00000010)) {
-          to_bitField0_ |= 0x00000008;
-        }
-        result.otherUserId_ = otherUserId_;
+        result.otherUserUuid_ = otherUserUuid_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -5234,14 +5282,11 @@ public final class EventChatProto {
             }
           }
         }
-        if (other.hasBeforePrivateChatId()) {
-          setBeforePrivateChatId(other.getBeforePrivateChatId());
-        }
         if (other.hasStatus()) {
           setStatus(other.getStatus());
         }
-        if (other.hasOtherUserId()) {
-          setOtherUserId(other.getOtherUserId());
+        if (other.hasOtherUserUuid()) {
+          setOtherUserUuid(other.getOtherUserUuid());
         }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
@@ -5289,25 +5334,20 @@ public final class EventChatProto {
               addPosts(subBuilder.buildPartial());
               break;
             }
-            case 24: {
-              bitField0_ |= 0x00000004;
-              beforePrivateChatId_ = input.readInt32();
-              break;
-            }
             case 32: {
               int rawValue = input.readEnum();
               com.lvl6.mobsters.eventprotos.EventChatProto.RetrievePrivateChatPostsResponseProto.RetrievePrivateChatPostsStatus value = com.lvl6.mobsters.eventprotos.EventChatProto.RetrievePrivateChatPostsResponseProto.RetrievePrivateChatPostsStatus.valueOf(rawValue);
               if (value == null) {
                 unknownFields.mergeVarintField(4, rawValue);
               } else {
-                bitField0_ |= 0x00000008;
+                bitField0_ |= 0x00000004;
                 status_ = value;
               }
               break;
             }
-            case 40: {
-              bitField0_ |= 0x00000010;
-              otherUserId_ = input.readInt32();
+            case 42: {
+              bitField0_ |= 0x00000008;
+              otherUserUuid_ = input.readBytes();
               break;
             }
           }
@@ -5592,31 +5632,10 @@ public final class EventChatProto {
         return postsBuilder_;
       }
       
-      // optional int32 beforePrivateChatId = 3;
-      private int beforePrivateChatId_ ;
-      public boolean hasBeforePrivateChatId() {
-        return ((bitField0_ & 0x00000004) == 0x00000004);
-      }
-      public int getBeforePrivateChatId() {
-        return beforePrivateChatId_;
-      }
-      public Builder setBeforePrivateChatId(int value) {
-        bitField0_ |= 0x00000004;
-        beforePrivateChatId_ = value;
-        onChanged();
-        return this;
-      }
-      public Builder clearBeforePrivateChatId() {
-        bitField0_ = (bitField0_ & ~0x00000004);
-        beforePrivateChatId_ = 0;
-        onChanged();
-        return this;
-      }
-      
       // optional .proto.RetrievePrivateChatPostsResponseProto.RetrievePrivateChatPostsStatus status = 4;
       private com.lvl6.mobsters.eventprotos.EventChatProto.RetrievePrivateChatPostsResponseProto.RetrievePrivateChatPostsStatus status_ = com.lvl6.mobsters.eventprotos.EventChatProto.RetrievePrivateChatPostsResponseProto.RetrievePrivateChatPostsStatus.SUCCESS;
       public boolean hasStatus() {
-        return ((bitField0_ & 0x00000008) == 0x00000008);
+        return ((bitField0_ & 0x00000004) == 0x00000004);
       }
       public com.lvl6.mobsters.eventprotos.EventChatProto.RetrievePrivateChatPostsResponseProto.RetrievePrivateChatPostsStatus getStatus() {
         return status_;
@@ -5625,37 +5644,52 @@ public final class EventChatProto {
         if (value == null) {
           throw new NullPointerException();
         }
-        bitField0_ |= 0x00000008;
+        bitField0_ |= 0x00000004;
         status_ = value;
         onChanged();
         return this;
       }
       public Builder clearStatus() {
-        bitField0_ = (bitField0_ & ~0x00000008);
+        bitField0_ = (bitField0_ & ~0x00000004);
         status_ = com.lvl6.mobsters.eventprotos.EventChatProto.RetrievePrivateChatPostsResponseProto.RetrievePrivateChatPostsStatus.SUCCESS;
         onChanged();
         return this;
       }
       
-      // optional int32 otherUserId = 5;
-      private int otherUserId_ ;
-      public boolean hasOtherUserId() {
-        return ((bitField0_ & 0x00000010) == 0x00000010);
+      // optional string otherUserUuid = 5;
+      private java.lang.Object otherUserUuid_ = "";
+      public boolean hasOtherUserUuid() {
+        return ((bitField0_ & 0x00000008) == 0x00000008);
       }
-      public int getOtherUserId() {
-        return otherUserId_;
+      public String getOtherUserUuid() {
+        java.lang.Object ref = otherUserUuid_;
+        if (!(ref instanceof String)) {
+          String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
+          otherUserUuid_ = s;
+          return s;
+        } else {
+          return (String) ref;
+        }
       }
-      public Builder setOtherUserId(int value) {
-        bitField0_ |= 0x00000010;
-        otherUserId_ = value;
+      public Builder setOtherUserUuid(String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000008;
+        otherUserUuid_ = value;
         onChanged();
         return this;
       }
-      public Builder clearOtherUserId() {
-        bitField0_ = (bitField0_ & ~0x00000010);
-        otherUserId_ = 0;
+      public Builder clearOtherUserUuid() {
+        bitField0_ = (bitField0_ & ~0x00000008);
+        otherUserUuid_ = getDefaultInstance().getOtherUserUuid();
         onChanged();
         return this;
+      }
+      void setOtherUserUuid(com.google.protobuf.ByteString value) {
+        bitField0_ |= 0x00000008;
+        otherUserUuid_ = value;
+        onChanged();
       }
       
       // @@protoc_insertion_point(builder_scope:proto.RetrievePrivateChatPostsResponseProto)
@@ -5724,47 +5758,46 @@ public final class EventChatProto {
   static {
     java.lang.String[] descriptorData = {
       "\n\017EventChat.proto\022\005proto\032\nChat.proto\032\nUs" +
-      "er.proto\"B\n\035SendAdminMessageResponseProt" +
-      "o\022\020\n\010senderId\030\001 \001(\005\022\017\n\007message\030\002 \001(\t\"c\n " +
-      "GeneralNotificationResponseProto\022\r\n\005titl" +
-      "e\030\001 \001(\t\022\020\n\010subtitle\030\002 \001(\t\022\036\n\003rgb\030\003 \001(\0132\021" +
-      ".proto.ColorProto\"\223\001\n\031SendGroupChatReque" +
-      "stProto\022\'\n\006sender\030\001 \001(\0132\027.proto.MinimumU" +
-      "serProto\022$\n\005scope\030\002 \001(\0162\025.proto.GroupCha" +
-      "tScope\022\023\n\013chatMessage\030\003 \001(\t\022\022\n\nclientTim" +
-      "e\030\004 \001(\003\"\332\001\n\032SendGroupChatResponseProto\022\'",
-      "\n\006sender\030\001 \001(\0132\027.proto.MinimumUserProto\022" +
-      "E\n\006status\030\002 \001(\01625.proto.SendGroupChatRes" +
-      "ponseProto.SendGroupChatStatus\"L\n\023SendGr" +
-      "oupChatStatus\022\013\n\007SUCCESS\020\001\022\014\n\010TOO_LONG\020\002" +
-      "\022\016\n\nOTHER_FAIL\020\003\022\n\n\006BANNED\020\004\"\244\001\n\036Receive" +
-      "dGroupChatResponseProto\0220\n\006sender\030\001 \001(\0132" +
-      " .proto.MinimumUserProtoWithLevel\022\023\n\013cha" +
-      "tMessage\030\002 \001(\t\022*\n\005scope\030\003 \001(\0162\025.proto.Gr" +
-      "oupChatScope:\004CLAN\022\017\n\007isAdmin\030\004 \001(\010\"l\n\033P" +
-      "rivateChatPostRequestProto\022\'\n\006sender\030\001 \001",
-      "(\0132\027.proto.MinimumUserProto\022\023\n\013recipient" +
-      "Id\030\002 \001(\005\022\017\n\007content\030\003 \001(\t\"\250\002\n\034PrivateCha" +
-      "tPostResponseProto\022\'\n\006sender\030\001 \001(\0132\027.pro" +
-      "to.MinimumUserProto\022I\n\006status\030\002 \001(\01629.pr" +
-      "oto.PrivateChatPostResponseProto.Private" +
-      "ChatPostStatus\022)\n\004post\030\003 \001(\0132\033.proto.Pri" +
-      "vateChatPostProto\"i\n\025PrivateChatPostStat" +
-      "us\022\013\n\007SUCCESS\020\001\022\023\n\017NO_CONTENT_SENT\020\002\022\022\n\016" +
-      "POST_TOO_LARGE\020\003\022\016\n\nOTHER_FAIL\020\004\022\n\n\006BANN" +
-      "ED\020\005\"\201\001\n$RetrievePrivateChatPostsRequest",
-      "Proto\022\'\n\006sender\030\001 \001(\0132\027.proto.MinimumUse" +
-      "rProto\022\023\n\013otherUserId\030\002 \001(\005\022\033\n\023beforePri" +
-      "vateChatId\030\003 \001(\005\"\305\002\n%RetrievePrivateChat" +
-      "PostsResponseProto\022\'\n\006sender\030\001 \001(\0132\027.pro" +
-      "to.MinimumUserProto\022+\n\005posts\030\002 \003(\0132\034.pro" +
-      "to.GroupChatMessageProto\022\033\n\023beforePrivat" +
-      "eChatId\030\003 \001(\005\022[\n\006status\030\004 \001(\0162K.proto.Re" +
-      "trievePrivateChatPostsResponseProto.Retr" +
-      "ievePrivateChatPostsStatus\022\023\n\013otherUserI" +
-      "d\030\005 \001(\005\"7\n\036RetrievePrivateChatPostsStatu",
-      "s\022\013\n\007SUCCESS\020\001\022\010\n\004FAIL\020\002B/\n\035com.lvl6.mob" +
-      "sters.eventprotosB\016EventChatProto"
+      "er.proto\"D\n\035SendAdminMessageResponseProt" +
+      "o\022\022\n\nsenderUuid\030\001 \001(\t\022\017\n\007message\030\002 \001(\t\"c" +
+      "\n GeneralNotificationResponseProto\022\r\n\005ti" +
+      "tle\030\001 \001(\t\022\020\n\010subtitle\030\002 \001(\t\022\036\n\003rgb\030\003 \001(\013" +
+      "2\021.proto.ColorProto\"\223\001\n\031SendGroupChatReq" +
+      "uestProto\022\'\n\006sender\030\001 \001(\0132\027.proto.Minimu" +
+      "mUserProto\022$\n\005scope\030\002 \001(\0162\025.proto.GroupC" +
+      "hatScope\022\023\n\013chatMessage\030\003 \001(\t\022\022\n\nclientT" +
+      "ime\030\004 \001(\003\"\332\001\n\032SendGroupChatResponseProto",
+      "\022\'\n\006sender\030\001 \001(\0132\027.proto.MinimumUserProt" +
+      "o\022E\n\006status\030\002 \001(\01625.proto.SendGroupChatR" +
+      "esponseProto.SendGroupChatStatus\"L\n\023Send" +
+      "GroupChatStatus\022\013\n\007SUCCESS\020\001\022\014\n\010TOO_LONG" +
+      "\020\002\022\016\n\nOTHER_FAIL\020\003\022\n\n\006BANNED\020\004\"\244\001\n\036Recei" +
+      "vedGroupChatResponseProto\0220\n\006sender\030\001 \001(" +
+      "\0132 .proto.MinimumUserProtoWithLevel\022\023\n\013c" +
+      "hatMessage\030\002 \001(\t\022*\n\005scope\030\003 \001(\0162\025.proto." +
+      "GroupChatScope:\004CLAN\022\017\n\007isAdmin\030\004 \001(\010\"n\n" +
+      "\033PrivateChatPostRequestProto\022\'\n\006sender\030\001",
+      " \001(\0132\027.proto.MinimumUserProto\022\025\n\rrecipie" +
+      "ntUuid\030\002 \001(\t\022\017\n\007content\030\003 \001(\t\"\250\002\n\034Privat" +
+      "eChatPostResponseProto\022\'\n\006sender\030\001 \001(\0132\027" +
+      ".proto.MinimumUserProto\022I\n\006status\030\002 \001(\0162" +
+      "9.proto.PrivateChatPostResponseProto.Pri" +
+      "vateChatPostStatus\022)\n\004post\030\003 \001(\0132\033.proto" +
+      ".PrivateChatPostProto\"i\n\025PrivateChatPost" +
+      "Status\022\013\n\007SUCCESS\020\001\022\023\n\017NO_CONTENT_SENT\020\002" +
+      "\022\022\n\016POST_TOO_LARGE\020\003\022\016\n\nOTHER_FAIL\020\004\022\n\n\006" +
+      "BANNED\020\005\"f\n$RetrievePrivateChatPostsRequ",
+      "estProto\022\'\n\006sender\030\001 \001(\0132\027.proto.Minimum" +
+      "UserProto\022\025\n\rotherUserUuid\030\002 \001(\t\"\252\002\n%Ret" +
+      "rievePrivateChatPostsResponseProto\022\'\n\006se" +
+      "nder\030\001 \001(\0132\027.proto.MinimumUserProto\022+\n\005p" +
+      "osts\030\002 \003(\0132\034.proto.GroupChatMessageProto" +
+      "\022[\n\006status\030\004 \001(\0162K.proto.RetrievePrivate" +
+      "ChatPostsResponseProto.RetrievePrivateCh" +
+      "atPostsStatus\022\025\n\rotherUserUuid\030\005 \001(\t\"7\n\036" +
+      "RetrievePrivateChatPostsStatus\022\013\n\007SUCCES" +
+      "S\020\001\022\010\n\004FAIL\020\002B/\n\035com.lvl6.mobsters.event",
+      "protosB\016EventChatProto"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -5776,7 +5809,7 @@ public final class EventChatProto {
           internal_static_proto_SendAdminMessageResponseProto_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_proto_SendAdminMessageResponseProto_descriptor,
-              new java.lang.String[] { "SenderId", "Message", },
+              new java.lang.String[] { "SenderUuid", "Message", },
               com.lvl6.mobsters.eventprotos.EventChatProto.SendAdminMessageResponseProto.class,
               com.lvl6.mobsters.eventprotos.EventChatProto.SendAdminMessageResponseProto.Builder.class);
           internal_static_proto_GeneralNotificationResponseProto_descriptor =
@@ -5816,7 +5849,7 @@ public final class EventChatProto {
           internal_static_proto_PrivateChatPostRequestProto_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_proto_PrivateChatPostRequestProto_descriptor,
-              new java.lang.String[] { "Sender", "RecipientId", "Content", },
+              new java.lang.String[] { "Sender", "RecipientUuid", "Content", },
               com.lvl6.mobsters.eventprotos.EventChatProto.PrivateChatPostRequestProto.class,
               com.lvl6.mobsters.eventprotos.EventChatProto.PrivateChatPostRequestProto.Builder.class);
           internal_static_proto_PrivateChatPostResponseProto_descriptor =
@@ -5832,7 +5865,7 @@ public final class EventChatProto {
           internal_static_proto_RetrievePrivateChatPostsRequestProto_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_proto_RetrievePrivateChatPostsRequestProto_descriptor,
-              new java.lang.String[] { "Sender", "OtherUserId", "BeforePrivateChatId", },
+              new java.lang.String[] { "Sender", "OtherUserUuid", },
               com.lvl6.mobsters.eventprotos.EventChatProto.RetrievePrivateChatPostsRequestProto.class,
               com.lvl6.mobsters.eventprotos.EventChatProto.RetrievePrivateChatPostsRequestProto.Builder.class);
           internal_static_proto_RetrievePrivateChatPostsResponseProto_descriptor =
@@ -5840,7 +5873,7 @@ public final class EventChatProto {
           internal_static_proto_RetrievePrivateChatPostsResponseProto_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_proto_RetrievePrivateChatPostsResponseProto_descriptor,
-              new java.lang.String[] { "Sender", "Posts", "BeforePrivateChatId", "Status", "OtherUserId", },
+              new java.lang.String[] { "Sender", "Posts", "Status", "OtherUserUuid", },
               com.lvl6.mobsters.eventprotos.EventChatProto.RetrievePrivateChatPostsResponseProto.class,
               com.lvl6.mobsters.eventprotos.EventChatProto.RetrievePrivateChatPostsResponseProto.Builder.class);
           return null;

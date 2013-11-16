@@ -14,7 +14,7 @@ option java_outer_classname = "EventUserProto";
 
 //CALL STARTUP AFTER THIS
 
-//if devicetoken doesnt work, itll still return success
+//if devicetoken doesnt work, it'll still return success
 //client can check user's diamonds to see if it went through
 message UserCreateRequestProto {
      optional string udid = 1;
@@ -67,7 +67,7 @@ message LevelUpResponseProto {
 
 message RetrieveUsersForUserIdsRequestProto {
     optional MinimumUserProto sender = 1;
-	repeated int32 requestedUserIds = 2;
+	repeated string requestedUserUuids = 2;
 	optional bool includeCurMonsterTeam = 3;
 }
 

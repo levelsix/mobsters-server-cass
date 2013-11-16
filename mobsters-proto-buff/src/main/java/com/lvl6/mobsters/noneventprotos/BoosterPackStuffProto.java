@@ -25,9 +25,9 @@ public final class BoosterPackStuffProto {
     boolean hasTimeOfPurchase();
     long getTimeOfPurchase();
     
-    // optional int32 monsterId = 4;
-    boolean hasMonsterId();
-    int getMonsterId();
+    // optional string monsterUuid = 4;
+    boolean hasMonsterUuid();
+    String getMonsterUuid();
   }
   public static final class RareBoosterPurchaseProto extends
       com.google.protobuf.GeneratedMessage
@@ -94,21 +94,43 @@ public final class BoosterPackStuffProto {
       return timeOfPurchase_;
     }
     
-    // optional int32 monsterId = 4;
-    public static final int MONSTERID_FIELD_NUMBER = 4;
-    private int monsterId_;
-    public boolean hasMonsterId() {
+    // optional string monsterUuid = 4;
+    public static final int MONSTERUUID_FIELD_NUMBER = 4;
+    private java.lang.Object monsterUuid_;
+    public boolean hasMonsterUuid() {
       return ((bitField0_ & 0x00000008) == 0x00000008);
     }
-    public int getMonsterId() {
-      return monsterId_;
+    public String getMonsterUuid() {
+      java.lang.Object ref = monsterUuid_;
+      if (ref instanceof String) {
+        return (String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        String s = bs.toStringUtf8();
+        if (com.google.protobuf.Internal.isValidUtf8(bs)) {
+          monsterUuid_ = s;
+        }
+        return s;
+      }
+    }
+    private com.google.protobuf.ByteString getMonsterUuidBytes() {
+      java.lang.Object ref = monsterUuid_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8((String) ref);
+        monsterUuid_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
     }
     
     private void initFields() {
       user_ = com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto.getDefaultInstance();
       booster_ = com.lvl6.mobsters.noneventprotos.BoosterPackStuffProto.BoosterPackProto.getDefaultInstance();
       timeOfPurchase_ = 0L;
-      monsterId_ = 0;
+      monsterUuid_ = "";
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -132,7 +154,7 @@ public final class BoosterPackStuffProto {
         output.writeUInt64(3, timeOfPurchase_);
       }
       if (((bitField0_ & 0x00000008) == 0x00000008)) {
-        output.writeInt32(4, monsterId_);
+        output.writeBytes(4, getMonsterUuidBytes());
       }
       getUnknownFields().writeTo(output);
     }
@@ -157,7 +179,7 @@ public final class BoosterPackStuffProto {
       }
       if (((bitField0_ & 0x00000008) == 0x00000008)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(4, monsterId_);
+          .computeBytesSize(4, getMonsterUuidBytes());
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -299,7 +321,7 @@ public final class BoosterPackStuffProto {
         bitField0_ = (bitField0_ & ~0x00000002);
         timeOfPurchase_ = 0L;
         bitField0_ = (bitField0_ & ~0x00000004);
-        monsterId_ = 0;
+        monsterUuid_ = "";
         bitField0_ = (bitField0_ & ~0x00000008);
         return this;
       }
@@ -362,7 +384,7 @@ public final class BoosterPackStuffProto {
         if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
           to_bitField0_ |= 0x00000008;
         }
-        result.monsterId_ = monsterId_;
+        result.monsterUuid_ = monsterUuid_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -388,8 +410,8 @@ public final class BoosterPackStuffProto {
         if (other.hasTimeOfPurchase()) {
           setTimeOfPurchase(other.getTimeOfPurchase());
         }
-        if (other.hasMonsterId()) {
-          setMonsterId(other.getMonsterId());
+        if (other.hasMonsterUuid()) {
+          setMonsterUuid(other.getMonsterUuid());
         }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
@@ -445,9 +467,9 @@ public final class BoosterPackStuffProto {
               timeOfPurchase_ = input.readUInt64();
               break;
             }
-            case 32: {
+            case 34: {
               bitField0_ |= 0x00000008;
-              monsterId_ = input.readInt32();
+              monsterUuid_ = input.readBytes();
               break;
             }
           }
@@ -657,25 +679,40 @@ public final class BoosterPackStuffProto {
         return this;
       }
       
-      // optional int32 monsterId = 4;
-      private int monsterId_ ;
-      public boolean hasMonsterId() {
+      // optional string monsterUuid = 4;
+      private java.lang.Object monsterUuid_ = "";
+      public boolean hasMonsterUuid() {
         return ((bitField0_ & 0x00000008) == 0x00000008);
       }
-      public int getMonsterId() {
-        return monsterId_;
+      public String getMonsterUuid() {
+        java.lang.Object ref = monsterUuid_;
+        if (!(ref instanceof String)) {
+          String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
+          monsterUuid_ = s;
+          return s;
+        } else {
+          return (String) ref;
+        }
       }
-      public Builder setMonsterId(int value) {
-        bitField0_ |= 0x00000008;
-        monsterId_ = value;
+      public Builder setMonsterUuid(String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000008;
+        monsterUuid_ = value;
         onChanged();
         return this;
       }
-      public Builder clearMonsterId() {
+      public Builder clearMonsterUuid() {
         bitField0_ = (bitField0_ & ~0x00000008);
-        monsterId_ = 0;
+        monsterUuid_ = getDefaultInstance().getMonsterUuid();
         onChanged();
         return this;
+      }
+      void setMonsterUuid(com.google.protobuf.ByteString value) {
+        bitField0_ |= 0x00000008;
+        monsterUuid_ = value;
+        onChanged();
       }
       
       // @@protoc_insertion_point(builder_scope:proto.RareBoosterPurchaseProto)
@@ -692,9 +729,9 @@ public final class BoosterPackStuffProto {
   public interface BoosterPackProtoOrBuilder
       extends com.google.protobuf.MessageOrBuilder {
     
-    // optional int32 boosterPackId = 1;
-    boolean hasBoosterPackId();
-    int getBoosterPackId();
+    // optional string boosterPackUuid = 1;
+    boolean hasBoosterPackUuid();
+    String getBoosterPackUuid();
     
     // optional string boosterPackName = 2;
     boolean hasBoosterPackName();
@@ -773,14 +810,36 @@ public final class BoosterPackStuffProto {
     }
     
     private int bitField0_;
-    // optional int32 boosterPackId = 1;
-    public static final int BOOSTERPACKID_FIELD_NUMBER = 1;
-    private int boosterPackId_;
-    public boolean hasBoosterPackId() {
+    // optional string boosterPackUuid = 1;
+    public static final int BOOSTERPACKUUID_FIELD_NUMBER = 1;
+    private java.lang.Object boosterPackUuid_;
+    public boolean hasBoosterPackUuid() {
       return ((bitField0_ & 0x00000001) == 0x00000001);
     }
-    public int getBoosterPackId() {
-      return boosterPackId_;
+    public String getBoosterPackUuid() {
+      java.lang.Object ref = boosterPackUuid_;
+      if (ref instanceof String) {
+        return (String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        String s = bs.toStringUtf8();
+        if (com.google.protobuf.Internal.isValidUtf8(bs)) {
+          boosterPackUuid_ = s;
+        }
+        return s;
+      }
+    }
+    private com.google.protobuf.ByteString getBoosterPackUuidBytes() {
+      java.lang.Object ref = boosterPackUuid_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8((String) ref);
+        boosterPackUuid_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
     }
     
     // optional string boosterPackName = 2;
@@ -1028,7 +1087,7 @@ public final class BoosterPackStuffProto {
     }
     
     private void initFields() {
-      boosterPackId_ = 0;
+      boosterPackUuid_ = "";
       boosterPackName_ = "";
       gemPrice_ = 0;
       specialItems_ = java.util.Collections.emptyList();
@@ -1052,7 +1111,7 @@ public final class BoosterPackStuffProto {
                         throws java.io.IOException {
       getSerializedSize();
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        output.writeInt32(1, boosterPackId_);
+        output.writeBytes(1, getBoosterPackUuidBytes());
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         output.writeBytes(2, getBoosterPackNameBytes());
@@ -1092,7 +1151,7 @@ public final class BoosterPackStuffProto {
       size = 0;
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(1, boosterPackId_);
+          .computeBytesSize(1, getBoosterPackUuidBytes());
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         size += com.google.protobuf.CodedOutputStream
@@ -1256,7 +1315,7 @@ public final class BoosterPackStuffProto {
       
       public Builder clear() {
         super.clear();
-        boosterPackId_ = 0;
+        boosterPackUuid_ = "";
         bitField0_ = (bitField0_ & ~0x00000001);
         boosterPackName_ = "";
         bitField0_ = (bitField0_ & ~0x00000002);
@@ -1325,7 +1384,7 @@ public final class BoosterPackStuffProto {
         if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
           to_bitField0_ |= 0x00000001;
         }
-        result.boosterPackId_ = boosterPackId_;
+        result.boosterPackUuid_ = boosterPackUuid_;
         if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
           to_bitField0_ |= 0x00000002;
         }
@@ -1388,8 +1447,8 @@ public final class BoosterPackStuffProto {
       
       public Builder mergeFrom(com.lvl6.mobsters.noneventprotos.BoosterPackStuffProto.BoosterPackProto other) {
         if (other == com.lvl6.mobsters.noneventprotos.BoosterPackStuffProto.BoosterPackProto.getDefaultInstance()) return this;
-        if (other.hasBoosterPackId()) {
-          setBoosterPackId(other.getBoosterPackId());
+        if (other.hasBoosterPackUuid()) {
+          setBoosterPackUuid(other.getBoosterPackUuid());
         }
         if (other.hasBoosterPackName()) {
           setBoosterPackName(other.getBoosterPackName());
@@ -1495,9 +1554,9 @@ public final class BoosterPackStuffProto {
               }
               break;
             }
-            case 8: {
+            case 10: {
               bitField0_ |= 0x00000001;
-              boosterPackId_ = input.readInt32();
+              boosterPackUuid_ = input.readBytes();
               break;
             }
             case 18: {
@@ -1553,25 +1612,40 @@ public final class BoosterPackStuffProto {
       
       private int bitField0_;
       
-      // optional int32 boosterPackId = 1;
-      private int boosterPackId_ ;
-      public boolean hasBoosterPackId() {
+      // optional string boosterPackUuid = 1;
+      private java.lang.Object boosterPackUuid_ = "";
+      public boolean hasBoosterPackUuid() {
         return ((bitField0_ & 0x00000001) == 0x00000001);
       }
-      public int getBoosterPackId() {
-        return boosterPackId_;
+      public String getBoosterPackUuid() {
+        java.lang.Object ref = boosterPackUuid_;
+        if (!(ref instanceof String)) {
+          String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
+          boosterPackUuid_ = s;
+          return s;
+        } else {
+          return (String) ref;
+        }
       }
-      public Builder setBoosterPackId(int value) {
-        bitField0_ |= 0x00000001;
-        boosterPackId_ = value;
+      public Builder setBoosterPackUuid(String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000001;
+        boosterPackUuid_ = value;
         onChanged();
         return this;
       }
-      public Builder clearBoosterPackId() {
+      public Builder clearBoosterPackUuid() {
         bitField0_ = (bitField0_ & ~0x00000001);
-        boosterPackId_ = 0;
+        boosterPackUuid_ = getDefaultInstance().getBoosterPackUuid();
         onChanged();
         return this;
+      }
+      void setBoosterPackUuid(com.google.protobuf.ByteString value) {
+        bitField0_ |= 0x00000001;
+        boosterPackUuid_ = value;
+        onChanged();
       }
       
       // optional string boosterPackName = 2;
@@ -2197,17 +2271,17 @@ public final class BoosterPackStuffProto {
   public interface BoosterItemProtoOrBuilder
       extends com.google.protobuf.MessageOrBuilder {
     
-    // optional int32 boosterItemId = 1;
-    boolean hasBoosterItemId();
-    int getBoosterItemId();
+    // optional string boosterItemUuid = 1;
+    boolean hasBoosterItemUuid();
+    String getBoosterItemUuid();
     
-    // optional int32 boosterPackId = 2;
-    boolean hasBoosterPackId();
-    int getBoosterPackId();
+    // optional string boosterPackUuid = 2;
+    boolean hasBoosterPackUuid();
+    String getBoosterPackUuid();
     
-    // optional int32 monsterId = 3;
-    boolean hasMonsterId();
-    int getMonsterId();
+    // optional string monsterUuid = 3;
+    boolean hasMonsterUuid();
+    String getMonsterUuid();
     
     // optional int32 numPieces = 4;
     boolean hasNumPieces();
@@ -2262,34 +2336,100 @@ public final class BoosterPackStuffProto {
     }
     
     private int bitField0_;
-    // optional int32 boosterItemId = 1;
-    public static final int BOOSTERITEMID_FIELD_NUMBER = 1;
-    private int boosterItemId_;
-    public boolean hasBoosterItemId() {
+    // optional string boosterItemUuid = 1;
+    public static final int BOOSTERITEMUUID_FIELD_NUMBER = 1;
+    private java.lang.Object boosterItemUuid_;
+    public boolean hasBoosterItemUuid() {
       return ((bitField0_ & 0x00000001) == 0x00000001);
     }
-    public int getBoosterItemId() {
-      return boosterItemId_;
+    public String getBoosterItemUuid() {
+      java.lang.Object ref = boosterItemUuid_;
+      if (ref instanceof String) {
+        return (String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        String s = bs.toStringUtf8();
+        if (com.google.protobuf.Internal.isValidUtf8(bs)) {
+          boosterItemUuid_ = s;
+        }
+        return s;
+      }
+    }
+    private com.google.protobuf.ByteString getBoosterItemUuidBytes() {
+      java.lang.Object ref = boosterItemUuid_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8((String) ref);
+        boosterItemUuid_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
     }
     
-    // optional int32 boosterPackId = 2;
-    public static final int BOOSTERPACKID_FIELD_NUMBER = 2;
-    private int boosterPackId_;
-    public boolean hasBoosterPackId() {
+    // optional string boosterPackUuid = 2;
+    public static final int BOOSTERPACKUUID_FIELD_NUMBER = 2;
+    private java.lang.Object boosterPackUuid_;
+    public boolean hasBoosterPackUuid() {
       return ((bitField0_ & 0x00000002) == 0x00000002);
     }
-    public int getBoosterPackId() {
-      return boosterPackId_;
+    public String getBoosterPackUuid() {
+      java.lang.Object ref = boosterPackUuid_;
+      if (ref instanceof String) {
+        return (String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        String s = bs.toStringUtf8();
+        if (com.google.protobuf.Internal.isValidUtf8(bs)) {
+          boosterPackUuid_ = s;
+        }
+        return s;
+      }
+    }
+    private com.google.protobuf.ByteString getBoosterPackUuidBytes() {
+      java.lang.Object ref = boosterPackUuid_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8((String) ref);
+        boosterPackUuid_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
     }
     
-    // optional int32 monsterId = 3;
-    public static final int MONSTERID_FIELD_NUMBER = 3;
-    private int monsterId_;
-    public boolean hasMonsterId() {
+    // optional string monsterUuid = 3;
+    public static final int MONSTERUUID_FIELD_NUMBER = 3;
+    private java.lang.Object monsterUuid_;
+    public boolean hasMonsterUuid() {
       return ((bitField0_ & 0x00000004) == 0x00000004);
     }
-    public int getMonsterId() {
-      return monsterId_;
+    public String getMonsterUuid() {
+      java.lang.Object ref = monsterUuid_;
+      if (ref instanceof String) {
+        return (String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        String s = bs.toStringUtf8();
+        if (com.google.protobuf.Internal.isValidUtf8(bs)) {
+          monsterUuid_ = s;
+        }
+        return s;
+      }
+    }
+    private com.google.protobuf.ByteString getMonsterUuidBytes() {
+      java.lang.Object ref = monsterUuid_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8((String) ref);
+        monsterUuid_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
     }
     
     // optional int32 numPieces = 4;
@@ -2353,9 +2493,9 @@ public final class BoosterPackStuffProto {
     }
     
     private void initFields() {
-      boosterItemId_ = 0;
-      boosterPackId_ = 0;
-      monsterId_ = 0;
+      boosterItemUuid_ = "";
+      boosterPackUuid_ = "";
+      monsterUuid_ = "";
       numPieces_ = 0;
       isComplete_ = false;
       isSpecial_ = false;
@@ -2376,13 +2516,13 @@ public final class BoosterPackStuffProto {
                         throws java.io.IOException {
       getSerializedSize();
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        output.writeInt32(1, boosterItemId_);
+        output.writeBytes(1, getBoosterItemUuidBytes());
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        output.writeInt32(2, boosterPackId_);
+        output.writeBytes(2, getBoosterPackUuidBytes());
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
-        output.writeInt32(3, monsterId_);
+        output.writeBytes(3, getMonsterUuidBytes());
       }
       if (((bitField0_ & 0x00000008) == 0x00000008)) {
         output.writeInt32(4, numPieces_);
@@ -2413,15 +2553,15 @@ public final class BoosterPackStuffProto {
       size = 0;
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(1, boosterItemId_);
+          .computeBytesSize(1, getBoosterItemUuidBytes());
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(2, boosterPackId_);
+          .computeBytesSize(2, getBoosterPackUuidBytes());
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(3, monsterId_);
+          .computeBytesSize(3, getMonsterUuidBytes());
       }
       if (((bitField0_ & 0x00000008) == 0x00000008)) {
         size += com.google.protobuf.CodedOutputStream
@@ -2571,11 +2711,11 @@ public final class BoosterPackStuffProto {
       
       public Builder clear() {
         super.clear();
-        boosterItemId_ = 0;
+        boosterItemUuid_ = "";
         bitField0_ = (bitField0_ & ~0x00000001);
-        boosterPackId_ = 0;
+        boosterPackUuid_ = "";
         bitField0_ = (bitField0_ & ~0x00000002);
-        monsterId_ = 0;
+        monsterUuid_ = "";
         bitField0_ = (bitField0_ & ~0x00000004);
         numPieces_ = 0;
         bitField0_ = (bitField0_ & ~0x00000008);
@@ -2630,15 +2770,15 @@ public final class BoosterPackStuffProto {
         if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
           to_bitField0_ |= 0x00000001;
         }
-        result.boosterItemId_ = boosterItemId_;
+        result.boosterItemUuid_ = boosterItemUuid_;
         if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
           to_bitField0_ |= 0x00000002;
         }
-        result.boosterPackId_ = boosterPackId_;
+        result.boosterPackUuid_ = boosterPackUuid_;
         if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
           to_bitField0_ |= 0x00000004;
         }
-        result.monsterId_ = monsterId_;
+        result.monsterUuid_ = monsterUuid_;
         if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
           to_bitField0_ |= 0x00000008;
         }
@@ -2679,14 +2819,14 @@ public final class BoosterPackStuffProto {
       
       public Builder mergeFrom(com.lvl6.mobsters.noneventprotos.BoosterPackStuffProto.BoosterItemProto other) {
         if (other == com.lvl6.mobsters.noneventprotos.BoosterPackStuffProto.BoosterItemProto.getDefaultInstance()) return this;
-        if (other.hasBoosterItemId()) {
-          setBoosterItemId(other.getBoosterItemId());
+        if (other.hasBoosterItemUuid()) {
+          setBoosterItemUuid(other.getBoosterItemUuid());
         }
-        if (other.hasBoosterPackId()) {
-          setBoosterPackId(other.getBoosterPackId());
+        if (other.hasBoosterPackUuid()) {
+          setBoosterPackUuid(other.getBoosterPackUuid());
         }
-        if (other.hasMonsterId()) {
-          setMonsterId(other.getMonsterId());
+        if (other.hasMonsterUuid()) {
+          setMonsterUuid(other.getMonsterUuid());
         }
         if (other.hasNumPieces()) {
           setNumPieces(other.getNumPieces());
@@ -2737,19 +2877,19 @@ public final class BoosterPackStuffProto {
               }
               break;
             }
-            case 8: {
+            case 10: {
               bitField0_ |= 0x00000001;
-              boosterItemId_ = input.readInt32();
+              boosterItemUuid_ = input.readBytes();
               break;
             }
-            case 16: {
+            case 18: {
               bitField0_ |= 0x00000002;
-              boosterPackId_ = input.readInt32();
+              boosterPackUuid_ = input.readBytes();
               break;
             }
-            case 24: {
+            case 26: {
               bitField0_ |= 0x00000004;
-              monsterId_ = input.readInt32();
+              monsterUuid_ = input.readBytes();
               break;
             }
             case 32: {
@@ -2788,67 +2928,112 @@ public final class BoosterPackStuffProto {
       
       private int bitField0_;
       
-      // optional int32 boosterItemId = 1;
-      private int boosterItemId_ ;
-      public boolean hasBoosterItemId() {
+      // optional string boosterItemUuid = 1;
+      private java.lang.Object boosterItemUuid_ = "";
+      public boolean hasBoosterItemUuid() {
         return ((bitField0_ & 0x00000001) == 0x00000001);
       }
-      public int getBoosterItemId() {
-        return boosterItemId_;
+      public String getBoosterItemUuid() {
+        java.lang.Object ref = boosterItemUuid_;
+        if (!(ref instanceof String)) {
+          String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
+          boosterItemUuid_ = s;
+          return s;
+        } else {
+          return (String) ref;
+        }
       }
-      public Builder setBoosterItemId(int value) {
-        bitField0_ |= 0x00000001;
-        boosterItemId_ = value;
+      public Builder setBoosterItemUuid(String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000001;
+        boosterItemUuid_ = value;
         onChanged();
         return this;
       }
-      public Builder clearBoosterItemId() {
+      public Builder clearBoosterItemUuid() {
         bitField0_ = (bitField0_ & ~0x00000001);
-        boosterItemId_ = 0;
+        boosterItemUuid_ = getDefaultInstance().getBoosterItemUuid();
         onChanged();
         return this;
+      }
+      void setBoosterItemUuid(com.google.protobuf.ByteString value) {
+        bitField0_ |= 0x00000001;
+        boosterItemUuid_ = value;
+        onChanged();
       }
       
-      // optional int32 boosterPackId = 2;
-      private int boosterPackId_ ;
-      public boolean hasBoosterPackId() {
+      // optional string boosterPackUuid = 2;
+      private java.lang.Object boosterPackUuid_ = "";
+      public boolean hasBoosterPackUuid() {
         return ((bitField0_ & 0x00000002) == 0x00000002);
       }
-      public int getBoosterPackId() {
-        return boosterPackId_;
+      public String getBoosterPackUuid() {
+        java.lang.Object ref = boosterPackUuid_;
+        if (!(ref instanceof String)) {
+          String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
+          boosterPackUuid_ = s;
+          return s;
+        } else {
+          return (String) ref;
+        }
       }
-      public Builder setBoosterPackId(int value) {
-        bitField0_ |= 0x00000002;
-        boosterPackId_ = value;
+      public Builder setBoosterPackUuid(String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000002;
+        boosterPackUuid_ = value;
         onChanged();
         return this;
       }
-      public Builder clearBoosterPackId() {
+      public Builder clearBoosterPackUuid() {
         bitField0_ = (bitField0_ & ~0x00000002);
-        boosterPackId_ = 0;
+        boosterPackUuid_ = getDefaultInstance().getBoosterPackUuid();
         onChanged();
         return this;
+      }
+      void setBoosterPackUuid(com.google.protobuf.ByteString value) {
+        bitField0_ |= 0x00000002;
+        boosterPackUuid_ = value;
+        onChanged();
       }
       
-      // optional int32 monsterId = 3;
-      private int monsterId_ ;
-      public boolean hasMonsterId() {
+      // optional string monsterUuid = 3;
+      private java.lang.Object monsterUuid_ = "";
+      public boolean hasMonsterUuid() {
         return ((bitField0_ & 0x00000004) == 0x00000004);
       }
-      public int getMonsterId() {
-        return monsterId_;
+      public String getMonsterUuid() {
+        java.lang.Object ref = monsterUuid_;
+        if (!(ref instanceof String)) {
+          String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
+          monsterUuid_ = s;
+          return s;
+        } else {
+          return (String) ref;
+        }
       }
-      public Builder setMonsterId(int value) {
-        bitField0_ |= 0x00000004;
-        monsterId_ = value;
+      public Builder setMonsterUuid(String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000004;
+        monsterUuid_ = value;
         onChanged();
         return this;
       }
-      public Builder clearMonsterId() {
+      public Builder clearMonsterUuid() {
         bitField0_ = (bitField0_ & ~0x00000004);
-        monsterId_ = 0;
+        monsterUuid_ = getDefaultInstance().getMonsterUuid();
         onChanged();
         return this;
+      }
+      void setMonsterUuid(com.google.protobuf.ByteString value) {
+        bitField0_ |= 0x00000004;
+        monsterUuid_ = value;
+        onChanged();
       }
       
       // optional int32 numPieces = 4;
@@ -2991,9 +3176,9 @@ public final class BoosterPackStuffProto {
   public interface BoosterDisplayItemProtoOrBuilder
       extends com.google.protobuf.MessageOrBuilder {
     
-    // optional int32 boosterPackId = 1;
-    boolean hasBoosterPackId();
-    int getBoosterPackId();
+    // optional string boosterPackUuid = 1;
+    boolean hasBoosterPackUuid();
+    String getBoosterPackUuid();
     
     // optional bool isMonster = 2;
     boolean hasIsMonster();
@@ -3044,14 +3229,36 @@ public final class BoosterPackStuffProto {
     }
     
     private int bitField0_;
-    // optional int32 boosterPackId = 1;
-    public static final int BOOSTERPACKID_FIELD_NUMBER = 1;
-    private int boosterPackId_;
-    public boolean hasBoosterPackId() {
+    // optional string boosterPackUuid = 1;
+    public static final int BOOSTERPACKUUID_FIELD_NUMBER = 1;
+    private java.lang.Object boosterPackUuid_;
+    public boolean hasBoosterPackUuid() {
       return ((bitField0_ & 0x00000001) == 0x00000001);
     }
-    public int getBoosterPackId() {
-      return boosterPackId_;
+    public String getBoosterPackUuid() {
+      java.lang.Object ref = boosterPackUuid_;
+      if (ref instanceof String) {
+        return (String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        String s = bs.toStringUtf8();
+        if (com.google.protobuf.Internal.isValidUtf8(bs)) {
+          boosterPackUuid_ = s;
+        }
+        return s;
+      }
+    }
+    private com.google.protobuf.ByteString getBoosterPackUuidBytes() {
+      java.lang.Object ref = boosterPackUuid_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8((String) ref);
+        boosterPackUuid_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
     }
     
     // optional bool isMonster = 2;
@@ -3105,7 +3312,7 @@ public final class BoosterPackStuffProto {
     }
     
     private void initFields() {
-      boosterPackId_ = 0;
+      boosterPackUuid_ = "";
       isMonster_ = false;
       isComplete_ = false;
       quality_ = com.lvl6.mobsters.noneventprotos.MonsterStuffProto.MonsterProto.MonsterQuality.COMMON;
@@ -3125,7 +3332,7 @@ public final class BoosterPackStuffProto {
                         throws java.io.IOException {
       getSerializedSize();
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        output.writeInt32(1, boosterPackId_);
+        output.writeBytes(1, getBoosterPackUuidBytes());
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         output.writeBool(2, isMonster_);
@@ -3153,7 +3360,7 @@ public final class BoosterPackStuffProto {
       size = 0;
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(1, boosterPackId_);
+          .computeBytesSize(1, getBoosterPackUuidBytes());
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         size += com.google.protobuf.CodedOutputStream
@@ -3299,7 +3506,7 @@ public final class BoosterPackStuffProto {
       
       public Builder clear() {
         super.clear();
-        boosterPackId_ = 0;
+        boosterPackUuid_ = "";
         bitField0_ = (bitField0_ & ~0x00000001);
         isMonster_ = false;
         bitField0_ = (bitField0_ & ~0x00000002);
@@ -3352,7 +3559,7 @@ public final class BoosterPackStuffProto {
         if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
           to_bitField0_ |= 0x00000001;
         }
-        result.boosterPackId_ = boosterPackId_;
+        result.boosterPackUuid_ = boosterPackUuid_;
         if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
           to_bitField0_ |= 0x00000002;
         }
@@ -3389,8 +3596,8 @@ public final class BoosterPackStuffProto {
       
       public Builder mergeFrom(com.lvl6.mobsters.noneventprotos.BoosterPackStuffProto.BoosterDisplayItemProto other) {
         if (other == com.lvl6.mobsters.noneventprotos.BoosterPackStuffProto.BoosterDisplayItemProto.getDefaultInstance()) return this;
-        if (other.hasBoosterPackId()) {
-          setBoosterPackId(other.getBoosterPackId());
+        if (other.hasBoosterPackUuid()) {
+          setBoosterPackUuid(other.getBoosterPackUuid());
         }
         if (other.hasIsMonster()) {
           setIsMonster(other.getIsMonster());
@@ -3438,9 +3645,9 @@ public final class BoosterPackStuffProto {
               }
               break;
             }
-            case 8: {
+            case 10: {
               bitField0_ |= 0x00000001;
-              boosterPackId_ = input.readInt32();
+              boosterPackUuid_ = input.readBytes();
               break;
             }
             case 16: {
@@ -3480,25 +3687,40 @@ public final class BoosterPackStuffProto {
       
       private int bitField0_;
       
-      // optional int32 boosterPackId = 1;
-      private int boosterPackId_ ;
-      public boolean hasBoosterPackId() {
+      // optional string boosterPackUuid = 1;
+      private java.lang.Object boosterPackUuid_ = "";
+      public boolean hasBoosterPackUuid() {
         return ((bitField0_ & 0x00000001) == 0x00000001);
       }
-      public int getBoosterPackId() {
-        return boosterPackId_;
+      public String getBoosterPackUuid() {
+        java.lang.Object ref = boosterPackUuid_;
+        if (!(ref instanceof String)) {
+          String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
+          boosterPackUuid_ = s;
+          return s;
+        } else {
+          return (String) ref;
+        }
       }
-      public Builder setBoosterPackId(int value) {
-        bitField0_ |= 0x00000001;
-        boosterPackId_ = value;
+      public Builder setBoosterPackUuid(String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000001;
+        boosterPackUuid_ = value;
         onChanged();
         return this;
       }
-      public Builder clearBoosterPackId() {
+      public Builder clearBoosterPackUuid() {
         bitField0_ = (bitField0_ & ~0x00000001);
-        boosterPackId_ = 0;
+        boosterPackUuid_ = getDefaultInstance().getBoosterPackUuid();
         onChanged();
         return this;
+      }
+      void setBoosterPackUuid(com.google.protobuf.ByteString value) {
+        bitField0_ |= 0x00000001;
+        boosterPackUuid_ = value;
+        onChanged();
       }
       
       // optional bool isMonster = 2;
@@ -3650,30 +3872,30 @@ public final class BoosterPackStuffProto {
   static {
     java.lang.String[] descriptorData = {
       "\n\026BoosterPackStuff.proto\022\005proto\032\022Monster" +
-      "Stuff.proto\032\nUser.proto\"\226\001\n\030RareBoosterP" +
+      "Stuff.proto\032\nUser.proto\"\230\001\n\030RareBoosterP" +
       "urchaseProto\022%\n\004user\030\001 \001(\0132\027.proto.Minim" +
       "umUserProto\022(\n\007booster\030\002 \001(\0132\027.proto.Boo" +
-      "sterPackProto\022\026\n\016timeOfPurchase\030\003 \001(\004\022\021\n" +
-      "\tmonsterId\030\004 \001(\005\"\271\002\n\020BoosterPackProto\022\025\n" +
-      "\rboosterPackId\030\001 \001(\005\022\027\n\017boosterPackName\030" +
-      "\002 \001(\t\022\020\n\010gemPrice\030\003 \001(\005\022-\n\014specialItems\030" +
-      "\004 \003(\0132\027.proto.BoosterItemProto\022\035\n\025listBa" +
-      "ckgroundImgName\030\005 \001(\t\022\027\n\017listDescription",
-      "\030\006 \001(\t\022\025\n\rnavBarImgName\030\007 \001(\t\022\027\n\017navTitl" +
-      "eImgName\030\010 \001(\t\022\026\n\016machineImgName\030\t \001(\t\0224" +
-      "\n\014displayItems\030\n \003(\0132\036.proto.BoosterDisp" +
-      "layItemProto\"\314\001\n\020BoosterItemProto\022\025\n\rboo" +
-      "sterItemId\030\001 \001(\005\022\025\n\rboosterPackId\030\002 \001(\005\022" +
-      "\021\n\tmonsterId\030\003 \001(\005\022\021\n\tnumPieces\030\004 \001(\005\022\022\n" +
-      "\nisComplete\030\005 \001(\010\022\021\n\tisSpecial\030\006 \001(\010\022\021\n\t" +
-      "gemReward\030\007 \001(\005\022\022\n\ncashReward\030\010 \001(\005\022\026\n\016c" +
-      "hanceToAppear\030\t \001(\002\"\261\001\n\027BoosterDisplayIt" +
-      "emProto\022\025\n\rboosterPackId\030\001 \001(\005\022\021\n\tisMons",
-      "ter\030\002 \001(\010\022\022\n\nisComplete\030\003 \001(\010\0223\n\007quality" +
-      "\030\004 \001(\0162\".proto.MonsterProto.MonsterQuali" +
-      "ty\022\021\n\tgemReward\030\005 \001(\005\022\020\n\010quantity\030\006 \001(\005B" +
-      "9\n com.lvl6.mobsters.noneventprotosB\025Boo" +
-      "sterPackStuffProto"
+      "sterPackProto\022\026\n\016timeOfPurchase\030\003 \001(\004\022\023\n" +
+      "\013monsterUuid\030\004 \001(\t\"\273\002\n\020BoosterPackProto\022" +
+      "\027\n\017boosterPackUuid\030\001 \001(\t\022\027\n\017boosterPackN" +
+      "ame\030\002 \001(\t\022\020\n\010gemPrice\030\003 \001(\005\022-\n\014specialIt" +
+      "ems\030\004 \003(\0132\027.proto.BoosterItemProto\022\035\n\025li" +
+      "stBackgroundImgName\030\005 \001(\t\022\027\n\017listDescrip",
+      "tion\030\006 \001(\t\022\025\n\rnavBarImgName\030\007 \001(\t\022\027\n\017nav" +
+      "TitleImgName\030\010 \001(\t\022\026\n\016machineImgName\030\t \001" +
+      "(\t\0224\n\014displayItems\030\n \003(\0132\036.proto.Booster" +
+      "DisplayItemProto\"\322\001\n\020BoosterItemProto\022\027\n" +
+      "\017boosterItemUuid\030\001 \001(\t\022\027\n\017boosterPackUui" +
+      "d\030\002 \001(\t\022\023\n\013monsterUuid\030\003 \001(\t\022\021\n\tnumPiece" +
+      "s\030\004 \001(\005\022\022\n\nisComplete\030\005 \001(\010\022\021\n\tisSpecial" +
+      "\030\006 \001(\010\022\021\n\tgemReward\030\007 \001(\005\022\022\n\ncashReward\030" +
+      "\010 \001(\005\022\026\n\016chanceToAppear\030\t \001(\002\"\263\001\n\027Booste" +
+      "rDisplayItemProto\022\027\n\017boosterPackUuid\030\001 \001",
+      "(\t\022\021\n\tisMonster\030\002 \001(\010\022\022\n\nisComplete\030\003 \001(" +
+      "\010\0223\n\007quality\030\004 \001(\0162\".proto.MonsterProto." +
+      "MonsterQuality\022\021\n\tgemReward\030\005 \001(\005\022\020\n\010qua" +
+      "ntity\030\006 \001(\005B9\n com.lvl6.mobsters.noneven" +
+      "tprotosB\025BoosterPackStuffProto"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -3685,7 +3907,7 @@ public final class BoosterPackStuffProto {
           internal_static_proto_RareBoosterPurchaseProto_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_proto_RareBoosterPurchaseProto_descriptor,
-              new java.lang.String[] { "User", "Booster", "TimeOfPurchase", "MonsterId", },
+              new java.lang.String[] { "User", "Booster", "TimeOfPurchase", "MonsterUuid", },
               com.lvl6.mobsters.noneventprotos.BoosterPackStuffProto.RareBoosterPurchaseProto.class,
               com.lvl6.mobsters.noneventprotos.BoosterPackStuffProto.RareBoosterPurchaseProto.Builder.class);
           internal_static_proto_BoosterPackProto_descriptor =
@@ -3693,7 +3915,7 @@ public final class BoosterPackStuffProto {
           internal_static_proto_BoosterPackProto_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_proto_BoosterPackProto_descriptor,
-              new java.lang.String[] { "BoosterPackId", "BoosterPackName", "GemPrice", "SpecialItems", "ListBackgroundImgName", "ListDescription", "NavBarImgName", "NavTitleImgName", "MachineImgName", "DisplayItems", },
+              new java.lang.String[] { "BoosterPackUuid", "BoosterPackName", "GemPrice", "SpecialItems", "ListBackgroundImgName", "ListDescription", "NavBarImgName", "NavTitleImgName", "MachineImgName", "DisplayItems", },
               com.lvl6.mobsters.noneventprotos.BoosterPackStuffProto.BoosterPackProto.class,
               com.lvl6.mobsters.noneventprotos.BoosterPackStuffProto.BoosterPackProto.Builder.class);
           internal_static_proto_BoosterItemProto_descriptor =
@@ -3701,7 +3923,7 @@ public final class BoosterPackStuffProto {
           internal_static_proto_BoosterItemProto_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_proto_BoosterItemProto_descriptor,
-              new java.lang.String[] { "BoosterItemId", "BoosterPackId", "MonsterId", "NumPieces", "IsComplete", "IsSpecial", "GemReward", "CashReward", "ChanceToAppear", },
+              new java.lang.String[] { "BoosterItemUuid", "BoosterPackUuid", "MonsterUuid", "NumPieces", "IsComplete", "IsSpecial", "GemReward", "CashReward", "ChanceToAppear", },
               com.lvl6.mobsters.noneventprotos.BoosterPackStuffProto.BoosterItemProto.class,
               com.lvl6.mobsters.noneventprotos.BoosterPackStuffProto.BoosterItemProto.Builder.class);
           internal_static_proto_BoosterDisplayItemProto_descriptor =
@@ -3709,7 +3931,7 @@ public final class BoosterPackStuffProto {
           internal_static_proto_BoosterDisplayItemProto_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_proto_BoosterDisplayItemProto_descriptor,
-              new java.lang.String[] { "BoosterPackId", "IsMonster", "IsComplete", "Quality", "GemReward", "Quantity", },
+              new java.lang.String[] { "BoosterPackUuid", "IsMonster", "IsComplete", "Quality", "GemReward", "Quantity", },
               com.lvl6.mobsters.noneventprotos.BoosterPackStuffProto.BoosterDisplayItemProto.class,
               com.lvl6.mobsters.noneventprotos.BoosterPackStuffProto.BoosterDisplayItemProto.Builder.class);
           return null;

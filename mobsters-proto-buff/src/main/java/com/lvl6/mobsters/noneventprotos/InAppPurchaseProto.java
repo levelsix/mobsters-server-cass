@@ -669,9 +669,9 @@ public final class InAppPurchaseProto {
   public interface GoldSaleProtoOrBuilder
       extends com.google.protobuf.MessageOrBuilder {
     
-    // optional int32 saleId = 1;
-    boolean hasSaleId();
-    int getSaleId();
+    // optional string saleUuid = 1;
+    boolean hasSaleUuid();
+    String getSaleUuid();
     
     // optional int64 startDate = 2;
     boolean hasStartDate();
@@ -762,14 +762,36 @@ public final class InAppPurchaseProto {
     }
     
     private int bitField0_;
-    // optional int32 saleId = 1;
-    public static final int SALEID_FIELD_NUMBER = 1;
-    private int saleId_;
-    public boolean hasSaleId() {
+    // optional string saleUuid = 1;
+    public static final int SALEUUID_FIELD_NUMBER = 1;
+    private java.lang.Object saleUuid_;
+    public boolean hasSaleUuid() {
       return ((bitField0_ & 0x00000001) == 0x00000001);
     }
-    public int getSaleId() {
-      return saleId_;
+    public String getSaleUuid() {
+      java.lang.Object ref = saleUuid_;
+      if (ref instanceof String) {
+        return (String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        String s = bs.toStringUtf8();
+        if (com.google.protobuf.Internal.isValidUtf8(bs)) {
+          saleUuid_ = s;
+        }
+        return s;
+      }
+    }
+    private com.google.protobuf.ByteString getSaleUuidBytes() {
+      java.lang.Object ref = saleUuid_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8((String) ref);
+        saleUuid_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
     }
     
     // optional int64 startDate = 2;
@@ -1187,7 +1209,7 @@ public final class InAppPurchaseProto {
     }
     
     private void initFields() {
-      saleId_ = 0;
+      saleUuid_ = "";
       startDate_ = 0L;
       endDate_ = 0L;
       package1SaleIdentifier_ = "";
@@ -1217,7 +1239,7 @@ public final class InAppPurchaseProto {
                         throws java.io.IOException {
       getSerializedSize();
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        output.writeInt32(1, saleId_);
+        output.writeBytes(1, getSaleUuidBytes());
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         output.writeInt64(2, startDate_);
@@ -1275,7 +1297,7 @@ public final class InAppPurchaseProto {
       size = 0;
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(1, saleId_);
+          .computeBytesSize(1, getSaleUuidBytes());
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         size += com.google.protobuf.CodedOutputStream
@@ -1461,7 +1483,7 @@ public final class InAppPurchaseProto {
       
       public Builder clear() {
         super.clear();
-        saleId_ = 0;
+        saleUuid_ = "";
         bitField0_ = (bitField0_ & ~0x00000001);
         startDate_ = 0L;
         bitField0_ = (bitField0_ & ~0x00000002);
@@ -1534,7 +1556,7 @@ public final class InAppPurchaseProto {
         if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
           to_bitField0_ |= 0x00000001;
         }
-        result.saleId_ = saleId_;
+        result.saleUuid_ = saleUuid_;
         if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
           to_bitField0_ |= 0x00000002;
         }
@@ -1611,8 +1633,8 @@ public final class InAppPurchaseProto {
       
       public Builder mergeFrom(com.lvl6.mobsters.noneventprotos.InAppPurchaseProto.GoldSaleProto other) {
         if (other == com.lvl6.mobsters.noneventprotos.InAppPurchaseProto.GoldSaleProto.getDefaultInstance()) return this;
-        if (other.hasSaleId()) {
-          setSaleId(other.getSaleId());
+        if (other.hasSaleUuid()) {
+          setSaleUuid(other.getSaleUuid());
         }
         if (other.hasStartDate()) {
           setStartDate(other.getStartDate());
@@ -1690,9 +1712,9 @@ public final class InAppPurchaseProto {
               }
               break;
             }
-            case 8: {
+            case 10: {
               bitField0_ |= 0x00000001;
-              saleId_ = input.readInt32();
+              saleUuid_ = input.readBytes();
               break;
             }
             case 16: {
@@ -1776,25 +1798,40 @@ public final class InAppPurchaseProto {
       
       private int bitField0_;
       
-      // optional int32 saleId = 1;
-      private int saleId_ ;
-      public boolean hasSaleId() {
+      // optional string saleUuid = 1;
+      private java.lang.Object saleUuid_ = "";
+      public boolean hasSaleUuid() {
         return ((bitField0_ & 0x00000001) == 0x00000001);
       }
-      public int getSaleId() {
-        return saleId_;
+      public String getSaleUuid() {
+        java.lang.Object ref = saleUuid_;
+        if (!(ref instanceof String)) {
+          String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
+          saleUuid_ = s;
+          return s;
+        } else {
+          return (String) ref;
+        }
       }
-      public Builder setSaleId(int value) {
-        bitField0_ |= 0x00000001;
-        saleId_ = value;
+      public Builder setSaleUuid(String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000001;
+        saleUuid_ = value;
         onChanged();
         return this;
       }
-      public Builder clearSaleId() {
+      public Builder clearSaleUuid() {
         bitField0_ = (bitField0_ & ~0x00000001);
-        saleId_ = 0;
+        saleUuid_ = getDefaultInstance().getSaleUuid();
         onChanged();
         return this;
+      }
+      void setSaleUuid(com.google.protobuf.ByteString value) {
+        bitField0_ |= 0x00000001;
+        saleUuid_ = value;
+        onChanged();
       }
       
       // optional int64 startDate = 2;
@@ -2325,22 +2362,22 @@ public final class InAppPurchaseProto {
       "\n\023InAppPurchase.proto\022\005proto\"l\n\031InAppPur" +
       "chasePackageProto\022\024\n\014iapPackageId\030\001 \001(\t\022" +
       "\026\n\016currencyAmount\030\002 \001(\005\022\016\n\006isGold\030\003 \001(\010\022" +
-      "\021\n\timageName\030\004 \001(\t\"\327\003\n\rGoldSaleProto\022\016\n\006" +
-      "saleId\030\001 \001(\005\022\021\n\tstartDate\030\002 \001(\003\022\017\n\007endDa" +
-      "te\030\003 \001(\003\022\036\n\026package1SaleIdentifier\030\004 \001(\t" +
-      "\022\036\n\026package2SaleIdentifier\030\005 \001(\t\022\036\n\026pack" +
-      "age3SaleIdentifier\030\006 \001(\t\022\036\n\026package4Sale" +
-      "Identifier\030\007 \001(\t\022\036\n\026package5SaleIdentifi" +
-      "er\030\010 \001(\t\022\033\n\023goldShoppeImageName\030\t \001(\t\022\030\n",
-      "\020goldBarImageName\030\n \001(\t\022\037\n\027packageS1Sale" +
-      "Identifier\030\013 \001(\t\022\037\n\027packageS2SaleIdentif" +
-      "ier\030\014 \001(\t\022\037\n\027packageS3SaleIdentifier\030\r \001" +
-      "(\t\022\037\n\027packageS4SaleIdentifier\030\016 \001(\t\022\037\n\027p" +
-      "ackageS5SaleIdentifier\030\017 \001(\t\022\026\n\016isBeginn" +
-      "erSale\030\020 \001(\010*Q\n\024EarnFreeDiamondsType\022\016\n\n" +
-      "FB_CONNECT\020\001\022\n\n\006TAPJOY\020\002\022\020\n\014FLURRY_VIDEO" +
-      "\020\003\022\013\n\007TWITTER\020\004B6\n com.lvl6.mobsters.non" +
-      "eventprotosB\022InAppPurchaseProto"
+      "\021\n\timageName\030\004 \001(\t\"\331\003\n\rGoldSaleProto\022\020\n\010" +
+      "saleUuid\030\001 \001(\t\022\021\n\tstartDate\030\002 \001(\003\022\017\n\007end" +
+      "Date\030\003 \001(\003\022\036\n\026package1SaleIdentifier\030\004 \001" +
+      "(\t\022\036\n\026package2SaleIdentifier\030\005 \001(\t\022\036\n\026pa" +
+      "ckage3SaleIdentifier\030\006 \001(\t\022\036\n\026package4Sa" +
+      "leIdentifier\030\007 \001(\t\022\036\n\026package5SaleIdenti" +
+      "fier\030\010 \001(\t\022\033\n\023goldShoppeImageName\030\t \001(\t\022",
+      "\030\n\020goldBarImageName\030\n \001(\t\022\037\n\027packageS1Sa" +
+      "leIdentifier\030\013 \001(\t\022\037\n\027packageS2SaleIdent" +
+      "ifier\030\014 \001(\t\022\037\n\027packageS3SaleIdentifier\030\r" +
+      " \001(\t\022\037\n\027packageS4SaleIdentifier\030\016 \001(\t\022\037\n" +
+      "\027packageS5SaleIdentifier\030\017 \001(\t\022\026\n\016isBegi" +
+      "nnerSale\030\020 \001(\010*Q\n\024EarnFreeDiamondsType\022\016" +
+      "\n\nFB_CONNECT\020\001\022\n\n\006TAPJOY\020\002\022\020\n\014FLURRY_VID" +
+      "EO\020\003\022\013\n\007TWITTER\020\004B6\n com.lvl6.mobsters.n" +
+      "oneventprotosB\022InAppPurchaseProto"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -2360,7 +2397,7 @@ public final class InAppPurchaseProto {
           internal_static_proto_GoldSaleProto_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_proto_GoldSaleProto_descriptor,
-              new java.lang.String[] { "SaleId", "StartDate", "EndDate", "Package1SaleIdentifier", "Package2SaleIdentifier", "Package3SaleIdentifier", "Package4SaleIdentifier", "Package5SaleIdentifier", "GoldShoppeImageName", "GoldBarImageName", "PackageS1SaleIdentifier", "PackageS2SaleIdentifier", "PackageS3SaleIdentifier", "PackageS4SaleIdentifier", "PackageS5SaleIdentifier", "IsBeginnerSale", },
+              new java.lang.String[] { "SaleUuid", "StartDate", "EndDate", "Package1SaleIdentifier", "Package2SaleIdentifier", "Package3SaleIdentifier", "Package4SaleIdentifier", "Package5SaleIdentifier", "GoldShoppeImageName", "GoldBarImageName", "PackageS1SaleIdentifier", "PackageS2SaleIdentifier", "PackageS3SaleIdentifier", "PackageS4SaleIdentifier", "PackageS5SaleIdentifier", "IsBeginnerSale", },
               com.lvl6.mobsters.noneventprotos.InAppPurchaseProto.GoldSaleProto.class,
               com.lvl6.mobsters.noneventprotos.InAppPurchaseProto.GoldSaleProto.Builder.class);
           return null;

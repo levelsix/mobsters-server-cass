@@ -14,7 +14,7 @@ option java_outer_classname = "EventCityProto";
 
 message LoadPlayerCityRequestProto {
 	optional MinimumUserProto sender = 1;
-	optional int32 cityOwnerId = 2;
+	optional string cityOwnerUuid = 2;
 }
 
 																						//DONE
@@ -63,7 +63,7 @@ message PurchaseCityExpansionResponseProto {
 
 message LoadCityRequestProto {
      optional MinimumUserProto sender = 1;
-     optional int32 cityId = 2;    
+     optional string cityUuid = 2;    
 }
 
 																						//DONE
@@ -73,7 +73,7 @@ message LoadCityResponseProto {
 
 	     //client shouldnt show bars if already at max city level
      repeated CityElementProto cityElements = 3;
-     optional int32 cityId = 4;
+     optional string cityUuid = 4;
      repeated FullUserQuestProto inProgressUserQuestDataInCity = 5;
      
      enum LoadCityStatus {

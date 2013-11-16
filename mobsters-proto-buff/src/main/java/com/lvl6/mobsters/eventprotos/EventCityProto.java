@@ -16,9 +16,9 @@ public final class EventCityProto {
     com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto getSender();
     com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProtoOrBuilder getSenderOrBuilder();
     
-    // optional int32 cityOwnerId = 2;
-    boolean hasCityOwnerId();
-    int getCityOwnerId();
+    // optional string cityOwnerUuid = 2;
+    boolean hasCityOwnerUuid();
+    String getCityOwnerUuid();
   }
   public static final class LoadPlayerCityRequestProto extends
       com.google.protobuf.GeneratedMessage
@@ -62,19 +62,41 @@ public final class EventCityProto {
       return sender_;
     }
     
-    // optional int32 cityOwnerId = 2;
-    public static final int CITYOWNERID_FIELD_NUMBER = 2;
-    private int cityOwnerId_;
-    public boolean hasCityOwnerId() {
+    // optional string cityOwnerUuid = 2;
+    public static final int CITYOWNERUUID_FIELD_NUMBER = 2;
+    private java.lang.Object cityOwnerUuid_;
+    public boolean hasCityOwnerUuid() {
       return ((bitField0_ & 0x00000002) == 0x00000002);
     }
-    public int getCityOwnerId() {
-      return cityOwnerId_;
+    public String getCityOwnerUuid() {
+      java.lang.Object ref = cityOwnerUuid_;
+      if (ref instanceof String) {
+        return (String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        String s = bs.toStringUtf8();
+        if (com.google.protobuf.Internal.isValidUtf8(bs)) {
+          cityOwnerUuid_ = s;
+        }
+        return s;
+      }
+    }
+    private com.google.protobuf.ByteString getCityOwnerUuidBytes() {
+      java.lang.Object ref = cityOwnerUuid_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8((String) ref);
+        cityOwnerUuid_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
     }
     
     private void initFields() {
       sender_ = com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto.getDefaultInstance();
-      cityOwnerId_ = 0;
+      cityOwnerUuid_ = "";
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -92,7 +114,7 @@ public final class EventCityProto {
         output.writeMessage(1, sender_);
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        output.writeInt32(2, cityOwnerId_);
+        output.writeBytes(2, getCityOwnerUuidBytes());
       }
       getUnknownFields().writeTo(output);
     }
@@ -109,7 +131,7 @@ public final class EventCityProto {
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(2, cityOwnerId_);
+          .computeBytesSize(2, getCityOwnerUuidBytes());
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -242,7 +264,7 @@ public final class EventCityProto {
           senderBuilder_.clear();
         }
         bitField0_ = (bitField0_ & ~0x00000001);
-        cityOwnerId_ = 0;
+        cityOwnerUuid_ = "";
         bitField0_ = (bitField0_ & ~0x00000002);
         return this;
       }
@@ -293,7 +315,7 @@ public final class EventCityProto {
         if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
           to_bitField0_ |= 0x00000002;
         }
-        result.cityOwnerId_ = cityOwnerId_;
+        result.cityOwnerUuid_ = cityOwnerUuid_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -313,8 +335,8 @@ public final class EventCityProto {
         if (other.hasSender()) {
           mergeSender(other.getSender());
         }
-        if (other.hasCityOwnerId()) {
-          setCityOwnerId(other.getCityOwnerId());
+        if (other.hasCityOwnerUuid()) {
+          setCityOwnerUuid(other.getCityOwnerUuid());
         }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
@@ -356,9 +378,9 @@ public final class EventCityProto {
               setSender(subBuilder.buildPartial());
               break;
             }
-            case 16: {
+            case 18: {
               bitField0_ |= 0x00000002;
-              cityOwnerId_ = input.readInt32();
+              cityOwnerUuid_ = input.readBytes();
               break;
             }
           }
@@ -457,25 +479,40 @@ public final class EventCityProto {
         return senderBuilder_;
       }
       
-      // optional int32 cityOwnerId = 2;
-      private int cityOwnerId_ ;
-      public boolean hasCityOwnerId() {
+      // optional string cityOwnerUuid = 2;
+      private java.lang.Object cityOwnerUuid_ = "";
+      public boolean hasCityOwnerUuid() {
         return ((bitField0_ & 0x00000002) == 0x00000002);
       }
-      public int getCityOwnerId() {
-        return cityOwnerId_;
+      public String getCityOwnerUuid() {
+        java.lang.Object ref = cityOwnerUuid_;
+        if (!(ref instanceof String)) {
+          String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
+          cityOwnerUuid_ = s;
+          return s;
+        } else {
+          return (String) ref;
+        }
       }
-      public Builder setCityOwnerId(int value) {
-        bitField0_ |= 0x00000002;
-        cityOwnerId_ = value;
+      public Builder setCityOwnerUuid(String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000002;
+        cityOwnerUuid_ = value;
         onChanged();
         return this;
       }
-      public Builder clearCityOwnerId() {
+      public Builder clearCityOwnerUuid() {
         bitField0_ = (bitField0_ & ~0x00000002);
-        cityOwnerId_ = 0;
+        cityOwnerUuid_ = getDefaultInstance().getCityOwnerUuid();
         onChanged();
         return this;
+      }
+      void setCityOwnerUuid(com.google.protobuf.ByteString value) {
+        bitField0_ |= 0x00000002;
+        cityOwnerUuid_ = value;
+        onChanged();
       }
       
       // @@protoc_insertion_point(builder_scope:proto.LoadPlayerCityRequestProto)
@@ -3054,9 +3091,9 @@ public final class EventCityProto {
     com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto getSender();
     com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProtoOrBuilder getSenderOrBuilder();
     
-    // optional int32 cityId = 2;
-    boolean hasCityId();
-    int getCityId();
+    // optional string cityUuid = 2;
+    boolean hasCityUuid();
+    String getCityUuid();
   }
   public static final class LoadCityRequestProto extends
       com.google.protobuf.GeneratedMessage
@@ -3100,19 +3137,41 @@ public final class EventCityProto {
       return sender_;
     }
     
-    // optional int32 cityId = 2;
-    public static final int CITYID_FIELD_NUMBER = 2;
-    private int cityId_;
-    public boolean hasCityId() {
+    // optional string cityUuid = 2;
+    public static final int CITYUUID_FIELD_NUMBER = 2;
+    private java.lang.Object cityUuid_;
+    public boolean hasCityUuid() {
       return ((bitField0_ & 0x00000002) == 0x00000002);
     }
-    public int getCityId() {
-      return cityId_;
+    public String getCityUuid() {
+      java.lang.Object ref = cityUuid_;
+      if (ref instanceof String) {
+        return (String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        String s = bs.toStringUtf8();
+        if (com.google.protobuf.Internal.isValidUtf8(bs)) {
+          cityUuid_ = s;
+        }
+        return s;
+      }
+    }
+    private com.google.protobuf.ByteString getCityUuidBytes() {
+      java.lang.Object ref = cityUuid_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8((String) ref);
+        cityUuid_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
     }
     
     private void initFields() {
       sender_ = com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto.getDefaultInstance();
-      cityId_ = 0;
+      cityUuid_ = "";
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -3130,7 +3189,7 @@ public final class EventCityProto {
         output.writeMessage(1, sender_);
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        output.writeInt32(2, cityId_);
+        output.writeBytes(2, getCityUuidBytes());
       }
       getUnknownFields().writeTo(output);
     }
@@ -3147,7 +3206,7 @@ public final class EventCityProto {
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(2, cityId_);
+          .computeBytesSize(2, getCityUuidBytes());
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -3280,7 +3339,7 @@ public final class EventCityProto {
           senderBuilder_.clear();
         }
         bitField0_ = (bitField0_ & ~0x00000001);
-        cityId_ = 0;
+        cityUuid_ = "";
         bitField0_ = (bitField0_ & ~0x00000002);
         return this;
       }
@@ -3331,7 +3390,7 @@ public final class EventCityProto {
         if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
           to_bitField0_ |= 0x00000002;
         }
-        result.cityId_ = cityId_;
+        result.cityUuid_ = cityUuid_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -3351,8 +3410,8 @@ public final class EventCityProto {
         if (other.hasSender()) {
           mergeSender(other.getSender());
         }
-        if (other.hasCityId()) {
-          setCityId(other.getCityId());
+        if (other.hasCityUuid()) {
+          setCityUuid(other.getCityUuid());
         }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
@@ -3394,9 +3453,9 @@ public final class EventCityProto {
               setSender(subBuilder.buildPartial());
               break;
             }
-            case 16: {
+            case 18: {
               bitField0_ |= 0x00000002;
-              cityId_ = input.readInt32();
+              cityUuid_ = input.readBytes();
               break;
             }
           }
@@ -3495,25 +3554,40 @@ public final class EventCityProto {
         return senderBuilder_;
       }
       
-      // optional int32 cityId = 2;
-      private int cityId_ ;
-      public boolean hasCityId() {
+      // optional string cityUuid = 2;
+      private java.lang.Object cityUuid_ = "";
+      public boolean hasCityUuid() {
         return ((bitField0_ & 0x00000002) == 0x00000002);
       }
-      public int getCityId() {
-        return cityId_;
+      public String getCityUuid() {
+        java.lang.Object ref = cityUuid_;
+        if (!(ref instanceof String)) {
+          String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
+          cityUuid_ = s;
+          return s;
+        } else {
+          return (String) ref;
+        }
       }
-      public Builder setCityId(int value) {
-        bitField0_ |= 0x00000002;
-        cityId_ = value;
+      public Builder setCityUuid(String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000002;
+        cityUuid_ = value;
         onChanged();
         return this;
       }
-      public Builder clearCityId() {
+      public Builder clearCityUuid() {
         bitField0_ = (bitField0_ & ~0x00000002);
-        cityId_ = 0;
+        cityUuid_ = getDefaultInstance().getCityUuid();
         onChanged();
         return this;
+      }
+      void setCityUuid(com.google.protobuf.ByteString value) {
+        bitField0_ |= 0x00000002;
+        cityUuid_ = value;
+        onChanged();
       }
       
       // @@protoc_insertion_point(builder_scope:proto.LoadCityRequestProto)
@@ -3549,9 +3623,9 @@ public final class EventCityProto {
     com.lvl6.mobsters.noneventprotos.CityProto.CityElementProtoOrBuilder getCityElementsOrBuilder(
         int index);
     
-    // optional int32 cityId = 4;
-    boolean hasCityId();
-    int getCityId();
+    // optional string cityUuid = 4;
+    boolean hasCityUuid();
+    String getCityUuid();
     
     // repeated .proto.FullUserQuestProto inProgressUserQuestDataInCity = 5;
     java.util.List<com.lvl6.mobsters.noneventprotos.QuestProto.FullUserQuestProto> 
@@ -3708,14 +3782,36 @@ public final class EventCityProto {
       return cityElements_.get(index);
     }
     
-    // optional int32 cityId = 4;
-    public static final int CITYID_FIELD_NUMBER = 4;
-    private int cityId_;
-    public boolean hasCityId() {
+    // optional string cityUuid = 4;
+    public static final int CITYUUID_FIELD_NUMBER = 4;
+    private java.lang.Object cityUuid_;
+    public boolean hasCityUuid() {
       return ((bitField0_ & 0x00000004) == 0x00000004);
     }
-    public int getCityId() {
-      return cityId_;
+    public String getCityUuid() {
+      java.lang.Object ref = cityUuid_;
+      if (ref instanceof String) {
+        return (String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        String s = bs.toStringUtf8();
+        if (com.google.protobuf.Internal.isValidUtf8(bs)) {
+          cityUuid_ = s;
+        }
+        return s;
+      }
+    }
+    private com.google.protobuf.ByteString getCityUuidBytes() {
+      java.lang.Object ref = cityUuid_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8((String) ref);
+        cityUuid_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
     }
     
     // repeated .proto.FullUserQuestProto inProgressUserQuestDataInCity = 5;
@@ -3743,7 +3839,7 @@ public final class EventCityProto {
       sender_ = com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto.getDefaultInstance();
       status_ = com.lvl6.mobsters.eventprotos.EventCityProto.LoadCityResponseProto.LoadCityStatus.SUCCESS;
       cityElements_ = java.util.Collections.emptyList();
-      cityId_ = 0;
+      cityUuid_ = "";
       inProgressUserQuestDataInCity_ = java.util.Collections.emptyList();
     }
     private byte memoizedIsInitialized = -1;
@@ -3768,7 +3864,7 @@ public final class EventCityProto {
         output.writeMessage(3, cityElements_.get(i));
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
-        output.writeInt32(4, cityId_);
+        output.writeBytes(4, getCityUuidBytes());
       }
       for (int i = 0; i < inProgressUserQuestDataInCity_.size(); i++) {
         output.writeMessage(5, inProgressUserQuestDataInCity_.get(i));
@@ -3796,7 +3892,7 @@ public final class EventCityProto {
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(4, cityId_);
+          .computeBytesSize(4, getCityUuidBytes());
       }
       for (int i = 0; i < inProgressUserQuestDataInCity_.size(); i++) {
         size += com.google.protobuf.CodedOutputStream
@@ -3943,7 +4039,7 @@ public final class EventCityProto {
         } else {
           cityElementsBuilder_.clear();
         }
-        cityId_ = 0;
+        cityUuid_ = "";
         bitField0_ = (bitField0_ & ~0x00000008);
         if (inProgressUserQuestDataInCityBuilder_ == null) {
           inProgressUserQuestDataInCity_ = java.util.Collections.emptyList();
@@ -4013,7 +4109,7 @@ public final class EventCityProto {
         if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
           to_bitField0_ |= 0x00000004;
         }
-        result.cityId_ = cityId_;
+        result.cityUuid_ = cityUuid_;
         if (inProgressUserQuestDataInCityBuilder_ == null) {
           if (((bitField0_ & 0x00000010) == 0x00000010)) {
             inProgressUserQuestDataInCity_ = java.util.Collections.unmodifiableList(inProgressUserQuestDataInCity_);
@@ -4071,8 +4167,8 @@ public final class EventCityProto {
             }
           }
         }
-        if (other.hasCityId()) {
-          setCityId(other.getCityId());
+        if (other.hasCityUuid()) {
+          setCityUuid(other.getCityUuid());
         }
         if (inProgressUserQuestDataInCityBuilder_ == null) {
           if (!other.inProgressUserQuestDataInCity_.isEmpty()) {
@@ -4157,9 +4253,9 @@ public final class EventCityProto {
               addCityElements(subBuilder.buildPartial());
               break;
             }
-            case 32: {
+            case 34: {
               bitField0_ |= 0x00000008;
-              cityId_ = input.readInt32();
+              cityUuid_ = input.readBytes();
               break;
             }
             case 42: {
@@ -4474,25 +4570,40 @@ public final class EventCityProto {
         return cityElementsBuilder_;
       }
       
-      // optional int32 cityId = 4;
-      private int cityId_ ;
-      public boolean hasCityId() {
+      // optional string cityUuid = 4;
+      private java.lang.Object cityUuid_ = "";
+      public boolean hasCityUuid() {
         return ((bitField0_ & 0x00000008) == 0x00000008);
       }
-      public int getCityId() {
-        return cityId_;
+      public String getCityUuid() {
+        java.lang.Object ref = cityUuid_;
+        if (!(ref instanceof String)) {
+          String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
+          cityUuid_ = s;
+          return s;
+        } else {
+          return (String) ref;
+        }
       }
-      public Builder setCityId(int value) {
-        bitField0_ |= 0x00000008;
-        cityId_ = value;
+      public Builder setCityUuid(String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000008;
+        cityUuid_ = value;
         onChanged();
         return this;
       }
-      public Builder clearCityId() {
+      public Builder clearCityUuid() {
         bitField0_ = (bitField0_ & ~0x00000008);
-        cityId_ = 0;
+        cityUuid_ = getDefaultInstance().getCityUuid();
         onChanged();
         return this;
+      }
+      void setCityUuid(com.google.protobuf.ByteString value) {
+        bitField0_ |= 0x00000008;
+        cityUuid_ = value;
+        onChanged();
       }
       
       // repeated .proto.FullUserQuestProto inProgressUserQuestDataInCity = 5;
@@ -4732,44 +4843,44 @@ public final class EventCityProto {
   static {
     java.lang.String[] descriptorData = {
       "\n\017EventCity.proto\022\005proto\032\nCity.proto\032\013Qu" +
-      "est.proto\032\017Structure.proto\032\nUser.proto\"Z" +
+      "est.proto\032\017Structure.proto\032\nUser.proto\"\\" +
       "\n\032LoadPlayerCityRequestProto\022\'\n\006sender\030\001" +
-      " \001(\0132\027.proto.MinimumUserProto\022\023\n\013cityOwn" +
-      "erId\030\002 \001(\005\"\210\003\n\033LoadPlayerCityResponsePro" +
-      "to\022\'\n\006sender\030\001 \001(\0132\027.proto.MinimumUserPr" +
-      "oto\022*\n\tcityOwner\030\002 \001(\0132\027.proto.MinimumUs" +
-      "erProto\022G\n\006status\030\003 \001(\01627.proto.LoadPlay" +
-      "erCityResponseProto.LoadPlayerCityStatus" +
-      "\0227\n\020ownerNormStructs\030\004 \003(\0132\035.proto.FullU",
-      "serStructureProto\022I\n\036userCityExpansionDa" +
-      "taProtoList\030\005 \003(\0132!.proto.UserCityExpans" +
-      "ionDataProto\"G\n\024LoadPlayerCityStatus\022\013\n\007" +
-      "SUCCESS\020\001\022\022\n\016NO_SUCH_PLAYER\020\002\022\016\n\nOTHER_F" +
-      "AIL\020\003\"\212\001\n!PurchaseCityExpansionRequestPr" +
-      "oto\022\'\n\006sender\030\001 \001(\0132\027.proto.MinimumUserP" +
-      "roto\022\021\n\txPosition\030\002 \001(\021\022\021\n\tyPosition\030\003 \001" +
-      "(\021\022\026\n\016timeOfPurchase\030\004 \001(\003\"\347\002\n\"PurchaseC" +
-      "ityExpansionResponseProto\022\'\n\006sender\030\001 \001(" +
-      "\0132\027.proto.MinimumUserProto\022U\n\006status\030\002 \001",
-      "(\0162E.proto.PurchaseCityExpansionResponse" +
-      "Proto.PurchaseCityExpansionStatus\0220\n\005uce" +
-      "dp\030\003 \001(\0132!.proto.UserCityExpansionDataPr" +
-      "oto\"\216\001\n\033PurchaseCityExpansionStatus\022\013\n\007S" +
-      "UCCESS\020\001\022\024\n\020NOT_ENOUGH_COINS\020\002\022\025\n\021ALREAD" +
-      "Y_EXPANDING\020\003\022\016\n\nOTHER_FAIL\020\004\022%\n!CLIENT_" +
-      "TOO_APART_FROM_SERVER_TIME\020\005\"O\n\024LoadCity" +
-      "RequestProto\022\'\n\006sender\030\001 \001(\0132\027.proto.Min" +
-      "imumUserProto\022\016\n\006cityId\030\002 \001(\005\"\311\002\n\025LoadCi" +
-      "tyResponseProto\022\'\n\006sender\030\001 \001(\0132\027.proto.",
-      "MinimumUserProto\022;\n\006status\030\002 \001(\0162+.proto" +
-      ".LoadCityResponseProto.LoadCityStatus\022-\n" +
-      "\014cityElements\030\003 \003(\0132\027.proto.CityElementP" +
-      "roto\022\016\n\006cityId\030\004 \001(\005\022@\n\035inProgressUserQu" +
-      "estDataInCity\030\005 \003(\0132\031.proto.FullUserQues" +
-      "tProto\"I\n\016LoadCityStatus\022\013\n\007SUCCESS\020\001\022\032\n" +
-      "\026NOT_ACCESSIBLE_TO_USER\020\002\022\016\n\nOTHER_FAIL\020" +
-      "\003B/\n\035com.lvl6.mobsters.eventprotosB\016Even" +
-      "tCityProto"
+      " \001(\0132\027.proto.MinimumUserProto\022\025\n\rcityOwn" +
+      "erUuid\030\002 \001(\t\"\210\003\n\033LoadPlayerCityResponseP" +
+      "roto\022\'\n\006sender\030\001 \001(\0132\027.proto.MinimumUser" +
+      "Proto\022*\n\tcityOwner\030\002 \001(\0132\027.proto.Minimum" +
+      "UserProto\022G\n\006status\030\003 \001(\01627.proto.LoadPl" +
+      "ayerCityResponseProto.LoadPlayerCityStat" +
+      "us\0227\n\020ownerNormStructs\030\004 \003(\0132\035.proto.Ful",
+      "lUserStructureProto\022I\n\036userCityExpansion" +
+      "DataProtoList\030\005 \003(\0132!.proto.UserCityExpa" +
+      "nsionDataProto\"G\n\024LoadPlayerCityStatus\022\013" +
+      "\n\007SUCCESS\020\001\022\022\n\016NO_SUCH_PLAYER\020\002\022\016\n\nOTHER" +
+      "_FAIL\020\003\"\212\001\n!PurchaseCityExpansionRequest" +
+      "Proto\022\'\n\006sender\030\001 \001(\0132\027.proto.MinimumUse" +
+      "rProto\022\021\n\txPosition\030\002 \001(\021\022\021\n\tyPosition\030\003" +
+      " \001(\021\022\026\n\016timeOfPurchase\030\004 \001(\003\"\347\002\n\"Purchas" +
+      "eCityExpansionResponseProto\022\'\n\006sender\030\001 " +
+      "\001(\0132\027.proto.MinimumUserProto\022U\n\006status\030\002",
+      " \001(\0162E.proto.PurchaseCityExpansionRespon" +
+      "seProto.PurchaseCityExpansionStatus\0220\n\005u" +
+      "cedp\030\003 \001(\0132!.proto.UserCityExpansionData" +
+      "Proto\"\216\001\n\033PurchaseCityExpansionStatus\022\013\n" +
+      "\007SUCCESS\020\001\022\024\n\020NOT_ENOUGH_COINS\020\002\022\025\n\021ALRE" +
+      "ADY_EXPANDING\020\003\022\016\n\nOTHER_FAIL\020\004\022%\n!CLIEN" +
+      "T_TOO_APART_FROM_SERVER_TIME\020\005\"Q\n\024LoadCi" +
+      "tyRequestProto\022\'\n\006sender\030\001 \001(\0132\027.proto.M" +
+      "inimumUserProto\022\020\n\010cityUuid\030\002 \001(\t\"\313\002\n\025Lo" +
+      "adCityResponseProto\022\'\n\006sender\030\001 \001(\0132\027.pr",
+      "oto.MinimumUserProto\022;\n\006status\030\002 \001(\0162+.p" +
+      "roto.LoadCityResponseProto.LoadCityStatu" +
+      "s\022-\n\014cityElements\030\003 \003(\0132\027.proto.CityElem" +
+      "entProto\022\020\n\010cityUuid\030\004 \001(\t\022@\n\035inProgress" +
+      "UserQuestDataInCity\030\005 \003(\0132\031.proto.FullUs" +
+      "erQuestProto\"I\n\016LoadCityStatus\022\013\n\007SUCCES" +
+      "S\020\001\022\032\n\026NOT_ACCESSIBLE_TO_USER\020\002\022\016\n\nOTHER" +
+      "_FAIL\020\003B/\n\035com.lvl6.mobsters.eventprotos" +
+      "B\016EventCityProto"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -4781,7 +4892,7 @@ public final class EventCityProto {
           internal_static_proto_LoadPlayerCityRequestProto_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_proto_LoadPlayerCityRequestProto_descriptor,
-              new java.lang.String[] { "Sender", "CityOwnerId", },
+              new java.lang.String[] { "Sender", "CityOwnerUuid", },
               com.lvl6.mobsters.eventprotos.EventCityProto.LoadPlayerCityRequestProto.class,
               com.lvl6.mobsters.eventprotos.EventCityProto.LoadPlayerCityRequestProto.Builder.class);
           internal_static_proto_LoadPlayerCityResponseProto_descriptor =
@@ -4813,7 +4924,7 @@ public final class EventCityProto {
           internal_static_proto_LoadCityRequestProto_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_proto_LoadCityRequestProto_descriptor,
-              new java.lang.String[] { "Sender", "CityId", },
+              new java.lang.String[] { "Sender", "CityUuid", },
               com.lvl6.mobsters.eventprotos.EventCityProto.LoadCityRequestProto.class,
               com.lvl6.mobsters.eventprotos.EventCityProto.LoadCityRequestProto.Builder.class);
           internal_static_proto_LoadCityResponseProto_descriptor =
@@ -4821,7 +4932,7 @@ public final class EventCityProto {
           internal_static_proto_LoadCityResponseProto_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_proto_LoadCityResponseProto_descriptor,
-              new java.lang.String[] { "Sender", "Status", "CityElements", "CityId", "InProgressUserQuestDataInCity", },
+              new java.lang.String[] { "Sender", "Status", "CityElements", "CityUuid", "InProgressUserQuestDataInCity", },
               com.lvl6.mobsters.eventprotos.EventCityProto.LoadCityResponseProto.class,
               com.lvl6.mobsters.eventprotos.EventCityProto.LoadCityResponseProto.Builder.class);
           return null;

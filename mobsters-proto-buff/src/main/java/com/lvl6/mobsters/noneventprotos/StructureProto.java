@@ -80,9 +80,9 @@ public final class StructureProto {
   public interface FullStructureProtoOrBuilder
       extends com.google.protobuf.MessageOrBuilder {
     
-    // optional int32 structId = 1;
-    boolean hasStructId();
-    int getStructId();
+    // optional string structUuid = 1;
+    boolean hasStructUuid();
+    String getStructUuid();
     
     // optional string name = 2;
     boolean hasName();
@@ -132,13 +132,13 @@ public final class StructureProto {
     boolean hasImgVerticalPixelOffset();
     int getImgVerticalPixelOffset();
     
-    // optional int32 successorStructId = 14;
-    boolean hasSuccessorStructId();
-    int getSuccessorStructId();
+    // optional string successorStructUuid = 14;
+    boolean hasSuccessorStructUuid();
+    String getSuccessorStructUuid();
     
-    // optional int32 predecessorStructId = 15;
-    boolean hasPredecessorStructId();
-    int getPredecessorStructId();
+    // optional string predecessorStructUuid = 15;
+    boolean hasPredecessorStructUuid();
+    String getPredecessorStructUuid();
   }
   public static final class FullStructureProto extends
       com.google.protobuf.GeneratedMessage
@@ -169,14 +169,36 @@ public final class StructureProto {
     }
     
     private int bitField0_;
-    // optional int32 structId = 1;
-    public static final int STRUCTID_FIELD_NUMBER = 1;
-    private int structId_;
-    public boolean hasStructId() {
+    // optional string structUuid = 1;
+    public static final int STRUCTUUID_FIELD_NUMBER = 1;
+    private java.lang.Object structUuid_;
+    public boolean hasStructUuid() {
       return ((bitField0_ & 0x00000001) == 0x00000001);
     }
-    public int getStructId() {
-      return structId_;
+    public String getStructUuid() {
+      java.lang.Object ref = structUuid_;
+      if (ref instanceof String) {
+        return (String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        String s = bs.toStringUtf8();
+        if (com.google.protobuf.Internal.isValidUtf8(bs)) {
+          structUuid_ = s;
+        }
+        return s;
+      }
+    }
+    private com.google.protobuf.ByteString getStructUuidBytes() {
+      java.lang.Object ref = structUuid_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8((String) ref);
+        structUuid_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
     }
     
     // optional string name = 2;
@@ -321,28 +343,72 @@ public final class StructureProto {
       return imgVerticalPixelOffset_;
     }
     
-    // optional int32 successorStructId = 14;
-    public static final int SUCCESSORSTRUCTID_FIELD_NUMBER = 14;
-    private int successorStructId_;
-    public boolean hasSuccessorStructId() {
+    // optional string successorStructUuid = 14;
+    public static final int SUCCESSORSTRUCTUUID_FIELD_NUMBER = 14;
+    private java.lang.Object successorStructUuid_;
+    public boolean hasSuccessorStructUuid() {
       return ((bitField0_ & 0x00002000) == 0x00002000);
     }
-    public int getSuccessorStructId() {
-      return successorStructId_;
+    public String getSuccessorStructUuid() {
+      java.lang.Object ref = successorStructUuid_;
+      if (ref instanceof String) {
+        return (String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        String s = bs.toStringUtf8();
+        if (com.google.protobuf.Internal.isValidUtf8(bs)) {
+          successorStructUuid_ = s;
+        }
+        return s;
+      }
+    }
+    private com.google.protobuf.ByteString getSuccessorStructUuidBytes() {
+      java.lang.Object ref = successorStructUuid_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8((String) ref);
+        successorStructUuid_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
     }
     
-    // optional int32 predecessorStructId = 15;
-    public static final int PREDECESSORSTRUCTID_FIELD_NUMBER = 15;
-    private int predecessorStructId_;
-    public boolean hasPredecessorStructId() {
+    // optional string predecessorStructUuid = 15;
+    public static final int PREDECESSORSTRUCTUUID_FIELD_NUMBER = 15;
+    private java.lang.Object predecessorStructUuid_;
+    public boolean hasPredecessorStructUuid() {
       return ((bitField0_ & 0x00004000) == 0x00004000);
     }
-    public int getPredecessorStructId() {
-      return predecessorStructId_;
+    public String getPredecessorStructUuid() {
+      java.lang.Object ref = predecessorStructUuid_;
+      if (ref instanceof String) {
+        return (String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        String s = bs.toStringUtf8();
+        if (com.google.protobuf.Internal.isValidUtf8(bs)) {
+          predecessorStructUuid_ = s;
+        }
+        return s;
+      }
+    }
+    private com.google.protobuf.ByteString getPredecessorStructUuidBytes() {
+      java.lang.Object ref = predecessorStructUuid_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8((String) ref);
+        predecessorStructUuid_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
     }
     
     private void initFields() {
-      structId_ = 0;
+      structUuid_ = "";
       name_ = "";
       level_ = 0;
       income_ = 0;
@@ -355,8 +421,8 @@ public final class StructureProto {
       xLength_ = 0;
       yLength_ = 0;
       imgVerticalPixelOffset_ = 0;
-      successorStructId_ = 0;
-      predecessorStructId_ = 0;
+      successorStructUuid_ = "";
+      predecessorStructUuid_ = "";
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -371,7 +437,7 @@ public final class StructureProto {
                         throws java.io.IOException {
       getSerializedSize();
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        output.writeInt32(1, structId_);
+        output.writeBytes(1, getStructUuidBytes());
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         output.writeBytes(2, getNameBytes());
@@ -410,10 +476,10 @@ public final class StructureProto {
         output.writeInt32(13, imgVerticalPixelOffset_);
       }
       if (((bitField0_ & 0x00002000) == 0x00002000)) {
-        output.writeInt32(14, successorStructId_);
+        output.writeBytes(14, getSuccessorStructUuidBytes());
       }
       if (((bitField0_ & 0x00004000) == 0x00004000)) {
-        output.writeInt32(15, predecessorStructId_);
+        output.writeBytes(15, getPredecessorStructUuidBytes());
       }
       getUnknownFields().writeTo(output);
     }
@@ -426,7 +492,7 @@ public final class StructureProto {
       size = 0;
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(1, structId_);
+          .computeBytesSize(1, getStructUuidBytes());
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         size += com.google.protobuf.CodedOutputStream
@@ -478,11 +544,11 @@ public final class StructureProto {
       }
       if (((bitField0_ & 0x00002000) == 0x00002000)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(14, successorStructId_);
+          .computeBytesSize(14, getSuccessorStructUuidBytes());
       }
       if (((bitField0_ & 0x00004000) == 0x00004000)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(15, predecessorStructId_);
+          .computeBytesSize(15, getPredecessorStructUuidBytes());
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -608,7 +674,7 @@ public final class StructureProto {
       
       public Builder clear() {
         super.clear();
-        structId_ = 0;
+        structUuid_ = "";
         bitField0_ = (bitField0_ & ~0x00000001);
         name_ = "";
         bitField0_ = (bitField0_ & ~0x00000002);
@@ -634,9 +700,9 @@ public final class StructureProto {
         bitField0_ = (bitField0_ & ~0x00000800);
         imgVerticalPixelOffset_ = 0;
         bitField0_ = (bitField0_ & ~0x00001000);
-        successorStructId_ = 0;
+        successorStructUuid_ = "";
         bitField0_ = (bitField0_ & ~0x00002000);
-        predecessorStructId_ = 0;
+        predecessorStructUuid_ = "";
         bitField0_ = (bitField0_ & ~0x00004000);
         return this;
       }
@@ -679,7 +745,7 @@ public final class StructureProto {
         if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
           to_bitField0_ |= 0x00000001;
         }
-        result.structId_ = structId_;
+        result.structUuid_ = structUuid_;
         if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
           to_bitField0_ |= 0x00000002;
         }
@@ -731,11 +797,11 @@ public final class StructureProto {
         if (((from_bitField0_ & 0x00002000) == 0x00002000)) {
           to_bitField0_ |= 0x00002000;
         }
-        result.successorStructId_ = successorStructId_;
+        result.successorStructUuid_ = successorStructUuid_;
         if (((from_bitField0_ & 0x00004000) == 0x00004000)) {
           to_bitField0_ |= 0x00004000;
         }
-        result.predecessorStructId_ = predecessorStructId_;
+        result.predecessorStructUuid_ = predecessorStructUuid_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -752,8 +818,8 @@ public final class StructureProto {
       
       public Builder mergeFrom(com.lvl6.mobsters.noneventprotos.StructureProto.FullStructureProto other) {
         if (other == com.lvl6.mobsters.noneventprotos.StructureProto.FullStructureProto.getDefaultInstance()) return this;
-        if (other.hasStructId()) {
-          setStructId(other.getStructId());
+        if (other.hasStructUuid()) {
+          setStructUuid(other.getStructUuid());
         }
         if (other.hasName()) {
           setName(other.getName());
@@ -791,11 +857,11 @@ public final class StructureProto {
         if (other.hasImgVerticalPixelOffset()) {
           setImgVerticalPixelOffset(other.getImgVerticalPixelOffset());
         }
-        if (other.hasSuccessorStructId()) {
-          setSuccessorStructId(other.getSuccessorStructId());
+        if (other.hasSuccessorStructUuid()) {
+          setSuccessorStructUuid(other.getSuccessorStructUuid());
         }
-        if (other.hasPredecessorStructId()) {
-          setPredecessorStructId(other.getPredecessorStructId());
+        if (other.hasPredecessorStructUuid()) {
+          setPredecessorStructUuid(other.getPredecessorStructUuid());
         }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
@@ -828,9 +894,9 @@ public final class StructureProto {
               }
               break;
             }
-            case 8: {
+            case 10: {
               bitField0_ |= 0x00000001;
-              structId_ = input.readInt32();
+              structUuid_ = input.readBytes();
               break;
             }
             case 18: {
@@ -893,14 +959,14 @@ public final class StructureProto {
               imgVerticalPixelOffset_ = input.readInt32();
               break;
             }
-            case 112: {
+            case 114: {
               bitField0_ |= 0x00002000;
-              successorStructId_ = input.readInt32();
+              successorStructUuid_ = input.readBytes();
               break;
             }
-            case 120: {
+            case 122: {
               bitField0_ |= 0x00004000;
-              predecessorStructId_ = input.readInt32();
+              predecessorStructUuid_ = input.readBytes();
               break;
             }
           }
@@ -909,25 +975,40 @@ public final class StructureProto {
       
       private int bitField0_;
       
-      // optional int32 structId = 1;
-      private int structId_ ;
-      public boolean hasStructId() {
+      // optional string structUuid = 1;
+      private java.lang.Object structUuid_ = "";
+      public boolean hasStructUuid() {
         return ((bitField0_ & 0x00000001) == 0x00000001);
       }
-      public int getStructId() {
-        return structId_;
+      public String getStructUuid() {
+        java.lang.Object ref = structUuid_;
+        if (!(ref instanceof String)) {
+          String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
+          structUuid_ = s;
+          return s;
+        } else {
+          return (String) ref;
+        }
       }
-      public Builder setStructId(int value) {
-        bitField0_ |= 0x00000001;
-        structId_ = value;
+      public Builder setStructUuid(String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000001;
+        structUuid_ = value;
         onChanged();
         return this;
       }
-      public Builder clearStructId() {
+      public Builder clearStructUuid() {
         bitField0_ = (bitField0_ & ~0x00000001);
-        structId_ = 0;
+        structUuid_ = getDefaultInstance().getStructUuid();
         onChanged();
         return this;
+      }
+      void setStructUuid(com.google.protobuf.ByteString value) {
+        bitField0_ |= 0x00000001;
+        structUuid_ = value;
+        onChanged();
       }
       
       // optional string name = 2;
@@ -1197,46 +1278,76 @@ public final class StructureProto {
         return this;
       }
       
-      // optional int32 successorStructId = 14;
-      private int successorStructId_ ;
-      public boolean hasSuccessorStructId() {
+      // optional string successorStructUuid = 14;
+      private java.lang.Object successorStructUuid_ = "";
+      public boolean hasSuccessorStructUuid() {
         return ((bitField0_ & 0x00002000) == 0x00002000);
       }
-      public int getSuccessorStructId() {
-        return successorStructId_;
+      public String getSuccessorStructUuid() {
+        java.lang.Object ref = successorStructUuid_;
+        if (!(ref instanceof String)) {
+          String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
+          successorStructUuid_ = s;
+          return s;
+        } else {
+          return (String) ref;
+        }
       }
-      public Builder setSuccessorStructId(int value) {
-        bitField0_ |= 0x00002000;
-        successorStructId_ = value;
+      public Builder setSuccessorStructUuid(String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00002000;
+        successorStructUuid_ = value;
         onChanged();
         return this;
       }
-      public Builder clearSuccessorStructId() {
+      public Builder clearSuccessorStructUuid() {
         bitField0_ = (bitField0_ & ~0x00002000);
-        successorStructId_ = 0;
+        successorStructUuid_ = getDefaultInstance().getSuccessorStructUuid();
         onChanged();
         return this;
+      }
+      void setSuccessorStructUuid(com.google.protobuf.ByteString value) {
+        bitField0_ |= 0x00002000;
+        successorStructUuid_ = value;
+        onChanged();
       }
       
-      // optional int32 predecessorStructId = 15;
-      private int predecessorStructId_ ;
-      public boolean hasPredecessorStructId() {
+      // optional string predecessorStructUuid = 15;
+      private java.lang.Object predecessorStructUuid_ = "";
+      public boolean hasPredecessorStructUuid() {
         return ((bitField0_ & 0x00004000) == 0x00004000);
       }
-      public int getPredecessorStructId() {
-        return predecessorStructId_;
+      public String getPredecessorStructUuid() {
+        java.lang.Object ref = predecessorStructUuid_;
+        if (!(ref instanceof String)) {
+          String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
+          predecessorStructUuid_ = s;
+          return s;
+        } else {
+          return (String) ref;
+        }
       }
-      public Builder setPredecessorStructId(int value) {
-        bitField0_ |= 0x00004000;
-        predecessorStructId_ = value;
+      public Builder setPredecessorStructUuid(String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00004000;
+        predecessorStructUuid_ = value;
         onChanged();
         return this;
       }
-      public Builder clearPredecessorStructId() {
+      public Builder clearPredecessorStructUuid() {
         bitField0_ = (bitField0_ & ~0x00004000);
-        predecessorStructId_ = 0;
+        predecessorStructUuid_ = getDefaultInstance().getPredecessorStructUuid();
         onChanged();
         return this;
+      }
+      void setPredecessorStructUuid(com.google.protobuf.ByteString value) {
+        bitField0_ |= 0x00004000;
+        predecessorStructUuid_ = value;
+        onChanged();
       }
       
       // @@protoc_insertion_point(builder_scope:proto.FullStructureProto)
@@ -1253,17 +1364,17 @@ public final class StructureProto {
   public interface FullUserStructureProtoOrBuilder
       extends com.google.protobuf.MessageOrBuilder {
     
-    // optional int32 userStructId = 1;
-    boolean hasUserStructId();
-    int getUserStructId();
+    // optional string userStructUuid = 1;
+    boolean hasUserStructUuid();
+    String getUserStructUuid();
     
-    // optional int32 userId = 2;
-    boolean hasUserId();
-    int getUserId();
+    // optional string userUuid = 2;
+    boolean hasUserUuid();
+    String getUserUuid();
     
-    // optional int32 structId = 3;
-    boolean hasStructId();
-    int getStructId();
+    // optional string structUuid = 3;
+    boolean hasStructUuid();
+    String getStructUuid();
     
     // optional int64 lastRetrieved = 4;
     boolean hasLastRetrieved();
@@ -1315,34 +1426,100 @@ public final class StructureProto {
     }
     
     private int bitField0_;
-    // optional int32 userStructId = 1;
-    public static final int USERSTRUCTID_FIELD_NUMBER = 1;
-    private int userStructId_;
-    public boolean hasUserStructId() {
+    // optional string userStructUuid = 1;
+    public static final int USERSTRUCTUUID_FIELD_NUMBER = 1;
+    private java.lang.Object userStructUuid_;
+    public boolean hasUserStructUuid() {
       return ((bitField0_ & 0x00000001) == 0x00000001);
     }
-    public int getUserStructId() {
-      return userStructId_;
+    public String getUserStructUuid() {
+      java.lang.Object ref = userStructUuid_;
+      if (ref instanceof String) {
+        return (String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        String s = bs.toStringUtf8();
+        if (com.google.protobuf.Internal.isValidUtf8(bs)) {
+          userStructUuid_ = s;
+        }
+        return s;
+      }
+    }
+    private com.google.protobuf.ByteString getUserStructUuidBytes() {
+      java.lang.Object ref = userStructUuid_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8((String) ref);
+        userStructUuid_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
     }
     
-    // optional int32 userId = 2;
-    public static final int USERID_FIELD_NUMBER = 2;
-    private int userId_;
-    public boolean hasUserId() {
+    // optional string userUuid = 2;
+    public static final int USERUUID_FIELD_NUMBER = 2;
+    private java.lang.Object userUuid_;
+    public boolean hasUserUuid() {
       return ((bitField0_ & 0x00000002) == 0x00000002);
     }
-    public int getUserId() {
-      return userId_;
+    public String getUserUuid() {
+      java.lang.Object ref = userUuid_;
+      if (ref instanceof String) {
+        return (String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        String s = bs.toStringUtf8();
+        if (com.google.protobuf.Internal.isValidUtf8(bs)) {
+          userUuid_ = s;
+        }
+        return s;
+      }
+    }
+    private com.google.protobuf.ByteString getUserUuidBytes() {
+      java.lang.Object ref = userUuid_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8((String) ref);
+        userUuid_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
     }
     
-    // optional int32 structId = 3;
-    public static final int STRUCTID_FIELD_NUMBER = 3;
-    private int structId_;
-    public boolean hasStructId() {
+    // optional string structUuid = 3;
+    public static final int STRUCTUUID_FIELD_NUMBER = 3;
+    private java.lang.Object structUuid_;
+    public boolean hasStructUuid() {
       return ((bitField0_ & 0x00000004) == 0x00000004);
     }
-    public int getStructId() {
-      return structId_;
+    public String getStructUuid() {
+      java.lang.Object ref = structUuid_;
+      if (ref instanceof String) {
+        return (String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        String s = bs.toStringUtf8();
+        if (com.google.protobuf.Internal.isValidUtf8(bs)) {
+          structUuid_ = s;
+        }
+        return s;
+      }
+    }
+    private com.google.protobuf.ByteString getStructUuidBytes() {
+      java.lang.Object ref = structUuid_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8((String) ref);
+        structUuid_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
     }
     
     // optional int64 lastRetrieved = 4;
@@ -1399,9 +1576,9 @@ public final class StructureProto {
     }
     
     private void initFields() {
-      userStructId_ = 0;
-      userId_ = 0;
-      structId_ = 0;
+      userStructUuid_ = "";
+      userUuid_ = "";
+      structUuid_ = "";
       lastRetrieved_ = 0L;
       coordinates_ = com.lvl6.mobsters.noneventprotos.StructureProto.CoordinateProto.getDefaultInstance();
       purchaseTime_ = 0L;
@@ -1421,13 +1598,13 @@ public final class StructureProto {
                         throws java.io.IOException {
       getSerializedSize();
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        output.writeInt32(1, userStructId_);
+        output.writeBytes(1, getUserStructUuidBytes());
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        output.writeInt32(2, userId_);
+        output.writeBytes(2, getUserUuidBytes());
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
-        output.writeInt32(3, structId_);
+        output.writeBytes(3, getStructUuidBytes());
       }
       if (((bitField0_ & 0x00000008) == 0x00000008)) {
         output.writeInt64(4, lastRetrieved_);
@@ -1455,15 +1632,15 @@ public final class StructureProto {
       size = 0;
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(1, userStructId_);
+          .computeBytesSize(1, getUserStructUuidBytes());
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(2, userId_);
+          .computeBytesSize(2, getUserUuidBytes());
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(3, structId_);
+          .computeBytesSize(3, getStructUuidBytes());
       }
       if (((bitField0_ & 0x00000008) == 0x00000008)) {
         size += com.google.protobuf.CodedOutputStream
@@ -1610,11 +1787,11 @@ public final class StructureProto {
       
       public Builder clear() {
         super.clear();
-        userStructId_ = 0;
+        userStructUuid_ = "";
         bitField0_ = (bitField0_ & ~0x00000001);
-        userId_ = 0;
+        userUuid_ = "";
         bitField0_ = (bitField0_ & ~0x00000002);
-        structId_ = 0;
+        structUuid_ = "";
         bitField0_ = (bitField0_ & ~0x00000004);
         lastRetrieved_ = 0L;
         bitField0_ = (bitField0_ & ~0x00000008);
@@ -1671,15 +1848,15 @@ public final class StructureProto {
         if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
           to_bitField0_ |= 0x00000001;
         }
-        result.userStructId_ = userStructId_;
+        result.userStructUuid_ = userStructUuid_;
         if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
           to_bitField0_ |= 0x00000002;
         }
-        result.userId_ = userId_;
+        result.userUuid_ = userUuid_;
         if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
           to_bitField0_ |= 0x00000004;
         }
-        result.structId_ = structId_;
+        result.structUuid_ = structUuid_;
         if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
           to_bitField0_ |= 0x00000008;
         }
@@ -1720,14 +1897,14 @@ public final class StructureProto {
       
       public Builder mergeFrom(com.lvl6.mobsters.noneventprotos.StructureProto.FullUserStructureProto other) {
         if (other == com.lvl6.mobsters.noneventprotos.StructureProto.FullUserStructureProto.getDefaultInstance()) return this;
-        if (other.hasUserStructId()) {
-          setUserStructId(other.getUserStructId());
+        if (other.hasUserStructUuid()) {
+          setUserStructUuid(other.getUserStructUuid());
         }
-        if (other.hasUserId()) {
-          setUserId(other.getUserId());
+        if (other.hasUserUuid()) {
+          setUserUuid(other.getUserUuid());
         }
-        if (other.hasStructId()) {
-          setStructId(other.getStructId());
+        if (other.hasStructUuid()) {
+          setStructUuid(other.getStructUuid());
         }
         if (other.hasLastRetrieved()) {
           setLastRetrieved(other.getLastRetrieved());
@@ -1775,19 +1952,19 @@ public final class StructureProto {
               }
               break;
             }
-            case 8: {
+            case 10: {
               bitField0_ |= 0x00000001;
-              userStructId_ = input.readInt32();
+              userStructUuid_ = input.readBytes();
               break;
             }
-            case 16: {
+            case 18: {
               bitField0_ |= 0x00000002;
-              userId_ = input.readInt32();
+              userUuid_ = input.readBytes();
               break;
             }
-            case 24: {
+            case 26: {
               bitField0_ |= 0x00000004;
-              structId_ = input.readInt32();
+              structUuid_ = input.readBytes();
               break;
             }
             case 32: {
@@ -1831,67 +2008,112 @@ public final class StructureProto {
       
       private int bitField0_;
       
-      // optional int32 userStructId = 1;
-      private int userStructId_ ;
-      public boolean hasUserStructId() {
+      // optional string userStructUuid = 1;
+      private java.lang.Object userStructUuid_ = "";
+      public boolean hasUserStructUuid() {
         return ((bitField0_ & 0x00000001) == 0x00000001);
       }
-      public int getUserStructId() {
-        return userStructId_;
+      public String getUserStructUuid() {
+        java.lang.Object ref = userStructUuid_;
+        if (!(ref instanceof String)) {
+          String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
+          userStructUuid_ = s;
+          return s;
+        } else {
+          return (String) ref;
+        }
       }
-      public Builder setUserStructId(int value) {
-        bitField0_ |= 0x00000001;
-        userStructId_ = value;
+      public Builder setUserStructUuid(String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000001;
+        userStructUuid_ = value;
         onChanged();
         return this;
       }
-      public Builder clearUserStructId() {
+      public Builder clearUserStructUuid() {
         bitField0_ = (bitField0_ & ~0x00000001);
-        userStructId_ = 0;
+        userStructUuid_ = getDefaultInstance().getUserStructUuid();
         onChanged();
         return this;
+      }
+      void setUserStructUuid(com.google.protobuf.ByteString value) {
+        bitField0_ |= 0x00000001;
+        userStructUuid_ = value;
+        onChanged();
       }
       
-      // optional int32 userId = 2;
-      private int userId_ ;
-      public boolean hasUserId() {
+      // optional string userUuid = 2;
+      private java.lang.Object userUuid_ = "";
+      public boolean hasUserUuid() {
         return ((bitField0_ & 0x00000002) == 0x00000002);
       }
-      public int getUserId() {
-        return userId_;
+      public String getUserUuid() {
+        java.lang.Object ref = userUuid_;
+        if (!(ref instanceof String)) {
+          String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
+          userUuid_ = s;
+          return s;
+        } else {
+          return (String) ref;
+        }
       }
-      public Builder setUserId(int value) {
-        bitField0_ |= 0x00000002;
-        userId_ = value;
+      public Builder setUserUuid(String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000002;
+        userUuid_ = value;
         onChanged();
         return this;
       }
-      public Builder clearUserId() {
+      public Builder clearUserUuid() {
         bitField0_ = (bitField0_ & ~0x00000002);
-        userId_ = 0;
+        userUuid_ = getDefaultInstance().getUserUuid();
         onChanged();
         return this;
+      }
+      void setUserUuid(com.google.protobuf.ByteString value) {
+        bitField0_ |= 0x00000002;
+        userUuid_ = value;
+        onChanged();
       }
       
-      // optional int32 structId = 3;
-      private int structId_ ;
-      public boolean hasStructId() {
+      // optional string structUuid = 3;
+      private java.lang.Object structUuid_ = "";
+      public boolean hasStructUuid() {
         return ((bitField0_ & 0x00000004) == 0x00000004);
       }
-      public int getStructId() {
-        return structId_;
+      public String getStructUuid() {
+        java.lang.Object ref = structUuid_;
+        if (!(ref instanceof String)) {
+          String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
+          structUuid_ = s;
+          return s;
+        } else {
+          return (String) ref;
+        }
       }
-      public Builder setStructId(int value) {
-        bitField0_ |= 0x00000004;
-        structId_ = value;
+      public Builder setStructUuid(String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000004;
+        structUuid_ = value;
         onChanged();
         return this;
       }
-      public Builder clearStructId() {
+      public Builder clearStructUuid() {
         bitField0_ = (bitField0_ & ~0x00000004);
-        structId_ = 0;
+        structUuid_ = getDefaultInstance().getStructUuid();
         onChanged();
         return this;
+      }
+      void setStructUuid(com.google.protobuf.ByteString value) {
+        bitField0_ |= 0x00000004;
+        structUuid_ = value;
+        onChanged();
       }
       
       // optional int64 lastRetrieved = 4;
@@ -2501,25 +2723,26 @@ public final class StructureProto {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\017Structure.proto\022\005proto\"\320\002\n\022FullStructu" +
-      "reProto\022\020\n\010structId\030\001 \001(\005\022\014\n\004name\030\002 \001(\t\022" +
-      "\r\n\005level\030\003 \001(\005\022\016\n\006income\030\004 \001(\005\022\025\n\rminute" +
-      "sToGain\030\005 \001(\005\022\026\n\016minutesToBuild\030\006 \001(\005\022\022\n" +
-      "\nbuildPrice\030\007 \001(\005\022\031\n\021isPremiumCurrency\030\010" +
-      " \001(\010\022\021\n\tsellPrice\030\t \001(\005\022\020\n\010minLevel\030\n \001(" +
-      "\005\022\017\n\007xLength\030\013 \001(\005\022\017\n\007yLength\030\014 \001(\005\022\036\n\026i" +
-      "mgVerticalPixelOffset\030\r \001(\005\022\031\n\021successor" +
-      "StructId\030\016 \001(\005\022\033\n\023predecessorStructId\030\017 " +
-      "\001(\005\"\355\001\n\026FullUserStructureProto\022\024\n\014userSt",
-      "ructId\030\001 \001(\005\022\016\n\006userId\030\002 \001(\005\022\020\n\010structId" +
-      "\030\003 \001(\005\022\025\n\rlastRetrieved\030\004 \001(\003\022+\n\013coordin" +
-      "ates\030\005 \001(\0132\026.proto.CoordinateProto\022\024\n\014pu" +
-      "rchaseTime\030\007 \001(\003\022\022\n\nisComplete\030\t \001(\010\022-\n\013" +
-      "orientation\030\n \001(\0162\030.proto.StructOrientat" +
-      "ion\"\'\n\017CoordinateProto\022\t\n\001x\030\001 \001(\002\022\t\n\001y\030\002" +
-      " \001(\002*3\n\021StructOrientation\022\016\n\nPOSITION_1\020" +
-      "\001\022\016\n\nPOSITION_2\020\002B2\n com.lvl6.mobsters.n" +
-      "oneventprotosB\016StructureProto"
+      "\n\017Structure.proto\022\005proto\"\326\002\n\022FullStructu" +
+      "reProto\022\022\n\nstructUuid\030\001 \001(\t\022\014\n\004name\030\002 \001(" +
+      "\t\022\r\n\005level\030\003 \001(\005\022\016\n\006income\030\004 \001(\005\022\025\n\rminu" +
+      "tesToGain\030\005 \001(\005\022\026\n\016minutesToBuild\030\006 \001(\005\022" +
+      "\022\n\nbuildPrice\030\007 \001(\005\022\031\n\021isPremiumCurrency" +
+      "\030\010 \001(\010\022\021\n\tsellPrice\030\t \001(\005\022\020\n\010minLevel\030\n " +
+      "\001(\005\022\017\n\007xLength\030\013 \001(\005\022\017\n\007yLength\030\014 \001(\005\022\036\n" +
+      "\026imgVerticalPixelOffset\030\r \001(\005\022\033\n\023success" +
+      "orStructUuid\030\016 \001(\t\022\035\n\025predecessorStructU" +
+      "uid\030\017 \001(\t\"\363\001\n\026FullUserStructureProto\022\026\n\016",
+      "userStructUuid\030\001 \001(\t\022\020\n\010userUuid\030\002 \001(\t\022\022" +
+      "\n\nstructUuid\030\003 \001(\t\022\025\n\rlastRetrieved\030\004 \001(" +
+      "\003\022+\n\013coordinates\030\005 \001(\0132\026.proto.Coordinat" +
+      "eProto\022\024\n\014purchaseTime\030\007 \001(\003\022\022\n\nisComple" +
+      "te\030\t \001(\010\022-\n\013orientation\030\n \001(\0162\030.proto.St" +
+      "ructOrientation\"\'\n\017CoordinateProto\022\t\n\001x\030" +
+      "\001 \001(\002\022\t\n\001y\030\002 \001(\002*3\n\021StructOrientation\022\016\n" +
+      "\nPOSITION_1\020\001\022\016\n\nPOSITION_2\020\002B2\n com.lvl" +
+      "6.mobsters.noneventprotosB\016StructureProt" +
+      "o"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -2531,7 +2754,7 @@ public final class StructureProto {
           internal_static_proto_FullStructureProto_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_proto_FullStructureProto_descriptor,
-              new java.lang.String[] { "StructId", "Name", "Level", "Income", "MinutesToGain", "MinutesToBuild", "BuildPrice", "IsPremiumCurrency", "SellPrice", "MinLevel", "XLength", "YLength", "ImgVerticalPixelOffset", "SuccessorStructId", "PredecessorStructId", },
+              new java.lang.String[] { "StructUuid", "Name", "Level", "Income", "MinutesToGain", "MinutesToBuild", "BuildPrice", "IsPremiumCurrency", "SellPrice", "MinLevel", "XLength", "YLength", "ImgVerticalPixelOffset", "SuccessorStructUuid", "PredecessorStructUuid", },
               com.lvl6.mobsters.noneventprotos.StructureProto.FullStructureProto.class,
               com.lvl6.mobsters.noneventprotos.StructureProto.FullStructureProto.Builder.class);
           internal_static_proto_FullUserStructureProto_descriptor =
@@ -2539,7 +2762,7 @@ public final class StructureProto {
           internal_static_proto_FullUserStructureProto_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_proto_FullUserStructureProto_descriptor,
-              new java.lang.String[] { "UserStructId", "UserId", "StructId", "LastRetrieved", "Coordinates", "PurchaseTime", "IsComplete", "Orientation", },
+              new java.lang.String[] { "UserStructUuid", "UserUuid", "StructUuid", "LastRetrieved", "Coordinates", "PurchaseTime", "IsComplete", "Orientation", },
               com.lvl6.mobsters.noneventprotos.StructureProto.FullUserStructureProto.class,
               com.lvl6.mobsters.noneventprotos.StructureProto.FullUserStructureProto.Builder.class);
           internal_static_proto_CoordinateProto_descriptor =

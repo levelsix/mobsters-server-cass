@@ -17,7 +17,7 @@ message InAppPurchasePackageProto {
 //------------------------------------------------------------------------------------------
 
 message GoldSaleProto {
-	optional int32 saleId = 1;
+	optional string saleUuid = 1;
 	optional int64 startDate = 2;
 	optional int64 endDate = 3;
 	optional string package1SaleIdentifier = 4;

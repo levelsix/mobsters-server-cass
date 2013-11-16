@@ -15,14 +15,14 @@ option java_outer_classname = "EventQuestProto";
 
 message QuestAcceptRequestProto {
      optional MinimumUserProto sender = 1;
-     optional int32 questId = 2;
+     optional string questUuid = 2;
 }
 
 																						//DONE
 message QuestAcceptResponseProto {
      optional MinimumUserProto sender = 1;
      optional QuestAcceptStatus status = 2;
-     optional int32 cityIdOfAcceptedQuest = 3;
+     optional string cityUuidOfAcceptedQuest = 3;
 
      enum QuestAcceptStatus {
           SUCCESS = 1;
@@ -36,12 +36,12 @@ message QuestAcceptResponseProto {
 
 message QuestProgressRequestProto {
 	optional MinimumUserProto sender = 1;
-	optional int32 questId = 2;
+	optional string questUuid = 2;
 	optional int32 currentProgress = 3;
 	optional bool isComplete = 4;
 	
 	//if set, delete these user monster ids 
-	repeated int64 deleteUserMonsterIds = 5;
+	repeated string deleteUserMonsterUuids = 5;
 }
 
 																						//DONE
@@ -64,7 +64,7 @@ message QuestProgressResponseProto {
 
 message QuestRedeemRequestProto {                         
      optional MinimumUserProto sender = 1;
-     optional int32 questId = 2;
+     optional string questUuid = 2;
 }
 
 																						//DONE
@@ -73,7 +73,7 @@ message QuestRedeemResponseProto {
      repeated FullQuestProto newlyAvailableQuests = 2;
      optional QuestRedeemStatus status = 3;    
      optional FullUserMonsterProto fump = 4;
-     optional int32 questId = 5;
+     optional string questUuid = 5;
      
      enum QuestRedeemStatus {
           SUCCESS = 1;

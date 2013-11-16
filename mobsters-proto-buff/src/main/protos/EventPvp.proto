@@ -11,7 +11,7 @@ option java_outer_classname = "EventPvpProto";
 
 message QueueUpRequestProto {
 	optional MinimumUserProto attacker = 1;
-	repeated int32 seenUserIds = 2;
+	repeated string seenUserUuids = 2;
 	optional int64 clientTime = 3;
 	
 }

@@ -16,9 +16,9 @@ public final class EventBoosterPackProto {
     com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto getSender();
     com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProtoOrBuilder getSenderOrBuilder();
     
-    // optional int32 boosterPackId = 2;
-    boolean hasBoosterPackId();
-    int getBoosterPackId();
+    // optional string boosterPackUuid = 2;
+    boolean hasBoosterPackUuid();
+    String getBoosterPackUuid();
     
     // optional int64 clientTime = 3;
     boolean hasClientTime();
@@ -66,14 +66,36 @@ public final class EventBoosterPackProto {
       return sender_;
     }
     
-    // optional int32 boosterPackId = 2;
-    public static final int BOOSTERPACKID_FIELD_NUMBER = 2;
-    private int boosterPackId_;
-    public boolean hasBoosterPackId() {
+    // optional string boosterPackUuid = 2;
+    public static final int BOOSTERPACKUUID_FIELD_NUMBER = 2;
+    private java.lang.Object boosterPackUuid_;
+    public boolean hasBoosterPackUuid() {
       return ((bitField0_ & 0x00000002) == 0x00000002);
     }
-    public int getBoosterPackId() {
-      return boosterPackId_;
+    public String getBoosterPackUuid() {
+      java.lang.Object ref = boosterPackUuid_;
+      if (ref instanceof String) {
+        return (String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        String s = bs.toStringUtf8();
+        if (com.google.protobuf.Internal.isValidUtf8(bs)) {
+          boosterPackUuid_ = s;
+        }
+        return s;
+      }
+    }
+    private com.google.protobuf.ByteString getBoosterPackUuidBytes() {
+      java.lang.Object ref = boosterPackUuid_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8((String) ref);
+        boosterPackUuid_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
     }
     
     // optional int64 clientTime = 3;
@@ -88,7 +110,7 @@ public final class EventBoosterPackProto {
     
     private void initFields() {
       sender_ = com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto.getDefaultInstance();
-      boosterPackId_ = 0;
+      boosterPackUuid_ = "";
       clientTime_ = 0L;
     }
     private byte memoizedIsInitialized = -1;
@@ -107,7 +129,7 @@ public final class EventBoosterPackProto {
         output.writeMessage(1, sender_);
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        output.writeInt32(2, boosterPackId_);
+        output.writeBytes(2, getBoosterPackUuidBytes());
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
         output.writeInt64(3, clientTime_);
@@ -127,7 +149,7 @@ public final class EventBoosterPackProto {
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(2, boosterPackId_);
+          .computeBytesSize(2, getBoosterPackUuidBytes());
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
         size += com.google.protobuf.CodedOutputStream
@@ -264,7 +286,7 @@ public final class EventBoosterPackProto {
           senderBuilder_.clear();
         }
         bitField0_ = (bitField0_ & ~0x00000001);
-        boosterPackId_ = 0;
+        boosterPackUuid_ = "";
         bitField0_ = (bitField0_ & ~0x00000002);
         clientTime_ = 0L;
         bitField0_ = (bitField0_ & ~0x00000004);
@@ -317,7 +339,7 @@ public final class EventBoosterPackProto {
         if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
           to_bitField0_ |= 0x00000002;
         }
-        result.boosterPackId_ = boosterPackId_;
+        result.boosterPackUuid_ = boosterPackUuid_;
         if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
           to_bitField0_ |= 0x00000004;
         }
@@ -341,8 +363,8 @@ public final class EventBoosterPackProto {
         if (other.hasSender()) {
           mergeSender(other.getSender());
         }
-        if (other.hasBoosterPackId()) {
-          setBoosterPackId(other.getBoosterPackId());
+        if (other.hasBoosterPackUuid()) {
+          setBoosterPackUuid(other.getBoosterPackUuid());
         }
         if (other.hasClientTime()) {
           setClientTime(other.getClientTime());
@@ -387,9 +409,9 @@ public final class EventBoosterPackProto {
               setSender(subBuilder.buildPartial());
               break;
             }
-            case 16: {
+            case 18: {
               bitField0_ |= 0x00000002;
-              boosterPackId_ = input.readInt32();
+              boosterPackUuid_ = input.readBytes();
               break;
             }
             case 24: {
@@ -493,25 +515,40 @@ public final class EventBoosterPackProto {
         return senderBuilder_;
       }
       
-      // optional int32 boosterPackId = 2;
-      private int boosterPackId_ ;
-      public boolean hasBoosterPackId() {
+      // optional string boosterPackUuid = 2;
+      private java.lang.Object boosterPackUuid_ = "";
+      public boolean hasBoosterPackUuid() {
         return ((bitField0_ & 0x00000002) == 0x00000002);
       }
-      public int getBoosterPackId() {
-        return boosterPackId_;
+      public String getBoosterPackUuid() {
+        java.lang.Object ref = boosterPackUuid_;
+        if (!(ref instanceof String)) {
+          String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
+          boosterPackUuid_ = s;
+          return s;
+        } else {
+          return (String) ref;
+        }
       }
-      public Builder setBoosterPackId(int value) {
-        bitField0_ |= 0x00000002;
-        boosterPackId_ = value;
+      public Builder setBoosterPackUuid(String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000002;
+        boosterPackUuid_ = value;
         onChanged();
         return this;
       }
-      public Builder clearBoosterPackId() {
+      public Builder clearBoosterPackUuid() {
         bitField0_ = (bitField0_ & ~0x00000002);
-        boosterPackId_ = 0;
+        boosterPackUuid_ = getDefaultInstance().getBoosterPackUuid();
         onChanged();
         return this;
+      }
+      void setBoosterPackUuid(com.google.protobuf.ByteString value) {
+        bitField0_ |= 0x00000002;
+        boosterPackUuid_ = value;
+        onChanged();
       }
       
       // optional int64 clientTime = 3;
@@ -1974,22 +2011,22 @@ public final class EventBoosterPackProto {
     java.lang.String[] descriptorData = {
       "\n\026EventBoosterPack.proto\022\005proto\032\026Booster" +
       "PackStuff.proto\032\022MonsterStuff.proto\032\nUse" +
-      "r.proto\"u\n\037PurchaseBoosterPackRequestPro" +
+      "r.proto\"w\n\037PurchaseBoosterPackRequestPro" +
       "to\022\'\n\006sender\030\001 \001(\0132\027.proto.MinimumUserPr" +
-      "oto\022\025\n\rboosterPackId\030\002 \001(\005\022\022\n\nclientTime" +
-      "\030\003 \001(\003\"\317\002\n PurchaseBoosterPackResponsePr" +
-      "oto\022\'\n\006sender\030\001 \001(\0132\027.proto.MinimumUserP" +
-      "roto\022Q\n\006status\030\002 \001(\0162A.proto.PurchaseBoo" +
-      "sterPackResponseProto.PurchaseBoosterPac" +
-      "kStatus\0221\n\014updatedOrNew\030\003 \003(\0132\033.proto.Fu",
-      "llUserMonsterProto\022&\n\005prize\030\004 \001(\0132\027.prot" +
-      "o.BoosterItemProto\"T\n\031PurchaseBoosterPac" +
-      "kStatus\022\013\n\007SUCCESS\020\001\022\032\n\026FAIL_INSUFFICIEN" +
-      "T_GEMS\020\002\022\016\n\nFAIL_OTHER\020\003\"h\n(ReceivedRare" +
-      "BoosterPurchaseResponseProto\022<\n\023rareBoos" +
-      "terPurchase\030\001 \001(\0132\037.proto.RareBoosterPur" +
-      "chaseProtoB6\n\035com.lvl6.mobsters.eventpro" +
-      "tosB\025EventBoosterPackProto"
+      "oto\022\027\n\017boosterPackUuid\030\002 \001(\t\022\022\n\nclientTi" +
+      "me\030\003 \001(\003\"\317\002\n PurchaseBoosterPackResponse" +
+      "Proto\022\'\n\006sender\030\001 \001(\0132\027.proto.MinimumUse" +
+      "rProto\022Q\n\006status\030\002 \001(\0162A.proto.PurchaseB" +
+      "oosterPackResponseProto.PurchaseBoosterP" +
+      "ackStatus\0221\n\014updatedOrNew\030\003 \003(\0132\033.proto.",
+      "FullUserMonsterProto\022&\n\005prize\030\004 \001(\0132\027.pr" +
+      "oto.BoosterItemProto\"T\n\031PurchaseBoosterP" +
+      "ackStatus\022\013\n\007SUCCESS\020\001\022\032\n\026FAIL_INSUFFICI" +
+      "ENT_GEMS\020\002\022\016\n\nFAIL_OTHER\020\003\"h\n(ReceivedRa" +
+      "reBoosterPurchaseResponseProto\022<\n\023rareBo" +
+      "osterPurchase\030\001 \001(\0132\037.proto.RareBoosterP" +
+      "urchaseProtoB6\n\035com.lvl6.mobsters.eventp" +
+      "rotosB\025EventBoosterPackProto"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -2001,7 +2038,7 @@ public final class EventBoosterPackProto {
           internal_static_proto_PurchaseBoosterPackRequestProto_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_proto_PurchaseBoosterPackRequestProto_descriptor,
-              new java.lang.String[] { "Sender", "BoosterPackId", "ClientTime", },
+              new java.lang.String[] { "Sender", "BoosterPackUuid", "ClientTime", },
               com.lvl6.mobsters.eventprotos.EventBoosterPackProto.PurchaseBoosterPackRequestProto.class,
               com.lvl6.mobsters.eventprotos.EventBoosterPackProto.PurchaseBoosterPackRequestProto.Builder.class);
           internal_static_proto_PurchaseBoosterPackResponseProto_descriptor =

@@ -12,14 +12,14 @@ option java_outer_classname = "EventTournamentProto";
 
 message RetrieveTournamentRankingsRequestProto {
 	optional MinimumUserProto sender = 1;
-	optional int32 eventId = 2;
+	optional string eventUuid = 2;
 	optional int32 afterThisRank = 3;
 }
 
 message RetrieveTournamentRankingsResponseProto {
 	optional MinimumUserProto sender = 1;
 	optional RetrieveTournamentStatus status = 2;
-	optional int32 eventId = 3;
+	optional string eventUuid = 3;
 	optional int32 afterThisRank = 4;
 	optional MinimumUserProtoWithLevelForTournament retriever = 5;
 	repeated MinimumUserProtoWithLevelForTournament resultPlayers = 6;
