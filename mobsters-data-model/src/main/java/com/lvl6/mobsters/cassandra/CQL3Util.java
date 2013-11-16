@@ -4,13 +4,13 @@ import java.math.BigInteger;
 import java.util.Date;
 import java.util.UUID;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+//import org.slf4j.Logger;
+//import org.slf4j.LoggerFactory;
 
 public class CQL3Util {
 
 	
-	private static final Logger log = LoggerFactory.getLogger(CQL3Util.class);
+//	private static final Logger log = LoggerFactory.getLogger(CQL3Util.class);
 	
     public static <T> String getCql3Type(Class<?> valueClass) {
     	//log.info("Type: {}", valueClass.getSimpleName());

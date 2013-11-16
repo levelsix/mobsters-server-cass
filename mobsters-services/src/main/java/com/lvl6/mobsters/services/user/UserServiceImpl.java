@@ -20,7 +20,7 @@ import com.lvl6.mobsters.po.Structure;
 import com.lvl6.mobsters.po.User;
 import com.lvl6.mobsters.po.UserDevice;
 import com.lvl6.mobsters.po.UserStructure;
-import com.lvl6.mobsters.properties.AocTwoTableConstants;
+import com.lvl6.mobsters.properties.MobstersTableConstants;
 import com.lvl6.mobsters.services.userstructure.UserStructureService;
 
 
@@ -64,9 +64,9 @@ public class UserServiceImpl implements UserService {
 	public void initializeUser(User u, Date now) {
 		levelUpUser(u);
 		
-		u.setGems(AocTwoTableConstants.USER__GEMS);
-		u.setGold(AocTwoTableConstants.USER__GOLD);
-		u.setTonic(AocTwoTableConstants.USER__TONIC);
+		u.setGems(MobstersTableConstants.USER__GEMS);
+		u.setGold(MobstersTableConstants.USER__GOLD);
+		u.setTonic(MobstersTableConstants.USER__TONIC);
 		u.setLastTimeHpRegened(now);
 		u.setLastTimeManaRegened(now);
 		
@@ -157,8 +157,8 @@ public class UserServiceImpl implements UserService {
 	public void updateUserResources(User u,
 			Map<Integer, Integer> resourceTypeToChanges) {
 		
-		int gold = AocTwoTableConstants.RESOURCE_TYPE__GOLD;
-		int tonic = AocTwoTableConstants.RESOURCE_TYPE__TONIC;
+		int gold = MobstersTableConstants.RESOURCE_TYPE__GOLD;
+		int tonic = MobstersTableConstants.RESOURCE_TYPE__TONIC;
 		if (resourceTypeToChanges.containsKey(gold)) {
 			int totalGold = u.getGold();
 			totalGold += resourceTypeToChanges.get(gold);

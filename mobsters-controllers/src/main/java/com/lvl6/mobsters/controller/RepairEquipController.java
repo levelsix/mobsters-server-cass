@@ -31,7 +31,7 @@ import com.lvl6.mobsters.noneventprotos.UserEquipRepair.UserEquipRepairProto;
 import com.lvl6.mobsters.po.User;
 import com.lvl6.mobsters.po.UserEquip;
 import com.lvl6.mobsters.po.UserEquipRepair;
-import com.lvl6.mobsters.properties.AocTwoTableConstants;
+import com.lvl6.mobsters.properties.MobstersTableConstants;
 import com.lvl6.mobsters.services.user.UserService;
 import com.lvl6.mobsters.services.userequip.UserEquipService;
 import com.lvl6.mobsters.services.userequiprepair.UserEquipRepairService;
@@ -250,22 +250,22 @@ public class RepairEquipController extends EventController {
 		//charging the new equips to repair
 		Map<Integer, Integer> totalRefund =
 				getUserEquipRepairService().calculateRepairCost(null, deleteRepairs, -1);
-		if (totalRefund.containsKey(AocTwoTableConstants.RESOURCE_TYPE__GOLD)) {
-			goldLeft += totalRefund.get(AocTwoTableConstants.RESOURCE_TYPE__GOLD);
+		if (totalRefund.containsKey(MobstersTableConstants.RESOURCE_TYPE__GOLD)) {
+			goldLeft += totalRefund.get(MobstersTableConstants.RESOURCE_TYPE__GOLD);
 		}
-		if (totalRefund.containsKey(AocTwoTableConstants.RESOURCE_TYPE__TONIC)) {
-			tonicLeft += totalRefund.get(AocTwoTableConstants.RESOURCE_TYPE__TONIC);
+		if (totalRefund.containsKey(MobstersTableConstants.RESOURCE_TYPE__TONIC)) {
+			tonicLeft += totalRefund.get(MobstersTableConstants.RESOURCE_TYPE__TONIC);
 		}
 
 		//calculate how much to charge for new equips
 		List<UserEquip> newEquips = new ArrayList<UserEquip>(newEquipsToRepair.values());
 		Map<Integer, Integer> totalCost =
 				getUserEquipRepairService().calculateRepairCost(newEquips, null, 1);
-		if (totalCost.containsKey(AocTwoTableConstants.RESOURCE_TYPE__GOLD)) {
-			goldLeft -= totalCost.get(AocTwoTableConstants.RESOURCE_TYPE__GOLD);
+		if (totalCost.containsKey(MobstersTableConstants.RESOURCE_TYPE__GOLD)) {
+			goldLeft -= totalCost.get(MobstersTableConstants.RESOURCE_TYPE__GOLD);
 		}
-		if (totalCost.containsKey(AocTwoTableConstants.RESOURCE_TYPE__TONIC)) {
-			tonicLeft -= totalCost.get(AocTwoTableConstants.RESOURCE_TYPE__TONIC);
+		if (totalCost.containsKey(MobstersTableConstants.RESOURCE_TYPE__TONIC)) {
+			tonicLeft -= totalCost.get(MobstersTableConstants.RESOURCE_TYPE__TONIC);
 		}
 
 		if (goldLeft < 0 || tonicLeft < 0) {
@@ -410,8 +410,8 @@ public class RepairEquipController extends EventController {
 			Map<Integer, Integer> cost) {
 		Map<Integer, Integer> total = new HashMap<Integer, Integer>();
 		
-		int gold = AocTwoTableConstants.RESOURCE_TYPE__GOLD;
-		int tonic = AocTwoTableConstants.RESOURCE_TYPE__TONIC;
+		int gold = MobstersTableConstants.RESOURCE_TYPE__GOLD;
+		int tonic = MobstersTableConstants.RESOURCE_TYPE__TONIC;
 
 		int goldChange = 0;
 		int tonicChange = 0;

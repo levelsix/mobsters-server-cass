@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 public class UserSpells extends BaseWideRow<UUID, UUID, Date> {
 
 	
-	
+	//userId, spellId, time created(?)
 	public UserSpells() {
 		super(UUID.class, UUID.class, Date.class);
 	}
