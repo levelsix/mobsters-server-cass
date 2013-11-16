@@ -1,0 +1,307 @@
+//ALL REQUEST PROTOS SHOULD INCLUDE A MinimumUserProto AS optional that represents which client sent it/triggered it 
+//DO NO START PROPERTY METHODS WITH THE WORDS NEW OR COPY
+
+import "MonsterStuff.proto";
+import "User.proto";
+
+package proto;
+
+option java_package = "com.lvl6.mobsters.eventprotos";
+option java_outer_classname = "EventMonsterProto";
+//DO NOT USE ID AS THE NAME OF A PROPERTY IN ANY PROTO
+
+message SubmitMonsterEnhancementRequestProto {
+	optional MinimumUserProto sender = 1;
+	
+	//MONSTER BEING ENHANCED WILL HAVE NULL FOR expectedStartTime
+	repeated UserEnhancementItemProto ueipDelete = 2;
+	repeated UserEnhancementItemProto ueipUpdate = 3;
+	repeated UserEnhancementItemProto ueipNew = 4;
+	
+	//if user needs, say, five more cash then user can spend gems to replace
+	//said five cash. (positive number, server will convert it to negative)
+	optional int32 gemsSpent = 5;
+	
+	//positive means refund, negative means charge user
+	//Refund in this case: user has two feeders but deletes one of them,
+	//so now it's just base monster and one feeder. The user should get refunded
+	//for the feeder that was dequeued 
+	optional sint32 cashChange = 6; 
+	
+}
+
+message SubmitMonsterEnhancementResponseProto {
+	optional MinimumUserProto sender = 1;
+	optional SubmitMonsterEnhancementStatus status = 2;
+	
+
+	enum SubmitMonsterEnhancementStatus {
+		SUCCESS = 1;
+		FAIL_INSUFFICIENT_GEMS = 2;
+		FAIL_INSUFFICIENT_CASH = 3;
+		FAIL_OTHER = 4;
+		//TRYING_TO_SURPASS_MAX_LEVEL = 5;
+	}
+}
+
+//------------------------------------------------------------------------------------------
+
+message EnhancementWaitTimeCompleteRequestProto {
+	optional MinimumUserProto sender = 1;
+	
+	//speeds up all or some monsters finished healing by waiting 
+	optional bool isSpeedup = 2; 
+	//will be set if isSpeedup is true (positive amount)
+	optional int32 gemsForSpeedup = 3;
+	
+	//client specifies the monster that results after finishing enhancement
+	optional UserMonsterCurrentExpProto umcep = 4;
+	
+	//ids of monster_enhancing_for_user to delete, does not include main monster
+	repeated int64 userMonsterIds = 5; 
+}
+
+message EnhancementWaitTimeCompleteResponseProto {
+	optional MinimumUserProto sender = 1;
+	optional EnhancementWaitTimeCompleteStatus status = 2;
+	
+	enum EnhancementWaitTimeCompleteStatus {
+		SUCCESS = 1;
+		FAIL_HEALING_NOT_COMPLETE = 2;
+		FAIL_INSUFFICIENT_FUNDS = 3;
+		FAIL_OTHER = 4;
+	}
+}
+
+
+//------------------------------------------------------------------------------------------
+
+//mainly used during battle
+message UpdateMonsterHealthRequestProto {
+	optional MinimumUserProto sender = 1;
+	repeated UserMonsterCurrentHealthProto umchp = 2; //contains new health 
+	optional int64 clientTime = 3; //history, tracking purposes
+}
+
+message UpdateMonsterHealthResponseProto {
+	optional MinimumUserProto sender = 1;
+	optional UpdateMonsterHealthStatus status = 2;
+	
+	enum UpdateMonsterHealthStatus {
+		SUCCESS = 1;
+		FAIL_INSUFFICIENT_FUNDS = 2;
+		FAIL_OTHER = 3;
+	}
+}
+
+//------------------------------------------------------------------------------------------
+
+message HealMonsterRequestProto {
+	optional MinimumUserProto sender = 1;
+	
+	//what user deleted from the queue, the ones the server already knows about
+	repeated UserMonsterHealingProto umhDelete = 2; 
+	
+	//the ones the server already knows about
+	//only set if the queue time or start time changes
+	repeated UserMonsterHealingProto umhUpdate = 3;
+	
+	//the ones the server doesn't know about
+	repeated UserMonsterHealingProto umhNew = 4;
+	
+	//take away all cash/silver then take away gems
+	//positive means refund, negative means charge user
+	//Refund in this case: user has two monsters healing but deletes one of them,
+	//The user should get refunded for the monster that was dequeued 
+	optional sint32 cashChange = 5; 
+	
+	//positive amount
+	optional int32 gemCost = 6;
+}
+
+message HealMonsterResponseProto {
+	optional MinimumUserProto sender = 1;
+	optional HealMonsterStatus status = 2;
+	
+	enum HealMonsterStatus {
+		SUCCESS = 1;
+		FAIL_INSUFFICIENT_FUNDS = 2;
+		FAIL_ALL_MONSTERS_ALREADY_HEALING = 3;
+		FAIL_ALL_MONSTERS_NONEXISTENT = 4;
+		FAIL_OTHER = 5;
+	}
+}
+
+//------------------------------------------------------------------------------------------
+
+message HealMonsterWaitTimeCompleteRequestProto {
+	optional MinimumUserProto sender = 1;
+	
+	//speeds up all or some monsters finished healing by waiting 
+	optional bool isSpeedup = 2; 
+	//will be set if isSpeedup is true
+	optional int32 gemsForSpeedup = 3;
+	
+	repeated UserMonsterCurrentHealthProto umchp = 4;
+}
+
+message HealMonsterWaitTimeCompleteResponseProto {
+	optional MinimumUserProto sender = 1;
+	optional HealMonsterWaitTimeCompleteStatus status = 2;
+	
+	enum HealMonsterWaitTimeCompleteStatus {
+		SUCCESS = 1;
+		FAIL_HEALING_NOT_COMPLETE = 2;
+		FAIL_INSUFFICIENT_FUNDS = 3;
+		FAIL_OTHER = 4;
+	}
+}
+
+//------------------------------------------------------------------------------------------
+
+message AddMonsterToBattleTeamRequestProto {
+	optional MinimumUserProto sender = 1;
+	optional int32 teamSlotNum = 2;
+	optional int64 userMonsterId = 3;
+}
+
+message AddMonsterToBattleTeamResponseProto {
+	optional MinimumUserProto sender = 1;
+	optional AddMonsterToBattleTeamStatus status = 2;
+	
+	enum AddMonsterToBattleTeamStatus {
+		SUCCESS = 1;
+		FAIL_OTHER = 2;
+	}
+}
+
+//------------------------------------------------------------------------------------------
+
+message RemoveMonsterFromBattleTeamRequestProto {
+	optional MinimumUserProto sender = 1;
+	optional int64 userMonsterId = 3;
+}
+
+message RemoveMonsterFromBattleTeamResponseProto {
+	optional MinimumUserProto sender = 1;
+	optional RemoveMonsterFromBattleTeamStatus status = 2;
+	
+	enum RemoveMonsterFromBattleTeamStatus {
+		SUCCESS = 1;
+		FAIL_OTHER = 2;
+	}
+}
+
+//------------------------------------------------------------------------------------------
+
+message IncreaseMonsterInventorySlotRequestProto {
+	optional MinimumUserProto sender = 1;
+	optional IncreaseSlotType increaseSlotType = 2;
+	
+	optional int32 numPurchases = 3;
+	//EVERY TIME USER BUYS SLOTS, RESET user_facebook_invite_for_slot table
+	//no need to update clients that this happened
+	
+	
+	enum IncreaseSlotType {
+		PURCHASE = 1;
+		REDEEM_FACEBOOK_INVITES = 2;
+	}
+}	
+
+message IncreaseMonsterInventorySlotResponseProto {
+	optional MinimumUserProto sender = 1;
+	optional IncreaseMonsterInventorySlotStatus status = 2;
+	
+	 enum IncreaseMonsterInventorySlotStatus {
+		SUCCESS = 1;
+		FAIL_INSUFFICIENT_FUNDS = 2;
+		FAIL_INSUFFICIENT_FACEBOOK_INVITES = 3;
+		FAIL_OTHER = 4;
+	}
+}
+
+//------------------------------------------------------------------------------------------
+
+//NOTE: NO LOCK IS ACQUIRED FOR FB FRIENDS WHEN INSERTING INTO
+// user_facebook_invite_for_slot TABLE
+message InviteFbFriendsForSlotsRequestProto {
+	optional MinimumUserProtoWithFacebookId sender = 1;
+	repeated string fbFriendIds = 2;		
+}
+
+//server sends this to all the recipients in fbFriendIds that have a user id
+message InviteFbFriendsForSlotsResponseProto {
+	optional MinimumUserProtoWithFacebookId sender = 1;
+	optional InviteFbFriendsForSlotsStatus status = 2;
+	
+	enum InviteFbFriendsForSlotsStatus {
+		SUCCESS = 1;
+		FAIL_OTHER = 2;
+	}
+}
+
+//------------------------------------------------------------------------------------------
+
+message AcceptAndRejectFbInviteForSlotsRequestProto {
+	optional MinimumUserProtoWithFacebookId sender = 1;
+	//server records all valid accepts, does not enforce max 3 accepts per inviter
+	repeated int32 acceptedInviteIds = 2;
+	repeated int32 rejectedInviteIds = 3;
+}
+
+//server sends this to all the inviters in acceptedInviteIds
+message AcceptAndRejectFbInviteForSlotsResponseProto {
+	optional MinimumUserProtoWithFacebookId sender = 1;
+	optional AcceptAndRejectFbInviteForSlotsStatus status = 2;
+	
+	enum AcceptAndRejectFbInviteForSlotsStatus {
+		SUCCESS = 1;
+		FAIL_EXPIRED = 2; //3 PEOPLE ALREADY ACCEPTED INVITE
+		FAIL_ALREADY_BEEN_USED = 3;
+		FAIL_OTHER = 4;
+	}
+}
+
+//------------------------------------------------------------------------------------------
+
+message CombineUserMonsterPiecesRequestProto {
+	optional MinimumUserProto sender = 1;
+	repeated int64 userMonsterIds = 2;
+	
+	//(positive amount) if user wants to speed up the process
+	//if this is set, there should only be one userMonsterId
+	optional int32 gemCost = 3;
+}
+
+message CombineUserMonsterPiecesResponseProto {
+	optional MinimumUserProto sender = 1;
+	optional CombineUserMonsterPiecesStatus status = 2;
+	
+	enum CombineUserMonsterPiecesStatus {
+		SUCCESS = 1;
+		FAIL_INSUFFUCIENT_GEMS = 2;
+		//user can only speed up combining the pieces of ONE monster
+		FAIL_MORE_THAN_ONE_MONSTER_FOR_SPEEDUP = 3;
+		FAIL_OTHER = 4;
+	}
+}
+
+//------------------------------------------------------------------------------------------
+
+message SellUserMonsterRequestProto {
+	optional MinimumUserProto sender = 1;
+	repeated MinimumUserMonsterSellProto sales = 2;
+}
+
+message SellUserMonsterResponseProto {
+	optional MinimumUserProto sender = 1;
+	optional SellUserMonsterStatus status = 2;
+	
+	enum SellUserMonsterStatus {
+		SUCCESS = 1;
+		FAIL_OTHER = 2;
+	}
+}
+
+

@@ -1,0 +1,87 @@
+//ALL REQUEST PROTOS SHOULD INCLUDE A MinimumUserProto AS optional that represents which client sent it/triggered it 
+//DO NO START PROPERTY METHODS WITH THE WORDS NEW OR COPY
+
+import "City.proto";
+import "MonsterStuff.proto";
+import "Quest.proto";
+import "User.proto";
+
+package proto;
+
+option java_package = "com.lvl6.mobsters.eventprotos";
+option java_outer_classname = "EventQuestProto";
+//DO NOT USE ID AS THE NAME OF A PROPERTY IN ANY PROTO
+
+
+message QuestAcceptRequestProto {
+     optional MinimumUserProto sender = 1;
+     optional int32 questId = 2;
+}
+
+																						//DONE
+message QuestAcceptResponseProto {
+     optional MinimumUserProto sender = 1;
+     optional QuestAcceptStatus status = 2;
+     optional int32 cityIdOfAcceptedQuest = 3;
+
+     enum QuestAcceptStatus {
+          SUCCESS = 1;
+          FAIL_NOT_AVAIL_TO_USER = 2;
+          FAIL_ALREADY_ACCEPTED = 3;
+          FAIL_OTHER = 4;
+     }
+}
+
+//------------------------------------------------------------------------------------------
+
+message QuestProgressRequestProto {
+	optional MinimumUserProto sender = 1;
+	optional int32 questId = 2;
+	optional int32 currentProgress = 3;
+	optional bool isComplete = 4;
+	
+	//if set, delete these user monster ids 
+	repeated int64 deleteUserMonsterIds = 5;
+}
+
+																						//DONE
+message QuestProgressResponseProto {
+     optional MinimumUserProto sender = 1;
+     optional QuestProgressStatus status = 2;
+     
+     enum QuestProgressStatus {
+     	SUCCESS = 1;
+     	FAIL_NO_QUEST_EXISTS = 2;
+     	FAIL_DELETE_AMOUNT_DOES_NOT_MATCH_QUEST = 3;
+     	FAIL_NONEXISTENT_USER_MONSTERS = 4;
+     	FAIL_INCOMPLETE_USER_MONSTERS = 5;
+     	FAIL_OTHER = 6;
+     }
+}
+
+
+//------------------------------------------------------------------------------------------
+
+message QuestRedeemRequestProto {                         
+     optional MinimumUserProto sender = 1;
+     optional int32 questId = 2;
+}
+
+																						//DONE
+message QuestRedeemResponseProto {
+     optional MinimumUserProto sender = 1;
+     repeated FullQuestProto newlyAvailableQuests = 2;
+     optional QuestRedeemStatus status = 3;    
+     optional FullUserMonsterProto fump = 4;
+     optional int32 questId = 5;
+     
+     enum QuestRedeemStatus {
+          SUCCESS = 1;
+          FAIL_NOT_COMPLETE = 2;
+          FAIL_OTHER = 3;
+     }
+}
+
+//------------------------------------------------------------------------------------------
+
+//------------------------------------------------------------------------------------------

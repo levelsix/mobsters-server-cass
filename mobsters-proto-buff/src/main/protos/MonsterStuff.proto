@@ -1,0 +1,120 @@
+//ALL REQUEST PROTOS SHOULD INCLUDE A MinimumUserProto AS optional that represents which client sent it/triggered it 
+//DO NO START PROPERTY METHODS WITH THE WORDS NEW OR COPY
+
+package proto;
+
+option java_package = "com.lvl6.mobsters.noneventprotos";
+option java_outer_classname = "MonsterStuffProto";
+//DO NOT USE ID AS THE NAME OF A PROPERTY IN ANY PROTO
+
+message MonsterProto {
+	optional int32 monsterId = 1;
+	optional string name = 2; //for grouping purposes
+	optional string monsterGroup = 3;
+	optional MonsterQuality quality = 4;
+	optional int32 evolutionLevel = 5;
+	optional string displayName = 6;
+	optional MonsterElement element = 7;
+	optional int32 baseHp = 8;
+	optional string imagePrefix = 9;
+	optional int32 numPuzzlePieces = 10;
+	optional int32 minutesToCombinePieces = 11;
+	optional int32 elementOneDmg = 12;
+	optional int32 elementTwoDmg = 13;
+	optional int32 elementThreeDmg = 14;
+	optional int32 elementFourDmg = 15;
+	optional int32 elementFiveDmg = 16;
+	optional float hpLevelMultiplier = 17;
+	optional float attackLevelMultiplier = 18;
+	optional int32 maxLevel = 19;
+	optional int32 evolutionMonsterId = 20;
+	optional string carrotRecruited = 21;
+	optional string carrotDefeated = 22;
+	optional string carrotEvolved = 23;
+	optional string description = 24; 
+	
+	
+	enum MonsterQuality {
+		COMMON = 1;
+		RARE = 2;
+		ULTRA = 3;
+		EPIC = 4;
+		LEGENDARY = 5;
+	}
+	
+	enum MonsterElement {
+		FIRE = 1;
+		GRASS = 2;
+		WATER = 3;
+		LIGHTNING = 4;
+		DARKNESS = 5;
+	}
+}
+
+//------------------------------------------------------------------------------------------
+
+message FullUserMonsterProto {
+	optional int64 userMonsterId = 1;
+	optional int32 userId = 2;
+	optional int32 monsterId = 3;
+	optional int32 currentExp = 4;
+	optional int32 currentLvl = 5;
+	optional int32 currentHealth = 6;
+	optional int32 numPieces = 7;
+	optional bool isComplete = 8; 
+	optional int64 combineStartTime = 9;
+	optional int32 teamSlotNum = 10;
+	//optional string sourceOfPieces = 11;	//not needed for client
+}
+//------------------------------------------------------------------------------------------
+
+message UserMonsterHealingProto {
+	optional int32 userId = 1;
+	optional int64 userMonsterId = 2;
+	optional int64 expectedStartTimeMillis = 3;
+	//optional int64 queuedTimeMillis = 4;
+}
+
+//------------------------------------------------------------------------------------------
+
+message UserMonsterCurrentHealthProto {
+	optional int64 userMonsterId = 1;
+	optional int32 currentHealth = 2; //what the health should be
+}
+
+//------------------------------------------------------------------------------------------
+
+message UserEnhancementProto {
+	optional int32 userId = 1;
+	optional UserEnhancementItemProto baseMonster = 2;
+	repeated UserEnhancementItemProto feeders = 3;
+}
+
+message UserEnhancementItemProto {
+	optional int64 userMonsterId = 1;
+	optional int64 expectedStartTimeMillis = 2;
+}
+
+//------------------------------------------------------------------------------------------
+
+//when user enhances a monster, it gains "experience" 
+//(before it was termed enhancement or enhancement percentage)
+message UserMonsterCurrentExpProto {
+	optional int64 userMonsterId = 1;
+	optional int32 expectedExperience = 2;
+	optional int32 expectedLevel = 3;
+}
+
+//------------------------------------------------------------------------------------------
+
+message MinimumUserMonsterSellProto {
+	optional int64 userMonsterId = 1;
+	optional int32 cashAmount = 2;
+}
+
+//------------------------------------------------------------------------------------------
+
+message UserCurrentMonsterTeamProto {
+	optional int32 userId = 1;
+	repeated FullUserMonsterProto currentTeam = 2;
+}

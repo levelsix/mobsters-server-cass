@@ -1,0 +1,173 @@
+//ALL REQUEST PROTOS SHOULD INCLUDE A MinimumUserProto AS optional that represents which client sent it/triggered it 
+//DO NO START PROPERTY METHODS WITH THE WORDS NEW OR COPY
+
+import "BoosterPackStuff.proto";
+import "Chat.proto";
+import "City.proto";
+import "Clan.proto";
+import "InAppPurchase.proto";
+import "Quest.proto";
+import "StaticData.proto";
+import "Structure.proto";
+import "Task.proto";
+import "User.proto";
+import "MonsterStuff.proto";
+
+package proto;
+
+option java_package = "com.lvl6.mobsters.eventprotos";
+option java_outer_classname = "EventStartupProto";
+//DO NOT USE ID AS THE NAME OF A PROPERTY IN ANY PROTO
+
+message StartupRequestProto {				//client will also send ChangeUserLocationRequestProto
+     optional string udid = 1;
+     optional float versionNum = 2;			//1.0->2.0 critical, 1.0->1.1 minor. server checks db for latest vnum
+     optional string apsalarId = 3;
+     optional string macAddress = 4;
+     optional string advertiserId = 5;
+     optional bool isForceTutorial = 6;
+}
+
+message StartupResponseProto {
+	optional int64 serverTimeMillis = 1;
+    optional FullUserProto sender = 2;
+    optional StartupStatus startupStatus= 3;
+    optional UpdateStatus updateStatus= 4;
+    optional StartupConstants startupConstants = 5;
+    
+	//only send the ones that are not redeemed, (incomplete and complete)
+	repeated FullUserQuestProto userQuests = 6;
+	repeated int32 redeemedQuestIds = 27;
+	repeated FullUserClanProto userClanInfo = 7;
+	repeated int32 completedTaskIds = 8; 
+	
+	optional string appStoreURL = 9;
+	optional string reviewPageURL = 10;
+	optional string reviewPageConfirmationMessage = 11;
+	optional bool playerHasBoughtInAppPurchase = 12;
+	
+	repeated AttackedNotificationProto attackNotifications = 13;
+	repeated ReferralNotificationProto referralNotifications = 14;
+	repeated string noticesToPlayers = 15;
+	repeated GroupChatMessageProto globalChats = 16;
+	repeated GroupChatMessageProto clanChats = 17;
+	//repeated most recent private chat posts regarding this user
+	repeated PrivateChatPostProto pcpp = 18;
+	
+	repeated FullUserMonsterProto usersMonsters = 19;
+	repeated UserMonsterHealingProto monstersHealing = 20;
+	optional UserEnhancementProto enhancements = 21;
+	repeated RareBoosterPurchaseProto rareBoosterPurchases = 22;
+	
+	optional string kabamNaid = 23;
+	
+	//send over all recipients (in user_facebook_invite_for_slot_accepted table)
+	//that have been "redeemed"
+	repeated MinimumUserProtoWithFacebookId usersUsedForExtraSlots = 24;
+	
+	//send over all invites (in fb_invite_for_slot table) where this user
+	//is the person being invited
+	repeated UserFacebookInviteForSlotProto invitesToMeForSlots = 25;
+	
+	optional StaticDataProto staticDataStuffProto = 26;
+	//repeated int32 redeemedQuestIds = 27; //above, after "userQuests = 6"
+	
+	//for each city, the city's boss is hiding in the specified taskId
+	repeated int32 taskIdForCurrentCityBoss = 28;
+	
+	
+	
+	
+	//repeated LockBoxEventProto lockBoxEvents = ;
+	//repeated UserLockBoxEventProto userLockBoxEvents = ;
+
+	message AttackedNotificationProto {
+		optional MinimumUserProto attacker = 1;
+		optional int64 battleCompleteTime = 2;
+		optional int32 coinsStolen = 3;
+	}
+	
+	message ReferralNotificationProto {
+		optional MinimumUserProto referred = 1;
+		optional int64 recruitTime = 2;
+		optional int32 coinsGivenToReferrer = 3;
+	}
+		  
+	message StartupConstants {
+		repeated InAppPurchasePackageProto inAppPurchasePackages = 1;
+    	optional int32 maxLevelForUser = 2;
+    	
+		optional int32 maxNumOfSingleStruct = 3;
+
+		repeated AnimatedSpriteOffsetProto animatedSpriteOffsets = 4;
+		optional int32 minNameLength = 5;
+		optional int32 maxNameLength = 6;
+		optional int32 maxLengthOfChatString = 7;
+		optional ClanConstants clanConstants = 8;
+		optional DownloadableNibConstants downloadableNibConstants = 9;
+		
+		optional int32 numHoursBeforeReshowingGoldSale = 10;
+		optional int32 levelToShowRateUsPopup = 11;
+		optional TournamentConstants touramentConstants = 12;
+		optional int32 fbConnectRewardDiamonds = 13;
+		optional string faqFileName = 14;
+		optional MinimumUserProto adminChatUserProto = 15;
+		optional int32 numBeginnerSalesAllowed = 16;
+		
+		optional UserMonsterConstants userMonsterConstants = 17;
+		optional MonsterConstants monsterConstants = 18;
+		
+		optional float minutesPerGem = 19; 
+		optional int32 pvpRequiredMinLvl = 20;
+		
+		
+		message AnimatedSpriteOffsetProto {
+			optional string imageName = 1;
+			optional CoordinateProto offSet = 2;
+		}
+		message ClanConstants {
+			optional int32 coinPriceToCreateClan = 1;
+			optional int32 maxCharLengthForClanName = 2;
+			optional int32 maxCharLengthForClanDescription = 3;
+			optional int32 maxCharLengthForClanTag = 4;
+		}
+		message DownloadableNibConstants {
+			optional string mapNibName = 1;
+			optional string expansionNibName = 2;
+			optional string goldShoppeNibName = 3;
+		}
+		message TournamentConstants {
+			optional int32 winsWeight = 1;
+			optional int32 lossesWeight = 2;
+			optional int32 fleesWeight = 3;
+			optional int32 numHoursToShowAfterEventEnd = 4;
+		}
+		message UserMonsterConstants {
+			optional int32 maxNumTeamSlots = 1;
+			optional int32 initialMaxNumMonsterLimit = 2;
+			
+			//how much the monster inventory limit is increased by
+			//whenever the user acquires more slots 
+			optional int32 monsterInventoryIncrementAmount = 3;
+			optional int32 gemPricePerSlot = 4;
+			optional int32 numFriendsToRecruitToIncreaseInventory = 5;
+		}
+		message MonsterConstants {
+			optional float cashPerHealthPoint = 1;
+			optional float secondsToHealPerHealthPoint = 2;
+		}
+	}
+	
+    enum UpdateStatus {
+     	NO_UPDATE = 1;
+     	MINOR_UPDATE = 2;			//NOTIFY USER OF NEW FEATURES AND/OR ASK USER IF HE WANTS TO UPDATE NOW
+     	MAJOR_UPDATE = 3;			//NOT ALLOWED TO PLAY
+     }
+     
+	enum StartupStatus {
+		USER_IN_DB = 1; 
+		USER_NOT_IN_DB = 2;
+	}    
+}
+
+//------------------------------------------------------------------------------------------

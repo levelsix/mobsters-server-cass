@@ -1,0 +1,103 @@
+//ALL REQUEST PROTOS SHOULD INCLUDE A MinimumUserProto AS optional that represents which client sent it/triggered it 
+//DO NO START PROPERTY METHODS WITH THE WORDS NEW OR COPY
+
+import "MonsterStuff.proto";
+import "Task.proto";
+import "User.proto";
+
+package proto; 
+
+option java_package = "com.lvl6.mobsters.eventprotos";
+option java_outer_classname = "EventDungeonProto";
+
+message BeginDungeonRequestProto {
+	optional MinimumUserProto sender = 1;
+	optional int64 clientTime = 2;
+	optional int32 taskId = 3; 
+
+	//should be set when user enters a task that has a boss	
+	//NOTE: if this task ALREADY EXISTS in the task_for_user_ongoing table,
+	//AND HAS A BOSS IN IT, this user task needs to be deleted and the BOSS WILL
+	//NEED TO BE RELOCATED and will not be in this task anymore
+	optional bool spawnBoss = 4;
+}
+
+message BeginDungeonResponseProto {
+	optional MinimumUserProto sender = 1;
+	repeated TaskStageProto tsp = 2;
+	optional int64 userTaskId = 3;
+	optional int32 taskId = 4;
+	optional BeginDungeonStatus status = 5;
+	
+	//if server saw that user had existing task when beginning this task
+	//boss might need to be relocated to another task
+	optional int32 nextTaskIdForBoss = 6;
+	
+	enum BeginDungeonStatus {
+		SUCCESS = 1;
+		FAIL_OTHER = 2;
+	}
+}
+
+//------------------------------------------------------------------------------------------
+
+message EndDungeonRequestProto {
+	optional MinimumUserProto sender = 1;
+	optional int64 userTaskId = 2;
+	optional bool userWon = 3; 
+	optional int64 clientTime = 4;
+	
+	//(for efficiency reasons: limiting db interaction) 
+	//this is to record into the task_for_user_completed table ONLY when
+	//user FIRST BEATS a task. 
+	optional bool firstTimeUserWonTask = 5;
+	
+	//when user has JUST BEATEN ALL TASKS in a city
+	//this should be set (should only ever be set, at max, once per city)
+	optional bool generateFirstBoss = 6;
+	
+	//not really needed since server can calculate as well
+	//true if there was a boss for this userTask
+	optional bool respawnBoss = 7;
+
+}
+
+message EndDungeonResponseProto {
+	optional MinimumUserProto sender = 1;
+	optional EndDungeonStatus status = 2;
+	//repeated FullUserMonsterProto newOrUpdated = 3; //BAD!!! DON'T START NAMES WITH NEW OR COPY
+	repeated FullUserMonsterProto updatedOrNew = 3;
+	optional int32 taskId = 4;
+	optional bool userWon = 5;
+	
+	//if user just attacked a boss in this dungeon/task this number specifies
+	//where the boss will spawn next
+	optional int32 nextTaskIdForBoss = 6;
+	
+	
+	enum EndDungeonStatus {
+		SUCCESS = 1;
+		FAIL_OTHER = 2;
+	}
+}
+
+//------------------------------------------------------------------------------------------
+
+message ReviveInDungeonRequestProto {
+	optional MinimumUserProto sender = 1;
+	optional int64 userTaskId = 2;
+	optional int64 clientTime = 3; //tracking purposes 
+}
+
+message ReviveInDungeonResponseProto {
+	optional MinimumUserProto sender = 1;
+	optional ReviveInDungeonStatus status = 2;
+	
+	enum ReviveInDungeonStatus {
+		SUCCESS = 1;
+		FAIL_INSUFFICIENT_FUNDS = 2;
+		FAIL_OTHER = 3;
+	}
+}
+
+//------------------------------------------------------------------------------------------
