@@ -13,7 +13,6 @@ import org.springframework.stereotype.Component;
 
 
 
-import com.lvl6.mobsters.controller.utils.TimeUtils;
 import com.lvl6.mobsters.entitymanager.UserConsumableQueueEntityManager;
 import com.lvl6.mobsters.entitymanager.nonstaticdata.UserEntityManager;
 import com.lvl6.mobsters.entitymanager.staticdata.ClassLevelInfoRetrieveUtils;
@@ -30,6 +29,7 @@ import com.lvl6.mobsters.noneventprotos.Dungeon.DungeonProto;
 import com.lvl6.mobsters.noneventprotos.FullUser.MinimumUserProto;
 import com.lvl6.mobsters.po.ClassLevelInfo;
 import com.lvl6.mobsters.po.nonstaticdata.User;
+import com.lvl6.mobsters.services.time.TimeUtils;
 import com.lvl6.mobsters.services.user.UserService;
 import com.lvl6.mobsters.services.userconsumablequeue.UserConsumableQueueService;
 

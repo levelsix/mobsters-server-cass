@@ -1,4 +1,4 @@
-package com.lvl6.mobsters.controller.utils;
+package com.lvl6.mobsters.services.time;
 
 import java.util.Date;
 

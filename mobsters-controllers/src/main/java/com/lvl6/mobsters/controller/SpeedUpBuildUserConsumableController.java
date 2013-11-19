@@ -13,7 +13,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.lvl6.mobsters.controller.utils.TimeUtils;
 import com.lvl6.mobsters.entitymanager.UserConsumableQueueEntityManager;
 import com.lvl6.mobsters.entitymanager.nonstaticdata.UserEntityManager;
 import com.lvl6.mobsters.eventprotos.SpeedUpBuildUserConsumableEventProto.SpeedUpBuildUserConsumableRequestProto;
@@ -28,6 +27,7 @@ import com.lvl6.mobsters.noneventprotos.FullUser.MinimumUserProto;
 import com.lvl6.mobsters.noneventprotos.UserConsumableQueue.UserConsumableQueueProto;
 import com.lvl6.mobsters.po.UserConsumableQueue;
 import com.lvl6.mobsters.po.nonstaticdata.User;
+import com.lvl6.mobsters.services.time.TimeUtils;
 import com.lvl6.mobsters.services.user.UserService;
 import com.lvl6.mobsters.services.userconsumablequeue.UserConsumableQueueService;
 

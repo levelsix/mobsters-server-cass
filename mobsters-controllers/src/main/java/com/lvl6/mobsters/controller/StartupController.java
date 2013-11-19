@@ -15,7 +15,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.lvl6.mobsters.controller.utils.CreateNoneventProtoUtils;
-import com.lvl6.mobsters.controller.utils.TimeUtils;
 import com.lvl6.mobsters.eventprotos.ForceLogoutEventProto.ForceLogoutResponseProto;
 import com.lvl6.mobsters.eventprotos.StartupEventProto.StartupRequestProto;
 import com.lvl6.mobsters.eventprotos.StartupEventProto.StartupResponseProto;
@@ -31,6 +30,7 @@ import com.lvl6.mobsters.noneventprotos.FullUser.FullUserProto;
 import com.lvl6.mobsters.noneventprotos.FullUser.MinimumUserProto;
 import com.lvl6.mobsters.po.UserDevice;
 import com.lvl6.mobsters.po.nonstaticdata.User;
+import com.lvl6.mobsters.services.time.TimeUtils;
 import com.lvl6.mobsters.services.user.UserService;
 import com.lvl6.mobsters.services.userdevice.UserDeviceService;
 

@@ -12,7 +12,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.lvl6.mobsters.controller.utils.TimeUtils;
 import com.lvl6.mobsters.entitymanager.UserEquipEntityManager;
 import com.lvl6.mobsters.entitymanager.UserEquipRepairEntityManager;
 import com.lvl6.mobsters.entitymanager.nonstaticdata.UserEntityManager;
@@ -31,6 +30,7 @@ import com.lvl6.mobsters.po.Equipment;
 import com.lvl6.mobsters.po.UserEquip;
 import com.lvl6.mobsters.po.UserEquipRepair;
 import com.lvl6.mobsters.po.nonstaticdata.User;
+import com.lvl6.mobsters.services.time.TimeUtils;
 import com.lvl6.mobsters.services.user.UserService;
 import com.lvl6.mobsters.services.userequip.UserEquipService;
 import com.lvl6.mobsters.services.userequiprepair.UserEquipRepairService;

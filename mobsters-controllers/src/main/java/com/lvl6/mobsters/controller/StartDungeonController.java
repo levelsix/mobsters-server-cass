@@ -14,7 +14,6 @@ import org.springframework.stereotype.Component;
 
 
 
-import com.lvl6.mobsters.controller.utils.TimeUtils;
 import com.lvl6.mobsters.entitymanager.PreDungeonUserConsumableInfoEntityManager;
 import com.lvl6.mobsters.entitymanager.PreDungeonUserEquipInfoEntityManager;
 import com.lvl6.mobsters.entitymanager.PreDungeonUserInfoEntityManager;
@@ -42,6 +41,7 @@ import com.lvl6.mobsters.po.UserEquip;
 import com.lvl6.mobsters.po.UserStructure;
 import com.lvl6.mobsters.po.nonstaticdata.QuestForUser;
 import com.lvl6.mobsters.po.nonstaticdata.User;
+import com.lvl6.mobsters.services.time.TimeUtils;
 import com.lvl6.mobsters.services.user.UserService;
 import com.lvl6.mobsters.services.userconsumable.UserConsumableService;
 import com.lvl6.mobsters.services.userconsumablequeue.UserConsumableQueueService;
