@@ -22,11 +22,6 @@ import com.lvl6.mobsters.events.request.QuestAcceptRequestEvent;
 import com.lvl6.mobsters.events.response.QuestAcceptResponseEvent;
 import com.lvl6.mobsters.noneventprotos.MobstersEventProtocolProto.MobstersEventProtocolRequest;
 import com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto;
-import com.lvl6.mobsters.po.Equipment;
-import com.lvl6.mobsters.po.Item;
-import com.lvl6.mobsters.po.UserChest;
-import com.lvl6.mobsters.po.UserEquip;
-import com.lvl6.mobsters.po.UserItem;
 import com.lvl6.mobsters.po.nonstaticdata.QuestForUser;
 import com.lvl6.mobsters.po.nonstaticdata.User;
 import com.lvl6.mobsters.po.staticdata.Quest;
@@ -68,13 +63,12 @@ public class QuestAcceptController extends EventController {
 
 		//get the values client sent
 		MinimumUserProto sender = reqProto.getSender();
-		String questUuidString = reqProto.getQuestUuid();
-		UUID questId = UUID.fromString(questUuidString);
+		int questId = reqProto.getQuestId();
 		
 		//uuid's are not strings, need to convert from string to uuid, vice versa
 		String userIdString = sender.getUserUuid();
 		UUID userId = UUID.fromString(userIdString);
-		Date clientDate = new Date();
+		Date timeAccepted = new Date();
 
 		//response to send back to client
 		Builder responseBuilder = QuestAcceptResponseProto.newBuilder();
@@ -95,7 +89,7 @@ public class QuestAcceptController extends EventController {
 			boolean successful = false;
 			if(legitAccept) {
 				responseBuilder.setCityIdOfAcceptedQuest(quest.getCityId());
-				successful = writeChangesToDb(user, questId, usedKey, uiList, ucList, clientDate);
+				successful = writeChangesToDb(user, userId, questId, quest, timeAccepted);
 			}
 			
 			if (successful) {
@@ -104,8 +98,6 @@ public class QuestAcceptController extends EventController {
 
 			//write to client
 			resEvent.setQuestAcceptResponseProto(responseBuilder.build());
-			String equipName = chooseEquipFromChest(questId).getName(); 
-			responseBuilder.setEquipName(equipName);
 			log.info("Writing event: " + resEvent);
 			getEventWriter().handleEvent(resEvent);
 
@@ -125,9 +117,11 @@ public class QuestAcceptController extends EventController {
 	}
 
 	private boolean checkLegitAccept(Builder responseBuilder, User user, UUID userId,
-			Quest quest, UUID questId) {
+			Quest quest, int questId) {
 	    if (user == null || quest == null) {
-	      log.error("parameter passed in is null. user=" + user + ", quest=" + quest);
+	      log.error("parameter passed in is null. user=" + user + ", quest=" + quest +
+	    		  "\t userId=" + userId + "\t questId=" + questId);
+	      
 	      return false;
 	    }
 
@@ -162,52 +156,10 @@ public class QuestAcceptController extends EventController {
 	}
 
 	
-	private boolean writeChangesToDb(User inDb, UUID chestId, boolean usedKey, List<UserItem> uiList,  List<UserChest> ucList, Date clientDate) {
+	private boolean writeChangesToDb(User inDb, UUID userId, int questId, Quest quest,
+			Date timeAccepted) {
 		try {
-			Quest quest = getChestRetrieveUtils().getChestForId(chestId);
-				
-			//update useritem or user 
-			if(usedKey) {
-				Item key = getItemRetrieveUtils().findMatchingKeyToChest(quest.getChestType());
-				int keysCount = quest.getKeysRequiredToOpen();
-				int count = 0;
-				for(UserItem ui : uiList) {
-					if((ui.getItemId() == key.getId()) && (count < keysCount)) {
-						getUserItemEntityManager().get().delete(ui.getId());
-						count++;
-					}
-				}
-			}
-			else {
-				inDb.setGems(inDb.getGems()-quest.getGemsRequiredToOpen());
-				getUserEntityManager().get().put(inDb);
-			}
-				
-			//update userequip
-			Equipment equip = chooseEquipFromChest(chestId);
-			UserEquip ue = new UserEquip();
-			ue.setDungeonRoomOrChestAcquiredFrom(quest.getChestName());
-			ue.setDurability(100.0);
-			ue.setEquipId(equip.getId());
-			//ue.setEquipLevel(1);
-			ue.setEquipped(false);
-			UUID newId = UUID.randomUUID();
-			ue.setId(newId);
-			ue.setLevelOfUserWhenAcquired(inDb.getLvl());
-			ue.setTimeAcquired(clientDate);
-			ue.setUserId(inDb.getId());
-			
-			getUserEquipEntityManager().get().put(ue);
-				
-			//remove chest from userchest
-			
-			for(UserChest uc : ucList) {
-				if(uc.getChestId() == quest.getId()) {
-					getUserItemEntityManager().get().delete(uc.getId());
-					break;
-				}
-			}
-			
+			getQuestForUserService().createNewUserQuestForUser(userId, questId, timeAccepted);
 			return true;
 
 		} catch (Exception e) {
@@ -215,22 +167,9 @@ public class QuestAcceptController extends EventController {
 		}
 		return false;
 	}
-
-	public Equipment chooseEquipFromChest(UUID chestId) {
-		String cqlquery = "select * from chest where chestId =" + chestId + ";"; 
-		List <Quest> cList = getChestEntityManager().get().find(cqlquery);
-		double randomValue = Math.random()*1;
-		double dropRate = 0.0;
-		Equipment e = new Equipment();
-		for(Quest c : cList) {
-			dropRate = dropRate + c.getChestDropRate();
-			if(dropRate > randomValue) {
-				e = getEquipmentEntityManager().get().get(c.getEquipId());
-				break;
-			}
-		}
-		return e;
-	}
+	
+	
+	
 
 	public UserService getUserService() {
 		return userService;

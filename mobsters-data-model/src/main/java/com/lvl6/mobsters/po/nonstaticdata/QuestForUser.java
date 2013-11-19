@@ -1,5 +1,6 @@
 package com.lvl6.mobsters.po.nonstaticdata;
 
+import java.util.Date;
 import java.util.UUID;
 
 import javax.persistence.Column;
@@ -36,6 +37,10 @@ public class QuestForUser extends BasePersistentObject<UUID>{
 	
 	@Column(name="progress")
 	protected int progress = 0;
+	
+	@Column(name="time_accepted")
+	protected Date timeAccepted = null;
+	
 	
 	
 	public UUID getId() {
@@ -98,12 +103,24 @@ public class QuestForUser extends BasePersistentObject<UUID>{
 	}
 
 
+	public Date getTimeAccepted() {
+		return timeAccepted;
+	}
+
+
+	public void setTimeAccepted(Date timeAccepted) {
+		this.timeAccepted = timeAccepted;
+	}
+
+
 	@Override
 	public String toString() {
 		return "QuestForUser [id=" + id + ", userId=" + userId + ", questId="
 				+ questId + ", isRedeemed=" + isRedeemed + ", isComplete="
-				+ isComplete + ", progress=" + progress + "]";
+				+ isComplete + ", progress=" + progress + ", timeAccepted="
+				+ timeAccepted + "]";
 	}
+
 	
 	
 }

@@ -1,5 +1,6 @@
 package com.lvl6.mobsters.services.questforuser;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -17,6 +18,7 @@ public interface QuestForUserService {
 			List<Integer> inprogressIds);
 	
 	
+	public abstract QuestForUser createNewUserQuestForUser(UUID userId, int questId, Date now);
 	
 	//for the setter dependency injection or something
 	public abstract QuestRetrieveUtils getQuestRetrieveUtils();

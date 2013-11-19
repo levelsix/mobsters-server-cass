@@ -1,6 +1,7 @@
 package com.lvl6.mobsters.services.questforuser;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -62,6 +63,21 @@ public class QuestForUserServiceImpl implements QuestForUserService {
 			List<Integer> inprogressIds) {
 		QuestGraph qg = getQuestRetrieveUtils().getQuestGraph();
 		return qg.getQuestsAvailable(redeemedIds, inprogressIds);
+	}
+	
+	
+	@Override
+	public QuestForUser createNewUserQuestForUser(UUID userId, int questId, Date now) {
+		QuestForUser qfu = new QuestForUser();
+		qfu.setUserId(userId);
+		qfu.setQuestId(questId);
+		qfu.setTimeAccepted(now);
+		//the other columns are default values for new QuestForUser
+		
+		log.info("saving new quest for user. qfu=" + qfu);
+		getQuestForUserEntityManager().get().put(qfu);
+		
+		return qfu;
 	}
 	
 	
