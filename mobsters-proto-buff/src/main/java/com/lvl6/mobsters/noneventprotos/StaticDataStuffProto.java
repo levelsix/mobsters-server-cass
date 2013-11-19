@@ -76,34 +76,34 @@ public final class StaticDataStuffProto {
     com.lvl6.mobsters.noneventprotos.UserProto.StaticUserLevelInfoProtoOrBuilder getSlipOrBuilder(
         int index);
     
-    // repeated .proto.FullQuestProto inProgressQuests = 8;
-    java.util.List<com.lvl6.mobsters.noneventprotos.QuestProto.FullQuestProto> 
+    // repeated .proto.QuestProto inProgressQuests = 8;
+    java.util.List<com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProto> 
         getInProgressQuestsList();
-    com.lvl6.mobsters.noneventprotos.QuestProto.FullQuestProto getInProgressQuests(int index);
+    com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProto getInProgressQuests(int index);
     int getInProgressQuestsCount();
-    java.util.List<? extends com.lvl6.mobsters.noneventprotos.QuestProto.FullQuestProtoOrBuilder> 
+    java.util.List<? extends com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProtoOrBuilder> 
         getInProgressQuestsOrBuilderList();
-    com.lvl6.mobsters.noneventprotos.QuestProto.FullQuestProtoOrBuilder getInProgressQuestsOrBuilder(
+    com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProtoOrBuilder getInProgressQuestsOrBuilder(
         int index);
     
-    // repeated .proto.FullQuestProto unredeemedQuests = 9;
-    java.util.List<com.lvl6.mobsters.noneventprotos.QuestProto.FullQuestProto> 
+    // repeated .proto.QuestProto unredeemedQuests = 9;
+    java.util.List<com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProto> 
         getUnredeemedQuestsList();
-    com.lvl6.mobsters.noneventprotos.QuestProto.FullQuestProto getUnredeemedQuests(int index);
+    com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProto getUnredeemedQuests(int index);
     int getUnredeemedQuestsCount();
-    java.util.List<? extends com.lvl6.mobsters.noneventprotos.QuestProto.FullQuestProtoOrBuilder> 
+    java.util.List<? extends com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProtoOrBuilder> 
         getUnredeemedQuestsOrBuilderList();
-    com.lvl6.mobsters.noneventprotos.QuestProto.FullQuestProtoOrBuilder getUnredeemedQuestsOrBuilder(
+    com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProtoOrBuilder getUnredeemedQuestsOrBuilder(
         int index);
     
-    // repeated .proto.FullQuestProto availableQuests = 10;
-    java.util.List<com.lvl6.mobsters.noneventprotos.QuestProto.FullQuestProto> 
+    // repeated .proto.QuestProto availableQuests = 10;
+    java.util.List<com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProto> 
         getAvailableQuestsList();
-    com.lvl6.mobsters.noneventprotos.QuestProto.FullQuestProto getAvailableQuests(int index);
+    com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProto getAvailableQuests(int index);
     int getAvailableQuestsCount();
-    java.util.List<? extends com.lvl6.mobsters.noneventprotos.QuestProto.FullQuestProtoOrBuilder> 
+    java.util.List<? extends com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProtoOrBuilder> 
         getAvailableQuestsOrBuilderList();
-    com.lvl6.mobsters.noneventprotos.QuestProto.FullQuestProtoOrBuilder getAvailableQuestsOrBuilder(
+    com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProtoOrBuilder getAvailableQuestsOrBuilder(
         int index);
     
     // repeated .proto.BoosterPackProto boosterPacks = 12;
@@ -357,65 +357,65 @@ public final class StaticDataStuffProto {
       return slip_.get(index);
     }
     
-    // repeated .proto.FullQuestProto inProgressQuests = 8;
+    // repeated .proto.QuestProto inProgressQuests = 8;
     public static final int INPROGRESSQUESTS_FIELD_NUMBER = 8;
-    private java.util.List<com.lvl6.mobsters.noneventprotos.QuestProto.FullQuestProto> inProgressQuests_;
-    public java.util.List<com.lvl6.mobsters.noneventprotos.QuestProto.FullQuestProto> getInProgressQuestsList() {
+    private java.util.List<com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProto> inProgressQuests_;
+    public java.util.List<com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProto> getInProgressQuestsList() {
       return inProgressQuests_;
     }
-    public java.util.List<? extends com.lvl6.mobsters.noneventprotos.QuestProto.FullQuestProtoOrBuilder> 
+    public java.util.List<? extends com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProtoOrBuilder> 
         getInProgressQuestsOrBuilderList() {
       return inProgressQuests_;
     }
     public int getInProgressQuestsCount() {
       return inProgressQuests_.size();
     }
-    public com.lvl6.mobsters.noneventprotos.QuestProto.FullQuestProto getInProgressQuests(int index) {
+    public com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProto getInProgressQuests(int index) {
       return inProgressQuests_.get(index);
     }
-    public com.lvl6.mobsters.noneventprotos.QuestProto.FullQuestProtoOrBuilder getInProgressQuestsOrBuilder(
+    public com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProtoOrBuilder getInProgressQuestsOrBuilder(
         int index) {
       return inProgressQuests_.get(index);
     }
     
-    // repeated .proto.FullQuestProto unredeemedQuests = 9;
+    // repeated .proto.QuestProto unredeemedQuests = 9;
     public static final int UNREDEEMEDQUESTS_FIELD_NUMBER = 9;
-    private java.util.List<com.lvl6.mobsters.noneventprotos.QuestProto.FullQuestProto> unredeemedQuests_;
-    public java.util.List<com.lvl6.mobsters.noneventprotos.QuestProto.FullQuestProto> getUnredeemedQuestsList() {
+    private java.util.List<com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProto> unredeemedQuests_;
+    public java.util.List<com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProto> getUnredeemedQuestsList() {
       return unredeemedQuests_;
     }
-    public java.util.List<? extends com.lvl6.mobsters.noneventprotos.QuestProto.FullQuestProtoOrBuilder> 
+    public java.util.List<? extends com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProtoOrBuilder> 
         getUnredeemedQuestsOrBuilderList() {
       return unredeemedQuests_;
     }
     public int getUnredeemedQuestsCount() {
       return unredeemedQuests_.size();
     }
-    public com.lvl6.mobsters.noneventprotos.QuestProto.FullQuestProto getUnredeemedQuests(int index) {
+    public com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProto getUnredeemedQuests(int index) {
       return unredeemedQuests_.get(index);
     }
-    public com.lvl6.mobsters.noneventprotos.QuestProto.FullQuestProtoOrBuilder getUnredeemedQuestsOrBuilder(
+    public com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProtoOrBuilder getUnredeemedQuestsOrBuilder(
         int index) {
       return unredeemedQuests_.get(index);
     }
     
-    // repeated .proto.FullQuestProto availableQuests = 10;
+    // repeated .proto.QuestProto availableQuests = 10;
     public static final int AVAILABLEQUESTS_FIELD_NUMBER = 10;
-    private java.util.List<com.lvl6.mobsters.noneventprotos.QuestProto.FullQuestProto> availableQuests_;
-    public java.util.List<com.lvl6.mobsters.noneventprotos.QuestProto.FullQuestProto> getAvailableQuestsList() {
+    private java.util.List<com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProto> availableQuests_;
+    public java.util.List<com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProto> getAvailableQuestsList() {
       return availableQuests_;
     }
-    public java.util.List<? extends com.lvl6.mobsters.noneventprotos.QuestProto.FullQuestProtoOrBuilder> 
+    public java.util.List<? extends com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProtoOrBuilder> 
         getAvailableQuestsOrBuilderList() {
       return availableQuests_;
     }
     public int getAvailableQuestsCount() {
       return availableQuests_.size();
     }
-    public com.lvl6.mobsters.noneventprotos.QuestProto.FullQuestProto getAvailableQuests(int index) {
+    public com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProto getAvailableQuests(int index) {
       return availableQuests_.get(index);
     }
-    public com.lvl6.mobsters.noneventprotos.QuestProto.FullQuestProtoOrBuilder getAvailableQuestsOrBuilder(
+    public com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProtoOrBuilder getAvailableQuestsOrBuilder(
         int index) {
       return availableQuests_.get(index);
     }
@@ -1272,19 +1272,19 @@ public final class StaticDataStuffProto {
               break;
             }
             case 66: {
-              com.lvl6.mobsters.noneventprotos.QuestProto.FullQuestProto.Builder subBuilder = com.lvl6.mobsters.noneventprotos.QuestProto.FullQuestProto.newBuilder();
+              com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProto.Builder subBuilder = com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProto.newBuilder();
               input.readMessage(subBuilder, extensionRegistry);
               addInProgressQuests(subBuilder.buildPartial());
               break;
             }
             case 74: {
-              com.lvl6.mobsters.noneventprotos.QuestProto.FullQuestProto.Builder subBuilder = com.lvl6.mobsters.noneventprotos.QuestProto.FullQuestProto.newBuilder();
+              com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProto.Builder subBuilder = com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProto.newBuilder();
               input.readMessage(subBuilder, extensionRegistry);
               addUnredeemedQuests(subBuilder.buildPartial());
               break;
             }
             case 82: {
-              com.lvl6.mobsters.noneventprotos.QuestProto.FullQuestProto.Builder subBuilder = com.lvl6.mobsters.noneventprotos.QuestProto.FullQuestProto.newBuilder();
+              com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProto.Builder subBuilder = com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProto.newBuilder();
               input.readMessage(subBuilder, extensionRegistry);
               addAvailableQuests(subBuilder.buildPartial());
               break;
@@ -2518,20 +2518,20 @@ public final class StaticDataStuffProto {
         return slipBuilder_;
       }
       
-      // repeated .proto.FullQuestProto inProgressQuests = 8;
-      private java.util.List<com.lvl6.mobsters.noneventprotos.QuestProto.FullQuestProto> inProgressQuests_ =
+      // repeated .proto.QuestProto inProgressQuests = 8;
+      private java.util.List<com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProto> inProgressQuests_ =
         java.util.Collections.emptyList();
       private void ensureInProgressQuestsIsMutable() {
         if (!((bitField0_ & 0x00000080) == 0x00000080)) {
-          inProgressQuests_ = new java.util.ArrayList<com.lvl6.mobsters.noneventprotos.QuestProto.FullQuestProto>(inProgressQuests_);
+          inProgressQuests_ = new java.util.ArrayList<com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProto>(inProgressQuests_);
           bitField0_ |= 0x00000080;
          }
       }
       
       private com.google.protobuf.RepeatedFieldBuilder<
-          com.lvl6.mobsters.noneventprotos.QuestProto.FullQuestProto, com.lvl6.mobsters.noneventprotos.QuestProto.FullQuestProto.Builder, com.lvl6.mobsters.noneventprotos.QuestProto.FullQuestProtoOrBuilder> inProgressQuestsBuilder_;
+          com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProto, com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProto.Builder, com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProtoOrBuilder> inProgressQuestsBuilder_;
       
-      public java.util.List<com.lvl6.mobsters.noneventprotos.QuestProto.FullQuestProto> getInProgressQuestsList() {
+      public java.util.List<com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProto> getInProgressQuestsList() {
         if (inProgressQuestsBuilder_ == null) {
           return java.util.Collections.unmodifiableList(inProgressQuests_);
         } else {
@@ -2545,7 +2545,7 @@ public final class StaticDataStuffProto {
           return inProgressQuestsBuilder_.getCount();
         }
       }
-      public com.lvl6.mobsters.noneventprotos.QuestProto.FullQuestProto getInProgressQuests(int index) {
+      public com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProto getInProgressQuests(int index) {
         if (inProgressQuestsBuilder_ == null) {
           return inProgressQuests_.get(index);
         } else {
@@ -2553,7 +2553,7 @@ public final class StaticDataStuffProto {
         }
       }
       public Builder setInProgressQuests(
-          int index, com.lvl6.mobsters.noneventprotos.QuestProto.FullQuestProto value) {
+          int index, com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProto value) {
         if (inProgressQuestsBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -2567,7 +2567,7 @@ public final class StaticDataStuffProto {
         return this;
       }
       public Builder setInProgressQuests(
-          int index, com.lvl6.mobsters.noneventprotos.QuestProto.FullQuestProto.Builder builderForValue) {
+          int index, com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProto.Builder builderForValue) {
         if (inProgressQuestsBuilder_ == null) {
           ensureInProgressQuestsIsMutable();
           inProgressQuests_.set(index, builderForValue.build());
@@ -2577,7 +2577,7 @@ public final class StaticDataStuffProto {
         }
         return this;
       }
-      public Builder addInProgressQuests(com.lvl6.mobsters.noneventprotos.QuestProto.FullQuestProto value) {
+      public Builder addInProgressQuests(com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProto value) {
         if (inProgressQuestsBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -2591,7 +2591,7 @@ public final class StaticDataStuffProto {
         return this;
       }
       public Builder addInProgressQuests(
-          int index, com.lvl6.mobsters.noneventprotos.QuestProto.FullQuestProto value) {
+          int index, com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProto value) {
         if (inProgressQuestsBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -2605,7 +2605,7 @@ public final class StaticDataStuffProto {
         return this;
       }
       public Builder addInProgressQuests(
-          com.lvl6.mobsters.noneventprotos.QuestProto.FullQuestProto.Builder builderForValue) {
+          com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProto.Builder builderForValue) {
         if (inProgressQuestsBuilder_ == null) {
           ensureInProgressQuestsIsMutable();
           inProgressQuests_.add(builderForValue.build());
@@ -2616,7 +2616,7 @@ public final class StaticDataStuffProto {
         return this;
       }
       public Builder addInProgressQuests(
-          int index, com.lvl6.mobsters.noneventprotos.QuestProto.FullQuestProto.Builder builderForValue) {
+          int index, com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProto.Builder builderForValue) {
         if (inProgressQuestsBuilder_ == null) {
           ensureInProgressQuestsIsMutable();
           inProgressQuests_.add(index, builderForValue.build());
@@ -2627,7 +2627,7 @@ public final class StaticDataStuffProto {
         return this;
       }
       public Builder addAllInProgressQuests(
-          java.lang.Iterable<? extends com.lvl6.mobsters.noneventprotos.QuestProto.FullQuestProto> values) {
+          java.lang.Iterable<? extends com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProto> values) {
         if (inProgressQuestsBuilder_ == null) {
           ensureInProgressQuestsIsMutable();
           super.addAll(values, inProgressQuests_);
@@ -2657,18 +2657,18 @@ public final class StaticDataStuffProto {
         }
         return this;
       }
-      public com.lvl6.mobsters.noneventprotos.QuestProto.FullQuestProto.Builder getInProgressQuestsBuilder(
+      public com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProto.Builder getInProgressQuestsBuilder(
           int index) {
         return getInProgressQuestsFieldBuilder().getBuilder(index);
       }
-      public com.lvl6.mobsters.noneventprotos.QuestProto.FullQuestProtoOrBuilder getInProgressQuestsOrBuilder(
+      public com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProtoOrBuilder getInProgressQuestsOrBuilder(
           int index) {
         if (inProgressQuestsBuilder_ == null) {
           return inProgressQuests_.get(index);  } else {
           return inProgressQuestsBuilder_.getMessageOrBuilder(index);
         }
       }
-      public java.util.List<? extends com.lvl6.mobsters.noneventprotos.QuestProto.FullQuestProtoOrBuilder> 
+      public java.util.List<? extends com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProtoOrBuilder> 
            getInProgressQuestsOrBuilderList() {
         if (inProgressQuestsBuilder_ != null) {
           return inProgressQuestsBuilder_.getMessageOrBuilderList();
@@ -2676,25 +2676,25 @@ public final class StaticDataStuffProto {
           return java.util.Collections.unmodifiableList(inProgressQuests_);
         }
       }
-      public com.lvl6.mobsters.noneventprotos.QuestProto.FullQuestProto.Builder addInProgressQuestsBuilder() {
+      public com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProto.Builder addInProgressQuestsBuilder() {
         return getInProgressQuestsFieldBuilder().addBuilder(
-            com.lvl6.mobsters.noneventprotos.QuestProto.FullQuestProto.getDefaultInstance());
+            com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProto.getDefaultInstance());
       }
-      public com.lvl6.mobsters.noneventprotos.QuestProto.FullQuestProto.Builder addInProgressQuestsBuilder(
+      public com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProto.Builder addInProgressQuestsBuilder(
           int index) {
         return getInProgressQuestsFieldBuilder().addBuilder(
-            index, com.lvl6.mobsters.noneventprotos.QuestProto.FullQuestProto.getDefaultInstance());
+            index, com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProto.getDefaultInstance());
       }
-      public java.util.List<com.lvl6.mobsters.noneventprotos.QuestProto.FullQuestProto.Builder> 
+      public java.util.List<com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProto.Builder> 
            getInProgressQuestsBuilderList() {
         return getInProgressQuestsFieldBuilder().getBuilderList();
       }
       private com.google.protobuf.RepeatedFieldBuilder<
-          com.lvl6.mobsters.noneventprotos.QuestProto.FullQuestProto, com.lvl6.mobsters.noneventprotos.QuestProto.FullQuestProto.Builder, com.lvl6.mobsters.noneventprotos.QuestProto.FullQuestProtoOrBuilder> 
+          com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProto, com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProto.Builder, com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProtoOrBuilder> 
           getInProgressQuestsFieldBuilder() {
         if (inProgressQuestsBuilder_ == null) {
           inProgressQuestsBuilder_ = new com.google.protobuf.RepeatedFieldBuilder<
-              com.lvl6.mobsters.noneventprotos.QuestProto.FullQuestProto, com.lvl6.mobsters.noneventprotos.QuestProto.FullQuestProto.Builder, com.lvl6.mobsters.noneventprotos.QuestProto.FullQuestProtoOrBuilder>(
+              com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProto, com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProto.Builder, com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProtoOrBuilder>(
                   inProgressQuests_,
                   ((bitField0_ & 0x00000080) == 0x00000080),
                   getParentForChildren(),
@@ -2704,20 +2704,20 @@ public final class StaticDataStuffProto {
         return inProgressQuestsBuilder_;
       }
       
-      // repeated .proto.FullQuestProto unredeemedQuests = 9;
-      private java.util.List<com.lvl6.mobsters.noneventprotos.QuestProto.FullQuestProto> unredeemedQuests_ =
+      // repeated .proto.QuestProto unredeemedQuests = 9;
+      private java.util.List<com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProto> unredeemedQuests_ =
         java.util.Collections.emptyList();
       private void ensureUnredeemedQuestsIsMutable() {
         if (!((bitField0_ & 0x00000100) == 0x00000100)) {
-          unredeemedQuests_ = new java.util.ArrayList<com.lvl6.mobsters.noneventprotos.QuestProto.FullQuestProto>(unredeemedQuests_);
+          unredeemedQuests_ = new java.util.ArrayList<com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProto>(unredeemedQuests_);
           bitField0_ |= 0x00000100;
          }
       }
       
       private com.google.protobuf.RepeatedFieldBuilder<
-          com.lvl6.mobsters.noneventprotos.QuestProto.FullQuestProto, com.lvl6.mobsters.noneventprotos.QuestProto.FullQuestProto.Builder, com.lvl6.mobsters.noneventprotos.QuestProto.FullQuestProtoOrBuilder> unredeemedQuestsBuilder_;
+          com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProto, com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProto.Builder, com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProtoOrBuilder> unredeemedQuestsBuilder_;
       
-      public java.util.List<com.lvl6.mobsters.noneventprotos.QuestProto.FullQuestProto> getUnredeemedQuestsList() {
+      public java.util.List<com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProto> getUnredeemedQuestsList() {
         if (unredeemedQuestsBuilder_ == null) {
           return java.util.Collections.unmodifiableList(unredeemedQuests_);
         } else {
@@ -2731,7 +2731,7 @@ public final class StaticDataStuffProto {
           return unredeemedQuestsBuilder_.getCount();
         }
       }
-      public com.lvl6.mobsters.noneventprotos.QuestProto.FullQuestProto getUnredeemedQuests(int index) {
+      public com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProto getUnredeemedQuests(int index) {
         if (unredeemedQuestsBuilder_ == null) {
           return unredeemedQuests_.get(index);
         } else {
@@ -2739,7 +2739,7 @@ public final class StaticDataStuffProto {
         }
       }
       public Builder setUnredeemedQuests(
-          int index, com.lvl6.mobsters.noneventprotos.QuestProto.FullQuestProto value) {
+          int index, com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProto value) {
         if (unredeemedQuestsBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -2753,7 +2753,7 @@ public final class StaticDataStuffProto {
         return this;
       }
       public Builder setUnredeemedQuests(
-          int index, com.lvl6.mobsters.noneventprotos.QuestProto.FullQuestProto.Builder builderForValue) {
+          int index, com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProto.Builder builderForValue) {
         if (unredeemedQuestsBuilder_ == null) {
           ensureUnredeemedQuestsIsMutable();
           unredeemedQuests_.set(index, builderForValue.build());
@@ -2763,7 +2763,7 @@ public final class StaticDataStuffProto {
         }
         return this;
       }
-      public Builder addUnredeemedQuests(com.lvl6.mobsters.noneventprotos.QuestProto.FullQuestProto value) {
+      public Builder addUnredeemedQuests(com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProto value) {
         if (unredeemedQuestsBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -2777,7 +2777,7 @@ public final class StaticDataStuffProto {
         return this;
       }
       public Builder addUnredeemedQuests(
-          int index, com.lvl6.mobsters.noneventprotos.QuestProto.FullQuestProto value) {
+          int index, com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProto value) {
         if (unredeemedQuestsBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -2791,7 +2791,7 @@ public final class StaticDataStuffProto {
         return this;
       }
       public Builder addUnredeemedQuests(
-          com.lvl6.mobsters.noneventprotos.QuestProto.FullQuestProto.Builder builderForValue) {
+          com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProto.Builder builderForValue) {
         if (unredeemedQuestsBuilder_ == null) {
           ensureUnredeemedQuestsIsMutable();
           unredeemedQuests_.add(builderForValue.build());
@@ -2802,7 +2802,7 @@ public final class StaticDataStuffProto {
         return this;
       }
       public Builder addUnredeemedQuests(
-          int index, com.lvl6.mobsters.noneventprotos.QuestProto.FullQuestProto.Builder builderForValue) {
+          int index, com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProto.Builder builderForValue) {
         if (unredeemedQuestsBuilder_ == null) {
           ensureUnredeemedQuestsIsMutable();
           unredeemedQuests_.add(index, builderForValue.build());
@@ -2813,7 +2813,7 @@ public final class StaticDataStuffProto {
         return this;
       }
       public Builder addAllUnredeemedQuests(
-          java.lang.Iterable<? extends com.lvl6.mobsters.noneventprotos.QuestProto.FullQuestProto> values) {
+          java.lang.Iterable<? extends com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProto> values) {
         if (unredeemedQuestsBuilder_ == null) {
           ensureUnredeemedQuestsIsMutable();
           super.addAll(values, unredeemedQuests_);
@@ -2843,18 +2843,18 @@ public final class StaticDataStuffProto {
         }
         return this;
       }
-      public com.lvl6.mobsters.noneventprotos.QuestProto.FullQuestProto.Builder getUnredeemedQuestsBuilder(
+      public com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProto.Builder getUnredeemedQuestsBuilder(
           int index) {
         return getUnredeemedQuestsFieldBuilder().getBuilder(index);
       }
-      public com.lvl6.mobsters.noneventprotos.QuestProto.FullQuestProtoOrBuilder getUnredeemedQuestsOrBuilder(
+      public com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProtoOrBuilder getUnredeemedQuestsOrBuilder(
           int index) {
         if (unredeemedQuestsBuilder_ == null) {
           return unredeemedQuests_.get(index);  } else {
           return unredeemedQuestsBuilder_.getMessageOrBuilder(index);
         }
       }
-      public java.util.List<? extends com.lvl6.mobsters.noneventprotos.QuestProto.FullQuestProtoOrBuilder> 
+      public java.util.List<? extends com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProtoOrBuilder> 
            getUnredeemedQuestsOrBuilderList() {
         if (unredeemedQuestsBuilder_ != null) {
           return unredeemedQuestsBuilder_.getMessageOrBuilderList();
@@ -2862,25 +2862,25 @@ public final class StaticDataStuffProto {
           return java.util.Collections.unmodifiableList(unredeemedQuests_);
         }
       }
-      public com.lvl6.mobsters.noneventprotos.QuestProto.FullQuestProto.Builder addUnredeemedQuestsBuilder() {
+      public com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProto.Builder addUnredeemedQuestsBuilder() {
         return getUnredeemedQuestsFieldBuilder().addBuilder(
-            com.lvl6.mobsters.noneventprotos.QuestProto.FullQuestProto.getDefaultInstance());
+            com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProto.getDefaultInstance());
       }
-      public com.lvl6.mobsters.noneventprotos.QuestProto.FullQuestProto.Builder addUnredeemedQuestsBuilder(
+      public com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProto.Builder addUnredeemedQuestsBuilder(
           int index) {
         return getUnredeemedQuestsFieldBuilder().addBuilder(
-            index, com.lvl6.mobsters.noneventprotos.QuestProto.FullQuestProto.getDefaultInstance());
+            index, com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProto.getDefaultInstance());
       }
-      public java.util.List<com.lvl6.mobsters.noneventprotos.QuestProto.FullQuestProto.Builder> 
+      public java.util.List<com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProto.Builder> 
            getUnredeemedQuestsBuilderList() {
         return getUnredeemedQuestsFieldBuilder().getBuilderList();
       }
       private com.google.protobuf.RepeatedFieldBuilder<
-          com.lvl6.mobsters.noneventprotos.QuestProto.FullQuestProto, com.lvl6.mobsters.noneventprotos.QuestProto.FullQuestProto.Builder, com.lvl6.mobsters.noneventprotos.QuestProto.FullQuestProtoOrBuilder> 
+          com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProto, com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProto.Builder, com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProtoOrBuilder> 
           getUnredeemedQuestsFieldBuilder() {
         if (unredeemedQuestsBuilder_ == null) {
           unredeemedQuestsBuilder_ = new com.google.protobuf.RepeatedFieldBuilder<
-              com.lvl6.mobsters.noneventprotos.QuestProto.FullQuestProto, com.lvl6.mobsters.noneventprotos.QuestProto.FullQuestProto.Builder, com.lvl6.mobsters.noneventprotos.QuestProto.FullQuestProtoOrBuilder>(
+              com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProto, com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProto.Builder, com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProtoOrBuilder>(
                   unredeemedQuests_,
                   ((bitField0_ & 0x00000100) == 0x00000100),
                   getParentForChildren(),
@@ -2890,20 +2890,20 @@ public final class StaticDataStuffProto {
         return unredeemedQuestsBuilder_;
       }
       
-      // repeated .proto.FullQuestProto availableQuests = 10;
-      private java.util.List<com.lvl6.mobsters.noneventprotos.QuestProto.FullQuestProto> availableQuests_ =
+      // repeated .proto.QuestProto availableQuests = 10;
+      private java.util.List<com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProto> availableQuests_ =
         java.util.Collections.emptyList();
       private void ensureAvailableQuestsIsMutable() {
         if (!((bitField0_ & 0x00000200) == 0x00000200)) {
-          availableQuests_ = new java.util.ArrayList<com.lvl6.mobsters.noneventprotos.QuestProto.FullQuestProto>(availableQuests_);
+          availableQuests_ = new java.util.ArrayList<com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProto>(availableQuests_);
           bitField0_ |= 0x00000200;
          }
       }
       
       private com.google.protobuf.RepeatedFieldBuilder<
-          com.lvl6.mobsters.noneventprotos.QuestProto.FullQuestProto, com.lvl6.mobsters.noneventprotos.QuestProto.FullQuestProto.Builder, com.lvl6.mobsters.noneventprotos.QuestProto.FullQuestProtoOrBuilder> availableQuestsBuilder_;
+          com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProto, com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProto.Builder, com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProtoOrBuilder> availableQuestsBuilder_;
       
-      public java.util.List<com.lvl6.mobsters.noneventprotos.QuestProto.FullQuestProto> getAvailableQuestsList() {
+      public java.util.List<com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProto> getAvailableQuestsList() {
         if (availableQuestsBuilder_ == null) {
           return java.util.Collections.unmodifiableList(availableQuests_);
         } else {
@@ -2917,7 +2917,7 @@ public final class StaticDataStuffProto {
           return availableQuestsBuilder_.getCount();
         }
       }
-      public com.lvl6.mobsters.noneventprotos.QuestProto.FullQuestProto getAvailableQuests(int index) {
+      public com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProto getAvailableQuests(int index) {
         if (availableQuestsBuilder_ == null) {
           return availableQuests_.get(index);
         } else {
@@ -2925,7 +2925,7 @@ public final class StaticDataStuffProto {
         }
       }
       public Builder setAvailableQuests(
-          int index, com.lvl6.mobsters.noneventprotos.QuestProto.FullQuestProto value) {
+          int index, com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProto value) {
         if (availableQuestsBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -2939,7 +2939,7 @@ public final class StaticDataStuffProto {
         return this;
       }
       public Builder setAvailableQuests(
-          int index, com.lvl6.mobsters.noneventprotos.QuestProto.FullQuestProto.Builder builderForValue) {
+          int index, com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProto.Builder builderForValue) {
         if (availableQuestsBuilder_ == null) {
           ensureAvailableQuestsIsMutable();
           availableQuests_.set(index, builderForValue.build());
@@ -2949,7 +2949,7 @@ public final class StaticDataStuffProto {
         }
         return this;
       }
-      public Builder addAvailableQuests(com.lvl6.mobsters.noneventprotos.QuestProto.FullQuestProto value) {
+      public Builder addAvailableQuests(com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProto value) {
         if (availableQuestsBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -2963,7 +2963,7 @@ public final class StaticDataStuffProto {
         return this;
       }
       public Builder addAvailableQuests(
-          int index, com.lvl6.mobsters.noneventprotos.QuestProto.FullQuestProto value) {
+          int index, com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProto value) {
         if (availableQuestsBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -2977,7 +2977,7 @@ public final class StaticDataStuffProto {
         return this;
       }
       public Builder addAvailableQuests(
-          com.lvl6.mobsters.noneventprotos.QuestProto.FullQuestProto.Builder builderForValue) {
+          com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProto.Builder builderForValue) {
         if (availableQuestsBuilder_ == null) {
           ensureAvailableQuestsIsMutable();
           availableQuests_.add(builderForValue.build());
@@ -2988,7 +2988,7 @@ public final class StaticDataStuffProto {
         return this;
       }
       public Builder addAvailableQuests(
-          int index, com.lvl6.mobsters.noneventprotos.QuestProto.FullQuestProto.Builder builderForValue) {
+          int index, com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProto.Builder builderForValue) {
         if (availableQuestsBuilder_ == null) {
           ensureAvailableQuestsIsMutable();
           availableQuests_.add(index, builderForValue.build());
@@ -2999,7 +2999,7 @@ public final class StaticDataStuffProto {
         return this;
       }
       public Builder addAllAvailableQuests(
-          java.lang.Iterable<? extends com.lvl6.mobsters.noneventprotos.QuestProto.FullQuestProto> values) {
+          java.lang.Iterable<? extends com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProto> values) {
         if (availableQuestsBuilder_ == null) {
           ensureAvailableQuestsIsMutable();
           super.addAll(values, availableQuests_);
@@ -3029,18 +3029,18 @@ public final class StaticDataStuffProto {
         }
         return this;
       }
-      public com.lvl6.mobsters.noneventprotos.QuestProto.FullQuestProto.Builder getAvailableQuestsBuilder(
+      public com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProto.Builder getAvailableQuestsBuilder(
           int index) {
         return getAvailableQuestsFieldBuilder().getBuilder(index);
       }
-      public com.lvl6.mobsters.noneventprotos.QuestProto.FullQuestProtoOrBuilder getAvailableQuestsOrBuilder(
+      public com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProtoOrBuilder getAvailableQuestsOrBuilder(
           int index) {
         if (availableQuestsBuilder_ == null) {
           return availableQuests_.get(index);  } else {
           return availableQuestsBuilder_.getMessageOrBuilder(index);
         }
       }
-      public java.util.List<? extends com.lvl6.mobsters.noneventprotos.QuestProto.FullQuestProtoOrBuilder> 
+      public java.util.List<? extends com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProtoOrBuilder> 
            getAvailableQuestsOrBuilderList() {
         if (availableQuestsBuilder_ != null) {
           return availableQuestsBuilder_.getMessageOrBuilderList();
@@ -3048,25 +3048,25 @@ public final class StaticDataStuffProto {
           return java.util.Collections.unmodifiableList(availableQuests_);
         }
       }
-      public com.lvl6.mobsters.noneventprotos.QuestProto.FullQuestProto.Builder addAvailableQuestsBuilder() {
+      public com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProto.Builder addAvailableQuestsBuilder() {
         return getAvailableQuestsFieldBuilder().addBuilder(
-            com.lvl6.mobsters.noneventprotos.QuestProto.FullQuestProto.getDefaultInstance());
+            com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProto.getDefaultInstance());
       }
-      public com.lvl6.mobsters.noneventprotos.QuestProto.FullQuestProto.Builder addAvailableQuestsBuilder(
+      public com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProto.Builder addAvailableQuestsBuilder(
           int index) {
         return getAvailableQuestsFieldBuilder().addBuilder(
-            index, com.lvl6.mobsters.noneventprotos.QuestProto.FullQuestProto.getDefaultInstance());
+            index, com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProto.getDefaultInstance());
       }
-      public java.util.List<com.lvl6.mobsters.noneventprotos.QuestProto.FullQuestProto.Builder> 
+      public java.util.List<com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProto.Builder> 
            getAvailableQuestsBuilderList() {
         return getAvailableQuestsFieldBuilder().getBuilderList();
       }
       private com.google.protobuf.RepeatedFieldBuilder<
-          com.lvl6.mobsters.noneventprotos.QuestProto.FullQuestProto, com.lvl6.mobsters.noneventprotos.QuestProto.FullQuestProto.Builder, com.lvl6.mobsters.noneventprotos.QuestProto.FullQuestProtoOrBuilder> 
+          com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProto, com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProto.Builder, com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProtoOrBuilder> 
           getAvailableQuestsFieldBuilder() {
         if (availableQuestsBuilder_ == null) {
           availableQuestsBuilder_ = new com.google.protobuf.RepeatedFieldBuilder<
-              com.lvl6.mobsters.noneventprotos.QuestProto.FullQuestProto, com.lvl6.mobsters.noneventprotos.QuestProto.FullQuestProto.Builder, com.lvl6.mobsters.noneventprotos.QuestProto.FullQuestProtoOrBuilder>(
+              com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProto, com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProto.Builder, com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProtoOrBuilder>(
                   availableQuests_,
                   ((bitField0_ & 0x00000200) == 0x00000200),
                   getParentForChildren(),
@@ -3313,25 +3313,25 @@ public final class StaticDataStuffProto {
     java.lang.String[] descriptorData = {
       "\n\020StaticData.proto\022\005proto\032\026BoosterPackSt" +
       "uff.proto\032\nCity.proto\032\022MonsterStuff.prot" +
-      "o\032\013Quest.proto\032\017Structure.proto\032\nTask.pr" +
-      "oto\032\nUser.proto\"\204\005\n\017StaticDataProto\022\'\n\006s" +
-      "ender\030\001 \001(\0132\027.proto.MinimumUserProto\0225\n\016" +
-      "expansionCosts\030\002 \003(\0132\035.proto.CityExpansi" +
-      "onCostProto\022\'\n\tallCities\030\003 \003(\0132\024.proto.F" +
-      "ullCityProto\022-\n\nallStructs\030\004 \003(\0132\031.proto" +
-      ".FullStructureProto\022&\n\010allTasks\030\005 \003(\0132\024." +
-      "proto.FullTaskProto\022(\n\013allMonsters\030\006 \003(\013",
-      "2\023.proto.MonsterProto\022-\n\004slip\030\007 \003(\0132\037.pr" +
-      "oto.StaticUserLevelInfoProto\022/\n\020inProgre" +
-      "ssQuests\030\010 \003(\0132\025.proto.FullQuestProto\022/\n" +
-      "\020unredeemedQuests\030\t \003(\0132\025.proto.FullQues" +
-      "tProto\022.\n\017availableQuests\030\n \003(\0132\025.proto." +
-      "FullQuestProto\022-\n\014boosterPacks\030\014 \003(\0132\027.p" +
-      "roto.BoosterPackProto\022?\n\006status\030\013 \001(\0162/." +
-      "proto.StaticDataProto.RetrieveStaticData" +
-      "Status\"6\n\030RetrieveStaticDataStatus\022\013\n\007SU" +
-      "CCESS\020\001\022\r\n\tSOME_FAIL\020\002B8\n com.lvl6.mobst",
-      "ers.noneventprotosB\024StaticDataStuffProto"
+      "o\032\020QuestStuff.proto\032\017Structure.proto\032\nTa" +
+      "sk.proto\032\nUser.proto\"\370\004\n\017StaticDataProto" +
+      "\022\'\n\006sender\030\001 \001(\0132\027.proto.MinimumUserProt" +
+      "o\0225\n\016expansionCosts\030\002 \003(\0132\035.proto.CityEx" +
+      "pansionCostProto\022\'\n\tallCities\030\003 \003(\0132\024.pr" +
+      "oto.FullCityProto\022-\n\nallStructs\030\004 \003(\0132\031." +
+      "proto.FullStructureProto\022&\n\010allTasks\030\005 \003" +
+      "(\0132\024.proto.FullTaskProto\022(\n\013allMonsters\030",
+      "\006 \003(\0132\023.proto.MonsterProto\022-\n\004slip\030\007 \003(\013" +
+      "2\037.proto.StaticUserLevelInfoProto\022+\n\020inP" +
+      "rogressQuests\030\010 \003(\0132\021.proto.QuestProto\022+" +
+      "\n\020unredeemedQuests\030\t \003(\0132\021.proto.QuestPr" +
+      "oto\022*\n\017availableQuests\030\n \003(\0132\021.proto.Que" +
+      "stProto\022-\n\014boosterPacks\030\014 \003(\0132\027.proto.Bo" +
+      "osterPackProto\022?\n\006status\030\013 \001(\0162/.proto.S" +
+      "taticDataProto.RetrieveStaticDataStatus\"" +
+      "6\n\030RetrieveStaticDataStatus\022\013\n\007SUCCESS\020\001" +
+      "\022\r\n\tSOME_FAIL\020\002B8\n com.lvl6.mobsters.non",
+      "eventprotosB\024StaticDataStuffProto"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -3355,7 +3355,7 @@ public final class StaticDataStuffProto {
           com.lvl6.mobsters.noneventprotos.BoosterPackStuffProto.getDescriptor(),
           com.lvl6.mobsters.noneventprotos.CityProto.getDescriptor(),
           com.lvl6.mobsters.noneventprotos.MonsterStuffProto.getDescriptor(),
-          com.lvl6.mobsters.noneventprotos.QuestProto.getDescriptor(),
+          com.lvl6.mobsters.noneventprotos.QuestStuffProto.getDescriptor(),
           com.lvl6.mobsters.noneventprotos.StructureProto.getDescriptor(),
           com.lvl6.mobsters.noneventprotos.TaskProto.getDescriptor(),
           com.lvl6.mobsters.noneventprotos.UserProto.getDescriptor(),

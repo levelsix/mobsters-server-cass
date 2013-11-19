@@ -18,7 +18,7 @@ import org.springframework.stereotype.Component;
 
 import com.lvl6.mobsters.controller.utils.TimeUtils;
 import com.lvl6.mobsters.entitymanager.UserConsumableQueueEntityManager;
-import com.lvl6.mobsters.entitymanager.UserEntityManager;
+import com.lvl6.mobsters.entitymanager.nonstaticdata.UserEntityManager;
 import com.lvl6.mobsters.eventprotos.BuildConsumableEventProto.BuildConsumableRequestProto;
 import com.lvl6.mobsters.eventprotos.BuildConsumableEventProto.BuildConsumableResponseProto;
 import com.lvl6.mobsters.eventprotos.BuildConsumableEventProto.BuildConsumableResponseProto.BuildConsumableStatus;
@@ -26,12 +26,12 @@ import com.lvl6.mobsters.eventprotos.BuildConsumableEventProto.BuildConsumableRe
 import com.lvl6.mobsters.events.RequestEvent;
 import com.lvl6.mobsters.events.request.BuildConsumableRequestEvent;
 import com.lvl6.mobsters.events.response.BuildConsumableResponseEvent;
-import com.lvl6.mobsters.noneventprotos.AocTwoEventProtocolProto.AocTwoEventProtocolRequest;
+import com.lvl6.mobsters.noneventprotos.MobstersEventProtocolProto.MobstersEventProtocolRequest;
 import com.lvl6.mobsters.noneventprotos.FullUser.MinimumUserProto;
 import com.lvl6.mobsters.noneventprotos.ResourceEnum.ResourceType;
 import com.lvl6.mobsters.noneventprotos.UserConsumableQueue.UserConsumableQueueProto;
-import com.lvl6.mobsters.po.User;
 import com.lvl6.mobsters.po.UserConsumableQueue;
+import com.lvl6.mobsters.po.nonstaticdata.User;
 import com.lvl6.mobsters.services.user.UserService;
 import com.lvl6.mobsters.services.userconsumablequeue.UserConsumableQueueService;
 
@@ -66,7 +66,7 @@ public class BuildConsumableController extends EventController {
 
 	@Override
 	public int getEventType() {
-		return AocTwoEventProtocolRequest.C_REPAIR_EQUIP_EVENT_VALUE;
+		return MobstersEventProtocolRequest.C_REPAIR_EQUIP_EVENT_VALUE;
 	}
 
 	@Override

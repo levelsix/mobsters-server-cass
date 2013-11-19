@@ -15,8 +15,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.lvl6.mobsters.controller.utils.TimeUtils;
-import com.lvl6.mobsters.entitymanager.UserEntityManager;
 import com.lvl6.mobsters.entitymanager.UserEquipEntityManager;
+import com.lvl6.mobsters.entitymanager.nonstaticdata.UserEntityManager;
 import com.lvl6.mobsters.entitymanager.staticdata.EquipmentRetrieveUtils;
 import com.lvl6.mobsters.eventprotos.RepairEquipEventProto.RepairEquipRequestProto;
 import com.lvl6.mobsters.eventprotos.RepairEquipEventProto.RepairEquipResponseProto;
@@ -25,12 +25,12 @@ import com.lvl6.mobsters.eventprotos.RepairEquipEventProto.RepairEquipResponsePr
 import com.lvl6.mobsters.events.RequestEvent;
 import com.lvl6.mobsters.events.request.RepairEquipRequestEvent;
 import com.lvl6.mobsters.events.response.RepairEquipResponseEvent;
-import com.lvl6.mobsters.noneventprotos.AocTwoEventProtocolProto.AocTwoEventProtocolRequest;
+import com.lvl6.mobsters.noneventprotos.MobstersEventProtocolProto.MobstersEventProtocolRequest;
 import com.lvl6.mobsters.noneventprotos.FullUser.MinimumUserProto;
 import com.lvl6.mobsters.noneventprotos.UserEquipRepair.UserEquipRepairProto;
-import com.lvl6.mobsters.po.User;
 import com.lvl6.mobsters.po.UserEquip;
 import com.lvl6.mobsters.po.UserEquipRepair;
+import com.lvl6.mobsters.po.nonstaticdata.User;
 import com.lvl6.mobsters.properties.MobstersTableConstants;
 import com.lvl6.mobsters.services.user.UserService;
 import com.lvl6.mobsters.services.userequip.UserEquipService;
@@ -73,7 +73,7 @@ public class RepairEquipController extends EventController {
 
 	@Override
 	public int getEventType() {
-		return AocTwoEventProtocolRequest.C_REPAIR_EQUIP_EVENT_VALUE;
+		return MobstersEventProtocolRequest.C_REPAIR_EQUIP_EVENT_VALUE;
 	}
 
 	@Override

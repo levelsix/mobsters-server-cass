@@ -1,0 +1,259 @@
+package com.lvl6.mobsters.controller;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import com.lvl6.mobsters.entitymanager.staticdata.QuestRetrieveUtils;
+import com.lvl6.mobsters.eventprotos.EventQuestProto.QuestAcceptRequestProto;
+import com.lvl6.mobsters.eventprotos.EventQuestProto.QuestAcceptResponseProto;
+import com.lvl6.mobsters.eventprotos.EventQuestProto.QuestAcceptResponseProto.Builder;
+import com.lvl6.mobsters.eventprotos.EventQuestProto.QuestAcceptResponseProto.QuestAcceptStatus;
+import com.lvl6.mobsters.events.RequestEvent;
+import com.lvl6.mobsters.events.request.QuestAcceptRequestEvent;
+import com.lvl6.mobsters.events.response.QuestAcceptResponseEvent;
+import com.lvl6.mobsters.noneventprotos.MobstersEventProtocolProto.MobstersEventProtocolRequest;
+import com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto;
+import com.lvl6.mobsters.po.Equipment;
+import com.lvl6.mobsters.po.Item;
+import com.lvl6.mobsters.po.UserChest;
+import com.lvl6.mobsters.po.UserEquip;
+import com.lvl6.mobsters.po.UserItem;
+import com.lvl6.mobsters.po.nonstaticdata.QuestForUser;
+import com.lvl6.mobsters.po.nonstaticdata.User;
+import com.lvl6.mobsters.po.staticdata.Quest;
+import com.lvl6.mobsters.services.questforuser.QuestForUserService;
+import com.lvl6.mobsters.services.user.UserService;
+
+
+@Component
+public class QuestAcceptController extends EventController {
+
+	private static Logger log = LoggerFactory.getLogger(new Object() { }.getClass().getEnclosingClass());
+	
+	@Autowired
+	protected UserService userService;
+	
+	@Autowired
+	protected QuestRetrieveUtils questRetrieveUtils; 
+	
+	@Autowired
+	protected QuestForUserService questForUserService;
+	
+	@Override
+	public RequestEvent createRequestEvent() {
+		return new QuestAcceptRequestEvent();
+	}
+	
+	
+
+	@Override
+	public int getEventType() {
+		return MobstersEventProtocolRequest.C_QUEST_ACCEPT_EVENT_VALUE;
+	}
+
+	@Override
+	protected void processRequestEvent(RequestEvent event) throws Exception {
+		//stuff client sent
+		QuestAcceptRequestProto reqProto = 
+				((QuestAcceptRequestEvent) event).getQuestAcceptRequestProto();
+
+		//get the values client sent
+		MinimumUserProto sender = reqProto.getSender();
+		String questUuidString = reqProto.getQuestUuid();
+		UUID questId = UUID.fromString(questUuidString);
+		
+		//uuid's are not strings, need to convert from string to uuid, vice versa
+		String userIdString = sender.getUserUuid();
+		UUID userId = UUID.fromString(userIdString);
+		Date clientDate = new Date();
+
+		//response to send back to client
+		Builder responseBuilder = QuestAcceptResponseProto.newBuilder();
+		responseBuilder.setStatus(QuestAcceptStatus.FAIL_OTHER);
+		QuestAcceptResponseEvent resEvent =
+				new QuestAcceptResponseEvent(userIdString);
+		resEvent.setTag(event.getTag());
+
+		try {
+			//get whatever we need from the database
+			String gameCenterId = null;
+			User user = getUserService().retrieveUser(gameCenterId, userIdString);
+			Quest quest = getQuestRetrieveUtils().getQuestForId(questId);
+			
+			boolean legitAccept = checkLegitAccept(responseBuilder, user,
+					userId, quest, questId);
+			
+			boolean successful = false;
+			if(legitAccept) {
+				responseBuilder.setCityIdOfAcceptedQuest(quest.getCityId());
+				successful = writeChangesToDb(user, questId, usedKey, uiList, ucList, clientDate);
+			}
+			
+			if (successful) {
+				responseBuilder.setStatus(QuestAcceptStatus.SUCCESS);
+			}
+
+			//write to client
+			resEvent.setQuestAcceptResponseProto(responseBuilder.build());
+			String equipName = chooseEquipFromChest(questId).getName(); 
+			responseBuilder.setEquipName(equipName);
+			log.info("Writing event: " + resEvent);
+			getEventWriter().handleEvent(resEvent);
+
+		} catch (Exception e) {
+			log.error("exception in QuestAcceptController processRequestEvent", e);
+
+			try {
+				//try to tell client that something failed
+				responseBuilder.setStatus(QuestAcceptStatus.FAIL_OTHER);
+				resEvent.setQuestAcceptResponseProto(responseBuilder.build());
+				getEventWriter().handleEvent(resEvent);
+
+			} catch (Exception e2) {
+				log.error("exception in QuestAcceptController processRequestEvent", e2);
+			}
+		}
+	}
+
+	private boolean checkLegitAccept(Builder responseBuilder, User user, UUID userId,
+			Quest quest, UUID questId) {
+	    if (user == null || quest == null) {
+	      log.error("parameter passed in is null. user=" + user + ", quest=" + quest);
+	      return false;
+	    }
+
+	    Map<Integer, QuestForUser> questIdsToUserQuests = getQuestForUserService()
+	    		.getQuestIdsToUserQuestsForUser(userId);
+	    Collection<QuestForUser> inProgressAndRedeemedUserQuests = questIdsToUserQuests.values();
+	    List<Integer> inProgressQuestIds = new ArrayList<Integer>();
+	    List<Integer> redeemedQuestIds = new ArrayList<Integer>();
+	    
+	    if (inProgressAndRedeemedUserQuests != null) {
+	        for (QuestForUser uq : inProgressAndRedeemedUserQuests) {
+	          if (uq.isRedeemed()) {
+	            redeemedQuestIds.add(uq.getQuestId());
+	          } else {
+	            inProgressQuestIds.add(uq.getQuestId());  
+	          }
+	        }
+	        List<Integer> availableQuestIds = getQuestForUserService().getAvailableQuestIds(
+	        		redeemedQuestIds, inProgressQuestIds);
+	        if (availableQuestIds != null && availableQuestIds.contains(quest.getId())) {
+	          responseBuilder.setStatus(QuestAcceptStatus.SUCCESS);
+	          return true;
+	        } else {
+	          responseBuilder.setStatus(QuestAcceptStatus.FAIL_NOT_AVAIL_TO_USER);
+	          log.error("quest with id " + quest.getId() + " is not available to user");
+	          return false;
+	        }
+	      }
+		
+		responseBuilder.setStatus(QuestAcceptStatus.SUCCESS);
+		return true;
+	}
+
+	
+	private boolean writeChangesToDb(User inDb, UUID chestId, boolean usedKey, List<UserItem> uiList,  List<UserChest> ucList, Date clientDate) {
+		try {
+			Quest quest = getChestRetrieveUtils().getChestForId(chestId);
+				
+			//update useritem or user 
+			if(usedKey) {
+				Item key = getItemRetrieveUtils().findMatchingKeyToChest(quest.getChestType());
+				int keysCount = quest.getKeysRequiredToOpen();
+				int count = 0;
+				for(UserItem ui : uiList) {
+					if((ui.getItemId() == key.getId()) && (count < keysCount)) {
+						getUserItemEntityManager().get().delete(ui.getId());
+						count++;
+					}
+				}
+			}
+			else {
+				inDb.setGems(inDb.getGems()-quest.getGemsRequiredToOpen());
+				getUserEntityManager().get().put(inDb);
+			}
+				
+			//update userequip
+			Equipment equip = chooseEquipFromChest(chestId);
+			UserEquip ue = new UserEquip();
+			ue.setDungeonRoomOrChestAcquiredFrom(quest.getChestName());
+			ue.setDurability(100.0);
+			ue.setEquipId(equip.getId());
+			//ue.setEquipLevel(1);
+			ue.setEquipped(false);
+			UUID newId = UUID.randomUUID();
+			ue.setId(newId);
+			ue.setLevelOfUserWhenAcquired(inDb.getLvl());
+			ue.setTimeAcquired(clientDate);
+			ue.setUserId(inDb.getId());
+			
+			getUserEquipEntityManager().get().put(ue);
+				
+			//remove chest from userchest
+			
+			for(UserChest uc : ucList) {
+				if(uc.getChestId() == quest.getId()) {
+					getUserItemEntityManager().get().delete(uc.getId());
+					break;
+				}
+			}
+			
+			return true;
+
+		} catch (Exception e) {
+			log.error("unexpected error: problem with saving to db.", e);
+		}
+		return false;
+	}
+
+	public Equipment chooseEquipFromChest(UUID chestId) {
+		String cqlquery = "select * from chest where chestId =" + chestId + ";"; 
+		List <Quest> cList = getChestEntityManager().get().find(cqlquery);
+		double randomValue = Math.random()*1;
+		double dropRate = 0.0;
+		Equipment e = new Equipment();
+		for(Quest c : cList) {
+			dropRate = dropRate + c.getChestDropRate();
+			if(dropRate > randomValue) {
+				e = getEquipmentEntityManager().get().get(c.getEquipId());
+				break;
+			}
+		}
+		return e;
+	}
+
+	public UserService getUserService() {
+		return userService;
+	}
+
+	public void setUserService(UserService userService) {
+		this.userService = userService;
+	}
+
+	public QuestRetrieveUtils getQuestRetrieveUtils() {
+		return questRetrieveUtils;
+	}
+
+	public void setQuestRetrieveUtils(QuestRetrieveUtils questRetrieveUtils) {
+		this.questRetrieveUtils = questRetrieveUtils;
+	}
+
+	public QuestForUserService getQuestForUserService() {
+		return questForUserService;
+	}
+
+	public void setQuestForUserService(QuestForUserService questForUserService) {
+		this.questForUserService = questForUserService;
+	}
+	
+}

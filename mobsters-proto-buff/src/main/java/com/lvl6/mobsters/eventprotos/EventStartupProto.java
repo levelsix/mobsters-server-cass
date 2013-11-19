@@ -805,13 +805,13 @@ public final class EventStartupProto {
     com.lvl6.mobsters.eventprotos.EventStartupProto.StartupResponseProto.StartupConstantsOrBuilder getStartupConstantsOrBuilder();
     
     // repeated .proto.FullUserQuestProto userQuests = 6;
-    java.util.List<com.lvl6.mobsters.noneventprotos.QuestProto.FullUserQuestProto> 
+    java.util.List<com.lvl6.mobsters.noneventprotos.QuestStuffProto.FullUserQuestProto> 
         getUserQuestsList();
-    com.lvl6.mobsters.noneventprotos.QuestProto.FullUserQuestProto getUserQuests(int index);
+    com.lvl6.mobsters.noneventprotos.QuestStuffProto.FullUserQuestProto getUserQuests(int index);
     int getUserQuestsCount();
-    java.util.List<? extends com.lvl6.mobsters.noneventprotos.QuestProto.FullUserQuestProtoOrBuilder> 
+    java.util.List<? extends com.lvl6.mobsters.noneventprotos.QuestStuffProto.FullUserQuestProtoOrBuilder> 
         getUserQuestsOrBuilderList();
-    com.lvl6.mobsters.noneventprotos.QuestProto.FullUserQuestProtoOrBuilder getUserQuestsOrBuilder(
+    com.lvl6.mobsters.noneventprotos.QuestStuffProto.FullUserQuestProtoOrBuilder getUserQuestsOrBuilder(
         int index);
     
     // repeated string redeemedQuestUuids = 27;
@@ -5023,6 +5023,14 @@ public final class EventStartupProto {
         // optional float secondsToHealPerHealthPoint = 2;
         boolean hasSecondsToHealPerHealthPoint();
         float getSecondsToHealPerHealthPoint();
+        
+        // optional float elementalStrength = 3;
+        boolean hasElementalStrength();
+        float getElementalStrength();
+        
+        // optional float elementalWeakness = 4;
+        boolean hasElementalWeakness();
+        float getElementalWeakness();
       }
       public static final class MonsterConstants extends
           com.google.protobuf.GeneratedMessage
@@ -5073,9 +5081,31 @@ public final class EventStartupProto {
           return secondsToHealPerHealthPoint_;
         }
         
+        // optional float elementalStrength = 3;
+        public static final int ELEMENTALSTRENGTH_FIELD_NUMBER = 3;
+        private float elementalStrength_;
+        public boolean hasElementalStrength() {
+          return ((bitField0_ & 0x00000004) == 0x00000004);
+        }
+        public float getElementalStrength() {
+          return elementalStrength_;
+        }
+        
+        // optional float elementalWeakness = 4;
+        public static final int ELEMENTALWEAKNESS_FIELD_NUMBER = 4;
+        private float elementalWeakness_;
+        public boolean hasElementalWeakness() {
+          return ((bitField0_ & 0x00000008) == 0x00000008);
+        }
+        public float getElementalWeakness() {
+          return elementalWeakness_;
+        }
+        
         private void initFields() {
           cashPerHealthPoint_ = 0F;
           secondsToHealPerHealthPoint_ = 0F;
+          elementalStrength_ = 0F;
+          elementalWeakness_ = 0F;
         }
         private byte memoizedIsInitialized = -1;
         public final boolean isInitialized() {
@@ -5095,6 +5125,12 @@ public final class EventStartupProto {
           if (((bitField0_ & 0x00000002) == 0x00000002)) {
             output.writeFloat(2, secondsToHealPerHealthPoint_);
           }
+          if (((bitField0_ & 0x00000004) == 0x00000004)) {
+            output.writeFloat(3, elementalStrength_);
+          }
+          if (((bitField0_ & 0x00000008) == 0x00000008)) {
+            output.writeFloat(4, elementalWeakness_);
+          }
           getUnknownFields().writeTo(output);
         }
         
@@ -5111,6 +5147,14 @@ public final class EventStartupProto {
           if (((bitField0_ & 0x00000002) == 0x00000002)) {
             size += com.google.protobuf.CodedOutputStream
               .computeFloatSize(2, secondsToHealPerHealthPoint_);
+          }
+          if (((bitField0_ & 0x00000004) == 0x00000004)) {
+            size += com.google.protobuf.CodedOutputStream
+              .computeFloatSize(3, elementalStrength_);
+          }
+          if (((bitField0_ & 0x00000008) == 0x00000008)) {
+            size += com.google.protobuf.CodedOutputStream
+              .computeFloatSize(4, elementalWeakness_);
           }
           size += getUnknownFields().getSerializedSize();
           memoizedSerializedSize = size;
@@ -5240,6 +5284,10 @@ public final class EventStartupProto {
             bitField0_ = (bitField0_ & ~0x00000001);
             secondsToHealPerHealthPoint_ = 0F;
             bitField0_ = (bitField0_ & ~0x00000002);
+            elementalStrength_ = 0F;
+            bitField0_ = (bitField0_ & ~0x00000004);
+            elementalWeakness_ = 0F;
+            bitField0_ = (bitField0_ & ~0x00000008);
             return this;
           }
           
@@ -5286,6 +5334,14 @@ public final class EventStartupProto {
               to_bitField0_ |= 0x00000002;
             }
             result.secondsToHealPerHealthPoint_ = secondsToHealPerHealthPoint_;
+            if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
+              to_bitField0_ |= 0x00000004;
+            }
+            result.elementalStrength_ = elementalStrength_;
+            if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
+              to_bitField0_ |= 0x00000008;
+            }
+            result.elementalWeakness_ = elementalWeakness_;
             result.bitField0_ = to_bitField0_;
             onBuilt();
             return result;
@@ -5307,6 +5363,12 @@ public final class EventStartupProto {
             }
             if (other.hasSecondsToHealPerHealthPoint()) {
               setSecondsToHealPerHealthPoint(other.getSecondsToHealPerHealthPoint());
+            }
+            if (other.hasElementalStrength()) {
+              setElementalStrength(other.getElementalStrength());
+            }
+            if (other.hasElementalWeakness()) {
+              setElementalWeakness(other.getElementalWeakness());
             }
             this.mergeUnknownFields(other.getUnknownFields());
             return this;
@@ -5347,6 +5409,16 @@ public final class EventStartupProto {
                 case 21: {
                   bitField0_ |= 0x00000002;
                   secondsToHealPerHealthPoint_ = input.readFloat();
+                  break;
+                }
+                case 29: {
+                  bitField0_ |= 0x00000004;
+                  elementalStrength_ = input.readFloat();
+                  break;
+                }
+                case 37: {
+                  bitField0_ |= 0x00000008;
+                  elementalWeakness_ = input.readFloat();
                   break;
                 }
               }
@@ -5393,6 +5465,48 @@ public final class EventStartupProto {
           public Builder clearSecondsToHealPerHealthPoint() {
             bitField0_ = (bitField0_ & ~0x00000002);
             secondsToHealPerHealthPoint_ = 0F;
+            onChanged();
+            return this;
+          }
+          
+          // optional float elementalStrength = 3;
+          private float elementalStrength_ ;
+          public boolean hasElementalStrength() {
+            return ((bitField0_ & 0x00000004) == 0x00000004);
+          }
+          public float getElementalStrength() {
+            return elementalStrength_;
+          }
+          public Builder setElementalStrength(float value) {
+            bitField0_ |= 0x00000004;
+            elementalStrength_ = value;
+            onChanged();
+            return this;
+          }
+          public Builder clearElementalStrength() {
+            bitField0_ = (bitField0_ & ~0x00000004);
+            elementalStrength_ = 0F;
+            onChanged();
+            return this;
+          }
+          
+          // optional float elementalWeakness = 4;
+          private float elementalWeakness_ ;
+          public boolean hasElementalWeakness() {
+            return ((bitField0_ & 0x00000008) == 0x00000008);
+          }
+          public float getElementalWeakness() {
+            return elementalWeakness_;
+          }
+          public Builder setElementalWeakness(float value) {
+            bitField0_ |= 0x00000008;
+            elementalWeakness_ = value;
+            onChanged();
+            return this;
+          }
+          public Builder clearElementalWeakness() {
+            bitField0_ = (bitField0_ & ~0x00000008);
+            elementalWeakness_ = 0F;
             onChanged();
             return this;
           }
@@ -7744,21 +7858,21 @@ public final class EventStartupProto {
     
     // repeated .proto.FullUserQuestProto userQuests = 6;
     public static final int USERQUESTS_FIELD_NUMBER = 6;
-    private java.util.List<com.lvl6.mobsters.noneventprotos.QuestProto.FullUserQuestProto> userQuests_;
-    public java.util.List<com.lvl6.mobsters.noneventprotos.QuestProto.FullUserQuestProto> getUserQuestsList() {
+    private java.util.List<com.lvl6.mobsters.noneventprotos.QuestStuffProto.FullUserQuestProto> userQuests_;
+    public java.util.List<com.lvl6.mobsters.noneventprotos.QuestStuffProto.FullUserQuestProto> getUserQuestsList() {
       return userQuests_;
     }
-    public java.util.List<? extends com.lvl6.mobsters.noneventprotos.QuestProto.FullUserQuestProtoOrBuilder> 
+    public java.util.List<? extends com.lvl6.mobsters.noneventprotos.QuestStuffProto.FullUserQuestProtoOrBuilder> 
         getUserQuestsOrBuilderList() {
       return userQuests_;
     }
     public int getUserQuestsCount() {
       return userQuests_.size();
     }
-    public com.lvl6.mobsters.noneventprotos.QuestProto.FullUserQuestProto getUserQuests(int index) {
+    public com.lvl6.mobsters.noneventprotos.QuestStuffProto.FullUserQuestProto getUserQuests(int index) {
       return userQuests_.get(index);
     }
-    public com.lvl6.mobsters.noneventprotos.QuestProto.FullUserQuestProtoOrBuilder getUserQuestsOrBuilder(
+    public com.lvl6.mobsters.noneventprotos.QuestStuffProto.FullUserQuestProtoOrBuilder getUserQuestsOrBuilder(
         int index) {
       return userQuests_.get(index);
     }
@@ -9456,7 +9570,7 @@ public final class EventStartupProto {
               break;
             }
             case 50: {
-              com.lvl6.mobsters.noneventprotos.QuestProto.FullUserQuestProto.Builder subBuilder = com.lvl6.mobsters.noneventprotos.QuestProto.FullUserQuestProto.newBuilder();
+              com.lvl6.mobsters.noneventprotos.QuestStuffProto.FullUserQuestProto.Builder subBuilder = com.lvl6.mobsters.noneventprotos.QuestStuffProto.FullUserQuestProto.newBuilder();
               input.readMessage(subBuilder, extensionRegistry);
               addUserQuests(subBuilder.buildPartial());
               break;
@@ -9846,19 +9960,19 @@ public final class EventStartupProto {
       }
       
       // repeated .proto.FullUserQuestProto userQuests = 6;
-      private java.util.List<com.lvl6.mobsters.noneventprotos.QuestProto.FullUserQuestProto> userQuests_ =
+      private java.util.List<com.lvl6.mobsters.noneventprotos.QuestStuffProto.FullUserQuestProto> userQuests_ =
         java.util.Collections.emptyList();
       private void ensureUserQuestsIsMutable() {
         if (!((bitField0_ & 0x00000020) == 0x00000020)) {
-          userQuests_ = new java.util.ArrayList<com.lvl6.mobsters.noneventprotos.QuestProto.FullUserQuestProto>(userQuests_);
+          userQuests_ = new java.util.ArrayList<com.lvl6.mobsters.noneventprotos.QuestStuffProto.FullUserQuestProto>(userQuests_);
           bitField0_ |= 0x00000020;
          }
       }
       
       private com.google.protobuf.RepeatedFieldBuilder<
-          com.lvl6.mobsters.noneventprotos.QuestProto.FullUserQuestProto, com.lvl6.mobsters.noneventprotos.QuestProto.FullUserQuestProto.Builder, com.lvl6.mobsters.noneventprotos.QuestProto.FullUserQuestProtoOrBuilder> userQuestsBuilder_;
+          com.lvl6.mobsters.noneventprotos.QuestStuffProto.FullUserQuestProto, com.lvl6.mobsters.noneventprotos.QuestStuffProto.FullUserQuestProto.Builder, com.lvl6.mobsters.noneventprotos.QuestStuffProto.FullUserQuestProtoOrBuilder> userQuestsBuilder_;
       
-      public java.util.List<com.lvl6.mobsters.noneventprotos.QuestProto.FullUserQuestProto> getUserQuestsList() {
+      public java.util.List<com.lvl6.mobsters.noneventprotos.QuestStuffProto.FullUserQuestProto> getUserQuestsList() {
         if (userQuestsBuilder_ == null) {
           return java.util.Collections.unmodifiableList(userQuests_);
         } else {
@@ -9872,7 +9986,7 @@ public final class EventStartupProto {
           return userQuestsBuilder_.getCount();
         }
       }
-      public com.lvl6.mobsters.noneventprotos.QuestProto.FullUserQuestProto getUserQuests(int index) {
+      public com.lvl6.mobsters.noneventprotos.QuestStuffProto.FullUserQuestProto getUserQuests(int index) {
         if (userQuestsBuilder_ == null) {
           return userQuests_.get(index);
         } else {
@@ -9880,7 +9994,7 @@ public final class EventStartupProto {
         }
       }
       public Builder setUserQuests(
-          int index, com.lvl6.mobsters.noneventprotos.QuestProto.FullUserQuestProto value) {
+          int index, com.lvl6.mobsters.noneventprotos.QuestStuffProto.FullUserQuestProto value) {
         if (userQuestsBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -9894,7 +10008,7 @@ public final class EventStartupProto {
         return this;
       }
       public Builder setUserQuests(
-          int index, com.lvl6.mobsters.noneventprotos.QuestProto.FullUserQuestProto.Builder builderForValue) {
+          int index, com.lvl6.mobsters.noneventprotos.QuestStuffProto.FullUserQuestProto.Builder builderForValue) {
         if (userQuestsBuilder_ == null) {
           ensureUserQuestsIsMutable();
           userQuests_.set(index, builderForValue.build());
@@ -9904,7 +10018,7 @@ public final class EventStartupProto {
         }
         return this;
       }
-      public Builder addUserQuests(com.lvl6.mobsters.noneventprotos.QuestProto.FullUserQuestProto value) {
+      public Builder addUserQuests(com.lvl6.mobsters.noneventprotos.QuestStuffProto.FullUserQuestProto value) {
         if (userQuestsBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -9918,7 +10032,7 @@ public final class EventStartupProto {
         return this;
       }
       public Builder addUserQuests(
-          int index, com.lvl6.mobsters.noneventprotos.QuestProto.FullUserQuestProto value) {
+          int index, com.lvl6.mobsters.noneventprotos.QuestStuffProto.FullUserQuestProto value) {
         if (userQuestsBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -9932,7 +10046,7 @@ public final class EventStartupProto {
         return this;
       }
       public Builder addUserQuests(
-          com.lvl6.mobsters.noneventprotos.QuestProto.FullUserQuestProto.Builder builderForValue) {
+          com.lvl6.mobsters.noneventprotos.QuestStuffProto.FullUserQuestProto.Builder builderForValue) {
         if (userQuestsBuilder_ == null) {
           ensureUserQuestsIsMutable();
           userQuests_.add(builderForValue.build());
@@ -9943,7 +10057,7 @@ public final class EventStartupProto {
         return this;
       }
       public Builder addUserQuests(
-          int index, com.lvl6.mobsters.noneventprotos.QuestProto.FullUserQuestProto.Builder builderForValue) {
+          int index, com.lvl6.mobsters.noneventprotos.QuestStuffProto.FullUserQuestProto.Builder builderForValue) {
         if (userQuestsBuilder_ == null) {
           ensureUserQuestsIsMutable();
           userQuests_.add(index, builderForValue.build());
@@ -9954,7 +10068,7 @@ public final class EventStartupProto {
         return this;
       }
       public Builder addAllUserQuests(
-          java.lang.Iterable<? extends com.lvl6.mobsters.noneventprotos.QuestProto.FullUserQuestProto> values) {
+          java.lang.Iterable<? extends com.lvl6.mobsters.noneventprotos.QuestStuffProto.FullUserQuestProto> values) {
         if (userQuestsBuilder_ == null) {
           ensureUserQuestsIsMutable();
           super.addAll(values, userQuests_);
@@ -9984,18 +10098,18 @@ public final class EventStartupProto {
         }
         return this;
       }
-      public com.lvl6.mobsters.noneventprotos.QuestProto.FullUserQuestProto.Builder getUserQuestsBuilder(
+      public com.lvl6.mobsters.noneventprotos.QuestStuffProto.FullUserQuestProto.Builder getUserQuestsBuilder(
           int index) {
         return getUserQuestsFieldBuilder().getBuilder(index);
       }
-      public com.lvl6.mobsters.noneventprotos.QuestProto.FullUserQuestProtoOrBuilder getUserQuestsOrBuilder(
+      public com.lvl6.mobsters.noneventprotos.QuestStuffProto.FullUserQuestProtoOrBuilder getUserQuestsOrBuilder(
           int index) {
         if (userQuestsBuilder_ == null) {
           return userQuests_.get(index);  } else {
           return userQuestsBuilder_.getMessageOrBuilder(index);
         }
       }
-      public java.util.List<? extends com.lvl6.mobsters.noneventprotos.QuestProto.FullUserQuestProtoOrBuilder> 
+      public java.util.List<? extends com.lvl6.mobsters.noneventprotos.QuestStuffProto.FullUserQuestProtoOrBuilder> 
            getUserQuestsOrBuilderList() {
         if (userQuestsBuilder_ != null) {
           return userQuestsBuilder_.getMessageOrBuilderList();
@@ -10003,25 +10117,25 @@ public final class EventStartupProto {
           return java.util.Collections.unmodifiableList(userQuests_);
         }
       }
-      public com.lvl6.mobsters.noneventprotos.QuestProto.FullUserQuestProto.Builder addUserQuestsBuilder() {
+      public com.lvl6.mobsters.noneventprotos.QuestStuffProto.FullUserQuestProto.Builder addUserQuestsBuilder() {
         return getUserQuestsFieldBuilder().addBuilder(
-            com.lvl6.mobsters.noneventprotos.QuestProto.FullUserQuestProto.getDefaultInstance());
+            com.lvl6.mobsters.noneventprotos.QuestStuffProto.FullUserQuestProto.getDefaultInstance());
       }
-      public com.lvl6.mobsters.noneventprotos.QuestProto.FullUserQuestProto.Builder addUserQuestsBuilder(
+      public com.lvl6.mobsters.noneventprotos.QuestStuffProto.FullUserQuestProto.Builder addUserQuestsBuilder(
           int index) {
         return getUserQuestsFieldBuilder().addBuilder(
-            index, com.lvl6.mobsters.noneventprotos.QuestProto.FullUserQuestProto.getDefaultInstance());
+            index, com.lvl6.mobsters.noneventprotos.QuestStuffProto.FullUserQuestProto.getDefaultInstance());
       }
-      public java.util.List<com.lvl6.mobsters.noneventprotos.QuestProto.FullUserQuestProto.Builder> 
+      public java.util.List<com.lvl6.mobsters.noneventprotos.QuestStuffProto.FullUserQuestProto.Builder> 
            getUserQuestsBuilderList() {
         return getUserQuestsFieldBuilder().getBuilderList();
       }
       private com.google.protobuf.RepeatedFieldBuilder<
-          com.lvl6.mobsters.noneventprotos.QuestProto.FullUserQuestProto, com.lvl6.mobsters.noneventprotos.QuestProto.FullUserQuestProto.Builder, com.lvl6.mobsters.noneventprotos.QuestProto.FullUserQuestProtoOrBuilder> 
+          com.lvl6.mobsters.noneventprotos.QuestStuffProto.FullUserQuestProto, com.lvl6.mobsters.noneventprotos.QuestStuffProto.FullUserQuestProto.Builder, com.lvl6.mobsters.noneventprotos.QuestStuffProto.FullUserQuestProtoOrBuilder> 
           getUserQuestsFieldBuilder() {
         if (userQuestsBuilder_ == null) {
           userQuestsBuilder_ = new com.google.protobuf.RepeatedFieldBuilder<
-              com.lvl6.mobsters.noneventprotos.QuestProto.FullUserQuestProto, com.lvl6.mobsters.noneventprotos.QuestProto.FullUserQuestProto.Builder, com.lvl6.mobsters.noneventprotos.QuestProto.FullUserQuestProtoOrBuilder>(
+              com.lvl6.mobsters.noneventprotos.QuestStuffProto.FullUserQuestProto, com.lvl6.mobsters.noneventprotos.QuestStuffProto.FullUserQuestProto.Builder, com.lvl6.mobsters.noneventprotos.QuestStuffProto.FullUserQuestProtoOrBuilder>(
                   userQuests_,
                   ((bitField0_ & 0x00000020) == 0x00000020),
                   getParentForChildren(),
@@ -12723,103 +12837,104 @@ public final class EventStartupProto {
     java.lang.String[] descriptorData = {
       "\n\022EventStartup.proto\022\005proto\032\026BoosterPack" +
       "Stuff.proto\032\nChat.proto\032\nCity.proto\032\nCla" +
-      "n.proto\032\023InAppPurchase.proto\032\013Quest.prot" +
-      "o\032\020StaticData.proto\032\017Structure.proto\032\nTa" +
-      "sk.proto\032\nUser.proto\032\022MonsterStuff.proto" +
-      "\"\215\001\n\023StartupRequestProto\022\014\n\004udid\030\001 \001(\t\022\022" +
-      "\n\nversionNum\030\002 \001(\002\022\021\n\tapsalarId\030\003 \001(\t\022\022\n" +
-      "\nmacAddress\030\004 \001(\t\022\024\n\014advertiserId\030\005 \001(\t\022" +
-      "\027\n\017isForceTutorial\030\006 \001(\010\"\323\033\n\024StartupResp" +
-      "onseProto\022\030\n\020serverTimeMillis\030\001 \001(\003\022$\n\006s",
-      "ender\030\002 \001(\0132\024.proto.FullUserProto\022@\n\rsta" +
-      "rtupStatus\030\003 \001(\0162).proto.StartupResponse" +
-      "Proto.StartupStatus\022>\n\014updateStatus\030\004 \001(" +
-      "\0162(.proto.StartupResponseProto.UpdateSta" +
-      "tus\022F\n\020startupConstants\030\005 \001(\0132,.proto.St" +
-      "artupResponseProto.StartupConstants\022-\n\nu" +
-      "serQuests\030\006 \003(\0132\031.proto.FullUserQuestPro" +
-      "to\022\032\n\022redeemedQuestUuids\030\033 \003(\t\022.\n\014userCl" +
-      "anInfo\030\007 \003(\0132\030.proto.FullUserClanProto\022\032" +
-      "\n\022completedTaskUuids\030\010 \003(\t\022\023\n\013appStoreUR",
-      "L\030\t \001(\t\022\025\n\rreviewPageURL\030\n \001(\t\022%\n\035review" +
-      "PageConfirmationMessage\030\013 \001(\t\022$\n\034playerH" +
-      "asBoughtInAppPurchase\030\014 \001(\010\022R\n\023attackNot" +
-      "ifications\030\r \003(\01325.proto.StartupResponse" +
-      "Proto.AttackedNotificationProto\022T\n\025refer" +
-      "ralNotifications\030\016 \003(\01325.proto.StartupRe" +
-      "sponseProto.ReferralNotificationProto\022\030\n" +
-      "\020noticesToPlayers\030\017 \003(\t\0221\n\013globalChats\030\020" +
-      " \003(\0132\034.proto.GroupChatMessageProto\022/\n\tcl" +
-      "anChats\030\021 \003(\0132\034.proto.GroupChatMessagePr",
-      "oto\022)\n\004pcpp\030\022 \003(\0132\033.proto.PrivateChatPos" +
-      "tProto\0222\n\rusersMonsters\030\023 \003(\0132\033.proto.Fu" +
-      "llUserMonsterProto\0227\n\017monstersHealing\030\024 " +
-      "\003(\0132\036.proto.UserMonsterHealingProto\0221\n\014e" +
-      "nhancements\030\025 \001(\0132\033.proto.UserEnhancemen" +
-      "tProto\022=\n\024rareBoosterPurchases\030\026 \003(\0132\037.p" +
-      "roto.RareBoosterPurchaseProto\022\021\n\tkabamNa" +
-      "id\030\027 \001(\t\022E\n\026usersUsedForExtraSlots\030\030 \003(\013" +
-      "2%.proto.MinimumUserProtoWithFacebookId\022" +
-      "B\n\023invitesToMeForSlots\030\031 \003(\0132%.proto.Use",
-      "rFacebookInviteForSlotProto\0224\n\024staticDat" +
-      "aStuffProto\030\032 \001(\0132\026.proto.StaticDataProt" +
-      "o\022\"\n\032taskUuidForCurrentCityBoss\030\034 \003(\t\032w\n" +
-      "\031AttackedNotificationProto\022)\n\010attacker\030\001" +
-      " \001(\0132\027.proto.MinimumUserProto\022\032\n\022battleC" +
-      "ompleteTime\030\002 \001(\003\022\023\n\013coinsStolen\030\003 \001(\005\032y" +
-      "\n\031ReferralNotificationProto\022)\n\010referred\030" +
-      "\001 \001(\0132\027.proto.MinimumUserProto\022\023\n\013recrui" +
-      "tTime\030\002 \001(\003\022\034\n\024coinsGivenToReferrer\030\003 \001(" +
-      "\005\032\212\016\n\020StartupConstants\022?\n\025inAppPurchaseP",
-      "ackages\030\001 \003(\0132 .proto.InAppPurchasePacka" +
-      "geProto\022\027\n\017maxLevelForUser\030\002 \001(\005\022\034\n\024maxN" +
-      "umOfSingleStruct\030\003 \001(\005\022e\n\025animatedSprite" +
-      "Offsets\030\004 \003(\0132F.proto.StartupResponsePro" +
-      "to.StartupConstants.AnimatedSpriteOffset" +
-      "Proto\022\025\n\rminNameLength\030\005 \001(\005\022\025\n\rmaxNameL" +
-      "ength\030\006 \001(\005\022\035\n\025maxLengthOfChatString\030\007 \001" +
-      "(\005\022Q\n\rclanConstants\030\010 \001(\0132:.proto.Startu" +
-      "pResponseProto.StartupConstants.ClanCons" +
-      "tants\022g\n\030downloadableNibConstants\030\t \001(\0132",
-      "E.proto.StartupResponseProto.StartupCons" +
-      "tants.DownloadableNibConstants\022\'\n\037numHou" +
-      "rsBeforeReshowingGoldSale\030\n \001(\005\022\036\n\026level" +
-      "ToShowRateUsPopup\030\013 \001(\005\022\\\n\022touramentCons" +
-      "tants\030\014 \001(\0132@.proto.StartupResponseProto" +
-      ".StartupConstants.TournamentConstants\022\037\n" +
-      "\027fbConnectRewardDiamonds\030\r \001(\005\022\023\n\013faqFil" +
-      "eName\030\016 \001(\t\0223\n\022adminChatUserProto\030\017 \001(\0132" +
-      "\027.proto.MinimumUserProto\022\037\n\027numBeginnerS" +
-      "alesAllowed\030\020 \001(\005\022_\n\024userMonsterConstant",
-      "s\030\021 \001(\0132A.proto.StartupResponseProto.Sta" +
-      "rtupConstants.UserMonsterConstants\022W\n\020mo" +
-      "nsterConstants\030\022 \001(\0132=.proto.StartupResp" +
-      "onseProto.StartupConstants.MonsterConsta" +
-      "nts\022\025\n\rminutesPerGem\030\023 \001(\002\022\031\n\021pvpRequire" +
-      "dMinLvl\030\024 \001(\005\032V\n\031AnimatedSpriteOffsetPro" +
-      "to\022\021\n\timageName\030\001 \001(\t\022&\n\006offSet\030\002 \001(\0132\026." +
-      "proto.CoordinateProto\032\232\001\n\rClanConstants\022" +
-      "\035\n\025coinPriceToCreateClan\030\001 \001(\005\022 \n\030maxCha" +
-      "rLengthForClanName\030\002 \001(\005\022\'\n\037maxCharLengt",
-      "hForClanDescription\030\003 \001(\005\022\037\n\027maxCharLeng" +
-      "thForClanTag\030\004 \001(\005\032c\n\030DownloadableNibCon" +
-      "stants\022\022\n\nmapNibName\030\001 \001(\t\022\030\n\020expansionN" +
-      "ibName\030\002 \001(\t\022\031\n\021goldShoppeNibName\030\003 \001(\t\032" +
-      "y\n\023TournamentConstants\022\022\n\nwinsWeight\030\001 \001" +
-      "(\005\022\024\n\014lossesWeight\030\002 \001(\005\022\023\n\013fleesWeight\030" +
-      "\003 \001(\005\022#\n\033numHoursToShowAfterEventEnd\030\004 \001" +
-      "(\005\032\304\001\n\024UserMonsterConstants\022\027\n\017maxNumTea" +
-      "mSlots\030\001 \001(\005\022!\n\031initialMaxNumMonsterLimi" +
-      "t\030\002 \001(\005\022\'\n\037monsterInventoryIncrementAmou",
-      "nt\030\003 \001(\005\022\027\n\017gemPricePerSlot\030\004 \001(\005\022.\n&num" +
-      "FriendsToRecruitToIncreaseInventory\030\005 \001(" +
-      "\005\032S\n\020MonsterConstants\022\032\n\022cashPerHealthPo" +
-      "int\030\001 \001(\002\022#\n\033secondsToHealPerHealthPoint" +
-      "\030\002 \001(\002\"A\n\014UpdateStatus\022\r\n\tNO_UPDATE\020\001\022\020\n" +
-      "\014MINOR_UPDATE\020\002\022\020\n\014MAJOR_UPDATE\020\003\"3\n\rSta" +
-      "rtupStatus\022\016\n\nUSER_IN_DB\020\001\022\022\n\016USER_NOT_I" +
-      "N_DB\020\002B2\n\035com.lvl6.mobsters.eventprotosB" +
-      "\021EventStartupProto"
+      "n.proto\032\023InAppPurchase.proto\032\020QuestStuff" +
+      ".proto\032\020StaticData.proto\032\017Structure.prot" +
+      "o\032\nTask.proto\032\nUser.proto\032\022MonsterStuff." +
+      "proto\"\215\001\n\023StartupRequestProto\022\014\n\004udid\030\001 " +
+      "\001(\t\022\022\n\nversionNum\030\002 \001(\002\022\021\n\tapsalarId\030\003 \001" +
+      "(\t\022\022\n\nmacAddress\030\004 \001(\t\022\024\n\014advertiserId\030\005" +
+      " \001(\t\022\027\n\017isForceTutorial\030\006 \001(\010\"\212\034\n\024Startu" +
+      "pResponseProto\022\030\n\020serverTimeMillis\030\001 \001(\003",
+      "\022$\n\006sender\030\002 \001(\0132\024.proto.FullUserProto\022@" +
+      "\n\rstartupStatus\030\003 \001(\0162).proto.StartupRes" +
+      "ponseProto.StartupStatus\022>\n\014updateStatus" +
+      "\030\004 \001(\0162(.proto.StartupResponseProto.Upda" +
+      "teStatus\022F\n\020startupConstants\030\005 \001(\0132,.pro" +
+      "to.StartupResponseProto.StartupConstants" +
+      "\022-\n\nuserQuests\030\006 \003(\0132\031.proto.FullUserQue" +
+      "stProto\022\032\n\022redeemedQuestUuids\030\033 \003(\t\022.\n\014u" +
+      "serClanInfo\030\007 \003(\0132\030.proto.FullUserClanPr" +
+      "oto\022\032\n\022completedTaskUuids\030\010 \003(\t\022\023\n\013appSt",
+      "oreURL\030\t \001(\t\022\025\n\rreviewPageURL\030\n \001(\t\022%\n\035r" +
+      "eviewPageConfirmationMessage\030\013 \001(\t\022$\n\034pl" +
+      "ayerHasBoughtInAppPurchase\030\014 \001(\010\022R\n\023atta" +
+      "ckNotifications\030\r \003(\01325.proto.StartupRes" +
+      "ponseProto.AttackedNotificationProto\022T\n\025" +
+      "referralNotifications\030\016 \003(\01325.proto.Star" +
+      "tupResponseProto.ReferralNotificationPro" +
+      "to\022\030\n\020noticesToPlayers\030\017 \003(\t\0221\n\013globalCh" +
+      "ats\030\020 \003(\0132\034.proto.GroupChatMessageProto\022" +
+      "/\n\tclanChats\030\021 \003(\0132\034.proto.GroupChatMess",
+      "ageProto\022)\n\004pcpp\030\022 \003(\0132\033.proto.PrivateCh" +
+      "atPostProto\0222\n\rusersMonsters\030\023 \003(\0132\033.pro" +
+      "to.FullUserMonsterProto\0227\n\017monstersHeali" +
+      "ng\030\024 \003(\0132\036.proto.UserMonsterHealingProto" +
+      "\0221\n\014enhancements\030\025 \001(\0132\033.proto.UserEnhan" +
+      "cementProto\022=\n\024rareBoosterPurchases\030\026 \003(" +
+      "\0132\037.proto.RareBoosterPurchaseProto\022\021\n\tka" +
+      "bamNaid\030\027 \001(\t\022E\n\026usersUsedForExtraSlots\030" +
+      "\030 \003(\0132%.proto.MinimumUserProtoWithFacebo" +
+      "okId\022B\n\023invitesToMeForSlots\030\031 \003(\0132%.prot",
+      "o.UserFacebookInviteForSlotProto\0224\n\024stat" +
+      "icDataStuffProto\030\032 \001(\0132\026.proto.StaticDat" +
+      "aProto\022\"\n\032taskUuidForCurrentCityBoss\030\034 \003" +
+      "(\t\032w\n\031AttackedNotificationProto\022)\n\010attac" +
+      "ker\030\001 \001(\0132\027.proto.MinimumUserProto\022\032\n\022ba" +
+      "ttleCompleteTime\030\002 \001(\003\022\023\n\013coinsStolen\030\003 " +
+      "\001(\005\032y\n\031ReferralNotificationProto\022)\n\010refe" +
+      "rred\030\001 \001(\0132\027.proto.MinimumUserProto\022\023\n\013r" +
+      "ecruitTime\030\002 \001(\003\022\034\n\024coinsGivenToReferrer" +
+      "\030\003 \001(\005\032\301\016\n\020StartupConstants\022?\n\025inAppPurc",
+      "hasePackages\030\001 \003(\0132 .proto.InAppPurchase" +
+      "PackageProto\022\027\n\017maxLevelForUser\030\002 \001(\005\022\034\n" +
+      "\024maxNumOfSingleStruct\030\003 \001(\005\022e\n\025animatedS" +
+      "priteOffsets\030\004 \003(\0132F.proto.StartupRespon" +
+      "seProto.StartupConstants.AnimatedSpriteO" +
+      "ffsetProto\022\025\n\rminNameLength\030\005 \001(\005\022\025\n\rmax" +
+      "NameLength\030\006 \001(\005\022\035\n\025maxLengthOfChatStrin" +
+      "g\030\007 \001(\005\022Q\n\rclanConstants\030\010 \001(\0132:.proto.S" +
+      "tartupResponseProto.StartupConstants.Cla" +
+      "nConstants\022g\n\030downloadableNibConstants\030\t",
+      " \001(\0132E.proto.StartupResponseProto.Startu" +
+      "pConstants.DownloadableNibConstants\022\'\n\037n" +
+      "umHoursBeforeReshowingGoldSale\030\n \001(\005\022\036\n\026" +
+      "levelToShowRateUsPopup\030\013 \001(\005\022\\\n\022touramen" +
+      "tConstants\030\014 \001(\0132@.proto.StartupResponse" +
+      "Proto.StartupConstants.TournamentConstan" +
+      "ts\022\037\n\027fbConnectRewardDiamonds\030\r \001(\005\022\023\n\013f" +
+      "aqFileName\030\016 \001(\t\0223\n\022adminChatUserProto\030\017" +
+      " \001(\0132\027.proto.MinimumUserProto\022\037\n\027numBegi" +
+      "nnerSalesAllowed\030\020 \001(\005\022_\n\024userMonsterCon",
+      "stants\030\021 \001(\0132A.proto.StartupResponseProt" +
+      "o.StartupConstants.UserMonsterConstants\022" +
+      "W\n\020monsterConstants\030\022 \001(\0132=.proto.Startu" +
+      "pResponseProto.StartupConstants.MonsterC" +
+      "onstants\022\025\n\rminutesPerGem\030\023 \001(\002\022\031\n\021pvpRe" +
+      "quiredMinLvl\030\024 \001(\005\032V\n\031AnimatedSpriteOffs" +
+      "etProto\022\021\n\timageName\030\001 \001(\t\022&\n\006offSet\030\002 \001" +
+      "(\0132\026.proto.CoordinateProto\032\232\001\n\rClanConst" +
+      "ants\022\035\n\025coinPriceToCreateClan\030\001 \001(\005\022 \n\030m" +
+      "axCharLengthForClanName\030\002 \001(\005\022\'\n\037maxChar",
+      "LengthForClanDescription\030\003 \001(\005\022\037\n\027maxCha" +
+      "rLengthForClanTag\030\004 \001(\005\032c\n\030DownloadableN" +
+      "ibConstants\022\022\n\nmapNibName\030\001 \001(\t\022\030\n\020expan" +
+      "sionNibName\030\002 \001(\t\022\031\n\021goldShoppeNibName\030\003" +
+      " \001(\t\032y\n\023TournamentConstants\022\022\n\nwinsWeigh" +
+      "t\030\001 \001(\005\022\024\n\014lossesWeight\030\002 \001(\005\022\023\n\013fleesWe" +
+      "ight\030\003 \001(\005\022#\n\033numHoursToShowAfterEventEn" +
+      "d\030\004 \001(\005\032\304\001\n\024UserMonsterConstants\022\027\n\017maxN" +
+      "umTeamSlots\030\001 \001(\005\022!\n\031initialMaxNumMonste" +
+      "rLimit\030\002 \001(\005\022\'\n\037monsterInventoryIncremen",
+      "tAmount\030\003 \001(\005\022\027\n\017gemPricePerSlot\030\004 \001(\005\022." +
+      "\n&numFriendsToRecruitToIncreaseInventory" +
+      "\030\005 \001(\005\032\211\001\n\020MonsterConstants\022\032\n\022cashPerHe" +
+      "althPoint\030\001 \001(\002\022#\n\033secondsToHealPerHealt" +
+      "hPoint\030\002 \001(\002\022\031\n\021elementalStrength\030\003 \001(\002\022" +
+      "\031\n\021elementalWeakness\030\004 \001(\002\"A\n\014UpdateStat" +
+      "us\022\r\n\tNO_UPDATE\020\001\022\020\n\014MINOR_UPDATE\020\002\022\020\n\014M" +
+      "AJOR_UPDATE\020\003\"3\n\rStartupStatus\022\016\n\nUSER_I" +
+      "N_DB\020\001\022\022\n\016USER_NOT_IN_DB\020\002B2\n\035com.lvl6.m" +
+      "obsters.eventprotosB\021EventStartupProto"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -12911,7 +13026,7 @@ public final class EventStartupProto {
           internal_static_proto_StartupResponseProto_StartupConstants_MonsterConstants_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_proto_StartupResponseProto_StartupConstants_MonsterConstants_descriptor,
-              new java.lang.String[] { "CashPerHealthPoint", "SecondsToHealPerHealthPoint", },
+              new java.lang.String[] { "CashPerHealthPoint", "SecondsToHealPerHealthPoint", "ElementalStrength", "ElementalWeakness", },
               com.lvl6.mobsters.eventprotos.EventStartupProto.StartupResponseProto.StartupConstants.MonsterConstants.class,
               com.lvl6.mobsters.eventprotos.EventStartupProto.StartupResponseProto.StartupConstants.MonsterConstants.Builder.class);
           return null;
@@ -12925,7 +13040,7 @@ public final class EventStartupProto {
           com.lvl6.mobsters.noneventprotos.CityProto.getDescriptor(),
           com.lvl6.mobsters.noneventprotos.ClanProto.getDescriptor(),
           com.lvl6.mobsters.noneventprotos.InAppPurchaseProto.getDescriptor(),
-          com.lvl6.mobsters.noneventprotos.QuestProto.getDescriptor(),
+          com.lvl6.mobsters.noneventprotos.QuestStuffProto.getDescriptor(),
           com.lvl6.mobsters.noneventprotos.StaticDataStuffProto.getDescriptor(),
           com.lvl6.mobsters.noneventprotos.StructureProto.getDescriptor(),
           com.lvl6.mobsters.noneventprotos.TaskProto.getDescriptor(),

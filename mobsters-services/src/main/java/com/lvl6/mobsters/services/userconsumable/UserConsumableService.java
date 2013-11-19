@@ -5,29 +5,29 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
-import com.lvl6.mobsters.entitymanager.UserConsumableEntityManager;
+import com.lvl6.mobsters.entitymanager.nonstaticdata.QuestForUserEntityManager;
 import com.lvl6.mobsters.noneventprotos.UserConsumable.UserConsumablesProto;
 import com.lvl6.mobsters.po.Consumable;
-import com.lvl6.mobsters.po.UserConsumable;
+import com.lvl6.mobsters.po.nonstaticdata.QuestForUser;
 
 public interface UserConsumableService {
 		
-	public abstract Map<UserConsumable, Integer> getConsumablesBeingMade(UUID userId);
+	public abstract Map<QuestForUser, Integer> getConsumablesBeingMade(UUID userId);
 	
-	public abstract Map<UserConsumable, Integer> convertListToMap(List<UserConsumablesProto> ucpList);
+	public abstract Map<QuestForUser, Integer> convertListToMap(List<UserConsumablesProto> ucpList);
 	
-	public abstract UserConsumable getUserConsumableCorrespondingToUserConsumableProto(String userConsumableString);
+	public abstract QuestForUser getUserConsumableCorrespondingToUserConsumableProto(String userConsumableString);
 	
 	public abstract Consumable getConsumableCorrespondingToUserConsumable(String consumableName);
 		
 	public abstract void deleteUserConsumables(Collection<UUID> ids);
 	
-	public abstract void saveUserConsumables(Collection<UserConsumable> newStuff);
+	public abstract void saveUserConsumables(Collection<QuestForUser> newStuff);
 		
-	public abstract UserConsumableEntityManager getUserEquipmentRepairEntityManager();
+	public abstract QuestForUserEntityManager getUserEquipmentRepairEntityManager();
 	
-	public abstract void setUserEquipmentRepairEntityManager(UserConsumableEntityManager userConsumableEntityManager);
+	public abstract void setUserEquipmentRepairEntityManager(QuestForUserEntityManager questForUserEntityManager);
 	
-	public abstract void deleteFromQueue(Map<UserConsumable, Integer> ucqDeleteMap, Map<UserConsumable, Integer> currentQueue);
+	public abstract void deleteFromQueue(Map<QuestForUser, Integer> ucqDeleteMap, Map<QuestForUser, Integer> currentQueue);
 
 }

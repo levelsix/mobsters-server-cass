@@ -3628,13 +3628,13 @@ public final class EventCityProto {
     String getCityUuid();
     
     // repeated .proto.FullUserQuestProto inProgressUserQuestDataInCity = 5;
-    java.util.List<com.lvl6.mobsters.noneventprotos.QuestProto.FullUserQuestProto> 
+    java.util.List<com.lvl6.mobsters.noneventprotos.QuestStuffProto.FullUserQuestProto> 
         getInProgressUserQuestDataInCityList();
-    com.lvl6.mobsters.noneventprotos.QuestProto.FullUserQuestProto getInProgressUserQuestDataInCity(int index);
+    com.lvl6.mobsters.noneventprotos.QuestStuffProto.FullUserQuestProto getInProgressUserQuestDataInCity(int index);
     int getInProgressUserQuestDataInCityCount();
-    java.util.List<? extends com.lvl6.mobsters.noneventprotos.QuestProto.FullUserQuestProtoOrBuilder> 
+    java.util.List<? extends com.lvl6.mobsters.noneventprotos.QuestStuffProto.FullUserQuestProtoOrBuilder> 
         getInProgressUserQuestDataInCityOrBuilderList();
-    com.lvl6.mobsters.noneventprotos.QuestProto.FullUserQuestProtoOrBuilder getInProgressUserQuestDataInCityOrBuilder(
+    com.lvl6.mobsters.noneventprotos.QuestStuffProto.FullUserQuestProtoOrBuilder getInProgressUserQuestDataInCityOrBuilder(
         int index);
   }
   public static final class LoadCityResponseProto extends
@@ -3816,21 +3816,21 @@ public final class EventCityProto {
     
     // repeated .proto.FullUserQuestProto inProgressUserQuestDataInCity = 5;
     public static final int INPROGRESSUSERQUESTDATAINCITY_FIELD_NUMBER = 5;
-    private java.util.List<com.lvl6.mobsters.noneventprotos.QuestProto.FullUserQuestProto> inProgressUserQuestDataInCity_;
-    public java.util.List<com.lvl6.mobsters.noneventprotos.QuestProto.FullUserQuestProto> getInProgressUserQuestDataInCityList() {
+    private java.util.List<com.lvl6.mobsters.noneventprotos.QuestStuffProto.FullUserQuestProto> inProgressUserQuestDataInCity_;
+    public java.util.List<com.lvl6.mobsters.noneventprotos.QuestStuffProto.FullUserQuestProto> getInProgressUserQuestDataInCityList() {
       return inProgressUserQuestDataInCity_;
     }
-    public java.util.List<? extends com.lvl6.mobsters.noneventprotos.QuestProto.FullUserQuestProtoOrBuilder> 
+    public java.util.List<? extends com.lvl6.mobsters.noneventprotos.QuestStuffProto.FullUserQuestProtoOrBuilder> 
         getInProgressUserQuestDataInCityOrBuilderList() {
       return inProgressUserQuestDataInCity_;
     }
     public int getInProgressUserQuestDataInCityCount() {
       return inProgressUserQuestDataInCity_.size();
     }
-    public com.lvl6.mobsters.noneventprotos.QuestProto.FullUserQuestProto getInProgressUserQuestDataInCity(int index) {
+    public com.lvl6.mobsters.noneventprotos.QuestStuffProto.FullUserQuestProto getInProgressUserQuestDataInCity(int index) {
       return inProgressUserQuestDataInCity_.get(index);
     }
-    public com.lvl6.mobsters.noneventprotos.QuestProto.FullUserQuestProtoOrBuilder getInProgressUserQuestDataInCityOrBuilder(
+    public com.lvl6.mobsters.noneventprotos.QuestStuffProto.FullUserQuestProtoOrBuilder getInProgressUserQuestDataInCityOrBuilder(
         int index) {
       return inProgressUserQuestDataInCity_.get(index);
     }
@@ -4259,7 +4259,7 @@ public final class EventCityProto {
               break;
             }
             case 42: {
-              com.lvl6.mobsters.noneventprotos.QuestProto.FullUserQuestProto.Builder subBuilder = com.lvl6.mobsters.noneventprotos.QuestProto.FullUserQuestProto.newBuilder();
+              com.lvl6.mobsters.noneventprotos.QuestStuffProto.FullUserQuestProto.Builder subBuilder = com.lvl6.mobsters.noneventprotos.QuestStuffProto.FullUserQuestProto.newBuilder();
               input.readMessage(subBuilder, extensionRegistry);
               addInProgressUserQuestDataInCity(subBuilder.buildPartial());
               break;
@@ -4607,19 +4607,19 @@ public final class EventCityProto {
       }
       
       // repeated .proto.FullUserQuestProto inProgressUserQuestDataInCity = 5;
-      private java.util.List<com.lvl6.mobsters.noneventprotos.QuestProto.FullUserQuestProto> inProgressUserQuestDataInCity_ =
+      private java.util.List<com.lvl6.mobsters.noneventprotos.QuestStuffProto.FullUserQuestProto> inProgressUserQuestDataInCity_ =
         java.util.Collections.emptyList();
       private void ensureInProgressUserQuestDataInCityIsMutable() {
         if (!((bitField0_ & 0x00000010) == 0x00000010)) {
-          inProgressUserQuestDataInCity_ = new java.util.ArrayList<com.lvl6.mobsters.noneventprotos.QuestProto.FullUserQuestProto>(inProgressUserQuestDataInCity_);
+          inProgressUserQuestDataInCity_ = new java.util.ArrayList<com.lvl6.mobsters.noneventprotos.QuestStuffProto.FullUserQuestProto>(inProgressUserQuestDataInCity_);
           bitField0_ |= 0x00000010;
          }
       }
       
       private com.google.protobuf.RepeatedFieldBuilder<
-          com.lvl6.mobsters.noneventprotos.QuestProto.FullUserQuestProto, com.lvl6.mobsters.noneventprotos.QuestProto.FullUserQuestProto.Builder, com.lvl6.mobsters.noneventprotos.QuestProto.FullUserQuestProtoOrBuilder> inProgressUserQuestDataInCityBuilder_;
+          com.lvl6.mobsters.noneventprotos.QuestStuffProto.FullUserQuestProto, com.lvl6.mobsters.noneventprotos.QuestStuffProto.FullUserQuestProto.Builder, com.lvl6.mobsters.noneventprotos.QuestStuffProto.FullUserQuestProtoOrBuilder> inProgressUserQuestDataInCityBuilder_;
       
-      public java.util.List<com.lvl6.mobsters.noneventprotos.QuestProto.FullUserQuestProto> getInProgressUserQuestDataInCityList() {
+      public java.util.List<com.lvl6.mobsters.noneventprotos.QuestStuffProto.FullUserQuestProto> getInProgressUserQuestDataInCityList() {
         if (inProgressUserQuestDataInCityBuilder_ == null) {
           return java.util.Collections.unmodifiableList(inProgressUserQuestDataInCity_);
         } else {
@@ -4633,7 +4633,7 @@ public final class EventCityProto {
           return inProgressUserQuestDataInCityBuilder_.getCount();
         }
       }
-      public com.lvl6.mobsters.noneventprotos.QuestProto.FullUserQuestProto getInProgressUserQuestDataInCity(int index) {
+      public com.lvl6.mobsters.noneventprotos.QuestStuffProto.FullUserQuestProto getInProgressUserQuestDataInCity(int index) {
         if (inProgressUserQuestDataInCityBuilder_ == null) {
           return inProgressUserQuestDataInCity_.get(index);
         } else {
@@ -4641,7 +4641,7 @@ public final class EventCityProto {
         }
       }
       public Builder setInProgressUserQuestDataInCity(
-          int index, com.lvl6.mobsters.noneventprotos.QuestProto.FullUserQuestProto value) {
+          int index, com.lvl6.mobsters.noneventprotos.QuestStuffProto.FullUserQuestProto value) {
         if (inProgressUserQuestDataInCityBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -4655,7 +4655,7 @@ public final class EventCityProto {
         return this;
       }
       public Builder setInProgressUserQuestDataInCity(
-          int index, com.lvl6.mobsters.noneventprotos.QuestProto.FullUserQuestProto.Builder builderForValue) {
+          int index, com.lvl6.mobsters.noneventprotos.QuestStuffProto.FullUserQuestProto.Builder builderForValue) {
         if (inProgressUserQuestDataInCityBuilder_ == null) {
           ensureInProgressUserQuestDataInCityIsMutable();
           inProgressUserQuestDataInCity_.set(index, builderForValue.build());
@@ -4665,7 +4665,7 @@ public final class EventCityProto {
         }
         return this;
       }
-      public Builder addInProgressUserQuestDataInCity(com.lvl6.mobsters.noneventprotos.QuestProto.FullUserQuestProto value) {
+      public Builder addInProgressUserQuestDataInCity(com.lvl6.mobsters.noneventprotos.QuestStuffProto.FullUserQuestProto value) {
         if (inProgressUserQuestDataInCityBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -4679,7 +4679,7 @@ public final class EventCityProto {
         return this;
       }
       public Builder addInProgressUserQuestDataInCity(
-          int index, com.lvl6.mobsters.noneventprotos.QuestProto.FullUserQuestProto value) {
+          int index, com.lvl6.mobsters.noneventprotos.QuestStuffProto.FullUserQuestProto value) {
         if (inProgressUserQuestDataInCityBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -4693,7 +4693,7 @@ public final class EventCityProto {
         return this;
       }
       public Builder addInProgressUserQuestDataInCity(
-          com.lvl6.mobsters.noneventprotos.QuestProto.FullUserQuestProto.Builder builderForValue) {
+          com.lvl6.mobsters.noneventprotos.QuestStuffProto.FullUserQuestProto.Builder builderForValue) {
         if (inProgressUserQuestDataInCityBuilder_ == null) {
           ensureInProgressUserQuestDataInCityIsMutable();
           inProgressUserQuestDataInCity_.add(builderForValue.build());
@@ -4704,7 +4704,7 @@ public final class EventCityProto {
         return this;
       }
       public Builder addInProgressUserQuestDataInCity(
-          int index, com.lvl6.mobsters.noneventprotos.QuestProto.FullUserQuestProto.Builder builderForValue) {
+          int index, com.lvl6.mobsters.noneventprotos.QuestStuffProto.FullUserQuestProto.Builder builderForValue) {
         if (inProgressUserQuestDataInCityBuilder_ == null) {
           ensureInProgressUserQuestDataInCityIsMutable();
           inProgressUserQuestDataInCity_.add(index, builderForValue.build());
@@ -4715,7 +4715,7 @@ public final class EventCityProto {
         return this;
       }
       public Builder addAllInProgressUserQuestDataInCity(
-          java.lang.Iterable<? extends com.lvl6.mobsters.noneventprotos.QuestProto.FullUserQuestProto> values) {
+          java.lang.Iterable<? extends com.lvl6.mobsters.noneventprotos.QuestStuffProto.FullUserQuestProto> values) {
         if (inProgressUserQuestDataInCityBuilder_ == null) {
           ensureInProgressUserQuestDataInCityIsMutable();
           super.addAll(values, inProgressUserQuestDataInCity_);
@@ -4745,18 +4745,18 @@ public final class EventCityProto {
         }
         return this;
       }
-      public com.lvl6.mobsters.noneventprotos.QuestProto.FullUserQuestProto.Builder getInProgressUserQuestDataInCityBuilder(
+      public com.lvl6.mobsters.noneventprotos.QuestStuffProto.FullUserQuestProto.Builder getInProgressUserQuestDataInCityBuilder(
           int index) {
         return getInProgressUserQuestDataInCityFieldBuilder().getBuilder(index);
       }
-      public com.lvl6.mobsters.noneventprotos.QuestProto.FullUserQuestProtoOrBuilder getInProgressUserQuestDataInCityOrBuilder(
+      public com.lvl6.mobsters.noneventprotos.QuestStuffProto.FullUserQuestProtoOrBuilder getInProgressUserQuestDataInCityOrBuilder(
           int index) {
         if (inProgressUserQuestDataInCityBuilder_ == null) {
           return inProgressUserQuestDataInCity_.get(index);  } else {
           return inProgressUserQuestDataInCityBuilder_.getMessageOrBuilder(index);
         }
       }
-      public java.util.List<? extends com.lvl6.mobsters.noneventprotos.QuestProto.FullUserQuestProtoOrBuilder> 
+      public java.util.List<? extends com.lvl6.mobsters.noneventprotos.QuestStuffProto.FullUserQuestProtoOrBuilder> 
            getInProgressUserQuestDataInCityOrBuilderList() {
         if (inProgressUserQuestDataInCityBuilder_ != null) {
           return inProgressUserQuestDataInCityBuilder_.getMessageOrBuilderList();
@@ -4764,25 +4764,25 @@ public final class EventCityProto {
           return java.util.Collections.unmodifiableList(inProgressUserQuestDataInCity_);
         }
       }
-      public com.lvl6.mobsters.noneventprotos.QuestProto.FullUserQuestProto.Builder addInProgressUserQuestDataInCityBuilder() {
+      public com.lvl6.mobsters.noneventprotos.QuestStuffProto.FullUserQuestProto.Builder addInProgressUserQuestDataInCityBuilder() {
         return getInProgressUserQuestDataInCityFieldBuilder().addBuilder(
-            com.lvl6.mobsters.noneventprotos.QuestProto.FullUserQuestProto.getDefaultInstance());
+            com.lvl6.mobsters.noneventprotos.QuestStuffProto.FullUserQuestProto.getDefaultInstance());
       }
-      public com.lvl6.mobsters.noneventprotos.QuestProto.FullUserQuestProto.Builder addInProgressUserQuestDataInCityBuilder(
+      public com.lvl6.mobsters.noneventprotos.QuestStuffProto.FullUserQuestProto.Builder addInProgressUserQuestDataInCityBuilder(
           int index) {
         return getInProgressUserQuestDataInCityFieldBuilder().addBuilder(
-            index, com.lvl6.mobsters.noneventprotos.QuestProto.FullUserQuestProto.getDefaultInstance());
+            index, com.lvl6.mobsters.noneventprotos.QuestStuffProto.FullUserQuestProto.getDefaultInstance());
       }
-      public java.util.List<com.lvl6.mobsters.noneventprotos.QuestProto.FullUserQuestProto.Builder> 
+      public java.util.List<com.lvl6.mobsters.noneventprotos.QuestStuffProto.FullUserQuestProto.Builder> 
            getInProgressUserQuestDataInCityBuilderList() {
         return getInProgressUserQuestDataInCityFieldBuilder().getBuilderList();
       }
       private com.google.protobuf.RepeatedFieldBuilder<
-          com.lvl6.mobsters.noneventprotos.QuestProto.FullUserQuestProto, com.lvl6.mobsters.noneventprotos.QuestProto.FullUserQuestProto.Builder, com.lvl6.mobsters.noneventprotos.QuestProto.FullUserQuestProtoOrBuilder> 
+          com.lvl6.mobsters.noneventprotos.QuestStuffProto.FullUserQuestProto, com.lvl6.mobsters.noneventprotos.QuestStuffProto.FullUserQuestProto.Builder, com.lvl6.mobsters.noneventprotos.QuestStuffProto.FullUserQuestProtoOrBuilder> 
           getInProgressUserQuestDataInCityFieldBuilder() {
         if (inProgressUserQuestDataInCityBuilder_ == null) {
           inProgressUserQuestDataInCityBuilder_ = new com.google.protobuf.RepeatedFieldBuilder<
-              com.lvl6.mobsters.noneventprotos.QuestProto.FullUserQuestProto, com.lvl6.mobsters.noneventprotos.QuestProto.FullUserQuestProto.Builder, com.lvl6.mobsters.noneventprotos.QuestProto.FullUserQuestProtoOrBuilder>(
+              com.lvl6.mobsters.noneventprotos.QuestStuffProto.FullUserQuestProto, com.lvl6.mobsters.noneventprotos.QuestStuffProto.FullUserQuestProto.Builder, com.lvl6.mobsters.noneventprotos.QuestStuffProto.FullUserQuestProtoOrBuilder>(
                   inProgressUserQuestDataInCity_,
                   ((bitField0_ & 0x00000010) == 0x00000010),
                   getParentForChildren(),
@@ -4842,45 +4842,45 @@ public final class EventCityProto {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\017EventCity.proto\022\005proto\032\nCity.proto\032\013Qu" +
-      "est.proto\032\017Structure.proto\032\nUser.proto\"\\" +
-      "\n\032LoadPlayerCityRequestProto\022\'\n\006sender\030\001" +
-      " \001(\0132\027.proto.MinimumUserProto\022\025\n\rcityOwn" +
-      "erUuid\030\002 \001(\t\"\210\003\n\033LoadPlayerCityResponseP" +
-      "roto\022\'\n\006sender\030\001 \001(\0132\027.proto.MinimumUser" +
-      "Proto\022*\n\tcityOwner\030\002 \001(\0132\027.proto.Minimum" +
-      "UserProto\022G\n\006status\030\003 \001(\01627.proto.LoadPl" +
-      "ayerCityResponseProto.LoadPlayerCityStat" +
-      "us\0227\n\020ownerNormStructs\030\004 \003(\0132\035.proto.Ful",
-      "lUserStructureProto\022I\n\036userCityExpansion" +
-      "DataProtoList\030\005 \003(\0132!.proto.UserCityExpa" +
-      "nsionDataProto\"G\n\024LoadPlayerCityStatus\022\013" +
-      "\n\007SUCCESS\020\001\022\022\n\016NO_SUCH_PLAYER\020\002\022\016\n\nOTHER" +
-      "_FAIL\020\003\"\212\001\n!PurchaseCityExpansionRequest" +
-      "Proto\022\'\n\006sender\030\001 \001(\0132\027.proto.MinimumUse" +
-      "rProto\022\021\n\txPosition\030\002 \001(\021\022\021\n\tyPosition\030\003" +
-      " \001(\021\022\026\n\016timeOfPurchase\030\004 \001(\003\"\347\002\n\"Purchas" +
-      "eCityExpansionResponseProto\022\'\n\006sender\030\001 " +
-      "\001(\0132\027.proto.MinimumUserProto\022U\n\006status\030\002",
-      " \001(\0162E.proto.PurchaseCityExpansionRespon" +
-      "seProto.PurchaseCityExpansionStatus\0220\n\005u" +
-      "cedp\030\003 \001(\0132!.proto.UserCityExpansionData" +
-      "Proto\"\216\001\n\033PurchaseCityExpansionStatus\022\013\n" +
-      "\007SUCCESS\020\001\022\024\n\020NOT_ENOUGH_COINS\020\002\022\025\n\021ALRE" +
-      "ADY_EXPANDING\020\003\022\016\n\nOTHER_FAIL\020\004\022%\n!CLIEN" +
-      "T_TOO_APART_FROM_SERVER_TIME\020\005\"Q\n\024LoadCi" +
-      "tyRequestProto\022\'\n\006sender\030\001 \001(\0132\027.proto.M" +
-      "inimumUserProto\022\020\n\010cityUuid\030\002 \001(\t\"\313\002\n\025Lo" +
-      "adCityResponseProto\022\'\n\006sender\030\001 \001(\0132\027.pr",
-      "oto.MinimumUserProto\022;\n\006status\030\002 \001(\0162+.p" +
-      "roto.LoadCityResponseProto.LoadCityStatu" +
-      "s\022-\n\014cityElements\030\003 \003(\0132\027.proto.CityElem" +
-      "entProto\022\020\n\010cityUuid\030\004 \001(\t\022@\n\035inProgress" +
-      "UserQuestDataInCity\030\005 \003(\0132\031.proto.FullUs" +
-      "erQuestProto\"I\n\016LoadCityStatus\022\013\n\007SUCCES" +
-      "S\020\001\022\032\n\026NOT_ACCESSIBLE_TO_USER\020\002\022\016\n\nOTHER" +
-      "_FAIL\020\003B/\n\035com.lvl6.mobsters.eventprotos" +
-      "B\016EventCityProto"
+      "\n\017EventCity.proto\022\005proto\032\nCity.proto\032\020Qu" +
+      "estStuff.proto\032\017Structure.proto\032\nUser.pr" +
+      "oto\"\\\n\032LoadPlayerCityRequestProto\022\'\n\006sen" +
+      "der\030\001 \001(\0132\027.proto.MinimumUserProto\022\025\n\rci" +
+      "tyOwnerUuid\030\002 \001(\t\"\210\003\n\033LoadPlayerCityResp" +
+      "onseProto\022\'\n\006sender\030\001 \001(\0132\027.proto.Minimu" +
+      "mUserProto\022*\n\tcityOwner\030\002 \001(\0132\027.proto.Mi" +
+      "nimumUserProto\022G\n\006status\030\003 \001(\01627.proto.L" +
+      "oadPlayerCityResponseProto.LoadPlayerCit" +
+      "yStatus\0227\n\020ownerNormStructs\030\004 \003(\0132\035.prot",
+      "o.FullUserStructureProto\022I\n\036userCityExpa" +
+      "nsionDataProtoList\030\005 \003(\0132!.proto.UserCit" +
+      "yExpansionDataProto\"G\n\024LoadPlayerCitySta" +
+      "tus\022\013\n\007SUCCESS\020\001\022\022\n\016NO_SUCH_PLAYER\020\002\022\016\n\n" +
+      "OTHER_FAIL\020\003\"\212\001\n!PurchaseCityExpansionRe" +
+      "questProto\022\'\n\006sender\030\001 \001(\0132\027.proto.Minim" +
+      "umUserProto\022\021\n\txPosition\030\002 \001(\021\022\021\n\tyPosit" +
+      "ion\030\003 \001(\021\022\026\n\016timeOfPurchase\030\004 \001(\003\"\347\002\n\"Pu" +
+      "rchaseCityExpansionResponseProto\022\'\n\006send" +
+      "er\030\001 \001(\0132\027.proto.MinimumUserProto\022U\n\006sta",
+      "tus\030\002 \001(\0162E.proto.PurchaseCityExpansionR" +
+      "esponseProto.PurchaseCityExpansionStatus" +
+      "\0220\n\005ucedp\030\003 \001(\0132!.proto.UserCityExpansio" +
+      "nDataProto\"\216\001\n\033PurchaseCityExpansionStat" +
+      "us\022\013\n\007SUCCESS\020\001\022\024\n\020NOT_ENOUGH_COINS\020\002\022\025\n" +
+      "\021ALREADY_EXPANDING\020\003\022\016\n\nOTHER_FAIL\020\004\022%\n!" +
+      "CLIENT_TOO_APART_FROM_SERVER_TIME\020\005\"Q\n\024L" +
+      "oadCityRequestProto\022\'\n\006sender\030\001 \001(\0132\027.pr" +
+      "oto.MinimumUserProto\022\020\n\010cityUuid\030\002 \001(\t\"\313" +
+      "\002\n\025LoadCityResponseProto\022\'\n\006sender\030\001 \001(\013",
+      "2\027.proto.MinimumUserProto\022;\n\006status\030\002 \001(" +
+      "\0162+.proto.LoadCityResponseProto.LoadCity" +
+      "Status\022-\n\014cityElements\030\003 \003(\0132\027.proto.Cit" +
+      "yElementProto\022\020\n\010cityUuid\030\004 \001(\t\022@\n\035inPro" +
+      "gressUserQuestDataInCity\030\005 \003(\0132\031.proto.F" +
+      "ullUserQuestProto\"I\n\016LoadCityStatus\022\013\n\007S" +
+      "UCCESS\020\001\022\032\n\026NOT_ACCESSIBLE_TO_USER\020\002\022\016\n\n" +
+      "OTHER_FAIL\020\003B/\n\035com.lvl6.mobsters.eventp" +
+      "rotosB\016EventCityProto"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -4942,7 +4942,7 @@ public final class EventCityProto {
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
           com.lvl6.mobsters.noneventprotos.CityProto.getDescriptor(),
-          com.lvl6.mobsters.noneventprotos.QuestProto.getDescriptor(),
+          com.lvl6.mobsters.noneventprotos.QuestStuffProto.getDescriptor(),
           com.lvl6.mobsters.noneventprotos.StructureProto.getDescriptor(),
           com.lvl6.mobsters.noneventprotos.UserProto.getDescriptor(),
         }, assigner);

@@ -9,8 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 //import com.lvl6.mobsters.entitymanager.staticdata.UserSpellRetrieveUtils;
-import com.lvl6.mobsters.entitymanager.UserEntityManager;
 import com.lvl6.mobsters.entitymanager.UserSpellEntityManager;
+import com.lvl6.mobsters.entitymanager.nonstaticdata.UserEntityManager;
 import com.lvl6.mobsters.entitymanager.staticdata.SpellRetrieveUtils;
 import com.lvl6.mobsters.eventprotos.CollectUserSpellEventProto.CollectUserSpellRequestProto;
 import com.lvl6.mobsters.eventprotos.CollectUserSpellEventProto.CollectUserSpellResponseProto;
@@ -19,11 +19,11 @@ import com.lvl6.mobsters.eventprotos.CollectUserSpellEventProto.CollectUserSpell
 import com.lvl6.mobsters.events.RequestEvent;
 import com.lvl6.mobsters.events.request.CollectUserSpellRequestEvent;
 import com.lvl6.mobsters.events.response.CollectUserSpellResponseEvent;
-import com.lvl6.mobsters.noneventprotos.AocTwoEventProtocolProto.AocTwoEventProtocolRequest;
+import com.lvl6.mobsters.noneventprotos.MobstersEventProtocolProto.MobstersEventProtocolRequest;
 import com.lvl6.mobsters.noneventprotos.FullUser.MinimumUserProto;
 import com.lvl6.mobsters.po.Spell;
-import com.lvl6.mobsters.po.User;
 import com.lvl6.mobsters.po.UserSpell;
+import com.lvl6.mobsters.po.nonstaticdata.User;
 import com.lvl6.mobsters.services.user.UserService;
 import com.lvl6.mobsters.services.userspell.UserSpellService;
 import com.netflix.astyanax.connectionpool.exceptions.ConnectionException;
@@ -56,7 +56,7 @@ public class CollectUserSpellController extends EventController {
 
 	@Override
 	public int getEventType() {
-		return AocTwoEventProtocolRequest.C_TRAIN_OR_UPGRADE_SPELL_EVENT_VALUE;
+		return MobstersEventProtocolRequest.C_TRAIN_OR_UPGRADE_SPELL_EVENT_VALUE;
 	}
 
 	@Override

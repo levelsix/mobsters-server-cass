@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 
 import com.lvl6.mobsters.noneventprotos.ClassEnum.ClassType;
 import com.lvl6.mobsters.noneventprotos.FullUser.FullUserProto;
-import com.lvl6.mobsters.po.User;
+import com.lvl6.mobsters.po.nonstaticdata.User;
 
 @Component
 public class CreateNoneventProtoUtilsImpl implements CreateNoneventProtoUtils {

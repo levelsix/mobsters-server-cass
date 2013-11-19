@@ -16,7 +16,7 @@ import org.springframework.stereotype.Component;
 
 import com.lvl6.mobsters.controller.utils.TimeUtils;
 import com.lvl6.mobsters.entitymanager.UserConsumableQueueEntityManager;
-import com.lvl6.mobsters.entitymanager.UserEntityManager;
+import com.lvl6.mobsters.entitymanager.nonstaticdata.UserEntityManager;
 import com.lvl6.mobsters.eventprotos.PurchaseGoldOrTonicEventProto.PurchaseGoldOrTonicRequestProto;
 import com.lvl6.mobsters.eventprotos.PurchaseGoldOrTonicEventProto.PurchaseGoldOrTonicResponseProto;
 import com.lvl6.mobsters.eventprotos.PurchaseGoldOrTonicEventProto.PurchaseType;
@@ -25,13 +25,13 @@ import com.lvl6.mobsters.eventprotos.PurchaseGoldOrTonicEventProto.PurchaseGoldO
 import com.lvl6.mobsters.events.RequestEvent;
 import com.lvl6.mobsters.events.request.PurchaseGoldOrTonicRequestEvent;
 import com.lvl6.mobsters.events.response.PurchaseGoldOrTonicResponseEvent;
-import com.lvl6.mobsters.noneventprotos.AocTwoEventProtocolProto.AocTwoEventProtocolRequest;
+import com.lvl6.mobsters.noneventprotos.MobstersEventProtocolProto.MobstersEventProtocolRequest;
 import com.lvl6.mobsters.noneventprotos.FullUser.MinimumUserProto;
 import com.lvl6.mobsters.noneventprotos.FunctionalityTypeEnum.FunctionalityType;
 import com.lvl6.mobsters.noneventprotos.ResourceEnum.ResourceType;
 import com.lvl6.mobsters.po.Structure;
-import com.lvl6.mobsters.po.User;
 import com.lvl6.mobsters.po.UserStructure;
+import com.lvl6.mobsters.po.nonstaticdata.User;
 import com.lvl6.mobsters.services.user.UserService;
 import com.lvl6.mobsters.services.userconsumablequeue.UserConsumableQueueService;
 import com.lvl6.mobsters.services.userstructure.UserStructureService;
@@ -70,7 +70,7 @@ public class PurchaseGoldOrTonicController extends EventController {
 
 	@Override
 	public int getEventType() {
-		return AocTwoEventProtocolRequest.C_REPAIR_EQUIP_EVENT_VALUE;
+		return MobstersEventProtocolRequest.C_REPAIR_EQUIP_EVENT_VALUE;
 	}
 
 	@Override

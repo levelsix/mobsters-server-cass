@@ -4,7 +4,7 @@
 import "BoosterPackStuff.proto";
 import "City.proto";
 import "MonsterStuff.proto";
-import "Quest.proto";
+import "QuestStuff.proto";
 import "Structure.proto";
 import "Task.proto";
 import "User.proto";
@@ -25,9 +25,9 @@ message StaticDataProto {
 	repeated MonsterProto allMonsters = 6;
 	repeated StaticUserLevelInfoProto slip = 7;
 	
-	repeated FullQuestProto inProgressQuests = 8; //has not been completed
-    repeated FullQuestProto unredeemedQuests = 9; //is complete
-	repeated FullQuestProto availableQuests = 10; 
+	repeated QuestProto inProgressQuests = 8; //has not been completed
+    repeated QuestProto unredeemedQuests = 9; //is complete
+	repeated QuestProto availableQuests = 10; 
 	
 	//optional RetrieveStaticDataStatus status = 11; //defined near the end
 	repeated BoosterPackProto boosterPacks = 12;

@@ -19,7 +19,7 @@ import com.lvl6.mobsters.entitymanager.PreDungeonUserConsumableInfoEntityManager
 import com.lvl6.mobsters.entitymanager.PreDungeonUserEquipInfoEntityManager;
 import com.lvl6.mobsters.entitymanager.PreDungeonUserInfoEntityManager;
 import com.lvl6.mobsters.entitymanager.UserConsumableQueueEntityManager;
-import com.lvl6.mobsters.entitymanager.UserEntityManager;
+import com.lvl6.mobsters.entitymanager.nonstaticdata.UserEntityManager;
 import com.lvl6.mobsters.entitymanager.staticdata.CombatRoomRetrieveUtils;
 import com.lvl6.mobsters.eventprotos.StartDungeonEventProto.StartDungeonRequestProto;
 import com.lvl6.mobsters.eventprotos.StartDungeonEventProto.StartDungeonResponseProto;
@@ -28,7 +28,7 @@ import com.lvl6.mobsters.eventprotos.StartDungeonEventProto.StartDungeonResponse
 import com.lvl6.mobsters.events.RequestEvent;
 import com.lvl6.mobsters.events.request.StartDungeonRequestEvent;
 import com.lvl6.mobsters.events.response.StartDungeonResponseEvent;
-import com.lvl6.mobsters.noneventprotos.AocTwoEventProtocolProto.AocTwoEventProtocolRequest;
+import com.lvl6.mobsters.noneventprotos.MobstersEventProtocolProto.MobstersEventProtocolRequest;
 import com.lvl6.mobsters.noneventprotos.FullUser.MinimumUserProto;
 import com.lvl6.mobsters.noneventprotos.FunctionalityTypeEnum.FunctionalityType;
 import com.lvl6.mobsters.noneventprotos.UserConsumable.UserConsumablesProto;
@@ -38,10 +38,10 @@ import com.lvl6.mobsters.po.PreDungeonUserConsumableInfo;
 import com.lvl6.mobsters.po.PreDungeonUserEquipInfo;
 import com.lvl6.mobsters.po.PreDungeonUserInfo;
 import com.lvl6.mobsters.po.Structure;
-import com.lvl6.mobsters.po.User;
-import com.lvl6.mobsters.po.UserConsumable;
 import com.lvl6.mobsters.po.UserEquip;
 import com.lvl6.mobsters.po.UserStructure;
+import com.lvl6.mobsters.po.nonstaticdata.QuestForUser;
+import com.lvl6.mobsters.po.nonstaticdata.User;
 import com.lvl6.mobsters.services.user.UserService;
 import com.lvl6.mobsters.services.userconsumable.UserConsumableService;
 import com.lvl6.mobsters.services.userconsumablequeue.UserConsumableQueueService;
@@ -100,7 +100,7 @@ public class StartDungeonController extends EventController {
 
 	@Override
 	public int getEventType() {
-		return AocTwoEventProtocolRequest.C_REPAIR_EQUIP_EVENT_VALUE;
+		return MobstersEventProtocolRequest.C_REPAIR_EQUIP_EVENT_VALUE;
 	}
 
 	@Override
@@ -133,7 +133,7 @@ public class StartDungeonController extends EventController {
 			//get whatever we need from the database
 			User inDb = getUserEntityManager().get().get(userId);
 			
-			Map<UserConsumable, Integer> userConsumablesMap = getUserConsumableService().convertListToMap(ucpList);
+			Map<QuestForUser, Integer> userConsumablesMap = getUserConsumableService().convertListToMap(ucpList);
 			List<UserEquip> equippedList = getUserEquipService().getAllEquippedUserEquipsForUser(inDb.getId());
 			//validate request
 			boolean validRequest = isValidRequest(responseBuilder, sender, inDb, 
@@ -173,7 +173,7 @@ public class StartDungeonController extends EventController {
 
 	private boolean isValidRequest(Builder responseBuilder, MinimumUserProto sender,
 			User inDb, List<UserEquipmentProto> ueqList, List<UserEquip> equippedList,
-			Map<UserConsumable, Integer> userConsumablesMap, 
+			Map<QuestForUser, Integer> userConsumablesMap, 
 			String dungeonName, Date clientDate) throws Exception {
 	
 		if(inDb == null || dungeonName == null) {
@@ -228,7 +228,7 @@ public class StartDungeonController extends EventController {
 
 	private boolean writeChangesToDb(User inDb, 
 			List<UserEquipmentProto> uepList, List<UserEquip> equippedList, 
-			Map<UserConsumable, Integer> userConsumablesMap, UUID combatRoomId, Date clientDate) {
+			Map<QuestForUser, Integer> userConsumablesMap, UUID combatRoomId, Date clientDate) {
 		try {
 			//save all the info
 			PreDungeonUserInfo pdui = new PreDungeonUserInfo();
@@ -251,8 +251,8 @@ public class StartDungeonController extends EventController {
 				getPreDungeonUserEquipInfoEntityManager().get().put(pduei);
 			}
 			
-			for(Map.Entry<UserConsumable, Integer> entry : userConsumablesMap.entrySet()) {
-				UserConsumable uc = entry.getKey();
+			for(Map.Entry<QuestForUser, Integer> entry : userConsumablesMap.entrySet()) {
+				QuestForUser uc = entry.getKey();
 				Integer quantity = entry.getValue();
 				PreDungeonUserConsumableInfo pduci = new PreDungeonUserConsumableInfo();
 				pduci.setId(UUID.randomUUID());

@@ -6,7 +6,7 @@ import "Chat.proto";
 import "City.proto";
 import "Clan.proto";
 import "InAppPurchase.proto";
-import "Quest.proto";
+import "QuestStuff.proto";
 import "StaticData.proto";
 import "Structure.proto";
 import "Task.proto";
@@ -155,6 +155,9 @@ message StartupResponseProto {
 		message MonsterConstants {
 			optional float cashPerHealthPoint = 1;
 			optional float secondsToHealPerHealthPoint = 2;
+			
+			optional float elementalStrength = 3;
+			optional float elementalWeakness = 4;
 		}
 	}
 	

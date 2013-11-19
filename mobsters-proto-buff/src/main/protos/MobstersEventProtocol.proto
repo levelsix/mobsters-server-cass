@@ -23,7 +23,7 @@ import "EventTournament.proto";
 import "EventUser.proto";
 import "InAppPurchase.proto";
 import "MonsterStuff.proto";
-import "Quest.proto";
+import "QuestStuff.proto";
 import "StaticData.proto";
 import "Structure.proto";
 import "Task.proto";
@@ -99,7 +99,7 @@ enum MobstersEventProtocolRequest {
 	C_LOGOUT_EVENT = 100;
 }
 
-enum EventProtocolResponse {
+enum MobstersEventProtocolResponse {
 	S_STARTUP_EVENT = 1;
 	S_IN_APP_PURCHASE_EVENT = 2;
 	S_PURCHASE_NORM_STRUCTURE_EVENT = 3;

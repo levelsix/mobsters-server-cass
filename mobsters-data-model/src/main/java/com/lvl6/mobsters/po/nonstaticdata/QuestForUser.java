@@ -1,0 +1,119 @@
+package com.lvl6.mobsters.po.nonstaticdata;
+
+import java.util.HashSet;
+import java.util.Set;
+import java.util.UUID;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+import com.lvl6.mobsters.entitymanager.Index;
+import com.lvl6.mobsters.po.BasePersistentObject;
+
+
+
+@Entity
+public class QuestForUser extends BasePersistentObject{
+
+	//at the moment, can't do composite primary key, hence this key
+	//and indexes on userId and questId
+	@Id
+	protected UUID id = UUID.randomUUID();
+	
+	@Column(name="user_id")
+	@Index
+	protected UUID userId = null;
+	
+	@Column(name="quest_id")
+	@Index
+	protected Integer questId = null;
+	
+	@Column(name="is_redeemed")
+	@Index
+	protected boolean isRedeemed = false;
+	
+	@Column(name="is_complete")
+	protected boolean isComplete = false;
+	
+	@Column(name="progress")
+	protected int progress = 0;
+	
+	
+	public UUID getId() {
+		return id;
+	}
+
+
+	public void setId(UUID id) {
+		this.id = id;
+	}
+
+
+	public UUID getUserId() {
+		return userId;
+	}
+
+
+	public void setUserId(UUID userId) {
+		this.userId = userId;
+	}
+
+
+	public Integer getQuestId() {
+		return questId;
+	}
+
+
+	public void setQuestId(Integer questId) {
+		this.questId = questId;
+	}
+
+
+	public boolean isRedeemed() {
+		return isRedeemed;
+	}
+
+
+	public void setRedeemed(boolean isRedeemed) {
+		this.isRedeemed = isRedeemed;
+	}
+
+
+	public boolean isComplete() {
+		return isComplete;
+	}
+
+
+	public void setComplete(boolean isComplete) {
+		this.isComplete = isComplete;
+	}
+
+
+	public int getProgress() {
+		return progress;
+	}
+
+
+	public void setProgress(int progress) {
+		this.progress = progress;
+	}
+
+
+	@Override
+	public String toString() {
+		return "QuestForUser [id=" + id + ", userId=" + userId + ", questId="
+				+ questId + ", isRedeemed=" + isRedeemed + ", isComplete="
+				+ isComplete + ", progress=" + progress + "]";
+	}
+
+
+	@Override
+	public Set<String> getTableUpdateStatements() {
+		Set<String> indexes = new HashSet<String>();
+		
+		return indexes;
+	}
+	
+	
+}

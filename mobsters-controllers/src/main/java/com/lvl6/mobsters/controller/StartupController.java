@@ -26,11 +26,11 @@ import com.lvl6.mobsters.events.RequestEvent;
 import com.lvl6.mobsters.events.request.StartupRequestEvent;
 import com.lvl6.mobsters.events.response.ForceLogoutResponseEvent;
 import com.lvl6.mobsters.events.response.StartupResponseEvent;
-import com.lvl6.mobsters.noneventprotos.AocTwoEventProtocolProto.AocTwoEventProtocolRequest;
+import com.lvl6.mobsters.noneventprotos.MobstersEventProtocolProto.MobstersEventProtocolRequest;
 import com.lvl6.mobsters.noneventprotos.FullUser.FullUserProto;
 import com.lvl6.mobsters.noneventprotos.FullUser.MinimumUserProto;
-import com.lvl6.mobsters.po.User;
 import com.lvl6.mobsters.po.UserDevice;
+import com.lvl6.mobsters.po.nonstaticdata.User;
 import com.lvl6.mobsters.services.user.UserService;
 import com.lvl6.mobsters.services.userdevice.UserDeviceService;
 
@@ -59,7 +59,7 @@ public class StartupController extends EventController {
 
 	@Override
 	public int getEventType() {
-		return AocTwoEventProtocolRequest.C_STARTUP_EVENT_VALUE;
+		return MobstersEventProtocolRequest.C_STARTUP_EVENT_VALUE;
 	}
 
 	@Override

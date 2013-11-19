@@ -13,9 +13,9 @@ import org.springframework.stereotype.Component;
 
 
 
-import com.lvl6.mobsters.entitymanager.UserConsumableEntityManager;
 import com.lvl6.mobsters.entitymanager.UserConsumableQueueEntityManager;
-import com.lvl6.mobsters.entitymanager.UserEntityManager;
+import com.lvl6.mobsters.entitymanager.nonstaticdata.QuestForUserEntityManager;
+import com.lvl6.mobsters.entitymanager.nonstaticdata.UserEntityManager;
 import com.lvl6.mobsters.eventprotos.CollectUserConsumableEventProto.CollectUserConsumableRequestProto;
 import com.lvl6.mobsters.eventprotos.CollectUserConsumableEventProto.CollectUserConsumableResponseProto;
 import com.lvl6.mobsters.eventprotos.CollectUserConsumableEventProto.CollectUserConsumableResponseProto.Builder;
@@ -23,13 +23,13 @@ import com.lvl6.mobsters.eventprotos.CollectUserConsumableEventProto.CollectUser
 import com.lvl6.mobsters.events.RequestEvent;
 import com.lvl6.mobsters.events.request.CollectUserConsumableRequestEvent;
 import com.lvl6.mobsters.events.response.CollectUserConsumableResponseEvent;
-import com.lvl6.mobsters.noneventprotos.AocTwoEventProtocolProto.AocTwoEventProtocolRequest;
+import com.lvl6.mobsters.noneventprotos.MobstersEventProtocolProto.MobstersEventProtocolRequest;
 import com.lvl6.mobsters.noneventprotos.FullUser.MinimumUserProto;
 import com.lvl6.mobsters.noneventprotos.UserConsumableQueue.UserConsumableQueueProto;
 import com.lvl6.mobsters.po.Consumable;
-import com.lvl6.mobsters.po.User;
-import com.lvl6.mobsters.po.UserConsumable;
 import com.lvl6.mobsters.po.UserConsumableQueue;
+import com.lvl6.mobsters.po.nonstaticdata.QuestForUser;
+import com.lvl6.mobsters.po.nonstaticdata.User;
 import com.lvl6.mobsters.services.user.UserService;
 import com.lvl6.mobsters.services.userconsumablequeue.UserConsumableQueueService;
 import com.lvl6.mobsters.widerows.RestrictionOnNumberOfUserStructure;
@@ -49,7 +49,7 @@ public class CollectUserConsumableController extends EventController {
 	protected UserConsumableQueueEntityManager userConsumableQueueEntityManager;
 	
 	@Autowired
-	protected UserConsumableEntityManager userConsumableEntityManager;
+	protected QuestForUserEntityManager questForUserEntityManager;
 	
 	@Autowired
 	protected UserConsumableQueueService userConsumableQueueService;
@@ -67,7 +67,7 @@ public class CollectUserConsumableController extends EventController {
 
 	@Override
 	public int getEventType() {
-		return AocTwoEventProtocolRequest.C_BUILD_OR_UPGRADE_STRUCTURE_EVENT_VALUE;
+		return MobstersEventProtocolRequest.C_BUILD_OR_UPGRADE_STRUCTURE_EVENT_VALUE;
 	}
 
 	@Override
@@ -176,7 +176,7 @@ public class CollectUserConsumableController extends EventController {
 					ucq.setQuantity(ucq.getQuantity() - quantityRemoved);
 				}
 				
-				UserConsumable uc = new UserConsumable();
+				QuestForUser uc = new QuestForUser();
 				uc.setId(UUID.randomUUID());
 				uc.setConsumableId(ucq.getConsumableId());
 				uc.setQuantity(quantityRemoved);
@@ -241,13 +241,13 @@ public class CollectUserConsumableController extends EventController {
 		this.userConsumableQueueService = userConsumableQueueService;
 	}
 
-	public UserConsumableEntityManager getUserConsumableEntityManager() {
-		return userConsumableEntityManager;
+	public QuestForUserEntityManager getUserConsumableEntityManager() {
+		return questForUserEntityManager;
 	}
 
 	public void setUserConsumableEntityManager(
-			UserConsumableEntityManager userConsumableEntityManager) {
-		this.userConsumableEntityManager = userConsumableEntityManager;
+			QuestForUserEntityManager questForUserEntityManager) {
+		this.questForUserEntityManager = questForUserEntityManager;
 	}
 
 

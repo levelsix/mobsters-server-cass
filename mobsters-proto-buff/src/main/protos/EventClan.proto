@@ -129,6 +129,11 @@ message ApproveOrRejectRequestToJoinClanResponseProto {
 //------------------------------------------------------------------------------------------
 
 message RetrieveClanInfoRequestProto {
+	//to retrieve info for clans other than sender's clan:
+	//grab type needs to be set to clan info
+	//is for browsing list should be set to true or 1
+	//clan id should be null, or not set
+	
 	optional MinimumUserProto sender = 1;
 	optional string clanUuid = 2;
 	optional string clanName = 3;

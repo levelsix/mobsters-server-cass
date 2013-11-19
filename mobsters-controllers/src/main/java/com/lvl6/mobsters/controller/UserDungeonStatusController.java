@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 //import com.lvl6.mobsters.entitymanager.staticdata.UserSpellRetrieveUtils;
 import com.lvl6.mobsters.entitymanager.UserDungeonStatusEntityManager;
 import com.lvl6.mobsters.entitymanager.UserDungeonStatusHistoryEntityManager;
-import com.lvl6.mobsters.entitymanager.UserEntityManager;
+import com.lvl6.mobsters.entitymanager.nonstaticdata.UserEntityManager;
 import com.lvl6.mobsters.entitymanager.staticdata.CombatRoomRetrieveUtils;
 import com.lvl6.mobsters.eventprotos.UserDungeonStatusProto.UserDungeonStatusRequestProto;
 import com.lvl6.mobsters.eventprotos.UserDungeonStatusProto.UserDungeonStatusResponseProto;
@@ -21,11 +21,11 @@ import com.lvl6.mobsters.eventprotos.UserDungeonStatusProto.UserDungeonStatusRes
 import com.lvl6.mobsters.events.RequestEvent;
 import com.lvl6.mobsters.events.request.UserDungeonStatusRequestEvent;
 import com.lvl6.mobsters.events.response.UserDungeonStatusResponseEvent;
-import com.lvl6.mobsters.noneventprotos.AocTwoEventProtocolProto.AocTwoEventProtocolRequest;
+import com.lvl6.mobsters.noneventprotos.MobstersEventProtocolProto.MobstersEventProtocolRequest;
 import com.lvl6.mobsters.noneventprotos.FullUser.MinimumUserProto;
-import com.lvl6.mobsters.po.User;
 import com.lvl6.mobsters.po.UserDungeonStatus;
 import com.lvl6.mobsters.po.UserDungeonStatusHistory;
+import com.lvl6.mobsters.po.nonstaticdata.User;
 import com.lvl6.mobsters.services.userdungeonstatus.UserDungeonStatusService;
 import com.lvl6.mobsters.services.userdungeonstatushistory.UserDungeonStatusHistoryService;
 import com.netflix.astyanax.connectionpool.exceptions.ConnectionException;
@@ -62,7 +62,7 @@ public class UserDungeonStatusController extends EventController {
 
 	@Override
 	public int getEventType() {
-		return AocTwoEventProtocolRequest.C_TRAIN_OR_UPGRADE_SPELL_EVENT_VALUE;
+		return MobstersEventProtocolRequest.C_TRAIN_OR_UPGRADE_SPELL_EVENT_VALUE;
 	}
 
 	@Override

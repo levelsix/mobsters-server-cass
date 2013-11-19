@@ -6,9 +6,9 @@ import java.util.Map;
 import org.joda.time.DateTime;
 
 import com.lvl6.mobsters.entitymanager.UserDeviceEntityManager;
-import com.lvl6.mobsters.entitymanager.UserEntityManager;
+import com.lvl6.mobsters.entitymanager.nonstaticdata.UserEntityManager;
 import com.lvl6.mobsters.entitymanager.staticdata.ClassLevelInfoRetrieveUtils;
-import com.lvl6.mobsters.po.User;
+import com.lvl6.mobsters.po.nonstaticdata.User;
 
 public interface UserService {
 	
@@ -37,9 +37,11 @@ public interface UserService {
 	
 	public abstract int calculateGemCostForSpeedUp(int minutes);
 
-	public ClassLevelInfoRetrieveUtils getClassLevelInfoRetrieveUtils();	
 	
-	public void setClassLevelInfoRetrieveUtils(ClassLevelInfoRetrieveUtils classLevelInfoRetrieveUtils);
+	//setters and getters for the Setter Dependency Injection (or something)
+	public abstract ClassLevelInfoRetrieveUtils getClassLevelInfoRetrieveUtils();	
+	
+	public abstract void setClassLevelInfoRetrieveUtils(ClassLevelInfoRetrieveUtils classLevelInfoRetrieveUtils);
 	
 	public abstract UserDeviceEntityManager getUserDeviceEntityManager();
 	

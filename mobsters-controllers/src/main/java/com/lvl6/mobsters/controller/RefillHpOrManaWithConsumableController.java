@@ -10,8 +10,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.lvl6.mobsters.entitymanager.UserConsumableEntityManager;
-import com.lvl6.mobsters.entitymanager.UserEntityManager;
+import com.lvl6.mobsters.entitymanager.nonstaticdata.QuestForUserEntityManager;
+import com.lvl6.mobsters.entitymanager.nonstaticdata.UserEntityManager;
 import com.lvl6.mobsters.entitymanager.staticdata.ConsumableRetrieveUtils;
 import com.lvl6.mobsters.eventprotos.RefillHpOrManaWithConsumableEventProto.RefillHpOrManaWithConsumableRequestProto;
 import com.lvl6.mobsters.eventprotos.RefillHpOrManaWithConsumableEventProto.RefillHpOrManaWithConsumableResponseProto;
@@ -20,12 +20,12 @@ import com.lvl6.mobsters.eventprotos.RefillHpOrManaWithConsumableEventProto.Refi
 import com.lvl6.mobsters.events.RequestEvent;
 import com.lvl6.mobsters.events.request.RefillHpOrManaWithConsumableRequestEvent;
 import com.lvl6.mobsters.events.response.RefillHpOrManaWithConsumableResponseEvent;
-import com.lvl6.mobsters.noneventprotos.AocTwoEventProtocolProto.AocTwoEventProtocolRequest;
+import com.lvl6.mobsters.noneventprotos.MobstersEventProtocolProto.MobstersEventProtocolRequest;
 import com.lvl6.mobsters.noneventprotos.Consumable.ConsumableType;
 import com.lvl6.mobsters.noneventprotos.FullUser.MinimumUserProto;
 import com.lvl6.mobsters.po.Consumable;
-import com.lvl6.mobsters.po.User;
-import com.lvl6.mobsters.po.UserConsumable;
+import com.lvl6.mobsters.po.nonstaticdata.QuestForUser;
+import com.lvl6.mobsters.po.nonstaticdata.User;
 
 
 @Component
@@ -37,7 +37,7 @@ public class RefillHpOrManaWithConsumableController extends EventController {
 	protected ConsumableRetrieveUtils consumableRetrieveUtils; 
 
 	@Autowired
-	protected UserConsumableEntityManager userConsumableEntityManager;
+	protected QuestForUserEntityManager questForUserEntityManager;
 
 	@Autowired
 	protected UserEntityManager userEntityManager;
@@ -49,7 +49,7 @@ public class RefillHpOrManaWithConsumableController extends EventController {
 
 	@Override
 	public int getEventType() {
-		return AocTwoEventProtocolRequest.C_REFILL_HP_OR_MANA_WITH_CONSUMABLE_EVENT_VALUE;
+		return MobstersEventProtocolRequest.C_REFILL_HP_OR_MANA_WITH_CONSUMABLE_EVENT_VALUE;
 	}
 
 	@Override
@@ -78,7 +78,7 @@ public class RefillHpOrManaWithConsumableController extends EventController {
 		try {
 			//get whatever we need from the database
 			User inDb = getUserEntityManager().get().get(userId);
-			UserConsumable uc = getUserConsumableEntityManager().get().get(userConsumableId);
+			QuestForUser uc = getUserConsumableEntityManager().get().get(userConsumableId);
 			List<Consumable> cList = new ArrayList<Consumable>();
 
 			//validate request
@@ -116,7 +116,7 @@ public class RefillHpOrManaWithConsumableController extends EventController {
 	}
 
 	private boolean isValidRequest(Builder responseBuilder, MinimumUserProto sender,
-			User inDb, UserConsumable uc, List<Consumable> cList, Date clientDate) {
+			User inDb, QuestForUser uc, List<Consumable> cList, Date clientDate) {
 		if (null == inDb || null == uc) {
 			log.error("unexpected error: no user exists. sender=" + sender +
 					"\t inDb=" + inDb + "\t uc=" + uc);
@@ -160,7 +160,7 @@ public class RefillHpOrManaWithConsumableController extends EventController {
 		}
 
 		if (uc.getQuantity() < 0) {
-			log.error("unexpected error: somehow user has negative quantity " +
+			log.error("unexpected error: somehow user has negative progress " +
 					"of pots. consumable=" + c + " \t user pot=" + uc +
 					"\t user=" + inDb);
 			responseBuilder.setStatus(RefillHpOrManaWithConsumableStatus.FAIL_OTHER);
@@ -172,7 +172,7 @@ public class RefillHpOrManaWithConsumableController extends EventController {
 		return true;
 	}
 
-	private boolean writeChangesToDb(User inDb, UserConsumable uc,
+	private boolean writeChangesToDb(User inDb, QuestForUser uc,
 			Consumable c, Date clientDate) {
 		try {
 			//Figure out how much to regen
@@ -188,7 +188,7 @@ public class RefillHpOrManaWithConsumableController extends EventController {
 			//update user
 			getUserEntityManager().get().put(inDb);
 
-			//and update his consumable quantity
+			//and update his consumable progress
 			int newQuantity = uc.getQuantity() - 1;
 			uc.setQuantity(newQuantity);
 			getUserConsumableEntityManager().get().put(uc);
@@ -248,13 +248,13 @@ public class RefillHpOrManaWithConsumableController extends EventController {
 		this.consumableRetrieveUtils = consumableRetrieveUtils;
 	}
 
-	public UserConsumableEntityManager getUserConsumableEntityManager() {
-		return userConsumableEntityManager;
+	public QuestForUserEntityManager getUserConsumableEntityManager() {
+		return questForUserEntityManager;
 	}
 
 	public void setUserConsumableEntityManager(
-			UserConsumableEntityManager userConsumableEntityManager) {
-		this.userConsumableEntityManager = userConsumableEntityManager;
+			QuestForUserEntityManager questForUserEntityManager) {
+		this.questForUserEntityManager = questForUserEntityManager;
 	}
 
 	public UserEntityManager getUserEntityManager() {

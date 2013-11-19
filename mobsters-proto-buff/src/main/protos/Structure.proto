@@ -7,6 +7,7 @@ option java_package = "com.lvl6.mobsters.noneventprotos";
 option java_outer_classname = "StructureProto";
 //DO NOT USE ID AS THE NAME OF A PROPERTY IN ANY PROTO
 
+//this will be deleted and split into more tables
 message FullStructureProto { 
 	optional string structUuid = 1;
 	optional string name = 2;
@@ -27,6 +28,28 @@ message FullStructureProto {
 	//client doesn't really need this
 	optional string predecessorStructUuid = 15;
 }
+
+//examples: StructureResidenceProto, StructureLabProto, ...
+/*message Structure "something here" Proto { 
+	optional string structUuid = 1;
+	optional string name = 2;
+	optional int32 level = 3;
+	optional int32 income = 4;
+	optional int32 minutesToGain = 5;
+	optional int32 minutesToBuild = 6;
+	optional int32 buildPrice = 7;
+	optional bool isPremiumCurrency = 8;
+	optional int32 sellPrice = 9;
+	optional int32 minLevel = 10; //minUserLevel required
+	optional int32 xLength = 11;
+	optional int32 yLength = 12;
+	optional int32 imgVerticalPixelOffset = 13;
+	optional string successorStructUuid = 14;	
+	
+	
+	//client doesn't really need this
+	optional string predecessorStructUuid = 15;
+}*/
 
 //------------------------------------------------------------------------------------------
 

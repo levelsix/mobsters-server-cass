@@ -10,16 +10,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.lvl6.mobsters.entitymanager.ConsumableEntityManager;
-import com.lvl6.mobsters.entitymanager.UserConsumableEntityManager;
+import com.lvl6.mobsters.entitymanager.nonstaticdata.QuestForUserEntityManager;
 import com.lvl6.mobsters.noneventprotos.UserConsumable.UserConsumablesProto;
 import com.lvl6.mobsters.po.Consumable;
-import com.lvl6.mobsters.po.UserConsumable;
+import com.lvl6.mobsters.po.nonstaticdata.QuestForUser;
 
 @Component
 public class UserConsumableServiceImpl implements UserConsumableService {
 	
 	@Autowired
-	protected UserConsumableEntityManager userConsumableEntityManager;
+	protected QuestForUserEntityManager questForUserEntityManager;
 	
 	@Autowired
 	protected ConsumableEntityManager consumableEntityManager;
@@ -27,17 +27,17 @@ public class UserConsumableServiceImpl implements UserConsumableService {
 		
 	
 	@Override
-	public Map<UserConsumable, Integer> getConsumablesBeingMade(UUID userId) {
-		Map<UserConsumable, Integer> returnVal = new HashMap<UserConsumable, Integer>();
+	public Map<QuestForUser, Integer> getConsumablesBeingMade(UUID userId) {
+		Map<QuestForUser, Integer> returnVal = new HashMap<QuestForUser, Integer>();
 		
 		//all the consumables that are in queue
 		String cqlQuery = "select * " +
 						  "from user_consumable_queue " +
 						  "where user_id = " + userId;
-		List<UserConsumable> inDbMap = 
+		List<QuestForUser> inDbMap = 
 				getUserEquipmentRepairEntityManager().get().find(cqlQuery);
 		
-		for (UserConsumable uer : inDbMap) {
+		for (QuestForUser uer : inDbMap) {
 			Integer quantity = uer.getQuantity();
 			
 			returnVal.put(uer, quantity);
@@ -47,11 +47,11 @@ public class UserConsumableServiceImpl implements UserConsumableService {
 	
 	//TODO: CHANGE ARGUMENT TO ONLY ACCEPT List<String>
 	@Override
-	public Map<UserConsumable, Integer> convertListToMap(List<UserConsumablesProto> ucpList) {
-		Map <UserConsumable, Integer> returnMap = new HashMap<>();
+	public Map<QuestForUser, Integer> convertListToMap(List<UserConsumablesProto> ucpList) {
+		Map <QuestForUser, Integer> returnMap = new HashMap<>();
 		for(UserConsumablesProto ucp : ucpList) {
 			String userConsumableName = "";//ucp.getName();
-			UserConsumable uc = getUserConsumableCorrespondingToUserConsumableProto(userConsumableName);
+			QuestForUser uc = getUserConsumableCorrespondingToUserConsumableProto(userConsumableName);
 					
 			if(returnMap.containsKey(uc)) {
 				int quantity = returnMap.get(uc);
@@ -65,9 +65,9 @@ public class UserConsumableServiceImpl implements UserConsumableService {
 	}
 	
 	@Override
-	public UserConsumable getUserConsumableCorrespondingToUserConsumableProto(String userConsumableName) {
+	public QuestForUser getUserConsumableCorrespondingToUserConsumableProto(String userConsumableName) {
 		String cqlquery = "select * from user_consumable where name= " + userConsumableName + ";";
-		List<UserConsumable> uc = getUserConsumableEntityManager().get().find(cqlquery);
+		List<QuestForUser> uc = getUserConsumableEntityManager().get().find(cqlquery);
 		return uc.get(0);
 	}
 	
@@ -85,17 +85,17 @@ public class UserConsumableServiceImpl implements UserConsumableService {
 	}
 	
 	@Override
-	public void saveUserConsumables(Collection<UserConsumable> newStuff) {
+	public void saveUserConsumables(Collection<QuestForUser> newStuff) {
 		getUserEquipmentRepairEntityManager().get().put(newStuff);
 	}
 	
 	@Override
-	public void deleteFromQueue(Map<UserConsumable, Integer> ucqDeleteMap, Map<UserConsumable, Integer> currentQueue) {
-		for(Map.Entry<UserConsumable, Integer> entry : ucqDeleteMap.entrySet()) {
-			UserConsumable consumableRemoved = entry.getKey();
+	public void deleteFromQueue(Map<QuestForUser, Integer> ucqDeleteMap, Map<QuestForUser, Integer> currentQueue) {
+		for(Map.Entry<QuestForUser, Integer> entry : ucqDeleteMap.entrySet()) {
+			QuestForUser consumableRemoved = entry.getKey();
 			Integer quantityRemoved = entry.getValue();
-			for(Map.Entry<UserConsumable, Integer> entry2 : currentQueue.entrySet()) {
-				UserConsumable consumableInQueue = entry2.getKey();
+			for(Map.Entry<QuestForUser, Integer> entry2 : currentQueue.entrySet()) {
+				QuestForUser consumableInQueue = entry2.getKey();
 				if(consumableRemoved.getConsumableId() == consumableInQueue.getConsumableId()) {
 					if(consumableInQueue.getQuantity() == quantityRemoved) {
 						getUserConsumableEntityManager().get().delete(consumableInQueue.getId());
@@ -112,23 +112,23 @@ public class UserConsumableServiceImpl implements UserConsumableService {
 	
 
 	@Override
-	public UserConsumableEntityManager getUserEquipmentRepairEntityManager() {
-		return userConsumableEntityManager;
+	public QuestForUserEntityManager getUserEquipmentRepairEntityManager() {
+		return questForUserEntityManager;
 	}
 	
 	@Override
 	public void setUserEquipmentRepairEntityManager(
-			UserConsumableEntityManager userConsumableEntityManager) {
-		this.userConsumableEntityManager = userConsumableEntityManager;
+			QuestForUserEntityManager questForUserEntityManager) {
+		this.questForUserEntityManager = questForUserEntityManager;
 	}
 
-	public UserConsumableEntityManager getUserConsumableEntityManager() {
-		return userConsumableEntityManager;
+	public QuestForUserEntityManager getUserConsumableEntityManager() {
+		return questForUserEntityManager;
 	}
 
 	public void setUserConsumableEntityManager(
-			UserConsumableEntityManager userConsumableEntityManager) {
-		this.userConsumableEntityManager = userConsumableEntityManager;
+			QuestForUserEntityManager questForUserEntityManager) {
+		this.questForUserEntityManager = questForUserEntityManager;
 	}
 
 	public ConsumableEntityManager getConsumableEntityManager() {

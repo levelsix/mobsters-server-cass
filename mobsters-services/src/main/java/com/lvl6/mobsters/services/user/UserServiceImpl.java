@@ -12,14 +12,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.lvl6.mobsters.entitymanager.UserDeviceEntityManager;
-import com.lvl6.mobsters.entitymanager.UserEntityManager;
+import com.lvl6.mobsters.entitymanager.nonstaticdata.UserEntityManager;
 import com.lvl6.mobsters.entitymanager.staticdata.ClassLevelInfoRetrieveUtils;
 import com.lvl6.mobsters.noneventprotos.FunctionalityTypeEnum.FunctionalityType;
 import com.lvl6.mobsters.po.ClassLevelInfo;
 import com.lvl6.mobsters.po.Structure;
-import com.lvl6.mobsters.po.User;
 import com.lvl6.mobsters.po.UserDevice;
 import com.lvl6.mobsters.po.UserStructure;
+import com.lvl6.mobsters.po.nonstaticdata.User;
 import com.lvl6.mobsters.properties.MobstersTableConstants;
 import com.lvl6.mobsters.services.userstructure.UserStructureService;
 

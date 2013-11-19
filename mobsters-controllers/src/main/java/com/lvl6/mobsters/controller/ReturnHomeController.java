@@ -13,8 +13,8 @@ import org.springframework.stereotype.Component;
 
 import com.lvl6.mobsters.entitymanager.UserDungeonStatusEntityManager;
 import com.lvl6.mobsters.entitymanager.UserDungeonStatusHistoryEntityManager;
-import com.lvl6.mobsters.entitymanager.UserEntityManager;
 import com.lvl6.mobsters.entitymanager.UserEquipEntityManager;
+import com.lvl6.mobsters.entitymanager.nonstaticdata.UserEntityManager;
 import com.lvl6.mobsters.eventprotos.ReturnHomeEventProto.ReturnHomeRequestProto;
 import com.lvl6.mobsters.eventprotos.ReturnHomeEventProto.ReturnHomeResponseProto;
 import com.lvl6.mobsters.eventprotos.ReturnHomeEventProto.ReturnHomeResponseProto.Builder;
@@ -22,10 +22,10 @@ import com.lvl6.mobsters.eventprotos.ReturnHomeEventProto.ReturnHomeResponseProt
 import com.lvl6.mobsters.events.RequestEvent;
 import com.lvl6.mobsters.events.request.ReturnHomeRequestEvent;
 import com.lvl6.mobsters.events.response.ReturnHomeResponseEvent;
-import com.lvl6.mobsters.noneventprotos.AocTwoEventProtocolProto.AocTwoEventProtocolRequest;
+import com.lvl6.mobsters.noneventprotos.MobstersEventProtocolProto.MobstersEventProtocolRequest;
 import com.lvl6.mobsters.noneventprotos.FullUser.MinimumUserProto;
-import com.lvl6.mobsters.po.User;
 import com.lvl6.mobsters.po.UserEquip;
+import com.lvl6.mobsters.po.nonstaticdata.User;
 import com.lvl6.mobsters.services.equipment.EquipmentService;
 import com.lvl6.mobsters.services.userequip.UserEquipService;
 
@@ -63,7 +63,7 @@ public class ReturnHomeController extends EventController {
 
 	@Override
 	public int getEventType() {
-		return AocTwoEventProtocolRequest.C_RETURN_HOME_EVENT_VALUE;
+		return MobstersEventProtocolRequest.C_RETURN_HOME_EVENT_VALUE;
 	}
 
 	@Override

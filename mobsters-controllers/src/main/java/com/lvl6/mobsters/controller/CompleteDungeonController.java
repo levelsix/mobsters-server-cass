@@ -13,9 +13,9 @@ import org.springframework.stereotype.Component;
 import com.lvl6.mobsters.entitymanager.UserChestEntityManager;
 import com.lvl6.mobsters.entitymanager.UserDungeonStatusEntityManager;
 import com.lvl6.mobsters.entitymanager.UserDungeonStatusHistoryEntityManager;
-import com.lvl6.mobsters.entitymanager.UserEntityManager;
 import com.lvl6.mobsters.entitymanager.UserEquipEntityManager;
 import com.lvl6.mobsters.entitymanager.UserItemEntityManager;
+import com.lvl6.mobsters.entitymanager.nonstaticdata.UserEntityManager;
 import com.lvl6.mobsters.entitymanager.staticdata.StructureRetrieveUtils;
 import com.lvl6.mobsters.eventprotos.CompleteDungeonEventProto.CompleteDungeonRequestProto;
 import com.lvl6.mobsters.eventprotos.CompleteDungeonEventProto.CompleteDungeonResponseProto;
@@ -24,16 +24,16 @@ import com.lvl6.mobsters.eventprotos.CompleteDungeonEventProto.CompleteDungeonRe
 import com.lvl6.mobsters.events.RequestEvent;
 import com.lvl6.mobsters.events.request.CompleteDungeonRequestEvent;
 import com.lvl6.mobsters.events.response.CompleteDungeonResponseEvent;
-import com.lvl6.mobsters.noneventprotos.AocTwoEventProtocolProto.AocTwoEventProtocolRequest;
+import com.lvl6.mobsters.noneventprotos.MobstersEventProtocolProto.MobstersEventProtocolRequest;
 import com.lvl6.mobsters.noneventprotos.Chest.ChestProto;
 import com.lvl6.mobsters.noneventprotos.Equipment.EquipmentProto;
 import com.lvl6.mobsters.noneventprotos.FullUser.MinimumUserProto;
 import com.lvl6.mobsters.noneventprotos.Item.ItemProto;
-import com.lvl6.mobsters.po.User;
 import com.lvl6.mobsters.po.UserChest;
 import com.lvl6.mobsters.po.UserDungeonStatus;
 import com.lvl6.mobsters.po.UserEquip;
 import com.lvl6.mobsters.po.UserItem;
+import com.lvl6.mobsters.po.nonstaticdata.User;
 import com.lvl6.mobsters.services.equipment.EquipmentService;
 import com.lvl6.mobsters.services.userequip.UserEquipService;
 import com.lvl6.mobsters.services.userstructure.UserStructureService;
@@ -83,7 +83,7 @@ public class CompleteDungeonController extends EventController {
 
 	@Override
 	public int getEventType() {
-		return AocTwoEventProtocolRequest.C_RETURN_HOME_EVENT_VALUE;
+		return MobstersEventProtocolRequest.C_RETURN_HOME_EVENT_VALUE;
 	}
 
 	@Override

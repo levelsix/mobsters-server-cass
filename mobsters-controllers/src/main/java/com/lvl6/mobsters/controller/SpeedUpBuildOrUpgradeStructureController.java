@@ -9,8 +9,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.lvl6.mobsters.entitymanager.UserEntityManager;
 import com.lvl6.mobsters.entitymanager.UserStructureEntityManager;
+import com.lvl6.mobsters.entitymanager.nonstaticdata.UserEntityManager;
 import com.lvl6.mobsters.entitymanager.staticdata.StructureRetrieveUtils;
 import com.lvl6.mobsters.eventprotos.SpeedUpBuildOrUpgradeStructureEventProto.SpeedUpBuildOrUpgradeStructureRequestProto;
 import com.lvl6.mobsters.eventprotos.SpeedUpBuildOrUpgradeStructureEventProto.SpeedUpBuildOrUpgradeStructureResponseProto;
@@ -19,11 +19,11 @@ import com.lvl6.mobsters.eventprotos.SpeedUpBuildOrUpgradeStructureEventProto.Sp
 import com.lvl6.mobsters.events.RequestEvent;
 import com.lvl6.mobsters.events.request.SpeedUpBuildOrUpgradeStructureRequestEvent;
 import com.lvl6.mobsters.events.response.SpeedUpBuildOrUpgradeStructureResponseEvent;
-import com.lvl6.mobsters.noneventprotos.AocTwoEventProtocolProto.AocTwoEventProtocolRequest;
+import com.lvl6.mobsters.noneventprotos.MobstersEventProtocolProto.MobstersEventProtocolRequest;
 import com.lvl6.mobsters.noneventprotos.FullUser.MinimumUserProto;
 import com.lvl6.mobsters.po.Structure;
-import com.lvl6.mobsters.po.User;
 import com.lvl6.mobsters.po.UserStructure;
+import com.lvl6.mobsters.po.nonstaticdata.User;
 import com.lvl6.mobsters.services.user.UserService;
 import com.lvl6.mobsters.services.userstructure.UserStructureService;
 import com.lvl6.mobsters.widerows.RestrictionOnNumberOfUserStructure;
@@ -60,7 +60,7 @@ public class SpeedUpBuildOrUpgradeStructureController extends EventController {
 
 	@Override
 	public int getEventType() {
-		return AocTwoEventProtocolRequest.C_BUILD_OR_UPGRADE_STRUCTURE_EVENT_VALUE;
+		return MobstersEventProtocolRequest.C_BUILD_OR_UPGRADE_STRUCTURE_EVENT_VALUE;
 	}
 
 	@Override
