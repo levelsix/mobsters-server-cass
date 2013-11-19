@@ -5,6 +5,7 @@ import java.util.Map;
 import java.util.UUID;
 
 import com.lvl6.mobsters.entitymanager.nonstaticdata.QuestForUserEntityManager;
+import com.lvl6.mobsters.entitymanager.staticdata.QuestRetrieveUtils;
 import com.lvl6.mobsters.po.nonstaticdata.QuestForUser;
 import com.lvl6.mobsters.utils.QueryConstructionUtil;
 
@@ -18,6 +19,10 @@ public interface QuestForUserService {
 	
 	
 	//for the setter dependency injection or something
+	public abstract QuestRetrieveUtils getQuestRetrieveUtils();
+	
+	public abstract void setQuestRetrieveUtils(QuestRetrieveUtils questRetrieveUtils);
+	
 	public abstract QuestForUserEntityManager getQuestForUserEntityManager();
 
 	public abstract void setQuestForUserEntityManager(

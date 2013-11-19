@@ -1,20 +1,18 @@
 package com.lvl6.mobsters.po.nonstaticdata;
 
-import java.util.HashSet;
-import java.util.Set;
 import java.util.UUID;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
-import com.lvl6.mobsters.entitymanager.Index;
-import com.lvl6.mobsters.po.BasePersistentObject;
+import com.dekayd.astyanax.cassandra.entitymanager.BasePersistentObject;
+import com.dekayd.astyanax.cassandra.entitymanager.Index;
 
 
 
 @Entity
-public class QuestForUser extends BasePersistentObject{
+public class QuestForUser extends BasePersistentObject<UUID>{
 
 	//at the moment, can't do composite primary key, hence this key
 	//and indexes on userId and questId
@@ -105,14 +103,6 @@ public class QuestForUser extends BasePersistentObject{
 		return "QuestForUser [id=" + id + ", userId=" + userId + ", questId="
 				+ questId + ", isRedeemed=" + isRedeemed + ", isComplete="
 				+ isComplete + ", progress=" + progress + "]";
-	}
-
-
-	@Override
-	public Set<String> getTableUpdateStatements() {
-		Set<String> indexes = new HashSet<String>();
-		
-		return indexes;
 	}
 	
 	

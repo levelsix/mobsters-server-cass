@@ -1,21 +1,18 @@
 package com.lvl6.mobsters.po.nonstaticdata;
 
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
 import java.util.UUID;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
-import com.lvl6.mobsters.entitymanager.Index;
-import com.lvl6.mobsters.po.BasePersistentObject;
-
+import com.dekayd.astyanax.cassandra.entitymanager.BasePersistentObject;
+import com.dekayd.astyanax.cassandra.entitymanager.Index;
 
  
 @Entity
-public class User extends BasePersistentObject{
+public class User extends BasePersistentObject<UUID>{
 
 	@Id
 	protected UUID id = UUID.randomUUID();
@@ -635,12 +632,4 @@ public class User extends BasePersistentObject{
 				+ accountInitialized + "]";
 	}
 
-
-	@Override
-	public Set<String> getTableUpdateStatements() {
-		Set<String> indexes = new HashSet<String>();
-		
-		return indexes;
-	}
-	
 }

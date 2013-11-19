@@ -1,7 +1,5 @@
 package com.lvl6.mobsters.po;
 
-import java.util.HashSet;
-import java.util.Set;
 import java.util.UUID;
 
 import javax.persistence.Column;
