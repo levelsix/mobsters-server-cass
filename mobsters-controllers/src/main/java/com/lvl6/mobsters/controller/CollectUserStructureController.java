@@ -8,10 +8,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.lvl6.mobsters.entitymanager.UserEquipEntityManager;
-import com.lvl6.mobsters.entitymanager.UserEquipRepairEntityManager;
 import com.lvl6.mobsters.entitymanager.UserStructureEntityManager;
 import com.lvl6.mobsters.entitymanager.nonstaticdata.UserEntityManager;
+import com.lvl6.mobsters.entitymanager.nonstaticdata.MonsterForUserEntityManager;
+import com.lvl6.mobsters.entitymanager.nonstaticdata.MonsterHealingForUserEntityManager;
 import com.lvl6.mobsters.entitymanager.staticdata.EquipmentRetrieveUtils;
 import com.lvl6.mobsters.eventprotos.CollectUserStructureEventProto.CollectUserStructureRequestProto;
 import com.lvl6.mobsters.eventprotos.CollectUserStructureEventProto.CollectUserStructureResponseProto;
@@ -46,13 +46,13 @@ public class CollectUserStructureController extends EventController {
 	protected UserStructureEntityManager userStructureEntityManager;
 
 	@Autowired
-	protected UserEquipRepairEntityManager userEquipRepairEntityManager;
+	protected MonsterHealingForUserEntityManager monsterHealingForUserEntityManager;
 
 	@Autowired
 	protected UserEntityManager userEntityManager;
 	
 	@Autowired
-	protected UserEquipEntityManager userEquipEntityManager;
+	protected MonsterForUserEntityManager monsterForUserEntityManager;
 	
 	@Autowired
 	protected UserService userService;
@@ -183,13 +183,13 @@ public class CollectUserStructureController extends EventController {
 		this.userStructureService = userStructureService;
 	}
 
-	public UserEquipRepairEntityManager getUserEquipRepairEntityManager() {
-		return userEquipRepairEntityManager;
+	public MonsterHealingForUserEntityManager getUserEquipRepairEntityManager() {
+		return monsterHealingForUserEntityManager;
 	}
 
 	public void setUserEquipRepairEntityManager(
-			UserEquipRepairEntityManager userEquipRepairEntityManager) {
-		this.userEquipRepairEntityManager = userEquipRepairEntityManager;
+			MonsterHealingForUserEntityManager monsterHealingForUserEntityManager) {
+		this.monsterHealingForUserEntityManager = monsterHealingForUserEntityManager;
 	}
 
 	public UserEntityManager getUserEntityManager() {
@@ -226,13 +226,13 @@ public class CollectUserStructureController extends EventController {
 		this.equipmentRetrieveUtils = equipmentRetrieveUtils;
 	}
 
-	public UserEquipEntityManager getUserEquipEntityManager() {
-		return userEquipEntityManager;
+	public MonsterForUserEntityManager getUserEquipEntityManager() {
+		return monsterForUserEntityManager;
 	}
 
 	public void setUserEquipEntityManager(
-			UserEquipEntityManager userEquipEntityManager) {
-		this.userEquipEntityManager = userEquipEntityManager;
+			MonsterForUserEntityManager monsterForUserEntityManager) {
+		this.monsterForUserEntityManager = monsterForUserEntityManager;
 	}
 
 	public UserStructureEntityManager getUserStructureEntityManager() {

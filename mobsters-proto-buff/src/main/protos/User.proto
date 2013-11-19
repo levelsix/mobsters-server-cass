@@ -65,7 +65,7 @@ message FullUserProto {
 	optional int32 gems = 4;
 	optional int32 cash = 5;
 	optional int32 experience = 6;
-	optional int32 tasksCompleted = 7;
+	optional int32 tasksCompleted = 7; //not really used for anything, just history
 	optional int32 battlesWon = 8;
 	optional int32 battlesLost = 9;
 	optional int32 flees = 10;

@@ -37,10 +37,10 @@ import com.lvl6.mobsters.po.PreDungeonUserConsumableInfo;
 import com.lvl6.mobsters.po.PreDungeonUserEquipInfo;
 import com.lvl6.mobsters.po.PreDungeonUserInfo;
 import com.lvl6.mobsters.po.Structure;
-import com.lvl6.mobsters.po.UserEquip;
 import com.lvl6.mobsters.po.UserStructure;
 import com.lvl6.mobsters.po.nonstaticdata.QuestForUser;
 import com.lvl6.mobsters.po.nonstaticdata.User;
+import com.lvl6.mobsters.po.nonstaticdata.MonsterForUser;
 import com.lvl6.mobsters.services.time.TimeUtils;
 import com.lvl6.mobsters.services.user.UserService;
 import com.lvl6.mobsters.services.userconsumable.UserConsumableService;
@@ -134,7 +134,7 @@ public class StartDungeonController extends EventController {
 			User inDb = getUserEntityManager().get().get(userId);
 			
 			Map<QuestForUser, Integer> userConsumablesMap = getUserConsumableService().convertListToMap(ucpList);
-			List<UserEquip> equippedList = getUserEquipService().getAllEquippedUserEquipsForUser(inDb.getId());
+			List<MonsterForUser> equippedList = getUserEquipService().getAllEquippedUserEquipsForUser(inDb.getId());
 			//validate request
 			boolean validRequest = isValidRequest(responseBuilder, sender, inDb, 
 					uepList, equippedList, userConsumablesMap, combatRoomIdStr, clientDate);
@@ -172,7 +172,7 @@ public class StartDungeonController extends EventController {
 
 
 	private boolean isValidRequest(Builder responseBuilder, MinimumUserProto sender,
-			User inDb, List<UserEquipmentProto> ueqList, List<UserEquip> equippedList,
+			User inDb, List<UserEquipmentProto> ueqList, List<MonsterForUser> equippedList,
 			Map<QuestForUser, Integer> userConsumablesMap, 
 			String dungeonName, Date clientDate) throws Exception {
 	
@@ -214,7 +214,7 @@ public class StartDungeonController extends EventController {
 		}
 		
 		//check to make sure none of user's items have 0 durability
-		for(UserEquip ue : equippedList) {
+		for(MonsterForUser ue : equippedList) {
 			if(ue.getDurability() == 0.0) {
 				log.error("an equipped equip has 0 durability");
 				responseBuilder.setStatus(StartDungeonStatus.FAIL_ZERO_DURABILITY_EQUIP);
@@ -227,7 +227,7 @@ public class StartDungeonController extends EventController {
 
 
 	private boolean writeChangesToDb(User inDb, 
-			List<UserEquipmentProto> uepList, List<UserEquip> equippedList, 
+			List<UserEquipmentProto> uepList, List<MonsterForUser> equippedList, 
 			Map<QuestForUser, Integer> userConsumablesMap, UUID combatRoomId, Date clientDate) {
 		try {
 			//save all the info
@@ -241,7 +241,7 @@ public class StartDungeonController extends EventController {
 			pdui.setUserId(inDb.getId());
 			getPreDungeonUserInfoEntityManager().get().put(pdui);
 			
-			for(UserEquip ue : equippedList) {
+			for(MonsterForUser ue : equippedList) {
 				PreDungeonUserEquipInfo pduei = new PreDungeonUserEquipInfo();
 				pduei.setDurability(ue.getDurability());
 				pduei.setEquipId(ue.getId());

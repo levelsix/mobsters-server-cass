@@ -28,7 +28,7 @@ public class UserConsumableQueue extends BasePersistentObject<UUID>{
 	@Index
 	protected UUID consumableId = null;
 	
-	@Column(name="quantity")
+	@Column(name="staticDataQuantity")
 	protected int quantity = 0;
 	
 	@Column(name="expected_start")
@@ -117,7 +117,7 @@ public class UserConsumableQueue extends BasePersistentObject<UUID>{
 	@Override
 	public String toString() {
 		return "UserConsumableQueue [id=" + id + ", userId=" + userId
-				+ ", consumableId=" + consumableId + ", quantity=" + quantity
+				+ ", consumableId=" + consumableId + ", staticDataQuantity=" + quantity
 				+ ", expectedStart=" + expectedStart + ", enteredQueue="
 				+ enteredQueue + ", isFinishedBuilding=" + isFinishedBuilding
 				+ "]";

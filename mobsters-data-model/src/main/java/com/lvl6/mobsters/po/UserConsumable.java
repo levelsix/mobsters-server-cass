@@ -27,7 +27,7 @@ public class UserConsumable extends BasePersistentObject<UUID>{
 	@Index
 	protected UUID consumableId = null;
 	
-	@Column(name="quantity")
+	@Column(name="staticDataQuantity")
 	protected int quantity = 0;
 	
 	
@@ -68,7 +68,7 @@ public class UserConsumable extends BasePersistentObject<UUID>{
 	@Override
 	public String toString() {
 		return "UserConsumable [id=" + id + ", userId=" + userId
-				+ ", consumableId=" + consumableId + ", quantity=" + quantity
+				+ ", consumableId=" + consumableId + ", staticDataQuantity=" + quantity
 				+ "]";
 	}
 

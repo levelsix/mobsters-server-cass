@@ -3,6 +3,7 @@ package com.lvl6.mobsters.utils;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 
 import com.lvl6.mobsters.po.staticdata.Quest;
 
@@ -43,7 +44,9 @@ public class QuestGraph {
 	  public QuestGraph(Collection<Quest> quests) {
 	    questVertices = new ArrayList<Vertex>(quests.size());
 	    for (Quest quest : quests) {
-	      questVertices.add(new Vertex(quest.getId(), quest.getQuestsRequiredForThisAsList()));
+	    	Set<Integer> prerequisiteQuests = quest.getQuestsRequiredForThisAsSet();
+	    	List<Integer> required = new ArrayList<Integer>(prerequisiteQuests);
+	      questVertices.add(new Vertex(quest.getId(), required));
 	    }
 	  }
 

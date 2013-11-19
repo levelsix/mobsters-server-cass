@@ -14,22 +14,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.lvl6.mobsters.entitymanager.EquipmentEntityManager;
-import com.lvl6.mobsters.entitymanager.UserEquipRepairEntityManager;
+import com.lvl6.mobsters.entitymanager.nonstaticdata.MonsterHealingForUserEntityManager;
 import com.lvl6.mobsters.entitymanager.staticdata.EquipmentRetrieveUtils;
 import com.lvl6.mobsters.noneventprotos.UserEquipRepair.UserEquipRepairProto;
 import com.lvl6.mobsters.po.Equipment;
-import com.lvl6.mobsters.po.UserEquip;
-import com.lvl6.mobsters.po.UserEquipRepair;
+import com.lvl6.mobsters.po.nonstaticdata.MonsterForUser;
+import com.lvl6.mobsters.po.nonstaticdata.MonsterHealingForUser;
 
 @Component
 public class UserEquipRepairServiceImpl implements UserEquipRepairService {
 	
 	@Autowired
-	protected UserEquipRepairEntityManager userEquipRepairEntityManager;
+	protected MonsterHealingForUserEntityManager monsterHealingForUserEntityManager;
 		
 	private  Logger log = LoggerFactory.getLogger(new Object() { }.getClass().getEnclosingClass());
 
-	private  Map<UUID, UserEquipRepair> idsToUserEquipRepairs;
+	private  Map<UUID, MonsterHealingForUser> idsToUserEquipRepairs;
 	
 	
 	@Autowired
@@ -40,17 +40,17 @@ public class UserEquipRepairServiceImpl implements UserEquipRepairService {
 	
 	
 	@Override
-	public Map<UUID, UserEquipRepair> getEquipsBeingRepaired(String userIdString) {
-		Map<UUID, UserEquipRepair> returnVal = new HashMap<UUID, UserEquipRepair>();
+	public Map<UUID, MonsterHealingForUser> getEquipsBeingRepaired(String userIdString) {
+		Map<UUID, MonsterHealingForUser> returnVal = new HashMap<UUID, MonsterHealingForUser>();
 		
 		//all the equips that are in repair
 		String cqlQuery = "select * " +
 						  "from user_equip_repair " +
 						  "where user_id = " + userIdString;
-		List<UserEquipRepair> inDbMap = 
+		List<MonsterHealingForUser> inDbMap = 
 				getUserEquipmentRepairEntityManager().get().find(cqlQuery);
 		
-		for (UserEquipRepair uer : inDbMap) {
+		for (MonsterHealingForUser uer : inDbMap) {
 			UUID id = uer.getId();
 			
 			returnVal.put(id, uer);
@@ -60,14 +60,14 @@ public class UserEquipRepairServiceImpl implements UserEquipRepairService {
 	
 	//multiplier: 1 or -1, ueList or uerList is defined other is null
 	@Override
-	public Map<Integer, Integer> calculateRepairCost(List<UserEquip> ueList,
-			List<UserEquipRepair> uerList, int multiplier) {
+	public Map<Integer, Integer> calculateRepairCost(List<MonsterForUser> ueList,
+			List<MonsterHealingForUser> uerList, int multiplier) {
 		//TODO: IMPLEMENT THIS
 		return new HashMap<Integer, Integer>();
 	}
 	
 	@Override
-	public int calculateSingleUserEquipRepairCost(UserEquip ue) {
+	public int calculateSingleUserEquipRepairCost(MonsterForUser ue) {
 		//TODO: implement
 		return 1000000;
 	}
@@ -79,16 +79,16 @@ public class UserEquipRepairServiceImpl implements UserEquipRepairService {
 	}
 	
 	@Override
-	public void saveUserEquipRepairs(Collection<UserEquipRepair> newStuff) {
+	public void saveUserEquipRepairs(Collection<MonsterHealingForUser> newStuff) {
 		getUserEquipmentRepairEntityManager().get().put(newStuff);
 	}
 	
 	//returns in seconds
 	@Override
 	public int calculateTotalTimeOfQueuedUserEquips(List<UserEquipRepairProto> queuedEquips, Date currentTime) {
-		List<UserEquipRepair> queuedEquipsList = new ArrayList<>();
+		List<MonsterHealingForUser> queuedEquipsList = new ArrayList<>();
 		for(UserEquipRepairProto queuedEquip : queuedEquips) {
-			UserEquipRepair uer = new UserEquipRepair();
+			MonsterHealingForUser uer = new MonsterHealingForUser();
 			uer.setDurability(queuedEquip.getDurability());
 			Date d = new Date(queuedEquip.getExpectedStartMillis());
 			uer.setExpectedStart(d);
@@ -96,7 +96,7 @@ public class UserEquipRepairServiceImpl implements UserEquipRepairService {
 		}
 		
 		int secondsRemaining = 0;
-		for(UserEquipRepair uer2 : queuedEquipsList) {
+		for(MonsterHealingForUser uer2 : queuedEquipsList) {
 			double durabilityTimeConstant = getEquipmentCorrespondingToUserEquipRepair(uer2).getDurabilityFixTimeConstant();
 			double amountDamaged = 100.0-uer2.getDurability();
 			int secondsToRepair = (int)(durabilityTimeConstant * amountDamaged);
@@ -111,9 +111,9 @@ public class UserEquipRepairServiceImpl implements UserEquipRepairService {
 	}
 
 	@Override
-	public UserEquipRepair getUserEquipRepairForId(UUID id)
+	public MonsterHealingForUser getUserEquipRepairForId(UUID id)
 	 {
-		log.debug("retrieve UserEquipRepair data for id " + id);
+		log.debug("retrieve MonsterHealingForUser data for id " + id);
 		if (idsToUserEquipRepairs == null) {
 			setStaticIdsToUserEquipRepairs();      
 		}
@@ -121,12 +121,12 @@ public class UserEquipRepairServiceImpl implements UserEquipRepairService {
 	}
 
 	@Override
-	public  Map<UUID, UserEquipRepair> getUserEquipRepairsForIds(List<UUID> ids) {
+	public  Map<UUID, MonsterHealingForUser> getUserEquipRepairsForIds(List<UUID> ids) {
 		log.debug("retrieve UserEquipRepairs data for ids " + ids);
 		if (idsToUserEquipRepairs == null) {
 			setStaticIdsToUserEquipRepairs();      
 		}
-		Map<UUID, UserEquipRepair> toreturn = new HashMap<UUID, UserEquipRepair>();
+		Map<UUID, MonsterHealingForUser> toreturn = new HashMap<UUID, MonsterHealingForUser>();
 		for (UUID id : ids) {
 			toreturn.put(id,  idsToUserEquipRepairs.get(id));
 		}
@@ -137,9 +137,9 @@ public class UserEquipRepairServiceImpl implements UserEquipRepairService {
 		log.debug("setting  map of UserEquipRepairIds to UserEquipRepairs");
 
 		String cqlquery = "select * from user_equip_repair;"; 
-		List <UserEquipRepair> list = getUserEquipRepairEntityManager().get().find(cqlquery);
-		idsToUserEquipRepairs = new HashMap<UUID, UserEquipRepair>();
-		for(UserEquipRepair us : list) {
+		List <MonsterHealingForUser> list = getUserEquipRepairEntityManager().get().find(cqlquery);
+		idsToUserEquipRepairs = new HashMap<UUID, MonsterHealingForUser>();
+		for(MonsterHealingForUser us : list) {
 			UUID id= us.getId();
 			idsToUserEquipRepairs.put(id, us);
 		}
@@ -147,14 +147,14 @@ public class UserEquipRepairServiceImpl implements UserEquipRepairService {
 	}
 
 	@Override
-	public  List<UserEquipRepair> getAllUserEquipRepairsForUser(UUID userId) {
+	public  List<MonsterHealingForUser> getAllUserEquipRepairsForUser(UUID userId) {
 		String cqlquery = "select * from user_equip_repair where user_id=" + userId + ";"; 
-		List <UserEquipRepair> list = getUserEquipRepairEntityManager().get().find(cqlquery);
+		List <MonsterHealingForUser> list = getUserEquipRepairEntityManager().get().find(cqlquery);
 		return list;
 	}
 	
 	@Override
-	public Equipment getEquipmentCorrespondingToUserEquipRepair(UserEquipRepair ue) {
+	public Equipment getEquipmentCorrespondingToUserEquipRepair(MonsterHealingForUser ue) {
 		UUID equipId = ue.getEquipId();
 		return getEquipmentRetrieveUtils().getEquipmentForId(equipId);
 	}
@@ -162,23 +162,23 @@ public class UserEquipRepairServiceImpl implements UserEquipRepairService {
 	
 	
 	@Override
-	public UserEquipRepairEntityManager getUserEquipmentRepairEntityManager() {
-		return userEquipRepairEntityManager;
+	public MonsterHealingForUserEntityManager getUserEquipmentRepairEntityManager() {
+		return monsterHealingForUserEntityManager;
 	}
 	
 	@Override
 	public void setUserEquipmentRepairEntityManager(
-			UserEquipRepairEntityManager userEquipRepairEntityManager) {
-		this.userEquipRepairEntityManager = userEquipRepairEntityManager;
+			MonsterHealingForUserEntityManager monsterHealingForUserEntityManager) {
+		this.monsterHealingForUserEntityManager = monsterHealingForUserEntityManager;
 	}
 
-	public UserEquipRepairEntityManager getUserEquipRepairEntityManager() {
-		return userEquipRepairEntityManager;
+	public MonsterHealingForUserEntityManager getUserEquipRepairEntityManager() {
+		return monsterHealingForUserEntityManager;
 	}
 
 	public void setUserEquipRepairEntityManager(
-			UserEquipRepairEntityManager userEquipRepairEntityManager) {
-		this.userEquipRepairEntityManager = userEquipRepairEntityManager;
+			MonsterHealingForUserEntityManager monsterHealingForUserEntityManager) {
+		this.monsterHealingForUserEntityManager = monsterHealingForUserEntityManager;
 	}
 
 	public EquipmentEntityManager getEquipmentEntityManager() {

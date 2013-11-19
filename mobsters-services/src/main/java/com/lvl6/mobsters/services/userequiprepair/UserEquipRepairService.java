@@ -6,38 +6,38 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
-import com.lvl6.mobsters.entitymanager.UserEquipRepairEntityManager;
+import com.lvl6.mobsters.entitymanager.nonstaticdata.MonsterHealingForUserEntityManager;
 import com.lvl6.mobsters.noneventprotos.UserEquipRepair.UserEquipRepairProto;
 import com.lvl6.mobsters.po.Equipment;
-import com.lvl6.mobsters.po.UserEquip;
-import com.lvl6.mobsters.po.UserEquipRepair;
+import com.lvl6.mobsters.po.nonstaticdata.MonsterForUser;
+import com.lvl6.mobsters.po.nonstaticdata.MonsterHealingForUser;
 
 public interface UserEquipRepairService {
 	
-	public abstract Map<UUID, UserEquipRepair> getEquipsBeingRepaired(String userIdString);
+	public abstract Map<UUID, MonsterHealingForUser> getEquipsBeingRepaired(String userIdString);
 	
 	//returns MobstersTableConstants.resourceType -> amount
-	public abstract Map<Integer, Integer> calculateRepairCost(List<UserEquip> ueList,
-			List<UserEquipRepair> uerList, int multiplier);
+	public abstract Map<Integer, Integer> calculateRepairCost(List<MonsterForUser> ueList,
+			List<MonsterHealingForUser> uerList, int multiplier);
 	
 	public abstract void deleteUserEquipRepairs(Collection<UUID> ids);
 	
-	public abstract void saveUserEquipRepairs(Collection<UserEquipRepair> newStuff);
+	public abstract void saveUserEquipRepairs(Collection<MonsterHealingForUser> newStuff);
 	
-	public abstract int calculateSingleUserEquipRepairCost(UserEquip ue);
+	public abstract int calculateSingleUserEquipRepairCost(MonsterForUser ue);
 
 	public abstract int calculateTotalTimeOfQueuedUserEquips(List<UserEquipRepairProto> queuedEquips, Date currentTime);
 	
-	public abstract UserEquipRepairEntityManager getUserEquipmentRepairEntityManager();
+	public abstract MonsterHealingForUserEntityManager getUserEquipmentRepairEntityManager();
 	
-	public abstract void setUserEquipmentRepairEntityManager(UserEquipRepairEntityManager userEquipRepairEntityManager);
+	public abstract void setUserEquipmentRepairEntityManager(MonsterHealingForUserEntityManager monsterHealingForUserEntityManager);
 
-	public abstract UserEquipRepair getUserEquipRepairForId(UUID id);
+	public abstract MonsterHealingForUser getUserEquipRepairForId(UUID id);
 	
-	public abstract Map<UUID, UserEquipRepair> getUserEquipRepairsForIds(List<UUID> ids);
+	public abstract Map<UUID, MonsterHealingForUser> getUserEquipRepairsForIds(List<UUID> ids);
 	
-	public abstract List<UserEquipRepair> getAllUserEquipRepairsForUser(UUID userId);
+	public abstract List<MonsterHealingForUser> getAllUserEquipRepairsForUser(UUID userId);
 	
-	public abstract Equipment getEquipmentCorrespondingToUserEquipRepair(UserEquipRepair ue);
+	public abstract Equipment getEquipmentCorrespondingToUserEquipRepair(MonsterHealingForUser ue);
 
 }

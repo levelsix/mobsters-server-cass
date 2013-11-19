@@ -11,13 +11,13 @@ public final class QuestStuffProto {
   public interface QuestProtoOrBuilder
       extends com.google.protobuf.MessageOrBuilder {
     
-    // optional int32 questUuid = 1;
-    boolean hasQuestUuid();
-    int getQuestUuid();
+    // optional int32 questId = 1;
+    boolean hasQuestId();
+    int getQuestId();
     
-    // optional int32 cityUuid = 2;
-    boolean hasCityUuid();
-    int getCityUuid();
+    // optional int32 cityId = 2;
+    boolean hasCityId();
+    int getCityId();
     
     // optional string name = 3;
     boolean hasName();
@@ -44,9 +44,9 @@ public final class QuestStuffProto {
     boolean hasJobDescription();
     String getJobDescription();
     
-    // optional string staticDataUuid = 9;
-    boolean hasStaticDataUuid();
-    String getStaticDataUuid();
+    // optional int32 staticDataId = 9;
+    boolean hasStaticDataId();
+    int getStaticDataId();
     
     // optional int32 quantity = 10;
     boolean hasQuantity();
@@ -64,18 +64,18 @@ public final class QuestStuffProto {
     boolean hasExpReward();
     int getExpReward();
     
-    // optional string monsterUuidReward = 14;
-    boolean hasMonsterUuidReward();
-    String getMonsterUuidReward();
+    // optional int32 monsterIdReward = 14;
+    boolean hasMonsterIdReward();
+    int getMonsterIdReward();
     
     // optional bool isCompleteMonster = 15;
     boolean hasIsCompleteMonster();
     boolean getIsCompleteMonster();
     
-    // repeated string questUuidsRequiredForThis = 16;
-    java.util.List<String> getQuestUuidsRequiredForThisList();
-    int getQuestUuidsRequiredForThisCount();
-    String getQuestUuidsRequiredForThis(int index);
+    // repeated int32 questIdsRequiredForThis = 16;
+    java.util.List<java.lang.Integer> getQuestIdsRequiredForThisList();
+    int getQuestIdsRequiredForThisCount();
+    int getQuestIdsRequiredForThis(int index);
     
     // optional string questGiverImageSuffix = 17;
     boolean hasQuestGiverImageSuffix();
@@ -199,24 +199,24 @@ public final class QuestStuffProto {
     }
     
     private int bitField0_;
-    // optional int32 questUuid = 1;
-    public static final int QUESTUUID_FIELD_NUMBER = 1;
-    private int questUuid_;
-    public boolean hasQuestUuid() {
+    // optional int32 questId = 1;
+    public static final int QUESTID_FIELD_NUMBER = 1;
+    private int questId_;
+    public boolean hasQuestId() {
       return ((bitField0_ & 0x00000001) == 0x00000001);
     }
-    public int getQuestUuid() {
-      return questUuid_;
+    public int getQuestId() {
+      return questId_;
     }
     
-    // optional int32 cityUuid = 2;
-    public static final int CITYUUID_FIELD_NUMBER = 2;
-    private int cityUuid_;
-    public boolean hasCityUuid() {
+    // optional int32 cityId = 2;
+    public static final int CITYID_FIELD_NUMBER = 2;
+    private int cityId_;
+    public boolean hasCityId() {
       return ((bitField0_ & 0x00000002) == 0x00000002);
     }
-    public int getCityUuid() {
-      return cityUuid_;
+    public int getCityId() {
+      return cityId_;
     }
     
     // optional string name = 3;
@@ -370,36 +370,14 @@ public final class QuestStuffProto {
       }
     }
     
-    // optional string staticDataUuid = 9;
-    public static final int STATICDATAUUID_FIELD_NUMBER = 9;
-    private java.lang.Object staticDataUuid_;
-    public boolean hasStaticDataUuid() {
+    // optional int32 staticDataId = 9;
+    public static final int STATICDATAID_FIELD_NUMBER = 9;
+    private int staticDataId_;
+    public boolean hasStaticDataId() {
       return ((bitField0_ & 0x00000100) == 0x00000100);
     }
-    public String getStaticDataUuid() {
-      java.lang.Object ref = staticDataUuid_;
-      if (ref instanceof String) {
-        return (String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        String s = bs.toStringUtf8();
-        if (com.google.protobuf.Internal.isValidUtf8(bs)) {
-          staticDataUuid_ = s;
-        }
-        return s;
-      }
-    }
-    private com.google.protobuf.ByteString getStaticDataUuidBytes() {
-      java.lang.Object ref = staticDataUuid_;
-      if (ref instanceof String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8((String) ref);
-        staticDataUuid_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
+    public int getStaticDataId() {
+      return staticDataId_;
     }
     
     // optional int32 quantity = 10;
@@ -442,36 +420,14 @@ public final class QuestStuffProto {
       return expReward_;
     }
     
-    // optional string monsterUuidReward = 14;
-    public static final int MONSTERUUIDREWARD_FIELD_NUMBER = 14;
-    private java.lang.Object monsterUuidReward_;
-    public boolean hasMonsterUuidReward() {
+    // optional int32 monsterIdReward = 14;
+    public static final int MONSTERIDREWARD_FIELD_NUMBER = 14;
+    private int monsterIdReward_;
+    public boolean hasMonsterIdReward() {
       return ((bitField0_ & 0x00002000) == 0x00002000);
     }
-    public String getMonsterUuidReward() {
-      java.lang.Object ref = monsterUuidReward_;
-      if (ref instanceof String) {
-        return (String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        String s = bs.toStringUtf8();
-        if (com.google.protobuf.Internal.isValidUtf8(bs)) {
-          monsterUuidReward_ = s;
-        }
-        return s;
-      }
-    }
-    private com.google.protobuf.ByteString getMonsterUuidRewardBytes() {
-      java.lang.Object ref = monsterUuidReward_;
-      if (ref instanceof String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8((String) ref);
-        monsterUuidReward_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
+    public int getMonsterIdReward() {
+      return monsterIdReward_;
     }
     
     // optional bool isCompleteMonster = 15;
@@ -484,18 +440,18 @@ public final class QuestStuffProto {
       return isCompleteMonster_;
     }
     
-    // repeated string questUuidsRequiredForThis = 16;
-    public static final int QUESTUUIDSREQUIREDFORTHIS_FIELD_NUMBER = 16;
-    private com.google.protobuf.LazyStringList questUuidsRequiredForThis_;
-    public java.util.List<String>
-        getQuestUuidsRequiredForThisList() {
-      return questUuidsRequiredForThis_;
+    // repeated int32 questIdsRequiredForThis = 16;
+    public static final int QUESTIDSREQUIREDFORTHIS_FIELD_NUMBER = 16;
+    private java.util.List<java.lang.Integer> questIdsRequiredForThis_;
+    public java.util.List<java.lang.Integer>
+        getQuestIdsRequiredForThisList() {
+      return questIdsRequiredForThis_;
     }
-    public int getQuestUuidsRequiredForThisCount() {
-      return questUuidsRequiredForThis_.size();
+    public int getQuestIdsRequiredForThisCount() {
+      return questIdsRequiredForThis_.size();
     }
-    public String getQuestUuidsRequiredForThis(int index) {
-      return questUuidsRequiredForThis_.get(index);
+    public int getQuestIdsRequiredForThis(int index) {
+      return questIdsRequiredForThis_.get(index);
     }
     
     // optional string questGiverImageSuffix = 17;
@@ -573,22 +529,22 @@ public final class QuestStuffProto {
     }
     
     private void initFields() {
-      questUuid_ = 0;
-      cityUuid_ = 0;
+      questId_ = 0;
+      cityId_ = 0;
       name_ = "";
       description_ = "";
       doneResponse_ = "";
       acceptDialogue_ = com.lvl6.mobsters.noneventprotos.QuestStuffProto.DialogueProto.getDefaultInstance();
       questType_ = com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProto.QuestType.KILL_MONSTER;
       jobDescription_ = "";
-      staticDataUuid_ = "";
+      staticDataId_ = 0;
       quantity_ = 0;
       cashReward_ = 0;
       gemReward_ = 0;
       expReward_ = 0;
-      monsterUuidReward_ = "";
+      monsterIdReward_ = 0;
       isCompleteMonster_ = false;
-      questUuidsRequiredForThis_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+      questIdsRequiredForThis_ = java.util.Collections.emptyList();;
       questGiverImageSuffix_ = "";
       priority_ = 0;
       carrotId_ = "";
@@ -606,10 +562,10 @@ public final class QuestStuffProto {
                         throws java.io.IOException {
       getSerializedSize();
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        output.writeInt32(1, questUuid_);
+        output.writeInt32(1, questId_);
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        output.writeInt32(2, cityUuid_);
+        output.writeInt32(2, cityId_);
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
         output.writeBytes(3, getNameBytes());
@@ -630,7 +586,7 @@ public final class QuestStuffProto {
         output.writeBytes(8, getJobDescriptionBytes());
       }
       if (((bitField0_ & 0x00000100) == 0x00000100)) {
-        output.writeBytes(9, getStaticDataUuidBytes());
+        output.writeInt32(9, staticDataId_);
       }
       if (((bitField0_ & 0x00000200) == 0x00000200)) {
         output.writeInt32(10, quantity_);
@@ -645,13 +601,13 @@ public final class QuestStuffProto {
         output.writeInt32(13, expReward_);
       }
       if (((bitField0_ & 0x00002000) == 0x00002000)) {
-        output.writeBytes(14, getMonsterUuidRewardBytes());
+        output.writeInt32(14, monsterIdReward_);
       }
       if (((bitField0_ & 0x00004000) == 0x00004000)) {
         output.writeBool(15, isCompleteMonster_);
       }
-      for (int i = 0; i < questUuidsRequiredForThis_.size(); i++) {
-        output.writeBytes(16, questUuidsRequiredForThis_.getByteString(i));
+      for (int i = 0; i < questIdsRequiredForThis_.size(); i++) {
+        output.writeInt32(16, questIdsRequiredForThis_.get(i));
       }
       if (((bitField0_ & 0x00008000) == 0x00008000)) {
         output.writeBytes(17, getQuestGiverImageSuffixBytes());
@@ -673,11 +629,11 @@ public final class QuestStuffProto {
       size = 0;
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(1, questUuid_);
+          .computeInt32Size(1, questId_);
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(2, cityUuid_);
+          .computeInt32Size(2, cityId_);
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
         size += com.google.protobuf.CodedOutputStream
@@ -705,7 +661,7 @@ public final class QuestStuffProto {
       }
       if (((bitField0_ & 0x00000100) == 0x00000100)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(9, getStaticDataUuidBytes());
+          .computeInt32Size(9, staticDataId_);
       }
       if (((bitField0_ & 0x00000200) == 0x00000200)) {
         size += com.google.protobuf.CodedOutputStream
@@ -725,7 +681,7 @@ public final class QuestStuffProto {
       }
       if (((bitField0_ & 0x00002000) == 0x00002000)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(14, getMonsterUuidRewardBytes());
+          .computeInt32Size(14, monsterIdReward_);
       }
       if (((bitField0_ & 0x00004000) == 0x00004000)) {
         size += com.google.protobuf.CodedOutputStream
@@ -733,12 +689,12 @@ public final class QuestStuffProto {
       }
       {
         int dataSize = 0;
-        for (int i = 0; i < questUuidsRequiredForThis_.size(); i++) {
+        for (int i = 0; i < questIdsRequiredForThis_.size(); i++) {
           dataSize += com.google.protobuf.CodedOutputStream
-            .computeBytesSizeNoTag(questUuidsRequiredForThis_.getByteString(i));
+            .computeInt32SizeNoTag(questIdsRequiredForThis_.get(i));
         }
         size += dataSize;
-        size += 2 * getQuestUuidsRequiredForThisList().size();
+        size += 2 * getQuestIdsRequiredForThisList().size();
       }
       if (((bitField0_ & 0x00008000) == 0x00008000)) {
         size += com.google.protobuf.CodedOutputStream
@@ -877,9 +833,9 @@ public final class QuestStuffProto {
       
       public Builder clear() {
         super.clear();
-        questUuid_ = 0;
+        questId_ = 0;
         bitField0_ = (bitField0_ & ~0x00000001);
-        cityUuid_ = 0;
+        cityId_ = 0;
         bitField0_ = (bitField0_ & ~0x00000002);
         name_ = "";
         bitField0_ = (bitField0_ & ~0x00000004);
@@ -897,7 +853,7 @@ public final class QuestStuffProto {
         bitField0_ = (bitField0_ & ~0x00000040);
         jobDescription_ = "";
         bitField0_ = (bitField0_ & ~0x00000080);
-        staticDataUuid_ = "";
+        staticDataId_ = 0;
         bitField0_ = (bitField0_ & ~0x00000100);
         quantity_ = 0;
         bitField0_ = (bitField0_ & ~0x00000200);
@@ -907,11 +863,11 @@ public final class QuestStuffProto {
         bitField0_ = (bitField0_ & ~0x00000800);
         expReward_ = 0;
         bitField0_ = (bitField0_ & ~0x00001000);
-        monsterUuidReward_ = "";
+        monsterIdReward_ = 0;
         bitField0_ = (bitField0_ & ~0x00002000);
         isCompleteMonster_ = false;
         bitField0_ = (bitField0_ & ~0x00004000);
-        questUuidsRequiredForThis_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+        questIdsRequiredForThis_ = java.util.Collections.emptyList();;
         bitField0_ = (bitField0_ & ~0x00008000);
         questGiverImageSuffix_ = "";
         bitField0_ = (bitField0_ & ~0x00010000);
@@ -960,11 +916,11 @@ public final class QuestStuffProto {
         if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
           to_bitField0_ |= 0x00000001;
         }
-        result.questUuid_ = questUuid_;
+        result.questId_ = questId_;
         if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
           to_bitField0_ |= 0x00000002;
         }
-        result.cityUuid_ = cityUuid_;
+        result.cityId_ = cityId_;
         if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
           to_bitField0_ |= 0x00000004;
         }
@@ -996,7 +952,7 @@ public final class QuestStuffProto {
         if (((from_bitField0_ & 0x00000100) == 0x00000100)) {
           to_bitField0_ |= 0x00000100;
         }
-        result.staticDataUuid_ = staticDataUuid_;
+        result.staticDataId_ = staticDataId_;
         if (((from_bitField0_ & 0x00000200) == 0x00000200)) {
           to_bitField0_ |= 0x00000200;
         }
@@ -1016,17 +972,16 @@ public final class QuestStuffProto {
         if (((from_bitField0_ & 0x00002000) == 0x00002000)) {
           to_bitField0_ |= 0x00002000;
         }
-        result.monsterUuidReward_ = monsterUuidReward_;
+        result.monsterIdReward_ = monsterIdReward_;
         if (((from_bitField0_ & 0x00004000) == 0x00004000)) {
           to_bitField0_ |= 0x00004000;
         }
         result.isCompleteMonster_ = isCompleteMonster_;
         if (((bitField0_ & 0x00008000) == 0x00008000)) {
-          questUuidsRequiredForThis_ = new com.google.protobuf.UnmodifiableLazyStringList(
-              questUuidsRequiredForThis_);
+          questIdsRequiredForThis_ = java.util.Collections.unmodifiableList(questIdsRequiredForThis_);
           bitField0_ = (bitField0_ & ~0x00008000);
         }
-        result.questUuidsRequiredForThis_ = questUuidsRequiredForThis_;
+        result.questIdsRequiredForThis_ = questIdsRequiredForThis_;
         if (((from_bitField0_ & 0x00010000) == 0x00010000)) {
           to_bitField0_ |= 0x00008000;
         }
@@ -1055,11 +1010,11 @@ public final class QuestStuffProto {
       
       public Builder mergeFrom(com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProto other) {
         if (other == com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProto.getDefaultInstance()) return this;
-        if (other.hasQuestUuid()) {
-          setQuestUuid(other.getQuestUuid());
+        if (other.hasQuestId()) {
+          setQuestId(other.getQuestId());
         }
-        if (other.hasCityUuid()) {
-          setCityUuid(other.getCityUuid());
+        if (other.hasCityId()) {
+          setCityId(other.getCityId());
         }
         if (other.hasName()) {
           setName(other.getName());
@@ -1079,8 +1034,8 @@ public final class QuestStuffProto {
         if (other.hasJobDescription()) {
           setJobDescription(other.getJobDescription());
         }
-        if (other.hasStaticDataUuid()) {
-          setStaticDataUuid(other.getStaticDataUuid());
+        if (other.hasStaticDataId()) {
+          setStaticDataId(other.getStaticDataId());
         }
         if (other.hasQuantity()) {
           setQuantity(other.getQuantity());
@@ -1094,19 +1049,19 @@ public final class QuestStuffProto {
         if (other.hasExpReward()) {
           setExpReward(other.getExpReward());
         }
-        if (other.hasMonsterUuidReward()) {
-          setMonsterUuidReward(other.getMonsterUuidReward());
+        if (other.hasMonsterIdReward()) {
+          setMonsterIdReward(other.getMonsterIdReward());
         }
         if (other.hasIsCompleteMonster()) {
           setIsCompleteMonster(other.getIsCompleteMonster());
         }
-        if (!other.questUuidsRequiredForThis_.isEmpty()) {
-          if (questUuidsRequiredForThis_.isEmpty()) {
-            questUuidsRequiredForThis_ = other.questUuidsRequiredForThis_;
+        if (!other.questIdsRequiredForThis_.isEmpty()) {
+          if (questIdsRequiredForThis_.isEmpty()) {
+            questIdsRequiredForThis_ = other.questIdsRequiredForThis_;
             bitField0_ = (bitField0_ & ~0x00008000);
           } else {
-            ensureQuestUuidsRequiredForThisIsMutable();
-            questUuidsRequiredForThis_.addAll(other.questUuidsRequiredForThis_);
+            ensureQuestIdsRequiredForThisIsMutable();
+            questIdsRequiredForThis_.addAll(other.questIdsRequiredForThis_);
           }
           onChanged();
         }
@@ -1152,12 +1107,12 @@ public final class QuestStuffProto {
             }
             case 8: {
               bitField0_ |= 0x00000001;
-              questUuid_ = input.readInt32();
+              questId_ = input.readInt32();
               break;
             }
             case 16: {
               bitField0_ |= 0x00000002;
-              cityUuid_ = input.readInt32();
+              cityId_ = input.readInt32();
               break;
             }
             case 26: {
@@ -1200,9 +1155,9 @@ public final class QuestStuffProto {
               jobDescription_ = input.readBytes();
               break;
             }
-            case 74: {
+            case 72: {
               bitField0_ |= 0x00000100;
-              staticDataUuid_ = input.readBytes();
+              staticDataId_ = input.readInt32();
               break;
             }
             case 80: {
@@ -1225,9 +1180,9 @@ public final class QuestStuffProto {
               expReward_ = input.readInt32();
               break;
             }
-            case 114: {
+            case 112: {
               bitField0_ |= 0x00002000;
-              monsterUuidReward_ = input.readBytes();
+              monsterIdReward_ = input.readInt32();
               break;
             }
             case 120: {
@@ -1235,9 +1190,18 @@ public final class QuestStuffProto {
               isCompleteMonster_ = input.readBool();
               break;
             }
+            case 128: {
+              ensureQuestIdsRequiredForThisIsMutable();
+              questIdsRequiredForThis_.add(input.readInt32());
+              break;
+            }
             case 130: {
-              ensureQuestUuidsRequiredForThisIsMutable();
-              questUuidsRequiredForThis_.add(input.readBytes());
+              int length = input.readRawVarint32();
+              int limit = input.pushLimit(length);
+              while (input.getBytesUntilLimit() > 0) {
+                addQuestIdsRequiredForThis(input.readInt32());
+              }
+              input.popLimit(limit);
               break;
             }
             case 138: {
@@ -1261,44 +1225,44 @@ public final class QuestStuffProto {
       
       private int bitField0_;
       
-      // optional int32 questUuid = 1;
-      private int questUuid_ ;
-      public boolean hasQuestUuid() {
+      // optional int32 questId = 1;
+      private int questId_ ;
+      public boolean hasQuestId() {
         return ((bitField0_ & 0x00000001) == 0x00000001);
       }
-      public int getQuestUuid() {
-        return questUuid_;
+      public int getQuestId() {
+        return questId_;
       }
-      public Builder setQuestUuid(int value) {
+      public Builder setQuestId(int value) {
         bitField0_ |= 0x00000001;
-        questUuid_ = value;
+        questId_ = value;
         onChanged();
         return this;
       }
-      public Builder clearQuestUuid() {
+      public Builder clearQuestId() {
         bitField0_ = (bitField0_ & ~0x00000001);
-        questUuid_ = 0;
+        questId_ = 0;
         onChanged();
         return this;
       }
       
-      // optional int32 cityUuid = 2;
-      private int cityUuid_ ;
-      public boolean hasCityUuid() {
+      // optional int32 cityId = 2;
+      private int cityId_ ;
+      public boolean hasCityId() {
         return ((bitField0_ & 0x00000002) == 0x00000002);
       }
-      public int getCityUuid() {
-        return cityUuid_;
+      public int getCityId() {
+        return cityId_;
       }
-      public Builder setCityUuid(int value) {
+      public Builder setCityId(int value) {
         bitField0_ |= 0x00000002;
-        cityUuid_ = value;
+        cityId_ = value;
         onChanged();
         return this;
       }
-      public Builder clearCityUuid() {
+      public Builder clearCityId() {
         bitField0_ = (bitField0_ & ~0x00000002);
-        cityUuid_ = 0;
+        cityId_ = 0;
         onChanged();
         return this;
       }
@@ -1561,40 +1525,25 @@ public final class QuestStuffProto {
         onChanged();
       }
       
-      // optional string staticDataUuid = 9;
-      private java.lang.Object staticDataUuid_ = "";
-      public boolean hasStaticDataUuid() {
+      // optional int32 staticDataId = 9;
+      private int staticDataId_ ;
+      public boolean hasStaticDataId() {
         return ((bitField0_ & 0x00000100) == 0x00000100);
       }
-      public String getStaticDataUuid() {
-        java.lang.Object ref = staticDataUuid_;
-        if (!(ref instanceof String)) {
-          String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
-          staticDataUuid_ = s;
-          return s;
-        } else {
-          return (String) ref;
-        }
+      public int getStaticDataId() {
+        return staticDataId_;
       }
-      public Builder setStaticDataUuid(String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000100;
-        staticDataUuid_ = value;
-        onChanged();
-        return this;
-      }
-      public Builder clearStaticDataUuid() {
-        bitField0_ = (bitField0_ & ~0x00000100);
-        staticDataUuid_ = getDefaultInstance().getStaticDataUuid();
-        onChanged();
-        return this;
-      }
-      void setStaticDataUuid(com.google.protobuf.ByteString value) {
+      public Builder setStaticDataId(int value) {
         bitField0_ |= 0x00000100;
-        staticDataUuid_ = value;
+        staticDataId_ = value;
         onChanged();
+        return this;
+      }
+      public Builder clearStaticDataId() {
+        bitField0_ = (bitField0_ & ~0x00000100);
+        staticDataId_ = 0;
+        onChanged();
+        return this;
       }
       
       // optional int32 quantity = 10;
@@ -1681,40 +1630,25 @@ public final class QuestStuffProto {
         return this;
       }
       
-      // optional string monsterUuidReward = 14;
-      private java.lang.Object monsterUuidReward_ = "";
-      public boolean hasMonsterUuidReward() {
+      // optional int32 monsterIdReward = 14;
+      private int monsterIdReward_ ;
+      public boolean hasMonsterIdReward() {
         return ((bitField0_ & 0x00002000) == 0x00002000);
       }
-      public String getMonsterUuidReward() {
-        java.lang.Object ref = monsterUuidReward_;
-        if (!(ref instanceof String)) {
-          String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
-          monsterUuidReward_ = s;
-          return s;
-        } else {
-          return (String) ref;
-        }
+      public int getMonsterIdReward() {
+        return monsterIdReward_;
       }
-      public Builder setMonsterUuidReward(String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00002000;
-        monsterUuidReward_ = value;
-        onChanged();
-        return this;
-      }
-      public Builder clearMonsterUuidReward() {
-        bitField0_ = (bitField0_ & ~0x00002000);
-        monsterUuidReward_ = getDefaultInstance().getMonsterUuidReward();
-        onChanged();
-        return this;
-      }
-      void setMonsterUuidReward(com.google.protobuf.ByteString value) {
+      public Builder setMonsterIdReward(int value) {
         bitField0_ |= 0x00002000;
-        monsterUuidReward_ = value;
+        monsterIdReward_ = value;
         onChanged();
+        return this;
+      }
+      public Builder clearMonsterIdReward() {
+        bitField0_ = (bitField0_ & ~0x00002000);
+        monsterIdReward_ = 0;
+        onChanged();
+        return this;
       }
       
       // optional bool isCompleteMonster = 15;
@@ -1738,60 +1672,49 @@ public final class QuestStuffProto {
         return this;
       }
       
-      // repeated string questUuidsRequiredForThis = 16;
-      private com.google.protobuf.LazyStringList questUuidsRequiredForThis_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-      private void ensureQuestUuidsRequiredForThisIsMutable() {
+      // repeated int32 questIdsRequiredForThis = 16;
+      private java.util.List<java.lang.Integer> questIdsRequiredForThis_ = java.util.Collections.emptyList();;
+      private void ensureQuestIdsRequiredForThisIsMutable() {
         if (!((bitField0_ & 0x00008000) == 0x00008000)) {
-          questUuidsRequiredForThis_ = new com.google.protobuf.LazyStringArrayList(questUuidsRequiredForThis_);
+          questIdsRequiredForThis_ = new java.util.ArrayList<java.lang.Integer>(questIdsRequiredForThis_);
           bitField0_ |= 0x00008000;
          }
       }
-      public java.util.List<String>
-          getQuestUuidsRequiredForThisList() {
-        return java.util.Collections.unmodifiableList(questUuidsRequiredForThis_);
+      public java.util.List<java.lang.Integer>
+          getQuestIdsRequiredForThisList() {
+        return java.util.Collections.unmodifiableList(questIdsRequiredForThis_);
       }
-      public int getQuestUuidsRequiredForThisCount() {
-        return questUuidsRequiredForThis_.size();
+      public int getQuestIdsRequiredForThisCount() {
+        return questIdsRequiredForThis_.size();
       }
-      public String getQuestUuidsRequiredForThis(int index) {
-        return questUuidsRequiredForThis_.get(index);
+      public int getQuestIdsRequiredForThis(int index) {
+        return questIdsRequiredForThis_.get(index);
       }
-      public Builder setQuestUuidsRequiredForThis(
-          int index, String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureQuestUuidsRequiredForThisIsMutable();
-        questUuidsRequiredForThis_.set(index, value);
+      public Builder setQuestIdsRequiredForThis(
+          int index, int value) {
+        ensureQuestIdsRequiredForThisIsMutable();
+        questIdsRequiredForThis_.set(index, value);
         onChanged();
         return this;
       }
-      public Builder addQuestUuidsRequiredForThis(String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureQuestUuidsRequiredForThisIsMutable();
-        questUuidsRequiredForThis_.add(value);
+      public Builder addQuestIdsRequiredForThis(int value) {
+        ensureQuestIdsRequiredForThisIsMutable();
+        questIdsRequiredForThis_.add(value);
         onChanged();
         return this;
       }
-      public Builder addAllQuestUuidsRequiredForThis(
-          java.lang.Iterable<String> values) {
-        ensureQuestUuidsRequiredForThisIsMutable();
-        super.addAll(values, questUuidsRequiredForThis_);
+      public Builder addAllQuestIdsRequiredForThis(
+          java.lang.Iterable<? extends java.lang.Integer> values) {
+        ensureQuestIdsRequiredForThisIsMutable();
+        super.addAll(values, questIdsRequiredForThis_);
         onChanged();
         return this;
       }
-      public Builder clearQuestUuidsRequiredForThis() {
-        questUuidsRequiredForThis_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+      public Builder clearQuestIdsRequiredForThis() {
+        questIdsRequiredForThis_ = java.util.Collections.emptyList();;
         bitField0_ = (bitField0_ & ~0x00008000);
         onChanged();
         return this;
-      }
-      void addQuestUuidsRequiredForThis(com.google.protobuf.ByteString value) {
-        ensureQuestUuidsRequiredForThisIsMutable();
-        questUuidsRequiredForThis_.add(value);
-        onChanged();
       }
       
       // optional string questGiverImageSuffix = 17;
@@ -3643,36 +3566,35 @@ public final class QuestStuffProto {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\020QuestStuff.proto\022\005proto\"\352\004\n\nQuestProto" +
-      "\022\021\n\tquestUuid\030\001 \001(\005\022\020\n\010cityUuid\030\002 \001(\005\022\014\n" +
-      "\004name\030\003 \001(\t\022\023\n\013description\030\004 \001(\t\022\024\n\014done" +
-      "Response\030\005 \001(\t\022,\n\016acceptDialogue\030\006 \001(\0132\024" +
-      ".proto.DialogueProto\022.\n\tquestType\030\007 \001(\0162" +
-      "\033.proto.QuestProto.QuestType\022\026\n\016jobDescr" +
-      "iption\030\010 \001(\t\022\026\n\016staticDataUuid\030\t \001(\t\022\020\n\010" +
-      "quantity\030\n \001(\005\022\022\n\ncashReward\030\013 \001(\005\022\021\n\tge" +
-      "mReward\030\014 \001(\005\022\021\n\texpReward\030\r \001(\005\022\031\n\021mons" +
-      "terUuidReward\030\016 \001(\t\022\031\n\021isCompleteMonster",
-      "\030\017 \001(\010\022!\n\031questUuidsRequiredForThis\030\020 \003(" +
-      "\t\022\035\n\025questGiverImageSuffix\030\021 \001(\t\022\020\n\010prio" +
-      "rity\030\022 \001(\005\022\020\n\010carrotId\030\023 \001(\t\"\207\001\n\tQuestTy" +
-      "pe\022\020\n\014KILL_MONSTER\020\001\022\022\n\016DONATE_MONSTER\020\002" +
-      "\022\021\n\rCOMPLETE_TASK\020\003\022\033\n\027COLLECT_COINS_FRO" +
-      "M_HOME\020\004\022\020\n\014BUILD_STRUCT\020\005\022\022\n\016UPGRADE_ST" +
-      "RUCT\020\006\"\327\002\n\rDialogueProto\022>\n\rspeechSegmen" +
-      "t\030\001 \003(\0132\'.proto.DialogueProto.SpeechSegm" +
-      "entProto\032\205\002\n\022SpeechSegmentProto\022H\n\007speak" +
-      "er\030\001 \001(\01627.proto.DialogueProto.SpeechSeg",
-      "mentProto.DialogueSpeaker\022\023\n\013speakerText" +
-      "\030\002 \001(\t\"\217\001\n\017DialogueSpeaker\022\017\n\013PLAYER_TYP" +
-      "E\020\001\022\021\n\rTUTORIAL_GIRL\020\002\022\020\n\014QUESTGIVER_1\020\003" +
-      "\022\020\n\014QUESTGIVER_2\020\004\022\020\n\014QUESTGIVER_3\020\005\022\020\n\014" +
-      "QUESTGIVER_4\020\006\022\020\n\014QUESTGIVER_5\020\007\"s\n\022Full" +
-      "UserQuestProto\022\020\n\010userUuid\030\001 \001(\t\022\021\n\tques" +
-      "tUuid\030\002 \001(\t\022\022\n\nisRedeemed\030\003 \001(\010\022\022\n\nisCom" +
-      "plete\030\004 \001(\010\022\020\n\010progress\030\005 \001(\005B3\n com.lvl" +
-      "6.mobsters.noneventprotosB\017QuestStuffPro" +
-      "to"
+      "\n\020QuestStuff.proto\022\005proto\"\340\004\n\nQuestProto" +
+      "\022\017\n\007questId\030\001 \001(\005\022\016\n\006cityId\030\002 \001(\005\022\014\n\004nam" +
+      "e\030\003 \001(\t\022\023\n\013description\030\004 \001(\t\022\024\n\014doneResp" +
+      "onse\030\005 \001(\t\022,\n\016acceptDialogue\030\006 \001(\0132\024.pro" +
+      "to.DialogueProto\022.\n\tquestType\030\007 \001(\0162\033.pr" +
+      "oto.QuestProto.QuestType\022\026\n\016jobDescripti" +
+      "on\030\010 \001(\t\022\024\n\014staticDataId\030\t \001(\005\022\020\n\010quanti" +
+      "ty\030\n \001(\005\022\022\n\ncashReward\030\013 \001(\005\022\021\n\tgemRewar" +
+      "d\030\014 \001(\005\022\021\n\texpReward\030\r \001(\005\022\027\n\017monsterIdR" +
+      "eward\030\016 \001(\005\022\031\n\021isCompleteMonster\030\017 \001(\010\022\037",
+      "\n\027questIdsRequiredForThis\030\020 \003(\005\022\035\n\025quest" +
+      "GiverImageSuffix\030\021 \001(\t\022\020\n\010priority\030\022 \001(\005" +
+      "\022\020\n\010carrotId\030\023 \001(\t\"\207\001\n\tQuestType\022\020\n\014KILL" +
+      "_MONSTER\020\001\022\022\n\016DONATE_MONSTER\020\002\022\021\n\rCOMPLE" +
+      "TE_TASK\020\003\022\033\n\027COLLECT_COINS_FROM_HOME\020\004\022\020" +
+      "\n\014BUILD_STRUCT\020\005\022\022\n\016UPGRADE_STRUCT\020\006\"\327\002\n" +
+      "\rDialogueProto\022>\n\rspeechSegment\030\001 \003(\0132\'." +
+      "proto.DialogueProto.SpeechSegmentProto\032\205" +
+      "\002\n\022SpeechSegmentProto\022H\n\007speaker\030\001 \001(\01627" +
+      ".proto.DialogueProto.SpeechSegmentProto.",
+      "DialogueSpeaker\022\023\n\013speakerText\030\002 \001(\t\"\217\001\n" +
+      "\017DialogueSpeaker\022\017\n\013PLAYER_TYPE\020\001\022\021\n\rTUT" +
+      "ORIAL_GIRL\020\002\022\020\n\014QUESTGIVER_1\020\003\022\020\n\014QUESTG" +
+      "IVER_2\020\004\022\020\n\014QUESTGIVER_3\020\005\022\020\n\014QUESTGIVER" +
+      "_4\020\006\022\020\n\014QUESTGIVER_5\020\007\"s\n\022FullUserQuestP" +
+      "roto\022\020\n\010userUuid\030\001 \001(\t\022\021\n\tquestUuid\030\002 \001(" +
+      "\t\022\022\n\nisRedeemed\030\003 \001(\010\022\022\n\nisComplete\030\004 \001(" +
+      "\010\022\020\n\010progress\030\005 \001(\005B3\n com.lvl6.mobsters" +
+      ".noneventprotosB\017QuestStuffProto"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -3684,7 +3606,7 @@ public final class QuestStuffProto {
           internal_static_proto_QuestProto_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_proto_QuestProto_descriptor,
-              new java.lang.String[] { "QuestUuid", "CityUuid", "Name", "Description", "DoneResponse", "AcceptDialogue", "QuestType", "JobDescription", "StaticDataUuid", "Quantity", "CashReward", "GemReward", "ExpReward", "MonsterUuidReward", "IsCompleteMonster", "QuestUuidsRequiredForThis", "QuestGiverImageSuffix", "Priority", "CarrotId", },
+              new java.lang.String[] { "QuestId", "CityId", "Name", "Description", "DoneResponse", "AcceptDialogue", "QuestType", "JobDescription", "StaticDataId", "Quantity", "CashReward", "GemReward", "ExpReward", "MonsterIdReward", "IsCompleteMonster", "QuestIdsRequiredForThis", "QuestGiverImageSuffix", "Priority", "CarrotId", },
               com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProto.class,
               com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProto.Builder.class);
           internal_static_proto_DialogueProto_descriptor =

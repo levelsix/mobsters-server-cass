@@ -12,9 +12,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.lvl6.mobsters.entitymanager.UserEquipEntityManager;
-import com.lvl6.mobsters.entitymanager.UserEquipRepairEntityManager;
 import com.lvl6.mobsters.entitymanager.nonstaticdata.UserEntityManager;
+import com.lvl6.mobsters.entitymanager.nonstaticdata.MonsterForUserEntityManager;
+import com.lvl6.mobsters.entitymanager.nonstaticdata.MonsterHealingForUserEntityManager;
 import com.lvl6.mobsters.entitymanager.staticdata.EquipmentRetrieveUtils;
 import com.lvl6.mobsters.eventprotos.SpeedUpRepairEquipEventProto.SpeedUpRepairEquipRequestProto;
 import com.lvl6.mobsters.eventprotos.SpeedUpRepairEquipEventProto.SpeedUpRepairEquipResponseProto;
@@ -26,8 +26,8 @@ import com.lvl6.mobsters.events.response.SpeedUpRepairEquipResponseEvent;
 import com.lvl6.mobsters.noneventprotos.MobstersEventProtocolProto.MobstersEventProtocolRequest;
 import com.lvl6.mobsters.noneventprotos.FullUser.MinimumUserProto;
 import com.lvl6.mobsters.noneventprotos.UserEquipRepair.UserEquipRepairProto;
-import com.lvl6.mobsters.po.UserEquip;
 import com.lvl6.mobsters.po.nonstaticdata.User;
+import com.lvl6.mobsters.po.nonstaticdata.MonsterForUser;
 import com.lvl6.mobsters.services.time.TimeUtils;
 import com.lvl6.mobsters.services.user.UserService;
 import com.lvl6.mobsters.services.userequip.UserEquipService;
@@ -50,7 +50,7 @@ public class SpeedUpRepairEquipController extends EventController {
 	protected UserEquipRepairService userEquipRepairService;
 	
 	@Autowired
-	protected UserEquipRepairEntityManager userEquipRepairEntityManager;
+	protected MonsterHealingForUserEntityManager monsterHealingForUserEntityManager;
 
 	@Autowired
 	protected UserEquipService userEquipService;
@@ -59,7 +59,7 @@ public class SpeedUpRepairEquipController extends EventController {
 	protected UserEntityManager userEntityManager;
 	
 	@Autowired
-	protected UserEquipEntityManager userEquipEntityManager;
+	protected MonsterForUserEntityManager monsterForUserEntityManager;
 
 	@Autowired
 	protected TimeUtils timeUtils;
@@ -181,7 +181,7 @@ public class SpeedUpRepairEquipController extends EventController {
 
 			//delete from user equip repair and add to user equip
 			for(UserEquipRepairProto uerp : equipsInQueue) {
-				UserEquip ue = new UserEquip();
+				MonsterForUser ue = new MonsterForUser();
 				ue.setDungeonRoomOrChestAcquiredFrom(uerp.getDungeonRoomOrChestAcquiredFrom());
 				ue.setDurability(100.0);
 				
@@ -262,24 +262,24 @@ public class SpeedUpRepairEquipController extends EventController {
 		this.userService = userService;
 	}
 
-	public UserEquipEntityManager getUserEquipEntityManager() {
-		return userEquipEntityManager;
+	public MonsterForUserEntityManager getUserEquipEntityManager() {
+		return monsterForUserEntityManager;
 	}
 
 	public void setUserEquipEntityManager(
-			UserEquipEntityManager userEquipEntityManager) {
-		this.userEquipEntityManager = userEquipEntityManager;
+			MonsterForUserEntityManager monsterForUserEntityManager) {
+		this.monsterForUserEntityManager = monsterForUserEntityManager;
 	}
 
 
 
-	public UserEquipRepairEntityManager getUserEquipRepairEntityManager() {
-		return userEquipRepairEntityManager;
+	public MonsterHealingForUserEntityManager getUserEquipRepairEntityManager() {
+		return monsterHealingForUserEntityManager;
 	}
 
 	public void setUserEquipRepairEntityManager(
-			UserEquipRepairEntityManager userEquipRepairEntityManager) {
-		this.userEquipRepairEntityManager = userEquipRepairEntityManager;
+			MonsterHealingForUserEntityManager monsterHealingForUserEntityManager) {
+		this.monsterHealingForUserEntityManager = monsterHealingForUserEntityManager;
 	}
 
 	

@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.UUID;
 
 import org.slf4j.Logger;
@@ -16,6 +17,7 @@ import org.springframework.stereotype.Component;
 import com.lvl6.mobsters.entitymanager.nonstaticdata.QuestForUserEntityManager;
 import com.lvl6.mobsters.entitymanager.staticdata.QuestRetrieveUtils;
 import com.lvl6.mobsters.po.nonstaticdata.QuestForUser;
+import com.lvl6.mobsters.po.staticdata.Quest;
 import com.lvl6.mobsters.properties.MobstersDbTables;
 import com.lvl6.mobsters.services.time.TimeUtils;
 import com.lvl6.mobsters.utils.QueryConstructionUtil;
@@ -64,9 +66,11 @@ public class QuestForUserServiceImpl implements QuestForUserService {
 	}
 	
 	@Override
-	public List<Integer> getAvailableQuestIdsForUser(UUID userId) {
+	public List<Integer> getAvailableQuestIdsForUser(UUID userId, int questIdJustRedeemed) {
 		Map<Integer, QuestForUser> questIdsToUserQuests = getQuestIdsToUserQuestsForUser(userId);
 	    Collection<QuestForUser> inProgressAndRedeemedUserQuests = questIdsToUserQuests.values();
+	    //group user quests into either inprogress or redeemed
+	    
 	    List<Integer> inProgressQuestIds = new ArrayList<Integer>();
 	    List<Integer> redeemedQuestIds = new ArrayList<Integer>();
 	    
@@ -74,7 +78,8 @@ public class QuestForUserServiceImpl implements QuestForUserService {
 	    
 	    if (inProgressAndRedeemedUserQuests != null) {
 	    	for (QuestForUser uq : inProgressAndRedeemedUserQuests) {
-	    		if (uq.isRedeemed()) {
+	    		int questId = uq.getQuestId();
+	    		if (uq.isRedeemed() || questId == questIdJustRedeemed) {
 	    			redeemedQuestIds.add(uq.getQuestId());
 	    		} else {
 	    			inProgressQuestIds.add(uq.getQuestId());  
@@ -140,6 +145,25 @@ public class QuestForUserServiceImpl implements QuestForUserService {
 		
 		return mostRecent;
 	}
+	
+	@Override
+	public List<Quest> selectQuestsHavingPrerequisiteQuestId(List<Integer> prospectiveQuestIds,
+			int prerequisiteQuestId) {
+		Map<Integer, Quest> questIdsToQuests = getQuestRetrieveUtils().getQuestIdsToQuests();
+		
+		List<Quest> retVal = new ArrayList<Quest>();
+		for (Integer availableQuestId : prospectiveQuestIds) {
+			Quest q = questIdsToQuests.get(availableQuestId);
+			Set<Integer> prerequisiteQuestIds = q.getQuestsRequiredForThisAsSet();
+			
+			//check if prerequisite quest ids for this quest contains argument prerequisiteQuestId
+			if (prerequisiteQuestIds.contains(prerequisiteQuestId)) {
+				retVal.add(q);
+			}
+		}
+		return retVal;
+	}
+	
 	
 	
 	

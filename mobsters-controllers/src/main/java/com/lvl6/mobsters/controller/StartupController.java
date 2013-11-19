@@ -107,7 +107,7 @@ public class StartupController extends EventController {
 			if (successful) {
 				//set the recipient
 				User u = userList.get(0);
-				FullUserProto fup = getCreateNoneventProtoUtils().createFullUser(u);
+				FullUserProto fup = getCreateNoneventProtoUtils().createFullUserProtoFromUser(u);
 				responseBuilder.setFup(fup);
 //				setFacebookFriends(responseBuilder, facebookFriendIds);
 			}

@@ -13,17 +13,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.lvl6.mobsters.entitymanager.EquipmentEntityManager;
-import com.lvl6.mobsters.entitymanager.UserEquipEntityManager;
+import com.lvl6.mobsters.entitymanager.nonstaticdata.MonsterForUserEntityManager;
 import com.lvl6.mobsters.entitymanager.staticdata.EquipmentRetrieveUtils;
 import com.lvl6.mobsters.po.Equipment;
-import com.lvl6.mobsters.po.UserEquip;
+import com.lvl6.mobsters.po.nonstaticdata.MonsterForUser;
 
 
 @Component
 public class UserEquipServiceImpl implements UserEquipService {
 	
 	@Autowired
-	protected UserEquipEntityManager userEquipEntityManager;
+	protected MonsterForUserEntityManager monsterForUserEntityManager;
 	
 	@Autowired
 	protected EquipmentRetrieveUtils equipmentRetrieveUtils;
@@ -33,14 +33,14 @@ public class UserEquipServiceImpl implements UserEquipService {
 
 	private  Logger log = LoggerFactory.getLogger(new Object() { }.getClass().getEnclosingClass());
 
-	private  Map<UUID, UserEquip> idsToUserEquips;
+	private  Map<UUID, MonsterForUser> idsToUserEquips;
 	
 	@Override
-	public Map<UUID, UserEquip> getUserEquipsByUserEquipIds(Collection<UUID> ids) {
-		Map<UUID, UserEquip> returnVal = new HashMap<UUID, UserEquip>();
+	public Map<UUID, MonsterForUser> getUserEquipsByUserEquipIds(Collection<UUID> ids) {
+		Map<UUID, MonsterForUser> returnVal = new HashMap<UUID, MonsterForUser>();
 		
-		List<UserEquip> ueList = userEquipEntityManager.get().get(ids);
-		for (UserEquip ue : ueList) {
+		List<MonsterForUser> ueList = monsterForUserEntityManager.get().get(ids);
+		for (MonsterForUser ue : ueList) {
 			UUID id = ue.getId();
 			returnVal.put(id, ue);
 		}
@@ -49,32 +49,32 @@ public class UserEquipServiceImpl implements UserEquipService {
 	}
 	
 	@Override
-	public void saveEquips(Collection<UserEquip> newEquips) {
+	public void saveEquips(Collection<MonsterForUser> newEquips) {
 		getUserEquipEntityManager().get().put(newEquips);
 	}
 	
 	@Override
-	public void getEquippedUserEquips(List<UserEquip> allUserEquips, List<UserEquip> equippedUserEquips) {
-		for(UserEquip ue : allUserEquips) {
+	public void getEquippedUserEquips(List<MonsterForUser> allUserEquips, List<MonsterForUser> equippedUserEquips) {
+		for(MonsterForUser ue : allUserEquips) {
 			if(ue.isEquipped())
 				equippedUserEquips.add(ue);
 		}
 	}
 	
-	public  UserEquip getUserEquipForId(UUID id) {
-		log.debug("retrieve UserEquip data for id " + id);
+	public  MonsterForUser getUserEquipForId(UUID id) {
+		log.debug("retrieve MonsterForUser data for id " + id);
 		if (idsToUserEquips == null) {
 			setStaticIdsToUserEquips();      
 		}
 		return idsToUserEquips.get(id);
 	}
 
-	public  Map<UUID, UserEquip> getUserEquipsForIds(List<UUID> ids) {
+	public  Map<UUID, MonsterForUser> getUserEquipsForIds(List<UUID> ids) {
 		log.debug("retrieve UserEquips data for ids " + ids);
 		if (idsToUserEquips == null) {
 			setStaticIdsToUserEquips();      
 		}
-		Map<UUID, UserEquip> toreturn = new HashMap<UUID, UserEquip>();
+		Map<UUID, MonsterForUser> toreturn = new HashMap<UUID, MonsterForUser>();
 		for (UUID id : ids) {
 			toreturn.put(id,  idsToUserEquips.get(id));
 		}
@@ -85,30 +85,30 @@ public class UserEquipServiceImpl implements UserEquipService {
 		log.debug("setting  map of UserEquipIds to UserEquips");
 
 		String cqlquery = "select * from user_equip;"; 
-		List <UserEquip> list = getUserEquipEntityManager().get().find(cqlquery);
-		idsToUserEquips = new HashMap<UUID, UserEquip>();
-		for(UserEquip us : list) {
+		List <MonsterForUser> list = getUserEquipEntityManager().get().find(cqlquery);
+		idsToUserEquips = new HashMap<UUID, MonsterForUser>();
+		for(MonsterForUser us : list) {
 			UUID id= us.getId();
 			idsToUserEquips.put(id, us);
 		}
 					
 	}
 
-	public  List<UserEquip> getAllUserEquipsForUser(UUID userId) {
+	public  List<MonsterForUser> getAllUserEquipsForUser(UUID userId) {
 		String cqlquery = "select * from user_equip where user_id=" + userId + ";"; 
-		List <UserEquip> list = getUserEquipEntityManager().get().find(cqlquery);
+		List <MonsterForUser> list = getUserEquipEntityManager().get().find(cqlquery);
 		return list;
 	}
 	
-	public Equipment getEquipmentCorrespondingToUserEquip(UserEquip ue) {
+	public Equipment getEquipmentCorrespondingToUserEquip(MonsterForUser ue) {
 		UUID equipId = ue.getEquipId();
 		return getEquipmentRetrieveUtils().getEquipmentForId(equipId);
 	}
 	
-	public List<UserEquip> getAllEquippedUserEquipsForUser(UUID userId) {
-		List<UserEquip> ueList = getAllUserEquipsForUser(userId);
-		List<UserEquip> equippedList = new ArrayList<>();
-		for(UserEquip ue : ueList) {
+	public List<MonsterForUser> getAllEquippedUserEquipsForUser(UUID userId) {
+		List<MonsterForUser> ueList = getAllUserEquipsForUser(userId);
+		List<MonsterForUser> equippedList = new ArrayList<>();
+		for(MonsterForUser ue : ueList) {
 			if(ue.isEquipped()) {
 				equippedList.add(ue);
 			}
@@ -118,14 +118,14 @@ public class UserEquipServiceImpl implements UserEquipService {
 	
 	
 	@Override
-	public UserEquipEntityManager getUserEquipEntityManager() {
-		return userEquipEntityManager;
+	public MonsterForUserEntityManager getUserEquipEntityManager() {
+		return monsterForUserEntityManager;
 	}
 
 	@Override
 	public void setUserEquipEntityManager(
-			UserEquipEntityManager userEquipEntityManager) {
-		this.userEquipEntityManager = userEquipEntityManager;
+			MonsterForUserEntityManager monsterForUserEntityManager) {
+		this.monsterForUserEntityManager = monsterForUserEntityManager;
 	}
 
 	public EquipmentEntityManager getEquipmentEntityManager() {

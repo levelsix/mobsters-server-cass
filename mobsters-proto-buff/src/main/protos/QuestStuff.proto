@@ -8,8 +8,8 @@ option java_outer_classname = "QuestStuffProto";
 //DO NOT USE ID AS THE NAME OF A PROPERTY IN ANY PROTO
 
 message QuestProto {
-     optional int32 questUuid = 1;
-     optional int32 cityUuid = 2;
+     optional int32 questId = 1;
+     optional int32 cityId = 2;
      optional string name = 3;
      optional string description = 4;
      optional string doneResponse = 5;
@@ -18,14 +18,14 @@ message QuestProto {
      optional string jobDescription = 8;
      
      //id to some table (e.g. monster, structure)
-     optional string staticDataUuid = 9;
+     optional int32 staticDataId = 9;
      optional int32 quantity = 10;
      optional int32 cashReward = 11;
      optional int32 gemReward = 12;
      optional int32 expReward = 13;
-     optional string monsterUuidReward = 14;
+     optional int32 monsterIdReward = 14;
      optional bool isCompleteMonster = 15;
-     repeated string questUuidsRequiredForThis = 16;
+     repeated int32 questIdsRequiredForThis = 16;
      optional string questGiverImageSuffix = 17;
      optional int32 priority = 18;
      optional string carrotId = 19;

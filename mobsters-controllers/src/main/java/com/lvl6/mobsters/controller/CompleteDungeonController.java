@@ -10,12 +10,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.lvl6.mobsters.entitymanager.UserChestEntityManager;
 import com.lvl6.mobsters.entitymanager.UserDungeonStatusEntityManager;
 import com.lvl6.mobsters.entitymanager.UserDungeonStatusHistoryEntityManager;
-import com.lvl6.mobsters.entitymanager.UserEquipEntityManager;
 import com.lvl6.mobsters.entitymanager.UserItemEntityManager;
+import com.lvl6.mobsters.entitymanager.nonstaticdata.MonsterEnhancingForUserEntityManager;
 import com.lvl6.mobsters.entitymanager.nonstaticdata.UserEntityManager;
+import com.lvl6.mobsters.entitymanager.nonstaticdata.MonsterForUserEntityManager;
 import com.lvl6.mobsters.entitymanager.staticdata.StructureRetrieveUtils;
 import com.lvl6.mobsters.eventprotos.CompleteDungeonEventProto.CompleteDungeonRequestProto;
 import com.lvl6.mobsters.eventprotos.CompleteDungeonEventProto.CompleteDungeonResponseProto;
@@ -29,11 +29,11 @@ import com.lvl6.mobsters.noneventprotos.Chest.ChestProto;
 import com.lvl6.mobsters.noneventprotos.Equipment.EquipmentProto;
 import com.lvl6.mobsters.noneventprotos.FullUser.MinimumUserProto;
 import com.lvl6.mobsters.noneventprotos.Item.ItemProto;
-import com.lvl6.mobsters.po.UserChest;
 import com.lvl6.mobsters.po.UserDungeonStatus;
-import com.lvl6.mobsters.po.UserEquip;
 import com.lvl6.mobsters.po.UserItem;
 import com.lvl6.mobsters.po.nonstaticdata.User;
+import com.lvl6.mobsters.po.nonstaticdata.MonsterEnhancingForUser;
+import com.lvl6.mobsters.po.nonstaticdata.MonsterForUser;
 import com.lvl6.mobsters.services.equipment.EquipmentService;
 import com.lvl6.mobsters.services.userequip.UserEquipService;
 import com.lvl6.mobsters.services.userstructure.UserStructureService;
@@ -47,7 +47,7 @@ public class CompleteDungeonController extends EventController {
 	
 
 	@Autowired
-	protected UserEquipEntityManager userEquipEntityManager;
+	protected MonsterForUserEntityManager monsterForUserEntityManager;
 
 	@Autowired
 	protected UserEntityManager userEntityManager;
@@ -71,7 +71,7 @@ public class CompleteDungeonController extends EventController {
 	protected UserEquipService userEquipService;
 
 	@Autowired
-	protected UserChestEntityManager userChestEntityManager;
+	protected MonsterEnhancingForUserEntityManager monsterEnhancingForUserEntityManager;
 	
 	@Autowired
 	protected UserItemEntityManager userItemEntityManager;
@@ -115,9 +115,9 @@ public class CompleteDungeonController extends EventController {
 		try {
 			//get whatever we need from the database
 			User inDb = getUserEntityManager().get().get(userId);
-			List<UserEquip> ueList = getUserEquipService().getAllUserEquipsForUser(userId);
+			List<MonsterForUser> ueList = getUserEquipService().getAllUserEquipsForUser(userId);
 
-			List<UserEquip> equippedEquips = new ArrayList<UserEquip>();
+			List<MonsterForUser> equippedEquips = new ArrayList<MonsterForUser>();
 			getUserEquipService().getEquippedUserEquips(ueList, equippedEquips);
 
 			boolean validRequest = isValidRequest(responseBuilder, sender, inDb, equipmentsRewarded, clientDate);
@@ -176,7 +176,7 @@ public class CompleteDungeonController extends EventController {
 	
 	private boolean writeChangesToDb(User inDb, UUID userId,
 			List<ChestProto> chestsRewarded, List<EquipmentProto> equipmentsRewarded,
-			List<ItemProto> itemsRewarded, List<UserEquip> equippedEquips,
+			List<ItemProto> itemsRewarded, List<MonsterForUser> equippedEquips,
 			UUID dungeonRoomId, Date clientDate) {
 
 			try {
@@ -189,14 +189,14 @@ public class CompleteDungeonController extends EventController {
 			
 			//update durability
 			double percentDamage = getEquipmentServices().DurabilityCostsDueToActionsPerformed(uds.get(0).getActionsPerformed());
-			for(UserEquip ue : equippedEquips) {
+			for(MonsterForUser ue : equippedEquips) {
 				ue.setDurability(ue.getDurability()-percentDamage);
 				getUserEquipEntityManager().get().put(ue);
 			}
 			
 			//add chests, items, and equips to user chest, item, and equip table
 			for(ChestProto crp : chestsRewarded) {
-				UserChest uc = new UserChest();
+				MonsterEnhancingForUser uc = new MonsterEnhancingForUser();
 				UUID newId = UUID.randomUUID();
 				UUID chestId = UUID.fromString(crp.getChestID());
 				uc.setChestId(chestId);
@@ -221,7 +221,7 @@ public class CompleteDungeonController extends EventController {
 				getUserItemEntityManager().get().put(ui);
 			}
 			for(EquipmentProto ep : equipmentsRewarded) {
-				UserEquip ue = new UserEquip();
+				MonsterForUser ue = new MonsterForUser();
 				UUID newId = UUID.randomUUID();
 //				ue.setDungeonRoomOrChestAcquiredFrom(dungeonRoomName);
 				ue.setLevelOfUserWhenAcquired(inDb.getLvl());
@@ -245,7 +245,7 @@ public class CompleteDungeonController extends EventController {
 	}
 
 	//used at start of dungeon instead
-//	public int emptyStorageSlots(List<UserEquip> ueList, List<UserStructure> usList, Structure storageStructure) {
+//	public int emptyStorageSlots(List<MonsterForUser> ueList, List<UserStructure> usList, Structure storageStructure) {
 //		for(UserStructure us : usList) {
 //			Structure s = getStructureRetrieveUtils().getStructureForId(us.getStructureId());
 //			if(s.getFunctionalityType() == FunctionalityType.STORAGE_VALUE)
@@ -260,13 +260,13 @@ public class CompleteDungeonController extends EventController {
 	
 	
 	
-	public UserEquipEntityManager getUserEquipEntityManager() {
-		return userEquipEntityManager;
+	public MonsterForUserEntityManager getUserEquipEntityManager() {
+		return monsterForUserEntityManager;
 	}
 
 	public void setUserEquipEntityManager(
-			UserEquipEntityManager userEquipEntityManager) {
-		this.userEquipEntityManager = userEquipEntityManager;
+			MonsterForUserEntityManager monsterForUserEntityManager) {
+		this.monsterForUserEntityManager = monsterForUserEntityManager;
 	}
 
 	public UserEntityManager getUserEntityManager() {
@@ -329,13 +329,13 @@ public class CompleteDungeonController extends EventController {
 		this.userEquipService = userEquipService;
 	}
 
-	public UserChestEntityManager getUserChestEntityManager() {
-		return userChestEntityManager;
+	public MonsterEnhancingForUserEntityManager getUserChestEntityManager() {
+		return monsterEnhancingForUserEntityManager;
 	}
 
 	public void setUserChestEntityManager(
-			UserChestEntityManager userChestEntityManager) {
-		this.userChestEntityManager = userChestEntityManager;
+			MonsterEnhancingForUserEntityManager monsterEnhancingForUserEntityManager) {
+		this.monsterEnhancingForUserEntityManager = monsterEnhancingForUserEntityManager;
 	}
 
 	public UserItemEntityManager getUserItemEntityManager() {

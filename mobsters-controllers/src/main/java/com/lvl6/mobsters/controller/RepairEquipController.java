@@ -14,8 +14,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.lvl6.mobsters.entitymanager.UserEquipEntityManager;
 import com.lvl6.mobsters.entitymanager.nonstaticdata.UserEntityManager;
+import com.lvl6.mobsters.entitymanager.nonstaticdata.MonsterForUserEntityManager;
 import com.lvl6.mobsters.entitymanager.staticdata.EquipmentRetrieveUtils;
 import com.lvl6.mobsters.eventprotos.RepairEquipEventProto.RepairEquipRequestProto;
 import com.lvl6.mobsters.eventprotos.RepairEquipEventProto.RepairEquipResponseProto;
@@ -27,9 +27,9 @@ import com.lvl6.mobsters.events.response.RepairEquipResponseEvent;
 import com.lvl6.mobsters.noneventprotos.MobstersEventProtocolProto.MobstersEventProtocolRequest;
 import com.lvl6.mobsters.noneventprotos.FullUser.MinimumUserProto;
 import com.lvl6.mobsters.noneventprotos.UserEquipRepair.UserEquipRepairProto;
-import com.lvl6.mobsters.po.UserEquip;
-import com.lvl6.mobsters.po.UserEquipRepair;
 import com.lvl6.mobsters.po.nonstaticdata.User;
+import com.lvl6.mobsters.po.nonstaticdata.MonsterForUser;
+import com.lvl6.mobsters.po.nonstaticdata.MonsterHealingForUser;
 import com.lvl6.mobsters.properties.MobstersTableConstants;
 import com.lvl6.mobsters.services.time.TimeUtils;
 import com.lvl6.mobsters.services.user.UserService;
@@ -55,7 +55,7 @@ public class RepairEquipController extends EventController {
 	protected UserEntityManager userEntityManager;
 	
 	@Autowired
-	protected UserEquipEntityManager userEquipEntityManager;
+	protected MonsterForUserEntityManager monsterForUserEntityManager;
 
 	@Autowired
 	protected TimeUtils timeUtils;
@@ -111,11 +111,11 @@ public class RepairEquipController extends EventController {
 		try {
 			//get whatever we need from the database
 			User existingU = getUserEntityManager().get().get(userId);
-			Map<UUID, UserEquipRepair> repairsInDb = 
+			Map<UUID, MonsterHealingForUser> repairsInDb = 
 					getUserEquipRepairService().getEquipsBeingRepaired(userIdString);
 
 			//will be populated in isValidRequest
-			Map<UUID, UserEquip> prospectiveRepairs = new HashMap<UUID, UserEquip>(); 
+			Map<UUID, MonsterForUser> prospectiveRepairs = new HashMap<UUID, MonsterForUser>(); 
 
 			//validate request
 			boolean validRequest = isValidRequest(responseBuilder, sender,
@@ -156,7 +156,7 @@ public class RepairEquipController extends EventController {
 	private boolean isValidRequest(Builder responseBuilder, MinimumUserProto sender,
 			User existingU, String userIdString, List<UserEquipRepairProto> uerpDelete,
 			List<UserEquipRepairProto> uerpUpdate, List<UserEquipRepairProto> uerpNew,
-			Map<UUID, UserEquipRepair> repairsInDb,  Map<UUID, UserEquip> prospectiveRepairs, 
+			Map<UUID, MonsterHealingForUser> repairsInDb,  Map<UUID, MonsterForUser> prospectiveRepairs, 
 			boolean usingGems, Date clientDate) throws Exception {
 		boolean inDbEmpty = (null == repairsInDb || repairsInDb.isEmpty());
 		boolean uerpDeleteNonEmpty = (null != uerpDelete && !uerpDelete.isEmpty());
@@ -198,7 +198,7 @@ public class RepairEquipController extends EventController {
 
 
 		Set<UUID> newIds = getUerIds(uerpNew);
-		Map<UUID, UserEquip> newEquipsToRepair = 
+		Map<UUID, MonsterForUser> newEquipsToRepair = 
 				getUserEquipService().getUserEquipsByUserEquipIds(newIds);
 
 		
@@ -234,12 +234,12 @@ public class RepairEquipController extends EventController {
 	}
 
 	private boolean hasEnoughFunds(List<UserEquipRepairProto> uerpDelete,
-			Map<UUID, UserEquip> newEquipsToRepair, User existingU,
-			Map<UUID, UserEquipRepair> repairsInDb) {
+			Map<UUID, MonsterForUser> newEquipsToRepair, User existingU,
+			Map<UUID, MonsterHealingForUser> repairsInDb) {
 
 		//get the equips that the user cancelled from being repaired
 		Set<UUID> idsDelete = getEquipIds(uerpDelete);
-		List<UserEquipRepair> deleteRepairs = new ArrayList<UserEquipRepair>();
+		List<MonsterHealingForUser> deleteRepairs = new ArrayList<MonsterHealingForUser>();
 		for (UUID id : idsDelete) {
 			deleteRepairs.add(repairsInDb.get(id));
 		}
@@ -258,7 +258,7 @@ public class RepairEquipController extends EventController {
 		}
 
 		//calculate how much to charge for new equips
-		List<UserEquip> newEquips = new ArrayList<UserEquip>(newEquipsToRepair.values());
+		List<MonsterForUser> newEquips = new ArrayList<MonsterForUser>(newEquipsToRepair.values());
 		Map<Integer, Integer> totalCost =
 				getUserEquipRepairService().calculateRepairCost(newEquips, null, 1);
 		if (totalCost.containsKey(MobstersTableConstants.RESOURCE_TYPE__GOLD)) {
@@ -289,17 +289,17 @@ public class RepairEquipController extends EventController {
 
 	private boolean writeChangesToDb(User u,
 			List<UserEquipRepairProto> uerpDelete, List<UserEquipRepairProto> uerpUpdate,
-			List<UserEquipRepairProto> uerpNew, Map<UUID, UserEquipRepair> repairsInDb, List<UUID> equipIdsBeingRepaired) {
+			List<UserEquipRepairProto> uerpNew, Map<UUID, MonsterHealingForUser> repairsInDb, List<UUID> equipIdsBeingRepaired) {
 		try {
 			//determine the refund
-			List<UserEquip> unrepaired = deleteExisting(uerpDelete, repairsInDb);
+			List<MonsterForUser> unrepaired = deleteExisting(uerpDelete, repairsInDb);
 			Map<Integer, Integer> refund = getUserEquipRepairService()
 					.calculateRepairCost(unrepaired, null, -1); 
 
 			updateExisting(uerpUpdate, repairsInDb);
 
 			//determine the costs
-			List<UserEquipRepair> newRepairs = addNew(uerpNew, equipIdsBeingRepaired);
+			List<MonsterHealingForUser> newRepairs = addNew(uerpNew, equipIdsBeingRepaired);
 			Map<Integer, Integer> cost = getUserEquipRepairService()
 					.calculateRepairCost(null, newRepairs, 1);
 
@@ -315,19 +315,19 @@ public class RepairEquipController extends EventController {
 
 	//GET THE EQUIPS-TO-DELETE AND DELETE THEM, PUTTING THEM BACK INTO
 	//USER EQUIP
-	private List<UserEquip> deleteExisting(List<UserEquipRepairProto> uerp,
-			Map<UUID, UserEquipRepair> repairsInDb) throws Exception {
+	private List<MonsterForUser> deleteExisting(List<UserEquipRepairProto> uerp,
+			Map<UUID, MonsterHealingForUser> repairsInDb) throws Exception {
 
 		Set<UUID> idsToBeDeleted = getUerIds(uerp);
 		getUserEquipRepairService().deleteUserEquipRepairs(idsToBeDeleted);
 
 		//equips to add to user equips
-		List<UserEquip> unrepaired = new ArrayList<UserEquip>();
+		List<MonsterForUser> unrepaired = new ArrayList<MonsterForUser>();
 
 		for(UUID id : idsToBeDeleted) {
-			UserEquipRepair uer = repairsInDb.remove(id);
+			MonsterHealingForUser uer = repairsInDb.remove(id);
 
-			UserEquip ue = new UserEquip();
+			MonsterForUser ue = new MonsterForUser();
 
 			ue.setUserId(uer.getUserId());
 			ue.setEquipId(uer.getEquipId());
@@ -347,8 +347,8 @@ public class RepairEquipController extends EventController {
 
 	//UPDATE THE ONES THAT CLIENT WANTS UPDATED
 	private void updateExisting(List<UserEquipRepairProto> uerpList, 
-			Map<UUID, UserEquipRepair> repairsInDb) throws Exception {
-		List<UserEquipRepair> updated = new ArrayList<UserEquipRepair>();
+			Map<UUID, MonsterHealingForUser> repairsInDb) throws Exception {
+		List<MonsterHealingForUser> updated = new ArrayList<MonsterHealingForUser>();
 
 		//Summary: go though inDb objects and replace its values with the
 		//proto values (only expectedStartMillis should change)
@@ -359,7 +359,7 @@ public class RepairEquipController extends EventController {
 			String idString = uer.getUserEquipRepairID();
 			UUID id = UUID.fromString(idString);
 
-			UserEquipRepair inDb = repairsInDb.get(id);
+			MonsterHealingForUser inDb = repairsInDb.get(id);
 			inDb.setExpectedStart(newDate);
 
 			updated.add(inDb);
@@ -368,11 +368,11 @@ public class RepairEquipController extends EventController {
 		getUserEquipRepairService().saveUserEquipRepairs(updated);
 	}
 
-	private List<UserEquipRepair> addNew(List<UserEquipRepairProto> uerpList,  List<UUID> equipIdsBeingRepaired) {
-		List<UserEquipRepair> newStuff = new ArrayList<UserEquipRepair>();
+	private List<MonsterHealingForUser> addNew(List<UserEquipRepairProto> uerpList,  List<UUID> equipIdsBeingRepaired) {
+		List<MonsterHealingForUser> newStuff = new ArrayList<MonsterHealingForUser>();
 
 		for(UserEquipRepairProto uerp : uerpList) {
-			UserEquipRepair uer = new UserEquipRepair();
+			MonsterHealingForUser uer = new MonsterHealingForUser();
 			UUID userId = UUID.fromString(uerp.getUserID());
 			uer.setUserId(userId);
 
@@ -488,13 +488,13 @@ public class RepairEquipController extends EventController {
 		this.userService = userService;
 	}
 
-	public UserEquipEntityManager getUserEquipEntityManager() {
-		return userEquipEntityManager;
+	public MonsterForUserEntityManager getUserEquipEntityManager() {
+		return monsterForUserEntityManager;
 	}
 
 	public void setUserEquipEntityManager(
-			UserEquipEntityManager userEquipEntityManager) {
-		this.userEquipEntityManager = userEquipEntityManager;
+			MonsterForUserEntityManager monsterForUserEntityManager) {
+		this.monsterForUserEntityManager = monsterForUserEntityManager;
 	}
 
 }

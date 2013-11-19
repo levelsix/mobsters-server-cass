@@ -27,7 +27,7 @@ public class MonsterAndRoom extends BasePersistentObject<UUID>{
 	@Index
 	protected String combatRoomId = "";
 	
-	@Column(name="quantity")
+	@Column(name="staticDataQuantity")
 	protected int quantity = 0;
 	
 	//where monster spawns in a particular map of a combat room
@@ -90,7 +90,7 @@ public class MonsterAndRoom extends BasePersistentObject<UUID>{
 	@Override
 	public String toString() {
 		return "MonsterAndRoom [id=" + id + ", monsterId=" + monsterId
-				+ ", combatRoomId=" + combatRoomId + ", quantity=" + quantity
+				+ ", combatRoomId=" + combatRoomId + ", staticDataQuantity=" + quantity
 				+ ", spawnPoint=" + spawnPoint + "]";
 	}
 

@@ -1,8 +1,7 @@
 package com.lvl6.mobsters.controller;
 
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -12,6 +11,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.lvl6.mobsters.controller.utils.CreateNoneventProtoUtils;
 import com.lvl6.mobsters.entitymanager.staticdata.QuestRetrieveUtils;
 import com.lvl6.mobsters.eventprotos.EventQuestProto.QuestRedeemRequestProto;
 import com.lvl6.mobsters.eventprotos.EventQuestProto.QuestRedeemResponseProto;
@@ -21,10 +21,13 @@ import com.lvl6.mobsters.events.RequestEvent;
 import com.lvl6.mobsters.events.request.QuestRedeemRequestEvent;
 import com.lvl6.mobsters.events.response.QuestRedeemResponseEvent;
 import com.lvl6.mobsters.noneventprotos.MobstersEventProtocolProto.MobstersEventProtocolRequest;
+import com.lvl6.mobsters.noneventprotos.MonsterStuffProto.FullUserMonsterProto;
+import com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProto;
 import com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto;
 import com.lvl6.mobsters.po.nonstaticdata.QuestForUser;
 import com.lvl6.mobsters.po.nonstaticdata.User;
 import com.lvl6.mobsters.po.staticdata.Quest;
+import com.lvl6.mobsters.properties.MobstersTableConstants;
 import com.lvl6.mobsters.services.questforuser.QuestForUserService;
 import com.lvl6.mobsters.services.user.UserService;
 
@@ -42,6 +45,10 @@ public class QuestRedeemController extends EventController {
 	
 	@Autowired
 	protected QuestForUserService questForUserService;
+	
+	@Autowired
+	protected CreateNoneventProtoUtils createNoneventProtoUtils;
+	
 	
 	@Override
 	public RequestEvent createRequestEvent() {
@@ -64,7 +71,6 @@ public class QuestRedeemController extends EventController {
 		//get the values client sent
 		MinimumUserProto senderProto = reqProto.getSender();
 		int questId = reqProto.getQuestId();
-		
 		//uuid's are not strings, need to convert from string to uuid, vice versa
 		String userIdString = senderProto.getUserUuid();
 		UUID userId = UUID.fromString(userIdString);
@@ -88,11 +94,15 @@ public class QuestRedeemController extends EventController {
 			
 			boolean successful = false;
 			if(legitRedeem) {
-				responseBuilder.setCityIdOfRedeemedQuest(quest.getCityId());
-				successful = writeChangesToDb(user, userId, questId, quest, timeRedeemed);
+				//calculate the available quests for this user
+				setAvailableQuests(responseBuilder, userId, questId);
+				
+				//give user the monster reward, if any, and send this to the client
+				legitRedeem = awardMonsterReward(responseBuilder, userId, quest, questId, timeRedeemed);
 			}
 			
 			if (successful) {
+				successful = writeChangesToDb(user, userId, questId, quest, timeRedeemed);
 				responseBuilder.setStatus(QuestRedeemStatus.SUCCESS);
 			}
 
@@ -131,6 +141,50 @@ public class QuestRedeemController extends EventController {
 	    return true;  
 	  }
 
+	private void setAvailableQuests(Builder responseBuilder, UUID userId, int questIdJustRedeemed) {
+		List<Integer> availableQuestIds = getQuestForUserService()
+				.getAvailableQuestIdsForUser(userId, questIdJustRedeemed);
+		
+		if (null == availableQuestIds) {
+			return;
+		}
+		
+		List<Quest> availableQuests = getQuestForUserService().selectQuestsHavingPrerequisiteQuestId(
+				availableQuestIds, questIdJustRedeemed);
+		
+		for (Quest q : availableQuests) {
+			QuestProto qp = getCreateNoneventProtoUtils().createQuestProtoFromQuest(q);
+			responseBuilder.addNewlyAvailableQuests(qp);
+		}
+	}
+	
+	private boolean awardMonsterReward(Builder resBuilder, UUID userId, Quest quest,
+			int questId, Date combineStartDate) {
+		boolean legitRedeem = true;
+		
+		int monsterIdReward = quest.getMonsterIdReward();
+		if (monsterIdReward > 0) {
+			//WHEN GIVING USER A MONSTER, CALL MonsterStuffUtils.updateUserMonsters(...)
+	    	Map<Integer, Integer> monsterIdToNumPieces = new HashMap<Integer, Integer>();
+	    	monsterIdToNumPieces.put(monsterIdReward, 1);
+	    	
+	    	String mfusop = MobstersTableConstants.MFUSOP__QUEST + questId;
+	    	List<FullUserMonsterProto> reward = MonsterStuffUtils
+	    			.updateUserMonsters(userId, monsterIdToNumPieces, mfusop, combineStartDate);
+	    	
+	      if (reward.isEmpty()) {
+	        resBuilder.setStatus(QuestRedeemStatus.FAIL_OTHER);
+	        log.error("problem with giving user 1 monster after completing the quest, monsterId=" 
+	            + monsterIdReward + ", quest= " + quest);
+	        legitRedeem = false;
+	      } else {
+	      	FullUserMonsterProto fump = reward.get(0);
+	        resBuilder.setFump(fump);
+	      }
+		}
+		
+		return legitRedeem;
+	}
 	
 	private boolean writeChangesToDb(User inDb, UUID userId, int questId, Quest quest,
 			Date timeRedeemed) {
@@ -170,5 +224,15 @@ public class QuestRedeemController extends EventController {
 	public void setQuestForUserService(QuestForUserService questForUserService) {
 		this.questForUserService = questForUserService;
 	}
+
+	public CreateNoneventProtoUtils getCreateNoneventProtoUtils() {
+		return createNoneventProtoUtils;
+	}
+
+	public void setCreateNoneventProtoUtils(
+			CreateNoneventProtoUtils createNoneventProtoUtils) {
+		this.createNoneventProtoUtils = createNoneventProtoUtils;
+	}
+	
 	
 }

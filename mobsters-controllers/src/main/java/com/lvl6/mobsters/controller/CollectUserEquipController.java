@@ -10,9 +10,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.lvl6.mobsters.entitymanager.UserEquipEntityManager;
-import com.lvl6.mobsters.entitymanager.UserEquipRepairEntityManager;
 import com.lvl6.mobsters.entitymanager.nonstaticdata.UserEntityManager;
+import com.lvl6.mobsters.entitymanager.nonstaticdata.MonsterForUserEntityManager;
+import com.lvl6.mobsters.entitymanager.nonstaticdata.MonsterHealingForUserEntityManager;
 import com.lvl6.mobsters.entitymanager.staticdata.EquipmentRetrieveUtils;
 import com.lvl6.mobsters.eventprotos.CollectUserEquipEventProto.CollectUserEquipRequestProto;
 import com.lvl6.mobsters.eventprotos.CollectUserEquipEventProto.CollectUserEquipResponseProto;
@@ -25,9 +25,9 @@ import com.lvl6.mobsters.noneventprotos.MobstersEventProtocolProto.MobstersEvent
 import com.lvl6.mobsters.noneventprotos.FullUser.MinimumUserProto;
 import com.lvl6.mobsters.noneventprotos.UserEquipRepair.UserEquipRepairProto;
 import com.lvl6.mobsters.po.Equipment;
-import com.lvl6.mobsters.po.UserEquip;
-import com.lvl6.mobsters.po.UserEquipRepair;
 import com.lvl6.mobsters.po.nonstaticdata.User;
+import com.lvl6.mobsters.po.nonstaticdata.MonsterForUser;
+import com.lvl6.mobsters.po.nonstaticdata.MonsterHealingForUser;
 import com.lvl6.mobsters.services.user.UserService;
 import com.lvl6.mobsters.services.userequiprepair.UserEquipRepairService;
 import com.lvl6.mobsters.widerows.RestrictionOnNumberOfUserStructure;
@@ -46,13 +46,13 @@ public class CollectUserEquipController extends EventController {
 	protected UserEquipRepairService userEquipRepairService; 
 
 	@Autowired
-	protected UserEquipRepairEntityManager userEquipRepairEntityManager;
+	protected MonsterHealingForUserEntityManager monsterHealingForUserEntityManager;
 
 	@Autowired
 	protected UserEntityManager userEntityManager;
 	
 	@Autowired
-	protected UserEquipEntityManager userEquipEntityManager;
+	protected MonsterForUserEntityManager monsterForUserEntityManager;
 	
 	@Autowired
 	protected UserService userService;
@@ -167,10 +167,10 @@ public class CollectUserEquipController extends EventController {
 			for(UserEquipRepairProto uer: uerList) {
 				Date d = new Date(uer.getQueuedTimeMillis());
 				String cqlquery = "select * from user_equip_repair where entered_queue=" + d + ";";
-				List <UserEquipRepair> uerList2 = getUserEquipRepairEntityManager().get().find(cqlquery);
+				List <MonsterHealingForUser> uerList2 = getUserEquipRepairEntityManager().get().find(cqlquery);
 				getUserEquipRepairEntityManager().get().delete(uerList2.get(0).getId());
-				UserEquipRepair uer2 = uerList2.get(0);
-				UserEquip ue = new UserEquip();
+				MonsterHealingForUser uer2 = uerList2.get(0);
+				MonsterForUser ue = new MonsterForUser();
 				ue.setDungeonRoomOrChestAcquiredFrom(uer2.getDungeonRoomOrChestAcquiredFrom());
 				ue.setDurability(100.0);
 				ue.setEquipId(uer2.getEquipId());
@@ -205,13 +205,13 @@ public class CollectUserEquipController extends EventController {
 		this.userEquipRepairService = userEquipRepairService;
 	}
 
-	public UserEquipRepairEntityManager getUserEquipRepairEntityManager() {
-		return userEquipRepairEntityManager;
+	public MonsterHealingForUserEntityManager getUserEquipRepairEntityManager() {
+		return monsterHealingForUserEntityManager;
 	}
 
 	public void setUserEquipRepairEntityManager(
-			UserEquipRepairEntityManager userEquipRepairEntityManager) {
-		this.userEquipRepairEntityManager = userEquipRepairEntityManager;
+			MonsterHealingForUserEntityManager monsterHealingForUserEntityManager) {
+		this.monsterHealingForUserEntityManager = monsterHealingForUserEntityManager;
 	}
 
 	public UserEntityManager getUserEntityManager() {
@@ -248,13 +248,13 @@ public class CollectUserEquipController extends EventController {
 		this.equipmentRetrieveUtils = equipmentRetrieveUtils;
 	}
 
-	public UserEquipEntityManager getUserEquipEntityManager() {
-		return userEquipEntityManager;
+	public MonsterForUserEntityManager getUserEquipEntityManager() {
+		return monsterForUserEntityManager;
 	}
 
 	public void setUserEquipEntityManager(
-			UserEquipEntityManager userEquipEntityManager) {
-		this.userEquipEntityManager = userEquipEntityManager;
+			MonsterForUserEntityManager monsterForUserEntityManager) {
+		this.monsterForUserEntityManager = monsterForUserEntityManager;
 	}
 
 

@@ -121,9 +121,9 @@ public class QuestAcceptController extends EventController {
 	      return false;
 	    }
 	    
-	    
+	    int questIdJustRedeemed = 0;
 	    List<Integer> availableQuestIds = getQuestForUserService()
-	    		.getAvailableQuestIdsForUser(userId);
+	    		.getAvailableQuestIdsForUser(userId, questIdJustRedeemed);
 	    if (availableQuestIds != null && availableQuestIds.contains(quest.getId())) {
 	    	responseBuilder.setStatus(QuestAcceptStatus.SUCCESS);
 	    	return true;

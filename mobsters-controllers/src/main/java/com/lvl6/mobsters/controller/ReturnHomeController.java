@@ -13,8 +13,8 @@ import org.springframework.stereotype.Component;
 
 import com.lvl6.mobsters.entitymanager.UserDungeonStatusEntityManager;
 import com.lvl6.mobsters.entitymanager.UserDungeonStatusHistoryEntityManager;
-import com.lvl6.mobsters.entitymanager.UserEquipEntityManager;
 import com.lvl6.mobsters.entitymanager.nonstaticdata.UserEntityManager;
+import com.lvl6.mobsters.entitymanager.nonstaticdata.MonsterForUserEntityManager;
 import com.lvl6.mobsters.eventprotos.ReturnHomeEventProto.ReturnHomeRequestProto;
 import com.lvl6.mobsters.eventprotos.ReturnHomeEventProto.ReturnHomeResponseProto;
 import com.lvl6.mobsters.eventprotos.ReturnHomeEventProto.ReturnHomeResponseProto.Builder;
@@ -24,8 +24,8 @@ import com.lvl6.mobsters.events.request.ReturnHomeRequestEvent;
 import com.lvl6.mobsters.events.response.ReturnHomeResponseEvent;
 import com.lvl6.mobsters.noneventprotos.MobstersEventProtocolProto.MobstersEventProtocolRequest;
 import com.lvl6.mobsters.noneventprotos.FullUser.MinimumUserProto;
-import com.lvl6.mobsters.po.UserEquip;
 import com.lvl6.mobsters.po.nonstaticdata.User;
+import com.lvl6.mobsters.po.nonstaticdata.MonsterForUser;
 import com.lvl6.mobsters.services.equipment.EquipmentService;
 import com.lvl6.mobsters.services.userequip.UserEquipService;
 
@@ -38,7 +38,7 @@ public class ReturnHomeController extends EventController {
 	
 
 	@Autowired
-	protected UserEquipEntityManager userEquipEntityManager;
+	protected MonsterForUserEntityManager monsterForUserEntityManager;
 
 	@Autowired
 	protected UserEntityManager userEntityManager;
@@ -93,8 +93,8 @@ public class ReturnHomeController extends EventController {
 		try {
 			//get whatever we need from the database
 			User inDb = getUserEntityManager().get().get(userId);
-			List<UserEquip> ueList = getUserEquipService().getAllUserEquipsForUser(userId);
-			List<UserEquip> equippedEquips = new ArrayList<UserEquip>();
+			List<MonsterForUser> ueList = getUserEquipService().getAllUserEquipsForUser(userId);
+			List<MonsterForUser> equippedEquips = new ArrayList<MonsterForUser>();
 			//List<Structure> sList = new ArrayList<Structure>(); 
 			getUserEquipService().getEquippedUserEquips(ueList, equippedEquips);
 			
@@ -126,7 +126,7 @@ public class ReturnHomeController extends EventController {
 	}
 
 	
-	private boolean writeChangesToDb(User inDb, int userHp, int userMana, int actionsPerformed, List<UserEquip> equippedEquips, Date clientDate) {
+	private boolean writeChangesToDb(User inDb, int userHp, int userMana, int actionsPerformed, List<MonsterForUser> equippedEquips, Date clientDate) {
 
 			try {
 			//update user
@@ -136,7 +136,7 @@ public class ReturnHomeController extends EventController {
 			
 			//update durability
 			double percentDamage = getEquipmentService().DurabilityCostsDueToActionsPerformed(actionsPerformed);
-			for(UserEquip ue : equippedEquips) {
+			for(MonsterForUser ue : equippedEquips) {
 				ue.setDurability(ue.getDurability()-percentDamage);
 				getUserEquipEntityManager().get().put(ue);
 			}
@@ -150,13 +150,13 @@ public class ReturnHomeController extends EventController {
 	}
 	
 
-	public UserEquipEntityManager getUserEquipEntityManager() {
-		return userEquipEntityManager;
+	public MonsterForUserEntityManager getUserEquipEntityManager() {
+		return monsterForUserEntityManager;
 	}
 
 	public void setUserEquipEntityManager(
-			UserEquipEntityManager userEquipEntityManager) {
-		this.userEquipEntityManager = userEquipEntityManager;
+			MonsterForUserEntityManager monsterForUserEntityManager) {
+		this.monsterForUserEntityManager = monsterForUserEntityManager;
 	}
 
 	public UserEntityManager getUserEntityManager() {

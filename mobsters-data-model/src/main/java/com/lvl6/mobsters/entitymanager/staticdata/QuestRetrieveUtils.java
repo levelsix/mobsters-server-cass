@@ -2,8 +2,10 @@ package com.lvl6.mobsters.entitymanager.staticdata;
 
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,6 +14,7 @@ import org.springframework.stereotype.Component;
 
 import com.lvl6.mobsters.po.staticdata.Quest;
 import com.lvl6.mobsters.properties.MobstersDbTables;
+import com.lvl6.mobsters.utils.Dialogue;
 import com.lvl6.mobsters.utils.QueryConstructionUtil;
 import com.lvl6.mobsters.utils.QuestGraph;
 
@@ -33,8 +36,15 @@ import com.lvl6.mobsters.utils.QuestGraph;
 	private QueryConstructionUtil queryConstructionUtil;
 	
 	
+	public Map<Integer, Quest> getQuestIdsToQuests() {
+		if (null == idsToQuests) {
+			setStaticIdsToQuests();
+		}
+		return idsToQuests;
+	}
+	
 
-	public  Quest getQuestForId(Integer id) {
+	public Quest getQuestForId(Integer id) {
 		log.debug("retrieve quest data for id " + id);
 		if (idsToQuests == null) {
 			setStaticIdsToQuests();      
@@ -73,17 +83,23 @@ import com.lvl6.mobsters.utils.QuestGraph;
 		//fill up the map
 		idsToQuests = new HashMap<Integer, Quest>();
 		for(Quest q : questList) {
-			Integer intId = q.getId();
+			
+			//convert accept dialogue string into Dialogue obj
+			Dialogue d = new Dialogue();
+			d.setDialogue(q.getAcceptDialogue());
+			q.setDialogue(d);
 			
 			//convert string into a list
 			String questsRequiredForThis = q.getQuestsRequiredForThis();
-			List<Integer> requiredLists = getQueryConstructionUtil().explodeIntoInts(
+			List<Integer> requiredList = getQueryConstructionUtil().explodeIntoInts(
 					questsRequiredForThis, delimiter);
+			Set<Integer> requiredSet = new HashSet<Integer>(requiredList);
 			
 			//Store it into the quest so we don't have to do this again 
 			//(well, at least until the next server restart or when static data is reloaded)
-			q.setQuestsRequiredForThisAsList(requiredLists);
+			q.setQuestsRequiredForThisAsSet(requiredSet);
 			
+			Integer intId = q.getId();
 			idsToQuests.put(intId, q);
 		}
 	}

@@ -12,9 +12,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.lvl6.mobsters.entitymanager.UserEquipEntityManager;
-import com.lvl6.mobsters.entitymanager.UserEquipRepairEntityManager;
 import com.lvl6.mobsters.entitymanager.nonstaticdata.UserEntityManager;
+import com.lvl6.mobsters.entitymanager.nonstaticdata.MonsterForUserEntityManager;
+import com.lvl6.mobsters.entitymanager.nonstaticdata.MonsterHealingForUserEntityManager;
 import com.lvl6.mobsters.entitymanager.staticdata.EquipmentRetrieveUtils;
 import com.lvl6.mobsters.eventprotos.BuildOrUpgradeStructureEventProto.ResourceCostType;
 import com.lvl6.mobsters.eventprotos.RepairEquipWhenMissingResourcesEventProto.RepairEquipWhenMissingResourcesRequestProto;
@@ -27,9 +27,9 @@ import com.lvl6.mobsters.events.response.RepairEquipWhenMissingResourcesResponse
 import com.lvl6.mobsters.noneventprotos.MobstersEventProtocolProto.MobstersEventProtocolRequest;
 import com.lvl6.mobsters.noneventprotos.FullUser.MinimumUserProto;
 import com.lvl6.mobsters.po.Equipment;
-import com.lvl6.mobsters.po.UserEquip;
-import com.lvl6.mobsters.po.UserEquipRepair;
 import com.lvl6.mobsters.po.nonstaticdata.User;
+import com.lvl6.mobsters.po.nonstaticdata.MonsterForUser;
+import com.lvl6.mobsters.po.nonstaticdata.MonsterHealingForUser;
 import com.lvl6.mobsters.services.time.TimeUtils;
 import com.lvl6.mobsters.services.user.UserService;
 import com.lvl6.mobsters.services.userequip.UserEquipService;
@@ -49,7 +49,7 @@ public class RepairEquipWhenMissingResourcesController extends EventController {
 	protected UserEquipRepairService userEquipRepairService; 
 	
 	@Autowired
-	protected UserEquipRepairEntityManager userEquipRepairEntityManager;
+	protected MonsterHealingForUserEntityManager monsterHealingForUserEntityManager;
 
 	@Autowired
 	protected UserEquipService userEquipService;
@@ -58,7 +58,7 @@ public class RepairEquipWhenMissingResourcesController extends EventController {
 	protected UserEntityManager userEntityManager;
 	
 	@Autowired
-	protected UserEquipEntityManager userEquipEntityManager;
+	protected MonsterForUserEntityManager monsterForUserEntityManager;
 
 	@Autowired
 	protected TimeUtils timeUtils;
@@ -105,7 +105,7 @@ public class RepairEquipWhenMissingResourcesController extends EventController {
 		try {
 			//get whatever we need from the database
 			User inDb = getUserEntityManager().get().get(userId);
-			UserEquip ue = getUserEquipEntityManager().get().get(userEquipId);
+			MonsterForUser ue = getUserEquipEntityManager().get().get(userEquipId);
 			Equipment e = getUserEquipService().getEquipmentCorrespondingToUserEquip(ue);
 
 			//validate request
@@ -144,7 +144,7 @@ public class RepairEquipWhenMissingResourcesController extends EventController {
 
 
 	private boolean isValidRequest(Builder responseBuilder, MinimumUserProto sender,
-			User inDb, UserEquip ue, Equipment e, Date clientDate) throws Exception {
+			User inDb, MonsterForUser ue, Equipment e, Date clientDate) throws Exception {
 
 		//CHECK IF TIMES ARE IN SYNC
 		if (!getTimeUtils().isSynchronizedWithServerTime(clientDate)) {
@@ -166,7 +166,7 @@ public class RepairEquipWhenMissingResourcesController extends EventController {
 	}
 
 	
-	private boolean writeChangesToDb(User inDb, UserEquip ue, Equipment e, Date clientDate) {
+	private boolean writeChangesToDb(User inDb, MonsterForUser ue, Equipment e, Date clientDate) {
 		try {
 			//remove gems/gold from user
 			int missingResources = getUserEquipRepairService().calculateSingleUserEquipRepairCost(ue) - inDb.getGold();
@@ -176,7 +176,7 @@ public class RepairEquipWhenMissingResourcesController extends EventController {
 
 
 			//add userequip to userequiprepair
-			UserEquipRepair uer = new UserEquipRepair();
+			MonsterHealingForUser uer = new MonsterHealingForUser();
 			uer.setDurability(ue.getDurability());
 			uer.setEnteredQueue(clientDate);
 			UUID equipId = e.getId();
@@ -189,10 +189,10 @@ public class RepairEquipWhenMissingResourcesController extends EventController {
 			uer.setTimeAcquired(ue.getTimeAcquired());
 			
 			String cqlquery = "select * from user_equip_repair where user_id=" + inDb.getId() + ";";
-			List <UserEquipRepair> uerList = getUserEquipRepairEntityManager().get().find(cqlquery);
+			List <MonsterHealingForUser> uerList = getUserEquipRepairEntityManager().get().find(cqlquery);
 			long expectedEndTimeOfQueue = uerList.get(0).getExpectedStart().getTime() + 
 					getEquipmentRetrieveUtils().getEquipmentForId(uerList.get(0).getId()).getDurabilityFixTimeConstant()*(long)(1-uerList.get(0).getDurability());
-			for(UserEquipRepair uer2 : uerList) {
+			for(MonsterHealingForUser uer2 : uerList) {
 				if((uer2.getExpectedStart().getTime() + getEquipmentRetrieveUtils().getEquipmentForId(uerList.get(0).getId()).getDurabilityFixTimeConstant()*(long)(1-uerList.get(0).getDurability())) 
 						> expectedEndTimeOfQueue) {
 					expectedEndTimeOfQueue = uer2.getExpectedStart().getTime() + 
@@ -267,24 +267,24 @@ public class RepairEquipWhenMissingResourcesController extends EventController {
 		this.userService = userService;
 	}
 
-	public UserEquipEntityManager getUserEquipEntityManager() {
-		return userEquipEntityManager;
+	public MonsterForUserEntityManager getUserEquipEntityManager() {
+		return monsterForUserEntityManager;
 	}
 
 	public void setUserEquipEntityManager(
-			UserEquipEntityManager userEquipEntityManager) {
-		this.userEquipEntityManager = userEquipEntityManager;
+			MonsterForUserEntityManager monsterForUserEntityManager) {
+		this.monsterForUserEntityManager = monsterForUserEntityManager;
 	}
 
 
 
-	public UserEquipRepairEntityManager getUserEquipRepairEntityManager() {
-		return userEquipRepairEntityManager;
+	public MonsterHealingForUserEntityManager getUserEquipRepairEntityManager() {
+		return monsterHealingForUserEntityManager;
 	}
 
 	public void setUserEquipRepairEntityManager(
-			UserEquipRepairEntityManager userEquipRepairEntityManager) {
-		this.userEquipRepairEntityManager = userEquipRepairEntityManager;
+			MonsterHealingForUserEntityManager monsterHealingForUserEntityManager) {
+		this.monsterHealingForUserEntityManager = monsterHealingForUserEntityManager;
 	}
 
 

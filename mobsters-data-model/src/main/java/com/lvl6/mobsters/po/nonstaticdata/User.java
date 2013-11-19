@@ -101,7 +101,7 @@ public class User extends BasePersistentObject<UUID>{
 	
 	@Column(name="clan_id")
 	@Index
-	protected int clanId = 0;
+	protected UUID clanId = null;
 	
 	//not sure if needed
 	@Column(name="last_wall_post_notification_time")
@@ -411,12 +411,12 @@ public class User extends BasePersistentObject<UUID>{
 	}
 
 
-	public int getClanId() {
+	public UUID getClanId() {
 		return clanId;
 	}
 
 
-	public void setClanId(int clanId) {
+	public void setClanId(UUID clanId) {
 		this.clanId = clanId;
 	}
 

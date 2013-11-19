@@ -27,7 +27,7 @@ public class PreDungeonUserConsumableInfo extends BasePersistentObject<UUID>{
 	@Index
 	protected UUID consumableId = UUID.randomUUID();;
 	
-	@Column(name="quantity")
+	@Column(name="staticDataQuantity")
 	protected int quantity = 0;
 	
 
@@ -73,7 +73,7 @@ public class PreDungeonUserConsumableInfo extends BasePersistentObject<UUID>{
 	@Override
 	public String toString() {
 		return "PreDungeonUserConsumableInfo [id=" + id + ", userId=" + userId
-				+ ", consumableId=" + consumableId + ", quantity=" + quantity
+				+ ", consumableId=" + consumableId + ", staticDataQuantity=" + quantity
 				+ "]";
 	}
 

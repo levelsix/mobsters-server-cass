@@ -1,7 +1,7 @@
 package com.lvl6.mobsters.po.staticdata;
 
 import java.io.Serializable;
-import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,14 +9,14 @@ import javax.persistence.Id;
 
 import com.dekayd.astyanax.cassandra.entitymanager.BasePersistentObject;
 import com.dekayd.astyanax.cassandra.entitymanager.Index;
+import com.lvl6.mobsters.utils.Dialogue;
 
 
 
 @Entity
 public class Quest extends BasePersistentObject<Integer> implements Serializable{
 
-
-	private static final long serialVersionUID = -8339698010478197831L;
+	private static final long serialVersionUID = 3876445184135296684L;
 
 	@Id
 	protected Integer id = 0;
@@ -51,8 +51,8 @@ public class Quest extends BasePersistentObject<Integer> implements Serializable
 	@Index
 	protected int staticDataId = 0;
 
-	@Column(name="progress")
-	protected int quantity = 0;
+	@Column(name="static_data_quantity")
+	protected int staticDataQuantity = 0;
 	
 	@Column(name="cash_reward")
 	protected int cashReward = 0;
@@ -83,9 +83,9 @@ public class Quest extends BasePersistentObject<Integer> implements Serializable
 	protected String carrotId = null;
 	
 	
-	
 	//will be ignored by cassandra except when I choose to modify this
-	protected List<Integer> questsRequiredForThisAsList = null;
+	protected Dialogue dialogue = null;
+	protected Set<Integer> questsRequiredForThisAsSet = null;
 	
 
 
@@ -161,12 +161,12 @@ public class Quest extends BasePersistentObject<Integer> implements Serializable
 		this.staticDataId = staticDataId;
 	}
 
-	public int getQuantity() {
-		return quantity;
+	public int getStaticDataQuantity() {
+		return staticDataQuantity;
 	}
 
-	public void setQuantity(int quantity) {
-		this.quantity = quantity;
+	public void setStaticDataQuantity(int staticDataQuantity) {
+		this.staticDataQuantity = staticDataQuantity;
 	}
 
 	public int getCashReward() {
@@ -243,13 +243,23 @@ public class Quest extends BasePersistentObject<Integer> implements Serializable
 
 	
 
-	public List<Integer> getQuestsRequiredForThisAsList() {
-		return questsRequiredForThisAsList;
+	
+	//IGNORED BY CASSANDRA
+	public Dialogue getDialogue() {
+		return dialogue;
 	}
 
-	public void setQuestsRequiredForThisAsList(
-			List<Integer> questsRequiredForThisAsList) {
-		this.questsRequiredForThisAsList = questsRequiredForThisAsList;
+	public void setDialogue(Dialogue dialogue) {
+		this.dialogue = dialogue;
+	}
+
+	public Set<Integer> getQuestsRequiredForThisAsSet() {
+		return questsRequiredForThisAsSet;
+	}
+
+	public void setQuestsRequiredForThisAsSet(
+			Set<Integer> questsRequiredForThisAsSet) {
+		this.questsRequiredForThisAsSet = questsRequiredForThisAsSet;
 	}
 	
 	
@@ -263,7 +273,7 @@ public class Quest extends BasePersistentObject<Integer> implements Serializable
 				+ doneResponse + ", acceptDialogue=" + acceptDialogue
 				+ ", questType=" + questType + ", jobDescription="
 				+ jobDescription + ", staticDataId=" + staticDataId
-				+ ", quantity=" + quantity + ", cashReward=" + cashReward
+				+ ", staticDataQuantity=" + staticDataQuantity + ", cashReward=" + cashReward
 				+ ", gemReward=" + gemReward + ", expReward=" + expReward
 				+ ", monsterIdReward=" + monsterIdReward
 				+ ", isCompleteMonster=" + isCompleteMonster
