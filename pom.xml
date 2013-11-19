@@ -35,7 +35,8 @@
 		<cassandra.seeds>robot.lvl6.com:9160</cassandra.seeds>
 		<cassandra.connectionsPerHost>5</cassandra.connectionsPerHost>
 		<cassandra.port>9160</cassandra.port>
-		<cassandra.createTables>off</cassandra.createTables>
+		<cassandra.createTables>create</cassandra.createTables>
+		<cassandra.createKeyspace>create</cassandra.createKeyspace>
 
 
 		<!-- Hazelcast -->
@@ -56,8 +57,8 @@
 		<lvl6.application.version>0.1f</lvl6.application.version>
 		<apns.path.to.cert>/usr/share/tomcat7/???</apns.path.to.cert>
 		<apns.cert.password>robashen123</apns.cert.password>
-        <lvl6.server.log.location>/var/log/tomcat7/mobsters</lvl6.server.log.location>
-        <application.release.name>mobsters</application.release.name>
+		<lvl6.server.log.location>/var/log/tomcat7/mobsters</lvl6.server.log.location>
+		<application.release.name>mobsters</application.release.name>
 
 
 		<!-- AMQP -->
@@ -126,6 +127,11 @@
 				<groupId>com.netflix.astyanax</groupId>
 				<artifactId>astyanax-entity-mapper</artifactId>
 				<version>${astyanax.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.dekayd</groupId>
+				<artifactId>astyanax-extensions</artifactId>
+				<version>1.0.1</version>
 			</dependency>
 			<!-- Core utilities used by other modules. Define this if you use Spring 
 				Utility APIs (org.springframework.core.*/org.springframework.util.*) -->

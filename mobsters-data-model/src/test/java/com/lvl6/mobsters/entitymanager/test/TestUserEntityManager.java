@@ -13,7 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.lvl6.mobsters.cassandra.Cassandra;
+import com.dekayd.astyanax.cassandra.Cassandra;
 import com.lvl6.mobsters.entitymanager.UserEntityManager;
 import com.lvl6.mobsters.po.User;
 import com.netflix.astyanax.connectionpool.exceptions.ConnectionException;

@@ -14,9 +14,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.lvl6.mobsters.cassandra.Cassandra;
+import com.dekayd.astyanax.cassandra.Cassandra;
+import com.dekayd.astyanax.cassandra.widerow.WideRowValue;
 import com.lvl6.mobsters.widerows.UserSpells;
-import com.lvl6.mobsters.widerows.WideRowValue;
 import com.netflix.astyanax.connectionpool.exceptions.ConnectionException;
 
 

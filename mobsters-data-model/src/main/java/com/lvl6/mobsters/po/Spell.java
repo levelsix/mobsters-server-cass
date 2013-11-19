@@ -8,12 +8,13 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
-import com.lvl6.mobsters.entitymanager.Index;
+import com.dekayd.astyanax.cassandra.entitymanager.BasePersistentObject;
+import com.dekayd.astyanax.cassandra.entitymanager.Index;
 
 
 
 @Entity
-public class Spell extends BasePersistentObject{
+public class Spell extends BasePersistentObject<UUID>{
 
 	@Id
 	protected UUID id = UUID.randomUUID();
@@ -322,12 +323,6 @@ public class Spell extends BasePersistentObject{
 	}
 
 	
-	@Override
-	public Set<String> getTableUpdateStatements() {
-		Set<String> indexes = new HashSet<String>();
-		
-		return indexes;
-	}
 	
 	
 }

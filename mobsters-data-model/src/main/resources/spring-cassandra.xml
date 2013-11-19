@@ -22,7 +22,7 @@
 	<context:component-scan base-package="com.lvl6.mobsters" />
 	
 
-	<bean id="cassandra" scope="singleton" class="com.lvl6.mobsters.cassandra.Cassandra">
+	<bean id="cassandra" scope="singleton" class="com.dekayd.astyanax.cassandra.Cassandra">
 		<property name="clusterName" value="${cassandra.clusterName}" />
 		<property name="keyspaceName" value="${cassandra.keyspaceName}" />
 		<property name="cqlVersion" value="${cassandra.cqlVersion}" />
@@ -32,6 +32,7 @@
 		<property name="connectionsPerHost" value="${cassandra.connectionsPerHost}" />
 		<property name="port" value="${cassandra.port}" />
 		<property name="createTables" value="${cassandra.createTables}" />
+		<property name="createKeyspace" value="${cassandra.createKeyspace}" />
 	</bean>
 	
 	

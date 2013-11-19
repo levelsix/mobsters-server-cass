@@ -5,6 +5,8 @@ import java.util.UUID;
 
 import org.springframework.stereotype.Component;
 
+import com.dekayd.astyanax.cassandra.widerow.BaseWideRow;
+
 
 @Component
 public class RestrictionOnNumberOfUserStructure extends BaseWideRow<Integer, UUID, Integer> {

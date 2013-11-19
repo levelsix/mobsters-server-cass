@@ -58,7 +58,11 @@
 			<groupId>com.netflix.astyanax</groupId>
 			<artifactId>astyanax-entity-mapper</artifactId>
 		</dependency>
-
+		<dependency>
+			<groupId>com.dekayd</groupId>
+			<artifactId>astyanax-extensions</artifactId>
+			<version>1.0.1</version>
+		</dependency>
 		<!-- Core utilities used by other modules. Define this if you use Spring 
 			Utility APIs (org.springframework.core.*/org.springframework.util.*) -->
 		<dependency>
