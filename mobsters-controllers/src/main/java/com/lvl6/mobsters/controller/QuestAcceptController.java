@@ -1,10 +1,7 @@
 package com.lvl6.mobsters.controller;
 
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
 import java.util.UUID;
 
 import org.slf4j.Logger;
@@ -22,7 +19,6 @@ import com.lvl6.mobsters.events.request.QuestAcceptRequestEvent;
 import com.lvl6.mobsters.events.response.QuestAcceptResponseEvent;
 import com.lvl6.mobsters.noneventprotos.MobstersEventProtocolProto.MobstersEventProtocolRequest;
 import com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto;
-import com.lvl6.mobsters.po.nonstaticdata.QuestForUser;
 import com.lvl6.mobsters.po.nonstaticdata.User;
 import com.lvl6.mobsters.po.staticdata.Quest;
 import com.lvl6.mobsters.services.questforuser.QuestForUserService;
@@ -62,19 +58,19 @@ public class QuestAcceptController extends EventController {
 				((QuestAcceptRequestEvent) event).getQuestAcceptRequestProto();
 
 		//get the values client sent
-		MinimumUserProto sender = reqProto.getSender();
+		MinimumUserProto senderProto = reqProto.getSender();
 		int questId = reqProto.getQuestId();
 		
 		//uuid's are not strings, need to convert from string to uuid, vice versa
-		String userIdString = sender.getUserUuid();
+		String userIdString = senderProto.getUserUuid();
 		UUID userId = UUID.fromString(userIdString);
 		Date timeAccepted = new Date();
 
 		//response to send back to client
 		Builder responseBuilder = QuestAcceptResponseProto.newBuilder();
+		responseBuilder.setSender(senderProto);
 		responseBuilder.setStatus(QuestAcceptStatus.FAIL_OTHER);
-		QuestAcceptResponseEvent resEvent =
-				new QuestAcceptResponseEvent(userIdString);
+		QuestAcceptResponseEvent resEvent = new QuestAcceptResponseEvent(userIdString);
 		resEvent.setTag(event.getTag());
 
 		try {
@@ -124,35 +120,19 @@ public class QuestAcceptController extends EventController {
 	      
 	      return false;
 	    }
-
-	    Map<Integer, QuestForUser> questIdsToUserQuests = getQuestForUserService()
-	    		.getQuestIdsToUserQuestsForUser(userId);
-	    Collection<QuestForUser> inProgressAndRedeemedUserQuests = questIdsToUserQuests.values();
-	    List<Integer> inProgressQuestIds = new ArrayList<Integer>();
-	    List<Integer> redeemedQuestIds = new ArrayList<Integer>();
 	    
-	    if (inProgressAndRedeemedUserQuests != null) {
-	        for (QuestForUser uq : inProgressAndRedeemedUserQuests) {
-	          if (uq.isRedeemed()) {
-	            redeemedQuestIds.add(uq.getQuestId());
-	          } else {
-	            inProgressQuestIds.add(uq.getQuestId());  
-	          }
-	        }
-	        List<Integer> availableQuestIds = getQuestForUserService().getAvailableQuestIds(
-	        		redeemedQuestIds, inProgressQuestIds);
-	        if (availableQuestIds != null && availableQuestIds.contains(quest.getId())) {
-	          responseBuilder.setStatus(QuestAcceptStatus.SUCCESS);
-	          return true;
-	        } else {
-	          responseBuilder.setStatus(QuestAcceptStatus.FAIL_NOT_AVAIL_TO_USER);
-	          log.error("quest with id " + quest.getId() + " is not available to user");
-	          return false;
-	        }
-	      }
-		
-		responseBuilder.setStatus(QuestAcceptStatus.SUCCESS);
-		return true;
+	    
+	    List<Integer> availableQuestIds = getQuestForUserService()
+	    		.getAvailableQuestIdsForUser(userId);
+	    if (availableQuestIds != null && availableQuestIds.contains(quest.getId())) {
+	    	responseBuilder.setStatus(QuestAcceptStatus.SUCCESS);
+	    	return true;
+	    } else {
+	    	responseBuilder.setStatus(QuestAcceptStatus.FAIL_NOT_AVAIL_TO_USER);
+	    	log.error("quest with id " + quest.getId() + " is not available to user");
+	    	return false;
+	    }
+
 	}
 
 	
