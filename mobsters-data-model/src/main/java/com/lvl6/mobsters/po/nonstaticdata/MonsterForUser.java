@@ -51,7 +51,7 @@ public class MonsterForUser extends BasePersistentObject<UUID>{
 	protected int teamSlotNum = 0;
 	
 	@Column(name="source_of_pieces")
-	protected String sourceOfPieces = null;
+	protected String sourceOfPieces = "";
 	
 	
 
