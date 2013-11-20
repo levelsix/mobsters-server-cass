@@ -19,7 +19,7 @@ import com.lvl6.mobsters.entitymanager.PreDungeonUserEquipInfoEntityManager;
 import com.lvl6.mobsters.entitymanager.PreDungeonUserInfoEntityManager;
 import com.lvl6.mobsters.entitymanager.UserConsumableQueueEntityManager;
 import com.lvl6.mobsters.entitymanager.nonstaticdata.UserEntityManager;
-import com.lvl6.mobsters.entitymanager.staticdata.CombatRoomRetrieveUtils;
+import com.lvl6.mobsters.entitymanager.staticdata.TaskStageMonsterRetrieveUtils;
 import com.lvl6.mobsters.eventprotos.StartDungeonEventProto.StartDungeonRequestProto;
 import com.lvl6.mobsters.eventprotos.StartDungeonEventProto.StartDungeonResponseProto;
 import com.lvl6.mobsters.eventprotos.StartDungeonEventProto.StartDungeonResponseProto.Builder;
@@ -32,7 +32,6 @@ import com.lvl6.mobsters.noneventprotos.FullUser.MinimumUserProto;
 import com.lvl6.mobsters.noneventprotos.FunctionalityTypeEnum.FunctionalityType;
 import com.lvl6.mobsters.noneventprotos.UserConsumable.UserConsumablesProto;
 import com.lvl6.mobsters.noneventprotos.UserEquipment.UserEquipmentProto;
-import com.lvl6.mobsters.po.CombatRoom;
 import com.lvl6.mobsters.po.PreDungeonUserConsumableInfo;
 import com.lvl6.mobsters.po.PreDungeonUserEquipInfo;
 import com.lvl6.mobsters.po.PreDungeonUserInfo;
@@ -41,6 +40,7 @@ import com.lvl6.mobsters.po.UserStructure;
 import com.lvl6.mobsters.po.nonstaticdata.QuestForUser;
 import com.lvl6.mobsters.po.nonstaticdata.User;
 import com.lvl6.mobsters.po.nonstaticdata.MonsterForUser;
+import com.lvl6.mobsters.po.staticdata.TaskStageMonster;
 import com.lvl6.mobsters.services.time.TimeUtils;
 import com.lvl6.mobsters.services.user.UserService;
 import com.lvl6.mobsters.services.userconsumable.UserConsumableService;
@@ -84,7 +84,7 @@ public class StartDungeonController extends EventController {
 	protected PreDungeonUserConsumableInfoEntityManager preDungeonUserConsumableInfoEntityManager;
 	
 	@Autowired
-	protected CombatRoomRetrieveUtils combatRoomRetrieveUtils;
+	protected TaskStageMonsterRetrieveUtils taskStageMonsterRetrieveUtils;
 	
 	@Autowired
 	protected TimeUtils timeUtils;
@@ -206,7 +206,7 @@ public class StartDungeonController extends EventController {
 		}
 		
 		//check if user is high enough lvl to enter particular dungeon
-		CombatRoom dungeonRoom = getCombatRoomRetrieveUtils().getCombatRoomForName(dungeonName);
+		TaskStageMonster dungeonRoom = getCombatRoomRetrieveUtils().getCombatRoomForName(dungeonName);
 		if(inDb.getLvl() < dungeonRoom.getLvlRequired()) {
 			log.error("user's lvl not high enough for room");
 			responseBuilder.setStatus(StartDungeonStatus.FAIL_NOT_AT_REQUIRED_LEVEL);
@@ -332,13 +332,13 @@ public class StartDungeonController extends EventController {
 		this.userStructureService = userStructureService;
 	}
 
-	public CombatRoomRetrieveUtils getCombatRoomRetrieveUtils() {
-		return combatRoomRetrieveUtils;
+	public TaskStageMonsterRetrieveUtils getCombatRoomRetrieveUtils() {
+		return taskStageMonsterRetrieveUtils;
 	}
 
 	public void setCombatRoomRetrieveUtils(
-			CombatRoomRetrieveUtils combatRoomRetrieveUtils) {
-		this.combatRoomRetrieveUtils = combatRoomRetrieveUtils;
+			TaskStageMonsterRetrieveUtils taskStageMonsterRetrieveUtils) {
+		this.taskStageMonsterRetrieveUtils = taskStageMonsterRetrieveUtils;
 	}
 
 	public PreDungeonUserInfoEntityManager getPreDungeonUserInfoEntityManager() {

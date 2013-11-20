@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 import com.lvl6.mobsters.entitymanager.UserDungeonStatusEntityManager;
 import com.lvl6.mobsters.entitymanager.UserDungeonStatusHistoryEntityManager;
 import com.lvl6.mobsters.entitymanager.nonstaticdata.UserEntityManager;
-import com.lvl6.mobsters.entitymanager.staticdata.CombatRoomRetrieveUtils;
+import com.lvl6.mobsters.entitymanager.staticdata.TaskStageMonsterRetrieveUtils;
 import com.lvl6.mobsters.eventprotos.UserDungeonStatusProto.UserDungeonStatusRequestProto;
 import com.lvl6.mobsters.eventprotos.UserDungeonStatusProto.UserDungeonStatusResponseProto;
 import com.lvl6.mobsters.eventprotos.UserDungeonStatusProto.UserDungeonStatusResponseProto.Builder;
@@ -52,7 +52,7 @@ public class UserDungeonStatusController extends EventController {
 	protected UserEntityManager userEntityManager;
 	
 	@Autowired
-	protected CombatRoomRetrieveUtils combatRoomRetrieveUtils;
+	protected TaskStageMonsterRetrieveUtils taskStageMonsterRetrieveUtils;
 	
 
 	@Override
@@ -88,7 +88,7 @@ public class UserDungeonStatusController extends EventController {
 		String combatRoomIdStr = reqProto.getCombatRoomId();
 		UUID combatRoomId = UUID.fromString(combatRoomIdStr);
 //		UUID dungeonRoomId = UUID.fromString(dungeonRoomName);
-//		CombatRoom dungeonRoom = getCombatRoomRetrieveUtils().getCombatRoomForId(dungeonRoomId);
+//		TaskStageMonster dungeonRoom = getCombatRoomRetrieveUtils().getCombatRoomForId(dungeonRoomId);
 		
 		
 		//response to send back to client
@@ -247,13 +247,13 @@ public class UserDungeonStatusController extends EventController {
 		this.userEntityManager = userEntityManager;
 	}
 
-	public CombatRoomRetrieveUtils getCombatRoomRetrieveUtils() {
-		return combatRoomRetrieveUtils;
+	public TaskStageMonsterRetrieveUtils getCombatRoomRetrieveUtils() {
+		return taskStageMonsterRetrieveUtils;
 	}
 
 	public void setCombatRoomRetrieveUtils(
-			CombatRoomRetrieveUtils combatRoomRetrieveUtils) {
-		this.combatRoomRetrieveUtils = combatRoomRetrieveUtils;
+			TaskStageMonsterRetrieveUtils taskStageMonsterRetrieveUtils) {
+		this.taskStageMonsterRetrieveUtils = taskStageMonsterRetrieveUtils;
 	}
 		
 	

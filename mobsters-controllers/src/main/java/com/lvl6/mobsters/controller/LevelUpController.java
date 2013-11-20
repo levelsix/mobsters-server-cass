@@ -16,7 +16,7 @@ import org.springframework.stereotype.Component;
 import com.lvl6.mobsters.entitymanager.UserConsumableQueueEntityManager;
 import com.lvl6.mobsters.entitymanager.nonstaticdata.UserEntityManager;
 import com.lvl6.mobsters.entitymanager.staticdata.ClassLevelInfoRetrieveUtils;
-import com.lvl6.mobsters.entitymanager.staticdata.CombatRoomRetrieveUtils;
+import com.lvl6.mobsters.entitymanager.staticdata.TaskStageMonsterRetrieveUtils;
 import com.lvl6.mobsters.eventprotos.LevelUpEventProto.LevelUpRequestProto;
 import com.lvl6.mobsters.eventprotos.LevelUpEventProto.LevelUpResponseProto;
 import com.lvl6.mobsters.eventprotos.LevelUpEventProto.LevelUpResponseProto.Builder;
@@ -54,7 +54,7 @@ public class LevelUpController extends EventController {
 	protected ClassLevelInfoRetrieveUtils classLevelInfoRetrieveUtils;
 	
 	@Autowired
-	protected CombatRoomRetrieveUtils combatRoomRetrieveUtils;
+	protected TaskStageMonsterRetrieveUtils taskStageMonsterRetrieveUtils;
 
 	@Autowired
 	protected TimeUtils timeUtils;
@@ -239,13 +239,13 @@ public class LevelUpController extends EventController {
 		this.classLevelInfoRetrieveUtils = classLevelInfoRetrieveUtils;
 	}
 
-	public CombatRoomRetrieveUtils getCombatRoomRetrieveUtils() {
-		return combatRoomRetrieveUtils;
+	public TaskStageMonsterRetrieveUtils getCombatRoomRetrieveUtils() {
+		return taskStageMonsterRetrieveUtils;
 	}
 
 	public void setCombatRoomRetrieveUtils(
-			CombatRoomRetrieveUtils combatRoomRetrieveUtils) {
-		this.combatRoomRetrieveUtils = combatRoomRetrieveUtils;
+			TaskStageMonsterRetrieveUtils taskStageMonsterRetrieveUtils) {
+		this.taskStageMonsterRetrieveUtils = taskStageMonsterRetrieveUtils;
 	}
 	
 	

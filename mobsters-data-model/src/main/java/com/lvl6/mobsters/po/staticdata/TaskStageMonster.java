@@ -1,8 +1,6 @@
 package com.lvl6.mobsters.po.staticdata;
 
-import java.util.HashSet;
-import java.util.Set;
-import java.util.UUID;
+import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,152 +12,136 @@ import com.dekayd.astyanax.cassandra.entitymanager.Index;
 
 
 @Entity
-public class TaskStageMonster extends BasePersistentObject<UUID>{
+public class TaskStageMonster extends BasePersistentObject<Integer> implements Serializable{
+
+	private static final long serialVersionUID = 4991947856341943944L;
 
 	@Id
-	protected UUID id = UUID.randomUUID();
+	protected Integer id = 0;
 	
-	//room type = dungeon, specifies to which dungeon this room belongs
-	@Column(name="type")
+	@Column(name="stage_id")
 	@Index
-	protected int type = 1;
+	protected int stageId = 0;
 	
-	//if this room comes first, second, ... in this dungeon
-	@Column(name="ordering")
-	protected int ordering = 1;
+	@Column(name="monster_id")
+	protected int monsterId = 0;
 	
-	@Column(name="lvl_required")
+	@Column(name="monster_type")
 	@Index
-	protected int lvlRequired = 0;
+	protected String monsterType = null;
 	
-	//flavor text for the user
-	@Column(name="room_name")
+	@Column(name="exp_reward")
 	@Index
-	protected String roomName = "Inferno";
+	protected int expReward = 0;
 	
-	//for all stars
-	@Column(name="time_millis_one")
-	protected int timeMillisOne = 120000;
+	@Column(name="min_cash_drop")
+	protected int minCashDrop = 0;
 	
-	//for two stars
-	@Column(name="time_millis_two")
-	protected int timeMillisTwo = 180000;
+	@Column(name="max_cash_drop")
+	protected int maxCashDrop = 1;
 	
-	//for one star
-	@Column(name="time_millis_three")
-	protected int timeMillisThree = 240000;
+	@Column(name="puzzle_piece_drop_rate")
+	protected float puzzlePieceDropRate = 0.1F;
 
-	// links a map-a-user-plays-in to a room
-	// Using AoC terms,
-	// world map (tapping on map button) = a dungeon
-	// a city (kirin village, venetia,...) = a combat room
-	// With this column, instead of each city/combat room correlating
-	// to only one map, two or three cities/rooms can use the same map.
-	@Column(name="map_index")
+	//enhancement level
+	@Column(name="level")
 	@Index
-	protected int mapIndex = 0;
+	protected int level = 0;
+	
+	@Column(name="chance_to_appear")
+	protected float chanceToAppear = 0.1F;
 
-
-
-	public UUID getId() {
+	
+	
+	
+	public Integer getId() {
 		return id;
 	}
 
-
-	public void setId(UUID id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
-
-	public int getType() {
-		return type;
+	public int getStageId() {
+		return stageId;
 	}
 
-
-	public void setType(int type) {
-		this.type = type;
+	public void setStageId(int stageId) {
+		this.stageId = stageId;
 	}
 
-
-	public int getOrdering() {
-		return ordering;
+	public int getMonsterId() {
+		return monsterId;
 	}
 
-
-	public void setOrdering(int ordering) {
-		this.ordering = ordering;
+	public void setMonsterId(int monsterId) {
+		this.monsterId = monsterId;
 	}
 
-
-	public int getLvlRequired() {
-		return lvlRequired;
+	public String getMonsterType() {
+		return monsterType;
 	}
 
-
-	public void setLvlRequired(int lvlRequired) {
-		this.lvlRequired = lvlRequired;
+	public void setMonsterType(String monsterType) {
+		this.monsterType = monsterType;
 	}
 
-
-	public String getRoomName() {
-		return roomName;
+	public int getExpReward() {
+		return expReward;
 	}
 
-
-	public void setRoomName(String roomName) {
-		this.roomName = roomName;
+	public void setExpReward(int expReward) {
+		this.expReward = expReward;
 	}
 
-
-	public int getTimeMillisOne() {
-		return timeMillisOne;
+	public int getMinCashDrop() {
+		return minCashDrop;
 	}
 
-
-	public void setTimeMillisOne(int timeMillisOne) {
-		this.timeMillisOne = timeMillisOne;
+	public void setMinCashDrop(int minCashDrop) {
+		this.minCashDrop = minCashDrop;
 	}
 
-
-	public int getTimeMillisTwo() {
-		return timeMillisTwo;
+	public int getMaxCashDrop() {
+		return maxCashDrop;
 	}
 
-
-	public void setTimeMillisTwo(int timeMillisTwo) {
-		this.timeMillisTwo = timeMillisTwo;
+	public void setMaxCashDrop(int maxCashDrop) {
+		this.maxCashDrop = maxCashDrop;
 	}
 
-
-	public int getTimeMillisThree() {
-		return timeMillisThree;
+	public float getPuzzlePieceDropRate() {
+		return puzzlePieceDropRate;
 	}
 
-
-	public void setTimeMillisThree(int timeMillisThree) {
-		this.timeMillisThree = timeMillisThree;
+	public void setPuzzlePieceDropRate(float puzzlePieceDropRate) {
+		this.puzzlePieceDropRate = puzzlePieceDropRate;
 	}
 
-
-	public int getMapIndex() {
-		return mapIndex;
+	public int getLevel() {
+		return level;
 	}
 
-
-	public void setMapIndex(int mapIndex) {
-		this.mapIndex = mapIndex;
+	public void setLevel(int level) {
+		this.level = level;
 	}
 
+	public float getChanceToAppear() {
+		return chanceToAppear;
+	}
+
+	public void setChanceToAppear(float chanceToAppear) {
+		this.chanceToAppear = chanceToAppear;
+	}
 
 	@Override
 	public String toString() {
-		return "TaskStageMonster [id=" + id + ", type=" + type + ", ordering="
-				+ ordering + ", lvlRequired=" + lvlRequired + ", roomName="
-				+ roomName + ", timeMillisOne=" + timeMillisOne
-				+ ", timeMillisTwo=" + timeMillisTwo + ", timeMillisThree="
-				+ timeMillisThree + ", mapIndex=" + mapIndex + "]";
+		return "TaskStageMonster [id=" + id + ", stageId=" + stageId
+				+ ", monsterId=" + monsterId + ", monsterType=" + monsterType
+				+ ", expReward=" + expReward + ", minCashDrop=" + minCashDrop
+				+ ", maxCashDrop=" + maxCashDrop + ", puzzlePieceDropRate="
+				+ puzzlePieceDropRate + ", level=" + level
+				+ ", chanceToAppear=" + chanceToAppear + "]";
 	}
 
-
-	
 }
