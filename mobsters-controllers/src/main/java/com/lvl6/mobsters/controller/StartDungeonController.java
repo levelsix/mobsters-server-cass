@@ -41,11 +41,11 @@ import com.lvl6.mobsters.po.nonstaticdata.QuestForUser;
 import com.lvl6.mobsters.po.nonstaticdata.User;
 import com.lvl6.mobsters.po.nonstaticdata.MonsterForUser;
 import com.lvl6.mobsters.po.staticdata.TaskStageMonster;
+import com.lvl6.mobsters.services.monsterforuser.MonsterForUserService;
 import com.lvl6.mobsters.services.time.TimeUtils;
 import com.lvl6.mobsters.services.user.UserService;
 import com.lvl6.mobsters.services.userconsumable.UserConsumableService;
 import com.lvl6.mobsters.services.userconsumablequeue.UserConsumableQueueService;
-import com.lvl6.mobsters.services.userequip.UserEquipService;
 import com.lvl6.mobsters.services.userstructure.UserStructureService;
 
 
@@ -69,7 +69,7 @@ public class StartDungeonController extends EventController {
 	protected UserEntityManager userEntityManager;
 	
 	@Autowired
-	protected UserEquipService userEquipService;
+	protected MonsterForUserService monsterForUserService;
 	
 	@Autowired
 	protected UserConsumableService userConsumableService;
@@ -368,12 +368,12 @@ public class StartDungeonController extends EventController {
 		this.preDungeonUserConsumableInfoEntityManager = preDungeonUserConsumableInfoEntityManager;
 	}
 
-	public UserEquipService getUserEquipService() {
-		return userEquipService;
+	public MonsterForUserService getUserEquipService() {
+		return monsterForUserService;
 	}
 
-	public void setUserEquipService(UserEquipService userEquipService) {
-		this.userEquipService = userEquipService;
+	public void setUserEquipService(MonsterForUserService monsterForUserService) {
+		this.monsterForUserService = monsterForUserService;
 	}
 
 }

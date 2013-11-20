@@ -27,7 +27,7 @@ import com.lvl6.mobsters.noneventprotos.FullUser.MinimumUserProto;
 import com.lvl6.mobsters.po.nonstaticdata.User;
 import com.lvl6.mobsters.po.nonstaticdata.MonsterForUser;
 import com.lvl6.mobsters.services.equipment.EquipmentService;
-import com.lvl6.mobsters.services.userequip.UserEquipService;
+import com.lvl6.mobsters.services.monsterforuser.MonsterForUserService;
 
 
 
@@ -51,7 +51,7 @@ public class ReturnHomeController extends EventController {
 
 
 	@Autowired
-	protected UserEquipService userEquipService; 
+	protected MonsterForUserService monsterForUserService; 
 	
 	@Autowired
 	protected EquipmentService equipmentService;
@@ -186,12 +186,12 @@ public class ReturnHomeController extends EventController {
 	}
 
 
-	public UserEquipService getUserEquipService() {
-		return userEquipService;
+	public MonsterForUserService getUserEquipService() {
+		return monsterForUserService;
 	}
 
-	public void setUserEquipService(UserEquipService userEquipService) {
-		this.userEquipService = userEquipService;
+	public void setUserEquipService(MonsterForUserService monsterForUserService) {
+		this.monsterForUserService = monsterForUserService;
 	}
 
 	public EquipmentService getEquipmentService() {

@@ -14,7 +14,6 @@ import org.springframework.stereotype.Component;
 import com.lvl6.mobsters.entitymanager.UserDeviceEntityManager;
 import com.lvl6.mobsters.entitymanager.nonstaticdata.UserEntityManager;
 import com.lvl6.mobsters.entitymanager.staticdata.ClassLevelInfoRetrieveUtils;
-import com.lvl6.mobsters.noneventprotos.FunctionalityTypeEnum.FunctionalityType;
 import com.lvl6.mobsters.po.ClassLevelInfo;
 import com.lvl6.mobsters.po.Structure;
 import com.lvl6.mobsters.po.UserDevice;

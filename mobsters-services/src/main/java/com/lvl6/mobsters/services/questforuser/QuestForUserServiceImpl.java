@@ -46,14 +46,19 @@ public class QuestForUserServiceImpl implements QuestForUserService {
 	//RETRIEVING STUFF
 	@Override
 	public  Map<Integer, QuestForUser> getQuestIdsToUserQuestsForUser(UUID userId) {
-		//construct the search parameters
-		List<String> keys = new ArrayList<String>();
-		keys.add(MobstersDbTables.QUEST_FOR_USER___USER_ID);
-		Map<String, Object> equalityConditions = new HashMap<String, Object>();
-		equalityConditions.put(MobstersDbTables.QUEST_FOR_USER___USER_ID, userId.toString());
+		log.debug("retrieving user quest for userId " + userId);
 		
-		//query db
-		String cqlquery = getQueryConstructionUtil().selectRowsQuery(TABLE_NAME, equalityConditions, keys); 
+		//construct the search parameters
+		Map<String, Object> equalityConditions = new HashMap<String, Object>();
+		equalityConditions.put(MobstersDbTables.QUEST_FOR_USER___USER_ID, userId);
+		
+		//query db, "values" is not used 
+		//(its purpose is to hold the values that were supposed to be put
+		// into a prepared statement)
+		List<Object> values = new ArrayList<Object>();
+		boolean preparedStatement = false;
+		String cqlquery = getQueryConstructionUtil().selectRowsQueryEqualityConditions(
+				TABLE_NAME, equalityConditions, values, preparedStatement); 
 		List<QuestForUser> qfuList = getQuestForUserEntityManager().get().find(cqlquery);
 		
 		Map<Integer, QuestForUser> questIdsToUserQuests = new HashMap<Integer, QuestForUser>();
@@ -100,17 +105,18 @@ public class QuestForUserServiceImpl implements QuestForUserService {
 	@Override
 	public QuestForUser getSpecificUnredeemedUserQuest(UUID userId, int questId) {
 		//construct the search parameters
-		List<String> keys = new ArrayList<String>();
-		keys.add(MobstersDbTables.QUEST_FOR_USER___USER_ID);
-		keys.add(MobstersDbTables.QUEST_FOR_USER__QUEST_ID);
-		keys.add(MobstersDbTables.QUEST_FOR_USER__IS_REDEEMED);
 		Map<String, Object> equalityConditions = new HashMap<String, Object>();
 		equalityConditions.put(MobstersDbTables.QUEST_FOR_USER___USER_ID, userId);
 		equalityConditions.put(MobstersDbTables.QUEST_FOR_USER__QUEST_ID, questId);
 		equalityConditions.put(MobstersDbTables.QUEST_FOR_USER__IS_REDEEMED, false);
 		
-		//query db
-		String cqlQuery = getQueryConstructionUtil().selectRowsQuery(TABLE_NAME, equalityConditions, keys);
+		//query db, "values" is not used 
+		//(its purpose is to hold the values that were supposed to be put
+		// into a prepared statement)
+		List<Object> values = new ArrayList<Object>();
+		boolean preparedStatement = false;
+		String cqlQuery = getQueryConstructionUtil().selectRowsQueryEqualityConditions(
+				TABLE_NAME, equalityConditions, values, preparedStatement);
 		List<QuestForUser> qfuList = getQuestForUserEntityManager().get().find(cqlQuery);
 		
 		if (null == qfuList || qfuList.isEmpty()) {
@@ -121,7 +127,13 @@ public class QuestForUserServiceImpl implements QuestForUserService {
 			log.warn("multiple QuestForUser exist for userId=" + userId + "\t questId=" +
 					questId + "\t quests=" + qfuList + "\t keeping most recent");
 			
-			return getMostRecentQuestForUser(qfuList);
+			List<UUID> deleteIds = new ArrayList<UUID>();
+			List<QuestForUser> deleteMe = new ArrayList<QuestForUser>();
+			QuestForUser qfu = getMostRecentQuestForUser(qfuList, deleteIds, deleteMe);
+			log.warn("deleting QuestForUser=" + deleteMe);
+			
+			getQuestForUserEntityManager().get().delete(deleteIds);
+			return qfu;
 		} else{
 			QuestForUser qfu = qfuList.get(0);
 			log.info("retrieved one QuestForUser. qfu=" + qfu);
@@ -129,7 +141,8 @@ public class QuestForUserServiceImpl implements QuestForUserService {
 		}
 	}
 	
-	private QuestForUser getMostRecentQuestForUser(List<QuestForUser> qfuList) {
+	private QuestForUser getMostRecentQuestForUser(List<QuestForUser> qfuList,
+			List<UUID> deleteIds, List<QuestForUser> deleteMe) {
 		QuestForUser mostRecent = qfuList.get(0);
 		for (int i = 1; i < qfuList.size(); i++) {
 			QuestForUser prospectiveMostRecent = qfuList.get(i);
@@ -138,8 +151,14 @@ public class QuestForUserServiceImpl implements QuestForUserService {
 			Date mostRecentDate = mostRecent.getTimeAccepted();
 			
 			if (getTimeUtils().isFirstEarlierThanSecond(mostRecentDate, pmrDate)) {
+				deleteIds.add(mostRecent.getId());
+				deleteMe.add(mostRecent);
 				//want most recent so pmrDate is newer than existing
 				mostRecent = prospectiveMostRecent;
+				
+			} else {
+				deleteIds.add(prospectiveMostRecent.getId());
+				deleteMe.add(prospectiveMostRecent);
 			}
 		}
 		

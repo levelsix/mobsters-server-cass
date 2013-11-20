@@ -35,7 +35,7 @@ import com.lvl6.mobsters.po.nonstaticdata.User;
 import com.lvl6.mobsters.po.nonstaticdata.MonsterEnhancingForUser;
 import com.lvl6.mobsters.po.nonstaticdata.MonsterForUser;
 import com.lvl6.mobsters.services.equipment.EquipmentService;
-import com.lvl6.mobsters.services.userequip.UserEquipService;
+import com.lvl6.mobsters.services.monsterforuser.MonsterForUserService;
 import com.lvl6.mobsters.services.userstructure.UserStructureService;
 import com.netflix.astyanax.connectionpool.exceptions.ConnectionException;
 
@@ -68,7 +68,7 @@ public class CompleteDungeonController extends EventController {
 	protected EquipmentService equipmentServices;
 	
 	@Autowired
-	protected UserEquipService userEquipService;
+	protected MonsterForUserService monsterForUserService;
 
 	@Autowired
 	protected MonsterEnhancingForUserEntityManager monsterEnhancingForUserEntityManager;
@@ -321,12 +321,12 @@ public class CompleteDungeonController extends EventController {
 		this.equipmentServices = equipmentServices;
 	}
 
-	public UserEquipService getUserEquipService() {
-		return userEquipService;
+	public MonsterForUserService getUserEquipService() {
+		return monsterForUserService;
 	}
 
-	public void setUserEquipService(UserEquipService userEquipService) {
-		this.userEquipService = userEquipService;
+	public void setUserEquipService(MonsterForUserService monsterForUserService) {
+		this.monsterForUserService = monsterForUserService;
 	}
 
 	public MonsterEnhancingForUserEntityManager getUserChestEntityManager() {

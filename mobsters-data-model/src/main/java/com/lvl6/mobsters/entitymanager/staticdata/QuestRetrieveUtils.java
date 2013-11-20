@@ -1,5 +1,6 @@
 package com.lvl6.mobsters.entitymanager.staticdata;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -76,8 +77,15 @@ import com.lvl6.mobsters.utils.QuestGraph;
 		log.debug("setting  map of questIds to quests");
 		String delimiter = ", ";
 
-		//don't specify any conditions in the where clause, so using null
-		String cqlquery = getQueryConstructionUtil().selectRowsQuery(TABLE_NAME, null, null);
+		//construct the search parameters
+		Map<String, Object> equalityConditions = null;
+
+		//query db, "values" is not used 
+		//(its purpose is to hold the values that were supposed to be put
+		// into a prepared statement) 
+		List<Object> values = new ArrayList<Object>();
+		boolean preparedStatement = false;
+		String cqlquery = getQueryConstructionUtil().selectRowsQueryEqualityConditions(TABLE_NAME, equalityConditions, values, preparedStatement);
 		List<Quest> questList = getQuestEntityManager().get().find(cqlquery);
 		
 		//fill up the map

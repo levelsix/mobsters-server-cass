@@ -31,9 +31,9 @@ import com.lvl6.mobsters.po.nonstaticdata.User;
 import com.lvl6.mobsters.po.nonstaticdata.MonsterForUser;
 import com.lvl6.mobsters.po.nonstaticdata.MonsterHealingForUser;
 import com.lvl6.mobsters.properties.MobstersTableConstants;
+import com.lvl6.mobsters.services.monsterforuser.MonsterForUserService;
 import com.lvl6.mobsters.services.time.TimeUtils;
 import com.lvl6.mobsters.services.user.UserService;
-import com.lvl6.mobsters.services.userequip.UserEquipService;
 import com.lvl6.mobsters.services.userequiprepair.UserEquipRepairService;
 
 
@@ -49,7 +49,7 @@ public class RepairEquipController extends EventController {
 	protected UserEquipRepairService userEquipRepairService;
 
 	@Autowired
-	protected UserEquipService userEquipService;
+	protected MonsterForUserService monsterForUserService;
 
 	@Autowired
 	protected UserEntityManager userEntityManager;
@@ -456,12 +456,12 @@ public class RepairEquipController extends EventController {
 		this.userEquipRepairService = userEquipRepairService;
 	}
 
-	public UserEquipService getUserEquipService() {
-		return userEquipService;
+	public MonsterForUserService getUserEquipService() {
+		return monsterForUserService;
 	}
 
-	public void setUserEquipService(UserEquipService userEquipService) {
-		this.userEquipService = userEquipService;
+	public void setUserEquipService(MonsterForUserService monsterForUserService) {
+		this.monsterForUserService = monsterForUserService;
 	}
 
 	public UserEntityManager getUserEntityManager() {
