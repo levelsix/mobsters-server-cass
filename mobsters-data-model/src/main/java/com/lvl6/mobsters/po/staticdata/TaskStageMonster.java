@@ -1,4 +1,4 @@
-package com.lvl6.mobsters.po;
+package com.lvl6.mobsters.po.staticdata;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -14,7 +14,7 @@ import com.dekayd.astyanax.cassandra.entitymanager.Index;
 
 
 @Entity
-public class CombatRoom extends BasePersistentObject<UUID>{
+public class TaskStageMonster extends BasePersistentObject<UUID>{
 
 	@Id
 	protected UUID id = UUID.randomUUID();
@@ -153,7 +153,7 @@ public class CombatRoom extends BasePersistentObject<UUID>{
 
 	@Override
 	public String toString() {
-		return "CombatRoom [id=" + id + ", type=" + type + ", ordering="
+		return "TaskStageMonster [id=" + id + ", type=" + type + ", ordering="
 				+ ordering + ", lvlRequired=" + lvlRequired + ", roomName="
 				+ roomName + ", timeMillisOne=" + timeMillisOne
 				+ ", timeMillisTwo=" + timeMillisTwo + ", timeMillisThree="

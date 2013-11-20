@@ -10,21 +10,20 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.lvl6.mobsters.entitymanager.CombatRoomEntityManager;
-import com.lvl6.mobsters.po.CombatRoom;
+import com.lvl6.mobsters.po.staticdata.TaskStageMonster;
 
-@Component public class CombatRoomRetrieveUtils {
+@Component public class TaskStageMonsterRetrieveUtils {
 
 	private  Logger log = LoggerFactory.getLogger(new Object() { }.getClass().getEnclosingClass());
 
-	private  Map<UUID, CombatRoom> idsToCombatRooms;
+	private  Map<UUID, TaskStageMonster> idsToCombatRooms;
 
 	//private  final String TABLE_NAME = DBConstants.CONSUMABLE;
 
 	@Autowired
-	protected CombatRoomEntityManager combatRoomEntityManager;
+	protected TaskStageMonsterEntityManager taskStageMonsterEntityManager;
 
-	public  CombatRoom getCombatRoomForId(UUID id) {
+	public  TaskStageMonster getCombatRoomForId(UUID id) {
 		log.debug("retrieve combatRoom data for id " + id);
 		if (idsToCombatRooms == null) {
 			setStaticIdsToCombatRooms();      
@@ -32,12 +31,12 @@ import com.lvl6.mobsters.po.CombatRoom;
 		return idsToCombatRooms.get(id);
 	}
 
-	public  Map<UUID, CombatRoom> getCombatRoomsForIds(List<UUID> ids) {
+	public  Map<UUID, TaskStageMonster> getCombatRoomsForIds(List<UUID> ids) {
 		log.debug("retrieve combatRooms data for ids " + ids);
 		if (idsToCombatRooms == null) {
 			setStaticIdsToCombatRooms();      
 		}
-		Map<UUID, CombatRoom> toreturn = new HashMap<UUID, CombatRoom>();
+		Map<UUID, TaskStageMonster> toreturn = new HashMap<UUID, TaskStageMonster>();
 		for (UUID id : ids) {
 			toreturn.put(id,  idsToCombatRooms.get(id));
 		}
@@ -48,23 +47,23 @@ import com.lvl6.mobsters.po.CombatRoom;
 		log.debug("setting  map of combatRoomIds to combatRooms");
 
 		String cqlquery = "select * from combatRoom;"; 
-		List <CombatRoom> list = getCombatRoomEntityManager().get().find(cqlquery);
-		idsToCombatRooms = new HashMap<UUID, CombatRoom>();
-		for(CombatRoom c : list) {
+		List <TaskStageMonster> list = getCombatRoomEntityManager().get().find(cqlquery);
+		idsToCombatRooms = new HashMap<UUID, TaskStageMonster>();
+		for(TaskStageMonster c : list) {
 			UUID id= c.getId();
 			idsToCombatRooms.put(id, c);
 		}
 	}
 
-	public CombatRoom getCombatRoomForName(String dungeonRoomName) {
+	public TaskStageMonster getCombatRoomForName(String dungeonRoomName) {
 		String cqlquery = "select * from combatRoom where name=" + dungeonRoomName + ";";
-		List<CombatRoom> list = getCombatRoomEntityManager().get().find(cqlquery);
+		List<TaskStageMonster> list = getCombatRoomEntityManager().get().find(cqlquery);
 		return list.get(0);
 	}
 	
-	public List<CombatRoom> getCombatRoomUnlockedAtLevel(int level) {
+	public List<TaskStageMonster> getCombatRoomUnlockedAtLevel(int level) {
 		String cqlquery = "select * from combatRoom where lvl_required=" + level + ";";
-		List<CombatRoom> list = getCombatRoomEntityManager().get().find(cqlquery);
+		List<TaskStageMonster> list = getCombatRoomEntityManager().get().find(cqlquery);
 		return list;
 	}
 
@@ -74,12 +73,12 @@ import com.lvl6.mobsters.po.CombatRoom;
 	}
 	
 
-	public CombatRoomEntityManager getCombatRoomEntityManager() {
-		return combatRoomEntityManager;
+	public TaskStageMonsterEntityManager getCombatRoomEntityManager() {
+		return taskStageMonsterEntityManager;
 	}
 
 	public void setCombatRoomEntityManager(
-			CombatRoomEntityManager combatRoomEntityManager) {
-		this.combatRoomEntityManager = combatRoomEntityManager;
+			TaskStageMonsterEntityManager taskStageMonsterEntityManager) {
+		this.taskStageMonsterEntityManager = taskStageMonsterEntityManager;
 	}
 }
