@@ -196,9 +196,20 @@ public class QuestForUserServiceImpl implements QuestForUserService {
 		//the other columns are default values for new QuestForUser
 		
 		log.info("saving new quest for user. qfu=" + qfu);
-		getQuestForUserEntityManager().get().put(qfu);
+		saveQuestForUser(qfu);
 		
 		return qfu;
+	}
+	
+	//SAVING STUFF
+	@Override
+	public void saveQuestForUser(QuestForUser qfu) {
+		getQuestForUserEntityManager().get().put(qfu);
+	}
+	
+	@Override
+	public void saveQuestsForUser(Collection<QuestForUser> qfuList) {
+		getQuestForUserEntityManager().get().put(qfuList);
 	}
 	
 	

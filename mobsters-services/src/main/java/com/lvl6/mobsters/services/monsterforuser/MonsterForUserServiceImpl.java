@@ -38,7 +38,7 @@ public class MonsterForUserServiceImpl implements MonsterForUserService {
 	protected MonsterRetrieveUtils monsterRetrieveUtils;
 
 	@Autowired
-	private QueryConstructionUtil queryConstructionUtil;
+	protected QueryConstructionUtil queryConstructionUtil;
 	
 	
 	//CONTROLLER LOGIC STUFF

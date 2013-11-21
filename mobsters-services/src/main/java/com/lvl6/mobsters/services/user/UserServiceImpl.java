@@ -1,9 +1,11 @@
 package com.lvl6.mobsters.services.user;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import org.joda.time.DateTime;
 import org.slf4j.Logger;
@@ -39,6 +41,64 @@ public class UserServiceImpl implements UserService {
 	protected UserStructureService userStructureService;
 
 	private static Logger log = LoggerFactory.getLogger(new Object() { }.getClass().getEnclosingClass());
+	
+	
+
+	//RETRIEVE STUFF
+	@Override
+	public User getUserWithId(UUID userId) {
+		return getUserEntityManager().get().get(userId);
+	}
+	
+	//searches for a user based on game center or user id
+	@Override
+	public User retrieveUser(String gameCenterId, UUID userId) {
+		String cqlQuery = "select * from user u ";
+		List<User> uList = new ArrayList<User>();
+		if (null != gameCenterId) {
+			cqlQuery += "where u.game_center_id = " + gameCenterId + ";";
+			uList = getUserEntityManager().get().find(cqlQuery);
+
+		} else if (null != userId){
+			cqlQuery += "where u.user_id = " + userId + ";";
+			uList = getUserEntityManager().get().find(cqlQuery);
+
+		}
+
+		if (uList == null || uList.isEmpty()) {
+			return null;
+		} else if (uList.size() > 1) {
+			String msg = "multiple users exist. gameCenterId=" +
+					gameCenterId + ", userId=" + userId +
+					" uList=" + uList;
+			log.error("unexpected error: " + msg);
+			return null;
+		} else {
+			return uList.get(0);
+		}
+
+	}
+	
+	
+	
+	
+	//INSERT STUFF
+	
+	
+	//SAVING STUFF
+	@Override
+	public void saveUser(User u) {
+		getUserEntityManager().get().put(u);
+	}
+	
+	@Override
+	public void saveUsers(Collection<User> uCollection) {
+		getUserEntityManager().get().put(uCollection);
+	}
+	
+	
+	
+	
 	
 	@Override
 	public User createNewUser(String gameCenterId, DateTime loginTime, String udid) {
@@ -94,34 +154,7 @@ public class UserServiceImpl implements UserService {
 		u.setMana(maxMana);
 	}
 	
-	//searches for a user based on game center or user id
-	@Override
-	public User retrieveUser(String gameCenterId, String userId) throws Exception {
-		String cqlQuery = "select * from user u ";
-		List<User> uList = new ArrayList<User>();
-		if (null != gameCenterId) {
-			cqlQuery += "where u.game_center_id = " + gameCenterId + ";";
-			uList = getUserEntityManager().get().find(cqlQuery);
-			
-		} else if (null != userId){
-			cqlQuery += "where u.user_id = " + userId + ";";
-			uList = getUserEntityManager().get().find(cqlQuery);
-			
-		}
-		
-		if (uList == null || uList.isEmpty()) {
-			return null;
-		} else if (uList.size() > 1) {
-			String msg = "multiple users exist. gameCenterId=" +
-					gameCenterId + ", userId=" + userId +
-					" uList=" + uList;
-			log.error("unexpected error: " + msg);
-			throw new Exception(msg);
-		} else {
-			return uList.get(0);
-		}
-		
-	}
+	
 	
 	@Override
 	public User retrieveUserForUdid(String udid) throws Exception {

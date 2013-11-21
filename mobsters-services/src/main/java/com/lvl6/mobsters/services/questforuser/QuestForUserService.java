@@ -1,5 +1,6 @@
 package com.lvl6.mobsters.services.questforuser;
 
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -30,6 +31,12 @@ public interface QuestForUserService {
 	
 	//INSERTING STUFF
 	public abstract QuestForUser createNewUserQuestForUser(UUID userId, int questId, Date now);
+	
+	
+	//SAVING STUFF
+	public abstract void saveQuestForUser(QuestForUser qfu);
+	
+	public abstract void saveQuestsForUser(Collection<QuestForUser> qfuList);
 	
 	
 	

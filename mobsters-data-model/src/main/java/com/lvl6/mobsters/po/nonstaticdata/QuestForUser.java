@@ -41,6 +41,13 @@ public class QuestForUser extends BasePersistentObject<UUID>{
 	@Column(name="time_accepted")
 	protected Date timeAccepted = null;
 	
+	@Column(name="time_completed")
+	protected Date timeCompleted = null;
+	
+	@Column(name="time_redeemed")
+	protected Date timeRedeemed = null;
+	
+	
 	
 	
 	public UUID getId() {
@@ -113,14 +120,33 @@ public class QuestForUser extends BasePersistentObject<UUID>{
 	}
 
 
+	public Date getTimeCompleted() {
+		return timeCompleted;
+	}
+
+
+	public void setTimeCompleted(Date timeCompleted) {
+		this.timeCompleted = timeCompleted;
+	}
+
+
+	public Date getTimeRedeemed() {
+		return timeRedeemed;
+	}
+
+
+	public void setTimeRedeemed(Date timeRedeemed) {
+		this.timeRedeemed = timeRedeemed;
+	}
+
+
 	@Override
 	public String toString() {
 		return "QuestForUser [id=" + id + ", userId=" + userId + ", questId="
 				+ questId + ", isRedeemed=" + isRedeemed + ", isComplete="
 				+ isComplete + ", progress=" + progress + ", timeAccepted="
-				+ timeAccepted + "]";
+				+ timeAccepted + ", timeCompleted=" + timeCompleted
+				+ ", timeRedeemed=" + timeRedeemed + "]";
 	}
 
-	
-	
 }

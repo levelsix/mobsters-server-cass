@@ -34,6 +34,22 @@ public class MobstersTableConstants {
 	//pvp
 	public static final int PVP__REQUIRED_MIN_LEVEL = 30;
 	
+	//USER CURRENCY HISTORY REASON FOR CHANGE     VALUES
+	public static final String UCHRFC__CREATE_CLAN = "created clan";
+	public static final String UCHRFC__EARN_FREE_DIAMONDS_FB_CONNECT = "connecting to facebook";
+	public static final String UCHRFC__END_TASK = "end task";
+	public static final String UCHRFC__ENHANCING = "enhancing user monsters";
+	public static final String UCHRFC__HEAL_MONSTER = "healed user monsters";
+	public static final String UCHRFC__INCREASE_MONSTER_INVENTORY = "increased user monster inventory";
+	public static final String UCHRFC__PURCHASE_NORM_STRUCT = "purchased norm struct";
+	public static final String UCHRFC__PURHCASED_BOOSTER_PACK = "purchased booster pack";
+	public static final String UCHRFC__REDEEMED_QUEST = "redeemed quest";
+	public static final String UCHRFC__SOLD_USER_MONSTERS = "sold user monsters";
+	public static final String UCHRFC__SPED_UP_COMBINING_MONSTER = "sped up combining user monster";
+	public static final String UCHRFC__SPED_UP_ENHANCING = "sped up enhancing user monster";
+	public static final String UCHRFC__SPED_UP_NORM_STRUCT = "sped up norm stuct";
+	public static final String UCHRFC__UPGRADE_NORM_STRUCT = "upgrading norm struct";
+	
 	
 	
 	

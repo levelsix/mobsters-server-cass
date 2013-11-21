@@ -1,5 +1,6 @@
 package com.lvl6.mobsters.controller.utils;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
@@ -7,12 +8,14 @@ import java.util.UUID;
 
 import org.springframework.stereotype.Component;
 
+import com.lvl6.mobsters.noneventprotos.MonsterStuffProto.FullUserMonsterProto;
 import com.lvl6.mobsters.noneventprotos.QuestStuffProto.DialogueProto;
 import com.lvl6.mobsters.noneventprotos.QuestStuffProto.DialogueProto.SpeechSegmentProto;
 import com.lvl6.mobsters.noneventprotos.QuestStuffProto.DialogueProto.SpeechSegmentProto.DialogueSpeaker;
 import com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProto;
 import com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProto.QuestType;
 import com.lvl6.mobsters.noneventprotos.UserProto.FullUserProto;
+import com.lvl6.mobsters.po.nonstaticdata.MonsterForUser;
 import com.lvl6.mobsters.po.nonstaticdata.User;
 import com.lvl6.mobsters.po.staticdata.Quest;
 import com.lvl6.mobsters.utils.Dialogue;
@@ -30,69 +33,54 @@ public class CreateNoneventProtoUtilsImpl implements CreateNoneventProtoUtils {
     	classTypeNumToClassType.put(ClassType.WARRIOR_VALUE, ClassType.WARRIOR);
     	classTypeNumToClassType.put(ClassType.WIZARD_VALUE, ClassType.WIZARD);
     }*/
-	
-	@Override
-	public FullUserProto createFullUserProtoFromUser(User u) {
-		// TODO Auto-generated method stub
-		FullUserProto.Builder fupb = FullUserProto.newBuilder();
-		
-		String uId = u.getId().toString();
-		String name = u.getName();
-		int level = u.getLvl();
-		int gems = u.getGems();
-		int cash = u.getCash();
-		int exp = u.getExp();
-		int tasksCompleted = u.getTasksCompleted();
-		int battlesWon = u.getBattlesWon();
-		int battlesLost = u.getBattlesLost();
-		int flees = u.getFlees();
-		String referralCode = u.getReferralCode();
-		int numReferrals = u.getNumReferrals();
-		Date lastLoginDate = u.getLastLogin();
-		Date lastLogoutDate = u.getLastLogout();
-		boolean isFake = u.isFake();
-		boolean isAdmin = u.isAdmin();
-		int numCoinsRetrievedFromStructs = u.getNumCoinsRetrievedFromStructs();
-		UUID clanId = u.getClanId();
-		boolean hasReceivedFbReward = u.isHasReceivedFbReward();
-		int numAdditionalMonsterSlots = u.getNumAdditionalMonsterSlots();
-		int numBeginnerSalesPurchased = u.getNumBeginnerSalesPurchased();
-		boolean hasActiveShield = u.isHasActiveShield();
-		Date shieldEndTime = u.getShieldEndTime();
-		int elo = u.getElo();
-		String rank = u.getRank();
-		Date lastTimeQueued = u.getLastTimeQueued();
-		int attacksWon = u.getAttacksWon();
-		int defensesWon = u.getDefensesWon();
-		int attacksLost = u.getAttacksLost();
-		int defensesLost = u.getDefensesLost();
-		String facebookId = u.getFacebookId();
-		
-		
-//		String gameCenterId = u.getGameCenterId();
-		//Date dateCreated = u.getDateCreated();
-		
-		fupb.setUserUuid(uId.toString());
-		fupb.setName(name);
-		fupb.setLevel(level);
-		fupb.setGems(gems);
-		fupb.setCash(cash);
-		fupb.setExperience(exp);
-		fupb.setTasksCompleted(tasksCompleted);
-		fupb.setBattlesWon(battlesWon);
-		fupb.setBattlesLost(battlesLost);
-		fupb.setFlees(flees);
-		fupb.setReferralCode(referralCode);
-		fupb.setNumReferrals(numReferrals);
-		
-		if (null != lastLoginDate) {
-			fupb.setLastLoginTime(lastLoginDate.getTime());
-		}
-		//TODO: FINISH THE REST OF THIS
-		
-		return fupb.build();
-	}
 
+	//MONSTER PROTO
+	@Override
+	public List<FullUserMonsterProto> createFullUserMonsterProtoList(
+			List<MonsterForUser> userMonsters) {
+		List<FullUserMonsterProto> protos = new ArrayList<FullUserMonsterProto>();
+		if (null == userMonsters) {
+			return protos;
+		}
+
+		for (MonsterForUser mfu : userMonsters) {
+			FullUserMonsterProto ump = createFullUserMonsterProtoFromUserMonster(mfu);
+			protos.add(ump);
+		}
+
+		return protos;
+	}
+	@Override
+	public FullUserMonsterProto createFullUserMonsterProtoFromUserMonster(MonsterForUser mfu) {
+		FullUserMonsterProto.Builder fumpb = FullUserMonsterProto.newBuilder();
+		UUID id = mfu.getId();
+		String uuidStr = id.toString();
+		fumpb.setUserMonsterUuid(uuidStr);
+		
+		id = mfu.getUserId();
+		uuidStr = id.toString();
+		fumpb.setUserUuid(uuidStr);
+		
+		fumpb.setMonsterId(mfu.getMonsterId());
+		fumpb.setCurrentExp(mfu.getCurrentExp());
+		fumpb.setCurrentLvl(mfu.getCurrentLvl());
+		fumpb.setCurrentHealth(mfu.getCurrentHealth());
+		fumpb.setNumPieces(mfu.getNumPieces());
+		fumpb.setIsComplete(mfu.isComplete());
+
+		Date combineStartTime = mfu.getCombineStartTime();
+		if (null != combineStartTime) {
+			fumpb.setCombineStartTime(combineStartTime.getTime());
+		}
+
+		fumpb.setTeamSlotNum(mfu.getTeamSlotNum());
+		return fumpb.build();
+	}
+	
+	  
+	
+
+	//QUEST PROTO
 	@Override
 	public QuestProto createQuestProtoFromQuest(Quest q) {
 		QuestProto.Builder qpb = QuestProto.newBuilder();
@@ -199,6 +187,70 @@ public class CreateNoneventProtoUtilsImpl implements CreateNoneventProtoUtils {
 		sspb.setSpeakerText(speakerText);
 		
 		return sspb.build();
+	}
+	
+	
+	//USER PROTO
+	@Override
+	public FullUserProto createFullUserProtoFromUser(User u) {
+		// TODO Auto-generated method stub
+		FullUserProto.Builder fupb = FullUserProto.newBuilder();
+		
+		String uId = u.getId().toString();
+		String name = u.getName();
+		int level = u.getLvl();
+		int gems = u.getGems();
+		int cash = u.getCash();
+		int exp = u.getExp();
+		int tasksCompleted = u.getTasksCompleted();
+		int battlesWon = u.getBattlesWon();
+		int battlesLost = u.getBattlesLost();
+		int flees = u.getFlees();
+		String referralCode = u.getReferralCode();
+		int numReferrals = u.getNumReferrals();
+		Date lastLoginDate = u.getLastLogin();
+		Date lastLogoutDate = u.getLastLogout();
+		boolean isFake = u.isFake();
+		boolean isAdmin = u.isAdmin();
+		int numCoinsRetrievedFromStructs = u.getNumCoinsRetrievedFromStructs();
+		UUID clanId = u.getClanId();
+		boolean hasReceivedFbReward = u.isHasReceivedFbReward();
+		int numAdditionalMonsterSlots = u.getNumAdditionalMonsterSlots();
+		int numBeginnerSalesPurchased = u.getNumBeginnerSalesPurchased();
+		boolean hasActiveShield = u.isHasActiveShield();
+		Date shieldEndTime = u.getShieldEndTime();
+		int elo = u.getElo();
+		String rank = u.getRank();
+		Date lastTimeQueued = u.getLastTimeQueued();
+		int attacksWon = u.getAttacksWon();
+		int defensesWon = u.getDefensesWon();
+		int attacksLost = u.getAttacksLost();
+		int defensesLost = u.getDefensesLost();
+		String facebookId = u.getFacebookId();
+		
+		
+//		String gameCenterId = u.getGameCenterId();
+		//Date dateCreated = u.getDateCreated();
+		
+		fupb.setUserUuid(uId.toString());
+		fupb.setName(name);
+		fupb.setLevel(level);
+		fupb.setGems(gems);
+		fupb.setCash(cash);
+		fupb.setExperience(exp);
+		fupb.setTasksCompleted(tasksCompleted);
+		fupb.setBattlesWon(battlesWon);
+		fupb.setBattlesLost(battlesLost);
+		fupb.setFlees(flees);
+		fupb.setReferralCode(referralCode);
+		fupb.setNumReferrals(numReferrals);
+		
+		if (null != lastLoginDate) {
+			fupb.setLastLoginTime(lastLoginDate.getTime());
+		}
+		//TODO: FINISH THE REST OF THIS
+		
+		return fupb.build();
 	}
 
 }

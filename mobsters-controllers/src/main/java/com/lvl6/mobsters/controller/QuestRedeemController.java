@@ -1,5 +1,6 @@
 package com.lvl6.mobsters.controller;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -12,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.lvl6.mobsters.controller.utils.CreateNoneventProtoUtils;
+import com.lvl6.mobsters.controller.utils.MonsterStuffUtils;
 import com.lvl6.mobsters.entitymanager.staticdata.QuestRetrieveUtils;
 import com.lvl6.mobsters.eventprotos.EventQuestProto.QuestRedeemRequestProto;
 import com.lvl6.mobsters.eventprotos.EventQuestProto.QuestRedeemResponseProto;
@@ -24,12 +26,16 @@ import com.lvl6.mobsters.noneventprotos.MobstersEventProtocolProto.MobstersEvent
 import com.lvl6.mobsters.noneventprotos.MonsterStuffProto.FullUserMonsterProto;
 import com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProto;
 import com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto;
+import com.lvl6.mobsters.po.nonstaticdata.MonsterForUser;
 import com.lvl6.mobsters.po.nonstaticdata.QuestForUser;
 import com.lvl6.mobsters.po.nonstaticdata.User;
+import com.lvl6.mobsters.po.nonstaticdata.UserCurrencyHistory;
 import com.lvl6.mobsters.po.staticdata.Quest;
 import com.lvl6.mobsters.properties.MobstersTableConstants;
+import com.lvl6.mobsters.services.monsterforuser.MonsterForUserService;
 import com.lvl6.mobsters.services.questforuser.QuestForUserService;
 import com.lvl6.mobsters.services.user.UserService;
+import com.lvl6.mobsters.services.usercurrencyhistory.UserCurrencyHistoryService;
 
 
 @Component
@@ -48,6 +54,15 @@ public class QuestRedeemController extends EventController {
 	
 	@Autowired
 	protected CreateNoneventProtoUtils createNoneventProtoUtils;
+	
+	@Autowired
+	protected MonsterForUserService monsterForUserService;
+	
+	@Autowired
+	protected MonsterStuffUtils monsterStuffUtils;
+	
+	@Autowired
+	protected UserCurrencyHistoryService userCurrencyHistoryService;
 	
 	
 	@Override
@@ -81,8 +96,7 @@ public class QuestRedeemController extends EventController {
 		responseBuilder.setSender(senderProto);
 		responseBuilder.setStatus(QuestRedeemStatus.FAIL_OTHER);
 		responseBuilder.setQuestId(questId);
-		QuestRedeemResponseEvent resEvent = new QuestRedeemResponseEvent(userIdString);
-		resEvent.setTag(event.getTag());
+		
 
 		try {
 			//get whatever we need from the database
@@ -101,21 +115,30 @@ public class QuestRedeemController extends EventController {
 				legitRedeem = awardMonsterReward(responseBuilder, userId, quest, questId, timeRedeemed);
 			}
 			
+			if (legitRedeem) {
+				User u = getUserService().getUserWithId(userId);
+				successful = writeChangesToDb(u, userId, questId, quest, userQuest,
+						timeRedeemed);
+			}
+			
 			if (successful) {
-				successful = writeChangesToDb(user, userId, questId, quest, timeRedeemed);
 				responseBuilder.setStatus(QuestRedeemStatus.SUCCESS);
 			}
 
-			//write to client
+			QuestRedeemResponseEvent resEvent = new QuestRedeemResponseEvent(userIdString);
+			resEvent.setTag(event.getTag());
 			resEvent.setQuestRedeemResponseProto(responseBuilder.build());
+			//write to client
 			log.info("Writing event: " + resEvent);
-			getEventWriter().handleEvent(resEvent);
+			getEventWriter().handleEvent(resEvent);	
 
 		} catch (Exception e) {
 			log.error("exception in QuestRedeemController processRequestEvent", e);
 
 			try {
 				//try to tell client that something failed
+				QuestRedeemResponseEvent resEvent = new QuestRedeemResponseEvent(userIdString);
+				resEvent.setTag(event.getTag());
 				responseBuilder.setStatus(QuestRedeemStatus.FAIL_OTHER);
 				resEvent.setQuestRedeemResponseProto(responseBuilder.build());
 				getEventWriter().handleEvent(resEvent);
@@ -128,7 +151,6 @@ public class QuestRedeemController extends EventController {
 
 	private boolean checkLegitRedeem(Builder resBuilder, QuestForUser userQuest, Quest quest) {
 	    if (userQuest == null || userQuest.isRedeemed()) {
-	      resBuilder.setStatus(QuestRedeemStatus.FAIL_OTHER);
 	      log.error("user quest is null or redeemed already. userQuest=" + userQuest);
 	      return false;
 	    }
@@ -137,7 +159,6 @@ public class QuestRedeemController extends EventController {
 	      log.error("user quest is not complete");
 	      return false;
 	    }
-	    resBuilder.setStatus(QuestRedeemStatus.SUCCESS);
 	    return true;  
 	  }
 
@@ -169,16 +190,18 @@ public class QuestRedeemController extends EventController {
 	    	monsterIdToNumPieces.put(monsterIdReward, 1);
 	    	
 	    	String mfusop = MobstersTableConstants.MFUSOP__QUEST + questId;
-	    	List<FullUserMonsterProto> reward = MonsterStuffUtils
-	    			.updateUserMonsters(userId, monsterIdToNumPieces, mfusop, combineStartDate);
+	    	List<MonsterForUser> rewardList = getMonsterForUserService()
+	    			.updateUserMonstersForUser(userId, monsterIdToNumPieces, mfusop, combineStartDate);
+	    	List<FullUserMonsterProto> rewardProtoList = getCreateNoneventProtoUtils()
+	    			.createFullUserMonsterProtoList(rewardList);
 	    	
-	      if (reward.isEmpty()) {
+	      if (rewardProtoList.isEmpty()) {
 	        resBuilder.setStatus(QuestRedeemStatus.FAIL_OTHER);
 	        log.error("problem with giving user 1 monster after completing the quest, monsterId=" 
 	            + monsterIdReward + ", quest= " + quest);
 	        legitRedeem = false;
 	      } else {
-	      	FullUserMonsterProto fump = reward.get(0);
+	      	FullUserMonsterProto fump = rewardProtoList.get(0);
 	        resBuilder.setFump(fump);
 	      }
 		}
@@ -186,16 +209,71 @@ public class QuestRedeemController extends EventController {
 		return legitRedeem;
 	}
 	
-	private boolean writeChangesToDb(User inDb, UUID userId, int questId, Quest quest,
-			Date timeRedeemed) {
+	private boolean writeChangesToDb(User u, UUID userId, int questId, Quest quest,
+			QuestForUser userQuest, Date timeRedeemed) {
 		try {
-			getQuestForUserService().createNewUserQuestForUser(userId, questId, timeRedeemed);
+			//complete the quest
+			userQuest.setTimeRedeemed(timeRedeemed);
+			getQuestForUserService().saveQuestForUser(userQuest);
+			
+			log.info("user before awarding quest rewards. u=" + u);
+			int cashGained = quest.getCashReward();
+			int gemsGained = quest.getGemReward();
+			int expGained = quest.getExpReward();
+			
+			int newCash = cashGained + u.getCash();
+			int newGems = gemsGained + u.getGems();
+			int newExp = expGained + u.getExp();
+			
+			List<UserCurrencyHistory> uchList = createCurrencyHistory(u, questId,
+					timeRedeemed, cashGained, gemsGained);
+			
+			if (cashGained > 0 || gemsGained > 0 || expGained > 0) {
+				u.setCash(newCash);
+				u.setGems(newGems);
+				u.setExp(newExp);
+				getUserService().saveUser(u);
+			}
+			//keep track of currency stuff
+			if (!uchList.isEmpty()) {
+				getUserCurrencyHistoryService().saveCurrencyHistories(uchList);
+			}
+			
+			
+			log.info("user after awarding quest rewards. u=" + u);
 			return true;
 
 		} catch (Exception e) {
 			log.error("unexpected error: problem with saving to db.", e);
 		}
 		return false;
+	}
+	
+	private List<UserCurrencyHistory> createCurrencyHistory(User u, int questId,
+			Date timeRedeemed, int cashGained, int gemsGained) {
+		boolean isCash = true;
+		String reasonForChange = MobstersTableConstants.UCHRFC__REDEEMED_QUEST;
+		StringBuilder sb = new StringBuilder();
+		sb.append("questId=");
+		sb.append(questId);
+		String details = sb.toString();
+
+		UserCurrencyHistory cash = getUserCurrencyHistoryService()
+				.createNewUserCurrencyHistory(u, timeRedeemed, isCash, cashGained,
+						reasonForChange, details);
+		isCash = false;
+		UserCurrencyHistory gems = getUserCurrencyHistoryService()
+				.createNewUserCurrencyHistory(u, timeRedeemed, isCash, gemsGained,
+						reasonForChange, details);
+		
+		List<UserCurrencyHistory> uchList = new ArrayList<UserCurrencyHistory>();
+		if (null != cash) {
+			uchList.add(cash);
+		}
+		if (null != gems) {
+			uchList.add(gems);
+		}
+		return uchList;
 	}
 	
 	
@@ -233,6 +311,29 @@ public class QuestRedeemController extends EventController {
 			CreateNoneventProtoUtils createNoneventProtoUtils) {
 		this.createNoneventProtoUtils = createNoneventProtoUtils;
 	}
-	
-	
+
+	public MonsterForUserService getMonsterForUserService() {
+		return monsterForUserService;
+	}
+
+	public void setMonsterForUserService(MonsterForUserService monsterForUserService) {
+		this.monsterForUserService = monsterForUserService;
+	}
+
+	public MonsterStuffUtils getMonsterStuffUtils() {
+		return monsterStuffUtils;
+	}
+
+	public void setMonsterStuffUtils(MonsterStuffUtils monsterStuffUtils) {
+		this.monsterStuffUtils = monsterStuffUtils;
+	}
+
+	public UserCurrencyHistoryService getUserCurrencyHistoryService() {
+		return userCurrencyHistoryService;
+	}
+
+	public void setUserCurrencyHistoryService(
+			UserCurrencyHistoryService userCurrencyHistoryService) {
+		this.userCurrencyHistoryService = userCurrencyHistoryService;
+	}
 }

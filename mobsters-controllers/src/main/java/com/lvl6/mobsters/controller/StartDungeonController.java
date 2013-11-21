@@ -44,8 +44,8 @@ import com.lvl6.mobsters.po.staticdata.TaskStageMonster;
 import com.lvl6.mobsters.services.monsterforuser.MonsterForUserService;
 import com.lvl6.mobsters.services.time.TimeUtils;
 import com.lvl6.mobsters.services.user.UserService;
-import com.lvl6.mobsters.services.userconsumable.UserConsumableService;
 import com.lvl6.mobsters.services.userconsumablequeue.UserConsumableQueueService;
+import com.lvl6.mobsters.services.usercurrencyhistory.UserCurrencyHistoryService;
 import com.lvl6.mobsters.services.userstructure.UserStructureService;
 
 
@@ -72,7 +72,7 @@ public class StartDungeonController extends EventController {
 	protected MonsterForUserService monsterForUserService;
 	
 	@Autowired
-	protected UserConsumableService userConsumableService;
+	protected UserCurrencyHistoryService userCurrencyHistoryService;
 	
 	@Autowired
 	protected PreDungeonUserInfoEntityManager preDungeonUserInfoEntityManager;
@@ -314,12 +314,12 @@ public class StartDungeonController extends EventController {
 		this.userConsumableQueueEntityManager = userConsumableQueueEntityManager;
 	}
 
-	public UserConsumableService getUserConsumableService() {
-		return userConsumableService;
+	public UserCurrencyHistoryService getUserConsumableService() {
+		return userCurrencyHistoryService;
 	}
 
-	public void setUserConsumableService(UserConsumableService userConsumableService) {
-		this.userConsumableService = userConsumableService;
+	public void setUserConsumableService(UserCurrencyHistoryService userCurrencyHistoryService) {
+		this.userCurrencyHistoryService = userCurrencyHistoryService;
 	}
 
 
