@@ -8,7 +8,7 @@ public final class InAppPurchaseProto {
   public static void registerAllExtensions(
       com.google.protobuf.ExtensionRegistry registry) {
   }
-  public enum EarnFreeDiamondsType
+  public enum EarnFreeGemsType
       implements com.google.protobuf.ProtocolMessageEnum {
     FB_CONNECT(0, 1),
     TAPJOY(1, 2),
@@ -24,7 +24,7 @@ public final class InAppPurchaseProto {
     
     public final int getNumber() { return value; }
     
-    public static EarnFreeDiamondsType valueOf(int value) {
+    public static EarnFreeGemsType valueOf(int value) {
       switch (value) {
         case 1: return FB_CONNECT;
         case 2: return TAPJOY;
@@ -34,15 +34,15 @@ public final class InAppPurchaseProto {
       }
     }
     
-    public static com.google.protobuf.Internal.EnumLiteMap<EarnFreeDiamondsType>
+    public static com.google.protobuf.Internal.EnumLiteMap<EarnFreeGemsType>
         internalGetValueMap() {
       return internalValueMap;
     }
-    private static com.google.protobuf.Internal.EnumLiteMap<EarnFreeDiamondsType>
+    private static com.google.protobuf.Internal.EnumLiteMap<EarnFreeGemsType>
         internalValueMap =
-          new com.google.protobuf.Internal.EnumLiteMap<EarnFreeDiamondsType>() {
-            public EarnFreeDiamondsType findValueByNumber(int number) {
-              return EarnFreeDiamondsType.valueOf(number);
+          new com.google.protobuf.Internal.EnumLiteMap<EarnFreeGemsType>() {
+            public EarnFreeGemsType findValueByNumber(int number) {
+              return EarnFreeGemsType.valueOf(number);
             }
           };
     
@@ -59,11 +59,11 @@ public final class InAppPurchaseProto {
       return com.lvl6.mobsters.noneventprotos.InAppPurchaseProto.getDescriptor().getEnumTypes().get(0);
     }
     
-    private static final EarnFreeDiamondsType[] VALUES = {
+    private static final EarnFreeGemsType[] VALUES = {
       FB_CONNECT, TAPJOY, FLURRY_VIDEO, TWITTER, 
     };
     
-    public static EarnFreeDiamondsType valueOf(
+    public static EarnFreeGemsType valueOf(
         com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
       if (desc.getType() != getDescriptor()) {
         throw new java.lang.IllegalArgumentException(
@@ -75,12 +75,12 @@ public final class InAppPurchaseProto {
     private final int index;
     private final int value;
     
-    private EarnFreeDiamondsType(int index, int value) {
+    private EarnFreeGemsType(int index, int value) {
       this.index = index;
       this.value = value;
     }
     
-    // @@protoc_insertion_point(enum_scope:proto.EarnFreeDiamondsType)
+    // @@protoc_insertion_point(enum_scope:proto.EarnFreeGemsType)
   }
   
   public interface InAppPurchasePackageProtoOrBuilder
@@ -2374,10 +2374,10 @@ public final class InAppPurchaseProto {
       "ifier\030\014 \001(\t\022\037\n\027packageS3SaleIdentifier\030\r" +
       " \001(\t\022\037\n\027packageS4SaleIdentifier\030\016 \001(\t\022\037\n" +
       "\027packageS5SaleIdentifier\030\017 \001(\t\022\026\n\016isBegi" +
-      "nnerSale\030\020 \001(\010*Q\n\024EarnFreeDiamondsType\022\016" +
-      "\n\nFB_CONNECT\020\001\022\n\n\006TAPJOY\020\002\022\020\n\014FLURRY_VID" +
-      "EO\020\003\022\013\n\007TWITTER\020\004B6\n com.lvl6.mobsters.n" +
-      "oneventprotosB\022InAppPurchaseProto"
+      "nnerSale\030\020 \001(\010*M\n\020EarnFreeGemsType\022\016\n\nFB" +
+      "_CONNECT\020\001\022\n\n\006TAPJOY\020\002\022\020\n\014FLURRY_VIDEO\020\003" +
+      "\022\013\n\007TWITTER\020\004B6\n com.lvl6.mobsters.nonev" +
+      "entprotosB\022InAppPurchaseProto"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {

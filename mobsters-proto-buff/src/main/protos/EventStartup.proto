@@ -84,13 +84,13 @@ message StartupResponseProto {
 	message AttackedNotificationProto {
 		optional MinimumUserProto attacker = 1;
 		optional int64 battleCompleteTime = 2;
-		optional int32 coinsStolen = 3;
+		optional int32 cashStolen = 3;
 	}
 	
 	message ReferralNotificationProto {
 		optional MinimumUserProto referred = 1;
 		optional int64 recruitTime = 2;
-		optional int32 coinsGivenToReferrer = 3;
+		optional int32 cashGivenToReferrer = 3;
 	}
 		  
 	message StartupConstants {

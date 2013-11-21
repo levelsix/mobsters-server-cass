@@ -914,13 +914,13 @@ public final class EventInAppPurchaseProto {
     boolean hasStatus();
     com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.InAppPurchaseResponseProto.InAppPurchaseStatus getStatus();
     
-    // optional int32 diamondsGained = 3;
-    boolean hasDiamondsGained();
-    int getDiamondsGained();
+    // optional int32 gemsGained = 3;
+    boolean hasGemsGained();
+    int getGemsGained();
     
-    // optional int32 coinsGained = 4;
-    boolean hasCoinsGained();
-    int getCoinsGained();
+    // optional int32 cashGained = 4;
+    boolean hasCashGained();
+    int getCashGained();
     
     // optional string packageName = 5;
     boolean hasPackageName();
@@ -1058,24 +1058,24 @@ public final class EventInAppPurchaseProto {
       return status_;
     }
     
-    // optional int32 diamondsGained = 3;
-    public static final int DIAMONDSGAINED_FIELD_NUMBER = 3;
-    private int diamondsGained_;
-    public boolean hasDiamondsGained() {
+    // optional int32 gemsGained = 3;
+    public static final int GEMSGAINED_FIELD_NUMBER = 3;
+    private int gemsGained_;
+    public boolean hasGemsGained() {
       return ((bitField0_ & 0x00000004) == 0x00000004);
     }
-    public int getDiamondsGained() {
-      return diamondsGained_;
+    public int getGemsGained() {
+      return gemsGained_;
     }
     
-    // optional int32 coinsGained = 4;
-    public static final int COINSGAINED_FIELD_NUMBER = 4;
-    private int coinsGained_;
-    public boolean hasCoinsGained() {
+    // optional int32 cashGained = 4;
+    public static final int CASHGAINED_FIELD_NUMBER = 4;
+    private int cashGained_;
+    public boolean hasCashGained() {
       return ((bitField0_ & 0x00000008) == 0x00000008);
     }
-    public int getCoinsGained() {
-      return coinsGained_;
+    public int getCashGained() {
+      return cashGained_;
     }
     
     // optional string packageName = 5;
@@ -1155,8 +1155,8 @@ public final class EventInAppPurchaseProto {
     private void initFields() {
       sender_ = com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto.getDefaultInstance();
       status_ = com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.InAppPurchaseResponseProto.InAppPurchaseStatus.SUCCESS;
-      diamondsGained_ = 0;
-      coinsGained_ = 0;
+      gemsGained_ = 0;
+      cashGained_ = 0;
       packageName_ = "";
       packagePrice_ = 0D;
       receipt_ = "";
@@ -1180,10 +1180,10 @@ public final class EventInAppPurchaseProto {
         output.writeEnum(2, status_.getNumber());
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
-        output.writeInt32(3, diamondsGained_);
+        output.writeInt32(3, gemsGained_);
       }
       if (((bitField0_ & 0x00000008) == 0x00000008)) {
-        output.writeInt32(4, coinsGained_);
+        output.writeInt32(4, cashGained_);
       }
       if (((bitField0_ & 0x00000010) == 0x00000010)) {
         output.writeBytes(5, getPackageNameBytes());
@@ -1213,11 +1213,11 @@ public final class EventInAppPurchaseProto {
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(3, diamondsGained_);
+          .computeInt32Size(3, gemsGained_);
       }
       if (((bitField0_ & 0x00000008) == 0x00000008)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(4, coinsGained_);
+          .computeInt32Size(4, cashGained_);
       }
       if (((bitField0_ & 0x00000010) == 0x00000010)) {
         size += com.google.protobuf.CodedOutputStream
@@ -1364,9 +1364,9 @@ public final class EventInAppPurchaseProto {
         bitField0_ = (bitField0_ & ~0x00000001);
         status_ = com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.InAppPurchaseResponseProto.InAppPurchaseStatus.SUCCESS;
         bitField0_ = (bitField0_ & ~0x00000002);
-        diamondsGained_ = 0;
+        gemsGained_ = 0;
         bitField0_ = (bitField0_ & ~0x00000004);
-        coinsGained_ = 0;
+        cashGained_ = 0;
         bitField0_ = (bitField0_ & ~0x00000008);
         packageName_ = "";
         bitField0_ = (bitField0_ & ~0x00000010);
@@ -1427,11 +1427,11 @@ public final class EventInAppPurchaseProto {
         if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
           to_bitField0_ |= 0x00000004;
         }
-        result.diamondsGained_ = diamondsGained_;
+        result.gemsGained_ = gemsGained_;
         if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
           to_bitField0_ |= 0x00000008;
         }
-        result.coinsGained_ = coinsGained_;
+        result.cashGained_ = cashGained_;
         if (((from_bitField0_ & 0x00000010) == 0x00000010)) {
           to_bitField0_ |= 0x00000010;
         }
@@ -1466,11 +1466,11 @@ public final class EventInAppPurchaseProto {
         if (other.hasStatus()) {
           setStatus(other.getStatus());
         }
-        if (other.hasDiamondsGained()) {
-          setDiamondsGained(other.getDiamondsGained());
+        if (other.hasGemsGained()) {
+          setGemsGained(other.getGemsGained());
         }
-        if (other.hasCoinsGained()) {
-          setCoinsGained(other.getCoinsGained());
+        if (other.hasCashGained()) {
+          setCashGained(other.getCashGained());
         }
         if (other.hasPackageName()) {
           setPackageName(other.getPackageName());
@@ -1534,12 +1534,12 @@ public final class EventInAppPurchaseProto {
             }
             case 24: {
               bitField0_ |= 0x00000004;
-              diamondsGained_ = input.readInt32();
+              gemsGained_ = input.readInt32();
               break;
             }
             case 32: {
               bitField0_ |= 0x00000008;
-              coinsGained_ = input.readInt32();
+              cashGained_ = input.readInt32();
               break;
             }
             case 42: {
@@ -1677,44 +1677,44 @@ public final class EventInAppPurchaseProto {
         return this;
       }
       
-      // optional int32 diamondsGained = 3;
-      private int diamondsGained_ ;
-      public boolean hasDiamondsGained() {
+      // optional int32 gemsGained = 3;
+      private int gemsGained_ ;
+      public boolean hasGemsGained() {
         return ((bitField0_ & 0x00000004) == 0x00000004);
       }
-      public int getDiamondsGained() {
-        return diamondsGained_;
+      public int getGemsGained() {
+        return gemsGained_;
       }
-      public Builder setDiamondsGained(int value) {
+      public Builder setGemsGained(int value) {
         bitField0_ |= 0x00000004;
-        diamondsGained_ = value;
+        gemsGained_ = value;
         onChanged();
         return this;
       }
-      public Builder clearDiamondsGained() {
+      public Builder clearGemsGained() {
         bitField0_ = (bitField0_ & ~0x00000004);
-        diamondsGained_ = 0;
+        gemsGained_ = 0;
         onChanged();
         return this;
       }
       
-      // optional int32 coinsGained = 4;
-      private int coinsGained_ ;
-      public boolean hasCoinsGained() {
+      // optional int32 cashGained = 4;
+      private int cashGained_ ;
+      public boolean hasCashGained() {
         return ((bitField0_ & 0x00000008) == 0x00000008);
       }
-      public int getCoinsGained() {
-        return coinsGained_;
+      public int getCashGained() {
+        return cashGained_;
       }
-      public Builder setCoinsGained(int value) {
+      public Builder setCashGained(int value) {
         bitField0_ |= 0x00000008;
-        coinsGained_ = value;
+        cashGained_ = value;
         onChanged();
         return this;
       }
-      public Builder clearCoinsGained() {
+      public Builder clearCashGained() {
         bitField0_ = (bitField0_ & ~0x00000008);
-        coinsGained_ = 0;
+        cashGained_ = 0;
         onChanged();
         return this;
       }
@@ -1823,7 +1823,7 @@ public final class EventInAppPurchaseProto {
     // @@protoc_insertion_point(class_scope:proto.InAppPurchaseResponseProto)
   }
   
-  public interface EarnFreeDiamondsRequestProtoOrBuilder
+  public interface EarnFreeGemsRequestProtoOrBuilder
       extends com.google.protobuf.MessageOrBuilder {
     
     // optional .proto.MinimumUserProto sender = 1;
@@ -1831,40 +1831,40 @@ public final class EventInAppPurchaseProto {
     com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto getSender();
     com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProtoOrBuilder getSenderOrBuilder();
     
-    // optional .proto.EarnFreeDiamondsType freeDiamondsType = 2 [default = FB_CONNECT];
-    boolean hasFreeDiamondsType();
-    com.lvl6.mobsters.noneventprotos.InAppPurchaseProto.EarnFreeDiamondsType getFreeDiamondsType();
+    // optional .proto.EarnFreeGemsType freeGemsType = 2 [default = FB_CONNECT];
+    boolean hasFreeGemsType();
+    com.lvl6.mobsters.noneventprotos.InAppPurchaseProto.EarnFreeGemsType getFreeGemsType();
     
     // optional int64 clientTime = 3;
     boolean hasClientTime();
     long getClientTime();
   }
-  public static final class EarnFreeDiamondsRequestProto extends
+  public static final class EarnFreeGemsRequestProto extends
       com.google.protobuf.GeneratedMessage
-      implements EarnFreeDiamondsRequestProtoOrBuilder {
-    // Use EarnFreeDiamondsRequestProto.newBuilder() to construct.
-    private EarnFreeDiamondsRequestProto(Builder builder) {
+      implements EarnFreeGemsRequestProtoOrBuilder {
+    // Use EarnFreeGemsRequestProto.newBuilder() to construct.
+    private EarnFreeGemsRequestProto(Builder builder) {
       super(builder);
     }
-    private EarnFreeDiamondsRequestProto(boolean noInit) {}
+    private EarnFreeGemsRequestProto(boolean noInit) {}
     
-    private static final EarnFreeDiamondsRequestProto defaultInstance;
-    public static EarnFreeDiamondsRequestProto getDefaultInstance() {
+    private static final EarnFreeGemsRequestProto defaultInstance;
+    public static EarnFreeGemsRequestProto getDefaultInstance() {
       return defaultInstance;
     }
     
-    public EarnFreeDiamondsRequestProto getDefaultInstanceForType() {
+    public EarnFreeGemsRequestProto getDefaultInstanceForType() {
       return defaultInstance;
     }
     
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.internal_static_proto_EarnFreeDiamondsRequestProto_descriptor;
+      return com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.internal_static_proto_EarnFreeGemsRequestProto_descriptor;
     }
     
     protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.internal_static_proto_EarnFreeDiamondsRequestProto_fieldAccessorTable;
+      return com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.internal_static_proto_EarnFreeGemsRequestProto_fieldAccessorTable;
     }
     
     private int bitField0_;
@@ -1881,14 +1881,14 @@ public final class EventInAppPurchaseProto {
       return sender_;
     }
     
-    // optional .proto.EarnFreeDiamondsType freeDiamondsType = 2 [default = FB_CONNECT];
-    public static final int FREEDIAMONDSTYPE_FIELD_NUMBER = 2;
-    private com.lvl6.mobsters.noneventprotos.InAppPurchaseProto.EarnFreeDiamondsType freeDiamondsType_;
-    public boolean hasFreeDiamondsType() {
+    // optional .proto.EarnFreeGemsType freeGemsType = 2 [default = FB_CONNECT];
+    public static final int FREEGEMSTYPE_FIELD_NUMBER = 2;
+    private com.lvl6.mobsters.noneventprotos.InAppPurchaseProto.EarnFreeGemsType freeGemsType_;
+    public boolean hasFreeGemsType() {
       return ((bitField0_ & 0x00000002) == 0x00000002);
     }
-    public com.lvl6.mobsters.noneventprotos.InAppPurchaseProto.EarnFreeDiamondsType getFreeDiamondsType() {
-      return freeDiamondsType_;
+    public com.lvl6.mobsters.noneventprotos.InAppPurchaseProto.EarnFreeGemsType getFreeGemsType() {
+      return freeGemsType_;
     }
     
     // optional int64 clientTime = 3;
@@ -1903,7 +1903,7 @@ public final class EventInAppPurchaseProto {
     
     private void initFields() {
       sender_ = com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto.getDefaultInstance();
-      freeDiamondsType_ = com.lvl6.mobsters.noneventprotos.InAppPurchaseProto.EarnFreeDiamondsType.FB_CONNECT;
+      freeGemsType_ = com.lvl6.mobsters.noneventprotos.InAppPurchaseProto.EarnFreeGemsType.FB_CONNECT;
       clientTime_ = 0L;
     }
     private byte memoizedIsInitialized = -1;
@@ -1922,7 +1922,7 @@ public final class EventInAppPurchaseProto {
         output.writeMessage(1, sender_);
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        output.writeEnum(2, freeDiamondsType_.getNumber());
+        output.writeEnum(2, freeGemsType_.getNumber());
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
         output.writeInt64(3, clientTime_);
@@ -1942,7 +1942,7 @@ public final class EventInAppPurchaseProto {
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeEnumSize(2, freeDiamondsType_.getNumber());
+          .computeEnumSize(2, freeGemsType_.getNumber());
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
         size += com.google.protobuf.CodedOutputStream
@@ -1960,41 +1960,41 @@ public final class EventInAppPurchaseProto {
       return super.writeReplace();
     }
     
-    public static com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.EarnFreeDiamondsRequestProto parseFrom(
+    public static com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.EarnFreeGemsRequestProto parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data).buildParsed();
     }
-    public static com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.EarnFreeDiamondsRequestProto parseFrom(
+    public static com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.EarnFreeGemsRequestProto parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data, extensionRegistry)
                .buildParsed();
     }
-    public static com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.EarnFreeDiamondsRequestProto parseFrom(byte[] data)
+    public static com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.EarnFreeGemsRequestProto parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data).buildParsed();
     }
-    public static com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.EarnFreeDiamondsRequestProto parseFrom(
+    public static com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.EarnFreeGemsRequestProto parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data, extensionRegistry)
                .buildParsed();
     }
-    public static com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.EarnFreeDiamondsRequestProto parseFrom(java.io.InputStream input)
+    public static com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.EarnFreeGemsRequestProto parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return newBuilder().mergeFrom(input).buildParsed();
     }
-    public static com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.EarnFreeDiamondsRequestProto parseFrom(
+    public static com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.EarnFreeGemsRequestProto parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return newBuilder().mergeFrom(input, extensionRegistry)
                .buildParsed();
     }
-    public static com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.EarnFreeDiamondsRequestProto parseDelimitedFrom(java.io.InputStream input)
+    public static com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.EarnFreeGemsRequestProto parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       Builder builder = newBuilder();
       if (builder.mergeDelimitedFrom(input)) {
@@ -2003,7 +2003,7 @@ public final class EventInAppPurchaseProto {
         return null;
       }
     }
-    public static com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.EarnFreeDiamondsRequestProto parseDelimitedFrom(
+    public static com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.EarnFreeGemsRequestProto parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -2014,12 +2014,12 @@ public final class EventInAppPurchaseProto {
         return null;
       }
     }
-    public static com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.EarnFreeDiamondsRequestProto parseFrom(
+    public static com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.EarnFreeGemsRequestProto parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return newBuilder().mergeFrom(input).buildParsed();
     }
-    public static com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.EarnFreeDiamondsRequestProto parseFrom(
+    public static com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.EarnFreeGemsRequestProto parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -2029,7 +2029,7 @@ public final class EventInAppPurchaseProto {
     
     public static Builder newBuilder() { return Builder.create(); }
     public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder(com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.EarnFreeDiamondsRequestProto prototype) {
+    public static Builder newBuilder(com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.EarnFreeGemsRequestProto prototype) {
       return newBuilder().mergeFrom(prototype);
     }
     public Builder toBuilder() { return newBuilder(this); }
@@ -2042,18 +2042,18 @@ public final class EventInAppPurchaseProto {
     }
     public static final class Builder extends
         com.google.protobuf.GeneratedMessage.Builder<Builder>
-       implements com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.EarnFreeDiamondsRequestProtoOrBuilder {
+       implements com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.EarnFreeGemsRequestProtoOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.internal_static_proto_EarnFreeDiamondsRequestProto_descriptor;
+        return com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.internal_static_proto_EarnFreeGemsRequestProto_descriptor;
       }
       
       protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.internal_static_proto_EarnFreeDiamondsRequestProto_fieldAccessorTable;
+        return com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.internal_static_proto_EarnFreeGemsRequestProto_fieldAccessorTable;
       }
       
-      // Construct using com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.EarnFreeDiamondsRequestProto.newBuilder()
+      // Construct using com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.EarnFreeGemsRequestProto.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -2079,7 +2079,7 @@ public final class EventInAppPurchaseProto {
           senderBuilder_.clear();
         }
         bitField0_ = (bitField0_ & ~0x00000001);
-        freeDiamondsType_ = com.lvl6.mobsters.noneventprotos.InAppPurchaseProto.EarnFreeDiamondsType.FB_CONNECT;
+        freeGemsType_ = com.lvl6.mobsters.noneventprotos.InAppPurchaseProto.EarnFreeGemsType.FB_CONNECT;
         bitField0_ = (bitField0_ & ~0x00000002);
         clientTime_ = 0L;
         bitField0_ = (bitField0_ & ~0x00000004);
@@ -2092,24 +2092,24 @@ public final class EventInAppPurchaseProto {
       
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.EarnFreeDiamondsRequestProto.getDescriptor();
+        return com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.EarnFreeGemsRequestProto.getDescriptor();
       }
       
-      public com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.EarnFreeDiamondsRequestProto getDefaultInstanceForType() {
-        return com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.EarnFreeDiamondsRequestProto.getDefaultInstance();
+      public com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.EarnFreeGemsRequestProto getDefaultInstanceForType() {
+        return com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.EarnFreeGemsRequestProto.getDefaultInstance();
       }
       
-      public com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.EarnFreeDiamondsRequestProto build() {
-        com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.EarnFreeDiamondsRequestProto result = buildPartial();
+      public com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.EarnFreeGemsRequestProto build() {
+        com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.EarnFreeGemsRequestProto result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
         return result;
       }
       
-      private com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.EarnFreeDiamondsRequestProto buildParsed()
+      private com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.EarnFreeGemsRequestProto buildParsed()
           throws com.google.protobuf.InvalidProtocolBufferException {
-        com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.EarnFreeDiamondsRequestProto result = buildPartial();
+        com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.EarnFreeGemsRequestProto result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(
             result).asInvalidProtocolBufferException();
@@ -2117,8 +2117,8 @@ public final class EventInAppPurchaseProto {
         return result;
       }
       
-      public com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.EarnFreeDiamondsRequestProto buildPartial() {
-        com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.EarnFreeDiamondsRequestProto result = new com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.EarnFreeDiamondsRequestProto(this);
+      public com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.EarnFreeGemsRequestProto buildPartial() {
+        com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.EarnFreeGemsRequestProto result = new com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.EarnFreeGemsRequestProto(this);
         int from_bitField0_ = bitField0_;
         int to_bitField0_ = 0;
         if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
@@ -2132,7 +2132,7 @@ public final class EventInAppPurchaseProto {
         if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
           to_bitField0_ |= 0x00000002;
         }
-        result.freeDiamondsType_ = freeDiamondsType_;
+        result.freeGemsType_ = freeGemsType_;
         if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
           to_bitField0_ |= 0x00000004;
         }
@@ -2143,21 +2143,21 @@ public final class EventInAppPurchaseProto {
       }
       
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.EarnFreeDiamondsRequestProto) {
-          return mergeFrom((com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.EarnFreeDiamondsRequestProto)other);
+        if (other instanceof com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.EarnFreeGemsRequestProto) {
+          return mergeFrom((com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.EarnFreeGemsRequestProto)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
       
-      public Builder mergeFrom(com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.EarnFreeDiamondsRequestProto other) {
-        if (other == com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.EarnFreeDiamondsRequestProto.getDefaultInstance()) return this;
+      public Builder mergeFrom(com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.EarnFreeGemsRequestProto other) {
+        if (other == com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.EarnFreeGemsRequestProto.getDefaultInstance()) return this;
         if (other.hasSender()) {
           mergeSender(other.getSender());
         }
-        if (other.hasFreeDiamondsType()) {
-          setFreeDiamondsType(other.getFreeDiamondsType());
+        if (other.hasFreeGemsType()) {
+          setFreeGemsType(other.getFreeGemsType());
         }
         if (other.hasClientTime()) {
           setClientTime(other.getClientTime());
@@ -2204,12 +2204,12 @@ public final class EventInAppPurchaseProto {
             }
             case 16: {
               int rawValue = input.readEnum();
-              com.lvl6.mobsters.noneventprotos.InAppPurchaseProto.EarnFreeDiamondsType value = com.lvl6.mobsters.noneventprotos.InAppPurchaseProto.EarnFreeDiamondsType.valueOf(rawValue);
+              com.lvl6.mobsters.noneventprotos.InAppPurchaseProto.EarnFreeGemsType value = com.lvl6.mobsters.noneventprotos.InAppPurchaseProto.EarnFreeGemsType.valueOf(rawValue);
               if (value == null) {
                 unknownFields.mergeVarintField(2, rawValue);
               } else {
                 bitField0_ |= 0x00000002;
-                freeDiamondsType_ = value;
+                freeGemsType_ = value;
               }
               break;
             }
@@ -2314,26 +2314,26 @@ public final class EventInAppPurchaseProto {
         return senderBuilder_;
       }
       
-      // optional .proto.EarnFreeDiamondsType freeDiamondsType = 2 [default = FB_CONNECT];
-      private com.lvl6.mobsters.noneventprotos.InAppPurchaseProto.EarnFreeDiamondsType freeDiamondsType_ = com.lvl6.mobsters.noneventprotos.InAppPurchaseProto.EarnFreeDiamondsType.FB_CONNECT;
-      public boolean hasFreeDiamondsType() {
+      // optional .proto.EarnFreeGemsType freeGemsType = 2 [default = FB_CONNECT];
+      private com.lvl6.mobsters.noneventprotos.InAppPurchaseProto.EarnFreeGemsType freeGemsType_ = com.lvl6.mobsters.noneventprotos.InAppPurchaseProto.EarnFreeGemsType.FB_CONNECT;
+      public boolean hasFreeGemsType() {
         return ((bitField0_ & 0x00000002) == 0x00000002);
       }
-      public com.lvl6.mobsters.noneventprotos.InAppPurchaseProto.EarnFreeDiamondsType getFreeDiamondsType() {
-        return freeDiamondsType_;
+      public com.lvl6.mobsters.noneventprotos.InAppPurchaseProto.EarnFreeGemsType getFreeGemsType() {
+        return freeGemsType_;
       }
-      public Builder setFreeDiamondsType(com.lvl6.mobsters.noneventprotos.InAppPurchaseProto.EarnFreeDiamondsType value) {
+      public Builder setFreeGemsType(com.lvl6.mobsters.noneventprotos.InAppPurchaseProto.EarnFreeGemsType value) {
         if (value == null) {
           throw new NullPointerException();
         }
         bitField0_ |= 0x00000002;
-        freeDiamondsType_ = value;
+        freeGemsType_ = value;
         onChanged();
         return this;
       }
-      public Builder clearFreeDiamondsType() {
+      public Builder clearFreeGemsType() {
         bitField0_ = (bitField0_ & ~0x00000002);
-        freeDiamondsType_ = com.lvl6.mobsters.noneventprotos.InAppPurchaseProto.EarnFreeDiamondsType.FB_CONNECT;
+        freeGemsType_ = com.lvl6.mobsters.noneventprotos.InAppPurchaseProto.EarnFreeGemsType.FB_CONNECT;
         onChanged();
         return this;
       }
@@ -2359,18 +2359,18 @@ public final class EventInAppPurchaseProto {
         return this;
       }
       
-      // @@protoc_insertion_point(builder_scope:proto.EarnFreeDiamondsRequestProto)
+      // @@protoc_insertion_point(builder_scope:proto.EarnFreeGemsRequestProto)
     }
     
     static {
-      defaultInstance = new EarnFreeDiamondsRequestProto(true);
+      defaultInstance = new EarnFreeGemsRequestProto(true);
       defaultInstance.initFields();
     }
     
-    // @@protoc_insertion_point(class_scope:proto.EarnFreeDiamondsRequestProto)
+    // @@protoc_insertion_point(class_scope:proto.EarnFreeGemsRequestProto)
   }
   
-  public interface EarnFreeDiamondsResponseProtoOrBuilder
+  public interface EarnFreeGemsResponseProtoOrBuilder
       extends com.google.protobuf.MessageOrBuilder {
     
     // optional .proto.MinimumUserProto sender = 1;
@@ -2378,43 +2378,43 @@ public final class EventInAppPurchaseProto {
     com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto getSender();
     com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProtoOrBuilder getSenderOrBuilder();
     
-    // optional .proto.EarnFreeDiamondsResponseProto.EarnFreeDiamondsStatus status = 2;
+    // optional .proto.EarnFreeGemsResponseProto.EarnFreeGemsStatus status = 2;
     boolean hasStatus();
-    com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.EarnFreeDiamondsResponseProto.EarnFreeDiamondsStatus getStatus();
+    com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.EarnFreeGemsResponseProto.EarnFreeGemsStatus getStatus();
     
-    // optional .proto.EarnFreeDiamondsType freeDiamondsType = 3 [default = FB_CONNECT];
-    boolean hasFreeDiamondsType();
-    com.lvl6.mobsters.noneventprotos.InAppPurchaseProto.EarnFreeDiamondsType getFreeDiamondsType();
+    // optional .proto.EarnFreeGemsType freeGemsType = 3 [default = FB_CONNECT];
+    boolean hasFreeGemsType();
+    com.lvl6.mobsters.noneventprotos.InAppPurchaseProto.EarnFreeGemsType getFreeGemsType();
   }
-  public static final class EarnFreeDiamondsResponseProto extends
+  public static final class EarnFreeGemsResponseProto extends
       com.google.protobuf.GeneratedMessage
-      implements EarnFreeDiamondsResponseProtoOrBuilder {
-    // Use EarnFreeDiamondsResponseProto.newBuilder() to construct.
-    private EarnFreeDiamondsResponseProto(Builder builder) {
+      implements EarnFreeGemsResponseProtoOrBuilder {
+    // Use EarnFreeGemsResponseProto.newBuilder() to construct.
+    private EarnFreeGemsResponseProto(Builder builder) {
       super(builder);
     }
-    private EarnFreeDiamondsResponseProto(boolean noInit) {}
+    private EarnFreeGemsResponseProto(boolean noInit) {}
     
-    private static final EarnFreeDiamondsResponseProto defaultInstance;
-    public static EarnFreeDiamondsResponseProto getDefaultInstance() {
+    private static final EarnFreeGemsResponseProto defaultInstance;
+    public static EarnFreeGemsResponseProto getDefaultInstance() {
       return defaultInstance;
     }
     
-    public EarnFreeDiamondsResponseProto getDefaultInstanceForType() {
+    public EarnFreeGemsResponseProto getDefaultInstanceForType() {
       return defaultInstance;
     }
     
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.internal_static_proto_EarnFreeDiamondsResponseProto_descriptor;
+      return com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.internal_static_proto_EarnFreeGemsResponseProto_descriptor;
     }
     
     protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.internal_static_proto_EarnFreeDiamondsResponseProto_fieldAccessorTable;
+      return com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.internal_static_proto_EarnFreeGemsResponseProto_fieldAccessorTable;
     }
     
-    public enum EarnFreeDiamondsStatus
+    public enum EarnFreeGemsStatus
         implements com.google.protobuf.ProtocolMessageEnum {
       SUCCESS(0, 1),
       CLIENT_TOO_APART_FROM_SERVER_TIME(1, 2),
@@ -2430,7 +2430,7 @@ public final class EventInAppPurchaseProto {
       
       public final int getNumber() { return value; }
       
-      public static EarnFreeDiamondsStatus valueOf(int value) {
+      public static EarnFreeGemsStatus valueOf(int value) {
         switch (value) {
           case 1: return SUCCESS;
           case 2: return CLIENT_TOO_APART_FROM_SERVER_TIME;
@@ -2440,15 +2440,15 @@ public final class EventInAppPurchaseProto {
         }
       }
       
-      public static com.google.protobuf.Internal.EnumLiteMap<EarnFreeDiamondsStatus>
+      public static com.google.protobuf.Internal.EnumLiteMap<EarnFreeGemsStatus>
           internalGetValueMap() {
         return internalValueMap;
       }
-      private static com.google.protobuf.Internal.EnumLiteMap<EarnFreeDiamondsStatus>
+      private static com.google.protobuf.Internal.EnumLiteMap<EarnFreeGemsStatus>
           internalValueMap =
-            new com.google.protobuf.Internal.EnumLiteMap<EarnFreeDiamondsStatus>() {
-              public EarnFreeDiamondsStatus findValueByNumber(int number) {
-                return EarnFreeDiamondsStatus.valueOf(number);
+            new com.google.protobuf.Internal.EnumLiteMap<EarnFreeGemsStatus>() {
+              public EarnFreeGemsStatus findValueByNumber(int number) {
+                return EarnFreeGemsStatus.valueOf(number);
               }
             };
       
@@ -2462,14 +2462,14 @@ public final class EventInAppPurchaseProto {
       }
       public static final com.google.protobuf.Descriptors.EnumDescriptor
           getDescriptor() {
-        return com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.EarnFreeDiamondsResponseProto.getDescriptor().getEnumTypes().get(0);
+        return com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.EarnFreeGemsResponseProto.getDescriptor().getEnumTypes().get(0);
       }
       
-      private static final EarnFreeDiamondsStatus[] VALUES = {
+      private static final EarnFreeGemsStatus[] VALUES = {
         SUCCESS, CLIENT_TOO_APART_FROM_SERVER_TIME, METHOD_NOT_SUPPORTED, OTHER_FAIL, 
       };
       
-      public static EarnFreeDiamondsStatus valueOf(
+      public static EarnFreeGemsStatus valueOf(
           com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
         if (desc.getType() != getDescriptor()) {
           throw new java.lang.IllegalArgumentException(
@@ -2481,12 +2481,12 @@ public final class EventInAppPurchaseProto {
       private final int index;
       private final int value;
       
-      private EarnFreeDiamondsStatus(int index, int value) {
+      private EarnFreeGemsStatus(int index, int value) {
         this.index = index;
         this.value = value;
       }
       
-      // @@protoc_insertion_point(enum_scope:proto.EarnFreeDiamondsResponseProto.EarnFreeDiamondsStatus)
+      // @@protoc_insertion_point(enum_scope:proto.EarnFreeGemsResponseProto.EarnFreeGemsStatus)
     }
     
     private int bitField0_;
@@ -2503,30 +2503,30 @@ public final class EventInAppPurchaseProto {
       return sender_;
     }
     
-    // optional .proto.EarnFreeDiamondsResponseProto.EarnFreeDiamondsStatus status = 2;
+    // optional .proto.EarnFreeGemsResponseProto.EarnFreeGemsStatus status = 2;
     public static final int STATUS_FIELD_NUMBER = 2;
-    private com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.EarnFreeDiamondsResponseProto.EarnFreeDiamondsStatus status_;
+    private com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.EarnFreeGemsResponseProto.EarnFreeGemsStatus status_;
     public boolean hasStatus() {
       return ((bitField0_ & 0x00000002) == 0x00000002);
     }
-    public com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.EarnFreeDiamondsResponseProto.EarnFreeDiamondsStatus getStatus() {
+    public com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.EarnFreeGemsResponseProto.EarnFreeGemsStatus getStatus() {
       return status_;
     }
     
-    // optional .proto.EarnFreeDiamondsType freeDiamondsType = 3 [default = FB_CONNECT];
-    public static final int FREEDIAMONDSTYPE_FIELD_NUMBER = 3;
-    private com.lvl6.mobsters.noneventprotos.InAppPurchaseProto.EarnFreeDiamondsType freeDiamondsType_;
-    public boolean hasFreeDiamondsType() {
+    // optional .proto.EarnFreeGemsType freeGemsType = 3 [default = FB_CONNECT];
+    public static final int FREEGEMSTYPE_FIELD_NUMBER = 3;
+    private com.lvl6.mobsters.noneventprotos.InAppPurchaseProto.EarnFreeGemsType freeGemsType_;
+    public boolean hasFreeGemsType() {
       return ((bitField0_ & 0x00000004) == 0x00000004);
     }
-    public com.lvl6.mobsters.noneventprotos.InAppPurchaseProto.EarnFreeDiamondsType getFreeDiamondsType() {
-      return freeDiamondsType_;
+    public com.lvl6.mobsters.noneventprotos.InAppPurchaseProto.EarnFreeGemsType getFreeGemsType() {
+      return freeGemsType_;
     }
     
     private void initFields() {
       sender_ = com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto.getDefaultInstance();
-      status_ = com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.EarnFreeDiamondsResponseProto.EarnFreeDiamondsStatus.SUCCESS;
-      freeDiamondsType_ = com.lvl6.mobsters.noneventprotos.InAppPurchaseProto.EarnFreeDiamondsType.FB_CONNECT;
+      status_ = com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.EarnFreeGemsResponseProto.EarnFreeGemsStatus.SUCCESS;
+      freeGemsType_ = com.lvl6.mobsters.noneventprotos.InAppPurchaseProto.EarnFreeGemsType.FB_CONNECT;
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -2547,7 +2547,7 @@ public final class EventInAppPurchaseProto {
         output.writeEnum(2, status_.getNumber());
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
-        output.writeEnum(3, freeDiamondsType_.getNumber());
+        output.writeEnum(3, freeGemsType_.getNumber());
       }
       getUnknownFields().writeTo(output);
     }
@@ -2568,7 +2568,7 @@ public final class EventInAppPurchaseProto {
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeEnumSize(3, freeDiamondsType_.getNumber());
+          .computeEnumSize(3, freeGemsType_.getNumber());
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -2582,41 +2582,41 @@ public final class EventInAppPurchaseProto {
       return super.writeReplace();
     }
     
-    public static com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.EarnFreeDiamondsResponseProto parseFrom(
+    public static com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.EarnFreeGemsResponseProto parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data).buildParsed();
     }
-    public static com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.EarnFreeDiamondsResponseProto parseFrom(
+    public static com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.EarnFreeGemsResponseProto parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data, extensionRegistry)
                .buildParsed();
     }
-    public static com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.EarnFreeDiamondsResponseProto parseFrom(byte[] data)
+    public static com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.EarnFreeGemsResponseProto parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data).buildParsed();
     }
-    public static com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.EarnFreeDiamondsResponseProto parseFrom(
+    public static com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.EarnFreeGemsResponseProto parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data, extensionRegistry)
                .buildParsed();
     }
-    public static com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.EarnFreeDiamondsResponseProto parseFrom(java.io.InputStream input)
+    public static com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.EarnFreeGemsResponseProto parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return newBuilder().mergeFrom(input).buildParsed();
     }
-    public static com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.EarnFreeDiamondsResponseProto parseFrom(
+    public static com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.EarnFreeGemsResponseProto parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return newBuilder().mergeFrom(input, extensionRegistry)
                .buildParsed();
     }
-    public static com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.EarnFreeDiamondsResponseProto parseDelimitedFrom(java.io.InputStream input)
+    public static com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.EarnFreeGemsResponseProto parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       Builder builder = newBuilder();
       if (builder.mergeDelimitedFrom(input)) {
@@ -2625,7 +2625,7 @@ public final class EventInAppPurchaseProto {
         return null;
       }
     }
-    public static com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.EarnFreeDiamondsResponseProto parseDelimitedFrom(
+    public static com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.EarnFreeGemsResponseProto parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -2636,12 +2636,12 @@ public final class EventInAppPurchaseProto {
         return null;
       }
     }
-    public static com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.EarnFreeDiamondsResponseProto parseFrom(
+    public static com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.EarnFreeGemsResponseProto parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return newBuilder().mergeFrom(input).buildParsed();
     }
-    public static com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.EarnFreeDiamondsResponseProto parseFrom(
+    public static com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.EarnFreeGemsResponseProto parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -2651,7 +2651,7 @@ public final class EventInAppPurchaseProto {
     
     public static Builder newBuilder() { return Builder.create(); }
     public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder(com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.EarnFreeDiamondsResponseProto prototype) {
+    public static Builder newBuilder(com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.EarnFreeGemsResponseProto prototype) {
       return newBuilder().mergeFrom(prototype);
     }
     public Builder toBuilder() { return newBuilder(this); }
@@ -2664,18 +2664,18 @@ public final class EventInAppPurchaseProto {
     }
     public static final class Builder extends
         com.google.protobuf.GeneratedMessage.Builder<Builder>
-       implements com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.EarnFreeDiamondsResponseProtoOrBuilder {
+       implements com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.EarnFreeGemsResponseProtoOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.internal_static_proto_EarnFreeDiamondsResponseProto_descriptor;
+        return com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.internal_static_proto_EarnFreeGemsResponseProto_descriptor;
       }
       
       protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.internal_static_proto_EarnFreeDiamondsResponseProto_fieldAccessorTable;
+        return com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.internal_static_proto_EarnFreeGemsResponseProto_fieldAccessorTable;
       }
       
-      // Construct using com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.EarnFreeDiamondsResponseProto.newBuilder()
+      // Construct using com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.EarnFreeGemsResponseProto.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -2701,9 +2701,9 @@ public final class EventInAppPurchaseProto {
           senderBuilder_.clear();
         }
         bitField0_ = (bitField0_ & ~0x00000001);
-        status_ = com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.EarnFreeDiamondsResponseProto.EarnFreeDiamondsStatus.SUCCESS;
+        status_ = com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.EarnFreeGemsResponseProto.EarnFreeGemsStatus.SUCCESS;
         bitField0_ = (bitField0_ & ~0x00000002);
-        freeDiamondsType_ = com.lvl6.mobsters.noneventprotos.InAppPurchaseProto.EarnFreeDiamondsType.FB_CONNECT;
+        freeGemsType_ = com.lvl6.mobsters.noneventprotos.InAppPurchaseProto.EarnFreeGemsType.FB_CONNECT;
         bitField0_ = (bitField0_ & ~0x00000004);
         return this;
       }
@@ -2714,24 +2714,24 @@ public final class EventInAppPurchaseProto {
       
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.EarnFreeDiamondsResponseProto.getDescriptor();
+        return com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.EarnFreeGemsResponseProto.getDescriptor();
       }
       
-      public com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.EarnFreeDiamondsResponseProto getDefaultInstanceForType() {
-        return com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.EarnFreeDiamondsResponseProto.getDefaultInstance();
+      public com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.EarnFreeGemsResponseProto getDefaultInstanceForType() {
+        return com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.EarnFreeGemsResponseProto.getDefaultInstance();
       }
       
-      public com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.EarnFreeDiamondsResponseProto build() {
-        com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.EarnFreeDiamondsResponseProto result = buildPartial();
+      public com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.EarnFreeGemsResponseProto build() {
+        com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.EarnFreeGemsResponseProto result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
         return result;
       }
       
-      private com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.EarnFreeDiamondsResponseProto buildParsed()
+      private com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.EarnFreeGemsResponseProto buildParsed()
           throws com.google.protobuf.InvalidProtocolBufferException {
-        com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.EarnFreeDiamondsResponseProto result = buildPartial();
+        com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.EarnFreeGemsResponseProto result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(
             result).asInvalidProtocolBufferException();
@@ -2739,8 +2739,8 @@ public final class EventInAppPurchaseProto {
         return result;
       }
       
-      public com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.EarnFreeDiamondsResponseProto buildPartial() {
-        com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.EarnFreeDiamondsResponseProto result = new com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.EarnFreeDiamondsResponseProto(this);
+      public com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.EarnFreeGemsResponseProto buildPartial() {
+        com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.EarnFreeGemsResponseProto result = new com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.EarnFreeGemsResponseProto(this);
         int from_bitField0_ = bitField0_;
         int to_bitField0_ = 0;
         if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
@@ -2758,31 +2758,31 @@ public final class EventInAppPurchaseProto {
         if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
           to_bitField0_ |= 0x00000004;
         }
-        result.freeDiamondsType_ = freeDiamondsType_;
+        result.freeGemsType_ = freeGemsType_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
       }
       
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.EarnFreeDiamondsResponseProto) {
-          return mergeFrom((com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.EarnFreeDiamondsResponseProto)other);
+        if (other instanceof com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.EarnFreeGemsResponseProto) {
+          return mergeFrom((com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.EarnFreeGemsResponseProto)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
       
-      public Builder mergeFrom(com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.EarnFreeDiamondsResponseProto other) {
-        if (other == com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.EarnFreeDiamondsResponseProto.getDefaultInstance()) return this;
+      public Builder mergeFrom(com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.EarnFreeGemsResponseProto other) {
+        if (other == com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.EarnFreeGemsResponseProto.getDefaultInstance()) return this;
         if (other.hasSender()) {
           mergeSender(other.getSender());
         }
         if (other.hasStatus()) {
           setStatus(other.getStatus());
         }
-        if (other.hasFreeDiamondsType()) {
-          setFreeDiamondsType(other.getFreeDiamondsType());
+        if (other.hasFreeGemsType()) {
+          setFreeGemsType(other.getFreeGemsType());
         }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
@@ -2826,7 +2826,7 @@ public final class EventInAppPurchaseProto {
             }
             case 16: {
               int rawValue = input.readEnum();
-              com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.EarnFreeDiamondsResponseProto.EarnFreeDiamondsStatus value = com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.EarnFreeDiamondsResponseProto.EarnFreeDiamondsStatus.valueOf(rawValue);
+              com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.EarnFreeGemsResponseProto.EarnFreeGemsStatus value = com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.EarnFreeGemsResponseProto.EarnFreeGemsStatus.valueOf(rawValue);
               if (value == null) {
                 unknownFields.mergeVarintField(2, rawValue);
               } else {
@@ -2837,12 +2837,12 @@ public final class EventInAppPurchaseProto {
             }
             case 24: {
               int rawValue = input.readEnum();
-              com.lvl6.mobsters.noneventprotos.InAppPurchaseProto.EarnFreeDiamondsType value = com.lvl6.mobsters.noneventprotos.InAppPurchaseProto.EarnFreeDiamondsType.valueOf(rawValue);
+              com.lvl6.mobsters.noneventprotos.InAppPurchaseProto.EarnFreeGemsType value = com.lvl6.mobsters.noneventprotos.InAppPurchaseProto.EarnFreeGemsType.valueOf(rawValue);
               if (value == null) {
                 unknownFields.mergeVarintField(3, rawValue);
               } else {
                 bitField0_ |= 0x00000004;
-                freeDiamondsType_ = value;
+                freeGemsType_ = value;
               }
               break;
             }
@@ -2942,15 +2942,15 @@ public final class EventInAppPurchaseProto {
         return senderBuilder_;
       }
       
-      // optional .proto.EarnFreeDiamondsResponseProto.EarnFreeDiamondsStatus status = 2;
-      private com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.EarnFreeDiamondsResponseProto.EarnFreeDiamondsStatus status_ = com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.EarnFreeDiamondsResponseProto.EarnFreeDiamondsStatus.SUCCESS;
+      // optional .proto.EarnFreeGemsResponseProto.EarnFreeGemsStatus status = 2;
+      private com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.EarnFreeGemsResponseProto.EarnFreeGemsStatus status_ = com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.EarnFreeGemsResponseProto.EarnFreeGemsStatus.SUCCESS;
       public boolean hasStatus() {
         return ((bitField0_ & 0x00000002) == 0x00000002);
       }
-      public com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.EarnFreeDiamondsResponseProto.EarnFreeDiamondsStatus getStatus() {
+      public com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.EarnFreeGemsResponseProto.EarnFreeGemsStatus getStatus() {
         return status_;
       }
-      public Builder setStatus(com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.EarnFreeDiamondsResponseProto.EarnFreeDiamondsStatus value) {
+      public Builder setStatus(com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.EarnFreeGemsResponseProto.EarnFreeGemsStatus value) {
         if (value == null) {
           throw new NullPointerException();
         }
@@ -2961,44 +2961,44 @@ public final class EventInAppPurchaseProto {
       }
       public Builder clearStatus() {
         bitField0_ = (bitField0_ & ~0x00000002);
-        status_ = com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.EarnFreeDiamondsResponseProto.EarnFreeDiamondsStatus.SUCCESS;
+        status_ = com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.EarnFreeGemsResponseProto.EarnFreeGemsStatus.SUCCESS;
         onChanged();
         return this;
       }
       
-      // optional .proto.EarnFreeDiamondsType freeDiamondsType = 3 [default = FB_CONNECT];
-      private com.lvl6.mobsters.noneventprotos.InAppPurchaseProto.EarnFreeDiamondsType freeDiamondsType_ = com.lvl6.mobsters.noneventprotos.InAppPurchaseProto.EarnFreeDiamondsType.FB_CONNECT;
-      public boolean hasFreeDiamondsType() {
+      // optional .proto.EarnFreeGemsType freeGemsType = 3 [default = FB_CONNECT];
+      private com.lvl6.mobsters.noneventprotos.InAppPurchaseProto.EarnFreeGemsType freeGemsType_ = com.lvl6.mobsters.noneventprotos.InAppPurchaseProto.EarnFreeGemsType.FB_CONNECT;
+      public boolean hasFreeGemsType() {
         return ((bitField0_ & 0x00000004) == 0x00000004);
       }
-      public com.lvl6.mobsters.noneventprotos.InAppPurchaseProto.EarnFreeDiamondsType getFreeDiamondsType() {
-        return freeDiamondsType_;
+      public com.lvl6.mobsters.noneventprotos.InAppPurchaseProto.EarnFreeGemsType getFreeGemsType() {
+        return freeGemsType_;
       }
-      public Builder setFreeDiamondsType(com.lvl6.mobsters.noneventprotos.InAppPurchaseProto.EarnFreeDiamondsType value) {
+      public Builder setFreeGemsType(com.lvl6.mobsters.noneventprotos.InAppPurchaseProto.EarnFreeGemsType value) {
         if (value == null) {
           throw new NullPointerException();
         }
         bitField0_ |= 0x00000004;
-        freeDiamondsType_ = value;
+        freeGemsType_ = value;
         onChanged();
         return this;
       }
-      public Builder clearFreeDiamondsType() {
+      public Builder clearFreeGemsType() {
         bitField0_ = (bitField0_ & ~0x00000004);
-        freeDiamondsType_ = com.lvl6.mobsters.noneventprotos.InAppPurchaseProto.EarnFreeDiamondsType.FB_CONNECT;
+        freeGemsType_ = com.lvl6.mobsters.noneventprotos.InAppPurchaseProto.EarnFreeGemsType.FB_CONNECT;
         onChanged();
         return this;
       }
       
-      // @@protoc_insertion_point(builder_scope:proto.EarnFreeDiamondsResponseProto)
+      // @@protoc_insertion_point(builder_scope:proto.EarnFreeGemsResponseProto)
     }
     
     static {
-      defaultInstance = new EarnFreeDiamondsResponseProto(true);
+      defaultInstance = new EarnFreeGemsResponseProto(true);
       defaultInstance.initFields();
     }
     
-    // @@protoc_insertion_point(class_scope:proto.EarnFreeDiamondsResponseProto)
+    // @@protoc_insertion_point(class_scope:proto.EarnFreeGemsResponseProto)
   }
   
   private static com.google.protobuf.Descriptors.Descriptor
@@ -3012,15 +3012,15 @@ public final class EventInAppPurchaseProto {
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_proto_InAppPurchaseResponseProto_fieldAccessorTable;
   private static com.google.protobuf.Descriptors.Descriptor
-    internal_static_proto_EarnFreeDiamondsRequestProto_descriptor;
+    internal_static_proto_EarnFreeGemsRequestProto_descriptor;
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
-      internal_static_proto_EarnFreeDiamondsRequestProto_fieldAccessorTable;
+      internal_static_proto_EarnFreeGemsRequestProto_fieldAccessorTable;
   private static com.google.protobuf.Descriptors.Descriptor
-    internal_static_proto_EarnFreeDiamondsResponseProto_descriptor;
+    internal_static_proto_EarnFreeGemsResponseProto_descriptor;
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
-      internal_static_proto_EarnFreeDiamondsResponseProto_fieldAccessorTable;
+      internal_static_proto_EarnFreeGemsResponseProto_fieldAccessorTable;
   
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -3035,29 +3035,28 @@ public final class EventInAppPurchaseProto {
       "haseRequestProto\022\'\n\006sender\030\001 \001(\0132\027.proto" +
       ".MinimumUserProto\022\017\n\007receipt\030\002 \001(\t\022\022\n\nlo" +
       "calcents\030\003 \001(\t\022\025\n\rlocalcurrency\030\004 \001(\t\022\016\n" +
-      "\006locale\030\005 \001(\t\022\016\n\006ipaddr\030\006 \001(\t\"\272\002\n\032InAppP" +
+      "\006locale\030\005 \001(\t\022\016\n\006ipaddr\030\006 \001(\t\"\265\002\n\032InAppP" +
       "urchaseResponseProto\022\'\n\006sender\030\001 \001(\0132\027.p" +
       "roto.MinimumUserProto\022E\n\006status\030\002 \001(\01625." +
       "proto.InAppPurchaseResponseProto.InAppPu" +
-      "rchaseStatus\022\026\n\016diamondsGained\030\003 \001(\005\022\023\n\013",
-      "coinsGained\030\004 \001(\005\022\023\n\013packageName\030\005 \001(\t\022\024" +
-      "\n\014packagePrice\030\006 \001(\001\022\017\n\007receipt\030\007 \001(\t\"C\n" +
-      "\023InAppPurchaseStatus\022\013\n\007SUCCESS\020\001\022\010\n\004FAI" +
-      "L\020\002\022\025\n\021DUPLICATE_RECEIPT\020\003\"\236\001\n\034EarnFreeD" +
-      "iamondsRequestProto\022\'\n\006sender\030\001 \001(\0132\027.pr" +
-      "oto.MinimumUserProto\022A\n\020freeDiamondsType" +
-      "\030\002 \001(\0162\033.proto.EarnFreeDiamondsType:\nFB_" +
-      "CONNECT\022\022\n\nclientTime\030\003 \001(\003\"\320\002\n\035EarnFree" +
-      "DiamondsResponseProto\022\'\n\006sender\030\001 \001(\0132\027." +
-      "proto.MinimumUserProto\022K\n\006status\030\002 \001(\0162;",
-      ".proto.EarnFreeDiamondsResponseProto.Ear" +
-      "nFreeDiamondsStatus\022A\n\020freeDiamondsType\030" +
-      "\003 \001(\0162\033.proto.EarnFreeDiamondsType:\nFB_C" +
-      "ONNECT\"v\n\026EarnFreeDiamondsStatus\022\013\n\007SUCC" +
-      "ESS\020\001\022%\n!CLIENT_TOO_APART_FROM_SERVER_TI" +
-      "ME\020\002\022\030\n\024METHOD_NOT_SUPPORTED\020\003\022\016\n\nOTHER_" +
-      "FAIL\020\004B8\n\035com.lvl6.mobsters.eventprotosB" +
-      "\027EventInAppPurchaseProto"
+      "rchaseStatus\022\022\n\ngemsGained\030\003 \001(\005\022\022\n\ncash",
+      "Gained\030\004 \001(\005\022\023\n\013packageName\030\005 \001(\t\022\024\n\014pac" +
+      "kagePrice\030\006 \001(\001\022\017\n\007receipt\030\007 \001(\t\"C\n\023InAp" +
+      "pPurchaseStatus\022\013\n\007SUCCESS\020\001\022\010\n\004FAIL\020\002\022\025" +
+      "\n\021DUPLICATE_RECEIPT\020\003\"\222\001\n\030EarnFreeGemsRe" +
+      "questProto\022\'\n\006sender\030\001 \001(\0132\027.proto.Minim" +
+      "umUserProto\0229\n\014freeGemsType\030\002 \001(\0162\027.prot" +
+      "o.EarnFreeGemsType:\nFB_CONNECT\022\022\n\nclient" +
+      "Time\030\003 \001(\003\"\270\002\n\031EarnFreeGemsResponseProto" +
+      "\022\'\n\006sender\030\001 \001(\0132\027.proto.MinimumUserProt" +
+      "o\022C\n\006status\030\002 \001(\01623.proto.EarnFreeGemsRe",
+      "sponseProto.EarnFreeGemsStatus\0229\n\014freeGe" +
+      "msType\030\003 \001(\0162\027.proto.EarnFreeGemsType:\nF" +
+      "B_CONNECT\"r\n\022EarnFreeGemsStatus\022\013\n\007SUCCE" +
+      "SS\020\001\022%\n!CLIENT_TOO_APART_FROM_SERVER_TIM" +
+      "E\020\002\022\030\n\024METHOD_NOT_SUPPORTED\020\003\022\016\n\nOTHER_F" +
+      "AIL\020\004B8\n\035com.lvl6.mobsters.eventprotosB\027" +
+      "EventInAppPurchaseProto"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -3077,25 +3076,25 @@ public final class EventInAppPurchaseProto {
           internal_static_proto_InAppPurchaseResponseProto_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_proto_InAppPurchaseResponseProto_descriptor,
-              new java.lang.String[] { "Sender", "Status", "DiamondsGained", "CoinsGained", "PackageName", "PackagePrice", "Receipt", },
+              new java.lang.String[] { "Sender", "Status", "GemsGained", "CashGained", "PackageName", "PackagePrice", "Receipt", },
               com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.InAppPurchaseResponseProto.class,
               com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.InAppPurchaseResponseProto.Builder.class);
-          internal_static_proto_EarnFreeDiamondsRequestProto_descriptor =
+          internal_static_proto_EarnFreeGemsRequestProto_descriptor =
             getDescriptor().getMessageTypes().get(2);
-          internal_static_proto_EarnFreeDiamondsRequestProto_fieldAccessorTable = new
+          internal_static_proto_EarnFreeGemsRequestProto_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-              internal_static_proto_EarnFreeDiamondsRequestProto_descriptor,
-              new java.lang.String[] { "Sender", "FreeDiamondsType", "ClientTime", },
-              com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.EarnFreeDiamondsRequestProto.class,
-              com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.EarnFreeDiamondsRequestProto.Builder.class);
-          internal_static_proto_EarnFreeDiamondsResponseProto_descriptor =
+              internal_static_proto_EarnFreeGemsRequestProto_descriptor,
+              new java.lang.String[] { "Sender", "FreeGemsType", "ClientTime", },
+              com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.EarnFreeGemsRequestProto.class,
+              com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.EarnFreeGemsRequestProto.Builder.class);
+          internal_static_proto_EarnFreeGemsResponseProto_descriptor =
             getDescriptor().getMessageTypes().get(3);
-          internal_static_proto_EarnFreeDiamondsResponseProto_fieldAccessorTable = new
+          internal_static_proto_EarnFreeGemsResponseProto_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-              internal_static_proto_EarnFreeDiamondsResponseProto_descriptor,
-              new java.lang.String[] { "Sender", "Status", "FreeDiamondsType", },
-              com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.EarnFreeDiamondsResponseProto.class,
-              com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.EarnFreeDiamondsResponseProto.Builder.class);
+              internal_static_proto_EarnFreeGemsResponseProto_descriptor,
+              new java.lang.String[] { "Sender", "Status", "FreeGemsType", },
+              com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.EarnFreeGemsResponseProto.class,
+              com.lvl6.mobsters.eventprotos.EventInAppPurchaseProto.EarnFreeGemsResponseProto.Builder.class);
           return null;
         }
       };

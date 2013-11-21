@@ -1155,9 +1155,9 @@ public final class EventStartupProto {
       boolean hasBattleCompleteTime();
       long getBattleCompleteTime();
       
-      // optional int32 coinsStolen = 3;
-      boolean hasCoinsStolen();
-      int getCoinsStolen();
+      // optional int32 cashStolen = 3;
+      boolean hasCashStolen();
+      int getCashStolen();
     }
     public static final class AttackedNotificationProto extends
         com.google.protobuf.GeneratedMessage
@@ -1211,20 +1211,20 @@ public final class EventStartupProto {
         return battleCompleteTime_;
       }
       
-      // optional int32 coinsStolen = 3;
-      public static final int COINSSTOLEN_FIELD_NUMBER = 3;
-      private int coinsStolen_;
-      public boolean hasCoinsStolen() {
+      // optional int32 cashStolen = 3;
+      public static final int CASHSTOLEN_FIELD_NUMBER = 3;
+      private int cashStolen_;
+      public boolean hasCashStolen() {
         return ((bitField0_ & 0x00000004) == 0x00000004);
       }
-      public int getCoinsStolen() {
-        return coinsStolen_;
+      public int getCashStolen() {
+        return cashStolen_;
       }
       
       private void initFields() {
         attacker_ = com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto.getDefaultInstance();
         battleCompleteTime_ = 0L;
-        coinsStolen_ = 0;
+        cashStolen_ = 0;
       }
       private byte memoizedIsInitialized = -1;
       public final boolean isInitialized() {
@@ -1245,7 +1245,7 @@ public final class EventStartupProto {
           output.writeInt64(2, battleCompleteTime_);
         }
         if (((bitField0_ & 0x00000004) == 0x00000004)) {
-          output.writeInt32(3, coinsStolen_);
+          output.writeInt32(3, cashStolen_);
         }
         getUnknownFields().writeTo(output);
       }
@@ -1266,7 +1266,7 @@ public final class EventStartupProto {
         }
         if (((bitField0_ & 0x00000004) == 0x00000004)) {
           size += com.google.protobuf.CodedOutputStream
-            .computeInt32Size(3, coinsStolen_);
+            .computeInt32Size(3, cashStolen_);
         }
         size += getUnknownFields().getSerializedSize();
         memoizedSerializedSize = size;
@@ -1401,7 +1401,7 @@ public final class EventStartupProto {
           bitField0_ = (bitField0_ & ~0x00000001);
           battleCompleteTime_ = 0L;
           bitField0_ = (bitField0_ & ~0x00000002);
-          coinsStolen_ = 0;
+          cashStolen_ = 0;
           bitField0_ = (bitField0_ & ~0x00000004);
           return this;
         }
@@ -1456,7 +1456,7 @@ public final class EventStartupProto {
           if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
             to_bitField0_ |= 0x00000004;
           }
-          result.coinsStolen_ = coinsStolen_;
+          result.cashStolen_ = cashStolen_;
           result.bitField0_ = to_bitField0_;
           onBuilt();
           return result;
@@ -1479,8 +1479,8 @@ public final class EventStartupProto {
           if (other.hasBattleCompleteTime()) {
             setBattleCompleteTime(other.getBattleCompleteTime());
           }
-          if (other.hasCoinsStolen()) {
-            setCoinsStolen(other.getCoinsStolen());
+          if (other.hasCashStolen()) {
+            setCashStolen(other.getCashStolen());
           }
           this.mergeUnknownFields(other.getUnknownFields());
           return this;
@@ -1529,7 +1529,7 @@ public final class EventStartupProto {
               }
               case 24: {
                 bitField0_ |= 0x00000004;
-                coinsStolen_ = input.readInt32();
+                cashStolen_ = input.readInt32();
                 break;
               }
             }
@@ -1649,23 +1649,23 @@ public final class EventStartupProto {
           return this;
         }
         
-        // optional int32 coinsStolen = 3;
-        private int coinsStolen_ ;
-        public boolean hasCoinsStolen() {
+        // optional int32 cashStolen = 3;
+        private int cashStolen_ ;
+        public boolean hasCashStolen() {
           return ((bitField0_ & 0x00000004) == 0x00000004);
         }
-        public int getCoinsStolen() {
-          return coinsStolen_;
+        public int getCashStolen() {
+          return cashStolen_;
         }
-        public Builder setCoinsStolen(int value) {
+        public Builder setCashStolen(int value) {
           bitField0_ |= 0x00000004;
-          coinsStolen_ = value;
+          cashStolen_ = value;
           onChanged();
           return this;
         }
-        public Builder clearCoinsStolen() {
+        public Builder clearCashStolen() {
           bitField0_ = (bitField0_ & ~0x00000004);
-          coinsStolen_ = 0;
+          cashStolen_ = 0;
           onChanged();
           return this;
         }
@@ -1693,9 +1693,9 @@ public final class EventStartupProto {
       boolean hasRecruitTime();
       long getRecruitTime();
       
-      // optional int32 coinsGivenToReferrer = 3;
-      boolean hasCoinsGivenToReferrer();
-      int getCoinsGivenToReferrer();
+      // optional int32 cashGivenToReferrer = 3;
+      boolean hasCashGivenToReferrer();
+      int getCashGivenToReferrer();
     }
     public static final class ReferralNotificationProto extends
         com.google.protobuf.GeneratedMessage
@@ -1749,20 +1749,20 @@ public final class EventStartupProto {
         return recruitTime_;
       }
       
-      // optional int32 coinsGivenToReferrer = 3;
-      public static final int COINSGIVENTOREFERRER_FIELD_NUMBER = 3;
-      private int coinsGivenToReferrer_;
-      public boolean hasCoinsGivenToReferrer() {
+      // optional int32 cashGivenToReferrer = 3;
+      public static final int CASHGIVENTOREFERRER_FIELD_NUMBER = 3;
+      private int cashGivenToReferrer_;
+      public boolean hasCashGivenToReferrer() {
         return ((bitField0_ & 0x00000004) == 0x00000004);
       }
-      public int getCoinsGivenToReferrer() {
-        return coinsGivenToReferrer_;
+      public int getCashGivenToReferrer() {
+        return cashGivenToReferrer_;
       }
       
       private void initFields() {
         referred_ = com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto.getDefaultInstance();
         recruitTime_ = 0L;
-        coinsGivenToReferrer_ = 0;
+        cashGivenToReferrer_ = 0;
       }
       private byte memoizedIsInitialized = -1;
       public final boolean isInitialized() {
@@ -1783,7 +1783,7 @@ public final class EventStartupProto {
           output.writeInt64(2, recruitTime_);
         }
         if (((bitField0_ & 0x00000004) == 0x00000004)) {
-          output.writeInt32(3, coinsGivenToReferrer_);
+          output.writeInt32(3, cashGivenToReferrer_);
         }
         getUnknownFields().writeTo(output);
       }
@@ -1804,7 +1804,7 @@ public final class EventStartupProto {
         }
         if (((bitField0_ & 0x00000004) == 0x00000004)) {
           size += com.google.protobuf.CodedOutputStream
-            .computeInt32Size(3, coinsGivenToReferrer_);
+            .computeInt32Size(3, cashGivenToReferrer_);
         }
         size += getUnknownFields().getSerializedSize();
         memoizedSerializedSize = size;
@@ -1939,7 +1939,7 @@ public final class EventStartupProto {
           bitField0_ = (bitField0_ & ~0x00000001);
           recruitTime_ = 0L;
           bitField0_ = (bitField0_ & ~0x00000002);
-          coinsGivenToReferrer_ = 0;
+          cashGivenToReferrer_ = 0;
           bitField0_ = (bitField0_ & ~0x00000004);
           return this;
         }
@@ -1994,7 +1994,7 @@ public final class EventStartupProto {
           if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
             to_bitField0_ |= 0x00000004;
           }
-          result.coinsGivenToReferrer_ = coinsGivenToReferrer_;
+          result.cashGivenToReferrer_ = cashGivenToReferrer_;
           result.bitField0_ = to_bitField0_;
           onBuilt();
           return result;
@@ -2017,8 +2017,8 @@ public final class EventStartupProto {
           if (other.hasRecruitTime()) {
             setRecruitTime(other.getRecruitTime());
           }
-          if (other.hasCoinsGivenToReferrer()) {
-            setCoinsGivenToReferrer(other.getCoinsGivenToReferrer());
+          if (other.hasCashGivenToReferrer()) {
+            setCashGivenToReferrer(other.getCashGivenToReferrer());
           }
           this.mergeUnknownFields(other.getUnknownFields());
           return this;
@@ -2067,7 +2067,7 @@ public final class EventStartupProto {
               }
               case 24: {
                 bitField0_ |= 0x00000004;
-                coinsGivenToReferrer_ = input.readInt32();
+                cashGivenToReferrer_ = input.readInt32();
                 break;
               }
             }
@@ -2187,23 +2187,23 @@ public final class EventStartupProto {
           return this;
         }
         
-        // optional int32 coinsGivenToReferrer = 3;
-        private int coinsGivenToReferrer_ ;
-        public boolean hasCoinsGivenToReferrer() {
+        // optional int32 cashGivenToReferrer = 3;
+        private int cashGivenToReferrer_ ;
+        public boolean hasCashGivenToReferrer() {
           return ((bitField0_ & 0x00000004) == 0x00000004);
         }
-        public int getCoinsGivenToReferrer() {
-          return coinsGivenToReferrer_;
+        public int getCashGivenToReferrer() {
+          return cashGivenToReferrer_;
         }
-        public Builder setCoinsGivenToReferrer(int value) {
+        public Builder setCashGivenToReferrer(int value) {
           bitField0_ |= 0x00000004;
-          coinsGivenToReferrer_ = value;
+          cashGivenToReferrer_ = value;
           onChanged();
           return this;
         }
-        public Builder clearCoinsGivenToReferrer() {
+        public Builder clearCashGivenToReferrer() {
           bitField0_ = (bitField0_ & ~0x00000004);
-          coinsGivenToReferrer_ = 0;
+          cashGivenToReferrer_ = 0;
           onChanged();
           return this;
         }
@@ -12834,7 +12834,7 @@ public final class EventStartupProto {
       "proto\"\215\001\n\023StartupRequestProto\022\014\n\004udid\030\001 " +
       "\001(\t\022\022\n\nversionNum\030\002 \001(\002\022\021\n\tapsalarId\030\003 \001" +
       "(\t\022\022\n\nmacAddress\030\004 \001(\t\022\024\n\014advertiserId\030\005" +
-      " \001(\t\022\027\n\017isForceTutorial\030\006 \001(\010\"\204\034\n\024Startu" +
+      " \001(\t\022\027\n\017isForceTutorial\030\006 \001(\010\"\202\034\n\024Startu" +
       "pResponseProto\022\030\n\020serverTimeMillis\030\001 \001(\003",
       "\022$\n\006sender\030\002 \001(\0132\024.proto.FullUserProto\022@" +
       "\n\rstartupStatus\030\003 \001(\0162).proto.StartupRes" +
@@ -12868,64 +12868,64 @@ public final class EventStartupProto {
       "\022B\n\023invitesToMeForSlots\030\031 \003(\0132%.proto.Us",
       "erFacebookInviteForSlotProto\0224\n\024staticDa" +
       "taStuffProto\030\032 \001(\0132\026.proto.StaticDataPro" +
-      "to\022 \n\030taskIdForCurrentCityBoss\030\034 \003(\005\032w\n\031" +
+      "to\022 \n\030taskIdForCurrentCityBoss\030\034 \003(\005\032v\n\031" +
       "AttackedNotificationProto\022)\n\010attacker\030\001 " +
       "\001(\0132\027.proto.MinimumUserProto\022\032\n\022battleCo" +
-      "mpleteTime\030\002 \001(\003\022\023\n\013coinsStolen\030\003 \001(\005\032y\n" +
-      "\031ReferralNotificationProto\022)\n\010referred\030\001" +
-      " \001(\0132\027.proto.MinimumUserProto\022\023\n\013recruit" +
-      "Time\030\002 \001(\003\022\034\n\024coinsGivenToReferrer\030\003 \001(\005" +
-      "\032\301\016\n\020StartupConstants\022?\n\025inAppPurchasePa",
-      "ckages\030\001 \003(\0132 .proto.InAppPurchasePackag" +
-      "eProto\022\027\n\017maxLevelForUser\030\002 \001(\005\022\034\n\024maxNu" +
-      "mOfSingleStruct\030\003 \001(\005\022e\n\025animatedSpriteO" +
-      "ffsets\030\004 \003(\0132F.proto.StartupResponseProt" +
-      "o.StartupConstants.AnimatedSpriteOffsetP" +
-      "roto\022\025\n\rminNameLength\030\005 \001(\005\022\025\n\rmaxNameLe" +
-      "ngth\030\006 \001(\005\022\035\n\025maxLengthOfChatString\030\007 \001(" +
-      "\005\022Q\n\rclanConstants\030\010 \001(\0132:.proto.Startup" +
-      "ResponseProto.StartupConstants.ClanConst" +
-      "ants\022g\n\030downloadableNibConstants\030\t \001(\0132E",
-      ".proto.StartupResponseProto.StartupConst" +
-      "ants.DownloadableNibConstants\022\'\n\037numHour" +
-      "sBeforeReshowingGoldSale\030\n \001(\005\022\036\n\026levelT" +
-      "oShowRateUsPopup\030\013 \001(\005\022\\\n\022touramentConst" +
-      "ants\030\014 \001(\0132@.proto.StartupResponseProto." +
-      "StartupConstants.TournamentConstants\022\037\n\027" +
-      "fbConnectRewardDiamonds\030\r \001(\005\022\023\n\013faqFile" +
-      "Name\030\016 \001(\t\0223\n\022adminChatUserProto\030\017 \001(\0132\027" +
-      ".proto.MinimumUserProto\022\037\n\027numBeginnerSa" +
-      "lesAllowed\030\020 \001(\005\022_\n\024userMonsterConstants",
-      "\030\021 \001(\0132A.proto.StartupResponseProto.Star" +
-      "tupConstants.UserMonsterConstants\022W\n\020mon" +
-      "sterConstants\030\022 \001(\0132=.proto.StartupRespo" +
-      "nseProto.StartupConstants.MonsterConstan" +
-      "ts\022\025\n\rminutesPerGem\030\023 \001(\002\022\031\n\021pvpRequired" +
-      "MinLvl\030\024 \001(\005\032V\n\031AnimatedSpriteOffsetProt" +
-      "o\022\021\n\timageName\030\001 \001(\t\022&\n\006offSet\030\002 \001(\0132\026.p" +
-      "roto.CoordinateProto\032\232\001\n\rClanConstants\022\035" +
-      "\n\025coinPriceToCreateClan\030\001 \001(\005\022 \n\030maxChar" +
-      "LengthForClanName\030\002 \001(\005\022\'\n\037maxCharLength",
-      "ForClanDescription\030\003 \001(\005\022\037\n\027maxCharLengt" +
-      "hForClanTag\030\004 \001(\005\032c\n\030DownloadableNibCons" +
-      "tants\022\022\n\nmapNibName\030\001 \001(\t\022\030\n\020expansionNi" +
-      "bName\030\002 \001(\t\022\031\n\021goldShoppeNibName\030\003 \001(\t\032y" +
-      "\n\023TournamentConstants\022\022\n\nwinsWeight\030\001 \001(" +
-      "\005\022\024\n\014lossesWeight\030\002 \001(\005\022\023\n\013fleesWeight\030\003" +
-      " \001(\005\022#\n\033numHoursToShowAfterEventEnd\030\004 \001(" +
-      "\005\032\304\001\n\024UserMonsterConstants\022\027\n\017maxNumTeam" +
-      "Slots\030\001 \001(\005\022!\n\031initialMaxNumMonsterLimit" +
-      "\030\002 \001(\005\022\'\n\037monsterInventoryIncrementAmoun",
-      "t\030\003 \001(\005\022\027\n\017gemPricePerSlot\030\004 \001(\005\022.\n&numF" +
-      "riendsToRecruitToIncreaseInventory\030\005 \001(\005" +
-      "\032\211\001\n\020MonsterConstants\022\032\n\022cashPerHealthPo" +
-      "int\030\001 \001(\002\022#\n\033secondsToHealPerHealthPoint" +
-      "\030\002 \001(\002\022\031\n\021elementalStrength\030\003 \001(\002\022\031\n\021ele" +
-      "mentalWeakness\030\004 \001(\002\"A\n\014UpdateStatus\022\r\n\t" +
-      "NO_UPDATE\020\001\022\020\n\014MINOR_UPDATE\020\002\022\020\n\014MAJOR_U" +
-      "PDATE\020\003\"3\n\rStartupStatus\022\016\n\nUSER_IN_DB\020\001" +
-      "\022\022\n\016USER_NOT_IN_DB\020\002B2\n\035com.lvl6.mobster" +
-      "s.eventprotosB\021EventStartupProto"
+      "mpleteTime\030\002 \001(\003\022\022\n\ncashStolen\030\003 \001(\005\032x\n\031" +
+      "ReferralNotificationProto\022)\n\010referred\030\001 " +
+      "\001(\0132\027.proto.MinimumUserProto\022\023\n\013recruitT" +
+      "ime\030\002 \001(\003\022\033\n\023cashGivenToReferrer\030\003 \001(\005\032\301" +
+      "\016\n\020StartupConstants\022?\n\025inAppPurchasePack",
+      "ages\030\001 \003(\0132 .proto.InAppPurchasePackageP" +
+      "roto\022\027\n\017maxLevelForUser\030\002 \001(\005\022\034\n\024maxNumO" +
+      "fSingleStruct\030\003 \001(\005\022e\n\025animatedSpriteOff" +
+      "sets\030\004 \003(\0132F.proto.StartupResponseProto." +
+      "StartupConstants.AnimatedSpriteOffsetPro" +
+      "to\022\025\n\rminNameLength\030\005 \001(\005\022\025\n\rmaxNameLeng" +
+      "th\030\006 \001(\005\022\035\n\025maxLengthOfChatString\030\007 \001(\005\022" +
+      "Q\n\rclanConstants\030\010 \001(\0132:.proto.StartupRe" +
+      "sponseProto.StartupConstants.ClanConstan" +
+      "ts\022g\n\030downloadableNibConstants\030\t \001(\0132E.p",
+      "roto.StartupResponseProto.StartupConstan" +
+      "ts.DownloadableNibConstants\022\'\n\037numHoursB" +
+      "eforeReshowingGoldSale\030\n \001(\005\022\036\n\026levelToS" +
+      "howRateUsPopup\030\013 \001(\005\022\\\n\022touramentConstan" +
+      "ts\030\014 \001(\0132@.proto.StartupResponseProto.St" +
+      "artupConstants.TournamentConstants\022\037\n\027fb" +
+      "ConnectRewardDiamonds\030\r \001(\005\022\023\n\013faqFileNa" +
+      "me\030\016 \001(\t\0223\n\022adminChatUserProto\030\017 \001(\0132\027.p" +
+      "roto.MinimumUserProto\022\037\n\027numBeginnerSale" +
+      "sAllowed\030\020 \001(\005\022_\n\024userMonsterConstants\030\021",
+      " \001(\0132A.proto.StartupResponseProto.Startu" +
+      "pConstants.UserMonsterConstants\022W\n\020monst" +
+      "erConstants\030\022 \001(\0132=.proto.StartupRespons" +
+      "eProto.StartupConstants.MonsterConstants" +
+      "\022\025\n\rminutesPerGem\030\023 \001(\002\022\031\n\021pvpRequiredMi" +
+      "nLvl\030\024 \001(\005\032V\n\031AnimatedSpriteOffsetProto\022" +
+      "\021\n\timageName\030\001 \001(\t\022&\n\006offSet\030\002 \001(\0132\026.pro" +
+      "to.CoordinateProto\032\232\001\n\rClanConstants\022\035\n\025" +
+      "coinPriceToCreateClan\030\001 \001(\005\022 \n\030maxCharLe" +
+      "ngthForClanName\030\002 \001(\005\022\'\n\037maxCharLengthFo",
+      "rClanDescription\030\003 \001(\005\022\037\n\027maxCharLengthF" +
+      "orClanTag\030\004 \001(\005\032c\n\030DownloadableNibConsta" +
+      "nts\022\022\n\nmapNibName\030\001 \001(\t\022\030\n\020expansionNibN" +
+      "ame\030\002 \001(\t\022\031\n\021goldShoppeNibName\030\003 \001(\t\032y\n\023" +
+      "TournamentConstants\022\022\n\nwinsWeight\030\001 \001(\005\022" +
+      "\024\n\014lossesWeight\030\002 \001(\005\022\023\n\013fleesWeight\030\003 \001" +
+      "(\005\022#\n\033numHoursToShowAfterEventEnd\030\004 \001(\005\032" +
+      "\304\001\n\024UserMonsterConstants\022\027\n\017maxNumTeamSl" +
+      "ots\030\001 \001(\005\022!\n\031initialMaxNumMonsterLimit\030\002" +
+      " \001(\005\022\'\n\037monsterInventoryIncrementAmount\030",
+      "\003 \001(\005\022\027\n\017gemPricePerSlot\030\004 \001(\005\022.\n&numFri" +
+      "endsToRecruitToIncreaseInventory\030\005 \001(\005\032\211" +
+      "\001\n\020MonsterConstants\022\032\n\022cashPerHealthPoin" +
+      "t\030\001 \001(\002\022#\n\033secondsToHealPerHealthPoint\030\002" +
+      " \001(\002\022\031\n\021elementalStrength\030\003 \001(\002\022\031\n\021eleme" +
+      "ntalWeakness\030\004 \001(\002\"A\n\014UpdateStatus\022\r\n\tNO" +
+      "_UPDATE\020\001\022\020\n\014MINOR_UPDATE\020\002\022\020\n\014MAJOR_UPD" +
+      "ATE\020\003\"3\n\rStartupStatus\022\016\n\nUSER_IN_DB\020\001\022\022" +
+      "\n\016USER_NOT_IN_DB\020\002B2\n\035com.lvl6.mobsters." +
+      "eventprotosB\021EventStartupProto"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -12953,7 +12953,7 @@ public final class EventStartupProto {
           internal_static_proto_StartupResponseProto_AttackedNotificationProto_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_proto_StartupResponseProto_AttackedNotificationProto_descriptor,
-              new java.lang.String[] { "Attacker", "BattleCompleteTime", "CoinsStolen", },
+              new java.lang.String[] { "Attacker", "BattleCompleteTime", "CashStolen", },
               com.lvl6.mobsters.eventprotos.EventStartupProto.StartupResponseProto.AttackedNotificationProto.class,
               com.lvl6.mobsters.eventprotos.EventStartupProto.StartupResponseProto.AttackedNotificationProto.Builder.class);
           internal_static_proto_StartupResponseProto_ReferralNotificationProto_descriptor =
@@ -12961,7 +12961,7 @@ public final class EventStartupProto {
           internal_static_proto_StartupResponseProto_ReferralNotificationProto_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_proto_StartupResponseProto_ReferralNotificationProto_descriptor,
-              new java.lang.String[] { "Referred", "RecruitTime", "CoinsGivenToReferrer", },
+              new java.lang.String[] { "Referred", "RecruitTime", "CashGivenToReferrer", },
               com.lvl6.mobsters.eventprotos.EventStartupProto.StartupResponseProto.ReferralNotificationProto.class,
               com.lvl6.mobsters.eventprotos.EventStartupProto.StartupResponseProto.ReferralNotificationProto.Builder.class);
           internal_static_proto_StartupResponseProto_StartupConstants_descriptor =

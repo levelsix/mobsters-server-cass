@@ -21,9 +21,9 @@ public final class EventReferralProto {
     com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto getReferredPlayer();
     com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProtoOrBuilder getReferredPlayerOrBuilder();
     
-    // optional int32 coinsGivenToReferrer = 3;
-    boolean hasCoinsGivenToReferrer();
-    int getCoinsGivenToReferrer();
+    // optional int32 cashGivenToReferrer = 3;
+    boolean hasCashGivenToReferrer();
+    int getCashGivenToReferrer();
   }
   public static final class ReferralCodeUsedResponseProto extends
       com.google.protobuf.GeneratedMessage
@@ -80,20 +80,20 @@ public final class EventReferralProto {
       return referredPlayer_;
     }
     
-    // optional int32 coinsGivenToReferrer = 3;
-    public static final int COINSGIVENTOREFERRER_FIELD_NUMBER = 3;
-    private int coinsGivenToReferrer_;
-    public boolean hasCoinsGivenToReferrer() {
+    // optional int32 cashGivenToReferrer = 3;
+    public static final int CASHGIVENTOREFERRER_FIELD_NUMBER = 3;
+    private int cashGivenToReferrer_;
+    public boolean hasCashGivenToReferrer() {
       return ((bitField0_ & 0x00000004) == 0x00000004);
     }
-    public int getCoinsGivenToReferrer() {
-      return coinsGivenToReferrer_;
+    public int getCashGivenToReferrer() {
+      return cashGivenToReferrer_;
     }
     
     private void initFields() {
       sender_ = com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto.getDefaultInstance();
       referredPlayer_ = com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto.getDefaultInstance();
-      coinsGivenToReferrer_ = 0;
+      cashGivenToReferrer_ = 0;
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -114,7 +114,7 @@ public final class EventReferralProto {
         output.writeMessage(2, referredPlayer_);
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
-        output.writeInt32(3, coinsGivenToReferrer_);
+        output.writeInt32(3, cashGivenToReferrer_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -135,7 +135,7 @@ public final class EventReferralProto {
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(3, coinsGivenToReferrer_);
+          .computeInt32Size(3, cashGivenToReferrer_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -275,7 +275,7 @@ public final class EventReferralProto {
           referredPlayerBuilder_.clear();
         }
         bitField0_ = (bitField0_ & ~0x00000002);
-        coinsGivenToReferrer_ = 0;
+        cashGivenToReferrer_ = 0;
         bitField0_ = (bitField0_ & ~0x00000004);
         return this;
       }
@@ -334,7 +334,7 @@ public final class EventReferralProto {
         if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
           to_bitField0_ |= 0x00000004;
         }
-        result.coinsGivenToReferrer_ = coinsGivenToReferrer_;
+        result.cashGivenToReferrer_ = cashGivenToReferrer_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -357,8 +357,8 @@ public final class EventReferralProto {
         if (other.hasReferredPlayer()) {
           mergeReferredPlayer(other.getReferredPlayer());
         }
-        if (other.hasCoinsGivenToReferrer()) {
-          setCoinsGivenToReferrer(other.getCoinsGivenToReferrer());
+        if (other.hasCashGivenToReferrer()) {
+          setCashGivenToReferrer(other.getCashGivenToReferrer());
         }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
@@ -411,7 +411,7 @@ public final class EventReferralProto {
             }
             case 24: {
               bitField0_ |= 0x00000004;
-              coinsGivenToReferrer_ = input.readInt32();
+              cashGivenToReferrer_ = input.readInt32();
               break;
             }
           }
@@ -600,23 +600,23 @@ public final class EventReferralProto {
         return referredPlayerBuilder_;
       }
       
-      // optional int32 coinsGivenToReferrer = 3;
-      private int coinsGivenToReferrer_ ;
-      public boolean hasCoinsGivenToReferrer() {
+      // optional int32 cashGivenToReferrer = 3;
+      private int cashGivenToReferrer_ ;
+      public boolean hasCashGivenToReferrer() {
         return ((bitField0_ & 0x00000004) == 0x00000004);
       }
-      public int getCoinsGivenToReferrer() {
-        return coinsGivenToReferrer_;
+      public int getCashGivenToReferrer() {
+        return cashGivenToReferrer_;
       }
-      public Builder setCoinsGivenToReferrer(int value) {
+      public Builder setCashGivenToReferrer(int value) {
         bitField0_ |= 0x00000004;
-        coinsGivenToReferrer_ = value;
+        cashGivenToReferrer_ = value;
         onChanged();
         return this;
       }
-      public Builder clearCoinsGivenToReferrer() {
+      public Builder clearCashGivenToReferrer() {
         bitField0_ = (bitField0_ & ~0x00000004);
-        coinsGivenToReferrer_ = 0;
+        cashGivenToReferrer_ = 0;
         onChanged();
         return this;
       }
@@ -647,12 +647,12 @@ public final class EventReferralProto {
   static {
     java.lang.String[] descriptorData = {
       "\n\023EventReferral.proto\022\005proto\032\nUser.proto" +
-      "\"\227\001\n\035ReferralCodeUsedResponseProto\022\'\n\006se" +
+      "\"\226\001\n\035ReferralCodeUsedResponseProto\022\'\n\006se" +
       "nder\030\001 \001(\0132\027.proto.MinimumUserProto\022/\n\016r" +
       "eferredPlayer\030\002 \001(\0132\027.proto.MinimumUserP" +
-      "roto\022\034\n\024coinsGivenToReferrer\030\003 \001(\005B3\n\035co" +
-      "m.lvl6.mobsters.eventprotosB\022EventReferr" +
-      "alProto"
+      "roto\022\033\n\023cashGivenToReferrer\030\003 \001(\005B3\n\035com" +
+      ".lvl6.mobsters.eventprotosB\022EventReferra" +
+      "lProto"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -664,7 +664,7 @@ public final class EventReferralProto {
           internal_static_proto_ReferralCodeUsedResponseProto_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_proto_ReferralCodeUsedResponseProto_descriptor,
-              new java.lang.String[] { "Sender", "ReferredPlayer", "CoinsGivenToReferrer", },
+              new java.lang.String[] { "Sender", "ReferredPlayer", "CashGivenToReferrer", },
               com.lvl6.mobsters.eventprotos.EventReferralProto.ReferralCodeUsedResponseProto.class,
               com.lvl6.mobsters.eventprotos.EventReferralProto.ReferralCodeUsedResponseProto.Builder.class);
           return null;

@@ -12,7 +12,7 @@ option java_outer_classname = "EventReferralProto";
 message ReferralCodeUsedResponseProto {
 	optional MinimumUserProto sender = 1;
 	optional MinimumUserProto referredPlayer = 2;
-	optional int32 coinsGivenToReferrer = 3;
+	optional int32 cashGivenToReferrer = 3;
 }
 
 //------------------------------------------------------------------------------------------

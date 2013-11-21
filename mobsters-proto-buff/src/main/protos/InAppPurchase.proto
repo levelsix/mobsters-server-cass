@@ -37,7 +37,7 @@ message GoldSaleProto {
 
 //------------------------------------------------------------------------------------------
 
-enum EarnFreeDiamondsType {
+enum EarnFreeGemsType {
 	FB_CONNECT = 1;
 	TAPJOY = 2;
 	FLURRY_VIDEO = 3;
