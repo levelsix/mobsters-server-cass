@@ -21,8 +21,6 @@ import com.lvl6.mobsters.po.Equipment;
 import com.lvl6.mobsters.po.UserEquip;
 import com.lvl6.mobsters.po.UserEquipRepair;
 
-import com.netflix.astyanax.*;
-
 @Component
 public class UserEquipRepairServiceImpl implements UserEquipRepairService {
 	
@@ -97,9 +95,6 @@ public class UserEquipRepairServiceImpl implements UserEquipRepairService {
 			queuedEquipsList.add(uer);
 		}
 		
-		Keyspace k;
-		k.prepareCqlStatement()
-		
 		int secondsRemaining = 0;
 		for(UserEquipRepair uer2 : queuedEquipsList) {
 			double durabilityTimeConstant = getEquipmentCorrespondingToUserEquipRepair(uer2).getDurabilityFixTimeConstant();
@@ -140,7 +135,7 @@ public class UserEquipRepairServiceImpl implements UserEquipRepairService {
 
 	private  void setStaticIdsToUserEquipRepairs() {
 		log.debug("setting  map of UserEquipRepairIds to UserEquipRepairs");
-		
+
 		String cqlquery = "select * from user_equip_repair;"; 
 		List <UserEquipRepair> list = getUserEquipRepairEntityManager().get().find(cqlquery);
 		idsToUserEquipRepairs = new HashMap<UUID, UserEquipRepair>();
