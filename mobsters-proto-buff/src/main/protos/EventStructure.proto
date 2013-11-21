@@ -158,7 +158,7 @@ message RetrieveCurrencyFromNormStructureRequestProto {
 	repeated StructRetrieval structRetrievals = 2;
 	
 	message StructRetrieval {
-		optional int32 userStructId = 1;
+		optional string userStructUuid = 1;
 		optional int64 timeOfRetrieval = 2;
 	}
 }
