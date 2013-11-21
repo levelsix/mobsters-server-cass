@@ -68,7 +68,10 @@ public interface MonsterForUserService {
 	public abstract void saveUserMonsters(List<MonsterForUser> mfuList, Date combineDate,
 			String additionalSop);
 	
+	//DELETING STUFF
+	public abstract void deleteUserMonster(UUID deleteUserMonsterUuid);
 	
+	public abstract void deleteUserMonsters(List<UUID> deleteUserMonstersList);
 	
 	
 	//for the setter dependency injection or something

@@ -538,6 +538,16 @@ public class MonsterForUserServiceImpl implements MonsterForUserService {
 		log.info("saved mfuList");
 	}
 	
+	// DELETING STUFF
+	
+	public void deleteUserMonster(UUID deleteUserMonsterUuid) {
+		getMonsterForUserEntityManager().get().delete(deleteUserMonsterUuid);
+	}
+	
+	public void deleteUserMonsters(List<UUID> deleteUserMonstersList) {
+		getMonsterForUserEntityManager().get().delete(deleteUserMonstersList);
+	}
+	
 	
 	
 	
