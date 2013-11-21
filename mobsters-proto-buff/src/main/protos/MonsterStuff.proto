@@ -8,7 +8,7 @@ option java_outer_classname = "MonsterStuffProto";
 //DO NOT USE ID AS THE NAME OF A PROPERTY IN ANY PROTO
 
 message MonsterProto {
-	optional string monsterUuid = 1;
+	optional int32 monsterId = 1;
 	optional string name = 2; //for grouping purposes
 	optional string monsterGroup = 3;
 	optional MonsterQuality quality = 4;
@@ -56,7 +56,7 @@ message MonsterProto {
 message FullUserMonsterProto {
 	optional string userMonsterUuid = 1;
 	optional string userUuid = 2;
-	optional string monsterUuid = 3;
+	optional int32 monsterId = 3;
 	optional int32 currentExp = 4;
 	optional int32 currentLvl = 5;
 	optional int32 currentHealth = 6;

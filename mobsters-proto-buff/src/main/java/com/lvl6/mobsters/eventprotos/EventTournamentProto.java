@@ -16,9 +16,9 @@ public final class EventTournamentProto {
     com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto getSender();
     com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProtoOrBuilder getSenderOrBuilder();
     
-    // optional string eventUuid = 2;
-    boolean hasEventUuid();
-    String getEventUuid();
+    // optional int32 eventId = 2;
+    boolean hasEventId();
+    int getEventId();
     
     // optional int32 afterThisRank = 3;
     boolean hasAfterThisRank();
@@ -66,36 +66,14 @@ public final class EventTournamentProto {
       return sender_;
     }
     
-    // optional string eventUuid = 2;
-    public static final int EVENTUUID_FIELD_NUMBER = 2;
-    private java.lang.Object eventUuid_;
-    public boolean hasEventUuid() {
+    // optional int32 eventId = 2;
+    public static final int EVENTID_FIELD_NUMBER = 2;
+    private int eventId_;
+    public boolean hasEventId() {
       return ((bitField0_ & 0x00000002) == 0x00000002);
     }
-    public String getEventUuid() {
-      java.lang.Object ref = eventUuid_;
-      if (ref instanceof String) {
-        return (String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        String s = bs.toStringUtf8();
-        if (com.google.protobuf.Internal.isValidUtf8(bs)) {
-          eventUuid_ = s;
-        }
-        return s;
-      }
-    }
-    private com.google.protobuf.ByteString getEventUuidBytes() {
-      java.lang.Object ref = eventUuid_;
-      if (ref instanceof String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8((String) ref);
-        eventUuid_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
+    public int getEventId() {
+      return eventId_;
     }
     
     // optional int32 afterThisRank = 3;
@@ -110,7 +88,7 @@ public final class EventTournamentProto {
     
     private void initFields() {
       sender_ = com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto.getDefaultInstance();
-      eventUuid_ = "";
+      eventId_ = 0;
       afterThisRank_ = 0;
     }
     private byte memoizedIsInitialized = -1;
@@ -129,7 +107,7 @@ public final class EventTournamentProto {
         output.writeMessage(1, sender_);
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        output.writeBytes(2, getEventUuidBytes());
+        output.writeInt32(2, eventId_);
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
         output.writeInt32(3, afterThisRank_);
@@ -149,7 +127,7 @@ public final class EventTournamentProto {
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(2, getEventUuidBytes());
+          .computeInt32Size(2, eventId_);
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
         size += com.google.protobuf.CodedOutputStream
@@ -286,7 +264,7 @@ public final class EventTournamentProto {
           senderBuilder_.clear();
         }
         bitField0_ = (bitField0_ & ~0x00000001);
-        eventUuid_ = "";
+        eventId_ = 0;
         bitField0_ = (bitField0_ & ~0x00000002);
         afterThisRank_ = 0;
         bitField0_ = (bitField0_ & ~0x00000004);
@@ -339,7 +317,7 @@ public final class EventTournamentProto {
         if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
           to_bitField0_ |= 0x00000002;
         }
-        result.eventUuid_ = eventUuid_;
+        result.eventId_ = eventId_;
         if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
           to_bitField0_ |= 0x00000004;
         }
@@ -363,8 +341,8 @@ public final class EventTournamentProto {
         if (other.hasSender()) {
           mergeSender(other.getSender());
         }
-        if (other.hasEventUuid()) {
-          setEventUuid(other.getEventUuid());
+        if (other.hasEventId()) {
+          setEventId(other.getEventId());
         }
         if (other.hasAfterThisRank()) {
           setAfterThisRank(other.getAfterThisRank());
@@ -409,9 +387,9 @@ public final class EventTournamentProto {
               setSender(subBuilder.buildPartial());
               break;
             }
-            case 18: {
+            case 16: {
               bitField0_ |= 0x00000002;
-              eventUuid_ = input.readBytes();
+              eventId_ = input.readInt32();
               break;
             }
             case 24: {
@@ -515,40 +493,25 @@ public final class EventTournamentProto {
         return senderBuilder_;
       }
       
-      // optional string eventUuid = 2;
-      private java.lang.Object eventUuid_ = "";
-      public boolean hasEventUuid() {
+      // optional int32 eventId = 2;
+      private int eventId_ ;
+      public boolean hasEventId() {
         return ((bitField0_ & 0x00000002) == 0x00000002);
       }
-      public String getEventUuid() {
-        java.lang.Object ref = eventUuid_;
-        if (!(ref instanceof String)) {
-          String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
-          eventUuid_ = s;
-          return s;
-        } else {
-          return (String) ref;
-        }
+      public int getEventId() {
+        return eventId_;
       }
-      public Builder setEventUuid(String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000002;
-        eventUuid_ = value;
-        onChanged();
-        return this;
-      }
-      public Builder clearEventUuid() {
-        bitField0_ = (bitField0_ & ~0x00000002);
-        eventUuid_ = getDefaultInstance().getEventUuid();
-        onChanged();
-        return this;
-      }
-      void setEventUuid(com.google.protobuf.ByteString value) {
+      public Builder setEventId(int value) {
         bitField0_ |= 0x00000002;
-        eventUuid_ = value;
+        eventId_ = value;
         onChanged();
+        return this;
+      }
+      public Builder clearEventId() {
+        bitField0_ = (bitField0_ & ~0x00000002);
+        eventId_ = 0;
+        onChanged();
+        return this;
       }
       
       // optional int32 afterThisRank = 3;
@@ -595,9 +558,9 @@ public final class EventTournamentProto {
     boolean hasStatus();
     com.lvl6.mobsters.eventprotos.EventTournamentProto.RetrieveTournamentRankingsResponseProto.RetrieveTournamentStatus getStatus();
     
-    // optional string eventUuid = 3;
-    boolean hasEventUuid();
-    String getEventUuid();
+    // optional int32 eventId = 3;
+    boolean hasEventId();
+    int getEventId();
     
     // optional int32 afterThisRank = 4;
     boolean hasAfterThisRank();
@@ -749,36 +712,14 @@ public final class EventTournamentProto {
       return status_;
     }
     
-    // optional string eventUuid = 3;
-    public static final int EVENTUUID_FIELD_NUMBER = 3;
-    private java.lang.Object eventUuid_;
-    public boolean hasEventUuid() {
+    // optional int32 eventId = 3;
+    public static final int EVENTID_FIELD_NUMBER = 3;
+    private int eventId_;
+    public boolean hasEventId() {
       return ((bitField0_ & 0x00000004) == 0x00000004);
     }
-    public String getEventUuid() {
-      java.lang.Object ref = eventUuid_;
-      if (ref instanceof String) {
-        return (String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        String s = bs.toStringUtf8();
-        if (com.google.protobuf.Internal.isValidUtf8(bs)) {
-          eventUuid_ = s;
-        }
-        return s;
-      }
-    }
-    private com.google.protobuf.ByteString getEventUuidBytes() {
-      java.lang.Object ref = eventUuid_;
-      if (ref instanceof String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8((String) ref);
-        eventUuid_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
+    public int getEventId() {
+      return eventId_;
     }
     
     // optional int32 afterThisRank = 4;
@@ -849,7 +790,7 @@ public final class EventTournamentProto {
     private void initFields() {
       sender_ = com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto.getDefaultInstance();
       status_ = com.lvl6.mobsters.eventprotos.EventTournamentProto.RetrieveTournamentRankingsResponseProto.RetrieveTournamentStatus.SUCCESS;
-      eventUuid_ = "";
+      eventId_ = 0;
       afterThisRank_ = 0;
       retriever_ = com.lvl6.mobsters.noneventprotos.TournamentStuffProto.MinimumUserProtoWithLevelForTournament.getDefaultInstance();
       resultPlayers_ = java.util.Collections.emptyList();
@@ -874,7 +815,7 @@ public final class EventTournamentProto {
         output.writeEnum(2, status_.getNumber());
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
-        output.writeBytes(3, getEventUuidBytes());
+        output.writeInt32(3, eventId_);
       }
       if (((bitField0_ & 0x00000008) == 0x00000008)) {
         output.writeInt32(4, afterThisRank_);
@@ -907,7 +848,7 @@ public final class EventTournamentProto {
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(3, getEventUuidBytes());
+          .computeInt32Size(3, eventId_);
       }
       if (((bitField0_ & 0x00000008) == 0x00000008)) {
         size += com.google.protobuf.CodedOutputStream
@@ -1061,7 +1002,7 @@ public final class EventTournamentProto {
         bitField0_ = (bitField0_ & ~0x00000001);
         status_ = com.lvl6.mobsters.eventprotos.EventTournamentProto.RetrieveTournamentRankingsResponseProto.RetrieveTournamentStatus.SUCCESS;
         bitField0_ = (bitField0_ & ~0x00000002);
-        eventUuid_ = "";
+        eventId_ = 0;
         bitField0_ = (bitField0_ & ~0x00000004);
         afterThisRank_ = 0;
         bitField0_ = (bitField0_ & ~0x00000008);
@@ -1136,7 +1077,7 @@ public final class EventTournamentProto {
         if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
           to_bitField0_ |= 0x00000004;
         }
-        result.eventUuid_ = eventUuid_;
+        result.eventId_ = eventId_;
         if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
           to_bitField0_ |= 0x00000008;
         }
@@ -1189,8 +1130,8 @@ public final class EventTournamentProto {
         if (other.hasStatus()) {
           setStatus(other.getStatus());
         }
-        if (other.hasEventUuid()) {
-          setEventUuid(other.getEventUuid());
+        if (other.hasEventId()) {
+          setEventId(other.getEventId());
         }
         if (other.hasAfterThisRank()) {
           setAfterThisRank(other.getAfterThisRank());
@@ -1301,9 +1242,9 @@ public final class EventTournamentProto {
               }
               break;
             }
-            case 26: {
+            case 24: {
               bitField0_ |= 0x00000004;
-              eventUuid_ = input.readBytes();
+              eventId_ = input.readInt32();
               break;
             }
             case 32: {
@@ -1452,40 +1393,25 @@ public final class EventTournamentProto {
         return this;
       }
       
-      // optional string eventUuid = 3;
-      private java.lang.Object eventUuid_ = "";
-      public boolean hasEventUuid() {
+      // optional int32 eventId = 3;
+      private int eventId_ ;
+      public boolean hasEventId() {
         return ((bitField0_ & 0x00000004) == 0x00000004);
       }
-      public String getEventUuid() {
-        java.lang.Object ref = eventUuid_;
-        if (!(ref instanceof String)) {
-          String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
-          eventUuid_ = s;
-          return s;
-        } else {
-          return (String) ref;
-        }
+      public int getEventId() {
+        return eventId_;
       }
-      public Builder setEventUuid(String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000004;
-        eventUuid_ = value;
-        onChanged();
-        return this;
-      }
-      public Builder clearEventUuid() {
-        bitField0_ = (bitField0_ & ~0x00000004);
-        eventUuid_ = getDefaultInstance().getEventUuid();
-        onChanged();
-        return this;
-      }
-      void setEventUuid(com.google.protobuf.ByteString value) {
+      public Builder setEventId(int value) {
         bitField0_ |= 0x00000004;
-        eventUuid_ = value;
+        eventId_ = value;
         onChanged();
+        return this;
+      }
+      public Builder clearEventId() {
+        bitField0_ = (bitField0_ & ~0x00000004);
+        eventId_ = 0;
+        onChanged();
+        return this;
       }
       
       // optional int32 afterThisRank = 4;
@@ -2002,23 +1928,23 @@ public final class EventTournamentProto {
   static {
     java.lang.String[] descriptorData = {
       "\n\025EventTournament.proto\022\005proto\032\025Tourname" +
-      "ntStuff.proto\032\nUser.proto\"{\n&RetrieveTou" +
+      "ntStuff.proto\032\nUser.proto\"y\n&RetrieveTou" +
       "rnamentRankingsRequestProto\022\'\n\006sender\030\001 " +
-      "\001(\0132\027.proto.MinimumUserProto\022\021\n\teventUui" +
-      "d\030\002 \001(\t\022\025\n\rafterThisRank\030\003 \001(\005\"\277\003\n\'Retri" +
-      "eveTournamentRankingsResponseProto\022\'\n\006se" +
-      "nder\030\001 \001(\0132\027.proto.MinimumUserProto\022W\n\006s" +
-      "tatus\030\002 \001(\0162G.proto.RetrieveTournamentRa" +
-      "nkingsResponseProto.RetrieveTournamentSt" +
-      "atus\022\021\n\teventUuid\030\003 \001(\t\022\025\n\rafterThisRank",
-      "\030\004 \001(\005\022@\n\tretriever\030\005 \001(\0132-.proto.Minimu" +
-      "mUserProtoWithLevelForTournament\022D\n\rresu" +
-      "ltPlayers\030\006 \003(\0132-.proto.MinimumUserProto" +
-      "WithLevelForTournament\022\'\n\tfullUsers\030\007 \003(" +
-      "\0132\024.proto.FullUserProto\"7\n\030RetrieveTourn" +
-      "amentStatus\022\013\n\007SUCCESS\020\001\022\016\n\nOTHER_FAIL\020\002" +
-      "B5\n\035com.lvl6.mobsters.eventprotosB\024Event" +
-      "TournamentProto"
+      "\001(\0132\027.proto.MinimumUserProto\022\017\n\007eventId\030" +
+      "\002 \001(\005\022\025\n\rafterThisRank\030\003 \001(\005\"\275\003\n\'Retriev" +
+      "eTournamentRankingsResponseProto\022\'\n\006send" +
+      "er\030\001 \001(\0132\027.proto.MinimumUserProto\022W\n\006sta" +
+      "tus\030\002 \001(\0162G.proto.RetrieveTournamentRank" +
+      "ingsResponseProto.RetrieveTournamentStat" +
+      "us\022\017\n\007eventId\030\003 \001(\005\022\025\n\rafterThisRank\030\004 \001",
+      "(\005\022@\n\tretriever\030\005 \001(\0132-.proto.MinimumUse" +
+      "rProtoWithLevelForTournament\022D\n\rresultPl" +
+      "ayers\030\006 \003(\0132-.proto.MinimumUserProtoWith" +
+      "LevelForTournament\022\'\n\tfullUsers\030\007 \003(\0132\024." +
+      "proto.FullUserProto\"7\n\030RetrieveTournamen" +
+      "tStatus\022\013\n\007SUCCESS\020\001\022\016\n\nOTHER_FAIL\020\002B5\n\035" +
+      "com.lvl6.mobsters.eventprotosB\024EventTour" +
+      "namentProto"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -2030,7 +1956,7 @@ public final class EventTournamentProto {
           internal_static_proto_RetrieveTournamentRankingsRequestProto_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_proto_RetrieveTournamentRankingsRequestProto_descriptor,
-              new java.lang.String[] { "Sender", "EventUuid", "AfterThisRank", },
+              new java.lang.String[] { "Sender", "EventId", "AfterThisRank", },
               com.lvl6.mobsters.eventprotos.EventTournamentProto.RetrieveTournamentRankingsRequestProto.class,
               com.lvl6.mobsters.eventprotos.EventTournamentProto.RetrieveTournamentRankingsRequestProto.Builder.class);
           internal_static_proto_RetrieveTournamentRankingsResponseProto_descriptor =
@@ -2038,7 +1964,7 @@ public final class EventTournamentProto {
           internal_static_proto_RetrieveTournamentRankingsResponseProto_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_proto_RetrieveTournamentRankingsResponseProto_descriptor,
-              new java.lang.String[] { "Sender", "Status", "EventUuid", "AfterThisRank", "Retriever", "ResultPlayers", "FullUsers", },
+              new java.lang.String[] { "Sender", "Status", "EventId", "AfterThisRank", "Retriever", "ResultPlayers", "FullUsers", },
               com.lvl6.mobsters.eventprotos.EventTournamentProto.RetrieveTournamentRankingsResponseProto.class,
               com.lvl6.mobsters.eventprotos.EventTournamentProto.RetrieveTournamentRankingsResponseProto.Builder.class);
           return null;

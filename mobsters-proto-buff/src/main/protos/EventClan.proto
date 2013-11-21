@@ -159,7 +159,7 @@ message RetrieveClanInfoResponseProto {
 	optional bool isForBrowsingList = 6;
 	optional string clanUuiId = 7;
 	optional string clanName = 8;
-	optional int32 beforeThisClanId = 9;
+	optional string excludingThisClanUuid = 9;
 	
 	
 	enum RetrieveClanInfoStatus {
@@ -172,7 +172,7 @@ message RetrieveClanInfoResponseProto {
 
 message TransferClanOwnershipRequestProto {
 	optional MinimumUserProto sender = 1;
-	optional string newClanOwnerUuid = 2;
+	optional string clanOwnerUuidNew = 2;
 }
 
 message TransferClanOwnershipResponseProto {

@@ -11,9 +11,9 @@ public final class MonsterStuffProto {
   public interface MonsterProtoOrBuilder
       extends com.google.protobuf.MessageOrBuilder {
     
-    // optional string monsterUuid = 1;
-    boolean hasMonsterUuid();
-    String getMonsterUuid();
+    // optional int32 monsterId = 1;
+    boolean hasMonsterId();
+    int getMonsterId();
     
     // optional string name = 2;
     boolean hasName();
@@ -292,36 +292,14 @@ public final class MonsterStuffProto {
     }
     
     private int bitField0_;
-    // optional string monsterUuid = 1;
-    public static final int MONSTERUUID_FIELD_NUMBER = 1;
-    private java.lang.Object monsterUuid_;
-    public boolean hasMonsterUuid() {
+    // optional int32 monsterId = 1;
+    public static final int MONSTERID_FIELD_NUMBER = 1;
+    private int monsterId_;
+    public boolean hasMonsterId() {
       return ((bitField0_ & 0x00000001) == 0x00000001);
     }
-    public String getMonsterUuid() {
-      java.lang.Object ref = monsterUuid_;
-      if (ref instanceof String) {
-        return (String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        String s = bs.toStringUtf8();
-        if (com.google.protobuf.Internal.isValidUtf8(bs)) {
-          monsterUuid_ = s;
-        }
-        return s;
-      }
-    }
-    private com.google.protobuf.ByteString getMonsterUuidBytes() {
-      java.lang.Object ref = monsterUuid_;
-      if (ref instanceof String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8((String) ref);
-        monsterUuid_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
+    public int getMonsterId() {
+      return monsterId_;
     }
     
     // optional string name = 2;
@@ -731,7 +709,7 @@ public final class MonsterStuffProto {
     }
     
     private void initFields() {
-      monsterUuid_ = "";
+      monsterId_ = 0;
       name_ = "";
       monsterGroup_ = "";
       quality_ = com.lvl6.mobsters.noneventprotos.MonsterStuffProto.MonsterProto.MonsterQuality.COMMON;
@@ -769,7 +747,7 @@ public final class MonsterStuffProto {
                         throws java.io.IOException {
       getSerializedSize();
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        output.writeBytes(1, getMonsterUuidBytes());
+        output.writeInt32(1, monsterId_);
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         output.writeBytes(2, getNameBytes());
@@ -851,7 +829,7 @@ public final class MonsterStuffProto {
       size = 0;
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(1, getMonsterUuidBytes());
+          .computeInt32Size(1, monsterId_);
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         size += com.google.protobuf.CodedOutputStream
@@ -1069,7 +1047,7 @@ public final class MonsterStuffProto {
       
       public Builder clear() {
         super.clear();
-        monsterUuid_ = "";
+        monsterId_ = 0;
         bitField0_ = (bitField0_ & ~0x00000001);
         name_ = "";
         bitField0_ = (bitField0_ & ~0x00000002);
@@ -1158,7 +1136,7 @@ public final class MonsterStuffProto {
         if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
           to_bitField0_ |= 0x00000001;
         }
-        result.monsterUuid_ = monsterUuid_;
+        result.monsterId_ = monsterId_;
         if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
           to_bitField0_ |= 0x00000002;
         }
@@ -1267,8 +1245,8 @@ public final class MonsterStuffProto {
       
       public Builder mergeFrom(com.lvl6.mobsters.noneventprotos.MonsterStuffProto.MonsterProto other) {
         if (other == com.lvl6.mobsters.noneventprotos.MonsterStuffProto.MonsterProto.getDefaultInstance()) return this;
-        if (other.hasMonsterUuid()) {
-          setMonsterUuid(other.getMonsterUuid());
+        if (other.hasMonsterId()) {
+          setMonsterId(other.getMonsterId());
         }
         if (other.hasName()) {
           setName(other.getName());
@@ -1370,9 +1348,9 @@ public final class MonsterStuffProto {
               }
               break;
             }
-            case 10: {
+            case 8: {
               bitField0_ |= 0x00000001;
-              monsterUuid_ = input.readBytes();
+              monsterId_ = input.readInt32();
               break;
             }
             case 18: {
@@ -1508,40 +1486,25 @@ public final class MonsterStuffProto {
       
       private int bitField0_;
       
-      // optional string monsterUuid = 1;
-      private java.lang.Object monsterUuid_ = "";
-      public boolean hasMonsterUuid() {
+      // optional int32 monsterId = 1;
+      private int monsterId_ ;
+      public boolean hasMonsterId() {
         return ((bitField0_ & 0x00000001) == 0x00000001);
       }
-      public String getMonsterUuid() {
-        java.lang.Object ref = monsterUuid_;
-        if (!(ref instanceof String)) {
-          String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
-          monsterUuid_ = s;
-          return s;
-        } else {
-          return (String) ref;
-        }
+      public int getMonsterId() {
+        return monsterId_;
       }
-      public Builder setMonsterUuid(String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000001;
-        monsterUuid_ = value;
-        onChanged();
-        return this;
-      }
-      public Builder clearMonsterUuid() {
-        bitField0_ = (bitField0_ & ~0x00000001);
-        monsterUuid_ = getDefaultInstance().getMonsterUuid();
-        onChanged();
-        return this;
-      }
-      void setMonsterUuid(com.google.protobuf.ByteString value) {
+      public Builder setMonsterId(int value) {
         bitField0_ |= 0x00000001;
-        monsterUuid_ = value;
+        monsterId_ = value;
         onChanged();
+        return this;
+      }
+      public Builder clearMonsterId() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        monsterId_ = 0;
+        onChanged();
+        return this;
       }
       
       // optional string name = 2;
@@ -2175,9 +2138,9 @@ public final class MonsterStuffProto {
     boolean hasUserUuid();
     String getUserUuid();
     
-    // optional string monsterUuid = 3;
-    boolean hasMonsterUuid();
-    String getMonsterUuid();
+    // optional int32 monsterId = 3;
+    boolean hasMonsterId();
+    int getMonsterId();
     
     // optional int32 currentExp = 4;
     boolean hasCurrentExp();
@@ -2300,36 +2263,14 @@ public final class MonsterStuffProto {
       }
     }
     
-    // optional string monsterUuid = 3;
-    public static final int MONSTERUUID_FIELD_NUMBER = 3;
-    private java.lang.Object monsterUuid_;
-    public boolean hasMonsterUuid() {
+    // optional int32 monsterId = 3;
+    public static final int MONSTERID_FIELD_NUMBER = 3;
+    private int monsterId_;
+    public boolean hasMonsterId() {
       return ((bitField0_ & 0x00000004) == 0x00000004);
     }
-    public String getMonsterUuid() {
-      java.lang.Object ref = monsterUuid_;
-      if (ref instanceof String) {
-        return (String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        String s = bs.toStringUtf8();
-        if (com.google.protobuf.Internal.isValidUtf8(bs)) {
-          monsterUuid_ = s;
-        }
-        return s;
-      }
-    }
-    private com.google.protobuf.ByteString getMonsterUuidBytes() {
-      java.lang.Object ref = monsterUuid_;
-      if (ref instanceof String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8((String) ref);
-        monsterUuid_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
+    public int getMonsterId() {
+      return monsterId_;
     }
     
     // optional int32 currentExp = 4;
@@ -2405,7 +2346,7 @@ public final class MonsterStuffProto {
     private void initFields() {
       userMonsterUuid_ = "";
       userUuid_ = "";
-      monsterUuid_ = "";
+      monsterId_ = 0;
       currentExp_ = 0;
       currentLvl_ = 0;
       currentHealth_ = 0;
@@ -2433,7 +2374,7 @@ public final class MonsterStuffProto {
         output.writeBytes(2, getUserUuidBytes());
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
-        output.writeBytes(3, getMonsterUuidBytes());
+        output.writeInt32(3, monsterId_);
       }
       if (((bitField0_ & 0x00000008) == 0x00000008)) {
         output.writeInt32(4, currentExp_);
@@ -2475,7 +2416,7 @@ public final class MonsterStuffProto {
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(3, getMonsterUuidBytes());
+          .computeInt32Size(3, monsterId_);
       }
       if (((bitField0_ & 0x00000008) == 0x00000008)) {
         size += com.google.protobuf.CodedOutputStream
@@ -2633,7 +2574,7 @@ public final class MonsterStuffProto {
         bitField0_ = (bitField0_ & ~0x00000001);
         userUuid_ = "";
         bitField0_ = (bitField0_ & ~0x00000002);
-        monsterUuid_ = "";
+        monsterId_ = 0;
         bitField0_ = (bitField0_ & ~0x00000004);
         currentExp_ = 0;
         bitField0_ = (bitField0_ & ~0x00000008);
@@ -2698,7 +2639,7 @@ public final class MonsterStuffProto {
         if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
           to_bitField0_ |= 0x00000004;
         }
-        result.monsterUuid_ = monsterUuid_;
+        result.monsterId_ = monsterId_;
         if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
           to_bitField0_ |= 0x00000008;
         }
@@ -2749,8 +2690,8 @@ public final class MonsterStuffProto {
         if (other.hasUserUuid()) {
           setUserUuid(other.getUserUuid());
         }
-        if (other.hasMonsterUuid()) {
-          setMonsterUuid(other.getMonsterUuid());
+        if (other.hasMonsterId()) {
+          setMonsterId(other.getMonsterId());
         }
         if (other.hasCurrentExp()) {
           setCurrentExp(other.getCurrentExp());
@@ -2814,9 +2755,9 @@ public final class MonsterStuffProto {
               userUuid_ = input.readBytes();
               break;
             }
-            case 26: {
+            case 24: {
               bitField0_ |= 0x00000004;
-              monsterUuid_ = input.readBytes();
+              monsterId_ = input.readInt32();
               break;
             }
             case 32: {
@@ -2932,40 +2873,25 @@ public final class MonsterStuffProto {
         onChanged();
       }
       
-      // optional string monsterUuid = 3;
-      private java.lang.Object monsterUuid_ = "";
-      public boolean hasMonsterUuid() {
+      // optional int32 monsterId = 3;
+      private int monsterId_ ;
+      public boolean hasMonsterId() {
         return ((bitField0_ & 0x00000004) == 0x00000004);
       }
-      public String getMonsterUuid() {
-        java.lang.Object ref = monsterUuid_;
-        if (!(ref instanceof String)) {
-          String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
-          monsterUuid_ = s;
-          return s;
-        } else {
-          return (String) ref;
-        }
+      public int getMonsterId() {
+        return monsterId_;
       }
-      public Builder setMonsterUuid(String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000004;
-        monsterUuid_ = value;
-        onChanged();
-        return this;
-      }
-      public Builder clearMonsterUuid() {
-        bitField0_ = (bitField0_ & ~0x00000004);
-        monsterUuid_ = getDefaultInstance().getMonsterUuid();
-        onChanged();
-        return this;
-      }
-      void setMonsterUuid(com.google.protobuf.ByteString value) {
+      public Builder setMonsterId(int value) {
         bitField0_ |= 0x00000004;
-        monsterUuid_ = value;
+        monsterId_ = value;
         onChanged();
+        return this;
+      }
+      public Builder clearMonsterId() {
+        bitField0_ = (bitField0_ & ~0x00000004);
+        monsterId_ = 0;
+        onChanged();
+        return this;
       }
       
       // optional int32 currentExp = 4;
@@ -6930,52 +6856,52 @@ public final class MonsterStuffProto {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\022MonsterStuff.proto\022\005proto\"\223\006\n\014MonsterP" +
-      "roto\022\023\n\013monsterUuid\030\001 \001(\t\022\014\n\004name\030\002 \001(\t\022" +
-      "\024\n\014monsterGroup\030\003 \001(\t\0223\n\007quality\030\004 \001(\0162\"" +
-      ".proto.MonsterProto.MonsterQuality\022\026\n\016ev" +
-      "olutionLevel\030\005 \001(\005\022\023\n\013displayName\030\006 \001(\t\022" +
-      "3\n\007element\030\007 \001(\0162\".proto.MonsterProto.Mo" +
-      "nsterElement\022\016\n\006baseHp\030\010 \001(\005\022\023\n\013imagePre" +
-      "fix\030\t \001(\t\022\027\n\017numPuzzlePieces\030\n \001(\005\022\036\n\026mi" +
-      "nutesToCombinePieces\030\013 \001(\005\022\025\n\relementOne" +
-      "Dmg\030\014 \001(\005\022\025\n\relementTwoDmg\030\r \001(\005\022\027\n\017elem",
-      "entThreeDmg\030\016 \001(\005\022\026\n\016elementFourDmg\030\017 \001(" +
-      "\005\022\026\n\016elementFiveDmg\030\020 \001(\005\022\031\n\021hpLevelMult" +
-      "iplier\030\021 \001(\002\022\035\n\025attackLevelMultiplier\030\022 " +
-      "\001(\002\022\020\n\010maxLevel\030\023 \001(\005\022\032\n\022evolutionMonste" +
-      "rId\030\024 \001(\005\022\027\n\017carrotRecruited\030\025 \001(\t\022\026\n\016ca" +
-      "rrotDefeated\030\026 \001(\t\022\025\n\rcarrotEvolved\030\027 \001(" +
-      "\t\022\023\n\013description\030\030 \001(\t\"J\n\016MonsterQuality" +
-      "\022\n\n\006COMMON\020\001\022\010\n\004RARE\020\002\022\t\n\005ULTRA\020\003\022\010\n\004EPI" +
-      "C\020\004\022\r\n\tLEGENDARY\020\005\"M\n\016MonsterElement\022\010\n\004" +
-      "FIRE\020\001\022\t\n\005GRASS\020\002\022\t\n\005WATER\020\003\022\r\n\tLIGHTNIN",
-      "G\020\004\022\014\n\010DARKNESS\020\005\"\353\001\n\024FullUserMonsterPro" +
-      "to\022\027\n\017userMonsterUuid\030\001 \001(\t\022\020\n\010userUuid\030" +
-      "\002 \001(\t\022\023\n\013monsterUuid\030\003 \001(\t\022\022\n\ncurrentExp" +
-      "\030\004 \001(\005\022\022\n\ncurrentLvl\030\005 \001(\005\022\025\n\rcurrentHea" +
-      "lth\030\006 \001(\005\022\021\n\tnumPieces\030\007 \001(\005\022\022\n\nisComple" +
-      "te\030\010 \001(\010\022\030\n\020combineStartTime\030\t \001(\003\022\023\n\013te" +
-      "amSlotNum\030\n \001(\005\"e\n\027UserMonsterHealingPro" +
-      "to\022\020\n\010userUuid\030\001 \001(\t\022\027\n\017userMonsterUuid\030" +
-      "\002 \001(\t\022\037\n\027expectedStartTimeMillis\030\003 \001(\003\"O" +
-      "\n\035UserMonsterCurrentHealthProto\022\027\n\017userM",
-      "onsterUuid\030\001 \001(\t\022\025\n\rcurrentHealth\030\002 \001(\005\"" +
-      "\220\001\n\024UserEnhancementProto\022\020\n\010userUuid\030\001 \001" +
-      "(\t\0224\n\013baseMonster\030\002 \001(\0132\037.proto.UserEnha" +
-      "ncementItemProto\0220\n\007feeders\030\003 \003(\0132\037.prot" +
-      "o.UserEnhancementItemProto\"T\n\030UserEnhanc" +
-      "ementItemProto\022\027\n\017userMonsterUuid\030\001 \001(\t\022" +
-      "\037\n\027expectedStartTimeMillis\030\002 \001(\003\"h\n\032User" +
-      "MonsterCurrentExpProto\022\027\n\017userMonsterUui" +
-      "d\030\001 \001(\t\022\032\n\022expectedExperience\030\002 \001(\005\022\025\n\re" +
-      "xpectedLevel\030\003 \001(\005\"J\n\033MinimumUserMonster",
-      "SellProto\022\027\n\017userMonsterUuid\030\001 \001(\t\022\022\n\nca" +
-      "shAmount\030\002 \001(\005\"a\n\033UserCurrentMonsterTeam" +
-      "Proto\022\020\n\010userUuid\030\001 \001(\t\0220\n\013currentTeam\030\002" +
-      " \003(\0132\033.proto.FullUserMonsterProtoB5\n com" +
-      ".lvl6.mobsters.noneventprotosB\021MonsterSt" +
-      "uffProto"
+      "\n\022MonsterStuff.proto\022\005proto\"\221\006\n\014MonsterP" +
+      "roto\022\021\n\tmonsterId\030\001 \001(\005\022\014\n\004name\030\002 \001(\t\022\024\n" +
+      "\014monsterGroup\030\003 \001(\t\0223\n\007quality\030\004 \001(\0162\".p" +
+      "roto.MonsterProto.MonsterQuality\022\026\n\016evol" +
+      "utionLevel\030\005 \001(\005\022\023\n\013displayName\030\006 \001(\t\0223\n" +
+      "\007element\030\007 \001(\0162\".proto.MonsterProto.Mons" +
+      "terElement\022\016\n\006baseHp\030\010 \001(\005\022\023\n\013imagePrefi" +
+      "x\030\t \001(\t\022\027\n\017numPuzzlePieces\030\n \001(\005\022\036\n\026minu" +
+      "tesToCombinePieces\030\013 \001(\005\022\025\n\relementOneDm" +
+      "g\030\014 \001(\005\022\025\n\relementTwoDmg\030\r \001(\005\022\027\n\017elemen",
+      "tThreeDmg\030\016 \001(\005\022\026\n\016elementFourDmg\030\017 \001(\005\022" +
+      "\026\n\016elementFiveDmg\030\020 \001(\005\022\031\n\021hpLevelMultip" +
+      "lier\030\021 \001(\002\022\035\n\025attackLevelMultiplier\030\022 \001(" +
+      "\002\022\020\n\010maxLevel\030\023 \001(\005\022\032\n\022evolutionMonsterI" +
+      "d\030\024 \001(\005\022\027\n\017carrotRecruited\030\025 \001(\t\022\026\n\016carr" +
+      "otDefeated\030\026 \001(\t\022\025\n\rcarrotEvolved\030\027 \001(\t\022" +
+      "\023\n\013description\030\030 \001(\t\"J\n\016MonsterQuality\022\n" +
+      "\n\006COMMON\020\001\022\010\n\004RARE\020\002\022\t\n\005ULTRA\020\003\022\010\n\004EPIC\020" +
+      "\004\022\r\n\tLEGENDARY\020\005\"M\n\016MonsterElement\022\010\n\004FI" +
+      "RE\020\001\022\t\n\005GRASS\020\002\022\t\n\005WATER\020\003\022\r\n\tLIGHTNING\020",
+      "\004\022\014\n\010DARKNESS\020\005\"\351\001\n\024FullUserMonsterProto" +
+      "\022\027\n\017userMonsterUuid\030\001 \001(\t\022\020\n\010userUuid\030\002 " +
+      "\001(\t\022\021\n\tmonsterId\030\003 \001(\005\022\022\n\ncurrentExp\030\004 \001" +
+      "(\005\022\022\n\ncurrentLvl\030\005 \001(\005\022\025\n\rcurrentHealth\030" +
+      "\006 \001(\005\022\021\n\tnumPieces\030\007 \001(\005\022\022\n\nisComplete\030\010" +
+      " \001(\010\022\030\n\020combineStartTime\030\t \001(\003\022\023\n\013teamSl" +
+      "otNum\030\n \001(\005\"e\n\027UserMonsterHealingProto\022\020" +
+      "\n\010userUuid\030\001 \001(\t\022\027\n\017userMonsterUuid\030\002 \001(" +
+      "\t\022\037\n\027expectedStartTimeMillis\030\003 \001(\003\"O\n\035Us" +
+      "erMonsterCurrentHealthProto\022\027\n\017userMonst",
+      "erUuid\030\001 \001(\t\022\025\n\rcurrentHealth\030\002 \001(\005\"\220\001\n\024" +
+      "UserEnhancementProto\022\020\n\010userUuid\030\001 \001(\t\0224" +
+      "\n\013baseMonster\030\002 \001(\0132\037.proto.UserEnhancem" +
+      "entItemProto\0220\n\007feeders\030\003 \003(\0132\037.proto.Us" +
+      "erEnhancementItemProto\"T\n\030UserEnhancemen" +
+      "tItemProto\022\027\n\017userMonsterUuid\030\001 \001(\t\022\037\n\027e" +
+      "xpectedStartTimeMillis\030\002 \001(\003\"h\n\032UserMons" +
+      "terCurrentExpProto\022\027\n\017userMonsterUuid\030\001 " +
+      "\001(\t\022\032\n\022expectedExperience\030\002 \001(\005\022\025\n\rexpec" +
+      "tedLevel\030\003 \001(\005\"J\n\033MinimumUserMonsterSell",
+      "Proto\022\027\n\017userMonsterUuid\030\001 \001(\t\022\022\n\ncashAm" +
+      "ount\030\002 \001(\005\"a\n\033UserCurrentMonsterTeamProt" +
+      "o\022\020\n\010userUuid\030\001 \001(\t\0220\n\013currentTeam\030\002 \003(\013" +
+      "2\033.proto.FullUserMonsterProtoB5\n com.lvl" +
+      "6.mobsters.noneventprotosB\021MonsterStuffP" +
+      "roto"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -6987,7 +6913,7 @@ public final class MonsterStuffProto {
           internal_static_proto_MonsterProto_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_proto_MonsterProto_descriptor,
-              new java.lang.String[] { "MonsterUuid", "Name", "MonsterGroup", "Quality", "EvolutionLevel", "DisplayName", "Element", "BaseHp", "ImagePrefix", "NumPuzzlePieces", "MinutesToCombinePieces", "ElementOneDmg", "ElementTwoDmg", "ElementThreeDmg", "ElementFourDmg", "ElementFiveDmg", "HpLevelMultiplier", "AttackLevelMultiplier", "MaxLevel", "EvolutionMonsterId", "CarrotRecruited", "CarrotDefeated", "CarrotEvolved", "Description", },
+              new java.lang.String[] { "MonsterId", "Name", "MonsterGroup", "Quality", "EvolutionLevel", "DisplayName", "Element", "BaseHp", "ImagePrefix", "NumPuzzlePieces", "MinutesToCombinePieces", "ElementOneDmg", "ElementTwoDmg", "ElementThreeDmg", "ElementFourDmg", "ElementFiveDmg", "HpLevelMultiplier", "AttackLevelMultiplier", "MaxLevel", "EvolutionMonsterId", "CarrotRecruited", "CarrotDefeated", "CarrotEvolved", "Description", },
               com.lvl6.mobsters.noneventprotos.MonsterStuffProto.MonsterProto.class,
               com.lvl6.mobsters.noneventprotos.MonsterStuffProto.MonsterProto.Builder.class);
           internal_static_proto_FullUserMonsterProto_descriptor =
@@ -6995,7 +6921,7 @@ public final class MonsterStuffProto {
           internal_static_proto_FullUserMonsterProto_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_proto_FullUserMonsterProto_descriptor,
-              new java.lang.String[] { "UserMonsterUuid", "UserUuid", "MonsterUuid", "CurrentExp", "CurrentLvl", "CurrentHealth", "NumPieces", "IsComplete", "CombineStartTime", "TeamSlotNum", },
+              new java.lang.String[] { "UserMonsterUuid", "UserUuid", "MonsterId", "CurrentExp", "CurrentLvl", "CurrentHealth", "NumPieces", "IsComplete", "CombineStartTime", "TeamSlotNum", },
               com.lvl6.mobsters.noneventprotos.MonsterStuffProto.FullUserMonsterProto.class,
               com.lvl6.mobsters.noneventprotos.MonsterStuffProto.FullUserMonsterProto.Builder.class);
           internal_static_proto_UserMonsterHealingProto_descriptor =

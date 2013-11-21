@@ -814,10 +814,10 @@ public final class EventStartupProto {
     com.lvl6.mobsters.noneventprotos.QuestStuffProto.FullUserQuestProtoOrBuilder getUserQuestsOrBuilder(
         int index);
     
-    // repeated string redeemedQuestUuids = 27;
-    java.util.List<String> getRedeemedQuestUuidsList();
-    int getRedeemedQuestUuidsCount();
-    String getRedeemedQuestUuids(int index);
+    // repeated int32 redeemedQuestIds = 27;
+    java.util.List<java.lang.Integer> getRedeemedQuestIdsList();
+    int getRedeemedQuestIdsCount();
+    int getRedeemedQuestIds(int index);
     
     // repeated .proto.FullUserClanProto userClanInfo = 7;
     java.util.List<com.lvl6.mobsters.noneventprotos.ClanProto.FullUserClanProto> 
@@ -829,10 +829,10 @@ public final class EventStartupProto {
     com.lvl6.mobsters.noneventprotos.ClanProto.FullUserClanProtoOrBuilder getUserClanInfoOrBuilder(
         int index);
     
-    // repeated string completedTaskUuids = 8;
-    java.util.List<String> getCompletedTaskUuidsList();
-    int getCompletedTaskUuidsCount();
-    String getCompletedTaskUuids(int index);
+    // repeated int32 completedTaskIds = 8;
+    java.util.List<java.lang.Integer> getCompletedTaskIdsList();
+    int getCompletedTaskIdsCount();
+    int getCompletedTaskIds(int index);
     
     // optional string appStoreURL = 9;
     boolean hasAppStoreURL();
@@ -969,10 +969,10 @@ public final class EventStartupProto {
     com.lvl6.mobsters.noneventprotos.StaticDataStuffProto.StaticDataProto getStaticDataStuffProto();
     com.lvl6.mobsters.noneventprotos.StaticDataStuffProto.StaticDataProtoOrBuilder getStaticDataStuffProtoOrBuilder();
     
-    // repeated string taskUuidForCurrentCityBoss = 28;
-    java.util.List<String> getTaskUuidForCurrentCityBossList();
-    int getTaskUuidForCurrentCityBossCount();
-    String getTaskUuidForCurrentCityBoss(int index);
+    // repeated int32 taskIdForCurrentCityBoss = 28;
+    java.util.List<java.lang.Integer> getTaskIdForCurrentCityBossList();
+    int getTaskIdForCurrentCityBossCount();
+    int getTaskIdForCurrentCityBoss(int index);
   }
   public static final class StartupResponseProto extends
       com.google.protobuf.GeneratedMessage
@@ -7877,18 +7877,18 @@ public final class EventStartupProto {
       return userQuests_.get(index);
     }
     
-    // repeated string redeemedQuestUuids = 27;
-    public static final int REDEEMEDQUESTUUIDS_FIELD_NUMBER = 27;
-    private com.google.protobuf.LazyStringList redeemedQuestUuids_;
-    public java.util.List<String>
-        getRedeemedQuestUuidsList() {
-      return redeemedQuestUuids_;
+    // repeated int32 redeemedQuestIds = 27;
+    public static final int REDEEMEDQUESTIDS_FIELD_NUMBER = 27;
+    private java.util.List<java.lang.Integer> redeemedQuestIds_;
+    public java.util.List<java.lang.Integer>
+        getRedeemedQuestIdsList() {
+      return redeemedQuestIds_;
     }
-    public int getRedeemedQuestUuidsCount() {
-      return redeemedQuestUuids_.size();
+    public int getRedeemedQuestIdsCount() {
+      return redeemedQuestIds_.size();
     }
-    public String getRedeemedQuestUuids(int index) {
-      return redeemedQuestUuids_.get(index);
+    public int getRedeemedQuestIds(int index) {
+      return redeemedQuestIds_.get(index);
     }
     
     // repeated .proto.FullUserClanProto userClanInfo = 7;
@@ -7912,18 +7912,18 @@ public final class EventStartupProto {
       return userClanInfo_.get(index);
     }
     
-    // repeated string completedTaskUuids = 8;
-    public static final int COMPLETEDTASKUUIDS_FIELD_NUMBER = 8;
-    private com.google.protobuf.LazyStringList completedTaskUuids_;
-    public java.util.List<String>
-        getCompletedTaskUuidsList() {
-      return completedTaskUuids_;
+    // repeated int32 completedTaskIds = 8;
+    public static final int COMPLETEDTASKIDS_FIELD_NUMBER = 8;
+    private java.util.List<java.lang.Integer> completedTaskIds_;
+    public java.util.List<java.lang.Integer>
+        getCompletedTaskIdsList() {
+      return completedTaskIds_;
     }
-    public int getCompletedTaskUuidsCount() {
-      return completedTaskUuids_.size();
+    public int getCompletedTaskIdsCount() {
+      return completedTaskIds_.size();
     }
-    public String getCompletedTaskUuids(int index) {
-      return completedTaskUuids_.get(index);
+    public int getCompletedTaskIds(int index) {
+      return completedTaskIds_.get(index);
     }
     
     // optional string appStoreURL = 9;
@@ -8314,18 +8314,18 @@ public final class EventStartupProto {
       return staticDataStuffProto_;
     }
     
-    // repeated string taskUuidForCurrentCityBoss = 28;
-    public static final int TASKUUIDFORCURRENTCITYBOSS_FIELD_NUMBER = 28;
-    private com.google.protobuf.LazyStringList taskUuidForCurrentCityBoss_;
-    public java.util.List<String>
-        getTaskUuidForCurrentCityBossList() {
-      return taskUuidForCurrentCityBoss_;
+    // repeated int32 taskIdForCurrentCityBoss = 28;
+    public static final int TASKIDFORCURRENTCITYBOSS_FIELD_NUMBER = 28;
+    private java.util.List<java.lang.Integer> taskIdForCurrentCityBoss_;
+    public java.util.List<java.lang.Integer>
+        getTaskIdForCurrentCityBossList() {
+      return taskIdForCurrentCityBoss_;
     }
-    public int getTaskUuidForCurrentCityBossCount() {
-      return taskUuidForCurrentCityBoss_.size();
+    public int getTaskIdForCurrentCityBossCount() {
+      return taskIdForCurrentCityBoss_.size();
     }
-    public String getTaskUuidForCurrentCityBoss(int index) {
-      return taskUuidForCurrentCityBoss_.get(index);
+    public int getTaskIdForCurrentCityBoss(int index) {
+      return taskIdForCurrentCityBoss_.get(index);
     }
     
     private void initFields() {
@@ -8335,9 +8335,9 @@ public final class EventStartupProto {
       updateStatus_ = com.lvl6.mobsters.eventprotos.EventStartupProto.StartupResponseProto.UpdateStatus.NO_UPDATE;
       startupConstants_ = com.lvl6.mobsters.eventprotos.EventStartupProto.StartupResponseProto.StartupConstants.getDefaultInstance();
       userQuests_ = java.util.Collections.emptyList();
-      redeemedQuestUuids_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+      redeemedQuestIds_ = java.util.Collections.emptyList();;
       userClanInfo_ = java.util.Collections.emptyList();
-      completedTaskUuids_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+      completedTaskIds_ = java.util.Collections.emptyList();;
       appStoreURL_ = "";
       reviewPageURL_ = "";
       reviewPageConfirmationMessage_ = "";
@@ -8356,7 +8356,7 @@ public final class EventStartupProto {
       usersUsedForExtraSlots_ = java.util.Collections.emptyList();
       invitesToMeForSlots_ = java.util.Collections.emptyList();
       staticDataStuffProto_ = com.lvl6.mobsters.noneventprotos.StaticDataStuffProto.StaticDataProto.getDefaultInstance();
-      taskUuidForCurrentCityBoss_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+      taskIdForCurrentCityBoss_ = java.util.Collections.emptyList();;
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -8391,8 +8391,8 @@ public final class EventStartupProto {
       for (int i = 0; i < userClanInfo_.size(); i++) {
         output.writeMessage(7, userClanInfo_.get(i));
       }
-      for (int i = 0; i < completedTaskUuids_.size(); i++) {
-        output.writeBytes(8, completedTaskUuids_.getByteString(i));
+      for (int i = 0; i < completedTaskIds_.size(); i++) {
+        output.writeInt32(8, completedTaskIds_.get(i));
       }
       if (((bitField0_ & 0x00000020) == 0x00000020)) {
         output.writeBytes(9, getAppStoreURLBytes());
@@ -8448,11 +8448,11 @@ public final class EventStartupProto {
       if (((bitField0_ & 0x00000800) == 0x00000800)) {
         output.writeMessage(26, staticDataStuffProto_);
       }
-      for (int i = 0; i < redeemedQuestUuids_.size(); i++) {
-        output.writeBytes(27, redeemedQuestUuids_.getByteString(i));
+      for (int i = 0; i < redeemedQuestIds_.size(); i++) {
+        output.writeInt32(27, redeemedQuestIds_.get(i));
       }
-      for (int i = 0; i < taskUuidForCurrentCityBoss_.size(); i++) {
-        output.writeBytes(28, taskUuidForCurrentCityBoss_.getByteString(i));
+      for (int i = 0; i < taskIdForCurrentCityBoss_.size(); i++) {
+        output.writeInt32(28, taskIdForCurrentCityBoss_.get(i));
       }
       getUnknownFields().writeTo(output);
     }
@@ -8493,12 +8493,12 @@ public final class EventStartupProto {
       }
       {
         int dataSize = 0;
-        for (int i = 0; i < completedTaskUuids_.size(); i++) {
+        for (int i = 0; i < completedTaskIds_.size(); i++) {
           dataSize += com.google.protobuf.CodedOutputStream
-            .computeBytesSizeNoTag(completedTaskUuids_.getByteString(i));
+            .computeInt32SizeNoTag(completedTaskIds_.get(i));
         }
         size += dataSize;
-        size += 1 * getCompletedTaskUuidsList().size();
+        size += 1 * getCompletedTaskIdsList().size();
       }
       if (((bitField0_ & 0x00000020) == 0x00000020)) {
         size += com.google.protobuf.CodedOutputStream
@@ -8579,21 +8579,21 @@ public final class EventStartupProto {
       }
       {
         int dataSize = 0;
-        for (int i = 0; i < redeemedQuestUuids_.size(); i++) {
+        for (int i = 0; i < redeemedQuestIds_.size(); i++) {
           dataSize += com.google.protobuf.CodedOutputStream
-            .computeBytesSizeNoTag(redeemedQuestUuids_.getByteString(i));
+            .computeInt32SizeNoTag(redeemedQuestIds_.get(i));
         }
         size += dataSize;
-        size += 2 * getRedeemedQuestUuidsList().size();
+        size += 2 * getRedeemedQuestIdsList().size();
       }
       {
         int dataSize = 0;
-        for (int i = 0; i < taskUuidForCurrentCityBoss_.size(); i++) {
+        for (int i = 0; i < taskIdForCurrentCityBoss_.size(); i++) {
           dataSize += com.google.protobuf.CodedOutputStream
-            .computeBytesSizeNoTag(taskUuidForCurrentCityBoss_.getByteString(i));
+            .computeInt32SizeNoTag(taskIdForCurrentCityBoss_.get(i));
         }
         size += dataSize;
-        size += 2 * getTaskUuidForCurrentCityBossList().size();
+        size += 2 * getTaskIdForCurrentCityBossList().size();
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -8759,7 +8759,7 @@ public final class EventStartupProto {
         } else {
           userQuestsBuilder_.clear();
         }
-        redeemedQuestUuids_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+        redeemedQuestIds_ = java.util.Collections.emptyList();;
         bitField0_ = (bitField0_ & ~0x00000040);
         if (userClanInfoBuilder_ == null) {
           userClanInfo_ = java.util.Collections.emptyList();
@@ -8767,7 +8767,7 @@ public final class EventStartupProto {
         } else {
           userClanInfoBuilder_.clear();
         }
-        completedTaskUuids_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+        completedTaskIds_ = java.util.Collections.emptyList();;
         bitField0_ = (bitField0_ & ~0x00000100);
         appStoreURL_ = "";
         bitField0_ = (bitField0_ & ~0x00000200);
@@ -8853,7 +8853,7 @@ public final class EventStartupProto {
           staticDataStuffProtoBuilder_.clear();
         }
         bitField0_ = (bitField0_ & ~0x04000000);
-        taskUuidForCurrentCityBoss_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+        taskIdForCurrentCityBoss_ = java.util.Collections.emptyList();;
         bitField0_ = (bitField0_ & ~0x08000000);
         return this;
       }
@@ -8931,11 +8931,10 @@ public final class EventStartupProto {
           result.userQuests_ = userQuestsBuilder_.build();
         }
         if (((bitField0_ & 0x00000040) == 0x00000040)) {
-          redeemedQuestUuids_ = new com.google.protobuf.UnmodifiableLazyStringList(
-              redeemedQuestUuids_);
+          redeemedQuestIds_ = java.util.Collections.unmodifiableList(redeemedQuestIds_);
           bitField0_ = (bitField0_ & ~0x00000040);
         }
-        result.redeemedQuestUuids_ = redeemedQuestUuids_;
+        result.redeemedQuestIds_ = redeemedQuestIds_;
         if (userClanInfoBuilder_ == null) {
           if (((bitField0_ & 0x00000080) == 0x00000080)) {
             userClanInfo_ = java.util.Collections.unmodifiableList(userClanInfo_);
@@ -8946,11 +8945,10 @@ public final class EventStartupProto {
           result.userClanInfo_ = userClanInfoBuilder_.build();
         }
         if (((bitField0_ & 0x00000100) == 0x00000100)) {
-          completedTaskUuids_ = new com.google.protobuf.UnmodifiableLazyStringList(
-              completedTaskUuids_);
+          completedTaskIds_ = java.util.Collections.unmodifiableList(completedTaskIds_);
           bitField0_ = (bitField0_ & ~0x00000100);
         }
-        result.completedTaskUuids_ = completedTaskUuids_;
+        result.completedTaskIds_ = completedTaskIds_;
         if (((from_bitField0_ & 0x00000200) == 0x00000200)) {
           to_bitField0_ |= 0x00000020;
         }
@@ -9084,11 +9082,10 @@ public final class EventStartupProto {
           result.staticDataStuffProto_ = staticDataStuffProtoBuilder_.build();
         }
         if (((bitField0_ & 0x08000000) == 0x08000000)) {
-          taskUuidForCurrentCityBoss_ = new com.google.protobuf.UnmodifiableLazyStringList(
-              taskUuidForCurrentCityBoss_);
+          taskIdForCurrentCityBoss_ = java.util.Collections.unmodifiableList(taskIdForCurrentCityBoss_);
           bitField0_ = (bitField0_ & ~0x08000000);
         }
-        result.taskUuidForCurrentCityBoss_ = taskUuidForCurrentCityBoss_;
+        result.taskIdForCurrentCityBoss_ = taskIdForCurrentCityBoss_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -9146,13 +9143,13 @@ public final class EventStartupProto {
             }
           }
         }
-        if (!other.redeemedQuestUuids_.isEmpty()) {
-          if (redeemedQuestUuids_.isEmpty()) {
-            redeemedQuestUuids_ = other.redeemedQuestUuids_;
+        if (!other.redeemedQuestIds_.isEmpty()) {
+          if (redeemedQuestIds_.isEmpty()) {
+            redeemedQuestIds_ = other.redeemedQuestIds_;
             bitField0_ = (bitField0_ & ~0x00000040);
           } else {
-            ensureRedeemedQuestUuidsIsMutable();
-            redeemedQuestUuids_.addAll(other.redeemedQuestUuids_);
+            ensureRedeemedQuestIdsIsMutable();
+            redeemedQuestIds_.addAll(other.redeemedQuestIds_);
           }
           onChanged();
         }
@@ -9182,13 +9179,13 @@ public final class EventStartupProto {
             }
           }
         }
-        if (!other.completedTaskUuids_.isEmpty()) {
-          if (completedTaskUuids_.isEmpty()) {
-            completedTaskUuids_ = other.completedTaskUuids_;
+        if (!other.completedTaskIds_.isEmpty()) {
+          if (completedTaskIds_.isEmpty()) {
+            completedTaskIds_ = other.completedTaskIds_;
             bitField0_ = (bitField0_ & ~0x00000100);
           } else {
-            ensureCompletedTaskUuidsIsMutable();
-            completedTaskUuids_.addAll(other.completedTaskUuids_);
+            ensureCompletedTaskIdsIsMutable();
+            completedTaskIds_.addAll(other.completedTaskIds_);
           }
           onChanged();
         }
@@ -9483,13 +9480,13 @@ public final class EventStartupProto {
         if (other.hasStaticDataStuffProto()) {
           mergeStaticDataStuffProto(other.getStaticDataStuffProto());
         }
-        if (!other.taskUuidForCurrentCityBoss_.isEmpty()) {
-          if (taskUuidForCurrentCityBoss_.isEmpty()) {
-            taskUuidForCurrentCityBoss_ = other.taskUuidForCurrentCityBoss_;
+        if (!other.taskIdForCurrentCityBoss_.isEmpty()) {
+          if (taskIdForCurrentCityBoss_.isEmpty()) {
+            taskIdForCurrentCityBoss_ = other.taskIdForCurrentCityBoss_;
             bitField0_ = (bitField0_ & ~0x08000000);
           } else {
-            ensureTaskUuidForCurrentCityBossIsMutable();
-            taskUuidForCurrentCityBoss_.addAll(other.taskUuidForCurrentCityBoss_);
+            ensureTaskIdForCurrentCityBossIsMutable();
+            taskIdForCurrentCityBoss_.addAll(other.taskIdForCurrentCityBoss_);
           }
           onChanged();
         }
@@ -9581,9 +9578,18 @@ public final class EventStartupProto {
               addUserClanInfo(subBuilder.buildPartial());
               break;
             }
+            case 64: {
+              ensureCompletedTaskIdsIsMutable();
+              completedTaskIds_.add(input.readInt32());
+              break;
+            }
             case 66: {
-              ensureCompletedTaskUuidsIsMutable();
-              completedTaskUuids_.add(input.readBytes());
+              int length = input.readRawVarint32();
+              int limit = input.pushLimit(length);
+              while (input.getBytesUntilLimit() > 0) {
+                addCompletedTaskIds(input.readInt32());
+              }
+              input.popLimit(limit);
               break;
             }
             case 74: {
@@ -9694,14 +9700,32 @@ public final class EventStartupProto {
               setStaticDataStuffProto(subBuilder.buildPartial());
               break;
             }
+            case 216: {
+              ensureRedeemedQuestIdsIsMutable();
+              redeemedQuestIds_.add(input.readInt32());
+              break;
+            }
             case 218: {
-              ensureRedeemedQuestUuidsIsMutable();
-              redeemedQuestUuids_.add(input.readBytes());
+              int length = input.readRawVarint32();
+              int limit = input.pushLimit(length);
+              while (input.getBytesUntilLimit() > 0) {
+                addRedeemedQuestIds(input.readInt32());
+              }
+              input.popLimit(limit);
+              break;
+            }
+            case 224: {
+              ensureTaskIdForCurrentCityBossIsMutable();
+              taskIdForCurrentCityBoss_.add(input.readInt32());
               break;
             }
             case 226: {
-              ensureTaskUuidForCurrentCityBossIsMutable();
-              taskUuidForCurrentCityBoss_.add(input.readBytes());
+              int length = input.readRawVarint32();
+              int limit = input.pushLimit(length);
+              while (input.getBytesUntilLimit() > 0) {
+                addTaskIdForCurrentCityBoss(input.readInt32());
+              }
+              input.popLimit(limit);
               break;
             }
           }
@@ -10145,60 +10169,49 @@ public final class EventStartupProto {
         return userQuestsBuilder_;
       }
       
-      // repeated string redeemedQuestUuids = 27;
-      private com.google.protobuf.LazyStringList redeemedQuestUuids_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-      private void ensureRedeemedQuestUuidsIsMutable() {
+      // repeated int32 redeemedQuestIds = 27;
+      private java.util.List<java.lang.Integer> redeemedQuestIds_ = java.util.Collections.emptyList();;
+      private void ensureRedeemedQuestIdsIsMutable() {
         if (!((bitField0_ & 0x00000040) == 0x00000040)) {
-          redeemedQuestUuids_ = new com.google.protobuf.LazyStringArrayList(redeemedQuestUuids_);
+          redeemedQuestIds_ = new java.util.ArrayList<java.lang.Integer>(redeemedQuestIds_);
           bitField0_ |= 0x00000040;
          }
       }
-      public java.util.List<String>
-          getRedeemedQuestUuidsList() {
-        return java.util.Collections.unmodifiableList(redeemedQuestUuids_);
+      public java.util.List<java.lang.Integer>
+          getRedeemedQuestIdsList() {
+        return java.util.Collections.unmodifiableList(redeemedQuestIds_);
       }
-      public int getRedeemedQuestUuidsCount() {
-        return redeemedQuestUuids_.size();
+      public int getRedeemedQuestIdsCount() {
+        return redeemedQuestIds_.size();
       }
-      public String getRedeemedQuestUuids(int index) {
-        return redeemedQuestUuids_.get(index);
+      public int getRedeemedQuestIds(int index) {
+        return redeemedQuestIds_.get(index);
       }
-      public Builder setRedeemedQuestUuids(
-          int index, String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureRedeemedQuestUuidsIsMutable();
-        redeemedQuestUuids_.set(index, value);
+      public Builder setRedeemedQuestIds(
+          int index, int value) {
+        ensureRedeemedQuestIdsIsMutable();
+        redeemedQuestIds_.set(index, value);
         onChanged();
         return this;
       }
-      public Builder addRedeemedQuestUuids(String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureRedeemedQuestUuidsIsMutable();
-        redeemedQuestUuids_.add(value);
+      public Builder addRedeemedQuestIds(int value) {
+        ensureRedeemedQuestIdsIsMutable();
+        redeemedQuestIds_.add(value);
         onChanged();
         return this;
       }
-      public Builder addAllRedeemedQuestUuids(
-          java.lang.Iterable<String> values) {
-        ensureRedeemedQuestUuidsIsMutable();
-        super.addAll(values, redeemedQuestUuids_);
+      public Builder addAllRedeemedQuestIds(
+          java.lang.Iterable<? extends java.lang.Integer> values) {
+        ensureRedeemedQuestIdsIsMutable();
+        super.addAll(values, redeemedQuestIds_);
         onChanged();
         return this;
       }
-      public Builder clearRedeemedQuestUuids() {
-        redeemedQuestUuids_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+      public Builder clearRedeemedQuestIds() {
+        redeemedQuestIds_ = java.util.Collections.emptyList();;
         bitField0_ = (bitField0_ & ~0x00000040);
         onChanged();
         return this;
-      }
-      void addRedeemedQuestUuids(com.google.protobuf.ByteString value) {
-        ensureRedeemedQuestUuidsIsMutable();
-        redeemedQuestUuids_.add(value);
-        onChanged();
       }
       
       // repeated .proto.FullUserClanProto userClanInfo = 7;
@@ -10387,60 +10400,49 @@ public final class EventStartupProto {
         return userClanInfoBuilder_;
       }
       
-      // repeated string completedTaskUuids = 8;
-      private com.google.protobuf.LazyStringList completedTaskUuids_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-      private void ensureCompletedTaskUuidsIsMutable() {
+      // repeated int32 completedTaskIds = 8;
+      private java.util.List<java.lang.Integer> completedTaskIds_ = java.util.Collections.emptyList();;
+      private void ensureCompletedTaskIdsIsMutable() {
         if (!((bitField0_ & 0x00000100) == 0x00000100)) {
-          completedTaskUuids_ = new com.google.protobuf.LazyStringArrayList(completedTaskUuids_);
+          completedTaskIds_ = new java.util.ArrayList<java.lang.Integer>(completedTaskIds_);
           bitField0_ |= 0x00000100;
          }
       }
-      public java.util.List<String>
-          getCompletedTaskUuidsList() {
-        return java.util.Collections.unmodifiableList(completedTaskUuids_);
+      public java.util.List<java.lang.Integer>
+          getCompletedTaskIdsList() {
+        return java.util.Collections.unmodifiableList(completedTaskIds_);
       }
-      public int getCompletedTaskUuidsCount() {
-        return completedTaskUuids_.size();
+      public int getCompletedTaskIdsCount() {
+        return completedTaskIds_.size();
       }
-      public String getCompletedTaskUuids(int index) {
-        return completedTaskUuids_.get(index);
+      public int getCompletedTaskIds(int index) {
+        return completedTaskIds_.get(index);
       }
-      public Builder setCompletedTaskUuids(
-          int index, String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureCompletedTaskUuidsIsMutable();
-        completedTaskUuids_.set(index, value);
+      public Builder setCompletedTaskIds(
+          int index, int value) {
+        ensureCompletedTaskIdsIsMutable();
+        completedTaskIds_.set(index, value);
         onChanged();
         return this;
       }
-      public Builder addCompletedTaskUuids(String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureCompletedTaskUuidsIsMutable();
-        completedTaskUuids_.add(value);
+      public Builder addCompletedTaskIds(int value) {
+        ensureCompletedTaskIdsIsMutable();
+        completedTaskIds_.add(value);
         onChanged();
         return this;
       }
-      public Builder addAllCompletedTaskUuids(
-          java.lang.Iterable<String> values) {
-        ensureCompletedTaskUuidsIsMutable();
-        super.addAll(values, completedTaskUuids_);
+      public Builder addAllCompletedTaskIds(
+          java.lang.Iterable<? extends java.lang.Integer> values) {
+        ensureCompletedTaskIdsIsMutable();
+        super.addAll(values, completedTaskIds_);
         onChanged();
         return this;
       }
-      public Builder clearCompletedTaskUuids() {
-        completedTaskUuids_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+      public Builder clearCompletedTaskIds() {
+        completedTaskIds_ = java.util.Collections.emptyList();;
         bitField0_ = (bitField0_ & ~0x00000100);
         onChanged();
         return this;
-      }
-      void addCompletedTaskUuids(com.google.protobuf.ByteString value) {
-        ensureCompletedTaskUuidsIsMutable();
-        completedTaskUuids_.add(value);
-        onChanged();
       }
       
       // optional string appStoreURL = 9;
@@ -12704,60 +12706,49 @@ public final class EventStartupProto {
         return staticDataStuffProtoBuilder_;
       }
       
-      // repeated string taskUuidForCurrentCityBoss = 28;
-      private com.google.protobuf.LazyStringList taskUuidForCurrentCityBoss_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-      private void ensureTaskUuidForCurrentCityBossIsMutable() {
+      // repeated int32 taskIdForCurrentCityBoss = 28;
+      private java.util.List<java.lang.Integer> taskIdForCurrentCityBoss_ = java.util.Collections.emptyList();;
+      private void ensureTaskIdForCurrentCityBossIsMutable() {
         if (!((bitField0_ & 0x08000000) == 0x08000000)) {
-          taskUuidForCurrentCityBoss_ = new com.google.protobuf.LazyStringArrayList(taskUuidForCurrentCityBoss_);
+          taskIdForCurrentCityBoss_ = new java.util.ArrayList<java.lang.Integer>(taskIdForCurrentCityBoss_);
           bitField0_ |= 0x08000000;
          }
       }
-      public java.util.List<String>
-          getTaskUuidForCurrentCityBossList() {
-        return java.util.Collections.unmodifiableList(taskUuidForCurrentCityBoss_);
+      public java.util.List<java.lang.Integer>
+          getTaskIdForCurrentCityBossList() {
+        return java.util.Collections.unmodifiableList(taskIdForCurrentCityBoss_);
       }
-      public int getTaskUuidForCurrentCityBossCount() {
-        return taskUuidForCurrentCityBoss_.size();
+      public int getTaskIdForCurrentCityBossCount() {
+        return taskIdForCurrentCityBoss_.size();
       }
-      public String getTaskUuidForCurrentCityBoss(int index) {
-        return taskUuidForCurrentCityBoss_.get(index);
+      public int getTaskIdForCurrentCityBoss(int index) {
+        return taskIdForCurrentCityBoss_.get(index);
       }
-      public Builder setTaskUuidForCurrentCityBoss(
-          int index, String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureTaskUuidForCurrentCityBossIsMutable();
-        taskUuidForCurrentCityBoss_.set(index, value);
+      public Builder setTaskIdForCurrentCityBoss(
+          int index, int value) {
+        ensureTaskIdForCurrentCityBossIsMutable();
+        taskIdForCurrentCityBoss_.set(index, value);
         onChanged();
         return this;
       }
-      public Builder addTaskUuidForCurrentCityBoss(String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureTaskUuidForCurrentCityBossIsMutable();
-        taskUuidForCurrentCityBoss_.add(value);
+      public Builder addTaskIdForCurrentCityBoss(int value) {
+        ensureTaskIdForCurrentCityBossIsMutable();
+        taskIdForCurrentCityBoss_.add(value);
         onChanged();
         return this;
       }
-      public Builder addAllTaskUuidForCurrentCityBoss(
-          java.lang.Iterable<String> values) {
-        ensureTaskUuidForCurrentCityBossIsMutable();
-        super.addAll(values, taskUuidForCurrentCityBoss_);
+      public Builder addAllTaskIdForCurrentCityBoss(
+          java.lang.Iterable<? extends java.lang.Integer> values) {
+        ensureTaskIdForCurrentCityBossIsMutable();
+        super.addAll(values, taskIdForCurrentCityBoss_);
         onChanged();
         return this;
       }
-      public Builder clearTaskUuidForCurrentCityBoss() {
-        taskUuidForCurrentCityBoss_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+      public Builder clearTaskIdForCurrentCityBoss() {
+        taskIdForCurrentCityBoss_ = java.util.Collections.emptyList();;
         bitField0_ = (bitField0_ & ~0x08000000);
         onChanged();
         return this;
-      }
-      void addTaskUuidForCurrentCityBoss(com.google.protobuf.ByteString value) {
-        ensureTaskUuidForCurrentCityBossIsMutable();
-        taskUuidForCurrentCityBoss_.add(value);
-        onChanged();
       }
       
       // @@protoc_insertion_point(builder_scope:proto.StartupResponseProto)
@@ -12843,7 +12834,7 @@ public final class EventStartupProto {
       "proto\"\215\001\n\023StartupRequestProto\022\014\n\004udid\030\001 " +
       "\001(\t\022\022\n\nversionNum\030\002 \001(\002\022\021\n\tapsalarId\030\003 \001" +
       "(\t\022\022\n\nmacAddress\030\004 \001(\t\022\024\n\014advertiserId\030\005" +
-      " \001(\t\022\027\n\017isForceTutorial\030\006 \001(\010\"\212\034\n\024Startu" +
+      " \001(\t\022\027\n\017isForceTutorial\030\006 \001(\010\"\204\034\n\024Startu" +
       "pResponseProto\022\030\n\020serverTimeMillis\030\001 \001(\003",
       "\022$\n\006sender\030\002 \001(\0132\024.proto.FullUserProto\022@" +
       "\n\rstartupStatus\030\003 \001(\0162).proto.StartupRes" +
@@ -12852,89 +12843,89 @@ public final class EventStartupProto {
       "teStatus\022F\n\020startupConstants\030\005 \001(\0132,.pro" +
       "to.StartupResponseProto.StartupConstants" +
       "\022-\n\nuserQuests\030\006 \003(\0132\031.proto.FullUserQue" +
-      "stProto\022\032\n\022redeemedQuestUuids\030\033 \003(\t\022.\n\014u" +
-      "serClanInfo\030\007 \003(\0132\030.proto.FullUserClanPr" +
-      "oto\022\032\n\022completedTaskUuids\030\010 \003(\t\022\023\n\013appSt",
-      "oreURL\030\t \001(\t\022\025\n\rreviewPageURL\030\n \001(\t\022%\n\035r" +
-      "eviewPageConfirmationMessage\030\013 \001(\t\022$\n\034pl" +
-      "ayerHasBoughtInAppPurchase\030\014 \001(\010\022R\n\023atta" +
-      "ckNotifications\030\r \003(\01325.proto.StartupRes" +
-      "ponseProto.AttackedNotificationProto\022T\n\025" +
-      "referralNotifications\030\016 \003(\01325.proto.Star" +
-      "tupResponseProto.ReferralNotificationPro" +
-      "to\022\030\n\020noticesToPlayers\030\017 \003(\t\0221\n\013globalCh" +
-      "ats\030\020 \003(\0132\034.proto.GroupChatMessageProto\022" +
-      "/\n\tclanChats\030\021 \003(\0132\034.proto.GroupChatMess",
-      "ageProto\022)\n\004pcpp\030\022 \003(\0132\033.proto.PrivateCh" +
-      "atPostProto\0222\n\rusersMonsters\030\023 \003(\0132\033.pro" +
-      "to.FullUserMonsterProto\0227\n\017monstersHeali" +
-      "ng\030\024 \003(\0132\036.proto.UserMonsterHealingProto" +
-      "\0221\n\014enhancements\030\025 \001(\0132\033.proto.UserEnhan" +
-      "cementProto\022=\n\024rareBoosterPurchases\030\026 \003(" +
-      "\0132\037.proto.RareBoosterPurchaseProto\022\021\n\tka" +
-      "bamNaid\030\027 \001(\t\022E\n\026usersUsedForExtraSlots\030" +
-      "\030 \003(\0132%.proto.MinimumUserProtoWithFacebo" +
-      "okId\022B\n\023invitesToMeForSlots\030\031 \003(\0132%.prot",
-      "o.UserFacebookInviteForSlotProto\0224\n\024stat" +
-      "icDataStuffProto\030\032 \001(\0132\026.proto.StaticDat" +
-      "aProto\022\"\n\032taskUuidForCurrentCityBoss\030\034 \003" +
-      "(\t\032w\n\031AttackedNotificationProto\022)\n\010attac" +
-      "ker\030\001 \001(\0132\027.proto.MinimumUserProto\022\032\n\022ba" +
-      "ttleCompleteTime\030\002 \001(\003\022\023\n\013coinsStolen\030\003 " +
-      "\001(\005\032y\n\031ReferralNotificationProto\022)\n\010refe" +
-      "rred\030\001 \001(\0132\027.proto.MinimumUserProto\022\023\n\013r" +
-      "ecruitTime\030\002 \001(\003\022\034\n\024coinsGivenToReferrer" +
-      "\030\003 \001(\005\032\301\016\n\020StartupConstants\022?\n\025inAppPurc",
-      "hasePackages\030\001 \003(\0132 .proto.InAppPurchase" +
-      "PackageProto\022\027\n\017maxLevelForUser\030\002 \001(\005\022\034\n" +
-      "\024maxNumOfSingleStruct\030\003 \001(\005\022e\n\025animatedS" +
-      "priteOffsets\030\004 \003(\0132F.proto.StartupRespon" +
-      "seProto.StartupConstants.AnimatedSpriteO" +
-      "ffsetProto\022\025\n\rminNameLength\030\005 \001(\005\022\025\n\rmax" +
-      "NameLength\030\006 \001(\005\022\035\n\025maxLengthOfChatStrin" +
-      "g\030\007 \001(\005\022Q\n\rclanConstants\030\010 \001(\0132:.proto.S" +
-      "tartupResponseProto.StartupConstants.Cla" +
-      "nConstants\022g\n\030downloadableNibConstants\030\t",
-      " \001(\0132E.proto.StartupResponseProto.Startu" +
-      "pConstants.DownloadableNibConstants\022\'\n\037n" +
-      "umHoursBeforeReshowingGoldSale\030\n \001(\005\022\036\n\026" +
-      "levelToShowRateUsPopup\030\013 \001(\005\022\\\n\022touramen" +
-      "tConstants\030\014 \001(\0132@.proto.StartupResponse" +
-      "Proto.StartupConstants.TournamentConstan" +
-      "ts\022\037\n\027fbConnectRewardDiamonds\030\r \001(\005\022\023\n\013f" +
-      "aqFileName\030\016 \001(\t\0223\n\022adminChatUserProto\030\017" +
-      " \001(\0132\027.proto.MinimumUserProto\022\037\n\027numBegi" +
-      "nnerSalesAllowed\030\020 \001(\005\022_\n\024userMonsterCon",
-      "stants\030\021 \001(\0132A.proto.StartupResponseProt" +
-      "o.StartupConstants.UserMonsterConstants\022" +
-      "W\n\020monsterConstants\030\022 \001(\0132=.proto.Startu" +
-      "pResponseProto.StartupConstants.MonsterC" +
-      "onstants\022\025\n\rminutesPerGem\030\023 \001(\002\022\031\n\021pvpRe" +
-      "quiredMinLvl\030\024 \001(\005\032V\n\031AnimatedSpriteOffs" +
-      "etProto\022\021\n\timageName\030\001 \001(\t\022&\n\006offSet\030\002 \001" +
-      "(\0132\026.proto.CoordinateProto\032\232\001\n\rClanConst" +
-      "ants\022\035\n\025coinPriceToCreateClan\030\001 \001(\005\022 \n\030m" +
-      "axCharLengthForClanName\030\002 \001(\005\022\'\n\037maxChar",
-      "LengthForClanDescription\030\003 \001(\005\022\037\n\027maxCha" +
-      "rLengthForClanTag\030\004 \001(\005\032c\n\030DownloadableN" +
-      "ibConstants\022\022\n\nmapNibName\030\001 \001(\t\022\030\n\020expan" +
-      "sionNibName\030\002 \001(\t\022\031\n\021goldShoppeNibName\030\003" +
-      " \001(\t\032y\n\023TournamentConstants\022\022\n\nwinsWeigh" +
-      "t\030\001 \001(\005\022\024\n\014lossesWeight\030\002 \001(\005\022\023\n\013fleesWe" +
-      "ight\030\003 \001(\005\022#\n\033numHoursToShowAfterEventEn" +
-      "d\030\004 \001(\005\032\304\001\n\024UserMonsterConstants\022\027\n\017maxN" +
-      "umTeamSlots\030\001 \001(\005\022!\n\031initialMaxNumMonste" +
-      "rLimit\030\002 \001(\005\022\'\n\037monsterInventoryIncremen",
-      "tAmount\030\003 \001(\005\022\027\n\017gemPricePerSlot\030\004 \001(\005\022." +
-      "\n&numFriendsToRecruitToIncreaseInventory" +
-      "\030\005 \001(\005\032\211\001\n\020MonsterConstants\022\032\n\022cashPerHe" +
-      "althPoint\030\001 \001(\002\022#\n\033secondsToHealPerHealt" +
-      "hPoint\030\002 \001(\002\022\031\n\021elementalStrength\030\003 \001(\002\022" +
-      "\031\n\021elementalWeakness\030\004 \001(\002\"A\n\014UpdateStat" +
-      "us\022\r\n\tNO_UPDATE\020\001\022\020\n\014MINOR_UPDATE\020\002\022\020\n\014M" +
-      "AJOR_UPDATE\020\003\"3\n\rStartupStatus\022\016\n\nUSER_I" +
-      "N_DB\020\001\022\022\n\016USER_NOT_IN_DB\020\002B2\n\035com.lvl6.m" +
-      "obsters.eventprotosB\021EventStartupProto"
+      "stProto\022\030\n\020redeemedQuestIds\030\033 \003(\005\022.\n\014use" +
+      "rClanInfo\030\007 \003(\0132\030.proto.FullUserClanProt" +
+      "o\022\030\n\020completedTaskIds\030\010 \003(\005\022\023\n\013appStoreU",
+      "RL\030\t \001(\t\022\025\n\rreviewPageURL\030\n \001(\t\022%\n\035revie" +
+      "wPageConfirmationMessage\030\013 \001(\t\022$\n\034player" +
+      "HasBoughtInAppPurchase\030\014 \001(\010\022R\n\023attackNo" +
+      "tifications\030\r \003(\01325.proto.StartupRespons" +
+      "eProto.AttackedNotificationProto\022T\n\025refe" +
+      "rralNotifications\030\016 \003(\01325.proto.StartupR" +
+      "esponseProto.ReferralNotificationProto\022\030" +
+      "\n\020noticesToPlayers\030\017 \003(\t\0221\n\013globalChats\030" +
+      "\020 \003(\0132\034.proto.GroupChatMessageProto\022/\n\tc" +
+      "lanChats\030\021 \003(\0132\034.proto.GroupChatMessageP",
+      "roto\022)\n\004pcpp\030\022 \003(\0132\033.proto.PrivateChatPo" +
+      "stProto\0222\n\rusersMonsters\030\023 \003(\0132\033.proto.F" +
+      "ullUserMonsterProto\0227\n\017monstersHealing\030\024" +
+      " \003(\0132\036.proto.UserMonsterHealingProto\0221\n\014" +
+      "enhancements\030\025 \001(\0132\033.proto.UserEnhanceme" +
+      "ntProto\022=\n\024rareBoosterPurchases\030\026 \003(\0132\037." +
+      "proto.RareBoosterPurchaseProto\022\021\n\tkabamN" +
+      "aid\030\027 \001(\t\022E\n\026usersUsedForExtraSlots\030\030 \003(" +
+      "\0132%.proto.MinimumUserProtoWithFacebookId" +
+      "\022B\n\023invitesToMeForSlots\030\031 \003(\0132%.proto.Us",
+      "erFacebookInviteForSlotProto\0224\n\024staticDa" +
+      "taStuffProto\030\032 \001(\0132\026.proto.StaticDataPro" +
+      "to\022 \n\030taskIdForCurrentCityBoss\030\034 \003(\005\032w\n\031" +
+      "AttackedNotificationProto\022)\n\010attacker\030\001 " +
+      "\001(\0132\027.proto.MinimumUserProto\022\032\n\022battleCo" +
+      "mpleteTime\030\002 \001(\003\022\023\n\013coinsStolen\030\003 \001(\005\032y\n" +
+      "\031ReferralNotificationProto\022)\n\010referred\030\001" +
+      " \001(\0132\027.proto.MinimumUserProto\022\023\n\013recruit" +
+      "Time\030\002 \001(\003\022\034\n\024coinsGivenToReferrer\030\003 \001(\005" +
+      "\032\301\016\n\020StartupConstants\022?\n\025inAppPurchasePa",
+      "ckages\030\001 \003(\0132 .proto.InAppPurchasePackag" +
+      "eProto\022\027\n\017maxLevelForUser\030\002 \001(\005\022\034\n\024maxNu" +
+      "mOfSingleStruct\030\003 \001(\005\022e\n\025animatedSpriteO" +
+      "ffsets\030\004 \003(\0132F.proto.StartupResponseProt" +
+      "o.StartupConstants.AnimatedSpriteOffsetP" +
+      "roto\022\025\n\rminNameLength\030\005 \001(\005\022\025\n\rmaxNameLe" +
+      "ngth\030\006 \001(\005\022\035\n\025maxLengthOfChatString\030\007 \001(" +
+      "\005\022Q\n\rclanConstants\030\010 \001(\0132:.proto.Startup" +
+      "ResponseProto.StartupConstants.ClanConst" +
+      "ants\022g\n\030downloadableNibConstants\030\t \001(\0132E",
+      ".proto.StartupResponseProto.StartupConst" +
+      "ants.DownloadableNibConstants\022\'\n\037numHour" +
+      "sBeforeReshowingGoldSale\030\n \001(\005\022\036\n\026levelT" +
+      "oShowRateUsPopup\030\013 \001(\005\022\\\n\022touramentConst" +
+      "ants\030\014 \001(\0132@.proto.StartupResponseProto." +
+      "StartupConstants.TournamentConstants\022\037\n\027" +
+      "fbConnectRewardDiamonds\030\r \001(\005\022\023\n\013faqFile" +
+      "Name\030\016 \001(\t\0223\n\022adminChatUserProto\030\017 \001(\0132\027" +
+      ".proto.MinimumUserProto\022\037\n\027numBeginnerSa" +
+      "lesAllowed\030\020 \001(\005\022_\n\024userMonsterConstants",
+      "\030\021 \001(\0132A.proto.StartupResponseProto.Star" +
+      "tupConstants.UserMonsterConstants\022W\n\020mon" +
+      "sterConstants\030\022 \001(\0132=.proto.StartupRespo" +
+      "nseProto.StartupConstants.MonsterConstan" +
+      "ts\022\025\n\rminutesPerGem\030\023 \001(\002\022\031\n\021pvpRequired" +
+      "MinLvl\030\024 \001(\005\032V\n\031AnimatedSpriteOffsetProt" +
+      "o\022\021\n\timageName\030\001 \001(\t\022&\n\006offSet\030\002 \001(\0132\026.p" +
+      "roto.CoordinateProto\032\232\001\n\rClanConstants\022\035" +
+      "\n\025coinPriceToCreateClan\030\001 \001(\005\022 \n\030maxChar" +
+      "LengthForClanName\030\002 \001(\005\022\'\n\037maxCharLength",
+      "ForClanDescription\030\003 \001(\005\022\037\n\027maxCharLengt" +
+      "hForClanTag\030\004 \001(\005\032c\n\030DownloadableNibCons" +
+      "tants\022\022\n\nmapNibName\030\001 \001(\t\022\030\n\020expansionNi" +
+      "bName\030\002 \001(\t\022\031\n\021goldShoppeNibName\030\003 \001(\t\032y" +
+      "\n\023TournamentConstants\022\022\n\nwinsWeight\030\001 \001(" +
+      "\005\022\024\n\014lossesWeight\030\002 \001(\005\022\023\n\013fleesWeight\030\003" +
+      " \001(\005\022#\n\033numHoursToShowAfterEventEnd\030\004 \001(" +
+      "\005\032\304\001\n\024UserMonsterConstants\022\027\n\017maxNumTeam" +
+      "Slots\030\001 \001(\005\022!\n\031initialMaxNumMonsterLimit" +
+      "\030\002 \001(\005\022\'\n\037monsterInventoryIncrementAmoun",
+      "t\030\003 \001(\005\022\027\n\017gemPricePerSlot\030\004 \001(\005\022.\n&numF" +
+      "riendsToRecruitToIncreaseInventory\030\005 \001(\005" +
+      "\032\211\001\n\020MonsterConstants\022\032\n\022cashPerHealthPo" +
+      "int\030\001 \001(\002\022#\n\033secondsToHealPerHealthPoint" +
+      "\030\002 \001(\002\022\031\n\021elementalStrength\030\003 \001(\002\022\031\n\021ele" +
+      "mentalWeakness\030\004 \001(\002\"A\n\014UpdateStatus\022\r\n\t" +
+      "NO_UPDATE\020\001\022\020\n\014MINOR_UPDATE\020\002\022\020\n\014MAJOR_U" +
+      "PDATE\020\003\"3\n\rStartupStatus\022\016\n\nUSER_IN_DB\020\001" +
+      "\022\022\n\016USER_NOT_IN_DB\020\002B2\n\035com.lvl6.mobster" +
+      "s.eventprotosB\021EventStartupProto"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -12954,7 +12945,7 @@ public final class EventStartupProto {
           internal_static_proto_StartupResponseProto_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_proto_StartupResponseProto_descriptor,
-              new java.lang.String[] { "ServerTimeMillis", "Sender", "StartupStatus", "UpdateStatus", "StartupConstants", "UserQuests", "RedeemedQuestUuids", "UserClanInfo", "CompletedTaskUuids", "AppStoreURL", "ReviewPageURL", "ReviewPageConfirmationMessage", "PlayerHasBoughtInAppPurchase", "AttackNotifications", "ReferralNotifications", "NoticesToPlayers", "GlobalChats", "ClanChats", "Pcpp", "UsersMonsters", "MonstersHealing", "Enhancements", "RareBoosterPurchases", "KabamNaid", "UsersUsedForExtraSlots", "InvitesToMeForSlots", "StaticDataStuffProto", "TaskUuidForCurrentCityBoss", },
+              new java.lang.String[] { "ServerTimeMillis", "Sender", "StartupStatus", "UpdateStatus", "StartupConstants", "UserQuests", "RedeemedQuestIds", "UserClanInfo", "CompletedTaskIds", "AppStoreURL", "ReviewPageURL", "ReviewPageConfirmationMessage", "PlayerHasBoughtInAppPurchase", "AttackNotifications", "ReferralNotifications", "NoticesToPlayers", "GlobalChats", "ClanChats", "Pcpp", "UsersMonsters", "MonstersHealing", "Enhancements", "RareBoosterPurchases", "KabamNaid", "UsersUsedForExtraSlots", "InvitesToMeForSlots", "StaticDataStuffProto", "TaskIdForCurrentCityBoss", },
               com.lvl6.mobsters.eventprotos.EventStartupProto.StartupResponseProto.class,
               com.lvl6.mobsters.eventprotos.EventStartupProto.StartupResponseProto.Builder.class);
           internal_static_proto_StartupResponseProto_AttackedNotificationProto_descriptor =

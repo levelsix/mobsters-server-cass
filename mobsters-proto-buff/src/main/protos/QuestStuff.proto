@@ -65,7 +65,7 @@ message DialogueProto {
 
 message FullUserQuestProto {
      optional string userUuid = 1;
-     optional string questUuid = 2;
+     optional int32 questId = 2;
      optional bool isRedeemed = 3;
      optional bool isComplete = 4;
      optional int32 progress = 5;

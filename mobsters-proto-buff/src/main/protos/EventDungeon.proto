@@ -13,7 +13,7 @@ option java_outer_classname = "EventDungeonProto";
 message BeginDungeonRequestProto {
 	optional MinimumUserProto sender = 1;
 	optional int64 clientTime = 2;
-	optional string taskUuid = 3; 
+	optional int32 taskId = 3; 
 
 	//should be set when user enters a task that has a boss	
 	//NOTE: if this task ALREADY EXISTS in the task_for_user_ongoing table,
@@ -26,12 +26,12 @@ message BeginDungeonResponseProto {
 	optional MinimumUserProto sender = 1;
 	repeated TaskStageProto tsp = 2;
 	optional string userTaskUuid = 3;
-	optional string taskUuid = 4;
+	optional int32 taskId = 4;
 	optional BeginDungeonStatus status = 5;
 	
 	//if server saw that user had existing task when beginning this task
 	//boss might need to be relocated to another task
-	optional string nextTaskUuidForBoss = 6;
+	optional int32 nextTaskIdForBoss = 6;
 	
 	enum BeginDungeonStatus {
 		SUCCESS = 1;
@@ -67,12 +67,12 @@ message EndDungeonResponseProto {
 	optional EndDungeonStatus status = 2;
 	//repeated FullUserMonsterProto newOrUpdated = 3; //BAD!!! DON'T START NAMES WITH NEW OR COPY
 	repeated FullUserMonsterProto updatedOrNew = 3;
-	optional string taskUuid = 4;
+	optional int32 taskId = 4;
 	optional bool userWon = 5;
 	
 	//if user just attacked a boss in this dungeon/task this number specifies
 	//where the boss will spawn next
-	optional int32 nextTaskUuidForBoss = 6;
+	optional int32 nextTaskIdForBoss = 6;
 	
 	
 	enum EndDungeonStatus {

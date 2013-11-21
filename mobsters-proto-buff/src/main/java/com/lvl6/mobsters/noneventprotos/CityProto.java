@@ -1066,13 +1066,17 @@ public final class CityProto {
   public interface CityElementProtoOrBuilder
       extends com.google.protobuf.MessageOrBuilder {
     
-    // optional string cityUuid = 1;
-    boolean hasCityUuid();
-    String getCityUuid();
+    // optional int32 cityId = 1;
+    boolean hasCityId();
+    int getCityId();
     
-    // optional string assetUuid = 2;
-    boolean hasAssetUuid();
-    String getAssetUuid();
+    // optional int32 assetId = 2;
+    boolean hasAssetId();
+    int getAssetId();
+    
+    // optional string name = 3;
+    boolean hasName();
+    String getName();
     
     // optional .proto.CityElementProto.CityElemType type = 4;
     boolean hasType();
@@ -1208,46 +1212,34 @@ public final class CityProto {
     }
     
     private int bitField0_;
-    // optional string cityUuid = 1;
-    public static final int CITYUUID_FIELD_NUMBER = 1;
-    private java.lang.Object cityUuid_;
-    public boolean hasCityUuid() {
+    // optional int32 cityId = 1;
+    public static final int CITYID_FIELD_NUMBER = 1;
+    private int cityId_;
+    public boolean hasCityId() {
       return ((bitField0_ & 0x00000001) == 0x00000001);
     }
-    public String getCityUuid() {
-      java.lang.Object ref = cityUuid_;
-      if (ref instanceof String) {
-        return (String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        String s = bs.toStringUtf8();
-        if (com.google.protobuf.Internal.isValidUtf8(bs)) {
-          cityUuid_ = s;
-        }
-        return s;
-      }
-    }
-    private com.google.protobuf.ByteString getCityUuidBytes() {
-      java.lang.Object ref = cityUuid_;
-      if (ref instanceof String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8((String) ref);
-        cityUuid_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
+    public int getCityId() {
+      return cityId_;
     }
     
-    // optional string assetUuid = 2;
-    public static final int ASSETUUID_FIELD_NUMBER = 2;
-    private java.lang.Object assetUuid_;
-    public boolean hasAssetUuid() {
+    // optional int32 assetId = 2;
+    public static final int ASSETID_FIELD_NUMBER = 2;
+    private int assetId_;
+    public boolean hasAssetId() {
       return ((bitField0_ & 0x00000002) == 0x00000002);
     }
-    public String getAssetUuid() {
-      java.lang.Object ref = assetUuid_;
+    public int getAssetId() {
+      return assetId_;
+    }
+    
+    // optional string name = 3;
+    public static final int NAME_FIELD_NUMBER = 3;
+    private java.lang.Object name_;
+    public boolean hasName() {
+      return ((bitField0_ & 0x00000004) == 0x00000004);
+    }
+    public String getName() {
+      java.lang.Object ref = name_;
       if (ref instanceof String) {
         return (String) ref;
       } else {
@@ -1255,17 +1247,17 @@ public final class CityProto {
             (com.google.protobuf.ByteString) ref;
         String s = bs.toStringUtf8();
         if (com.google.protobuf.Internal.isValidUtf8(bs)) {
-          assetUuid_ = s;
+          name_ = s;
         }
         return s;
       }
     }
-    private com.google.protobuf.ByteString getAssetUuidBytes() {
-      java.lang.Object ref = assetUuid_;
+    private com.google.protobuf.ByteString getNameBytes() {
+      java.lang.Object ref = name_;
       if (ref instanceof String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8((String) ref);
-        assetUuid_ = b;
+        name_ = b;
         return b;
       } else {
         return (com.google.protobuf.ByteString) ref;
@@ -1276,7 +1268,7 @@ public final class CityProto {
     public static final int TYPE_FIELD_NUMBER = 4;
     private com.lvl6.mobsters.noneventprotos.CityProto.CityElementProto.CityElemType type_;
     public boolean hasType() {
-      return ((bitField0_ & 0x00000004) == 0x00000004);
+      return ((bitField0_ & 0x00000008) == 0x00000008);
     }
     public com.lvl6.mobsters.noneventprotos.CityProto.CityElementProto.CityElemType getType() {
       return type_;
@@ -1286,7 +1278,7 @@ public final class CityProto {
     public static final int COORDS_FIELD_NUMBER = 5;
     private com.lvl6.mobsters.noneventprotos.StructureProto.CoordinateProto coords_;
     public boolean hasCoords() {
-      return ((bitField0_ & 0x00000008) == 0x00000008);
+      return ((bitField0_ & 0x00000010) == 0x00000010);
     }
     public com.lvl6.mobsters.noneventprotos.StructureProto.CoordinateProto getCoords() {
       return coords_;
@@ -1299,7 +1291,7 @@ public final class CityProto {
     public static final int XLENGTH_FIELD_NUMBER = 6;
     private float xLength_;
     public boolean hasXLength() {
-      return ((bitField0_ & 0x00000010) == 0x00000010);
+      return ((bitField0_ & 0x00000020) == 0x00000020);
     }
     public float getXLength() {
       return xLength_;
@@ -1309,7 +1301,7 @@ public final class CityProto {
     public static final int YLENGTH_FIELD_NUMBER = 7;
     private float yLength_;
     public boolean hasYLength() {
-      return ((bitField0_ & 0x00000020) == 0x00000020);
+      return ((bitField0_ & 0x00000040) == 0x00000040);
     }
     public float getYLength() {
       return yLength_;
@@ -1319,7 +1311,7 @@ public final class CityProto {
     public static final int IMGID_FIELD_NUMBER = 8;
     private java.lang.Object imgId_;
     public boolean hasImgId() {
-      return ((bitField0_ & 0x00000040) == 0x00000040);
+      return ((bitField0_ & 0x00000080) == 0x00000080);
     }
     public String getImgId() {
       java.lang.Object ref = imgId_;
@@ -1351,7 +1343,7 @@ public final class CityProto {
     public static final int ORIENTATION_FIELD_NUMBER = 9;
     private com.lvl6.mobsters.noneventprotos.StructureProto.StructOrientation orientation_;
     public boolean hasOrientation() {
-      return ((bitField0_ & 0x00000080) == 0x00000080);
+      return ((bitField0_ & 0x00000100) == 0x00000100);
     }
     public com.lvl6.mobsters.noneventprotos.StructureProto.StructOrientation getOrientation() {
       return orientation_;
@@ -1361,7 +1353,7 @@ public final class CityProto {
     public static final int SPRITECOORDS_FIELD_NUMBER = 10;
     private com.lvl6.mobsters.noneventprotos.StructureProto.CoordinateProto spriteCoords_;
     public boolean hasSpriteCoords() {
-      return ((bitField0_ & 0x00000100) == 0x00000100);
+      return ((bitField0_ & 0x00000200) == 0x00000200);
     }
     public com.lvl6.mobsters.noneventprotos.StructureProto.CoordinateProto getSpriteCoords() {
       return spriteCoords_;
@@ -1371,8 +1363,9 @@ public final class CityProto {
     }
     
     private void initFields() {
-      cityUuid_ = "";
-      assetUuid_ = "";
+      cityId_ = 0;
+      assetId_ = 0;
+      name_ = "";
       type_ = com.lvl6.mobsters.noneventprotos.CityProto.CityElementProto.CityElemType.BUILDING;
       coords_ = com.lvl6.mobsters.noneventprotos.StructureProto.CoordinateProto.getDefaultInstance();
       xLength_ = 0F;
@@ -1394,30 +1387,33 @@ public final class CityProto {
                         throws java.io.IOException {
       getSerializedSize();
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        output.writeBytes(1, getCityUuidBytes());
+        output.writeInt32(1, cityId_);
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        output.writeBytes(2, getAssetUuidBytes());
+        output.writeInt32(2, assetId_);
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
-        output.writeEnum(4, type_.getNumber());
+        output.writeBytes(3, getNameBytes());
       }
       if (((bitField0_ & 0x00000008) == 0x00000008)) {
-        output.writeMessage(5, coords_);
+        output.writeEnum(4, type_.getNumber());
       }
       if (((bitField0_ & 0x00000010) == 0x00000010)) {
-        output.writeFloat(6, xLength_);
+        output.writeMessage(5, coords_);
       }
       if (((bitField0_ & 0x00000020) == 0x00000020)) {
-        output.writeFloat(7, yLength_);
+        output.writeFloat(6, xLength_);
       }
       if (((bitField0_ & 0x00000040) == 0x00000040)) {
-        output.writeBytes(8, getImgIdBytes());
+        output.writeFloat(7, yLength_);
       }
       if (((bitField0_ & 0x00000080) == 0x00000080)) {
-        output.writeEnum(9, orientation_.getNumber());
+        output.writeBytes(8, getImgIdBytes());
       }
       if (((bitField0_ & 0x00000100) == 0x00000100)) {
+        output.writeEnum(9, orientation_.getNumber());
+      }
+      if (((bitField0_ & 0x00000200) == 0x00000200)) {
         output.writeMessage(10, spriteCoords_);
       }
       getUnknownFields().writeTo(output);
@@ -1431,37 +1427,41 @@ public final class CityProto {
       size = 0;
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(1, getCityUuidBytes());
+          .computeInt32Size(1, cityId_);
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(2, getAssetUuidBytes());
+          .computeInt32Size(2, assetId_);
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeEnumSize(4, type_.getNumber());
+          .computeBytesSize(3, getNameBytes());
       }
       if (((bitField0_ & 0x00000008) == 0x00000008)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(5, coords_);
+          .computeEnumSize(4, type_.getNumber());
       }
       if (((bitField0_ & 0x00000010) == 0x00000010)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeFloatSize(6, xLength_);
+          .computeMessageSize(5, coords_);
       }
       if (((bitField0_ & 0x00000020) == 0x00000020)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeFloatSize(7, yLength_);
+          .computeFloatSize(6, xLength_);
       }
       if (((bitField0_ & 0x00000040) == 0x00000040)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(8, getImgIdBytes());
+          .computeFloatSize(7, yLength_);
       }
       if (((bitField0_ & 0x00000080) == 0x00000080)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeEnumSize(9, orientation_.getNumber());
+          .computeBytesSize(8, getImgIdBytes());
       }
       if (((bitField0_ & 0x00000100) == 0x00000100)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeEnumSize(9, orientation_.getNumber());
+      }
+      if (((bitField0_ & 0x00000200) == 0x00000200)) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(10, spriteCoords_);
       }
@@ -1591,32 +1591,34 @@ public final class CityProto {
       
       public Builder clear() {
         super.clear();
-        cityUuid_ = "";
+        cityId_ = 0;
         bitField0_ = (bitField0_ & ~0x00000001);
-        assetUuid_ = "";
+        assetId_ = 0;
         bitField0_ = (bitField0_ & ~0x00000002);
-        type_ = com.lvl6.mobsters.noneventprotos.CityProto.CityElementProto.CityElemType.BUILDING;
+        name_ = "";
         bitField0_ = (bitField0_ & ~0x00000004);
+        type_ = com.lvl6.mobsters.noneventprotos.CityProto.CityElementProto.CityElemType.BUILDING;
+        bitField0_ = (bitField0_ & ~0x00000008);
         if (coordsBuilder_ == null) {
           coords_ = com.lvl6.mobsters.noneventprotos.StructureProto.CoordinateProto.getDefaultInstance();
         } else {
           coordsBuilder_.clear();
         }
-        bitField0_ = (bitField0_ & ~0x00000008);
-        xLength_ = 0F;
         bitField0_ = (bitField0_ & ~0x00000010);
-        yLength_ = 0F;
+        xLength_ = 0F;
         bitField0_ = (bitField0_ & ~0x00000020);
-        imgId_ = "";
+        yLength_ = 0F;
         bitField0_ = (bitField0_ & ~0x00000040);
-        orientation_ = com.lvl6.mobsters.noneventprotos.StructureProto.StructOrientation.POSITION_1;
+        imgId_ = "";
         bitField0_ = (bitField0_ & ~0x00000080);
+        orientation_ = com.lvl6.mobsters.noneventprotos.StructureProto.StructOrientation.POSITION_1;
+        bitField0_ = (bitField0_ & ~0x00000100);
         if (spriteCoordsBuilder_ == null) {
           spriteCoords_ = com.lvl6.mobsters.noneventprotos.StructureProto.CoordinateProto.getDefaultInstance();
         } else {
           spriteCoordsBuilder_.clear();
         }
-        bitField0_ = (bitField0_ & ~0x00000100);
+        bitField0_ = (bitField0_ & ~0x00000200);
         return this;
       }
       
@@ -1658,41 +1660,45 @@ public final class CityProto {
         if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
           to_bitField0_ |= 0x00000001;
         }
-        result.cityUuid_ = cityUuid_;
+        result.cityId_ = cityId_;
         if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
           to_bitField0_ |= 0x00000002;
         }
-        result.assetUuid_ = assetUuid_;
+        result.assetId_ = assetId_;
         if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
           to_bitField0_ |= 0x00000004;
         }
-        result.type_ = type_;
+        result.name_ = name_;
         if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
           to_bitField0_ |= 0x00000008;
+        }
+        result.type_ = type_;
+        if (((from_bitField0_ & 0x00000010) == 0x00000010)) {
+          to_bitField0_ |= 0x00000010;
         }
         if (coordsBuilder_ == null) {
           result.coords_ = coords_;
         } else {
           result.coords_ = coordsBuilder_.build();
         }
-        if (((from_bitField0_ & 0x00000010) == 0x00000010)) {
-          to_bitField0_ |= 0x00000010;
-        }
-        result.xLength_ = xLength_;
         if (((from_bitField0_ & 0x00000020) == 0x00000020)) {
           to_bitField0_ |= 0x00000020;
         }
-        result.yLength_ = yLength_;
+        result.xLength_ = xLength_;
         if (((from_bitField0_ & 0x00000040) == 0x00000040)) {
           to_bitField0_ |= 0x00000040;
         }
-        result.imgId_ = imgId_;
+        result.yLength_ = yLength_;
         if (((from_bitField0_ & 0x00000080) == 0x00000080)) {
           to_bitField0_ |= 0x00000080;
         }
-        result.orientation_ = orientation_;
+        result.imgId_ = imgId_;
         if (((from_bitField0_ & 0x00000100) == 0x00000100)) {
           to_bitField0_ |= 0x00000100;
+        }
+        result.orientation_ = orientation_;
+        if (((from_bitField0_ & 0x00000200) == 0x00000200)) {
+          to_bitField0_ |= 0x00000200;
         }
         if (spriteCoordsBuilder_ == null) {
           result.spriteCoords_ = spriteCoords_;
@@ -1715,11 +1721,14 @@ public final class CityProto {
       
       public Builder mergeFrom(com.lvl6.mobsters.noneventprotos.CityProto.CityElementProto other) {
         if (other == com.lvl6.mobsters.noneventprotos.CityProto.CityElementProto.getDefaultInstance()) return this;
-        if (other.hasCityUuid()) {
-          setCityUuid(other.getCityUuid());
+        if (other.hasCityId()) {
+          setCityId(other.getCityId());
         }
-        if (other.hasAssetUuid()) {
-          setAssetUuid(other.getAssetUuid());
+        if (other.hasAssetId()) {
+          setAssetId(other.getAssetId());
+        }
+        if (other.hasName()) {
+          setName(other.getName());
         }
         if (other.hasType()) {
           setType(other.getType());
@@ -1773,14 +1782,19 @@ public final class CityProto {
               }
               break;
             }
-            case 10: {
+            case 8: {
               bitField0_ |= 0x00000001;
-              cityUuid_ = input.readBytes();
+              cityId_ = input.readInt32();
               break;
             }
-            case 18: {
+            case 16: {
               bitField0_ |= 0x00000002;
-              assetUuid_ = input.readBytes();
+              assetId_ = input.readInt32();
+              break;
+            }
+            case 26: {
+              bitField0_ |= 0x00000004;
+              name_ = input.readBytes();
               break;
             }
             case 32: {
@@ -1789,7 +1803,7 @@ public final class CityProto {
               if (value == null) {
                 unknownFields.mergeVarintField(4, rawValue);
               } else {
-                bitField0_ |= 0x00000004;
+                bitField0_ |= 0x00000008;
                 type_ = value;
               }
               break;
@@ -1804,17 +1818,17 @@ public final class CityProto {
               break;
             }
             case 53: {
-              bitField0_ |= 0x00000010;
+              bitField0_ |= 0x00000020;
               xLength_ = input.readFloat();
               break;
             }
             case 61: {
-              bitField0_ |= 0x00000020;
+              bitField0_ |= 0x00000040;
               yLength_ = input.readFloat();
               break;
             }
             case 66: {
-              bitField0_ |= 0x00000040;
+              bitField0_ |= 0x00000080;
               imgId_ = input.readBytes();
               break;
             }
@@ -1824,7 +1838,7 @@ public final class CityProto {
               if (value == null) {
                 unknownFields.mergeVarintField(9, rawValue);
               } else {
-                bitField0_ |= 0x00000080;
+                bitField0_ |= 0x00000100;
                 orientation_ = value;
               }
               break;
@@ -1844,82 +1858,88 @@ public final class CityProto {
       
       private int bitField0_;
       
-      // optional string cityUuid = 1;
-      private java.lang.Object cityUuid_ = "";
-      public boolean hasCityUuid() {
+      // optional int32 cityId = 1;
+      private int cityId_ ;
+      public boolean hasCityId() {
         return ((bitField0_ & 0x00000001) == 0x00000001);
       }
-      public String getCityUuid() {
-        java.lang.Object ref = cityUuid_;
-        if (!(ref instanceof String)) {
-          String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
-          cityUuid_ = s;
-          return s;
-        } else {
-          return (String) ref;
-        }
+      public int getCityId() {
+        return cityId_;
       }
-      public Builder setCityUuid(String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000001;
-        cityUuid_ = value;
-        onChanged();
-        return this;
-      }
-      public Builder clearCityUuid() {
-        bitField0_ = (bitField0_ & ~0x00000001);
-        cityUuid_ = getDefaultInstance().getCityUuid();
-        onChanged();
-        return this;
-      }
-      void setCityUuid(com.google.protobuf.ByteString value) {
+      public Builder setCityId(int value) {
         bitField0_ |= 0x00000001;
-        cityUuid_ = value;
+        cityId_ = value;
         onChanged();
+        return this;
+      }
+      public Builder clearCityId() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        cityId_ = 0;
+        onChanged();
+        return this;
       }
       
-      // optional string assetUuid = 2;
-      private java.lang.Object assetUuid_ = "";
-      public boolean hasAssetUuid() {
+      // optional int32 assetId = 2;
+      private int assetId_ ;
+      public boolean hasAssetId() {
         return ((bitField0_ & 0x00000002) == 0x00000002);
       }
-      public String getAssetUuid() {
-        java.lang.Object ref = assetUuid_;
+      public int getAssetId() {
+        return assetId_;
+      }
+      public Builder setAssetId(int value) {
+        bitField0_ |= 0x00000002;
+        assetId_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearAssetId() {
+        bitField0_ = (bitField0_ & ~0x00000002);
+        assetId_ = 0;
+        onChanged();
+        return this;
+      }
+      
+      // optional string name = 3;
+      private java.lang.Object name_ = "";
+      public boolean hasName() {
+        return ((bitField0_ & 0x00000004) == 0x00000004);
+      }
+      public String getName() {
+        java.lang.Object ref = name_;
         if (!(ref instanceof String)) {
           String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
-          assetUuid_ = s;
+          name_ = s;
           return s;
         } else {
           return (String) ref;
         }
       }
-      public Builder setAssetUuid(String value) {
+      public Builder setName(String value) {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000002;
-        assetUuid_ = value;
+  bitField0_ |= 0x00000004;
+        name_ = value;
         onChanged();
         return this;
       }
-      public Builder clearAssetUuid() {
-        bitField0_ = (bitField0_ & ~0x00000002);
-        assetUuid_ = getDefaultInstance().getAssetUuid();
+      public Builder clearName() {
+        bitField0_ = (bitField0_ & ~0x00000004);
+        name_ = getDefaultInstance().getName();
         onChanged();
         return this;
       }
-      void setAssetUuid(com.google.protobuf.ByteString value) {
-        bitField0_ |= 0x00000002;
-        assetUuid_ = value;
+      void setName(com.google.protobuf.ByteString value) {
+        bitField0_ |= 0x00000004;
+        name_ = value;
         onChanged();
       }
       
       // optional .proto.CityElementProto.CityElemType type = 4;
       private com.lvl6.mobsters.noneventprotos.CityProto.CityElementProto.CityElemType type_ = com.lvl6.mobsters.noneventprotos.CityProto.CityElementProto.CityElemType.BUILDING;
       public boolean hasType() {
-        return ((bitField0_ & 0x00000004) == 0x00000004);
+        return ((bitField0_ & 0x00000008) == 0x00000008);
       }
       public com.lvl6.mobsters.noneventprotos.CityProto.CityElementProto.CityElemType getType() {
         return type_;
@@ -1928,13 +1948,13 @@ public final class CityProto {
         if (value == null) {
           throw new NullPointerException();
         }
-        bitField0_ |= 0x00000004;
+        bitField0_ |= 0x00000008;
         type_ = value;
         onChanged();
         return this;
       }
       public Builder clearType() {
-        bitField0_ = (bitField0_ & ~0x00000004);
+        bitField0_ = (bitField0_ & ~0x00000008);
         type_ = com.lvl6.mobsters.noneventprotos.CityProto.CityElementProto.CityElemType.BUILDING;
         onChanged();
         return this;
@@ -1945,7 +1965,7 @@ public final class CityProto {
       private com.google.protobuf.SingleFieldBuilder<
           com.lvl6.mobsters.noneventprotos.StructureProto.CoordinateProto, com.lvl6.mobsters.noneventprotos.StructureProto.CoordinateProto.Builder, com.lvl6.mobsters.noneventprotos.StructureProto.CoordinateProtoOrBuilder> coordsBuilder_;
       public boolean hasCoords() {
-        return ((bitField0_ & 0x00000008) == 0x00000008);
+        return ((bitField0_ & 0x00000010) == 0x00000010);
       }
       public com.lvl6.mobsters.noneventprotos.StructureProto.CoordinateProto getCoords() {
         if (coordsBuilder_ == null) {
@@ -1964,7 +1984,7 @@ public final class CityProto {
         } else {
           coordsBuilder_.setMessage(value);
         }
-        bitField0_ |= 0x00000008;
+        bitField0_ |= 0x00000010;
         return this;
       }
       public Builder setCoords(
@@ -1975,12 +1995,12 @@ public final class CityProto {
         } else {
           coordsBuilder_.setMessage(builderForValue.build());
         }
-        bitField0_ |= 0x00000008;
+        bitField0_ |= 0x00000010;
         return this;
       }
       public Builder mergeCoords(com.lvl6.mobsters.noneventprotos.StructureProto.CoordinateProto value) {
         if (coordsBuilder_ == null) {
-          if (((bitField0_ & 0x00000008) == 0x00000008) &&
+          if (((bitField0_ & 0x00000010) == 0x00000010) &&
               coords_ != com.lvl6.mobsters.noneventprotos.StructureProto.CoordinateProto.getDefaultInstance()) {
             coords_ =
               com.lvl6.mobsters.noneventprotos.StructureProto.CoordinateProto.newBuilder(coords_).mergeFrom(value).buildPartial();
@@ -1991,7 +2011,7 @@ public final class CityProto {
         } else {
           coordsBuilder_.mergeFrom(value);
         }
-        bitField0_ |= 0x00000008;
+        bitField0_ |= 0x00000010;
         return this;
       }
       public Builder clearCoords() {
@@ -2001,11 +2021,11 @@ public final class CityProto {
         } else {
           coordsBuilder_.clear();
         }
-        bitField0_ = (bitField0_ & ~0x00000008);
+        bitField0_ = (bitField0_ & ~0x00000010);
         return this;
       }
       public com.lvl6.mobsters.noneventprotos.StructureProto.CoordinateProto.Builder getCoordsBuilder() {
-        bitField0_ |= 0x00000008;
+        bitField0_ |= 0x00000010;
         onChanged();
         return getCoordsFieldBuilder().getBuilder();
       }
@@ -2033,19 +2053,19 @@ public final class CityProto {
       // optional float xLength = 6;
       private float xLength_ ;
       public boolean hasXLength() {
-        return ((bitField0_ & 0x00000010) == 0x00000010);
+        return ((bitField0_ & 0x00000020) == 0x00000020);
       }
       public float getXLength() {
         return xLength_;
       }
       public Builder setXLength(float value) {
-        bitField0_ |= 0x00000010;
+        bitField0_ |= 0x00000020;
         xLength_ = value;
         onChanged();
         return this;
       }
       public Builder clearXLength() {
-        bitField0_ = (bitField0_ & ~0x00000010);
+        bitField0_ = (bitField0_ & ~0x00000020);
         xLength_ = 0F;
         onChanged();
         return this;
@@ -2054,19 +2074,19 @@ public final class CityProto {
       // optional float yLength = 7;
       private float yLength_ ;
       public boolean hasYLength() {
-        return ((bitField0_ & 0x00000020) == 0x00000020);
+        return ((bitField0_ & 0x00000040) == 0x00000040);
       }
       public float getYLength() {
         return yLength_;
       }
       public Builder setYLength(float value) {
-        bitField0_ |= 0x00000020;
+        bitField0_ |= 0x00000040;
         yLength_ = value;
         onChanged();
         return this;
       }
       public Builder clearYLength() {
-        bitField0_ = (bitField0_ & ~0x00000020);
+        bitField0_ = (bitField0_ & ~0x00000040);
         yLength_ = 0F;
         onChanged();
         return this;
@@ -2075,7 +2095,7 @@ public final class CityProto {
       // optional string imgId = 8;
       private java.lang.Object imgId_ = "";
       public boolean hasImgId() {
-        return ((bitField0_ & 0x00000040) == 0x00000040);
+        return ((bitField0_ & 0x00000080) == 0x00000080);
       }
       public String getImgId() {
         java.lang.Object ref = imgId_;
@@ -2091,19 +2111,19 @@ public final class CityProto {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000040;
+  bitField0_ |= 0x00000080;
         imgId_ = value;
         onChanged();
         return this;
       }
       public Builder clearImgId() {
-        bitField0_ = (bitField0_ & ~0x00000040);
+        bitField0_ = (bitField0_ & ~0x00000080);
         imgId_ = getDefaultInstance().getImgId();
         onChanged();
         return this;
       }
       void setImgId(com.google.protobuf.ByteString value) {
-        bitField0_ |= 0x00000040;
+        bitField0_ |= 0x00000080;
         imgId_ = value;
         onChanged();
       }
@@ -2111,7 +2131,7 @@ public final class CityProto {
       // optional .proto.StructOrientation orientation = 9 [default = POSITION_1];
       private com.lvl6.mobsters.noneventprotos.StructureProto.StructOrientation orientation_ = com.lvl6.mobsters.noneventprotos.StructureProto.StructOrientation.POSITION_1;
       public boolean hasOrientation() {
-        return ((bitField0_ & 0x00000080) == 0x00000080);
+        return ((bitField0_ & 0x00000100) == 0x00000100);
       }
       public com.lvl6.mobsters.noneventprotos.StructureProto.StructOrientation getOrientation() {
         return orientation_;
@@ -2120,13 +2140,13 @@ public final class CityProto {
         if (value == null) {
           throw new NullPointerException();
         }
-        bitField0_ |= 0x00000080;
+        bitField0_ |= 0x00000100;
         orientation_ = value;
         onChanged();
         return this;
       }
       public Builder clearOrientation() {
-        bitField0_ = (bitField0_ & ~0x00000080);
+        bitField0_ = (bitField0_ & ~0x00000100);
         orientation_ = com.lvl6.mobsters.noneventprotos.StructureProto.StructOrientation.POSITION_1;
         onChanged();
         return this;
@@ -2137,7 +2157,7 @@ public final class CityProto {
       private com.google.protobuf.SingleFieldBuilder<
           com.lvl6.mobsters.noneventprotos.StructureProto.CoordinateProto, com.lvl6.mobsters.noneventprotos.StructureProto.CoordinateProto.Builder, com.lvl6.mobsters.noneventprotos.StructureProto.CoordinateProtoOrBuilder> spriteCoordsBuilder_;
       public boolean hasSpriteCoords() {
-        return ((bitField0_ & 0x00000100) == 0x00000100);
+        return ((bitField0_ & 0x00000200) == 0x00000200);
       }
       public com.lvl6.mobsters.noneventprotos.StructureProto.CoordinateProto getSpriteCoords() {
         if (spriteCoordsBuilder_ == null) {
@@ -2156,7 +2176,7 @@ public final class CityProto {
         } else {
           spriteCoordsBuilder_.setMessage(value);
         }
-        bitField0_ |= 0x00000100;
+        bitField0_ |= 0x00000200;
         return this;
       }
       public Builder setSpriteCoords(
@@ -2167,12 +2187,12 @@ public final class CityProto {
         } else {
           spriteCoordsBuilder_.setMessage(builderForValue.build());
         }
-        bitField0_ |= 0x00000100;
+        bitField0_ |= 0x00000200;
         return this;
       }
       public Builder mergeSpriteCoords(com.lvl6.mobsters.noneventprotos.StructureProto.CoordinateProto value) {
         if (spriteCoordsBuilder_ == null) {
-          if (((bitField0_ & 0x00000100) == 0x00000100) &&
+          if (((bitField0_ & 0x00000200) == 0x00000200) &&
               spriteCoords_ != com.lvl6.mobsters.noneventprotos.StructureProto.CoordinateProto.getDefaultInstance()) {
             spriteCoords_ =
               com.lvl6.mobsters.noneventprotos.StructureProto.CoordinateProto.newBuilder(spriteCoords_).mergeFrom(value).buildPartial();
@@ -2183,7 +2203,7 @@ public final class CityProto {
         } else {
           spriteCoordsBuilder_.mergeFrom(value);
         }
-        bitField0_ |= 0x00000100;
+        bitField0_ |= 0x00000200;
         return this;
       }
       public Builder clearSpriteCoords() {
@@ -2193,11 +2213,11 @@ public final class CityProto {
         } else {
           spriteCoordsBuilder_.clear();
         }
-        bitField0_ = (bitField0_ & ~0x00000100);
+        bitField0_ = (bitField0_ & ~0x00000200);
         return this;
       }
       public com.lvl6.mobsters.noneventprotos.StructureProto.CoordinateProto.Builder getSpriteCoordsBuilder() {
-        bitField0_ |= 0x00000100;
+        bitField0_ |= 0x00000200;
         onChanged();
         return getSpriteCoordsFieldBuilder().getBuilder();
       }
@@ -2236,9 +2256,9 @@ public final class CityProto {
   public interface FullCityProtoOrBuilder
       extends com.google.protobuf.MessageOrBuilder {
     
-    // optional string cityUuid = 1;
-    boolean hasCityUuid();
-    String getCityUuid();
+    // optional int32 cityId = 1;
+    boolean hasCityId();
+    int getCityId();
     
     // optional string name = 2;
     boolean hasName();
@@ -2266,10 +2286,10 @@ public final class CityProto {
     com.lvl6.mobsters.noneventprotos.StructureProto.CoordinateProto getRoadImgCoords();
     com.lvl6.mobsters.noneventprotos.StructureProto.CoordinateProtoOrBuilder getRoadImgCoordsOrBuilder();
     
-    // repeated string taskUuids = 8;
-    java.util.List<String> getTaskUuidsList();
-    int getTaskUuidsCount();
-    String getTaskUuids(int index);
+    // repeated int32 taskIds = 8;
+    java.util.List<java.lang.Integer> getTaskIdsList();
+    int getTaskIdsCount();
+    int getTaskIds(int index);
     
     // optional string attackMapLabelImgName = 9;
     boolean hasAttackMapLabelImgName();
@@ -2304,36 +2324,14 @@ public final class CityProto {
     }
     
     private int bitField0_;
-    // optional string cityUuid = 1;
-    public static final int CITYUUID_FIELD_NUMBER = 1;
-    private java.lang.Object cityUuid_;
-    public boolean hasCityUuid() {
+    // optional int32 cityId = 1;
+    public static final int CITYID_FIELD_NUMBER = 1;
+    private int cityId_;
+    public boolean hasCityId() {
       return ((bitField0_ & 0x00000001) == 0x00000001);
     }
-    public String getCityUuid() {
-      java.lang.Object ref = cityUuid_;
-      if (ref instanceof String) {
-        return (String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        String s = bs.toStringUtf8();
-        if (com.google.protobuf.Internal.isValidUtf8(bs)) {
-          cityUuid_ = s;
-        }
-        return s;
-      }
-    }
-    private com.google.protobuf.ByteString getCityUuidBytes() {
-      java.lang.Object ref = cityUuid_;
-      if (ref instanceof String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8((String) ref);
-        cityUuid_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
+    public int getCityId() {
+      return cityId_;
     }
     
     // optional string name = 2;
@@ -2490,18 +2488,18 @@ public final class CityProto {
       return roadImgCoords_;
     }
     
-    // repeated string taskUuids = 8;
-    public static final int TASKUUIDS_FIELD_NUMBER = 8;
-    private com.google.protobuf.LazyStringList taskUuids_;
-    public java.util.List<String>
-        getTaskUuidsList() {
-      return taskUuids_;
+    // repeated int32 taskIds = 8;
+    public static final int TASKIDS_FIELD_NUMBER = 8;
+    private java.util.List<java.lang.Integer> taskIds_;
+    public java.util.List<java.lang.Integer>
+        getTaskIdsList() {
+      return taskIds_;
     }
-    public int getTaskUuidsCount() {
-      return taskUuids_.size();
+    public int getTaskIdsCount() {
+      return taskIds_.size();
     }
-    public String getTaskUuids(int index) {
-      return taskUuids_.get(index);
+    public int getTaskIds(int index) {
+      return taskIds_.get(index);
     }
     
     // optional string attackMapLabelImgName = 9;
@@ -2537,14 +2535,14 @@ public final class CityProto {
     }
     
     private void initFields() {
-      cityUuid_ = "";
+      cityId_ = 0;
       name_ = "";
       mapImgName_ = "";
       center_ = com.lvl6.mobsters.noneventprotos.StructureProto.CoordinateProto.getDefaultInstance();
       roadImgName_ = "";
       mapTmxName_ = "";
       roadImgCoords_ = com.lvl6.mobsters.noneventprotos.StructureProto.CoordinateProto.getDefaultInstance();
-      taskUuids_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+      taskIds_ = java.util.Collections.emptyList();;
       attackMapLabelImgName_ = "";
     }
     private byte memoizedIsInitialized = -1;
@@ -2560,7 +2558,7 @@ public final class CityProto {
                         throws java.io.IOException {
       getSerializedSize();
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        output.writeBytes(1, getCityUuidBytes());
+        output.writeInt32(1, cityId_);
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         output.writeBytes(2, getNameBytes());
@@ -2580,8 +2578,8 @@ public final class CityProto {
       if (((bitField0_ & 0x00000040) == 0x00000040)) {
         output.writeMessage(7, roadImgCoords_);
       }
-      for (int i = 0; i < taskUuids_.size(); i++) {
-        output.writeBytes(8, taskUuids_.getByteString(i));
+      for (int i = 0; i < taskIds_.size(); i++) {
+        output.writeInt32(8, taskIds_.get(i));
       }
       if (((bitField0_ & 0x00000080) == 0x00000080)) {
         output.writeBytes(9, getAttackMapLabelImgNameBytes());
@@ -2597,7 +2595,7 @@ public final class CityProto {
       size = 0;
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(1, getCityUuidBytes());
+          .computeInt32Size(1, cityId_);
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         size += com.google.protobuf.CodedOutputStream
@@ -2625,12 +2623,12 @@ public final class CityProto {
       }
       {
         int dataSize = 0;
-        for (int i = 0; i < taskUuids_.size(); i++) {
+        for (int i = 0; i < taskIds_.size(); i++) {
           dataSize += com.google.protobuf.CodedOutputStream
-            .computeBytesSizeNoTag(taskUuids_.getByteString(i));
+            .computeInt32SizeNoTag(taskIds_.get(i));
         }
         size += dataSize;
-        size += 1 * getTaskUuidsList().size();
+        size += 1 * getTaskIdsList().size();
       }
       if (((bitField0_ & 0x00000080) == 0x00000080)) {
         size += com.google.protobuf.CodedOutputStream
@@ -2762,7 +2760,7 @@ public final class CityProto {
       
       public Builder clear() {
         super.clear();
-        cityUuid_ = "";
+        cityId_ = 0;
         bitField0_ = (bitField0_ & ~0x00000001);
         name_ = "";
         bitField0_ = (bitField0_ & ~0x00000002);
@@ -2784,7 +2782,7 @@ public final class CityProto {
           roadImgCoordsBuilder_.clear();
         }
         bitField0_ = (bitField0_ & ~0x00000040);
-        taskUuids_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+        taskIds_ = java.util.Collections.emptyList();;
         bitField0_ = (bitField0_ & ~0x00000080);
         attackMapLabelImgName_ = "";
         bitField0_ = (bitField0_ & ~0x00000100);
@@ -2829,7 +2827,7 @@ public final class CityProto {
         if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
           to_bitField0_ |= 0x00000001;
         }
-        result.cityUuid_ = cityUuid_;
+        result.cityId_ = cityId_;
         if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
           to_bitField0_ |= 0x00000002;
         }
@@ -2863,11 +2861,10 @@ public final class CityProto {
           result.roadImgCoords_ = roadImgCoordsBuilder_.build();
         }
         if (((bitField0_ & 0x00000080) == 0x00000080)) {
-          taskUuids_ = new com.google.protobuf.UnmodifiableLazyStringList(
-              taskUuids_);
+          taskIds_ = java.util.Collections.unmodifiableList(taskIds_);
           bitField0_ = (bitField0_ & ~0x00000080);
         }
-        result.taskUuids_ = taskUuids_;
+        result.taskIds_ = taskIds_;
         if (((from_bitField0_ & 0x00000100) == 0x00000100)) {
           to_bitField0_ |= 0x00000080;
         }
@@ -2888,8 +2885,8 @@ public final class CityProto {
       
       public Builder mergeFrom(com.lvl6.mobsters.noneventprotos.CityProto.FullCityProto other) {
         if (other == com.lvl6.mobsters.noneventprotos.CityProto.FullCityProto.getDefaultInstance()) return this;
-        if (other.hasCityUuid()) {
-          setCityUuid(other.getCityUuid());
+        if (other.hasCityId()) {
+          setCityId(other.getCityId());
         }
         if (other.hasName()) {
           setName(other.getName());
@@ -2909,13 +2906,13 @@ public final class CityProto {
         if (other.hasRoadImgCoords()) {
           mergeRoadImgCoords(other.getRoadImgCoords());
         }
-        if (!other.taskUuids_.isEmpty()) {
-          if (taskUuids_.isEmpty()) {
-            taskUuids_ = other.taskUuids_;
+        if (!other.taskIds_.isEmpty()) {
+          if (taskIds_.isEmpty()) {
+            taskIds_ = other.taskIds_;
             bitField0_ = (bitField0_ & ~0x00000080);
           } else {
-            ensureTaskUuidsIsMutable();
-            taskUuids_.addAll(other.taskUuids_);
+            ensureTaskIdsIsMutable();
+            taskIds_.addAll(other.taskIds_);
           }
           onChanged();
         }
@@ -2953,9 +2950,9 @@ public final class CityProto {
               }
               break;
             }
-            case 10: {
+            case 8: {
               bitField0_ |= 0x00000001;
-              cityUuid_ = input.readBytes();
+              cityId_ = input.readInt32();
               break;
             }
             case 18: {
@@ -2996,9 +2993,18 @@ public final class CityProto {
               setRoadImgCoords(subBuilder.buildPartial());
               break;
             }
+            case 64: {
+              ensureTaskIdsIsMutable();
+              taskIds_.add(input.readInt32());
+              break;
+            }
             case 66: {
-              ensureTaskUuidsIsMutable();
-              taskUuids_.add(input.readBytes());
+              int length = input.readRawVarint32();
+              int limit = input.pushLimit(length);
+              while (input.getBytesUntilLimit() > 0) {
+                addTaskIds(input.readInt32());
+              }
+              input.popLimit(limit);
               break;
             }
             case 74: {
@@ -3012,40 +3018,25 @@ public final class CityProto {
       
       private int bitField0_;
       
-      // optional string cityUuid = 1;
-      private java.lang.Object cityUuid_ = "";
-      public boolean hasCityUuid() {
+      // optional int32 cityId = 1;
+      private int cityId_ ;
+      public boolean hasCityId() {
         return ((bitField0_ & 0x00000001) == 0x00000001);
       }
-      public String getCityUuid() {
-        java.lang.Object ref = cityUuid_;
-        if (!(ref instanceof String)) {
-          String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
-          cityUuid_ = s;
-          return s;
-        } else {
-          return (String) ref;
-        }
+      public int getCityId() {
+        return cityId_;
       }
-      public Builder setCityUuid(String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000001;
-        cityUuid_ = value;
-        onChanged();
-        return this;
-      }
-      public Builder clearCityUuid() {
-        bitField0_ = (bitField0_ & ~0x00000001);
-        cityUuid_ = getDefaultInstance().getCityUuid();
-        onChanged();
-        return this;
-      }
-      void setCityUuid(com.google.protobuf.ByteString value) {
+      public Builder setCityId(int value) {
         bitField0_ |= 0x00000001;
-        cityUuid_ = value;
+        cityId_ = value;
         onChanged();
+        return this;
+      }
+      public Builder clearCityId() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        cityId_ = 0;
+        onChanged();
+        return this;
       }
       
       // optional string name = 2;
@@ -3372,60 +3363,49 @@ public final class CityProto {
         return roadImgCoordsBuilder_;
       }
       
-      // repeated string taskUuids = 8;
-      private com.google.protobuf.LazyStringList taskUuids_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-      private void ensureTaskUuidsIsMutable() {
+      // repeated int32 taskIds = 8;
+      private java.util.List<java.lang.Integer> taskIds_ = java.util.Collections.emptyList();;
+      private void ensureTaskIdsIsMutable() {
         if (!((bitField0_ & 0x00000080) == 0x00000080)) {
-          taskUuids_ = new com.google.protobuf.LazyStringArrayList(taskUuids_);
+          taskIds_ = new java.util.ArrayList<java.lang.Integer>(taskIds_);
           bitField0_ |= 0x00000080;
          }
       }
-      public java.util.List<String>
-          getTaskUuidsList() {
-        return java.util.Collections.unmodifiableList(taskUuids_);
+      public java.util.List<java.lang.Integer>
+          getTaskIdsList() {
+        return java.util.Collections.unmodifiableList(taskIds_);
       }
-      public int getTaskUuidsCount() {
-        return taskUuids_.size();
+      public int getTaskIdsCount() {
+        return taskIds_.size();
       }
-      public String getTaskUuids(int index) {
-        return taskUuids_.get(index);
+      public int getTaskIds(int index) {
+        return taskIds_.get(index);
       }
-      public Builder setTaskUuids(
-          int index, String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureTaskUuidsIsMutable();
-        taskUuids_.set(index, value);
+      public Builder setTaskIds(
+          int index, int value) {
+        ensureTaskIdsIsMutable();
+        taskIds_.set(index, value);
         onChanged();
         return this;
       }
-      public Builder addTaskUuids(String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureTaskUuidsIsMutable();
-        taskUuids_.add(value);
+      public Builder addTaskIds(int value) {
+        ensureTaskIdsIsMutable();
+        taskIds_.add(value);
         onChanged();
         return this;
       }
-      public Builder addAllTaskUuids(
-          java.lang.Iterable<String> values) {
-        ensureTaskUuidsIsMutable();
-        super.addAll(values, taskUuids_);
+      public Builder addAllTaskIds(
+          java.lang.Iterable<? extends java.lang.Integer> values) {
+        ensureTaskIdsIsMutable();
+        super.addAll(values, taskIds_);
         onChanged();
         return this;
       }
-      public Builder clearTaskUuids() {
-        taskUuids_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+      public Builder clearTaskIds() {
+        taskIds_ = java.util.Collections.emptyList();;
         bitField0_ = (bitField0_ & ~0x00000080);
         onChanged();
         return this;
-      }
-      void addTaskUuids(com.google.protobuf.ByteString value) {
-        ensureTaskUuidsIsMutable();
-        taskUuids_.add(value);
-        onChanged();
       }
       
       // optional string attackMapLabelImgName = 9;
@@ -3511,24 +3491,24 @@ public final class CityProto {
       "expandStartTime\030\005 \001(\003\"e\n\026CityExpansionCo" +
       "stProto\022\024\n\014expansionNum\030\001 \001(\005\022\031\n\021expansi" +
       "onCostCash\030\002 \001(\005\022\032\n\022numMinutesToExpand\030\003" +
-      " \001(\005\"\377\002\n\020CityElementProto\022\020\n\010cityUuid\030\001 " +
-      "\001(\t\022\021\n\tassetUuid\030\002 \001(\t\0222\n\004type\030\004 \001(\0162$.p" +
-      "roto.CityElementProto.CityElemType\022&\n\006co",
-      "ords\030\005 \001(\0132\026.proto.CoordinateProto\022\017\n\007xL" +
-      "ength\030\006 \001(\002\022\017\n\007yLength\030\007 \001(\002\022\r\n\005imgId\030\010 " +
-      "\001(\t\0229\n\013orientation\030\t \001(\0162\030.proto.StructO" +
-      "rientation:\nPOSITION_1\022,\n\014spriteCoords\030\n" +
-      " \001(\0132\026.proto.CoordinateProto\"P\n\014CityElem" +
-      "Type\022\014\n\010BUILDING\020\001\022\016\n\nDECORATION\020\002\022\030\n\024PE" +
-      "RSON_NEUTRAL_ENEMY\020\003\022\010\n\004BOSS\020\004\"\365\001\n\rFullC" +
-      "ityProto\022\020\n\010cityUuid\030\001 \001(\t\022\014\n\004name\030\002 \001(\t" +
-      "\022\022\n\nmapImgName\030\003 \001(\t\022&\n\006center\030\004 \001(\0132\026.p" +
-      "roto.CoordinateProto\022\023\n\013roadImgName\030\005 \001(",
-      "\t\022\022\n\nmapTmxName\030\006 \001(\t\022-\n\rroadImgCoords\030\007" +
-      " \001(\0132\026.proto.CoordinateProto\022\021\n\ttaskUuid" +
-      "s\030\010 \003(\t\022\035\n\025attackMapLabelImgName\030\t \001(\tB-" +
-      "\n com.lvl6.mobsters.noneventprotosB\tCity" +
-      "Proto"
+      " \001(\005\"\211\003\n\020CityElementProto\022\016\n\006cityId\030\001 \001(" +
+      "\005\022\017\n\007assetId\030\002 \001(\005\022\014\n\004name\030\003 \001(\t\0222\n\004type" +
+      "\030\004 \001(\0162$.proto.CityElementProto.CityElem",
+      "Type\022&\n\006coords\030\005 \001(\0132\026.proto.CoordinateP" +
+      "roto\022\017\n\007xLength\030\006 \001(\002\022\017\n\007yLength\030\007 \001(\002\022\r" +
+      "\n\005imgId\030\010 \001(\t\0229\n\013orientation\030\t \001(\0162\030.pro" +
+      "to.StructOrientation:\nPOSITION_1\022,\n\014spri" +
+      "teCoords\030\n \001(\0132\026.proto.CoordinateProto\"P" +
+      "\n\014CityElemType\022\014\n\010BUILDING\020\001\022\016\n\nDECORATI" +
+      "ON\020\002\022\030\n\024PERSON_NEUTRAL_ENEMY\020\003\022\010\n\004BOSS\020\004" +
+      "\"\361\001\n\rFullCityProto\022\016\n\006cityId\030\001 \001(\005\022\014\n\004na" +
+      "me\030\002 \001(\t\022\022\n\nmapImgName\030\003 \001(\t\022&\n\006center\030\004" +
+      " \001(\0132\026.proto.CoordinateProto\022\023\n\013roadImgN",
+      "ame\030\005 \001(\t\022\022\n\nmapTmxName\030\006 \001(\t\022-\n\rroadImg" +
+      "Coords\030\007 \001(\0132\026.proto.CoordinateProto\022\017\n\007" +
+      "taskIds\030\010 \003(\005\022\035\n\025attackMapLabelImgName\030\t" +
+      " \001(\tB-\n com.lvl6.mobsters.noneventprotos" +
+      "B\tCityProto"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -3556,7 +3536,7 @@ public final class CityProto {
           internal_static_proto_CityElementProto_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_proto_CityElementProto_descriptor,
-              new java.lang.String[] { "CityUuid", "AssetUuid", "Type", "Coords", "XLength", "YLength", "ImgId", "Orientation", "SpriteCoords", },
+              new java.lang.String[] { "CityId", "AssetId", "Name", "Type", "Coords", "XLength", "YLength", "ImgId", "Orientation", "SpriteCoords", },
               com.lvl6.mobsters.noneventprotos.CityProto.CityElementProto.class,
               com.lvl6.mobsters.noneventprotos.CityProto.CityElementProto.Builder.class);
           internal_static_proto_FullCityProto_descriptor =
@@ -3564,7 +3544,7 @@ public final class CityProto {
           internal_static_proto_FullCityProto_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_proto_FullCityProto_descriptor,
-              new java.lang.String[] { "CityUuid", "Name", "MapImgName", "Center", "RoadImgName", "MapTmxName", "RoadImgCoords", "TaskUuids", "AttackMapLabelImgName", },
+              new java.lang.String[] { "CityId", "Name", "MapImgName", "Center", "RoadImgName", "MapTmxName", "RoadImgCoords", "TaskIds", "AttackMapLabelImgName", },
               com.lvl6.mobsters.noneventprotos.CityProto.FullCityProto.class,
               com.lvl6.mobsters.noneventprotos.CityProto.FullCityProto.Builder.class);
           return null;

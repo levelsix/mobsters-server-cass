@@ -15,7 +15,7 @@ option java_outer_classname = "EventStructureProto";
 message PurchaseNormStructureRequestProto {
 	optional MinimumUserProto sender = 1;
 	optional CoordinateProto structCoordinates = 2;
-	optional string structUuid = 3;
+	optional int32 structId = 3;
 	optional int64 timeOfPurchase = 4;
 }
 

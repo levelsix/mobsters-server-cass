@@ -20,9 +20,9 @@ public final class EventDungeonProto {
     boolean hasClientTime();
     long getClientTime();
     
-    // optional string taskUuid = 3;
-    boolean hasTaskUuid();
-    String getTaskUuid();
+    // optional int32 taskId = 3;
+    boolean hasTaskId();
+    int getTaskId();
     
     // optional bool spawnBoss = 4;
     boolean hasSpawnBoss();
@@ -80,36 +80,14 @@ public final class EventDungeonProto {
       return clientTime_;
     }
     
-    // optional string taskUuid = 3;
-    public static final int TASKUUID_FIELD_NUMBER = 3;
-    private java.lang.Object taskUuid_;
-    public boolean hasTaskUuid() {
+    // optional int32 taskId = 3;
+    public static final int TASKID_FIELD_NUMBER = 3;
+    private int taskId_;
+    public boolean hasTaskId() {
       return ((bitField0_ & 0x00000004) == 0x00000004);
     }
-    public String getTaskUuid() {
-      java.lang.Object ref = taskUuid_;
-      if (ref instanceof String) {
-        return (String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        String s = bs.toStringUtf8();
-        if (com.google.protobuf.Internal.isValidUtf8(bs)) {
-          taskUuid_ = s;
-        }
-        return s;
-      }
-    }
-    private com.google.protobuf.ByteString getTaskUuidBytes() {
-      java.lang.Object ref = taskUuid_;
-      if (ref instanceof String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8((String) ref);
-        taskUuid_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
+    public int getTaskId() {
+      return taskId_;
     }
     
     // optional bool spawnBoss = 4;
@@ -125,7 +103,7 @@ public final class EventDungeonProto {
     private void initFields() {
       sender_ = com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto.getDefaultInstance();
       clientTime_ = 0L;
-      taskUuid_ = "";
+      taskId_ = 0;
       spawnBoss_ = false;
     }
     private byte memoizedIsInitialized = -1;
@@ -147,7 +125,7 @@ public final class EventDungeonProto {
         output.writeInt64(2, clientTime_);
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
-        output.writeBytes(3, getTaskUuidBytes());
+        output.writeInt32(3, taskId_);
       }
       if (((bitField0_ & 0x00000008) == 0x00000008)) {
         output.writeBool(4, spawnBoss_);
@@ -171,7 +149,7 @@ public final class EventDungeonProto {
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(3, getTaskUuidBytes());
+          .computeInt32Size(3, taskId_);
       }
       if (((bitField0_ & 0x00000008) == 0x00000008)) {
         size += com.google.protobuf.CodedOutputStream
@@ -310,7 +288,7 @@ public final class EventDungeonProto {
         bitField0_ = (bitField0_ & ~0x00000001);
         clientTime_ = 0L;
         bitField0_ = (bitField0_ & ~0x00000002);
-        taskUuid_ = "";
+        taskId_ = 0;
         bitField0_ = (bitField0_ & ~0x00000004);
         spawnBoss_ = false;
         bitField0_ = (bitField0_ & ~0x00000008);
@@ -367,7 +345,7 @@ public final class EventDungeonProto {
         if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
           to_bitField0_ |= 0x00000004;
         }
-        result.taskUuid_ = taskUuid_;
+        result.taskId_ = taskId_;
         if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
           to_bitField0_ |= 0x00000008;
         }
@@ -394,8 +372,8 @@ public final class EventDungeonProto {
         if (other.hasClientTime()) {
           setClientTime(other.getClientTime());
         }
-        if (other.hasTaskUuid()) {
-          setTaskUuid(other.getTaskUuid());
+        if (other.hasTaskId()) {
+          setTaskId(other.getTaskId());
         }
         if (other.hasSpawnBoss()) {
           setSpawnBoss(other.getSpawnBoss());
@@ -445,9 +423,9 @@ public final class EventDungeonProto {
               clientTime_ = input.readInt64();
               break;
             }
-            case 26: {
+            case 24: {
               bitField0_ |= 0x00000004;
-              taskUuid_ = input.readBytes();
+              taskId_ = input.readInt32();
               break;
             }
             case 32: {
@@ -572,40 +550,25 @@ public final class EventDungeonProto {
         return this;
       }
       
-      // optional string taskUuid = 3;
-      private java.lang.Object taskUuid_ = "";
-      public boolean hasTaskUuid() {
+      // optional int32 taskId = 3;
+      private int taskId_ ;
+      public boolean hasTaskId() {
         return ((bitField0_ & 0x00000004) == 0x00000004);
       }
-      public String getTaskUuid() {
-        java.lang.Object ref = taskUuid_;
-        if (!(ref instanceof String)) {
-          String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
-          taskUuid_ = s;
-          return s;
-        } else {
-          return (String) ref;
-        }
+      public int getTaskId() {
+        return taskId_;
       }
-      public Builder setTaskUuid(String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000004;
-        taskUuid_ = value;
-        onChanged();
-        return this;
-      }
-      public Builder clearTaskUuid() {
-        bitField0_ = (bitField0_ & ~0x00000004);
-        taskUuid_ = getDefaultInstance().getTaskUuid();
-        onChanged();
-        return this;
-      }
-      void setTaskUuid(com.google.protobuf.ByteString value) {
+      public Builder setTaskId(int value) {
         bitField0_ |= 0x00000004;
-        taskUuid_ = value;
+        taskId_ = value;
         onChanged();
+        return this;
+      }
+      public Builder clearTaskId() {
+        bitField0_ = (bitField0_ & ~0x00000004);
+        taskId_ = 0;
+        onChanged();
+        return this;
       }
       
       // optional bool spawnBoss = 4;
@@ -662,17 +625,17 @@ public final class EventDungeonProto {
     boolean hasUserTaskUuid();
     String getUserTaskUuid();
     
-    // optional string taskUuid = 4;
-    boolean hasTaskUuid();
-    String getTaskUuid();
+    // optional int32 taskId = 4;
+    boolean hasTaskId();
+    int getTaskId();
     
     // optional .proto.BeginDungeonResponseProto.BeginDungeonStatus status = 5;
     boolean hasStatus();
     com.lvl6.mobsters.eventprotos.EventDungeonProto.BeginDungeonResponseProto.BeginDungeonStatus getStatus();
     
-    // optional string nextTaskUuidForBoss = 6;
-    boolean hasNextTaskUuidForBoss();
-    String getNextTaskUuidForBoss();
+    // optional int32 nextTaskIdForBoss = 6;
+    boolean hasNextTaskIdForBoss();
+    int getNextTaskIdForBoss();
   }
   public static final class BeginDungeonResponseProto extends
       com.google.protobuf.GeneratedMessage
@@ -838,36 +801,14 @@ public final class EventDungeonProto {
       }
     }
     
-    // optional string taskUuid = 4;
-    public static final int TASKUUID_FIELD_NUMBER = 4;
-    private java.lang.Object taskUuid_;
-    public boolean hasTaskUuid() {
+    // optional int32 taskId = 4;
+    public static final int TASKID_FIELD_NUMBER = 4;
+    private int taskId_;
+    public boolean hasTaskId() {
       return ((bitField0_ & 0x00000004) == 0x00000004);
     }
-    public String getTaskUuid() {
-      java.lang.Object ref = taskUuid_;
-      if (ref instanceof String) {
-        return (String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        String s = bs.toStringUtf8();
-        if (com.google.protobuf.Internal.isValidUtf8(bs)) {
-          taskUuid_ = s;
-        }
-        return s;
-      }
-    }
-    private com.google.protobuf.ByteString getTaskUuidBytes() {
-      java.lang.Object ref = taskUuid_;
-      if (ref instanceof String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8((String) ref);
-        taskUuid_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
+    public int getTaskId() {
+      return taskId_;
     }
     
     // optional .proto.BeginDungeonResponseProto.BeginDungeonStatus status = 5;
@@ -880,45 +821,23 @@ public final class EventDungeonProto {
       return status_;
     }
     
-    // optional string nextTaskUuidForBoss = 6;
-    public static final int NEXTTASKUUIDFORBOSS_FIELD_NUMBER = 6;
-    private java.lang.Object nextTaskUuidForBoss_;
-    public boolean hasNextTaskUuidForBoss() {
+    // optional int32 nextTaskIdForBoss = 6;
+    public static final int NEXTTASKIDFORBOSS_FIELD_NUMBER = 6;
+    private int nextTaskIdForBoss_;
+    public boolean hasNextTaskIdForBoss() {
       return ((bitField0_ & 0x00000010) == 0x00000010);
     }
-    public String getNextTaskUuidForBoss() {
-      java.lang.Object ref = nextTaskUuidForBoss_;
-      if (ref instanceof String) {
-        return (String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        String s = bs.toStringUtf8();
-        if (com.google.protobuf.Internal.isValidUtf8(bs)) {
-          nextTaskUuidForBoss_ = s;
-        }
-        return s;
-      }
-    }
-    private com.google.protobuf.ByteString getNextTaskUuidForBossBytes() {
-      java.lang.Object ref = nextTaskUuidForBoss_;
-      if (ref instanceof String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8((String) ref);
-        nextTaskUuidForBoss_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
+    public int getNextTaskIdForBoss() {
+      return nextTaskIdForBoss_;
     }
     
     private void initFields() {
       sender_ = com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto.getDefaultInstance();
       tsp_ = java.util.Collections.emptyList();
       userTaskUuid_ = "";
-      taskUuid_ = "";
+      taskId_ = 0;
       status_ = com.lvl6.mobsters.eventprotos.EventDungeonProto.BeginDungeonResponseProto.BeginDungeonStatus.SUCCESS;
-      nextTaskUuidForBoss_ = "";
+      nextTaskIdForBoss_ = 0;
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -942,13 +861,13 @@ public final class EventDungeonProto {
         output.writeBytes(3, getUserTaskUuidBytes());
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
-        output.writeBytes(4, getTaskUuidBytes());
+        output.writeInt32(4, taskId_);
       }
       if (((bitField0_ & 0x00000008) == 0x00000008)) {
         output.writeEnum(5, status_.getNumber());
       }
       if (((bitField0_ & 0x00000010) == 0x00000010)) {
-        output.writeBytes(6, getNextTaskUuidForBossBytes());
+        output.writeInt32(6, nextTaskIdForBoss_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -973,7 +892,7 @@ public final class EventDungeonProto {
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(4, getTaskUuidBytes());
+          .computeInt32Size(4, taskId_);
       }
       if (((bitField0_ & 0x00000008) == 0x00000008)) {
         size += com.google.protobuf.CodedOutputStream
@@ -981,7 +900,7 @@ public final class EventDungeonProto {
       }
       if (((bitField0_ & 0x00000010) == 0x00000010)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(6, getNextTaskUuidForBossBytes());
+          .computeInt32Size(6, nextTaskIdForBoss_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -1123,11 +1042,11 @@ public final class EventDungeonProto {
         }
         userTaskUuid_ = "";
         bitField0_ = (bitField0_ & ~0x00000004);
-        taskUuid_ = "";
+        taskId_ = 0;
         bitField0_ = (bitField0_ & ~0x00000008);
         status_ = com.lvl6.mobsters.eventprotos.EventDungeonProto.BeginDungeonResponseProto.BeginDungeonStatus.SUCCESS;
         bitField0_ = (bitField0_ & ~0x00000010);
-        nextTaskUuidForBoss_ = "";
+        nextTaskIdForBoss_ = 0;
         bitField0_ = (bitField0_ & ~0x00000020);
         return this;
       }
@@ -1191,7 +1110,7 @@ public final class EventDungeonProto {
         if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
           to_bitField0_ |= 0x00000004;
         }
-        result.taskUuid_ = taskUuid_;
+        result.taskId_ = taskId_;
         if (((from_bitField0_ & 0x00000010) == 0x00000010)) {
           to_bitField0_ |= 0x00000008;
         }
@@ -1199,7 +1118,7 @@ public final class EventDungeonProto {
         if (((from_bitField0_ & 0x00000020) == 0x00000020)) {
           to_bitField0_ |= 0x00000010;
         }
-        result.nextTaskUuidForBoss_ = nextTaskUuidForBoss_;
+        result.nextTaskIdForBoss_ = nextTaskIdForBoss_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -1248,14 +1167,14 @@ public final class EventDungeonProto {
         if (other.hasUserTaskUuid()) {
           setUserTaskUuid(other.getUserTaskUuid());
         }
-        if (other.hasTaskUuid()) {
-          setTaskUuid(other.getTaskUuid());
+        if (other.hasTaskId()) {
+          setTaskId(other.getTaskId());
         }
         if (other.hasStatus()) {
           setStatus(other.getStatus());
         }
-        if (other.hasNextTaskUuidForBoss()) {
-          setNextTaskUuidForBoss(other.getNextTaskUuidForBoss());
+        if (other.hasNextTaskIdForBoss()) {
+          setNextTaskIdForBoss(other.getNextTaskIdForBoss());
         }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
@@ -1308,9 +1227,9 @@ public final class EventDungeonProto {
               userTaskUuid_ = input.readBytes();
               break;
             }
-            case 34: {
+            case 32: {
               bitField0_ |= 0x00000008;
-              taskUuid_ = input.readBytes();
+              taskId_ = input.readInt32();
               break;
             }
             case 40: {
@@ -1324,9 +1243,9 @@ public final class EventDungeonProto {
               }
               break;
             }
-            case 50: {
+            case 48: {
               bitField0_ |= 0x00000020;
-              nextTaskUuidForBoss_ = input.readBytes();
+              nextTaskIdForBoss_ = input.readInt32();
               break;
             }
           }
@@ -1647,40 +1566,25 @@ public final class EventDungeonProto {
         onChanged();
       }
       
-      // optional string taskUuid = 4;
-      private java.lang.Object taskUuid_ = "";
-      public boolean hasTaskUuid() {
+      // optional int32 taskId = 4;
+      private int taskId_ ;
+      public boolean hasTaskId() {
         return ((bitField0_ & 0x00000008) == 0x00000008);
       }
-      public String getTaskUuid() {
-        java.lang.Object ref = taskUuid_;
-        if (!(ref instanceof String)) {
-          String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
-          taskUuid_ = s;
-          return s;
-        } else {
-          return (String) ref;
-        }
+      public int getTaskId() {
+        return taskId_;
       }
-      public Builder setTaskUuid(String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000008;
-        taskUuid_ = value;
-        onChanged();
-        return this;
-      }
-      public Builder clearTaskUuid() {
-        bitField0_ = (bitField0_ & ~0x00000008);
-        taskUuid_ = getDefaultInstance().getTaskUuid();
-        onChanged();
-        return this;
-      }
-      void setTaskUuid(com.google.protobuf.ByteString value) {
+      public Builder setTaskId(int value) {
         bitField0_ |= 0x00000008;
-        taskUuid_ = value;
+        taskId_ = value;
         onChanged();
+        return this;
+      }
+      public Builder clearTaskId() {
+        bitField0_ = (bitField0_ & ~0x00000008);
+        taskId_ = 0;
+        onChanged();
+        return this;
       }
       
       // optional .proto.BeginDungeonResponseProto.BeginDungeonStatus status = 5;
@@ -1707,40 +1611,25 @@ public final class EventDungeonProto {
         return this;
       }
       
-      // optional string nextTaskUuidForBoss = 6;
-      private java.lang.Object nextTaskUuidForBoss_ = "";
-      public boolean hasNextTaskUuidForBoss() {
+      // optional int32 nextTaskIdForBoss = 6;
+      private int nextTaskIdForBoss_ ;
+      public boolean hasNextTaskIdForBoss() {
         return ((bitField0_ & 0x00000020) == 0x00000020);
       }
-      public String getNextTaskUuidForBoss() {
-        java.lang.Object ref = nextTaskUuidForBoss_;
-        if (!(ref instanceof String)) {
-          String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
-          nextTaskUuidForBoss_ = s;
-          return s;
-        } else {
-          return (String) ref;
-        }
+      public int getNextTaskIdForBoss() {
+        return nextTaskIdForBoss_;
       }
-      public Builder setNextTaskUuidForBoss(String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000020;
-        nextTaskUuidForBoss_ = value;
-        onChanged();
-        return this;
-      }
-      public Builder clearNextTaskUuidForBoss() {
-        bitField0_ = (bitField0_ & ~0x00000020);
-        nextTaskUuidForBoss_ = getDefaultInstance().getNextTaskUuidForBoss();
-        onChanged();
-        return this;
-      }
-      void setNextTaskUuidForBoss(com.google.protobuf.ByteString value) {
+      public Builder setNextTaskIdForBoss(int value) {
         bitField0_ |= 0x00000020;
-        nextTaskUuidForBoss_ = value;
+        nextTaskIdForBoss_ = value;
         onChanged();
+        return this;
+      }
+      public Builder clearNextTaskIdForBoss() {
+        bitField0_ = (bitField0_ & ~0x00000020);
+        nextTaskIdForBoss_ = 0;
+        onChanged();
+        return this;
       }
       
       // @@protoc_insertion_point(builder_scope:proto.BeginDungeonResponseProto)
@@ -2579,17 +2468,17 @@ public final class EventDungeonProto {
     com.lvl6.mobsters.noneventprotos.MonsterStuffProto.FullUserMonsterProtoOrBuilder getUpdatedOrNewOrBuilder(
         int index);
     
-    // optional string taskUuid = 4;
-    boolean hasTaskUuid();
-    String getTaskUuid();
+    // optional int32 taskId = 4;
+    boolean hasTaskId();
+    int getTaskId();
     
     // optional bool userWon = 5;
     boolean hasUserWon();
     boolean getUserWon();
     
-    // optional int32 nextTaskUuidForBoss = 6;
-    boolean hasNextTaskUuidForBoss();
-    int getNextTaskUuidForBoss();
+    // optional int32 nextTaskIdForBoss = 6;
+    boolean hasNextTaskIdForBoss();
+    int getNextTaskIdForBoss();
   }
   public static final class EndDungeonResponseProto extends
       com.google.protobuf.GeneratedMessage
@@ -2733,36 +2622,14 @@ public final class EventDungeonProto {
       return updatedOrNew_.get(index);
     }
     
-    // optional string taskUuid = 4;
-    public static final int TASKUUID_FIELD_NUMBER = 4;
-    private java.lang.Object taskUuid_;
-    public boolean hasTaskUuid() {
+    // optional int32 taskId = 4;
+    public static final int TASKID_FIELD_NUMBER = 4;
+    private int taskId_;
+    public boolean hasTaskId() {
       return ((bitField0_ & 0x00000004) == 0x00000004);
     }
-    public String getTaskUuid() {
-      java.lang.Object ref = taskUuid_;
-      if (ref instanceof String) {
-        return (String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        String s = bs.toStringUtf8();
-        if (com.google.protobuf.Internal.isValidUtf8(bs)) {
-          taskUuid_ = s;
-        }
-        return s;
-      }
-    }
-    private com.google.protobuf.ByteString getTaskUuidBytes() {
-      java.lang.Object ref = taskUuid_;
-      if (ref instanceof String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8((String) ref);
-        taskUuid_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
+    public int getTaskId() {
+      return taskId_;
     }
     
     // optional bool userWon = 5;
@@ -2775,23 +2642,23 @@ public final class EventDungeonProto {
       return userWon_;
     }
     
-    // optional int32 nextTaskUuidForBoss = 6;
-    public static final int NEXTTASKUUIDFORBOSS_FIELD_NUMBER = 6;
-    private int nextTaskUuidForBoss_;
-    public boolean hasNextTaskUuidForBoss() {
+    // optional int32 nextTaskIdForBoss = 6;
+    public static final int NEXTTASKIDFORBOSS_FIELD_NUMBER = 6;
+    private int nextTaskIdForBoss_;
+    public boolean hasNextTaskIdForBoss() {
       return ((bitField0_ & 0x00000010) == 0x00000010);
     }
-    public int getNextTaskUuidForBoss() {
-      return nextTaskUuidForBoss_;
+    public int getNextTaskIdForBoss() {
+      return nextTaskIdForBoss_;
     }
     
     private void initFields() {
       sender_ = com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto.getDefaultInstance();
       status_ = com.lvl6.mobsters.eventprotos.EventDungeonProto.EndDungeonResponseProto.EndDungeonStatus.SUCCESS;
       updatedOrNew_ = java.util.Collections.emptyList();
-      taskUuid_ = "";
+      taskId_ = 0;
       userWon_ = false;
-      nextTaskUuidForBoss_ = 0;
+      nextTaskIdForBoss_ = 0;
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -2815,13 +2682,13 @@ public final class EventDungeonProto {
         output.writeMessage(3, updatedOrNew_.get(i));
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
-        output.writeBytes(4, getTaskUuidBytes());
+        output.writeInt32(4, taskId_);
       }
       if (((bitField0_ & 0x00000008) == 0x00000008)) {
         output.writeBool(5, userWon_);
       }
       if (((bitField0_ & 0x00000010) == 0x00000010)) {
-        output.writeInt32(6, nextTaskUuidForBoss_);
+        output.writeInt32(6, nextTaskIdForBoss_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -2846,7 +2713,7 @@ public final class EventDungeonProto {
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(4, getTaskUuidBytes());
+          .computeInt32Size(4, taskId_);
       }
       if (((bitField0_ & 0x00000008) == 0x00000008)) {
         size += com.google.protobuf.CodedOutputStream
@@ -2854,7 +2721,7 @@ public final class EventDungeonProto {
       }
       if (((bitField0_ & 0x00000010) == 0x00000010)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(6, nextTaskUuidForBoss_);
+          .computeInt32Size(6, nextTaskIdForBoss_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -2996,11 +2863,11 @@ public final class EventDungeonProto {
         } else {
           updatedOrNewBuilder_.clear();
         }
-        taskUuid_ = "";
+        taskId_ = 0;
         bitField0_ = (bitField0_ & ~0x00000008);
         userWon_ = false;
         bitField0_ = (bitField0_ & ~0x00000010);
-        nextTaskUuidForBoss_ = 0;
+        nextTaskIdForBoss_ = 0;
         bitField0_ = (bitField0_ & ~0x00000020);
         return this;
       }
@@ -3064,7 +2931,7 @@ public final class EventDungeonProto {
         if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
           to_bitField0_ |= 0x00000004;
         }
-        result.taskUuid_ = taskUuid_;
+        result.taskId_ = taskId_;
         if (((from_bitField0_ & 0x00000010) == 0x00000010)) {
           to_bitField0_ |= 0x00000008;
         }
@@ -3072,7 +2939,7 @@ public final class EventDungeonProto {
         if (((from_bitField0_ & 0x00000020) == 0x00000020)) {
           to_bitField0_ |= 0x00000010;
         }
-        result.nextTaskUuidForBoss_ = nextTaskUuidForBoss_;
+        result.nextTaskIdForBoss_ = nextTaskIdForBoss_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -3121,14 +2988,14 @@ public final class EventDungeonProto {
             }
           }
         }
-        if (other.hasTaskUuid()) {
-          setTaskUuid(other.getTaskUuid());
+        if (other.hasTaskId()) {
+          setTaskId(other.getTaskId());
         }
         if (other.hasUserWon()) {
           setUserWon(other.getUserWon());
         }
-        if (other.hasNextTaskUuidForBoss()) {
-          setNextTaskUuidForBoss(other.getNextTaskUuidForBoss());
+        if (other.hasNextTaskIdForBoss()) {
+          setNextTaskIdForBoss(other.getNextTaskIdForBoss());
         }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
@@ -3187,9 +3054,9 @@ public final class EventDungeonProto {
               addUpdatedOrNew(subBuilder.buildPartial());
               break;
             }
-            case 34: {
+            case 32: {
               bitField0_ |= 0x00000008;
-              taskUuid_ = input.readBytes();
+              taskId_ = input.readInt32();
               break;
             }
             case 40: {
@@ -3199,7 +3066,7 @@ public final class EventDungeonProto {
             }
             case 48: {
               bitField0_ |= 0x00000020;
-              nextTaskUuidForBoss_ = input.readInt32();
+              nextTaskIdForBoss_ = input.readInt32();
               break;
             }
           }
@@ -3508,40 +3375,25 @@ public final class EventDungeonProto {
         return updatedOrNewBuilder_;
       }
       
-      // optional string taskUuid = 4;
-      private java.lang.Object taskUuid_ = "";
-      public boolean hasTaskUuid() {
+      // optional int32 taskId = 4;
+      private int taskId_ ;
+      public boolean hasTaskId() {
         return ((bitField0_ & 0x00000008) == 0x00000008);
       }
-      public String getTaskUuid() {
-        java.lang.Object ref = taskUuid_;
-        if (!(ref instanceof String)) {
-          String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
-          taskUuid_ = s;
-          return s;
-        } else {
-          return (String) ref;
-        }
+      public int getTaskId() {
+        return taskId_;
       }
-      public Builder setTaskUuid(String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000008;
-        taskUuid_ = value;
-        onChanged();
-        return this;
-      }
-      public Builder clearTaskUuid() {
-        bitField0_ = (bitField0_ & ~0x00000008);
-        taskUuid_ = getDefaultInstance().getTaskUuid();
-        onChanged();
-        return this;
-      }
-      void setTaskUuid(com.google.protobuf.ByteString value) {
+      public Builder setTaskId(int value) {
         bitField0_ |= 0x00000008;
-        taskUuid_ = value;
+        taskId_ = value;
         onChanged();
+        return this;
+      }
+      public Builder clearTaskId() {
+        bitField0_ = (bitField0_ & ~0x00000008);
+        taskId_ = 0;
+        onChanged();
+        return this;
       }
       
       // optional bool userWon = 5;
@@ -3565,23 +3417,23 @@ public final class EventDungeonProto {
         return this;
       }
       
-      // optional int32 nextTaskUuidForBoss = 6;
-      private int nextTaskUuidForBoss_ ;
-      public boolean hasNextTaskUuidForBoss() {
+      // optional int32 nextTaskIdForBoss = 6;
+      private int nextTaskIdForBoss_ ;
+      public boolean hasNextTaskIdForBoss() {
         return ((bitField0_ & 0x00000020) == 0x00000020);
       }
-      public int getNextTaskUuidForBoss() {
-        return nextTaskUuidForBoss_;
+      public int getNextTaskIdForBoss() {
+        return nextTaskIdForBoss_;
       }
-      public Builder setNextTaskUuidForBoss(int value) {
+      public Builder setNextTaskIdForBoss(int value) {
         bitField0_ |= 0x00000020;
-        nextTaskUuidForBoss_ = value;
+        nextTaskIdForBoss_ = value;
         onChanged();
         return this;
       }
-      public Builder clearNextTaskUuidForBoss() {
+      public Builder clearNextTaskIdForBoss() {
         bitField0_ = (bitField0_ & ~0x00000020);
-        nextTaskUuidForBoss_ = 0;
+        nextTaskIdForBoss_ = 0;
         onChanged();
         return this;
       }
@@ -4774,40 +4626,40 @@ public final class EventDungeonProto {
   static {
     java.lang.String[] descriptorData = {
       "\n\022EventDungeon.proto\022\005proto\032\022MonsterStuf" +
-      "f.proto\032\nTask.proto\032\nUser.proto\"|\n\030Begin" +
+      "f.proto\032\nTask.proto\032\nUser.proto\"z\n\030Begin" +
       "DungeonRequestProto\022\'\n\006sender\030\001 \001(\0132\027.pr" +
       "oto.MinimumUserProto\022\022\n\nclientTime\030\002 \001(\003" +
-      "\022\020\n\010taskUuid\030\003 \001(\t\022\021\n\tspawnBoss\030\004 \001(\010\"\245\002" +
-      "\n\031BeginDungeonResponseProto\022\'\n\006sender\030\001 " +
-      "\001(\0132\027.proto.MinimumUserProto\022\"\n\003tsp\030\002 \003(" +
-      "\0132\025.proto.TaskStageProto\022\024\n\014userTaskUuid" +
-      "\030\003 \001(\t\022\020\n\010taskUuid\030\004 \001(\t\022C\n\006status\030\005 \001(\016" +
-      "23.proto.BeginDungeonResponseProto.Begin",
-      "DungeonStatus\022\033\n\023nextTaskUuidForBoss\030\006 \001" +
-      "(\t\"1\n\022BeginDungeonStatus\022\013\n\007SUCCESS\020\001\022\016\n" +
-      "\nFAIL_OTHER\020\002\"\312\001\n\026EndDungeonRequestProto" +
+      "\022\016\n\006taskId\030\003 \001(\005\022\021\n\tspawnBoss\030\004 \001(\010\"\241\002\n\031" +
+      "BeginDungeonResponseProto\022\'\n\006sender\030\001 \001(" +
+      "\0132\027.proto.MinimumUserProto\022\"\n\003tsp\030\002 \003(\0132" +
+      "\025.proto.TaskStageProto\022\024\n\014userTaskUuid\030\003" +
+      " \001(\t\022\016\n\006taskId\030\004 \001(\005\022C\n\006status\030\005 \001(\01623.p" +
+      "roto.BeginDungeonResponseProto.BeginDung",
+      "eonStatus\022\031\n\021nextTaskIdForBoss\030\006 \001(\005\"1\n\022" +
+      "BeginDungeonStatus\022\013\n\007SUCCESS\020\001\022\016\n\nFAIL_" +
+      "OTHER\020\002\"\312\001\n\026EndDungeonRequestProto\022\'\n\006se" +
+      "nder\030\001 \001(\0132\027.proto.MinimumUserProto\022\024\n\014u" +
+      "serTaskUuid\030\002 \001(\t\022\017\n\007userWon\030\003 \001(\010\022\022\n\ncl" +
+      "ientTime\030\004 \001(\003\022\034\n\024firstTimeUserWonTask\030\005" +
+      " \001(\010\022\031\n\021generateFirstBoss\030\006 \001(\010\022\023\n\013respa" +
+      "wnBoss\030\007 \001(\010\"\243\002\n\027EndDungeonResponseProto" +
       "\022\'\n\006sender\030\001 \001(\0132\027.proto.MinimumUserProt" +
-      "o\022\024\n\014userTaskUuid\030\002 \001(\t\022\017\n\007userWon\030\003 \001(\010" +
-      "\022\022\n\nclientTime\030\004 \001(\003\022\034\n\024firstTimeUserWon" +
-      "Task\030\005 \001(\010\022\031\n\021generateFirstBoss\030\006 \001(\010\022\023\n" +
-      "\013respawnBoss\030\007 \001(\010\"\247\002\n\027EndDungeonRespons" +
-      "eProto\022\'\n\006sender\030\001 \001(\0132\027.proto.MinimumUs" +
-      "erProto\022?\n\006status\030\002 \001(\0162/.proto.EndDunge",
-      "onResponseProto.EndDungeonStatus\0221\n\014upda" +
-      "tedOrNew\030\003 \003(\0132\033.proto.FullUserMonsterPr" +
-      "oto\022\020\n\010taskUuid\030\004 \001(\t\022\017\n\007userWon\030\005 \001(\010\022\033" +
-      "\n\023nextTaskUuidForBoss\030\006 \001(\005\"/\n\020EndDungeo" +
-      "nStatus\022\013\n\007SUCCESS\020\001\022\016\n\nFAIL_OTHER\020\002\"p\n\033" +
-      "ReviveInDungeonRequestProto\022\'\n\006sender\030\001 " +
-      "\001(\0132\027.proto.MinimumUserProto\022\024\n\014userTask" +
-      "Uuid\030\002 \001(\t\022\022\n\nclientTime\030\003 \001(\003\"\345\001\n\034Reviv" +
-      "eInDungeonResponseProto\022\'\n\006sender\030\001 \001(\0132" +
-      "\027.proto.MinimumUserProto\022I\n\006status\030\002 \001(\016",
-      "29.proto.ReviveInDungeonResponseProto.Re" +
-      "viveInDungeonStatus\"Q\n\025ReviveInDungeonSt" +
-      "atus\022\013\n\007SUCCESS\020\001\022\033\n\027FAIL_INSUFFICIENT_F" +
-      "UNDS\020\002\022\016\n\nFAIL_OTHER\020\003B2\n\035com.lvl6.mobst" +
-      "ers.eventprotosB\021EventDungeonProto"
+      "o\022?\n\006status\030\002 \001(\0162/.proto.EndDungeonResp",
+      "onseProto.EndDungeonStatus\0221\n\014updatedOrN" +
+      "ew\030\003 \003(\0132\033.proto.FullUserMonsterProto\022\016\n" +
+      "\006taskId\030\004 \001(\005\022\017\n\007userWon\030\005 \001(\010\022\031\n\021nextTa" +
+      "skIdForBoss\030\006 \001(\005\"/\n\020EndDungeonStatus\022\013\n" +
+      "\007SUCCESS\020\001\022\016\n\nFAIL_OTHER\020\002\"p\n\033ReviveInDu" +
+      "ngeonRequestProto\022\'\n\006sender\030\001 \001(\0132\027.prot" +
+      "o.MinimumUserProto\022\024\n\014userTaskUuid\030\002 \001(\t" +
+      "\022\022\n\nclientTime\030\003 \001(\003\"\345\001\n\034ReviveInDungeon" +
+      "ResponseProto\022\'\n\006sender\030\001 \001(\0132\027.proto.Mi" +
+      "nimumUserProto\022I\n\006status\030\002 \001(\01629.proto.R",
+      "eviveInDungeonResponseProto.ReviveInDung" +
+      "eonStatus\"Q\n\025ReviveInDungeonStatus\022\013\n\007SU" +
+      "CCESS\020\001\022\033\n\027FAIL_INSUFFICIENT_FUNDS\020\002\022\016\n\n" +
+      "FAIL_OTHER\020\003B2\n\035com.lvl6.mobsters.eventp" +
+      "rotosB\021EventDungeonProto"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -4819,7 +4671,7 @@ public final class EventDungeonProto {
           internal_static_proto_BeginDungeonRequestProto_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_proto_BeginDungeonRequestProto_descriptor,
-              new java.lang.String[] { "Sender", "ClientTime", "TaskUuid", "SpawnBoss", },
+              new java.lang.String[] { "Sender", "ClientTime", "TaskId", "SpawnBoss", },
               com.lvl6.mobsters.eventprotos.EventDungeonProto.BeginDungeonRequestProto.class,
               com.lvl6.mobsters.eventprotos.EventDungeonProto.BeginDungeonRequestProto.Builder.class);
           internal_static_proto_BeginDungeonResponseProto_descriptor =
@@ -4827,7 +4679,7 @@ public final class EventDungeonProto {
           internal_static_proto_BeginDungeonResponseProto_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_proto_BeginDungeonResponseProto_descriptor,
-              new java.lang.String[] { "Sender", "Tsp", "UserTaskUuid", "TaskUuid", "Status", "NextTaskUuidForBoss", },
+              new java.lang.String[] { "Sender", "Tsp", "UserTaskUuid", "TaskId", "Status", "NextTaskIdForBoss", },
               com.lvl6.mobsters.eventprotos.EventDungeonProto.BeginDungeonResponseProto.class,
               com.lvl6.mobsters.eventprotos.EventDungeonProto.BeginDungeonResponseProto.Builder.class);
           internal_static_proto_EndDungeonRequestProto_descriptor =
@@ -4843,7 +4695,7 @@ public final class EventDungeonProto {
           internal_static_proto_EndDungeonResponseProto_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_proto_EndDungeonResponseProto_descriptor,
-              new java.lang.String[] { "Sender", "Status", "UpdatedOrNew", "TaskUuid", "UserWon", "NextTaskUuidForBoss", },
+              new java.lang.String[] { "Sender", "Status", "UpdatedOrNew", "TaskId", "UserWon", "NextTaskIdForBoss", },
               com.lvl6.mobsters.eventprotos.EventDungeonProto.EndDungeonResponseProto.class,
               com.lvl6.mobsters.eventprotos.EventDungeonProto.EndDungeonResponseProto.Builder.class);
           internal_static_proto_ReviveInDungeonRequestProto_descriptor =
