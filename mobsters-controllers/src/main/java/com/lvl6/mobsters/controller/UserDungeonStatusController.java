@@ -1,34 +1,17 @@
 package com.lvl6.mobsters.controller;
 
-import java.util.Date;
-import java.util.UUID;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-
-//import com.lvl6.mobsters.entitymanager.staticdata.UserSpellRetrieveUtils;
 import com.lvl6.mobsters.entitymanager.UserDungeonStatusEntityManager;
 import com.lvl6.mobsters.entitymanager.UserDungeonStatusHistoryEntityManager;
 import com.lvl6.mobsters.entitymanager.nonstaticdata.UserEntityManager;
 import com.lvl6.mobsters.entitymanager.staticdata.TaskStageMonsterRetrieveUtils;
-import com.lvl6.mobsters.eventprotos.UserDungeonStatusProto.UserDungeonStatusRequestProto;
-import com.lvl6.mobsters.eventprotos.UserDungeonStatusProto.UserDungeonStatusResponseProto;
-import com.lvl6.mobsters.eventprotos.UserDungeonStatusProto.UserDungeonStatusResponseProto.Builder;
-import com.lvl6.mobsters.eventprotos.UserDungeonStatusProto.UserDungeonStatusResponseProto.UserDungeonStatusStatus;
 import com.lvl6.mobsters.events.RequestEvent;
-import com.lvl6.mobsters.events.request.UserDungeonStatusRequestEvent;
-import com.lvl6.mobsters.events.response.UserDungeonStatusResponseEvent;
-import com.lvl6.mobsters.noneventprotos.MobstersEventProtocolProto.MobstersEventProtocolRequest;
-import com.lvl6.mobsters.noneventprotos.FullUser.MinimumUserProto;
-import com.lvl6.mobsters.po.UserDungeonStatus;
-import com.lvl6.mobsters.po.UserDungeonStatusHistory;
-import com.lvl6.mobsters.po.nonstaticdata.User;
 import com.lvl6.mobsters.services.userdungeonstatus.UserDungeonStatusService;
 import com.lvl6.mobsters.services.userdungeonstatushistory.UserDungeonStatusHistoryService;
-import com.netflix.astyanax.connectionpool.exceptions.ConnectionException;
 
 
 @Component
@@ -57,17 +40,17 @@ public class UserDungeonStatusController extends EventController {
 
 	@Override
 	public RequestEvent createRequestEvent() {
-		return new UserDungeonStatusRequestEvent();
+		return null;//new UserDungeonStatusRequestEvent();
 	}
 
 	@Override
 	public int getEventType() {
-		return MobstersEventProtocolRequest.C_TRAIN_OR_UPGRADE_SPELL_EVENT_VALUE;
+		return 1;//MobstersEventProtocolRequest.C_TRAIN_OR_UPGRADE_SPELL_EVENT_VALUE;
 	}
 
 	@Override
 	protected void processRequestEvent(RequestEvent event) throws Exception {
-		//stuff client sent
+		/*//stuff client sent
 		UserDungeonStatusRequestProto reqProto = 
 				((UserDungeonStatusRequestEvent) event).getUserDungeonStatusRequestProto();
 
@@ -135,9 +118,9 @@ public class UserDungeonStatusController extends EventController {
 			} catch (Exception e2) {
 				log.error("exception in UserDungeonStatusController processRequestEvent", e2);
 			}
-		}
+		}*/
 	}
-
+/*
 	private boolean isValidRequest(Builder responseBuilder, MinimumUserProto sender,
 			User inDb, int userHp, int userMana, int actionsPerformed, Date clientDate) throws ConnectionException {
 		if (null == inDb) {
@@ -255,25 +238,6 @@ public class UserDungeonStatusController extends EventController {
 			TaskStageMonsterRetrieveUtils taskStageMonsterRetrieveUtils) {
 		this.taskStageMonsterRetrieveUtils = taskStageMonsterRetrieveUtils;
 	}
-		
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	*/	
 
 }

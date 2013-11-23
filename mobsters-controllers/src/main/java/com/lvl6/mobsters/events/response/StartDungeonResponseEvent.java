@@ -1,30 +1,30 @@
-package com.lvl6.mobsters.events.response;
-import java.nio.ByteBuffer;
-
-import com.google.protobuf.ByteString;
-import com.lvl6.mobsters.eventprotos.StartDungeonEventProto.StartDungeonResponseProto;
-import com.lvl6.mobsters.events.NormalResponseEvent;
-import com.lvl6.mobsters.noneventprotos.AocTwoEventProtocolProto.AocTwoEventProtocolResponse;
-
-
-public class StartDungeonResponseEvent extends NormalResponseEvent {
-
-  private StartDungeonResponseProto startDungeonResponseProto;
-  
-  public StartDungeonResponseEvent(String playerId) {
-    super(playerId);
-    eventType = AocTwoEventProtocolResponse.S_REFILL_HP_OR_MANA_WITH_CONSUMABLE_EVENT_VALUE;
-  }
-  
-  @Override
-  public int write(ByteBuffer bb) {
-    ByteString b = startDungeonResponseProto.toByteString();
-    b.copyTo(bb);
-    return b.size();
-  }
-  
-  public void setStartDungeonResponseProto(StartDungeonResponseProto startDungeonResponseProto) {
-    this.startDungeonResponseProto = startDungeonResponseProto;
-  }
-  
-}
+//package com.lvl6.mobsters.events.response;
+//import java.nio.ByteBuffer;
+//
+//import com.google.protobuf.ByteString;
+//import com.lvl6.mobsters.eventprotos.StartDungeonEventProto.StartDungeonResponseProto;
+//import com.lvl6.mobsters.events.NormalResponseEvent;
+//import com.lvl6.mobsters.noneventprotos.AocTwoEventProtocolProto.AocTwoEventProtocolResponse;
+//
+//
+//public class StartDungeonResponseEvent extends NormalResponseEvent {
+//
+//  private StartDungeonResponseProto startDungeonResponseProto;
+//  
+//  public StartDungeonResponseEvent(String playerId) {
+//    super(playerId);
+//    eventType = AocTwoEventProtocolResponse.S_REFILL_HP_OR_MANA_WITH_CONSUMABLE_EVENT_VALUE;
+//  }
+//  
+//  @Override
+//  public int write(ByteBuffer bb) {
+//    ByteString b = startDungeonResponseProto.toByteString();
+//    b.copyTo(bb);
+//    return b.size();
+//  }
+//  
+//  public void setStartDungeonResponseProto(StartDungeonResponseProto startDungeonResponseProto) {
+//    this.startDungeonResponseProto = startDungeonResponseProto;
+//  }
+//  
+//}

@@ -1,39 +1,11 @@
 package com.lvl6.mobsters.controller;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-
-
-import com.lvl6.mobsters.entitymanager.UserConsumableQueueEntityManager;
-import com.lvl6.mobsters.entitymanager.nonstaticdata.QuestForUserEntityManager;
-import com.lvl6.mobsters.entitymanager.nonstaticdata.UserEntityManager;
-import com.lvl6.mobsters.eventprotos.CollectUserConsumableEventProto.CollectUserConsumableRequestProto;
-import com.lvl6.mobsters.eventprotos.CollectUserConsumableEventProto.CollectUserConsumableResponseProto;
-import com.lvl6.mobsters.eventprotos.CollectUserConsumableEventProto.CollectUserConsumableResponseProto.Builder;
-import com.lvl6.mobsters.eventprotos.CollectUserConsumableEventProto.CollectUserConsumableResponseProto.CollectUserConsumableStatus;
 import com.lvl6.mobsters.events.RequestEvent;
 import com.lvl6.mobsters.events.request.CollectUserConsumableRequestEvent;
-import com.lvl6.mobsters.events.response.CollectUserConsumableResponseEvent;
-import com.lvl6.mobsters.noneventprotos.MobstersEventProtocolProto.MobstersEventProtocolRequest;
-import com.lvl6.mobsters.noneventprotos.FullUser.MinimumUserProto;
-import com.lvl6.mobsters.noneventprotos.UserConsumableQueue.UserConsumableQueueProto;
-import com.lvl6.mobsters.po.Consumable;
-import com.lvl6.mobsters.po.UserConsumableQueue;
-import com.lvl6.mobsters.po.nonstaticdata.QuestForUser;
-import com.lvl6.mobsters.po.nonstaticdata.User;
-import com.lvl6.mobsters.services.user.UserService;
-import com.lvl6.mobsters.services.userconsumablequeue.UserConsumableQueueService;
-import com.lvl6.mobsters.widerows.RestrictionOnNumberOfUserStructure;
-import com.netflix.astyanax.connectionpool.exceptions.ConnectionException;
 
 
 @Component
@@ -42,23 +14,23 @@ public class CollectUserConsumableController extends EventController {
 	private static Logger log = LoggerFactory.getLogger(new Object() { }.getClass().getEnclosingClass());
 
 
-	@Autowired
-	protected UserEntityManager userEntityManager;
-	
-	@Autowired
-	protected UserConsumableQueueEntityManager userConsumableQueueEntityManager;
-	
-	@Autowired
-	protected QuestForUserEntityManager questForUserEntityManager;
-	
-	@Autowired
-	protected UserConsumableQueueService userConsumableQueueService;
-	
-	@Autowired
-	protected UserService userService;
-
-	@Autowired
-	protected RestrictionOnNumberOfUserStructure restrictionOnNumberOfUserStructure;
+//	@Autowired
+//	protected UserEntityManager userEntityManager;
+//	
+//	@Autowired
+//	protected UserConsumableQueueEntityManager userConsumableQueueEntityManager;
+//	
+//	@Autowired
+//	protected QuestForUserEntityManager questForUserEntityManager;
+//	
+//	@Autowired
+//	protected UserConsumableQueueService userConsumableQueueService;
+//	
+//	@Autowired
+//	protected UserService userService;
+//
+//	@Autowired
+//	protected RestrictionOnNumberOfUserStructure restrictionOnNumberOfUserStructure;
 
 	@Override
 	public RequestEvent createRequestEvent() {
@@ -67,12 +39,12 @@ public class CollectUserConsumableController extends EventController {
 
 	@Override
 	public int getEventType() {
-		return MobstersEventProtocolRequest.C_BUILD_OR_UPGRADE_STRUCTURE_EVENT_VALUE;
+		return 1;//MobstersEventProtocolRequest.C_BUILD_OR_UPGRADE_STRUCTURE_EVENT_VALUE;
 	}
 
 	@Override
 	protected void processRequestEvent(RequestEvent event) throws Exception {
-		//stuff client sent
+		/*//stuff client sent
 		CollectUserConsumableRequestProto reqProto = 
 				((CollectUserConsumableRequestEvent) event).getCollectUserConsumableRequestProto();
 
@@ -129,9 +101,9 @@ public class CollectUserConsumableController extends EventController {
 			} catch (Exception e2) {
 				log.error("exception in CollectUserConsumableController processRequestEvent", e2);
 			}
-		}
+		}*/
 	}
-
+/*
 	private boolean isValidRequest(Builder responseBuilder, MinimumUserProto sender,
 			User inDb, List<UserConsumableQueueProto> ucqpList, List<UserConsumableQueueProto> notFinishedBuildingList, 
 			Date clientDate) throws ConnectionException {
@@ -249,17 +221,5 @@ public class CollectUserConsumableController extends EventController {
 			QuestForUserEntityManager questForUserEntityManager) {
 		this.questForUserEntityManager = questForUserEntityManager;
 	}
-
-
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
+*/
 }

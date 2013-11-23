@@ -1,40 +1,17 @@
 package com.lvl6.mobsters.controller;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.UUID;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.lvl6.mobsters.entitymanager.nonstaticdata.UserEntityManager;
 import com.lvl6.mobsters.entitymanager.nonstaticdata.MonsterForUserEntityManager;
+import com.lvl6.mobsters.entitymanager.nonstaticdata.UserEntityManager;
 import com.lvl6.mobsters.entitymanager.staticdata.EquipmentRetrieveUtils;
-import com.lvl6.mobsters.eventprotos.RepairEquipEventProto.RepairEquipRequestProto;
-import com.lvl6.mobsters.eventprotos.RepairEquipEventProto.RepairEquipResponseProto;
-import com.lvl6.mobsters.eventprotos.RepairEquipEventProto.RepairEquipResponseProto.Builder;
-import com.lvl6.mobsters.eventprotos.RepairEquipEventProto.RepairEquipResponseProto.RepairEquipStatus;
 import com.lvl6.mobsters.events.RequestEvent;
-import com.lvl6.mobsters.events.request.RepairEquipRequestEvent;
-import com.lvl6.mobsters.events.response.RepairEquipResponseEvent;
-import com.lvl6.mobsters.noneventprotos.MobstersEventProtocolProto.MobstersEventProtocolRequest;
-import com.lvl6.mobsters.noneventprotos.FullUser.MinimumUserProto;
-import com.lvl6.mobsters.noneventprotos.UserEquipRepair.UserEquipRepairProto;
-import com.lvl6.mobsters.po.nonstaticdata.User;
-import com.lvl6.mobsters.po.nonstaticdata.MonsterForUser;
-import com.lvl6.mobsters.po.nonstaticdata.MonsterHealingForUser;
-import com.lvl6.mobsters.properties.MobstersTableConstants;
 import com.lvl6.mobsters.services.monsterforuser.MonsterForUserService;
 import com.lvl6.mobsters.services.time.TimeUtils;
 import com.lvl6.mobsters.services.user.UserService;
-import com.lvl6.mobsters.services.userequiprepair.UserEquipRepairService;
 
 
 @Component
@@ -45,8 +22,8 @@ public class RepairEquipController extends EventController {
 	@Autowired
 	protected EquipmentRetrieveUtils equipmentRetrieveUtils; 
 
-	@Autowired
-	protected UserEquipRepairService userEquipRepairService;
+//	@Autowired
+//	protected UserEquipRepairService userEquipRepairService;
 
 	@Autowired
 	protected MonsterForUserService monsterForUserService;
@@ -68,17 +45,17 @@ public class RepairEquipController extends EventController {
 
 	@Override
 	public RequestEvent createRequestEvent() {
-		return new RepairEquipRequestEvent();
+		return null;//new RepairEquipRequestEvent();
 	}
 
 	@Override
 	public int getEventType() {
-		return MobstersEventProtocolRequest.C_REPAIR_EQUIP_EVENT_VALUE;
+		return 1;//MobstersEventProtocolRequest.C_REPAIR_EQUIP_EVENT_VALUE;
 	}
 
 	@Override
 	protected void processRequestEvent(RequestEvent event) throws Exception {
-		//stuff client sent
+		/*//stuff client sent
 		RepairEquipRequestProto reqProto = 
 				((RepairEquipRequestEvent) event).getRepairEquipRequestProto();
 
@@ -149,9 +126,9 @@ public class RepairEquipController extends EventController {
 			} catch (Exception e2) {
 				log.error("exception in RepairEquipController processRequestEvent", e2);
 			}
-		}
+		}*/
 	}
-
+/*
 
 	private boolean isValidRequest(Builder responseBuilder, MinimumUserProto sender,
 			User existingU, String userIdString, List<UserEquipRepairProto> uerpDelete,
@@ -496,6 +473,6 @@ public class RepairEquipController extends EventController {
 			MonsterForUserEntityManager monsterForUserEntityManager) {
 		this.monsterForUserEntityManager = monsterForUserEntityManager;
 	}
-
+*/
 }
 

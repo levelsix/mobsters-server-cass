@@ -1,13 +1,5 @@
 package com.lvl6.mobsters.controller;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
-
-import org.joda.time.DateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,21 +7,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.lvl6.mobsters.controller.utils.CreateNoneventProtoUtils;
-import com.lvl6.mobsters.eventprotos.ForceLogoutEventProto.ForceLogoutResponseProto;
-import com.lvl6.mobsters.eventprotos.StartupEventProto.StartupRequestProto;
-import com.lvl6.mobsters.eventprotos.StartupEventProto.StartupResponseProto;
-import com.lvl6.mobsters.eventprotos.StartupEventProto.StartupRequestProto.LoginType;
-import com.lvl6.mobsters.eventprotos.StartupEventProto.StartupResponseProto.Builder;
-import com.lvl6.mobsters.eventprotos.StartupEventProto.StartupResponseProto.StartupStatus;
 import com.lvl6.mobsters.events.RequestEvent;
-import com.lvl6.mobsters.events.request.StartupRequestEvent;
-import com.lvl6.mobsters.events.response.ForceLogoutResponseEvent;
-import com.lvl6.mobsters.events.response.StartupResponseEvent;
 import com.lvl6.mobsters.noneventprotos.MobstersEventProtocolProto.MobstersEventProtocolRequest;
-import com.lvl6.mobsters.noneventprotos.FullUser.FullUserProto;
-import com.lvl6.mobsters.noneventprotos.FullUser.MinimumUserProto;
-import com.lvl6.mobsters.po.UserDevice;
-import com.lvl6.mobsters.po.nonstaticdata.User;
 import com.lvl6.mobsters.services.time.TimeUtils;
 import com.lvl6.mobsters.services.user.UserService;
 import com.lvl6.mobsters.services.userdevice.UserDeviceService;
@@ -54,7 +33,7 @@ public class StartupController extends EventController {
 	
 	@Override
 	public RequestEvent createRequestEvent() {
-		return new StartupRequestEvent();
+		return null;// new StartupRequestEvent();
 	}
 
 	@Override
@@ -65,7 +44,7 @@ public class StartupController extends EventController {
 	@Override
 	@Transactional
 	protected void processRequestEvent(RequestEvent event) throws Exception {
-		StartupRequestProto reqProto = ((StartupRequestEvent) event).getStartupRequestProto();
+	/*	StartupRequestProto reqProto = ((StartupRequestEvent) event).getStartupRequestProto();
 		DateTime loginTime = new DateTime();
 		log.info("reqProto=" + reqProto);
 
@@ -136,8 +115,9 @@ public class StartupController extends EventController {
 						" processRequestEvent", e2);
 			}
 		}
+		*/
 	}
-	
+	/*
 	//sanity check for data sent by the client, making sure server 
 	//won't generate an null pointer exception (npe)
 	private boolean isValidRequestArgs(Builder responseBuilder, 
@@ -415,5 +395,5 @@ public class StartupController extends EventController {
 			CreateNoneventProtoUtils createNoneventProtoUtils) {
 		this.createNoneventProtoUtils = createNoneventProtoUtils;
 	}
-
+*/
 }

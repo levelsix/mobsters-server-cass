@@ -1,9 +1,6 @@
 package com.lvl6.mobsters.controller;
 
 
-import java.util.Date;
-import java.util.UUID;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,22 +9,10 @@ import org.springframework.stereotype.Component;
 import com.lvl6.mobsters.entitymanager.UserStructureEntityManager;
 import com.lvl6.mobsters.entitymanager.nonstaticdata.UserEntityManager;
 import com.lvl6.mobsters.entitymanager.staticdata.StructureRetrieveUtils;
-import com.lvl6.mobsters.eventprotos.SpeedUpBuildOrUpgradeStructureEventProto.SpeedUpBuildOrUpgradeStructureRequestProto;
-import com.lvl6.mobsters.eventprotos.SpeedUpBuildOrUpgradeStructureEventProto.SpeedUpBuildOrUpgradeStructureResponseProto;
-import com.lvl6.mobsters.eventprotos.SpeedUpBuildOrUpgradeStructureEventProto.SpeedUpBuildOrUpgradeStructureResponseProto.Builder;
-import com.lvl6.mobsters.eventprotos.SpeedUpBuildOrUpgradeStructureEventProto.SpeedUpBuildOrUpgradeStructureResponseProto.SpeedUpBuildOrUpgradeStructureStatus;
 import com.lvl6.mobsters.events.RequestEvent;
-import com.lvl6.mobsters.events.request.SpeedUpBuildOrUpgradeStructureRequestEvent;
-import com.lvl6.mobsters.events.response.SpeedUpBuildOrUpgradeStructureResponseEvent;
-import com.lvl6.mobsters.noneventprotos.MobstersEventProtocolProto.MobstersEventProtocolRequest;
-import com.lvl6.mobsters.noneventprotos.FullUser.MinimumUserProto;
-import com.lvl6.mobsters.po.Structure;
-import com.lvl6.mobsters.po.UserStructure;
-import com.lvl6.mobsters.po.nonstaticdata.User;
 import com.lvl6.mobsters.services.user.UserService;
 import com.lvl6.mobsters.services.userstructure.UserStructureService;
 import com.lvl6.mobsters.widerows.RestrictionOnNumberOfUserStructure;
-import com.netflix.astyanax.connectionpool.exceptions.ConnectionException;
 
 
 @Component
@@ -55,17 +40,17 @@ public class SpeedUpBuildOrUpgradeStructureController extends EventController {
 
 	@Override
 	public RequestEvent createRequestEvent() {
-		return new SpeedUpBuildOrUpgradeStructureRequestEvent();
+		return null;//new SpeedUpBuildOrUpgradeStructureRequestEvent();
 	}
 
 	@Override
 	public int getEventType() {
-		return MobstersEventProtocolRequest.C_BUILD_OR_UPGRADE_STRUCTURE_EVENT_VALUE;
+		return 1;//MobstersEventProtocolRequest.C_BUILD_OR_UPGRADE_STRUCTURE_EVENT_VALUE;
 	}
 
 	@Override
 	protected void processRequestEvent(RequestEvent event) throws Exception {
-		//stuff client sent
+		/*//stuff client sent
 		SpeedUpBuildOrUpgradeStructureRequestProto reqProto = 
 				((SpeedUpBuildOrUpgradeStructureRequestEvent) event).getSpeedUpBuildOrUpgradeStructureRequestProto();
 
@@ -127,9 +112,9 @@ public class SpeedUpBuildOrUpgradeStructureController extends EventController {
 			} catch (Exception e2) {
 				log.error("exception in SpeedUpBuildOrUpgradeStructureController processRequestEvent", e2);
 			}
-		}
+		}*/
 	}
-
+/*
 	private boolean isValidRequest(Builder responseBuilder, MinimumUserProto sender,
 			User inDb, UserStructure us, Structure s, boolean constructing, Date clientDate) throws ConnectionException {
 		int secondsRemaining;
@@ -244,15 +229,6 @@ public class SpeedUpBuildOrUpgradeStructureController extends EventController {
 		this.userService = userService;
 	}
 
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
+*/
 
 }

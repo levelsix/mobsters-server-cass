@@ -1,37 +1,11 @@
 package com.lvl6.mobsters.controller;
 
-import java.util.Date;
-
-import java.util.List;
-import java.util.UUID;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-
-
-
-import com.lvl6.mobsters.entitymanager.UserConsumableQueueEntityManager;
-import com.lvl6.mobsters.entitymanager.nonstaticdata.UserEntityManager;
-import com.lvl6.mobsters.entitymanager.staticdata.ClassLevelInfoRetrieveUtils;
-import com.lvl6.mobsters.entitymanager.staticdata.TaskStageMonsterRetrieveUtils;
-import com.lvl6.mobsters.eventprotos.LevelUpEventProto.LevelUpRequestProto;
-import com.lvl6.mobsters.eventprotos.LevelUpEventProto.LevelUpResponseProto;
-import com.lvl6.mobsters.eventprotos.LevelUpEventProto.LevelUpResponseProto.Builder;
-import com.lvl6.mobsters.eventprotos.LevelUpEventProto.LevelUpResponseProto.LevelUpStatus;
 import com.lvl6.mobsters.events.RequestEvent;
 import com.lvl6.mobsters.events.request.LevelUpRequestEvent;
-import com.lvl6.mobsters.events.response.LevelUpResponseEvent;
-import com.lvl6.mobsters.noneventprotos.MobstersEventProtocolProto.MobstersEventProtocolRequest;
-import com.lvl6.mobsters.noneventprotos.Dungeon.DungeonProto;
-import com.lvl6.mobsters.noneventprotos.FullUser.MinimumUserProto;
-import com.lvl6.mobsters.po.ClassLevelInfo;
-import com.lvl6.mobsters.po.nonstaticdata.User;
-import com.lvl6.mobsters.services.time.TimeUtils;
-import com.lvl6.mobsters.services.user.UserService;
-import com.lvl6.mobsters.services.userconsumablequeue.UserConsumableQueueService;
 
 
 
@@ -41,26 +15,26 @@ public class LevelUpController extends EventController {
 	private static Logger log = LoggerFactory.getLogger(new Object() { }.getClass().getEnclosingClass());
 
 	
-	@Autowired
-	protected UserConsumableQueueService userConsumableQueueService;
-	
-	@Autowired
-	protected UserConsumableQueueEntityManager userConsumableQueueEntityManager;
-
-	@Autowired
-	protected UserEntityManager userEntityManager;
-	
-	@Autowired
-	protected ClassLevelInfoRetrieveUtils classLevelInfoRetrieveUtils;
-	
-	@Autowired
-	protected TaskStageMonsterRetrieveUtils taskStageMonsterRetrieveUtils;
-
-	@Autowired
-	protected TimeUtils timeUtils;
-
-	@Autowired
-	protected UserService userService;
+//	@Autowired
+//	protected UserConsumableQueueService userConsumableQueueService;
+//	
+//	@Autowired
+//	protected UserConsumableQueueEntityManager userConsumableQueueEntityManager;
+//
+//	@Autowired
+//	protected UserEntityManager userEntityManager;
+//	
+//	@Autowired
+//	protected ClassLevelInfoRetrieveUtils classLevelInfoRetrieveUtils;
+//	
+//	@Autowired
+//	protected TaskStageMonsterRetrieveUtils taskStageMonsterRetrieveUtils;
+//
+//	@Autowired
+//	protected TimeUtils timeUtils;
+//
+//	@Autowired
+//	protected UserService userService;
 
 
 	@Override
@@ -70,12 +44,12 @@ public class LevelUpController extends EventController {
 
 	@Override
 	public int getEventType() {
-		return MobstersEventProtocolRequest.C_REPAIR_EQUIP_EVENT_VALUE;
+		return 1;//MobstersEventProtocolRequest.C_REPAIR_EQUIP_EVENT_VALUE;
 	}
 
 	@Override
 	protected void processRequestEvent(RequestEvent event) throws Exception {
-		//stuff client sent
+		/*//stuff client sent
 		LevelUpRequestProto reqProto = 
 				((LevelUpRequestEvent) event).getLevelUpRequestProto();
 
@@ -145,10 +119,10 @@ public class LevelUpController extends EventController {
 			} catch (Exception e2) {
 				log.error("exception in LevelUpController processRequestEvent", e2);
 			}
-		}
+		}*/
 	}
 
-
+/*
 
 	private boolean isValidRequest(Builder responseBuilder, MinimumUserProto sender,
 			User inDb, ClassLevelInfo cli, Date clientDate) throws Exception {
@@ -247,10 +221,6 @@ public class LevelUpController extends EventController {
 			TaskStageMonsterRetrieveUtils taskStageMonsterRetrieveUtils) {
 		this.taskStageMonsterRetrieveUtils = taskStageMonsterRetrieveUtils;
 	}
-	
-	
-
-	
+*/	
 
 }
-

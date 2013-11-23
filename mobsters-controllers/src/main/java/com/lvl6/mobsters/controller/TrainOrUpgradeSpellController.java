@@ -1,35 +1,16 @@
 package com.lvl6.mobsters.controller;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.UUID;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-//import com.lvl6.mobsters.entitymanager.staticdata.UserSpellRetrieveUtils;
 import com.lvl6.mobsters.entitymanager.UserSpellEntityManager;
 import com.lvl6.mobsters.entitymanager.nonstaticdata.UserEntityManager;
 import com.lvl6.mobsters.entitymanager.staticdata.SpellRetrieveUtils;
-import com.lvl6.mobsters.eventprotos.TrainOrUpgradeSpellEventProto.ResourceCostType;
-import com.lvl6.mobsters.eventprotos.TrainOrUpgradeSpellEventProto.TrainOrUpgradeSpellRequestProto;
-import com.lvl6.mobsters.eventprotos.TrainOrUpgradeSpellEventProto.TrainOrUpgradeSpellResponseProto;
-import com.lvl6.mobsters.eventprotos.TrainOrUpgradeSpellEventProto.TrainOrUpgradeSpellResponseProto.Builder;
-import com.lvl6.mobsters.eventprotos.TrainOrUpgradeSpellEventProto.TrainOrUpgradeSpellResponseProto.TrainOrUpgradeSpellStatus;
 import com.lvl6.mobsters.events.RequestEvent;
-import com.lvl6.mobsters.events.request.TrainOrUpgradeSpellRequestEvent;
-import com.lvl6.mobsters.events.response.TrainOrUpgradeSpellResponseEvent;
-import com.lvl6.mobsters.noneventprotos.MobstersEventProtocolProto.MobstersEventProtocolRequest;
-import com.lvl6.mobsters.noneventprotos.FullUser.MinimumUserProto;
-import com.lvl6.mobsters.po.Spell;
-import com.lvl6.mobsters.po.UserSpell;
-import com.lvl6.mobsters.po.nonstaticdata.User;
 import com.lvl6.mobsters.services.user.UserService;
 import com.lvl6.mobsters.services.userspell.UserSpellService;
-import com.netflix.astyanax.connectionpool.exceptions.ConnectionException;
 
 
 @Component
@@ -54,17 +35,17 @@ public class TrainOrUpgradeSpellController extends EventController {
 
 	@Override
 	public RequestEvent createRequestEvent() {
-		return new TrainOrUpgradeSpellRequestEvent();
+		return null;//new TrainOrUpgradeSpellRequestEvent();
 	}
 
 	@Override
 	public int getEventType() {
-		return MobstersEventProtocolRequest.C_TRAIN_OR_UPGRADE_SPELL_EVENT_VALUE;
+		return 1;//MobstersEventProtocolRequest.C_TRAIN_OR_UPGRADE_SPELL_EVENT_VALUE;
 	}
 
 	@Override
 	protected void processRequestEvent(RequestEvent event) throws Exception {
-		//stuff client sent
+		/*//stuff client sent
 		TrainOrUpgradeSpellRequestProto reqProto = 
 				((TrainOrUpgradeSpellRequestEvent) event).getTrainOrUpgradeSpellRequestProto();
 
@@ -123,9 +104,9 @@ public class TrainOrUpgradeSpellController extends EventController {
 			} catch (Exception e2) {
 				log.error("exception in TrainOrUpgradeSpellController processRequestEvent", e2);
 			}
-		}
+		}*/
 	}
-
+/*
 	private boolean isValidRequest(Builder responseBuilder, MinimumUserProto sender,
 			User inDb, UserSpell us, List<Spell> sList, boolean usingGems, Date clientDate) throws ConnectionException {
 		if (null == inDb || null == us) {
@@ -335,17 +316,6 @@ public class TrainOrUpgradeSpellController extends EventController {
 	public void setUserService(UserService userService) {
 		this.userService = userService;
 	}
-
-
+*/	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
 }

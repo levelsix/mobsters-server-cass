@@ -1,31 +1,15 @@
 package com.lvl6.mobsters.controller;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.UUID;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-
 import com.lvl6.mobsters.entitymanager.UserDungeonStatusEntityManager;
 import com.lvl6.mobsters.entitymanager.UserDungeonStatusHistoryEntityManager;
-import com.lvl6.mobsters.entitymanager.nonstaticdata.UserEntityManager;
 import com.lvl6.mobsters.entitymanager.nonstaticdata.MonsterForUserEntityManager;
-import com.lvl6.mobsters.eventprotos.ReturnHomeEventProto.ReturnHomeRequestProto;
-import com.lvl6.mobsters.eventprotos.ReturnHomeEventProto.ReturnHomeResponseProto;
-import com.lvl6.mobsters.eventprotos.ReturnHomeEventProto.ReturnHomeResponseProto.Builder;
-import com.lvl6.mobsters.eventprotos.ReturnHomeEventProto.ReturnHomeResponseProto.ReturnHomeStatus;
+import com.lvl6.mobsters.entitymanager.nonstaticdata.UserEntityManager;
 import com.lvl6.mobsters.events.RequestEvent;
-import com.lvl6.mobsters.events.request.ReturnHomeRequestEvent;
-import com.lvl6.mobsters.events.response.ReturnHomeResponseEvent;
-import com.lvl6.mobsters.noneventprotos.MobstersEventProtocolProto.MobstersEventProtocolRequest;
-import com.lvl6.mobsters.noneventprotos.FullUser.MinimumUserProto;
-import com.lvl6.mobsters.po.nonstaticdata.User;
-import com.lvl6.mobsters.po.nonstaticdata.MonsterForUser;
 import com.lvl6.mobsters.services.equipment.EquipmentService;
 import com.lvl6.mobsters.services.monsterforuser.MonsterForUserService;
 
@@ -58,17 +42,17 @@ public class ReturnHomeController extends EventController {
 	
 	@Override
 	public RequestEvent createRequestEvent() {
-		return new ReturnHomeRequestEvent();
+		return null;// new ReturnHomeRequestEvent();
 	}
 
 	@Override
 	public int getEventType() {
-		return MobstersEventProtocolRequest.C_RETURN_HOME_EVENT_VALUE;
+		return 1;// MobstersEventProtocolRequest.C_RETURN_HOME_EVENT_VALUE;
 	}
 
 	@Override
 	protected void processRequestEvent(RequestEvent event) throws Exception {
-		//stuff client sent
+		/*//stuff client sent
 		ReturnHomeRequestProto reqProto = 
 				((ReturnHomeRequestEvent) event).getReturnHomeRequestProto();
 
@@ -122,10 +106,10 @@ public class ReturnHomeController extends EventController {
 			} catch (Exception e2) {
 				log.error("exception in ReturnHomeController processRequestEvent", e2);
 			}
-		}
+		}*/
 	}
 
-	
+	/*
 	private boolean writeChangesToDb(User inDb, int userHp, int userMana, int actionsPerformed, List<MonsterForUser> equippedEquips, Date clientDate) {
 
 			try {
@@ -202,17 +186,6 @@ public class ReturnHomeController extends EventController {
 		this.equipmentService = equipmentService;
 	}
 
-		
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+		*/
 
 }

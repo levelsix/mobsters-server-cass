@@ -1,40 +1,11 @@
 package com.lvl6.mobsters.controller;
 
-import java.util.Date;
-
-import java.util.List;
-
-import java.util.UUID;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-
-
-
-import com.lvl6.mobsters.entitymanager.UserConsumableQueueEntityManager;
-import com.lvl6.mobsters.entitymanager.nonstaticdata.UserEntityManager;
-import com.lvl6.mobsters.eventprotos.PurchaseGoldOrTonicEventProto.PurchaseGoldOrTonicRequestProto;
-import com.lvl6.mobsters.eventprotos.PurchaseGoldOrTonicEventProto.PurchaseGoldOrTonicResponseProto;
-import com.lvl6.mobsters.eventprotos.PurchaseGoldOrTonicEventProto.PurchaseType;
-import com.lvl6.mobsters.eventprotos.PurchaseGoldOrTonicEventProto.PurchaseGoldOrTonicResponseProto.Builder;
-import com.lvl6.mobsters.eventprotos.PurchaseGoldOrTonicEventProto.PurchaseGoldOrTonicResponseProto.PurchaseGoldOrTonicStatus;
 import com.lvl6.mobsters.events.RequestEvent;
 import com.lvl6.mobsters.events.request.PurchaseGoldOrTonicRequestEvent;
-import com.lvl6.mobsters.events.response.PurchaseGoldOrTonicResponseEvent;
-import com.lvl6.mobsters.noneventprotos.MobstersEventProtocolProto.MobstersEventProtocolRequest;
-import com.lvl6.mobsters.noneventprotos.FullUser.MinimumUserProto;
-import com.lvl6.mobsters.noneventprotos.FunctionalityTypeEnum.FunctionalityType;
-import com.lvl6.mobsters.noneventprotos.ResourceEnum.ResourceType;
-import com.lvl6.mobsters.po.Structure;
-import com.lvl6.mobsters.po.UserStructure;
-import com.lvl6.mobsters.po.nonstaticdata.User;
-import com.lvl6.mobsters.services.time.TimeUtils;
-import com.lvl6.mobsters.services.user.UserService;
-import com.lvl6.mobsters.services.userconsumablequeue.UserConsumableQueueService;
-import com.lvl6.mobsters.services.userstructure.UserStructureService;
 
 
 
@@ -43,24 +14,24 @@ public class PurchaseGoldOrTonicController extends EventController {
 
 	private static Logger log = LoggerFactory.getLogger(new Object() { }.getClass().getEnclosingClass());
 
-	
-	@Autowired
-	protected UserConsumableQueueService userConsumableQueueService;
-	
-	@Autowired
-	protected UserConsumableQueueEntityManager userConsumableQueueEntityManager;
-	
-	@Autowired
-	protected UserStructureService userStructureService;
-
-	@Autowired
-	protected UserEntityManager userEntityManager;
-
-	@Autowired
-	protected TimeUtils timeUtils;
-
-	@Autowired
-	protected UserService userService;
+//	
+//	@Autowired
+//	protected UserConsumableQueueService userConsumableQueueService;
+//	
+//	@Autowired
+//	protected UserConsumableQueueEntityManager userConsumableQueueEntityManager;
+//	
+//	@Autowired
+//	protected UserStructureService userStructureService;
+//
+//	@Autowired
+//	protected UserEntityManager userEntityManager;
+//
+//	@Autowired
+//	protected TimeUtils timeUtils;
+//
+//	@Autowired
+//	protected UserService userService;
 
 
 	@Override
@@ -70,12 +41,12 @@ public class PurchaseGoldOrTonicController extends EventController {
 
 	@Override
 	public int getEventType() {
-		return MobstersEventProtocolRequest.C_REPAIR_EQUIP_EVENT_VALUE;
+		return 1;//MobstersEventProtocolRequest.C_REPAIR_EQUIP_EVENT_VALUE;
 	}
 
 	@Override
 	protected void processRequestEvent(RequestEvent event) throws Exception {
-		//stuff client sent
+		/*//stuff client sent
 		PurchaseGoldOrTonicRequestProto reqProto = 
 				((PurchaseGoldOrTonicRequestEvent) event).getPurchaseGoldOrTonicRequestProto();
 
@@ -149,10 +120,10 @@ public class PurchaseGoldOrTonicController extends EventController {
 			} catch (Exception e2) {
 				log.error("exception in PurchaseGoldOrTonicController processRequestEvent", e2);
 			}
-		}
+		}*/
 	}
 
-
+/*
 
 	private boolean isValidRequest(Builder responseBuilder, MinimumUserProto sender,
 			User inDb, int maxGoldStorage, int maxTonicStorage, int purchaseType, boolean isGold, Date clientDate) throws Exception {
@@ -289,7 +260,7 @@ public class PurchaseGoldOrTonicController extends EventController {
 	public void setUserStructureService(UserStructureService userStructureService) {
 		this.userStructureService = userStructureService;
 	}
-
+*/
 
 }
 

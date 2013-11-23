@@ -5,7 +5,7 @@ import java.util.UUID;
 import org.springframework.stereotype.Component;
 
 import com.dekayd.astyanax.cassandra.entitymanager.BaseEntityManager;
-import com.lvl6.mobsters.po.User;
+import com.lvl6.mobsters.po.nonstaticdata.User;
 
 @Component
 public class UserEntityManager extends BaseEntityManager<User, UUID>{

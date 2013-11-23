@@ -1,11 +1,5 @@
 package com.lvl6.mobsters.controller;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Date;
-import java.util.List;
-import java.util.UUID;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,24 +8,11 @@ import org.springframework.stereotype.Component;
 import com.lvl6.mobsters.entitymanager.UserStructureEntityManager;
 import com.lvl6.mobsters.entitymanager.nonstaticdata.UserEntityManager;
 import com.lvl6.mobsters.entitymanager.staticdata.StructureRetrieveUtils;
-import com.lvl6.mobsters.eventprotos.BuildOrUpgradeStructureEventProto.BuildOrUpgradeStructureRequestProto;
-import com.lvl6.mobsters.eventprotos.BuildOrUpgradeStructureEventProto.BuildOrUpgradeStructureResponseProto;
-import com.lvl6.mobsters.eventprotos.BuildOrUpgradeStructureEventProto.ResourceCostType;
-import com.lvl6.mobsters.eventprotos.BuildOrUpgradeStructureEventProto.BuildOrUpgradeStructureResponseProto.BuildOrUpgradeStructureStatus;
-import com.lvl6.mobsters.eventprotos.BuildOrUpgradeStructureEventProto.BuildOrUpgradeStructureResponseProto.Builder;
 import com.lvl6.mobsters.events.RequestEvent;
 import com.lvl6.mobsters.events.request.BuildOrUpgradeStructureRequestEvent;
-import com.lvl6.mobsters.events.response.BuildOrUpgradeStructureResponseEvent;
-import com.lvl6.mobsters.noneventprotos.MobstersEventProtocolProto.MobstersEventProtocolRequest;
-import com.lvl6.mobsters.noneventprotos.FullUser.MinimumUserProto;
-import com.lvl6.mobsters.po.Structure;
-import com.lvl6.mobsters.po.UserStructure;
-import com.lvl6.mobsters.po.nonstaticdata.User;
 import com.lvl6.mobsters.services.user.UserService;
 import com.lvl6.mobsters.services.userstructure.UserStructureService;
 import com.lvl6.mobsters.widerows.RestrictionOnNumberOfUserStructure;
-import com.lvl6.mobsters.widerows.WideRowValue;
-import com.netflix.astyanax.connectionpool.exceptions.ConnectionException;
 
 
 @Component
@@ -64,13 +45,13 @@ public class BuildOrUpgradeUserStructureController extends EventController {
 
 	@Override
 	public int getEventType() {
-		return MobstersEventProtocolRequest.C_BUILD_OR_UPGRADE_STRUCTURE_EVENT_VALUE;
+		return 1;//MobstersEventProtocolRequest.C_BUILD_OR_UPGRADE_STRUCTURE_EVENT_VALUE;
 	}
 
 	@Override
 	protected void processRequestEvent(RequestEvent event) throws Exception {
 		//stuff client sent
-		BuildOrUpgradeStructureRequestProto reqProto = 
+	/*	BuildOrUpgradeStructureRequestProto reqProto = 
 				((BuildOrUpgradeStructureRequestEvent) event).getBuildOrUpgradeStructureRequestProto();
 
 		//get the values client sent
@@ -129,9 +110,9 @@ public class BuildOrUpgradeUserStructureController extends EventController {
 			} catch (Exception e2) {
 				log.error("exception in BuildOrUpgradeStructureController processRequestEvent", e2);
 			}
-		}
+		} */
 	}
-
+/*
 	private boolean isValidRequest(Builder responseBuilder, MinimumUserProto sender,
 			User inDb, UserStructure us, List<Structure> sList, boolean usingGems, boolean isConstructing, Date clientDate) throws ConnectionException {
 		if (null == inDb || null == us) {
@@ -380,16 +361,6 @@ public class BuildOrUpgradeUserStructureController extends EventController {
 	public void setUserService(UserService userService) {
 		this.userService = userService;
 	}
-
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
+*/
 
 }

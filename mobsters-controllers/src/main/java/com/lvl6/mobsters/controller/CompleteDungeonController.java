@@ -1,10 +1,5 @@
 package com.lvl6.mobsters.controller;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.UUID;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,30 +9,14 @@ import com.lvl6.mobsters.entitymanager.UserDungeonStatusEntityManager;
 import com.lvl6.mobsters.entitymanager.UserDungeonStatusHistoryEntityManager;
 import com.lvl6.mobsters.entitymanager.UserItemEntityManager;
 import com.lvl6.mobsters.entitymanager.nonstaticdata.MonsterEnhancingForUserEntityManager;
-import com.lvl6.mobsters.entitymanager.nonstaticdata.UserEntityManager;
 import com.lvl6.mobsters.entitymanager.nonstaticdata.MonsterForUserEntityManager;
+import com.lvl6.mobsters.entitymanager.nonstaticdata.UserEntityManager;
 import com.lvl6.mobsters.entitymanager.staticdata.StructureRetrieveUtils;
-import com.lvl6.mobsters.eventprotos.CompleteDungeonEventProto.CompleteDungeonRequestProto;
-import com.lvl6.mobsters.eventprotos.CompleteDungeonEventProto.CompleteDungeonResponseProto;
-import com.lvl6.mobsters.eventprotos.CompleteDungeonEventProto.CompleteDungeonResponseProto.Builder;
-import com.lvl6.mobsters.eventprotos.CompleteDungeonEventProto.CompleteDungeonResponseProto.CompleteDungeonStatus;
 import com.lvl6.mobsters.events.RequestEvent;
 import com.lvl6.mobsters.events.request.CompleteDungeonRequestEvent;
-import com.lvl6.mobsters.events.response.CompleteDungeonResponseEvent;
-import com.lvl6.mobsters.noneventprotos.MobstersEventProtocolProto.MobstersEventProtocolRequest;
-import com.lvl6.mobsters.noneventprotos.Chest.ChestProto;
-import com.lvl6.mobsters.noneventprotos.Equipment.EquipmentProto;
-import com.lvl6.mobsters.noneventprotos.FullUser.MinimumUserProto;
-import com.lvl6.mobsters.noneventprotos.Item.ItemProto;
-import com.lvl6.mobsters.po.UserDungeonStatus;
-import com.lvl6.mobsters.po.UserItem;
-import com.lvl6.mobsters.po.nonstaticdata.User;
-import com.lvl6.mobsters.po.nonstaticdata.MonsterEnhancingForUser;
-import com.lvl6.mobsters.po.nonstaticdata.MonsterForUser;
 import com.lvl6.mobsters.services.equipment.EquipmentService;
 import com.lvl6.mobsters.services.monsterforuser.MonsterForUserService;
 import com.lvl6.mobsters.services.userstructure.UserStructureService;
-import com.netflix.astyanax.connectionpool.exceptions.ConnectionException;
 
 
 @Component
@@ -83,13 +62,13 @@ public class CompleteDungeonController extends EventController {
 
 	@Override
 	public int getEventType() {
-		return MobstersEventProtocolRequest.C_RETURN_HOME_EVENT_VALUE;
+		return 1;//MobstersEventProtocolRequest.C_RETURN_HOME_EVENT_VALUE;
 	}
 
 	@Override
 	protected void processRequestEvent(RequestEvent event) throws Exception {
 		//stuff client sent
-		CompleteDungeonRequestProto reqProto = 
+		/*CompleteDungeonRequestProto reqProto = 
 				((CompleteDungeonRequestEvent) event).getCompleteDungeonRequestProto();
 
 		//get the values client sent
@@ -150,9 +129,9 @@ public class CompleteDungeonController extends EventController {
 			} catch (Exception e2) {
 				log.error("exception in CompleteDungeonController processRequestEvent", e2);
 			}
-		}
+		}*/
 	}
-
+/*
 	private boolean isValidRequest(Builder responseBuilder, MinimumUserProto sender,
 			User inDb, List<EquipmentProto> equipmentsRewarded, Date clientDate) throws ConnectionException {
 		
@@ -345,17 +324,6 @@ public class CompleteDungeonController extends EventController {
 	public void setUserItemEntityManager(UserItemEntityManager userItemEntityManager) {
 		this.userItemEntityManager = userItemEntityManager;
 	}
-
-
+*/
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
 }

@@ -1,71 +1,47 @@
 package com.lvl6.mobsters.controller;
 
 
-import java.util.Date;
-import java.util.Map;
-
-import java.util.List;
-
-import java.util.UUID;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.lvl6.mobsters.entitymanager.UserConsumableQueueEntityManager;
-import com.lvl6.mobsters.entitymanager.nonstaticdata.UserEntityManager;
-import com.lvl6.mobsters.eventprotos.SpeedUpBuildUserConsumableEventProto.SpeedUpBuildUserConsumableRequestProto;
-import com.lvl6.mobsters.eventprotos.SpeedUpBuildUserConsumableEventProto.SpeedUpBuildUserConsumableResponseProto;
-import com.lvl6.mobsters.eventprotos.SpeedUpBuildUserConsumableEventProto.SpeedUpBuildUserConsumableResponseProto.Builder;
-import com.lvl6.mobsters.eventprotos.SpeedUpBuildUserConsumableEventProto.SpeedUpBuildUserConsumableResponseProto.SpeedUpBuildUserConsumableStatus;
 import com.lvl6.mobsters.events.RequestEvent;
-import com.lvl6.mobsters.events.request.SpeedUpBuildUserConsumableRequestEvent;
-import com.lvl6.mobsters.events.response.SpeedUpBuildUserConsumableResponseEvent;
-import com.lvl6.mobsters.noneventprotos.MobstersEventProtocolProto.MobstersEventProtocolRequest;
-import com.lvl6.mobsters.noneventprotos.FullUser.MinimumUserProto;
-import com.lvl6.mobsters.noneventprotos.UserConsumableQueue.UserConsumableQueueProto;
-import com.lvl6.mobsters.po.UserConsumableQueue;
-import com.lvl6.mobsters.po.nonstaticdata.User;
-import com.lvl6.mobsters.services.time.TimeUtils;
-import com.lvl6.mobsters.services.user.UserService;
-import com.lvl6.mobsters.services.userconsumablequeue.UserConsumableQueueService;
 
 
 @Component
 public class SpeedUpBuildUserConsumableController extends EventController {
 
 	private static Logger log = LoggerFactory.getLogger(new Object() { }.getClass().getEnclosingClass());
-
-	
-	@Autowired
-	protected UserEntityManager userEntityManager;
-	
-	@Autowired
-	protected UserConsumableQueueEntityManager userConsumableQueueEntityManager;
-	
-	@Autowired
-	protected UserConsumableQueueService userConsumableQueueService;
-
-	@Autowired
-	protected TimeUtils timeUtils;
-
-	@Autowired
-	protected UserService userService;
-
+//
+//	
+//	@Autowired
+//	protected UserEntityManager userEntityManager;
+//	
+//	@Autowired
+//	protected UserConsumableQueueEntityManager userConsumableQueueEntityManager;
+//	
+//	@Autowired
+//	protected UserConsumableQueueService userConsumableQueueService;
+//
+//	@Autowired
+//	protected TimeUtils timeUtils;
+//
+//	@Autowired
+//	protected UserService userService;
+//
 	@Override
 	public RequestEvent createRequestEvent() {
-		return new SpeedUpBuildUserConsumableRequestEvent();
+		return null;//new SpeedUpBuildUserConsumableRequestEvent();
 	}
 
 	@Override
 	public int getEventType() {
-		return MobstersEventProtocolRequest.C_REPAIR_EQUIP_EVENT_VALUE;
+		return 1;//MobstersEventProtocolRequest.C_REPAIR_EQUIP_EVENT_VALUE;
 	}
 
 	@Override
 	protected void processRequestEvent(RequestEvent event) throws Exception {
-		//stuff client sent
+		/*//stuff client sent
 		SpeedUpBuildUserConsumableRequestProto reqProto = 
 				((SpeedUpBuildUserConsumableRequestEvent) event).getSpeedUpBuildUserConsumableRequestProto();
 
@@ -121,11 +97,11 @@ public class SpeedUpBuildUserConsumableController extends EventController {
 			} catch (Exception e2) {
 				log.error("exception in SpeedUpBuildUserConsumableController processRequestEvent", e2);
 			}
-		}
+		}*/
 	}
 
 
-
+/*
 	private boolean isValidRequest(Builder responseBuilder, MinimumUserProto sender,
 			User inDb, List<UserConsumableQueueProto> consumablesInQueue, Date clientDate) throws Exception {
 
@@ -232,6 +208,6 @@ public class SpeedUpBuildUserConsumableController extends EventController {
 	
 	
 	
-
+*/
 }
 

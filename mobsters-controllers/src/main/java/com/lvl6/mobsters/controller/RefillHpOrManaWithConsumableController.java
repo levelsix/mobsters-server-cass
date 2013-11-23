@@ -1,10 +1,5 @@
 package com.lvl6.mobsters.controller;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.UUID;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,19 +8,7 @@ import org.springframework.stereotype.Component;
 import com.lvl6.mobsters.entitymanager.nonstaticdata.QuestForUserEntityManager;
 import com.lvl6.mobsters.entitymanager.nonstaticdata.UserEntityManager;
 import com.lvl6.mobsters.entitymanager.staticdata.ConsumableRetrieveUtils;
-import com.lvl6.mobsters.eventprotos.RefillHpOrManaWithConsumableEventProto.RefillHpOrManaWithConsumableRequestProto;
-import com.lvl6.mobsters.eventprotos.RefillHpOrManaWithConsumableEventProto.RefillHpOrManaWithConsumableResponseProto;
-import com.lvl6.mobsters.eventprotos.RefillHpOrManaWithConsumableEventProto.RefillHpOrManaWithConsumableResponseProto.Builder;
-import com.lvl6.mobsters.eventprotos.RefillHpOrManaWithConsumableEventProto.RefillHpOrManaWithConsumableResponseProto.RefillHpOrManaWithConsumableStatus;
 import com.lvl6.mobsters.events.RequestEvent;
-import com.lvl6.mobsters.events.request.RefillHpOrManaWithConsumableRequestEvent;
-import com.lvl6.mobsters.events.response.RefillHpOrManaWithConsumableResponseEvent;
-import com.lvl6.mobsters.noneventprotos.MobstersEventProtocolProto.MobstersEventProtocolRequest;
-import com.lvl6.mobsters.noneventprotos.Consumable.ConsumableType;
-import com.lvl6.mobsters.noneventprotos.FullUser.MinimumUserProto;
-import com.lvl6.mobsters.po.Consumable;
-import com.lvl6.mobsters.po.nonstaticdata.QuestForUser;
-import com.lvl6.mobsters.po.nonstaticdata.User;
 
 
 @Component
@@ -44,18 +27,18 @@ public class RefillHpOrManaWithConsumableController extends EventController {
 
 	@Override
 	public RequestEvent createRequestEvent() {
-		return new RefillHpOrManaWithConsumableRequestEvent();
+		return null;//new RefillHpOrManaWithConsumableRequestEvent();
 	}
 
 	@Override
 	public int getEventType() {
-		return MobstersEventProtocolRequest.C_REFILL_HP_OR_MANA_WITH_CONSUMABLE_EVENT_VALUE;
+		return 1;//MobstersEventProtocolRequest.C_REFILL_HP_OR_MANA_WITH_CONSUMABLE_EVENT_VALUE;
 	}
 
 	@Override
 	protected void processRequestEvent(RequestEvent event) throws Exception {
 		//stuff client sent
-		RefillHpOrManaWithConsumableRequestProto reqProto = 
+		/*/RefillHpOrManaWithConsumableRequestProto reqProto = 
 				((RefillHpOrManaWithConsumableRequestEvent) event).getRefillHpOrManaWithConsumableRequestProto();
 
 		//get the values client sent
@@ -112,9 +95,9 @@ public class RefillHpOrManaWithConsumableController extends EventController {
 			} catch (Exception e2) {
 				log.error("exception in RefillHpOrManaWithConsumableController processRequestEvent", e2);
 			}
-		}
+		}*/
 	}
-
+/*
 	private boolean isValidRequest(Builder responseBuilder, MinimumUserProto sender,
 			User inDb, QuestForUser uc, List<Consumable> cList, Date clientDate) {
 		if (null == inDb || null == uc) {
@@ -264,6 +247,6 @@ public class RefillHpOrManaWithConsumableController extends EventController {
 	public void setUserEntityManager(UserEntityManager userEntityManager) {
 		this.userEntityManager = userEntityManager;
 	}
-
+*/
 
 }

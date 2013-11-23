@@ -1,52 +1,10 @@
 package com.lvl6.mobsters.controller;
 
-import java.util.Date;
-
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-
-
-
-import com.lvl6.mobsters.entitymanager.PreDungeonUserConsumableInfoEntityManager;
-import com.lvl6.mobsters.entitymanager.PreDungeonUserEquipInfoEntityManager;
-import com.lvl6.mobsters.entitymanager.PreDungeonUserInfoEntityManager;
-import com.lvl6.mobsters.entitymanager.UserConsumableQueueEntityManager;
-import com.lvl6.mobsters.entitymanager.nonstaticdata.UserEntityManager;
-import com.lvl6.mobsters.entitymanager.staticdata.TaskStageMonsterRetrieveUtils;
-import com.lvl6.mobsters.eventprotos.StartDungeonEventProto.StartDungeonRequestProto;
-import com.lvl6.mobsters.eventprotos.StartDungeonEventProto.StartDungeonResponseProto;
-import com.lvl6.mobsters.eventprotos.StartDungeonEventProto.StartDungeonResponseProto.Builder;
-import com.lvl6.mobsters.eventprotos.StartDungeonEventProto.StartDungeonResponseProto.StartDungeonStatus;
 import com.lvl6.mobsters.events.RequestEvent;
-import com.lvl6.mobsters.events.request.StartDungeonRequestEvent;
-import com.lvl6.mobsters.events.response.StartDungeonResponseEvent;
-import com.lvl6.mobsters.noneventprotos.MobstersEventProtocolProto.MobstersEventProtocolRequest;
-import com.lvl6.mobsters.noneventprotos.FullUser.MinimumUserProto;
-import com.lvl6.mobsters.noneventprotos.FunctionalityTypeEnum.FunctionalityType;
-import com.lvl6.mobsters.noneventprotos.UserConsumable.UserConsumablesProto;
-import com.lvl6.mobsters.noneventprotos.UserEquipment.UserEquipmentProto;
-import com.lvl6.mobsters.po.PreDungeonUserConsumableInfo;
-import com.lvl6.mobsters.po.PreDungeonUserEquipInfo;
-import com.lvl6.mobsters.po.PreDungeonUserInfo;
-import com.lvl6.mobsters.po.Structure;
-import com.lvl6.mobsters.po.UserStructure;
-import com.lvl6.mobsters.po.nonstaticdata.QuestForUser;
-import com.lvl6.mobsters.po.nonstaticdata.User;
-import com.lvl6.mobsters.po.nonstaticdata.MonsterForUser;
-import com.lvl6.mobsters.po.staticdata.TaskStageMonster;
-import com.lvl6.mobsters.services.monsterforuser.MonsterForUserService;
-import com.lvl6.mobsters.services.time.TimeUtils;
-import com.lvl6.mobsters.services.user.UserService;
-import com.lvl6.mobsters.services.userconsumablequeue.UserConsumableQueueService;
-import com.lvl6.mobsters.services.usercurrencyhistory.UserCurrencyHistoryService;
-import com.lvl6.mobsters.services.userstructure.UserStructureService;
 
 
 
@@ -56,57 +14,57 @@ public class StartDungeonController extends EventController {
 	private static Logger log = LoggerFactory.getLogger(new Object() { }.getClass().getEnclosingClass());
 
 	
-	@Autowired
-	protected UserConsumableQueueService userConsumableQueueService;
-	
-	@Autowired
-	protected UserConsumableQueueEntityManager userConsumableQueueEntityManager;
-	
-	@Autowired
-	protected UserStructureService userStructureService;
-
-	@Autowired
-	protected UserEntityManager userEntityManager;
-	
-	@Autowired
-	protected MonsterForUserService monsterForUserService;
-	
-	@Autowired
-	protected UserCurrencyHistoryService userCurrencyHistoryService;
-	
-	@Autowired
-	protected PreDungeonUserInfoEntityManager preDungeonUserInfoEntityManager;
-
-	@Autowired
-	protected PreDungeonUserEquipInfoEntityManager preDungeonUserEquipInfoEntityManager;
-	
-	@Autowired
-	protected PreDungeonUserConsumableInfoEntityManager preDungeonUserConsumableInfoEntityManager;
-	
-	@Autowired
-	protected TaskStageMonsterRetrieveUtils taskStageMonsterRetrieveUtils;
-	
-	@Autowired
-	protected TimeUtils timeUtils;
-
-	@Autowired
-	protected UserService userService;
+//	@Autowired
+//	protected UserConsumableQueueService userConsumableQueueService;
+//	
+//	@Autowired
+//	protected UserConsumableQueueEntityManager userConsumableQueueEntityManager;
+//	
+//	@Autowired
+//	protected UserStructureService userStructureService;
+//
+//	@Autowired
+//	protected UserEntityManager userEntityManager;
+//	
+//	@Autowired
+//	protected MonsterForUserService monsterForUserService;
+//	
+//	@Autowired
+//	protected UserCurrencyHistoryService userCurrencyHistoryService;
+//	
+//	@Autowired
+//	protected PreDungeonUserInfoEntityManager preDungeonUserInfoEntityManager;
+//
+//	@Autowired
+//	protected PreDungeonUserEquipInfoEntityManager preDungeonUserEquipInfoEntityManager;
+//	
+//	@Autowired
+//	protected PreDungeonUserConsumableInfoEntityManager preDungeonUserConsumableInfoEntityManager;
+//	
+//	@Autowired
+//	protected TaskStageMonsterRetrieveUtils taskStageMonsterRetrieveUtils;
+//	
+//	@Autowired
+//	protected TimeUtils timeUtils;
+//
+//	@Autowired
+//	protected UserService userService;
 
 
 	@Override
 	public RequestEvent createRequestEvent() {
-		return new StartDungeonRequestEvent();
+		return null;//new StartDungeonRequestEvent();
 	}
 
 	@Override
 	public int getEventType() {
-		return MobstersEventProtocolRequest.C_REPAIR_EQUIP_EVENT_VALUE;
+		return 1;//MobstersEventProtocolRequest.C_REPAIR_EQUIP_EVENT_VALUE;
 	}
 
 	@Override
 	protected void processRequestEvent(RequestEvent event) throws Exception {
 		//stuff client sent
-		StartDungeonRequestProto reqProto = 
+		/*StartDungeonRequestProto reqProto = 
 				((StartDungeonRequestEvent) event).getStartDungeonRequestProto();
 
 		//get the values client sent
@@ -167,9 +125,10 @@ public class StartDungeonController extends EventController {
 				log.error("exception in StartDungeonController processRequestEvent", e2);
 			}
 		}
+		*/
 	}
 
-
+/*
 
 	private boolean isValidRequest(Builder responseBuilder, MinimumUserProto sender,
 			User inDb, List<UserEquipmentProto> ueqList, List<MonsterForUser> equippedList,
@@ -375,6 +334,6 @@ public class StartDungeonController extends EventController {
 	public void setUserEquipService(MonsterForUserService monsterForUserService) {
 		this.monsterForUserService = monsterForUserService;
 	}
-
+*/
 }
 
