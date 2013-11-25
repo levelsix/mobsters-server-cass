@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.lvl6.mobsters.po.staticdata.Structure;
+import com.lvl6.mobsters.properties.MobstersDbTables;
 
 @Component public class StructureRetrieveUtils {
 
@@ -18,7 +19,7 @@ import com.lvl6.mobsters.po.staticdata.Structure;
 	private  Map<String, Map<Integer, Structure>> structNameToLevelsToStructure;
 
 	private  Map<Integer, Structure> idsToStructures;
-	//private  final String TABLE_NAME = DBConstants.CONSUMABLE;
+	private  final String TABLE_NAME = MobstersDbTables.TABLE_STRUCTURE;
 
 	@Autowired
 	protected StructureEntityManager structureEntityManager;

@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.lvl6.mobsters.po.staticdata.StructureResourceGenerator;
+import com.lvl6.mobsters.properties.MobstersDbTables;
 
 @Component public class StructureResourceGeneratorRetrieveUtils {
 
@@ -17,7 +18,7 @@ import com.lvl6.mobsters.po.staticdata.StructureResourceGenerator;
 
 	private  Map<Integer, StructureResourceGenerator> idsToSpells;
 	
-	//private  final String TABLE_NAME = DBConstants.CONSUMABLE;
+	private  final String TABLE_NAME = MobstersDbTables.TABLE_STRUCTURE_RESOURCE_GENERATOR;
 
 	@Autowired
 	protected StructureResourceGeneratorEntityManager structureResourceGeneratorEntityManager;
