@@ -20,7 +20,7 @@ message StaticDataProto {
     optional MinimumUserProto sender = 1;
 	repeated CityExpansionCostProto expansionCosts = 2;
 	repeated FullCityProto allCities = 3;
-	repeated FullStructureProto allStructs = 4;
+	repeated StructureInfoProto allStructs = 4;
 	repeated FullTaskProto allTasks = 5;
 	repeated MonsterProto allMonsters = 6;
 	repeated StaticUserLevelInfoProto slip = 7;

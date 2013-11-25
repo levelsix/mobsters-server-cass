@@ -36,14 +36,14 @@ public final class StaticDataStuffProto {
     com.lvl6.mobsters.noneventprotos.CityProto.FullCityProtoOrBuilder getAllCitiesOrBuilder(
         int index);
     
-    // repeated .proto.FullStructureProto allStructs = 4;
-    java.util.List<com.lvl6.mobsters.noneventprotos.StructureProto.FullStructureProto> 
+    // repeated .proto.StructureInfoProto allStructs = 4;
+    java.util.List<com.lvl6.mobsters.noneventprotos.StructureProto.StructureInfoProto> 
         getAllStructsList();
-    com.lvl6.mobsters.noneventprotos.StructureProto.FullStructureProto getAllStructs(int index);
+    com.lvl6.mobsters.noneventprotos.StructureProto.StructureInfoProto getAllStructs(int index);
     int getAllStructsCount();
-    java.util.List<? extends com.lvl6.mobsters.noneventprotos.StructureProto.FullStructureProtoOrBuilder> 
+    java.util.List<? extends com.lvl6.mobsters.noneventprotos.StructureProto.StructureInfoProtoOrBuilder> 
         getAllStructsOrBuilderList();
-    com.lvl6.mobsters.noneventprotos.StructureProto.FullStructureProtoOrBuilder getAllStructsOrBuilder(
+    com.lvl6.mobsters.noneventprotos.StructureProto.StructureInfoProtoOrBuilder getAllStructsOrBuilder(
         int index);
     
     // repeated .proto.FullTaskProto allTasks = 5;
@@ -273,23 +273,23 @@ public final class StaticDataStuffProto {
       return allCities_.get(index);
     }
     
-    // repeated .proto.FullStructureProto allStructs = 4;
+    // repeated .proto.StructureInfoProto allStructs = 4;
     public static final int ALLSTRUCTS_FIELD_NUMBER = 4;
-    private java.util.List<com.lvl6.mobsters.noneventprotos.StructureProto.FullStructureProto> allStructs_;
-    public java.util.List<com.lvl6.mobsters.noneventprotos.StructureProto.FullStructureProto> getAllStructsList() {
+    private java.util.List<com.lvl6.mobsters.noneventprotos.StructureProto.StructureInfoProto> allStructs_;
+    public java.util.List<com.lvl6.mobsters.noneventprotos.StructureProto.StructureInfoProto> getAllStructsList() {
       return allStructs_;
     }
-    public java.util.List<? extends com.lvl6.mobsters.noneventprotos.StructureProto.FullStructureProtoOrBuilder> 
+    public java.util.List<? extends com.lvl6.mobsters.noneventprotos.StructureProto.StructureInfoProtoOrBuilder> 
         getAllStructsOrBuilderList() {
       return allStructs_;
     }
     public int getAllStructsCount() {
       return allStructs_.size();
     }
-    public com.lvl6.mobsters.noneventprotos.StructureProto.FullStructureProto getAllStructs(int index) {
+    public com.lvl6.mobsters.noneventprotos.StructureProto.StructureInfoProto getAllStructs(int index) {
       return allStructs_.get(index);
     }
-    public com.lvl6.mobsters.noneventprotos.StructureProto.FullStructureProtoOrBuilder getAllStructsOrBuilder(
+    public com.lvl6.mobsters.noneventprotos.StructureProto.StructureInfoProtoOrBuilder getAllStructsOrBuilder(
         int index) {
       return allStructs_.get(index);
     }
@@ -1248,7 +1248,7 @@ public final class StaticDataStuffProto {
               break;
             }
             case 34: {
-              com.lvl6.mobsters.noneventprotos.StructureProto.FullStructureProto.Builder subBuilder = com.lvl6.mobsters.noneventprotos.StructureProto.FullStructureProto.newBuilder();
+              com.lvl6.mobsters.noneventprotos.StructureProto.StructureInfoProto.Builder subBuilder = com.lvl6.mobsters.noneventprotos.StructureProto.StructureInfoProto.newBuilder();
               input.readMessage(subBuilder, extensionRegistry);
               addAllStructs(subBuilder.buildPartial());
               break;
@@ -1774,20 +1774,20 @@ public final class StaticDataStuffProto {
         return allCitiesBuilder_;
       }
       
-      // repeated .proto.FullStructureProto allStructs = 4;
-      private java.util.List<com.lvl6.mobsters.noneventprotos.StructureProto.FullStructureProto> allStructs_ =
+      // repeated .proto.StructureInfoProto allStructs = 4;
+      private java.util.List<com.lvl6.mobsters.noneventprotos.StructureProto.StructureInfoProto> allStructs_ =
         java.util.Collections.emptyList();
       private void ensureAllStructsIsMutable() {
         if (!((bitField0_ & 0x00000008) == 0x00000008)) {
-          allStructs_ = new java.util.ArrayList<com.lvl6.mobsters.noneventprotos.StructureProto.FullStructureProto>(allStructs_);
+          allStructs_ = new java.util.ArrayList<com.lvl6.mobsters.noneventprotos.StructureProto.StructureInfoProto>(allStructs_);
           bitField0_ |= 0x00000008;
          }
       }
       
       private com.google.protobuf.RepeatedFieldBuilder<
-          com.lvl6.mobsters.noneventprotos.StructureProto.FullStructureProto, com.lvl6.mobsters.noneventprotos.StructureProto.FullStructureProto.Builder, com.lvl6.mobsters.noneventprotos.StructureProto.FullStructureProtoOrBuilder> allStructsBuilder_;
+          com.lvl6.mobsters.noneventprotos.StructureProto.StructureInfoProto, com.lvl6.mobsters.noneventprotos.StructureProto.StructureInfoProto.Builder, com.lvl6.mobsters.noneventprotos.StructureProto.StructureInfoProtoOrBuilder> allStructsBuilder_;
       
-      public java.util.List<com.lvl6.mobsters.noneventprotos.StructureProto.FullStructureProto> getAllStructsList() {
+      public java.util.List<com.lvl6.mobsters.noneventprotos.StructureProto.StructureInfoProto> getAllStructsList() {
         if (allStructsBuilder_ == null) {
           return java.util.Collections.unmodifiableList(allStructs_);
         } else {
@@ -1801,7 +1801,7 @@ public final class StaticDataStuffProto {
           return allStructsBuilder_.getCount();
         }
       }
-      public com.lvl6.mobsters.noneventprotos.StructureProto.FullStructureProto getAllStructs(int index) {
+      public com.lvl6.mobsters.noneventprotos.StructureProto.StructureInfoProto getAllStructs(int index) {
         if (allStructsBuilder_ == null) {
           return allStructs_.get(index);
         } else {
@@ -1809,7 +1809,7 @@ public final class StaticDataStuffProto {
         }
       }
       public Builder setAllStructs(
-          int index, com.lvl6.mobsters.noneventprotos.StructureProto.FullStructureProto value) {
+          int index, com.lvl6.mobsters.noneventprotos.StructureProto.StructureInfoProto value) {
         if (allStructsBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -1823,7 +1823,7 @@ public final class StaticDataStuffProto {
         return this;
       }
       public Builder setAllStructs(
-          int index, com.lvl6.mobsters.noneventprotos.StructureProto.FullStructureProto.Builder builderForValue) {
+          int index, com.lvl6.mobsters.noneventprotos.StructureProto.StructureInfoProto.Builder builderForValue) {
         if (allStructsBuilder_ == null) {
           ensureAllStructsIsMutable();
           allStructs_.set(index, builderForValue.build());
@@ -1833,7 +1833,7 @@ public final class StaticDataStuffProto {
         }
         return this;
       }
-      public Builder addAllStructs(com.lvl6.mobsters.noneventprotos.StructureProto.FullStructureProto value) {
+      public Builder addAllStructs(com.lvl6.mobsters.noneventprotos.StructureProto.StructureInfoProto value) {
         if (allStructsBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -1847,7 +1847,7 @@ public final class StaticDataStuffProto {
         return this;
       }
       public Builder addAllStructs(
-          int index, com.lvl6.mobsters.noneventprotos.StructureProto.FullStructureProto value) {
+          int index, com.lvl6.mobsters.noneventprotos.StructureProto.StructureInfoProto value) {
         if (allStructsBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -1861,7 +1861,7 @@ public final class StaticDataStuffProto {
         return this;
       }
       public Builder addAllStructs(
-          com.lvl6.mobsters.noneventprotos.StructureProto.FullStructureProto.Builder builderForValue) {
+          com.lvl6.mobsters.noneventprotos.StructureProto.StructureInfoProto.Builder builderForValue) {
         if (allStructsBuilder_ == null) {
           ensureAllStructsIsMutable();
           allStructs_.add(builderForValue.build());
@@ -1872,7 +1872,7 @@ public final class StaticDataStuffProto {
         return this;
       }
       public Builder addAllStructs(
-          int index, com.lvl6.mobsters.noneventprotos.StructureProto.FullStructureProto.Builder builderForValue) {
+          int index, com.lvl6.mobsters.noneventprotos.StructureProto.StructureInfoProto.Builder builderForValue) {
         if (allStructsBuilder_ == null) {
           ensureAllStructsIsMutable();
           allStructs_.add(index, builderForValue.build());
@@ -1883,7 +1883,7 @@ public final class StaticDataStuffProto {
         return this;
       }
       public Builder addAllAllStructs(
-          java.lang.Iterable<? extends com.lvl6.mobsters.noneventprotos.StructureProto.FullStructureProto> values) {
+          java.lang.Iterable<? extends com.lvl6.mobsters.noneventprotos.StructureProto.StructureInfoProto> values) {
         if (allStructsBuilder_ == null) {
           ensureAllStructsIsMutable();
           super.addAll(values, allStructs_);
@@ -1913,18 +1913,18 @@ public final class StaticDataStuffProto {
         }
         return this;
       }
-      public com.lvl6.mobsters.noneventprotos.StructureProto.FullStructureProto.Builder getAllStructsBuilder(
+      public com.lvl6.mobsters.noneventprotos.StructureProto.StructureInfoProto.Builder getAllStructsBuilder(
           int index) {
         return getAllStructsFieldBuilder().getBuilder(index);
       }
-      public com.lvl6.mobsters.noneventprotos.StructureProto.FullStructureProtoOrBuilder getAllStructsOrBuilder(
+      public com.lvl6.mobsters.noneventprotos.StructureProto.StructureInfoProtoOrBuilder getAllStructsOrBuilder(
           int index) {
         if (allStructsBuilder_ == null) {
           return allStructs_.get(index);  } else {
           return allStructsBuilder_.getMessageOrBuilder(index);
         }
       }
-      public java.util.List<? extends com.lvl6.mobsters.noneventprotos.StructureProto.FullStructureProtoOrBuilder> 
+      public java.util.List<? extends com.lvl6.mobsters.noneventprotos.StructureProto.StructureInfoProtoOrBuilder> 
            getAllStructsOrBuilderList() {
         if (allStructsBuilder_ != null) {
           return allStructsBuilder_.getMessageOrBuilderList();
@@ -1932,25 +1932,25 @@ public final class StaticDataStuffProto {
           return java.util.Collections.unmodifiableList(allStructs_);
         }
       }
-      public com.lvl6.mobsters.noneventprotos.StructureProto.FullStructureProto.Builder addAllStructsBuilder() {
+      public com.lvl6.mobsters.noneventprotos.StructureProto.StructureInfoProto.Builder addAllStructsBuilder() {
         return getAllStructsFieldBuilder().addBuilder(
-            com.lvl6.mobsters.noneventprotos.StructureProto.FullStructureProto.getDefaultInstance());
+            com.lvl6.mobsters.noneventprotos.StructureProto.StructureInfoProto.getDefaultInstance());
       }
-      public com.lvl6.mobsters.noneventprotos.StructureProto.FullStructureProto.Builder addAllStructsBuilder(
+      public com.lvl6.mobsters.noneventprotos.StructureProto.StructureInfoProto.Builder addAllStructsBuilder(
           int index) {
         return getAllStructsFieldBuilder().addBuilder(
-            index, com.lvl6.mobsters.noneventprotos.StructureProto.FullStructureProto.getDefaultInstance());
+            index, com.lvl6.mobsters.noneventprotos.StructureProto.StructureInfoProto.getDefaultInstance());
       }
-      public java.util.List<com.lvl6.mobsters.noneventprotos.StructureProto.FullStructureProto.Builder> 
+      public java.util.List<com.lvl6.mobsters.noneventprotos.StructureProto.StructureInfoProto.Builder> 
            getAllStructsBuilderList() {
         return getAllStructsFieldBuilder().getBuilderList();
       }
       private com.google.protobuf.RepeatedFieldBuilder<
-          com.lvl6.mobsters.noneventprotos.StructureProto.FullStructureProto, com.lvl6.mobsters.noneventprotos.StructureProto.FullStructureProto.Builder, com.lvl6.mobsters.noneventprotos.StructureProto.FullStructureProtoOrBuilder> 
+          com.lvl6.mobsters.noneventprotos.StructureProto.StructureInfoProto, com.lvl6.mobsters.noneventprotos.StructureProto.StructureInfoProto.Builder, com.lvl6.mobsters.noneventprotos.StructureProto.StructureInfoProtoOrBuilder> 
           getAllStructsFieldBuilder() {
         if (allStructsBuilder_ == null) {
           allStructsBuilder_ = new com.google.protobuf.RepeatedFieldBuilder<
-              com.lvl6.mobsters.noneventprotos.StructureProto.FullStructureProto, com.lvl6.mobsters.noneventprotos.StructureProto.FullStructureProto.Builder, com.lvl6.mobsters.noneventprotos.StructureProto.FullStructureProtoOrBuilder>(
+              com.lvl6.mobsters.noneventprotos.StructureProto.StructureInfoProto, com.lvl6.mobsters.noneventprotos.StructureProto.StructureInfoProto.Builder, com.lvl6.mobsters.noneventprotos.StructureProto.StructureInfoProtoOrBuilder>(
                   allStructs_,
                   ((bitField0_ & 0x00000008) == 0x00000008),
                   getParentForChildren(),
@@ -3319,7 +3319,7 @@ public final class StaticDataStuffProto {
       "o\0225\n\016expansionCosts\030\002 \003(\0132\035.proto.CityEx" +
       "pansionCostProto\022\'\n\tallCities\030\003 \003(\0132\024.pr" +
       "oto.FullCityProto\022-\n\nallStructs\030\004 \003(\0132\031." +
-      "proto.FullStructureProto\022&\n\010allTasks\030\005 \003" +
+      "proto.StructureInfoProto\022&\n\010allTasks\030\005 \003" +
       "(\0132\024.proto.FullTaskProto\022(\n\013allMonsters\030",
       "\006 \003(\0132\023.proto.MonsterProto\022-\n\004slip\030\007 \003(\013" +
       "2\037.proto.StaticUserLevelInfoProto\022+\n\020inP" +

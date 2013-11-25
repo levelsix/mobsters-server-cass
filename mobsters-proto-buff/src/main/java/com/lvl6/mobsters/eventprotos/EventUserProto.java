@@ -1983,14 +1983,14 @@ public final class EventUserProto {
     boolean hasStatus();
     com.lvl6.mobsters.eventprotos.EventUserProto.LevelUpResponseProto.LevelUpStatus getStatus();
     
-    // repeated .proto.FullStructureProto newlyAvailableStructs = 3;
-    java.util.List<com.lvl6.mobsters.noneventprotos.StructureProto.FullStructureProto> 
+    // repeated .proto.StructureInfoProto newlyAvailableStructs = 3;
+    java.util.List<com.lvl6.mobsters.noneventprotos.StructureProto.StructureInfoProto> 
         getNewlyAvailableStructsList();
-    com.lvl6.mobsters.noneventprotos.StructureProto.FullStructureProto getNewlyAvailableStructs(int index);
+    com.lvl6.mobsters.noneventprotos.StructureProto.StructureInfoProto getNewlyAvailableStructs(int index);
     int getNewlyAvailableStructsCount();
-    java.util.List<? extends com.lvl6.mobsters.noneventprotos.StructureProto.FullStructureProtoOrBuilder> 
+    java.util.List<? extends com.lvl6.mobsters.noneventprotos.StructureProto.StructureInfoProtoOrBuilder> 
         getNewlyAvailableStructsOrBuilderList();
-    com.lvl6.mobsters.noneventprotos.StructureProto.FullStructureProtoOrBuilder getNewlyAvailableStructsOrBuilder(
+    com.lvl6.mobsters.noneventprotos.StructureProto.StructureInfoProtoOrBuilder getNewlyAvailableStructsOrBuilder(
         int index);
   }
   public static final class LevelUpResponseProto extends
@@ -2120,23 +2120,23 @@ public final class EventUserProto {
       return status_;
     }
     
-    // repeated .proto.FullStructureProto newlyAvailableStructs = 3;
+    // repeated .proto.StructureInfoProto newlyAvailableStructs = 3;
     public static final int NEWLYAVAILABLESTRUCTS_FIELD_NUMBER = 3;
-    private java.util.List<com.lvl6.mobsters.noneventprotos.StructureProto.FullStructureProto> newlyAvailableStructs_;
-    public java.util.List<com.lvl6.mobsters.noneventprotos.StructureProto.FullStructureProto> getNewlyAvailableStructsList() {
+    private java.util.List<com.lvl6.mobsters.noneventprotos.StructureProto.StructureInfoProto> newlyAvailableStructs_;
+    public java.util.List<com.lvl6.mobsters.noneventprotos.StructureProto.StructureInfoProto> getNewlyAvailableStructsList() {
       return newlyAvailableStructs_;
     }
-    public java.util.List<? extends com.lvl6.mobsters.noneventprotos.StructureProto.FullStructureProtoOrBuilder> 
+    public java.util.List<? extends com.lvl6.mobsters.noneventprotos.StructureProto.StructureInfoProtoOrBuilder> 
         getNewlyAvailableStructsOrBuilderList() {
       return newlyAvailableStructs_;
     }
     public int getNewlyAvailableStructsCount() {
       return newlyAvailableStructs_.size();
     }
-    public com.lvl6.mobsters.noneventprotos.StructureProto.FullStructureProto getNewlyAvailableStructs(int index) {
+    public com.lvl6.mobsters.noneventprotos.StructureProto.StructureInfoProto getNewlyAvailableStructs(int index) {
       return newlyAvailableStructs_.get(index);
     }
-    public com.lvl6.mobsters.noneventprotos.StructureProto.FullStructureProtoOrBuilder getNewlyAvailableStructsOrBuilder(
+    public com.lvl6.mobsters.noneventprotos.StructureProto.StructureInfoProtoOrBuilder getNewlyAvailableStructsOrBuilder(
         int index) {
       return newlyAvailableStructs_.get(index);
     }
@@ -2487,7 +2487,7 @@ public final class EventUserProto {
               break;
             }
             case 26: {
-              com.lvl6.mobsters.noneventprotos.StructureProto.FullStructureProto.Builder subBuilder = com.lvl6.mobsters.noneventprotos.StructureProto.FullStructureProto.newBuilder();
+              com.lvl6.mobsters.noneventprotos.StructureProto.StructureInfoProto.Builder subBuilder = com.lvl6.mobsters.noneventprotos.StructureProto.StructureInfoProto.newBuilder();
               input.readMessage(subBuilder, extensionRegistry);
               addNewlyAvailableStructs(subBuilder.buildPartial());
               break;
@@ -2612,20 +2612,20 @@ public final class EventUserProto {
         return this;
       }
       
-      // repeated .proto.FullStructureProto newlyAvailableStructs = 3;
-      private java.util.List<com.lvl6.mobsters.noneventprotos.StructureProto.FullStructureProto> newlyAvailableStructs_ =
+      // repeated .proto.StructureInfoProto newlyAvailableStructs = 3;
+      private java.util.List<com.lvl6.mobsters.noneventprotos.StructureProto.StructureInfoProto> newlyAvailableStructs_ =
         java.util.Collections.emptyList();
       private void ensureNewlyAvailableStructsIsMutable() {
         if (!((bitField0_ & 0x00000004) == 0x00000004)) {
-          newlyAvailableStructs_ = new java.util.ArrayList<com.lvl6.mobsters.noneventprotos.StructureProto.FullStructureProto>(newlyAvailableStructs_);
+          newlyAvailableStructs_ = new java.util.ArrayList<com.lvl6.mobsters.noneventprotos.StructureProto.StructureInfoProto>(newlyAvailableStructs_);
           bitField0_ |= 0x00000004;
          }
       }
       
       private com.google.protobuf.RepeatedFieldBuilder<
-          com.lvl6.mobsters.noneventprotos.StructureProto.FullStructureProto, com.lvl6.mobsters.noneventprotos.StructureProto.FullStructureProto.Builder, com.lvl6.mobsters.noneventprotos.StructureProto.FullStructureProtoOrBuilder> newlyAvailableStructsBuilder_;
+          com.lvl6.mobsters.noneventprotos.StructureProto.StructureInfoProto, com.lvl6.mobsters.noneventprotos.StructureProto.StructureInfoProto.Builder, com.lvl6.mobsters.noneventprotos.StructureProto.StructureInfoProtoOrBuilder> newlyAvailableStructsBuilder_;
       
-      public java.util.List<com.lvl6.mobsters.noneventprotos.StructureProto.FullStructureProto> getNewlyAvailableStructsList() {
+      public java.util.List<com.lvl6.mobsters.noneventprotos.StructureProto.StructureInfoProto> getNewlyAvailableStructsList() {
         if (newlyAvailableStructsBuilder_ == null) {
           return java.util.Collections.unmodifiableList(newlyAvailableStructs_);
         } else {
@@ -2639,7 +2639,7 @@ public final class EventUserProto {
           return newlyAvailableStructsBuilder_.getCount();
         }
       }
-      public com.lvl6.mobsters.noneventprotos.StructureProto.FullStructureProto getNewlyAvailableStructs(int index) {
+      public com.lvl6.mobsters.noneventprotos.StructureProto.StructureInfoProto getNewlyAvailableStructs(int index) {
         if (newlyAvailableStructsBuilder_ == null) {
           return newlyAvailableStructs_.get(index);
         } else {
@@ -2647,7 +2647,7 @@ public final class EventUserProto {
         }
       }
       public Builder setNewlyAvailableStructs(
-          int index, com.lvl6.mobsters.noneventprotos.StructureProto.FullStructureProto value) {
+          int index, com.lvl6.mobsters.noneventprotos.StructureProto.StructureInfoProto value) {
         if (newlyAvailableStructsBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -2661,7 +2661,7 @@ public final class EventUserProto {
         return this;
       }
       public Builder setNewlyAvailableStructs(
-          int index, com.lvl6.mobsters.noneventprotos.StructureProto.FullStructureProto.Builder builderForValue) {
+          int index, com.lvl6.mobsters.noneventprotos.StructureProto.StructureInfoProto.Builder builderForValue) {
         if (newlyAvailableStructsBuilder_ == null) {
           ensureNewlyAvailableStructsIsMutable();
           newlyAvailableStructs_.set(index, builderForValue.build());
@@ -2671,7 +2671,7 @@ public final class EventUserProto {
         }
         return this;
       }
-      public Builder addNewlyAvailableStructs(com.lvl6.mobsters.noneventprotos.StructureProto.FullStructureProto value) {
+      public Builder addNewlyAvailableStructs(com.lvl6.mobsters.noneventprotos.StructureProto.StructureInfoProto value) {
         if (newlyAvailableStructsBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -2685,7 +2685,7 @@ public final class EventUserProto {
         return this;
       }
       public Builder addNewlyAvailableStructs(
-          int index, com.lvl6.mobsters.noneventprotos.StructureProto.FullStructureProto value) {
+          int index, com.lvl6.mobsters.noneventprotos.StructureProto.StructureInfoProto value) {
         if (newlyAvailableStructsBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -2699,7 +2699,7 @@ public final class EventUserProto {
         return this;
       }
       public Builder addNewlyAvailableStructs(
-          com.lvl6.mobsters.noneventprotos.StructureProto.FullStructureProto.Builder builderForValue) {
+          com.lvl6.mobsters.noneventprotos.StructureProto.StructureInfoProto.Builder builderForValue) {
         if (newlyAvailableStructsBuilder_ == null) {
           ensureNewlyAvailableStructsIsMutable();
           newlyAvailableStructs_.add(builderForValue.build());
@@ -2710,7 +2710,7 @@ public final class EventUserProto {
         return this;
       }
       public Builder addNewlyAvailableStructs(
-          int index, com.lvl6.mobsters.noneventprotos.StructureProto.FullStructureProto.Builder builderForValue) {
+          int index, com.lvl6.mobsters.noneventprotos.StructureProto.StructureInfoProto.Builder builderForValue) {
         if (newlyAvailableStructsBuilder_ == null) {
           ensureNewlyAvailableStructsIsMutable();
           newlyAvailableStructs_.add(index, builderForValue.build());
@@ -2721,7 +2721,7 @@ public final class EventUserProto {
         return this;
       }
       public Builder addAllNewlyAvailableStructs(
-          java.lang.Iterable<? extends com.lvl6.mobsters.noneventprotos.StructureProto.FullStructureProto> values) {
+          java.lang.Iterable<? extends com.lvl6.mobsters.noneventprotos.StructureProto.StructureInfoProto> values) {
         if (newlyAvailableStructsBuilder_ == null) {
           ensureNewlyAvailableStructsIsMutable();
           super.addAll(values, newlyAvailableStructs_);
@@ -2751,18 +2751,18 @@ public final class EventUserProto {
         }
         return this;
       }
-      public com.lvl6.mobsters.noneventprotos.StructureProto.FullStructureProto.Builder getNewlyAvailableStructsBuilder(
+      public com.lvl6.mobsters.noneventprotos.StructureProto.StructureInfoProto.Builder getNewlyAvailableStructsBuilder(
           int index) {
         return getNewlyAvailableStructsFieldBuilder().getBuilder(index);
       }
-      public com.lvl6.mobsters.noneventprotos.StructureProto.FullStructureProtoOrBuilder getNewlyAvailableStructsOrBuilder(
+      public com.lvl6.mobsters.noneventprotos.StructureProto.StructureInfoProtoOrBuilder getNewlyAvailableStructsOrBuilder(
           int index) {
         if (newlyAvailableStructsBuilder_ == null) {
           return newlyAvailableStructs_.get(index);  } else {
           return newlyAvailableStructsBuilder_.getMessageOrBuilder(index);
         }
       }
-      public java.util.List<? extends com.lvl6.mobsters.noneventprotos.StructureProto.FullStructureProtoOrBuilder> 
+      public java.util.List<? extends com.lvl6.mobsters.noneventprotos.StructureProto.StructureInfoProtoOrBuilder> 
            getNewlyAvailableStructsOrBuilderList() {
         if (newlyAvailableStructsBuilder_ != null) {
           return newlyAvailableStructsBuilder_.getMessageOrBuilderList();
@@ -2770,25 +2770,25 @@ public final class EventUserProto {
           return java.util.Collections.unmodifiableList(newlyAvailableStructs_);
         }
       }
-      public com.lvl6.mobsters.noneventprotos.StructureProto.FullStructureProto.Builder addNewlyAvailableStructsBuilder() {
+      public com.lvl6.mobsters.noneventprotos.StructureProto.StructureInfoProto.Builder addNewlyAvailableStructsBuilder() {
         return getNewlyAvailableStructsFieldBuilder().addBuilder(
-            com.lvl6.mobsters.noneventprotos.StructureProto.FullStructureProto.getDefaultInstance());
+            com.lvl6.mobsters.noneventprotos.StructureProto.StructureInfoProto.getDefaultInstance());
       }
-      public com.lvl6.mobsters.noneventprotos.StructureProto.FullStructureProto.Builder addNewlyAvailableStructsBuilder(
+      public com.lvl6.mobsters.noneventprotos.StructureProto.StructureInfoProto.Builder addNewlyAvailableStructsBuilder(
           int index) {
         return getNewlyAvailableStructsFieldBuilder().addBuilder(
-            index, com.lvl6.mobsters.noneventprotos.StructureProto.FullStructureProto.getDefaultInstance());
+            index, com.lvl6.mobsters.noneventprotos.StructureProto.StructureInfoProto.getDefaultInstance());
       }
-      public java.util.List<com.lvl6.mobsters.noneventprotos.StructureProto.FullStructureProto.Builder> 
+      public java.util.List<com.lvl6.mobsters.noneventprotos.StructureProto.StructureInfoProto.Builder> 
            getNewlyAvailableStructsBuilderList() {
         return getNewlyAvailableStructsFieldBuilder().getBuilderList();
       }
       private com.google.protobuf.RepeatedFieldBuilder<
-          com.lvl6.mobsters.noneventprotos.StructureProto.FullStructureProto, com.lvl6.mobsters.noneventprotos.StructureProto.FullStructureProto.Builder, com.lvl6.mobsters.noneventprotos.StructureProto.FullStructureProtoOrBuilder> 
+          com.lvl6.mobsters.noneventprotos.StructureProto.StructureInfoProto, com.lvl6.mobsters.noneventprotos.StructureProto.StructureInfoProto.Builder, com.lvl6.mobsters.noneventprotos.StructureProto.StructureInfoProtoOrBuilder> 
           getNewlyAvailableStructsFieldBuilder() {
         if (newlyAvailableStructsBuilder_ == null) {
           newlyAvailableStructsBuilder_ = new com.google.protobuf.RepeatedFieldBuilder<
-              com.lvl6.mobsters.noneventprotos.StructureProto.FullStructureProto, com.lvl6.mobsters.noneventprotos.StructureProto.FullStructureProto.Builder, com.lvl6.mobsters.noneventprotos.StructureProto.FullStructureProtoOrBuilder>(
+              com.lvl6.mobsters.noneventprotos.StructureProto.StructureInfoProto, com.lvl6.mobsters.noneventprotos.StructureProto.StructureInfoProto.Builder, com.lvl6.mobsters.noneventprotos.StructureProto.StructureInfoProtoOrBuilder>(
                   newlyAvailableStructs_,
                   ((bitField0_ & 0x00000004) == 0x00000004),
                   getParentForChildren(),
@@ -5344,8 +5344,8 @@ public final class EventUserProto {
       "onseProto\022\'\n\006sender\030\001 \001(\0132\027.proto.Minimu" +
       "mUserProto\0229\n\006status\030\002 \001(\0162).proto.Level" +
       "UpResponseProto.LevelUpStatus\0228\n\025newlyAv" +
-      "ailableStructs\030\003 \003(\0132\031.proto.FullStructu",
-      "reProto\"h\n\rLevelUpStatus\022\013\n\007SUCCESS\020\001\022 \n" +
+      "ailableStructs\030\003 \003(\0132\031.proto.StructureIn",
+      "foProto\"h\n\rLevelUpStatus\022\013\n\007SUCCESS\020\001\022 \n" +
       "\034NOT_ENOUGH_EXP_TO_NEXT_LEVEL\020\002\022\030\n\024ALREA" +
       "DY_AT_MAX_LEVEL\020\003\022\016\n\nOTHER_FAIL\020\004\"\211\001\n#Re" +
       "trieveUsersForUserIdsRequestProto\022\'\n\006sen" +
