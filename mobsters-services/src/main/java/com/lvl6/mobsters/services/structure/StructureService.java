@@ -1,6 +1,6 @@
 package com.lvl6.mobsters.services.structure;
 
-import com.lvl6.mobsters.entitymanager.StructureEntityManager;
+import com.lvl6.mobsters.entitymanager.staticdata.StructureEntityManager;
 import com.lvl6.mobsters.entitymanager.staticdata.StructureRetrieveUtils;
 
 public interface StructureService {

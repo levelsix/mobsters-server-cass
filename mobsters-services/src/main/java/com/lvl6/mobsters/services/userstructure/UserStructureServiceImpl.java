@@ -11,11 +11,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.lvl6.mobsters.entitymanager.StructureEntityManager;
 import com.lvl6.mobsters.entitymanager.UserStructureEntityManager;
+import com.lvl6.mobsters.entitymanager.staticdata.StructureEntityManager;
 import com.lvl6.mobsters.entitymanager.staticdata.StructureRetrieveUtils;
-import com.lvl6.mobsters.po.Structure;
 import com.lvl6.mobsters.po.UserStructure;
+import com.lvl6.mobsters.po.staticdata.Structure;
 
 
 @Component

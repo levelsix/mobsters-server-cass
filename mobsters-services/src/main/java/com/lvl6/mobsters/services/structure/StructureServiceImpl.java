@@ -3,7 +3,7 @@ package com.lvl6.mobsters.services.structure;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.lvl6.mobsters.entitymanager.StructureEntityManager;
+import com.lvl6.mobsters.entitymanager.staticdata.StructureEntityManager;
 import com.lvl6.mobsters.entitymanager.staticdata.StructureRetrieveUtils;
 
 @Component

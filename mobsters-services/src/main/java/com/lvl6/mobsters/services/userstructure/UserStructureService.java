@@ -4,8 +4,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
-import com.lvl6.mobsters.po.Structure;
 import com.lvl6.mobsters.po.UserStructure;
+import com.lvl6.mobsters.po.staticdata.Structure;
 
 public interface UserStructureService {
 		
