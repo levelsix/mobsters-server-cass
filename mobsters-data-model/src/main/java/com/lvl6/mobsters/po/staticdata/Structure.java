@@ -1,7 +1,6 @@
 package com.lvl6.mobsters.po.staticdata;
 
 import java.io.Serializable;
-import java.util.UUID;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,12 +12,16 @@ import com.dekayd.astyanax.cassandra.entitymanager.Index;
 
 
 @Entity
-public class Structure extends BasePersistentObject<UUID> implements Serializable{
+public class Structure extends BasePersistentObject<Integer> implements Serializable{
 
-	private static final long serialVersionUID = -487082131666338095L;
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7508243963665564768L;
 
 	@Id
-	protected UUID id = UUID.randomUUID();
+	protected Integer id = 0;
 	
 	@Column(name="name")
 	@Index
@@ -75,11 +78,16 @@ public class Structure extends BasePersistentObject<UUID> implements Serializabl
 	@Column(name="description")
 	protected String description = "";
 
-	public UUID getId() {
+	
+	
+	
+	
+
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(UUID id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
