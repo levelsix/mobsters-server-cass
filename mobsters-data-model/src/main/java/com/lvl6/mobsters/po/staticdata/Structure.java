@@ -15,10 +15,8 @@ import com.dekayd.astyanax.cassandra.entitymanager.Index;
 public class Structure extends BasePersistentObject<Integer> implements Serializable{
 
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 7508243963665564768L;
+
+	private static final long serialVersionUID = -3839764324136173201L;
 
 	@Id
 	protected Integer id = 0;
@@ -38,12 +36,12 @@ public class Structure extends BasePersistentObject<Integer> implements Serializ
 	@Index
 	protected String buildResourceType = "";
 	
+	@Column(name="build_cost")
+	protected int buildCost = 0;
+	
 	@Column(name="build_time_minutes")
 	@Index
 	protected int buildTimeMinutes = 0;
-	
-	@Column(name="build_speedup_base_cost")
-	protected int buildSpeedupBaseCost = 0;
 	
 	@Column(name="prerequisite_town_hall_lvl")
 	@Index
@@ -60,7 +58,6 @@ public class Structure extends BasePersistentObject<Integer> implements Serializ
 	@Index
 	protected String spriteImgName = "";
 	
-	//base cost for researching spell, income, storage, dependent "+tableName()+" building, assume it's in minutes for now
 	@Column(name="predecessor_struct_id")
 	@Index
 	protected int predecessorStructId = 0;
@@ -73,15 +70,10 @@ public class Structure extends BasePersistentObject<Integer> implements Serializ
 	protected String imgName = "";
 	
 	@Column(name="img_vertical_pixel_offset")
-	protected int imgVerticalPixelOffset = 0;
+	protected float imgVerticalPixelOffset = 0;
 	
 	@Column(name="description")
 	protected String description = "";
-
-	
-	
-	
-	
 
 	public Integer getId() {
 		return id;
@@ -123,20 +115,20 @@ public class Structure extends BasePersistentObject<Integer> implements Serializ
 		this.buildResourceType = buildResourceType;
 	}
 
+	public int getBuildCost() {
+		return buildCost;
+	}
+
+	public void setBuildCost(int buildCost) {
+		this.buildCost = buildCost;
+	}
+
 	public int getBuildTimeMinutes() {
 		return buildTimeMinutes;
 	}
 
 	public void setBuildTimeMinutes(int buildTimeMinutes) {
 		this.buildTimeMinutes = buildTimeMinutes;
-	}
-
-	public int getBuildSpeedupBaseCost() {
-		return buildSpeedupBaseCost;
-	}
-
-	public void setBuildSpeedupBaseCost(int buildSpeedupBaseCost) {
-		this.buildSpeedupBaseCost = buildSpeedupBaseCost;
 	}
 
 	public int getPrerequisiteTownHallLvl() {
@@ -195,11 +187,11 @@ public class Structure extends BasePersistentObject<Integer> implements Serializ
 		this.imgName = imgName;
 	}
 
-	public int getImgVerticalPixelOffset() {
+	public float getImgVerticalPixelOffset() {
 		return imgVerticalPixelOffset;
 	}
 
-	public void setImgVerticalPixelOffset(int imgVerticalPixelOffset) {
+	public void setImgVerticalPixelOffset(float imgVerticalPixelOffset) {
 		this.imgVerticalPixelOffset = imgVerticalPixelOffset;
 	}
 
@@ -215,8 +207,8 @@ public class Structure extends BasePersistentObject<Integer> implements Serializ
 	public String toString() {
 		return "Structure [id=" + id + ", name=" + name + ", lvl=" + lvl
 				+ ", structType=" + structType + ", buildResourceType="
-				+ buildResourceType + ", buildTimeMinutes=" + buildTimeMinutes
-				+ ", buildSpeedupBaseCost=" + buildSpeedupBaseCost
+				+ buildResourceType + ", buildCost=" + buildCost
+				+ ", buildTimeMinutes=" + buildTimeMinutes
 				+ ", prerequisiteTownHallLvl=" + prerequisiteTownHallLvl
 				+ ", width=" + width + ", height=" + height
 				+ ", spriteImgName=" + spriteImgName + ", predecessorStructId="
@@ -225,5 +217,6 @@ public class Structure extends BasePersistentObject<Integer> implements Serializ
 				+ ", imgVerticalPixelOffset=" + imgVerticalPixelOffset
 				+ ", description=" + description + "]";
 	}
-	
+
+
 }
