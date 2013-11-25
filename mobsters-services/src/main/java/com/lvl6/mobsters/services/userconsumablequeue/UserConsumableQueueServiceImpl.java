@@ -23,7 +23,7 @@
 //	protected UserConsumableQueueEntityManager userConsumableQueueEntityManager;
 //	
 //	@Autowired
-//	protected ConsumableEntityManager consumableEntityManager;
+//	protected StructureHospitalEntityManager structureHospitalEntityManager;
 //
 //		
 //	
@@ -73,9 +73,9 @@
 //	}
 //	
 //	@Override
-//	public Consumable getConsumableCorrespondingToUserConsumableQueue(String consumableId) {
+//	public StructureHospital getConsumableCorrespondingToUserConsumableQueue(String consumableId) {
 //		String cqlquery = "select * from consumable where id= " + consumableId + ";";
-//		List<Consumable> c = getConsumableEntityManager().get().find(cqlquery);
+//		List<StructureHospital> c = getConsumableEntityManager().get().find(cqlquery);
 //		return c.get(0);
 //	}
 //	
@@ -157,13 +157,13 @@
 //		this.userConsumableQueueEntityManager = userConsumableQueueEntityManager;
 //	}
 //
-//	public ConsumableEntityManager getConsumableEntityManager() {
-//		return consumableEntityManager;
+//	public StructureHospitalEntityManager getConsumableEntityManager() {
+//		return structureHospitalEntityManager;
 //	}
 //
 //	public void setConsumableEntityManager(
-//			ConsumableEntityManager consumableEntityManager) {
-//		this.consumableEntityManager = consumableEntityManager;
+//			StructureHospitalEntityManager structureHospitalEntityManager) {
+//		this.consumableEntityManager = structureHospitalEntityManager;
 //	}
 //
 //

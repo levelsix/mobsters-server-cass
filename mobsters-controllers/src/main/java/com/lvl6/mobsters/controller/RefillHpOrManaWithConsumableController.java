@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 
 import com.lvl6.mobsters.entitymanager.nonstaticdata.QuestForUserEntityManager;
 import com.lvl6.mobsters.entitymanager.nonstaticdata.UserEntityManager;
-import com.lvl6.mobsters.entitymanager.staticdata.ConsumableRetrieveUtils;
+import com.lvl6.mobsters.entitymanager.staticdata.StructureHospitalRetrieveUtils;
 import com.lvl6.mobsters.events.RequestEvent;
 
 
@@ -17,7 +17,7 @@ public class RefillHpOrManaWithConsumableController extends EventController {
 	private static Logger log = LoggerFactory.getLogger(new Object() { }.getClass().getEnclosingClass());
 
 	@Autowired
-	protected ConsumableRetrieveUtils consumableRetrieveUtils; 
+	protected StructureHospitalRetrieveUtils structureHospitalRetrieveUtils; 
 
 	@Autowired
 	protected QuestForUserEntityManager questForUserEntityManager;
@@ -62,7 +62,7 @@ public class RefillHpOrManaWithConsumableController extends EventController {
 			//get whatever we need from the database
 			User inDb = getUserEntityManager().get().get(userId);
 			QuestForUser uc = getUserConsumableEntityManager().get().get(userConsumableId);
-			List<Consumable> cList = new ArrayList<Consumable>();
+			List<StructureHospital> cList = new ArrayList<StructureHospital>();
 
 			//validate request
 			boolean validRequest = isValidRequest(responseBuilder, sender, inDb,
@@ -70,7 +70,7 @@ public class RefillHpOrManaWithConsumableController extends EventController {
 
 			boolean successful = false;
 			if (validRequest) {
-				Consumable c = cList.get(0);
+				StructureHospital c = cList.get(0);
 				successful = writeChangesToDb(inDb, uc, c, clientDate);
 			}
 
@@ -99,7 +99,7 @@ public class RefillHpOrManaWithConsumableController extends EventController {
 	}
 /*
 	private boolean isValidRequest(Builder responseBuilder, MinimumUserProto sender,
-			User inDb, QuestForUser uc, List<Consumable> cList, Date clientDate) {
+			User inDb, QuestForUser uc, List<StructureHospital> cList, Date clientDate) {
 		if (null == inDb || null == uc) {
 			log.error("unexpected error: no user exists. sender=" + sender +
 					"\t inDb=" + inDb + "\t uc=" + uc);
@@ -107,7 +107,7 @@ public class RefillHpOrManaWithConsumableController extends EventController {
 		}
 
 		UUID consumableId = uc.getConsumableId();
-		Consumable c = null; //getConsumableRetrieveUtils().getConsumableForConsumableId(consumableId);
+		StructureHospital c = null; //getConsumableRetrieveUtils().getConsumableForConsumableId(consumableId);
 
 		if (null == c) {
 			log.error("unexpected error: no consumable with id exists. id=" + consumableId);
@@ -156,7 +156,7 @@ public class RefillHpOrManaWithConsumableController extends EventController {
 	}
 
 	private boolean writeChangesToDb(User inDb, QuestForUser uc,
-			Consumable c, Date clientDate) {
+			StructureHospital c, Date clientDate) {
 		try {
 			//Figure out how much to regen
 			int cType = c.getFunctionalityType();
@@ -184,7 +184,7 @@ public class RefillHpOrManaWithConsumableController extends EventController {
 		return false;
 	}
 
-	private void updateUserHealth(User inDb, Consumable c) {
+	private void updateUserHealth(User inDb, StructureHospital c) {
 		int maxHp = inDb.getMaxHp();
 		int newHp = inDb.getHp();
 
@@ -203,7 +203,7 @@ public class RefillHpOrManaWithConsumableController extends EventController {
 		inDb.setHp(newHp);
 	}
 
-	private void updateUserMana(User inDb, Consumable c) {
+	private void updateUserMana(User inDb, StructureHospital c) {
 		int maxMana = inDb.getMaxMana();
 		int newMana = inDb.getMana();
 
@@ -222,13 +222,13 @@ public class RefillHpOrManaWithConsumableController extends EventController {
 
 
 
-	public ConsumableRetrieveUtils getConsumableRetrieveUtils() {
-		return consumableRetrieveUtils;
+	public StructureHospitalRetrieveUtils getConsumableRetrieveUtils() {
+		return structureHospitalRetrieveUtils;
 	}
 
 	public void setConsumableRetrieveUtils(
-			ConsumableRetrieveUtils consumableRetrieveUtils) {
-		this.consumableRetrieveUtils = consumableRetrieveUtils;
+			StructureHospitalRetrieveUtils structureHospitalRetrieveUtils) {
+		this.consumableRetrieveUtils = structureHospitalRetrieveUtils;
 	}
 
 	public QuestForUserEntityManager getUserConsumableEntityManager() {

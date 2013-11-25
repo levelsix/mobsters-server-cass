@@ -115,7 +115,7 @@ public class CollectUserConsumableController extends EventController {
 		boolean bool = false;
 		for(UserConsumableQueueProto ucqp: ucqpList) {
 			String consumableId = ucqp.getConsumableId();
-			Consumable c = getUserConsumableQueueService().getConsumableCorrespondingToUserConsumableQueue(consumableId);
+			StructureHospital c = getUserConsumableQueueService().getConsumableCorrespondingToUserConsumableQueue(consumableId);
 			long finishTime = ucqp.getExpectedStartMillis() + c.getCreateTimeSeconds()*1000; 
 			if(finishTime > clientDate.getTime()) {
 				log.error("a consumable's expected finish time has not arrived yet");

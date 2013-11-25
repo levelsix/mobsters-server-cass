@@ -19,7 +19,7 @@
 //	
 //	public abstract UserConsumableQueue getUserConsumableQueueCorrespondingToUserConsumableQueueProto(String userConsumableQueueString);
 //	
-//	public abstract Consumable getConsumableCorrespondingToUserConsumableQueue(String consumableName);
+//	public abstract StructureHospital getConsumableCorrespondingToUserConsumableQueue(String consumableName);
 //	
 //	public abstract int calculateBuildCost(Map<UserConsumableQueue, Integer> ucqMap);
 //	
