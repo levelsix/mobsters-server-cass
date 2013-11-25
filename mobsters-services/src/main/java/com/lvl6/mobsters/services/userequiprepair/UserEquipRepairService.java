@@ -38,6 +38,6 @@
 //	
 //	public abstract List<MonsterHealingForUser> getAllUserEquipRepairsForUser(UUID userId);
 //	
-//	public abstract Equipment getEquipmentCorrespondingToUserEquipRepair(MonsterHealingForUser ue);
+//	public abstract StructureLab getEquipmentCorrespondingToUserEquipRepair(MonsterHealingForUser ue);
 //
 //}

@@ -15,7 +15,7 @@
 //
 //import com.lvl6.mobsters.entitymanager.EquipmentEntityManager;
 //import com.lvl6.mobsters.entitymanager.UserEquipRepairEntityManager;
-//import com.lvl6.mobsters.entitymanager.staticdata.EquipmentRetrieveUtils;
+//import com.lvl6.mobsters.entitymanager.staticdata.StructureLabRetrieveUtils;
 //import com.lvl6.mobsters.noneventprotos.UserEquipRepair.UserEquipRepairProto;
 //import com.lvl6.mobsters.po.Equipment;
 //import com.lvl6.mobsters.po.UserEquip;
@@ -33,10 +33,10 @@
 //	
 //	
 //	@Autowired
-//	protected EquipmentEntityManager equipmentEntityManager;
+//	protected StructureLabEntityManager structureLabEntityManager;
 //	
 //	@Autowired
-//	protected EquipmentRetrieveUtils equipmentRetrieveUtils;
+//	protected StructureLabRetrieveUtils structureLabRetrieveUtils;
 //	
 //	
 //	@Override
@@ -154,7 +154,7 @@
 //	}
 //	
 //	@Override
-//	public Equipment getEquipmentCorrespondingToUserEquipRepair(UserEquipRepair ue) {
+//	public StructureLab getEquipmentCorrespondingToUserEquipRepair(UserEquipRepair ue) {
 //		UUID equipId = ue.getEquipId();
 //		return getEquipmentRetrieveUtils().getEquipmentForId(equipId);
 //	}
@@ -181,22 +181,22 @@
 //		this.userEquipRepairEntityManager = userEquipRepairEntityManager;
 //	}
 //
-//	public EquipmentEntityManager getEquipmentEntityManager() {
-//		return equipmentEntityManager;
+//	public StructureLabEntityManager getEquipmentEntityManager() {
+//		return structureLabEntityManager;
 //	}
 //
 //	public void setEquipmentEntityManager(
-//			EquipmentEntityManager equipmentEntityManager) {
-//		this.equipmentEntityManager = equipmentEntityManager;
+//			StructureLabEntityManager structureLabEntityManager) {
+//		this.equipmentEntityManager = structureLabEntityManager;
 //	}
 //
-//	public EquipmentRetrieveUtils getEquipmentRetrieveUtils() {
-//		return equipmentRetrieveUtils;
+//	public StructureLabRetrieveUtils getEquipmentRetrieveUtils() {
+//		return structureLabRetrieveUtils;
 //	}
 //
 //	public void setEquipmentRetrieveUtils(
-//			EquipmentRetrieveUtils equipmentRetrieveUtils) {
-//		this.equipmentRetrieveUtils = equipmentRetrieveUtils;
+//			StructureLabRetrieveUtils structureLabRetrieveUtils) {
+//		this.equipmentRetrieveUtils = structureLabRetrieveUtils;
 //	}
 //
 //}

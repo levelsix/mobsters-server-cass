@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 import com.lvl6.mobsters.entitymanager.nonstaticdata.MonsterForUserEntityManager;
 import com.lvl6.mobsters.entitymanager.nonstaticdata.MonsterHealingForUserEntityManager;
 import com.lvl6.mobsters.entitymanager.nonstaticdata.UserEntityManager;
-import com.lvl6.mobsters.entitymanager.staticdata.EquipmentRetrieveUtils;
+import com.lvl6.mobsters.entitymanager.staticdata.StructureLabRetrieveUtils;
 import com.lvl6.mobsters.events.RequestEvent;
 import com.lvl6.mobsters.services.monsterforuser.MonsterForUserService;
 import com.lvl6.mobsters.services.time.TimeUtils;
@@ -22,7 +22,7 @@ public class RepairEquipWhenMissingResourcesController extends EventController {
 	private static Logger log = LoggerFactory.getLogger(new Object() { }.getClass().getEnclosingClass());
 
 	@Autowired
-	protected EquipmentRetrieveUtils equipmentRetrieveUtils; 
+	protected StructureLabRetrieveUtils structureLabRetrieveUtils; 
 
 	
 //	@Autowired
@@ -86,7 +86,7 @@ public class RepairEquipWhenMissingResourcesController extends EventController {
 			//get whatever we need from the database
 			User inDb = getUserEntityManager().get().get(userId);
 			MonsterForUser ue = getUserEquipEntityManager().get().get(userEquipId);
-			Equipment e = getUserEquipService().getEquipmentCorrespondingToUserEquip(ue);
+			StructureLab e = getUserEquipService().getEquipmentCorrespondingToUserEquip(ue);
 
 			//validate request
 			boolean validRequest = isValidRequest(responseBuilder, sender,
@@ -124,7 +124,7 @@ public class RepairEquipWhenMissingResourcesController extends EventController {
 
 /*
 	private boolean isValidRequest(Builder responseBuilder, MinimumUserProto sender,
-			User inDb, MonsterForUser ue, Equipment e, Date clientDate) throws Exception {
+			User inDb, MonsterForUser ue, StructureLab e, Date clientDate) throws Exception {
 
 		//CHECK IF TIMES ARE IN SYNC
 		if (!getTimeUtils().isSynchronizedWithServerTime(clientDate)) {
@@ -146,7 +146,7 @@ public class RepairEquipWhenMissingResourcesController extends EventController {
 	}
 
 	
-	private boolean writeChangesToDb(User inDb, MonsterForUser ue, Equipment e, Date clientDate) {
+	private boolean writeChangesToDb(User inDb, MonsterForUser ue, StructureLab e, Date clientDate) {
 		try {
 			//remove gems/gold from user
 			int missingResources = getUserEquipRepairService().calculateSingleUserEquipRepairCost(ue) - inDb.getGold();
@@ -197,13 +197,13 @@ public class RepairEquipWhenMissingResourcesController extends EventController {
 
 
 
-	public EquipmentRetrieveUtils getEquipmentRetrieveUtils() {
-		return equipmentRetrieveUtils;
+	public StructureLabRetrieveUtils getEquipmentRetrieveUtils() {
+		return structureLabRetrieveUtils;
 	}
 
 	public void setEquipmentRetrieveUtils(
-			EquipmentRetrieveUtils equipmentRetrieveUtils) {
-		this.equipmentRetrieveUtils = equipmentRetrieveUtils;
+			StructureLabRetrieveUtils structureLabRetrieveUtils) {
+		this.equipmentRetrieveUtils = structureLabRetrieveUtils;
 	}
 
 	public UserEquipRepairService getUserEquipRepairService() {

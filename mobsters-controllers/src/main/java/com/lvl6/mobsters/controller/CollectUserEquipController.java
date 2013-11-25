@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 import com.lvl6.mobsters.entitymanager.nonstaticdata.MonsterForUserEntityManager;
 import com.lvl6.mobsters.entitymanager.nonstaticdata.MonsterHealingForUserEntityManager;
 import com.lvl6.mobsters.entitymanager.nonstaticdata.UserEntityManager;
-import com.lvl6.mobsters.entitymanager.staticdata.EquipmentRetrieveUtils;
+import com.lvl6.mobsters.entitymanager.staticdata.StructureLabRetrieveUtils;
 import com.lvl6.mobsters.events.RequestEvent;
 import com.lvl6.mobsters.events.request.CollectUserEquipRequestEvent;
 import com.lvl6.mobsters.services.user.UserService;
@@ -22,7 +22,7 @@ public class CollectUserEquipController extends EventController {
 	private static Logger log = LoggerFactory.getLogger(new Object() { }.getClass().getEnclosingClass());
 
 	@Autowired
-	protected EquipmentRetrieveUtils equipmentRetrieveUtils; 
+	protected StructureLabRetrieveUtils structureLabRetrieveUtils; 
 //	
 //	@Autowired
 //	protected UserEquipRepairService userEquipRepairService; 
@@ -125,7 +125,7 @@ public class CollectUserEquipController extends EventController {
 		for(UserEquipRepairProto uer: uerList) {
 			String equipId = uer.getEquipId();
 			//UUID equipId = UUID.fromString(equipName);
-			Equipment e = getEquipmentRetrieveUtils().getEquipmentCorrespondingToId(equipId, null);
+			StructureLab e = getEquipmentRetrieveUtils().getEquipmentCorrespondingToId(equipId, null);
 			long finishTime = uer.getExpectedStartMillis() + e.getDurabilityFixTimeConstant()*(long)(1-e.getDurability()); 
 			if(finishTime > clientDate.getTime()) {
 				bool = true;
@@ -221,13 +221,13 @@ public class CollectUserEquipController extends EventController {
 		this.userService = userService;
 	}
 
-	public EquipmentRetrieveUtils getEquipmentRetrieveUtils() {
-		return equipmentRetrieveUtils;
+	public StructureLabRetrieveUtils getEquipmentRetrieveUtils() {
+		return structureLabRetrieveUtils;
 	}
 
 	public void setEquipmentRetrieveUtils(
-			EquipmentRetrieveUtils equipmentRetrieveUtils) {
-		this.equipmentRetrieveUtils = equipmentRetrieveUtils;
+			StructureLabRetrieveUtils structureLabRetrieveUtils) {
+		this.equipmentRetrieveUtils = structureLabRetrieveUtils;
 	}
 
 	public MonsterForUserEntityManager getUserEquipEntityManager() {

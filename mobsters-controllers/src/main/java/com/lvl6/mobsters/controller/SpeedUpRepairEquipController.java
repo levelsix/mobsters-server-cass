@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 import com.lvl6.mobsters.entitymanager.nonstaticdata.MonsterForUserEntityManager;
 import com.lvl6.mobsters.entitymanager.nonstaticdata.MonsterHealingForUserEntityManager;
 import com.lvl6.mobsters.entitymanager.nonstaticdata.UserEntityManager;
-import com.lvl6.mobsters.entitymanager.staticdata.EquipmentRetrieveUtils;
+import com.lvl6.mobsters.entitymanager.staticdata.StructureLabRetrieveUtils;
 import com.lvl6.mobsters.events.RequestEvent;
 import com.lvl6.mobsters.services.monsterforuser.MonsterForUserService;
 import com.lvl6.mobsters.services.time.TimeUtils;
@@ -22,7 +22,7 @@ public class SpeedUpRepairEquipController extends EventController {
 	private static Logger log = LoggerFactory.getLogger(new Object() { }.getClass().getEnclosingClass());
 
 	@Autowired
-	protected EquipmentRetrieveUtils equipmentRetrieveUtils; 
+	protected StructureLabRetrieveUtils structureLabRetrieveUtils; 
 	
 
 	
@@ -194,13 +194,13 @@ public class SpeedUpRepairEquipController extends EventController {
 
 
 
-	public EquipmentRetrieveUtils getEquipmentRetrieveUtils() {
-		return equipmentRetrieveUtils;
+	public StructureLabRetrieveUtils getEquipmentRetrieveUtils() {
+		return structureLabRetrieveUtils;
 	}
 
 	public void setEquipmentRetrieveUtils(
-			EquipmentRetrieveUtils equipmentRetrieveUtils) {
-		this.equipmentRetrieveUtils = equipmentRetrieveUtils;
+			StructureLabRetrieveUtils structureLabRetrieveUtils) {
+		this.equipmentRetrieveUtils = structureLabRetrieveUtils;
 	}
 
 	public UserEquipRepairService getUserEquipRepairService() {

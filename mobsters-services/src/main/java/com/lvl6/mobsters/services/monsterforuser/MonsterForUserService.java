@@ -102,7 +102,7 @@ public interface MonsterForUserService {
 	
 	public abstract List<MonsterForUser> getAllUserEquipsForUser(UUID userId);
 	
-	public abstract Equipment getEquipmentCorrespondingToUserEquip(MonsterForUser ue);
+	public abstract StructureLab getEquipmentCorrespondingToUserEquip(MonsterForUser ue);
 	
 	public abstract List<MonsterForUser> getAllEquippedUserEquipsForUser(UUID userId);
 	*/

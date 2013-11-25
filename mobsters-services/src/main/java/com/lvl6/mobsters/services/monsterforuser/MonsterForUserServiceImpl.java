@@ -650,7 +650,7 @@ public class MonsterForUserServiceImpl implements MonsterForUserService {
 		return list;
 	}
 	
-	public Equipment getEquipmentCorrespondingToUserEquip(MonsterForUser ue) {
+	public StructureLab getEquipmentCorrespondingToUserEquip(MonsterForUser ue) {
 		UUID equipId = ue.getEquipId();
 		return getEquipmentRetrieveUtils().getEquipmentForId(equipId);
 	}
