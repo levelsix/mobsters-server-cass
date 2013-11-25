@@ -25,7 +25,7 @@ public class LevelUpController extends EventController {
 //	protected UserEntityManager userEntityManager;
 //	
 //	@Autowired
-//	protected ClassLevelInfoRetrieveUtils classLevelInfoRetrieveUtils;
+//	protected StructureResourceStorageRetrieveUtils classLevelInfoRetrieveUtils;
 //	
 //	@Autowired
 //	protected TaskStageMonsterRetrieveUtils taskStageMonsterRetrieveUtils;
@@ -73,7 +73,7 @@ public class LevelUpController extends EventController {
 			//get whatever we need from the database
 			User inDb = getUserEntityManager().get().get(userId);
 			
-			ClassLevelInfo cli = getClassLevelInfoRetrieveUtils().getClassLevelInfoForClassAndLevel(inDb.getClassType(), inDb.getLvl()+1);
+			StructureResourceStorage cli = getClassLevelInfoRetrieveUtils().getClassLevelInfoForClassAndLevel(inDb.getClassType(), inDb.getLvl()+1);
 			
 
 			//validate request
@@ -125,7 +125,7 @@ public class LevelUpController extends EventController {
 /*
 
 	private boolean isValidRequest(Builder responseBuilder, MinimumUserProto sender,
-			User inDb, ClassLevelInfo cli, Date clientDate) throws Exception {
+			User inDb, StructureResourceStorage cli, Date clientDate) throws Exception {
 	
 		if(inDb == null || cli == null) {
 			log.error("user or class level info is null");
@@ -143,7 +143,7 @@ public class LevelUpController extends EventController {
 	}
 
 
-	private boolean writeChangesToDb(User inDb, ClassLevelInfo cli, Date clientDate) {
+	private boolean writeChangesToDb(User inDb, StructureResourceStorage cli, Date clientDate) {
 		try {
 			inDb.setLvl(inDb.getLvl()+1);
 			inDb.setMaxHp(cli.getMaxHp());
@@ -204,12 +204,12 @@ public class LevelUpController extends EventController {
 		this.userConsumableQueueEntityManager = userConsumableQueueEntityManager;
 	}
 
-	public ClassLevelInfoRetrieveUtils getClassLevelInfoRetrieveUtils() {
+	public StructureResourceStorageRetrieveUtils getClassLevelInfoRetrieveUtils() {
 		return classLevelInfoRetrieveUtils;
 	}
 
 	public void setClassLevelInfoRetrieveUtils(
-			ClassLevelInfoRetrieveUtils classLevelInfoRetrieveUtils) {
+			StructureResourceStorageRetrieveUtils classLevelInfoRetrieveUtils) {
 		this.classLevelInfoRetrieveUtils = classLevelInfoRetrieveUtils;
 	}
 

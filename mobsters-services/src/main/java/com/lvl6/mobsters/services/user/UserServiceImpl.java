@@ -15,7 +15,7 @@
 //
 //import com.lvl6.mobsters.entitymanager.UserDeviceEntityManager;
 //import com.lvl6.mobsters.entitymanager.nonstaticdata.UserEntityManager;
-//import com.lvl6.mobsters.entitymanager.staticdata.ClassLevelInfoRetrieveUtils;
+//import com.lvl6.mobsters.entitymanager.staticdata.StructureResourceStorageRetrieveUtils;
 //import com.lvl6.mobsters.po.ClassLevelInfo;
 //import com.lvl6.mobsters.po.Structure;
 //import com.lvl6.mobsters.po.UserDevice;
@@ -29,7 +29,7 @@
 //public class UserServiceImpl implements UserService {
 //	
 //	@Autowired
-//	protected ClassLevelInfoRetrieveUtils classLevelInfoRetrieveUtils;
+//	protected StructureResourceStorageRetrieveUtils classLevelInfoRetrieveUtils;
 //	
 //	@Autowired
 //	protected UserDeviceEntityManager userDeviceEntityManager;
@@ -140,7 +140,7 @@
 //		int classType = u.getClassType();
 //		int newLvl = u.getLvl() + 1;
 //		
-//		ClassLevelInfo cli = getClassLevelInfoRetrieveUtils()
+//		StructureResourceStorage cli = getClassLevelInfoRetrieveUtils()
 //				.getClassLevelInfoForClassAndLevel(classType, newLvl);
 //		
 //		int maxHp = cli.getMaxHp();
@@ -256,13 +256,13 @@
 //	
 //	
 //	@Override
-//	public ClassLevelInfoRetrieveUtils getClassLevelInfoRetrieveUtils() {
+//	public StructureResourceStorageRetrieveUtils getClassLevelInfoRetrieveUtils() {
 //		return classLevelInfoRetrieveUtils;
 //	}
 //
 //	@Override
 //	public void setClassLevelInfoRetrieveUtils(
-//			ClassLevelInfoRetrieveUtils classLevelInfoRetrieveUtils) {
+//			StructureResourceStorageRetrieveUtils classLevelInfoRetrieveUtils) {
 //		this.classLevelInfoRetrieveUtils = classLevelInfoRetrieveUtils;
 //	}
 //

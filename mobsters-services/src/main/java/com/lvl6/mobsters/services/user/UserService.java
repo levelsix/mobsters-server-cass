@@ -9,7 +9,7 @@ import org.joda.time.DateTime;
 
 import com.lvl6.mobsters.entitymanager.UserDeviceEntityManager;
 import com.lvl6.mobsters.entitymanager.nonstaticdata.UserEntityManager;
-import com.lvl6.mobsters.entitymanager.staticdata.ClassLevelInfoRetrieveUtils;
+import com.lvl6.mobsters.entitymanager.staticdata.StructureResourceStorageRetrieveUtils;
 import com.lvl6.mobsters.po.nonstaticdata.User;
 
 public interface UserService {
@@ -56,9 +56,9 @@ public interface UserService {
 
 	
 	//setters and getters for the Setter Dependency Injection (or something)
-	public abstract ClassLevelInfoRetrieveUtils getClassLevelInfoRetrieveUtils();	
+	public abstract StructureResourceStorageRetrieveUtils getClassLevelInfoRetrieveUtils();	
 	
-	public abstract void setClassLevelInfoRetrieveUtils(ClassLevelInfoRetrieveUtils classLevelInfoRetrieveUtils);
+	public abstract void setClassLevelInfoRetrieveUtils(StructureResourceStorageRetrieveUtils structureResourceStorageRetrieveUtils);
 	
 	public abstract UserDeviceEntityManager getUserDeviceEntityManager();
 	
