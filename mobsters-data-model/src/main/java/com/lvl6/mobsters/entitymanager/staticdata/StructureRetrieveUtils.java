@@ -3,7 +3,6 @@ package com.lvl6.mobsters.entitymanager.staticdata;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,13 +17,13 @@ import com.lvl6.mobsters.po.staticdata.Structure;
 
 	private  Map<String, Map<Integer, Structure>> structNameToLevelsToStructure;
 
-	private  Map<UUID, Structure> idsToStructures;
+	private  Map<Integer, Structure> idsToStructures;
 	//private  final String TABLE_NAME = DBConstants.CONSUMABLE;
 
 	@Autowired
 	protected StructureEntityManager structureEntityManager;
 
-	public  Structure getStructureForId(UUID id) {
+	public  Structure getStructureForId(Integer id) {
 		log.debug("retrieve structure data for id " + id);
 		if (idsToStructures == null) {
 			setStaticIdsToStructures();      
@@ -32,13 +31,13 @@ import com.lvl6.mobsters.po.staticdata.Structure;
 		return idsToStructures.get(id);
 	}
 
-	public  Map<UUID, Structure> getStructuresForIds(List<UUID> ids) {
+	public  Map<Integer, Structure> getStructuresForIds(List<Integer> ids) {
 		log.debug("retrieve structures data for ids " + ids);
 		if (idsToStructures == null) {
 			setStaticIdsToStructures();      
 		}
-		Map<UUID, Structure> toreturn = new HashMap<UUID, Structure>();
-		for (UUID id : ids) {
+		Map<Integer, Structure> toreturn = new HashMap<Integer, Structure>();
+		for (Integer id : ids) {
 			toreturn.put(id,  idsToStructures.get(id));
 		}
 		return toreturn;
