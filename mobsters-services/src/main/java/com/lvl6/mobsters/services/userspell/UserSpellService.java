@@ -5,8 +5,8 @@ import java.util.Map;
 import java.util.UUID;
 
 
-import com.lvl6.mobsters.po.Spell;
 import com.lvl6.mobsters.po.UserSpell;
+import com.lvl6.mobsters.po.staticdata.StructureResourceGenerator;
 
 public interface UserSpellService {
 	
@@ -16,7 +16,7 @@ public interface UserSpellService {
 	
 	public abstract List<UserSpell> getAllUserSpellsForUser(UUID userId);
 	
-	public abstract Spell getSpellCorrespondingToUserSpell(UserSpell us);
+	public abstract StructureResourceGenerator getSpellCorrespondingToUserSpell(UserSpell us);
 	
 	
 }

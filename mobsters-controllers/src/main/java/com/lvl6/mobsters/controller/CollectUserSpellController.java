@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 
 import com.lvl6.mobsters.entitymanager.UserSpellEntityManager;
 import com.lvl6.mobsters.entitymanager.nonstaticdata.UserEntityManager;
-import com.lvl6.mobsters.entitymanager.staticdata.SpellRetrieveUtils;
+import com.lvl6.mobsters.entitymanager.staticdata.StructureResourceGeneratorRetrieveUtils;
 import com.lvl6.mobsters.events.RequestEvent;
 import com.lvl6.mobsters.events.request.CollectUserSpellRequestEvent;
 import com.lvl6.mobsters.services.user.UserService;
@@ -20,7 +20,7 @@ public class CollectUserSpellController extends EventController {
 	private static Logger log = LoggerFactory.getLogger(new Object() { }.getClass().getEnclosingClass());
 
 	@Autowired
-	protected SpellRetrieveUtils spellRetrieveUtils; 
+	protected StructureResourceGeneratorRetrieveUtils structureResourceGeneratorRetrieveUtils; 
 	
 	@Autowired
 	protected UserEntityManager userEntityManager; 
@@ -72,7 +72,7 @@ public class CollectUserSpellController extends EventController {
 			//get whatever we need from the database
 			User inDb = getUserEntityManager().get().get(userId);
 			UserSpell us = getUserSpellEntityManager().get().get(userSpellId);
-			Spell s = getUserSpellService().getSpellCorrespondingToUserSpell(us);
+			StructureResourceGenerator s = getUserSpellService().getSpellCorrespondingToUserSpell(us);
 
 			//validate request
 			boolean validRequest = isValidRequest(responseBuilder, sender, inDb,
@@ -108,7 +108,7 @@ public class CollectUserSpellController extends EventController {
 	}
 /*
 	private boolean isValidRequest(Builder responseBuilder, MinimumUserProto sender,
-			User inDb, UserSpell us, Spell s, boolean isTraining, Date clientDate) throws ConnectionException {
+			User inDb, UserSpell us, StructureResourceGenerator s, boolean isTraining, Date clientDate) throws ConnectionException {
 		if (null == inDb || null == us) {
 			log.error("unexpected error: no user exists. sender=" + sender +
 					"\t inDb=" + inDb + "\t us=" + us);
@@ -132,7 +132,7 @@ public class CollectUserSpellController extends EventController {
 	}
 
 	private boolean writeChangesToDb(User inDb, UserSpell us,
-			Spell s, Date clientDate) {
+			StructureResourceGenerator s, Date clientDate) {
 		try {
 			//update userspell
 			us.setIsTraining(false);
@@ -157,13 +157,13 @@ public class CollectUserSpellController extends EventController {
 		this.userSpellService = userSpellService;
 	}
 
-	public SpellRetrieveUtils getSpellRetrieveUtils() {
-		return spellRetrieveUtils;
+	public StructureResourceGeneratorRetrieveUtils getSpellRetrieveUtils() {
+		return structureResourceGeneratorRetrieveUtils;
 	}
 
 	public void setSpellRetrieveUtils(
-			SpellRetrieveUtils spellRetrieveUtils) {
-		this.spellRetrieveUtils = spellRetrieveUtils;
+			StructureResourceGeneratorRetrieveUtils structureResourceGeneratorRetrieveUtils) {
+		this.spellRetrieveUtils = structureResourceGeneratorRetrieveUtils;
 	}
 
 	public UserSpellEntityManager getUserSpellEntityManager() {

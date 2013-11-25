@@ -10,11 +10,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.lvl6.mobsters.entitymanager.SpellEntityManager;
 import com.lvl6.mobsters.entitymanager.UserSpellEntityManager;
-import com.lvl6.mobsters.entitymanager.staticdata.SpellRetrieveUtils;
-import com.lvl6.mobsters.po.Spell;
+import com.lvl6.mobsters.entitymanager.staticdata.StructureResourceGeneratorEntityManager;
+import com.lvl6.mobsters.entitymanager.staticdata.StructureResourceGeneratorRetrieveUtils;
 import com.lvl6.mobsters.po.UserSpell;
+import com.lvl6.mobsters.po.staticdata.StructureResourceGenerator;
 
 
 @Component
@@ -25,13 +25,13 @@ public class UserSpellServiceImpl implements UserSpellService {
 	private  Map<UUID, UserSpell> idsToUserSpells;
 	
 	@Autowired
-	protected SpellRetrieveUtils spellRetrieveUtils;
+	protected StructureResourceGeneratorRetrieveUtils structureResourceGeneratorRetrieveUtils;
 
 	@Autowired
 	protected UserSpellEntityManager UserSpellEntityManager;
 
 	@Autowired
-	protected SpellEntityManager spellEntityManager;
+	protected StructureResourceGeneratorEntityManager structureResourceGeneratorEntityManager;
 	
 	@Override
 	public  UserSpell getUserSpellForId(UUID id) {
@@ -76,7 +76,7 @@ public class UserSpellServiceImpl implements UserSpellService {
 	}
 
 	@Override
-	public Spell getSpellCorrespondingToUserSpell(UserSpell us) {
+	public StructureResourceGenerator getSpellCorrespondingToUserSpell(UserSpell us) {
 		UUID spellId = us.getSpellId();
 		return getSpellRetrieveUtils().getSpellForId(spellId);
 	}
@@ -90,20 +90,20 @@ public class UserSpellServiceImpl implements UserSpellService {
 		UserSpellEntityManager = userSpellEntityManager;
 	}
 
-	public SpellEntityManager getSpellEntityManager() {
-		return spellEntityManager;
+	public StructureResourceGeneratorEntityManager getSpellEntityManager() {
+		return structureResourceGeneratorEntityManager;
 	}
 
-	public void setSpellEntityManager(SpellEntityManager spellEntityManager) {
-		this.spellEntityManager = spellEntityManager;
+	public void setSpellEntityManager(StructureResourceGeneratorEntityManager structureResourceGeneratorEntityManager) {
+		this.structureResourceGeneratorEntityManager = structureResourceGeneratorEntityManager;
 	}
 
-	public SpellRetrieveUtils getSpellRetrieveUtils() {
-		return spellRetrieveUtils;
+	public StructureResourceGeneratorRetrieveUtils getSpellRetrieveUtils() {
+		return structureResourceGeneratorRetrieveUtils;
 	}
 
-	public void setSpellRetrieveUtils(SpellRetrieveUtils spellRetrieveUtils) {
-		this.spellRetrieveUtils = spellRetrieveUtils;
+	public void setSpellRetrieveUtils(StructureResourceGeneratorRetrieveUtils structureResourceGeneratorRetrieveUtils) {
+		this.structureResourceGeneratorRetrieveUtils = structureResourceGeneratorRetrieveUtils;
 	}
 	
 	

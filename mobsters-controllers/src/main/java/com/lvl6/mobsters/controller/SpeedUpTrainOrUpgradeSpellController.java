@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 
 import com.lvl6.mobsters.entitymanager.UserSpellEntityManager;
 import com.lvl6.mobsters.entitymanager.nonstaticdata.UserEntityManager;
-import com.lvl6.mobsters.entitymanager.staticdata.SpellRetrieveUtils;
+import com.lvl6.mobsters.entitymanager.staticdata.StructureResourceGeneratorRetrieveUtils;
 import com.lvl6.mobsters.events.RequestEvent;
 import com.lvl6.mobsters.services.user.UserService;
 import com.lvl6.mobsters.services.userspell.UserSpellService;
@@ -19,7 +19,7 @@ public class SpeedUpTrainOrUpgradeSpellController extends EventController {
 	private static Logger log = LoggerFactory.getLogger(new Object() { }.getClass().getEnclosingClass());
 
 	@Autowired
-	protected SpellRetrieveUtils spellRetrieveUtils; 
+	protected StructureResourceGeneratorRetrieveUtils structureResourceGeneratorRetrieveUtils; 
 	
 	@Autowired
 	protected UserEntityManager userEntityManager; 
@@ -70,7 +70,7 @@ public class SpeedUpTrainOrUpgradeSpellController extends EventController {
 			//get whatever we need from the database
 			User inDb = getUserEntityManager().get().get(userId);
 			UserSpell us = getUserSpellEntityManager().get().get(userSpellId);
-			Spell s = getUserSpellService().getSpellCorrespondingToUserSpell(us);;
+			StructureResourceGenerator s = getUserSpellService().getSpellCorrespondingToUserSpell(us);;
 
 			//validate request
 			boolean validRequest = isValidRequest(responseBuilder, sender, inDb,
@@ -106,7 +106,7 @@ public class SpeedUpTrainOrUpgradeSpellController extends EventController {
 	}
 /*
 	private boolean isValidRequest(Builder responseBuilder, MinimumUserProto sender,
-			User inDb, UserSpell us, Spell s, Date clientDate) throws ConnectionException {
+			User inDb, UserSpell us, StructureResourceGenerator s, Date clientDate) throws ConnectionException {
 		if (null == inDb || null == us) {
 			log.error("unexpected error: no user exists. sender=" + sender +
 					"\t inDb=" + inDb + "\t us=" + us);
@@ -129,7 +129,7 @@ public class SpeedUpTrainOrUpgradeSpellController extends EventController {
 	}
 
 	private boolean writeChangesToDb(User inDb, UserSpell us,
-			Spell s, Date clientDate) {
+			StructureResourceGenerator s, Date clientDate) {
 		try {
 			int millisPassed = (int)(clientDate.getTime() - us.getTimeAcquired().getTime());
 			int minutesRemaining = (s.getResearchTimeMillis() - millisPassed)/60000;
@@ -163,13 +163,13 @@ public class SpeedUpTrainOrUpgradeSpellController extends EventController {
 		this.userSpellService = userSpellService;
 	}
 
-	public SpellRetrieveUtils getSpellRetrieveUtils() {
-		return spellRetrieveUtils;
+	public StructureResourceGeneratorRetrieveUtils getSpellRetrieveUtils() {
+		return structureResourceGeneratorRetrieveUtils;
 	}
 
 	public void setSpellRetrieveUtils(
-			SpellRetrieveUtils spellRetrieveUtils) {
-		this.spellRetrieveUtils = spellRetrieveUtils;
+			StructureResourceGeneratorRetrieveUtils structureResourceGeneratorRetrieveUtils) {
+		this.spellRetrieveUtils = structureResourceGeneratorRetrieveUtils;
 	}
 
 	public UserSpellEntityManager getUserSpellEntityManager() {

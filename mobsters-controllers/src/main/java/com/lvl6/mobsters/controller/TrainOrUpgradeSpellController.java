@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 
 import com.lvl6.mobsters.entitymanager.UserSpellEntityManager;
 import com.lvl6.mobsters.entitymanager.nonstaticdata.UserEntityManager;
-import com.lvl6.mobsters.entitymanager.staticdata.SpellRetrieveUtils;
+import com.lvl6.mobsters.entitymanager.staticdata.StructureResourceGeneratorRetrieveUtils;
 import com.lvl6.mobsters.events.RequestEvent;
 import com.lvl6.mobsters.services.user.UserService;
 import com.lvl6.mobsters.services.userspell.UserSpellService;
@@ -19,7 +19,7 @@ public class TrainOrUpgradeSpellController extends EventController {
 	private static Logger log = LoggerFactory.getLogger(new Object() { }.getClass().getEnclosingClass());
 
 	@Autowired
-	protected SpellRetrieveUtils spellRetrieveUtils; 
+	protected StructureResourceGeneratorRetrieveUtils structureResourceGeneratorRetrieveUtils; 
 	
 	@Autowired
 	protected UserEntityManager userEntityManager; 
@@ -71,7 +71,7 @@ public class TrainOrUpgradeSpellController extends EventController {
 			//get whatever we need from the database
 			User inDb = getUserEntityManager().get().get(userId);
 			UserSpell us = getUserSpellEntityManager().get().get(userSpellId);
-			List<Spell> sList = new ArrayList<Spell>();
+			List<StructureResourceGenerator> sList = new ArrayList<StructureResourceGenerator>();
 
 			//validate request
 			boolean validRequest = isValidRequest(responseBuilder, sender, inDb,
@@ -79,7 +79,7 @@ public class TrainOrUpgradeSpellController extends EventController {
 
 			boolean successful = false;
 			if (validRequest) {
-				Spell s = sList.get(0);
+				StructureResourceGenerator s = sList.get(0);
 				successful = writeChangesToDb(inDb, us, s, usingGems, clientDate);
 			}
 
@@ -108,7 +108,7 @@ public class TrainOrUpgradeSpellController extends EventController {
 	}
 /*
 	private boolean isValidRequest(Builder responseBuilder, MinimumUserProto sender,
-			User inDb, UserSpell us, List<Spell> sList, boolean usingGems, Date clientDate) throws ConnectionException {
+			User inDb, UserSpell us, List<StructureResourceGenerator> sList, boolean usingGems, Date clientDate) throws ConnectionException {
 		if (null == inDb || null == us) {
 			log.error("unexpected error: no user exists. sender=" + sender +
 					"\t inDb=" + inDb + "\t us=" + us);
@@ -117,7 +117,7 @@ public class TrainOrUpgradeSpellController extends EventController {
 
 		UUID id = us.getId();
 		UUID spellId = us.getId();
-		Spell s = getSpellRetrieveUtils().getSpellForId(id);
+		StructureResourceGenerator s = getSpellRetrieveUtils().getSpellForId(id);
 
 		if (null == s) {
 			log.error("unexpected error: no spell with id exists. id=" + spellId);
@@ -134,7 +134,7 @@ public class TrainOrUpgradeSpellController extends EventController {
 		}
 			
 		//check if user's spell has a further upgrade
-		if(spellRetrieveUtils.getUpgradedSpell(s) == null) {
+		if(structureResourceGeneratorRetrieveUtils.getUpgradedSpell(s) == null) {
 			log.error("no upgrade of user's spell with id: " + id + "exists");
 			responseBuilder.setStatus(TrainOrUpgradeSpellStatus.FAIL_SPELL_AT_MAX_LEVEL);
 			return false;
@@ -212,7 +212,7 @@ public class TrainOrUpgradeSpellController extends EventController {
 	}
 
 	private boolean writeChangesToDb(User inDb, UserSpell us,
-			Spell s, boolean usingGems, Date clientDate) {
+			StructureResourceGenerator s, boolean usingGems, Date clientDate) {
 		try {
 			if(!usingGems) {
 				if(s.getResearchCost() == ResourceCostType.GOLD_VALUE) {
@@ -262,7 +262,7 @@ public class TrainOrUpgradeSpellController extends EventController {
 	}
 		
 	
-	private boolean trainingIsCompleteBeforeAttemptingUpgrade(Spell s, UserSpell us, Date clientDate) {
+	private boolean trainingIsCompleteBeforeAttemptingUpgrade(StructureResourceGenerator s, UserSpell us, Date clientDate) {
 		int buildTime = s.getResearchTimeMillis();
 		long purchaseTime = us.getTimeAcquired().getTime();
 		if(buildTime + purchaseTime < clientDate.getTime())
@@ -283,13 +283,13 @@ public class TrainOrUpgradeSpellController extends EventController {
 		this.userSpellService = userSpellService;
 	}
 
-	public SpellRetrieveUtils getSpellRetrieveUtils() {
-		return spellRetrieveUtils;
+	public StructureResourceGeneratorRetrieveUtils getSpellRetrieveUtils() {
+		return structureResourceGeneratorRetrieveUtils;
 	}
 
 	public void setSpellRetrieveUtils(
-			SpellRetrieveUtils spellRetrieveUtils) {
-		this.spellRetrieveUtils = spellRetrieveUtils;
+			StructureResourceGeneratorRetrieveUtils structureResourceGeneratorRetrieveUtils) {
+		this.spellRetrieveUtils = structureResourceGeneratorRetrieveUtils;
 	}
 
 	public UserSpellEntityManager getUserSpellEntityManager() {
