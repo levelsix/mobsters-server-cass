@@ -51,6 +51,7 @@ public class MobstersDbTables {
 	public static final String TABLE_STRUCTURE_RESIDENCE = "structure_residence";
 	public static final String TABLE_STRUCTURE_RESOURCE_GENERATOR = "structure_resource_generator";
 	public static final String TABLE_STRUCTURE_RESOURCE_STORAGE = "structure_resource_storage";
+	public static final String TABLE_STRUCTURE_TOWN_HALL = "structure_town_hall";
 	public static final String TABLE_TASK = "task";
 	public static final String TABLE_TASK_FOR_USER_COMPLETED = "task_for_user_completed";
 	public static final String TABLE_TASK_FOR_USER_ONGOING = "task_for_user_ongoing";
