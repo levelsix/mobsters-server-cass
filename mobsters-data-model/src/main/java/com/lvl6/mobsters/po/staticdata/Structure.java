@@ -16,7 +16,11 @@ public class Structure extends BasePersistentObject<Integer> implements Serializ
 
 
 
-	private static final long serialVersionUID = -3839764324136173201L;
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 851303431734583065L;
 
 	@Id
 	protected Integer id = 0;
@@ -53,10 +57,6 @@ public class Structure extends BasePersistentObject<Integer> implements Serializ
 	@Column(name="height")
 	@Index
 	protected int height = 0;
-	
-	@Column(name="sprite_img_name")
-	@Index
-	protected String spriteImgName = "";
 	
 	@Column(name="predecessor_struct_id")
 	@Index
@@ -155,14 +155,6 @@ public class Structure extends BasePersistentObject<Integer> implements Serializ
 		this.height = height;
 	}
 
-	public String getSpriteImgName() {
-		return spriteImgName;
-	}
-
-	public void setSpriteImgName(String spriteImgName) {
-		this.spriteImgName = spriteImgName;
-	}
-
 	public int getPredecessorStructId() {
 		return predecessorStructId;
 	}
@@ -211,11 +203,10 @@ public class Structure extends BasePersistentObject<Integer> implements Serializ
 				+ ", buildTimeMinutes=" + buildTimeMinutes
 				+ ", prerequisiteTownHallLvl=" + prerequisiteTownHallLvl
 				+ ", width=" + width + ", height=" + height
-				+ ", spriteImgName=" + spriteImgName + ", predecessorStructId="
-				+ predecessorStructId + ", successorStructId="
-				+ successorStructId + ", imgName=" + imgName
-				+ ", imgVerticalPixelOffset=" + imgVerticalPixelOffset
-				+ ", description=" + description + "]";
+				+ ", predecessorStructId=" + predecessorStructId
+				+ ", successorStructId=" + successorStructId + ", imgName="
+				+ imgName + ", imgVerticalPixelOffset="
+				+ imgVerticalPixelOffset + ", description=" + description + "]";
 	}
 
 

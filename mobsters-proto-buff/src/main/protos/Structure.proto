@@ -22,7 +22,7 @@ message StructureInfoProto {
 	optional int32 prerequisiteTownHallLvl = 8;
 	optional int32 width = 9;
 	optional int32 height = 10;
-	optional string spriteImgName = 11;
+	//optional string spriteImgName = 11;
 	optional int32 predecessorStructId = 12;
 	optional int32 successorStructId = 13;	
 	
@@ -123,6 +123,7 @@ message TownHallProto {
 	
 	//how many monster slots this town hall gives the user (absolute number)
 	optional int32 numMonsterSlots = 8;
+	optoinal int32 numLabs = 9; 
 }
 
 //------------------------------------------------------------------------------------------
