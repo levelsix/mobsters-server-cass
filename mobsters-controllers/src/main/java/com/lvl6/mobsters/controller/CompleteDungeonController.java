@@ -16,7 +16,7 @@ import com.lvl6.mobsters.events.RequestEvent;
 import com.lvl6.mobsters.events.request.CompleteDungeonRequestEvent;
 import com.lvl6.mobsters.services.equipment.EquipmentService;
 import com.lvl6.mobsters.services.monsterforuser.MonsterForUserService;
-import com.lvl6.mobsters.services.userstructure.UserStructureService;
+import com.lvl6.mobsters.services.structureforuser.StructureForUserService;
 
 
 @Component
@@ -38,7 +38,7 @@ public class CompleteDungeonController extends EventController {
 	protected UserDungeonStatusHistoryEntityManager userDungeonStatusHistoryEntityManager;
 
 	@Autowired
-	protected UserStructureService userStructureService;
+	protected StructureForUserService structureForUserService;
 		
 	@Autowired
 	protected StructureRetrieveUtils structureRetrieveUtils;
@@ -224,8 +224,8 @@ public class CompleteDungeonController extends EventController {
 	}
 
 	//used at start of dungeon instead
-//	public int emptyStorageSlots(List<MonsterForUser> ueList, List<UserStructure> usList, Structure storageStructure) {
-//		for(UserStructure us : usList) {
+//	public int emptyStorageSlots(List<MonsterForUser> ueList, List<StructureForUser> usList, Structure storageStructure) {
+//		for(StructureForUser us : usList) {
 //			Structure s = getStructureRetrieveUtils().getStructureForId(us.getStructureId());
 //			if(s.getFunctionalityType() == FunctionalityType.STORAGE_VALUE)
 //				storageStructure = s;
@@ -275,12 +275,12 @@ public class CompleteDungeonController extends EventController {
 	}
 
 
-	public UserStructureService getUserStructureService() {
-		return userStructureService;
+	public StructureForUserService getUserStructureService() {
+		return structureForUserService;
 	}
 
-	public void setUserStructureService(UserStructureService userStructureService) {
-		this.userStructureService = userStructureService;
+	public void setUserStructureService(StructureForUserService structureForUserService) {
+		this.userStructureService = structureForUserService;
 	}
 
 	public StructureRetrieveUtils getStructureRetrieveUtils() {

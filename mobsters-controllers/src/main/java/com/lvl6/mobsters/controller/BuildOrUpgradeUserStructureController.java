@@ -5,13 +5,13 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.lvl6.mobsters.entitymanager.UserStructureEntityManager;
 import com.lvl6.mobsters.entitymanager.nonstaticdata.UserEntityManager;
+import com.lvl6.mobsters.entitymanager.nonstaticdata.StructureForUserEntityManager;
 import com.lvl6.mobsters.entitymanager.staticdata.StructureRetrieveUtils;
 import com.lvl6.mobsters.events.RequestEvent;
 import com.lvl6.mobsters.events.request.BuildOrUpgradeStructureRequestEvent;
+import com.lvl6.mobsters.services.structureforuser.StructureForUserService;
 import com.lvl6.mobsters.services.user.UserService;
-import com.lvl6.mobsters.services.userstructure.UserStructureService;
 import com.lvl6.mobsters.widerows.RestrictionOnNumberOfUserStructure;
 
 
@@ -24,10 +24,10 @@ public class BuildOrUpgradeUserStructureController extends EventController {
 	protected StructureRetrieveUtils structureRetrieveUtils; 
 	
 	@Autowired
-	protected UserStructureService userStructureService; 
+	protected StructureForUserService structureForUserService; 
 
 	@Autowired
-	protected UserStructureEntityManager userStructureEntityManager;
+	protected StructureForUserEntityManager structureForUserEntityManager;
 
 	@Autowired
 	protected UserEntityManager userEntityManager;
@@ -76,7 +76,7 @@ public class BuildOrUpgradeUserStructureController extends EventController {
 		try {
 			//get whatever we need from the database
 			User inDb = getUserEntityManager().get().get(userId);
-			UserStructure us = getUserStructureEntityManager().get().get(userStructureId);
+			StructureForUser us = getUserStructureEntityManager().get().get(userStructureId);
 			List<Structure> sList = new ArrayList<Structure>();
 
 			//validate request
@@ -114,7 +114,7 @@ public class BuildOrUpgradeUserStructureController extends EventController {
 	}
 /*
 	private boolean isValidRequest(Builder responseBuilder, MinimumUserProto sender,
-			User inDb, UserStructure us, List<Structure> sList, boolean usingGems, boolean isConstructing, Date clientDate) throws ConnectionException {
+			User inDb, StructureForUser us, List<Structure> sList, boolean usingGems, boolean isConstructing, Date clientDate) throws ConnectionException {
 		if (null == inDb || null == us) {
 			log.error("unexpected error: no user exists. sender=" + sender +
 					"\t inDb=" + inDb + "\t us=" + us);
@@ -204,8 +204,8 @@ public class BuildOrUpgradeUserStructureController extends EventController {
 		}
 		
 		int count=0;
-		List<UserStructure> userStructs = getUserStructureService().getAllUserStructuresForUser(inDb.getId());
-		for(UserStructure us2: userStructs) {
+		List<StructureForUser> userStructs = getUserStructureService().getAllUserStructuresForUser(inDb.getId());
+		for(StructureForUser us2: userStructs) {
 			if(us2.isFinishedConstructing())
 				count++;
 		}
@@ -237,7 +237,7 @@ public class BuildOrUpgradeUserStructureController extends EventController {
 		//count how many of this specific building the user is trying to
 		//build/upgrade he already has
 		int count2 = 0;
-		for(UserStructure us3: userStructs) {
+		for(StructureForUser us3: userStructs) {
 			if(us3.getId() == s.getId()) {
 				count2++;
 			}
@@ -254,7 +254,7 @@ public class BuildOrUpgradeUserStructureController extends EventController {
 		return true;
 	}
 
-	private boolean writeChangesToDb(User inDb, UserStructure us,
+	private boolean writeChangesToDb(User inDb, StructureForUser us,
 			Structure s, boolean usingGems, Date clientDate) {
 		try {
 			int missingResources = 0;
@@ -280,7 +280,7 @@ public class BuildOrUpgradeUserStructureController extends EventController {
 			//update user
 			getUserEntityManager().get().put(inDb);
 
-			UserStructure us2 = new UserStructure();
+			StructureForUser us2 = new StructureForUser();
 			
 			us2.setId(UUID.randomUUID());
 			us2.setUserId(inDb.getId());
@@ -300,7 +300,7 @@ public class BuildOrUpgradeUserStructureController extends EventController {
 	}
 		
 
-	private boolean buildIsCompleteBeforeAttemptingUpgrade(Structure s, UserStructure us, Date clientDate) {
+	private boolean buildIsCompleteBeforeAttemptingUpgrade(Structure s, StructureForUser us, Date clientDate) {
 		int buildTime = s.getBuildTimeSeconds()*1000;
 		long purchaseTime = us.getPurchaseTime().getTime();
 		if(buildTime + purchaseTime < clientDate.getTime())
@@ -311,12 +311,12 @@ public class BuildOrUpgradeUserStructureController extends EventController {
 	
 
 	
-	public UserStructureService getUserStructureService() {
-		return userStructureService;
+	public StructureForUserService getUserStructureService() {
+		return structureForUserService;
 	}
 
-	public void setUserStructureService(UserStructureService userStructureService) {
-		this.userStructureService = userStructureService;
+	public void setUserStructureService(StructureForUserService structureForUserService) {
+		this.userStructureService = structureForUserService;
 	}
 
 	public StructureRetrieveUtils getStructureRetrieveUtils() {
@@ -328,13 +328,13 @@ public class BuildOrUpgradeUserStructureController extends EventController {
 		this.structureRetrieveUtils = structureRetrieveUtils;
 	}
 
-	public UserStructureEntityManager getUserStructureEntityManager() {
-		return userStructureEntityManager;
+	public StructureForUserEntityManager getUserStructureEntityManager() {
+		return structureForUserEntityManager;
 	}
 
 	public void setUserStructureEntityManager(
-			UserStructureEntityManager userStructureEntityManager) {
-		this.userStructureEntityManager = userStructureEntityManager;
+			StructureForUserEntityManager structureForUserEntityManager) {
+		this.userStructureEntityManager = structureForUserEntityManager;
 	}
 
 	public UserEntityManager getUserEntityManager() {

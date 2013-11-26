@@ -123,7 +123,7 @@ message TownHallProto {
 	
 	//how many monster slots this town hall gives the user (absolute number)
 	optional int32 numMonsterSlots = 8;
-	optoinal int32 numLabs = 9; 
+	optional int32 numLabs = 9; 
 }
 
 //------------------------------------------------------------------------------------------

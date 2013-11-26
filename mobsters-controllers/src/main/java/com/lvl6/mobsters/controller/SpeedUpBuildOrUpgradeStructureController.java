@@ -6,12 +6,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.lvl6.mobsters.entitymanager.UserStructureEntityManager;
 import com.lvl6.mobsters.entitymanager.nonstaticdata.UserEntityManager;
+import com.lvl6.mobsters.entitymanager.nonstaticdata.StructureForUserEntityManager;
 import com.lvl6.mobsters.entitymanager.staticdata.StructureRetrieveUtils;
 import com.lvl6.mobsters.events.RequestEvent;
+import com.lvl6.mobsters.services.structureforuser.StructureForUserService;
 import com.lvl6.mobsters.services.user.UserService;
-import com.lvl6.mobsters.services.userstructure.UserStructureService;
 import com.lvl6.mobsters.widerows.RestrictionOnNumberOfUserStructure;
 
 
@@ -24,10 +24,10 @@ public class SpeedUpBuildOrUpgradeStructureController extends EventController {
 	protected StructureRetrieveUtils structureRetrieveUtils; 
 	
 	@Autowired
-	protected UserStructureService userStructureService; 
+	protected StructureForUserService structureForUserService; 
 
 	@Autowired
-	protected UserStructureEntityManager userStructureEntityManager;
+	protected StructureForUserEntityManager structureForUserEntityManager;
 
 	@Autowired
 	protected UserEntityManager userEntityManager;
@@ -76,7 +76,7 @@ public class SpeedUpBuildOrUpgradeStructureController extends EventController {
 		try {
 			//get whatever we need from the database
 			User inDb = getUserEntityManager().get().get(userId);
-			UserStructure us = getUserStructureEntityManager().get().get(userStructureId);
+			StructureForUser us = getUserStructureEntityManager().get().get(userStructureId);
 			Structure s = getUserStructureService().getStructureCorrespondingToUserStructure(us);
 
 			
@@ -116,7 +116,7 @@ public class SpeedUpBuildOrUpgradeStructureController extends EventController {
 	}
 /*
 	private boolean isValidRequest(Builder responseBuilder, MinimumUserProto sender,
-			User inDb, UserStructure us, Structure s, boolean constructing, Date clientDate) throws ConnectionException {
+			User inDb, StructureForUser us, Structure s, boolean constructing, Date clientDate) throws ConnectionException {
 		int secondsRemaining;
 		//TODO: FIX THIS
 //		if(us.getLvl() == 1) {
@@ -144,7 +144,7 @@ public class SpeedUpBuildOrUpgradeStructureController extends EventController {
 		return true;
 	}
 
-	private boolean writeChangesToDb(User inDb, UserStructure us,
+	private boolean writeChangesToDb(User inDb, StructureForUser us,
 			Structure s, Date clientDate) {
 		try {
 			//TODO: FIX THIS
@@ -178,12 +178,12 @@ public class SpeedUpBuildOrUpgradeStructureController extends EventController {
 
 	
 
-	public UserStructureService getUserStructureService() {
-		return userStructureService;
+	public StructureForUserService getUserStructureService() {
+		return structureForUserService;
 	}
 
-	public void setUserStructureService(UserStructureService userStructureService) {
-		this.userStructureService = userStructureService;
+	public void setUserStructureService(StructureForUserService structureForUserService) {
+		this.userStructureService = structureForUserService;
 	}
 
 	public StructureRetrieveUtils getStructureRetrieveUtils() {
@@ -195,13 +195,13 @@ public class SpeedUpBuildOrUpgradeStructureController extends EventController {
 		this.structureRetrieveUtils = structureRetrieveUtils;
 	}
 
-	public UserStructureEntityManager getUserStructureEntityManager() {
-		return userStructureEntityManager;
+	public StructureForUserEntityManager getUserStructureEntityManager() {
+		return structureForUserEntityManager;
 	}
 
 	public void setUserStructureEntityManager(
-			UserStructureEntityManager userStructureEntityManager) {
-		this.userStructureEntityManager = userStructureEntityManager;
+			StructureForUserEntityManager structureForUserEntityManager) {
+		this.userStructureEntityManager = structureForUserEntityManager;
 	}
 
 	public UserEntityManager getUserEntityManager() {

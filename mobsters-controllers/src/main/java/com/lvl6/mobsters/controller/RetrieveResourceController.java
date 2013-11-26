@@ -5,11 +5,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.lvl6.mobsters.entitymanager.UserStructureEntityManager;
 import com.lvl6.mobsters.entitymanager.nonstaticdata.UserEntityManager;
+import com.lvl6.mobsters.entitymanager.nonstaticdata.StructureForUserEntityManager;
 import com.lvl6.mobsters.entitymanager.staticdata.StructureRetrieveUtils;
 import com.lvl6.mobsters.events.RequestEvent;
-import com.lvl6.mobsters.services.userstructure.UserStructureService;
+import com.lvl6.mobsters.services.structureforuser.StructureForUserService;
 
 
 @Component
@@ -21,10 +21,10 @@ public class RetrieveResourceController extends EventController {
 	protected StructureRetrieveUtils structureRetrieveUtils; 
 	
 	@Autowired
-	protected UserStructureService userStructureService; 
+	protected StructureForUserService structureForUserService; 
 
 	@Autowired
-	protected UserStructureEntityManager userStructureEntityManager;
+	protected StructureForUserEntityManager structureForUserEntityManager;
 
 	@Autowired
 	protected UserEntityManager userEntityManager;
@@ -65,7 +65,7 @@ public class RetrieveResourceController extends EventController {
 		try {
 			//get whatever we need from the database
 			User inDb = getUserEntityManager().get().get(userId);
-			UserStructure us = getUserStructureEntityManager().get().get(userStructureId);
+			StructureForUser us = getUserStructureEntityManager().get().get(userStructureId);
 			Structure s = getUserStructureService().getStructureCorrespondingToUserStructure(us);
 
 			//validate request
@@ -102,7 +102,7 @@ public class RetrieveResourceController extends EventController {
 	}
 /*
 	private boolean isValidRequest(Builder responseBuilder, MinimumUserProto sender,
-			User inDb, UserStructure us, Structure s, Date clientDate) throws ConnectionException {
+			User inDb, StructureForUser us, Structure s, Date clientDate) throws ConnectionException {
 		if (null == inDb || null == us) {
 			log.error("unexpected error: no user exists. sender=" + sender +
 					"\t inDb=" + inDb + "\t us=" + us);
@@ -129,13 +129,13 @@ public class RetrieveResourceController extends EventController {
 		return true;
 	}
 
-	private boolean writeChangesToDb(User inDb, UserStructure us, Structure s, Date clientDate) {
+	private boolean writeChangesToDb(User inDb, StructureForUser us, Structure s, Date clientDate) {
 		try {
 			int amountBuiltUp = AmountOfResourceRetrieved(us, s, clientDate);
-			List<UserStructure> usList = getUserStructureService().getAllUserStructuresForUser(inDb.getId());
+			List<StructureForUser> usList = getUserStructureService().getAllUserStructuresForUser(inDb.getId());
 			if(s.getFunctionalityResourceType() == ResourceType.GOLD_VALUE) {
 				int goldCapacity = 0;
-				for(UserStructure us2 : usList) {
+				for(StructureForUser us2 : usList) {
 					Structure s2 = getUserStructureService().getStructureCorrespondingToUserStructure(us2);
 					if(s2.getFunctionalityResourceType() == ResourceType.GOLD_VALUE) {
 						goldCapacity = goldCapacity + s2.getFunctionalityCapacity();
@@ -148,7 +148,7 @@ public class RetrieveResourceController extends EventController {
 			}
 			else {
 				int tonicCapacity = 0;
-				for(UserStructure us2 : usList) {
+				for(StructureForUser us2 : usList) {
 					Structure s2 = getUserStructureService().getStructureCorrespondingToUserStructure(us2);
 					if(s2.getFunctionalityResourceType() == ResourceType.TONIC_VALUE) {
 						tonicCapacity = tonicCapacity + s2.getFunctionalityCapacity();
@@ -173,7 +173,7 @@ public class RetrieveResourceController extends EventController {
 	}
 		
 
-	private int AmountOfResourceRetrieved(UserStructure us, Structure s, Date clientDate) {
+	private int AmountOfResourceRetrieved(StructureForUser us, Structure s, Date clientDate) {
 		int minutesSinceLastRetrieve = (int)(clientDate.getTime() - us.getLastCollectTime().getTime())/60000;
 		int amountBuiltUp = minutesSinceLastRetrieve*s.getFunctionalityValue();
 		return amountBuiltUp;
@@ -182,12 +182,12 @@ public class RetrieveResourceController extends EventController {
 	
 
 	
-	public UserStructureService getUserStructureService() {
-		return userStructureService;
+	public StructureForUserService getUserStructureService() {
+		return structureForUserService;
 	}
 
-	public void setUserStructureService(UserStructureService userStructureService) {
-		this.userStructureService = userStructureService;
+	public void setUserStructureService(StructureForUserService structureForUserService) {
+		this.userStructureService = structureForUserService;
 	}
 
 	public StructureRetrieveUtils getStructureRetrieveUtils() {
@@ -199,13 +199,13 @@ public class RetrieveResourceController extends EventController {
 		this.structureRetrieveUtils = structureRetrieveUtils;
 	}
 
-	public UserStructureEntityManager getUserStructureEntityManager() {
-		return userStructureEntityManager;
+	public StructureForUserEntityManager getUserStructureEntityManager() {
+		return structureForUserEntityManager;
 	}
 
 	public void setUserStructureEntityManager(
-			UserStructureEntityManager userStructureEntityManager) {
-		this.userStructureEntityManager = userStructureEntityManager;
+			StructureForUserEntityManager structureForUserEntityManager) {
+		this.userStructureEntityManager = structureForUserEntityManager;
 	}
 
 	public UserEntityManager getUserEntityManager() {

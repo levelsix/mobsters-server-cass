@@ -4406,6 +4406,10 @@ public final class StructureProto {
     // optional int32 numMonsterSlots = 8;
     boolean hasNumMonsterSlots();
     int getNumMonsterSlots();
+    
+    // optional int32 numLabs = 9;
+    boolean hasNumLabs();
+    int getNumLabs();
   }
   public static final class TownHallProto extends
       com.google.protobuf.GeneratedMessage
@@ -4519,6 +4523,16 @@ public final class StructureProto {
       return numMonsterSlots_;
     }
     
+    // optional int32 numLabs = 9;
+    public static final int NUMLABS_FIELD_NUMBER = 9;
+    private int numLabs_;
+    public boolean hasNumLabs() {
+      return ((bitField0_ & 0x00000100) == 0x00000100);
+    }
+    public int getNumLabs() {
+      return numLabs_;
+    }
+    
     private void initFields() {
       structInfo_ = com.lvl6.mobsters.noneventprotos.StructureProto.StructureInfoProto.getDefaultInstance();
       numResourceOneGenerators_ = 0;
@@ -4528,6 +4542,7 @@ public final class StructureProto {
       numHospitals_ = 0;
       numResidences_ = 0;
       numMonsterSlots_ = 0;
+      numLabs_ = 0;
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -4564,6 +4579,9 @@ public final class StructureProto {
       }
       if (((bitField0_ & 0x00000080) == 0x00000080)) {
         output.writeInt32(8, numMonsterSlots_);
+      }
+      if (((bitField0_ & 0x00000100) == 0x00000100)) {
+        output.writeInt32(9, numLabs_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -4605,6 +4623,10 @@ public final class StructureProto {
       if (((bitField0_ & 0x00000080) == 0x00000080)) {
         size += com.google.protobuf.CodedOutputStream
           .computeInt32Size(8, numMonsterSlots_);
+      }
+      if (((bitField0_ & 0x00000100) == 0x00000100)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(9, numLabs_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -4751,6 +4773,8 @@ public final class StructureProto {
         bitField0_ = (bitField0_ & ~0x00000040);
         numMonsterSlots_ = 0;
         bitField0_ = (bitField0_ & ~0x00000080);
+        numLabs_ = 0;
+        bitField0_ = (bitField0_ & ~0x00000100);
         return this;
       }
       
@@ -4825,6 +4849,10 @@ public final class StructureProto {
           to_bitField0_ |= 0x00000080;
         }
         result.numMonsterSlots_ = numMonsterSlots_;
+        if (((from_bitField0_ & 0x00000100) == 0x00000100)) {
+          to_bitField0_ |= 0x00000100;
+        }
+        result.numLabs_ = numLabs_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -4864,6 +4892,9 @@ public final class StructureProto {
         }
         if (other.hasNumMonsterSlots()) {
           setNumMonsterSlots(other.getNumMonsterSlots());
+        }
+        if (other.hasNumLabs()) {
+          setNumLabs(other.getNumLabs());
         }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
@@ -4938,6 +4969,11 @@ public final class StructureProto {
             case 64: {
               bitField0_ |= 0x00000080;
               numMonsterSlots_ = input.readInt32();
+              break;
+            }
+            case 72: {
+              bitField0_ |= 0x00000100;
+              numLabs_ = input.readInt32();
               break;
             }
           }
@@ -5179,6 +5215,27 @@ public final class StructureProto {
       public Builder clearNumMonsterSlots() {
         bitField0_ = (bitField0_ & ~0x00000080);
         numMonsterSlots_ = 0;
+        onChanged();
+        return this;
+      }
+      
+      // optional int32 numLabs = 9;
+      private int numLabs_ ;
+      public boolean hasNumLabs() {
+        return ((bitField0_ & 0x00000100) == 0x00000100);
+      }
+      public int getNumLabs() {
+        return numLabs_;
+      }
+      public Builder setNumLabs(int value) {
+        bitField0_ |= 0x00000100;
+        numLabs_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearNumLabs() {
+        bitField0_ = (bitField0_ & ~0x00000100);
+        numLabs_ = 0;
         onChanged();
         return this;
       }
@@ -6505,24 +6562,25 @@ public final class StructureProto {
       "fo\030\001 \001(\0132\031.proto.StructureInfoProto\022\027\n\017n" +
       "umMonsterSlots\030\002 \001(\005\022\034\n\024numBonusMonsterS" +
       "lots\030\003 \001(\005\022\027\n\017numGemsRequired\030\004 \001(\005\022\034\n\024n",
-      "umAcceptedFbInvites\030\005 \001(\005\"\210\002\n\rTownHallPr" +
+      "umAcceptedFbInvites\030\005 \001(\005\"\231\002\n\rTownHallPr" +
       "oto\022-\n\nstructInfo\030\001 \001(\0132\031.proto.Structur" +
       "eInfoProto\022 \n\030numResourceOneGenerators\030\002" +
       " \001(\005\022\036\n\026numResourceOneStorages\030\003 \001(\005\022 \n\030" +
       "numResourceTwoGenerators\030\004 \001(\005\022\036\n\026numRes" +
       "ourceTwoStorages\030\005 \001(\005\022\024\n\014numHospitals\030\006" +
       " \001(\005\022\025\n\rnumResidences\030\007 \001(\005\022\027\n\017numMonste" +
-      "rSlots\030\010 \001(\005\"\355\001\n\026FullUserStructureProto\022" +
-      "\024\n\014userStructId\030\001 \001(\005\022\016\n\006userId\030\002 \001(\005\022\020\n" +
-      "\010structId\030\003 \001(\005\022\025\n\rlastRetrieved\030\004 \001(\003\022\024",
-      "\n\014purchaseTime\030\005 \001(\003\022\022\n\nisComplete\030\006 \001(\010" +
-      "\022+\n\013coordinates\030\007 \001(\0132\026.proto.Coordinate" +
-      "Proto\022-\n\013orientation\030\010 \001(\0162\030.proto.Struc" +
-      "tOrientation\"\'\n\017CoordinateProto\022\t\n\001x\030\001 \001" +
-      "(\002\022\t\n\001y\030\002 \001(\002*!\n\014ResourceType\022\010\n\004CASH\020\001\022" +
-      "\007\n\003OIL\020\002*3\n\021StructOrientation\022\016\n\nPOSITIO" +
-      "N_1\020\001\022\016\n\nPOSITION_2\020\002B2\n com.lvl6.mobste" +
-      "rs.noneventprotosB\016StructureProto"
+      "rSlots\030\010 \001(\005\022\017\n\007numLabs\030\t \001(\005\"\355\001\n\026FullUs" +
+      "erStructureProto\022\024\n\014userStructId\030\001 \001(\005\022\016" +
+      "\n\006userId\030\002 \001(\005\022\020\n\010structId\030\003 \001(\005\022\025\n\rlast",
+      "Retrieved\030\004 \001(\003\022\024\n\014purchaseTime\030\005 \001(\003\022\022\n" +
+      "\nisComplete\030\006 \001(\010\022+\n\013coordinates\030\007 \001(\0132\026" +
+      ".proto.CoordinateProto\022-\n\013orientation\030\010 " +
+      "\001(\0162\030.proto.StructOrientation\"\'\n\017Coordin" +
+      "ateProto\022\t\n\001x\030\001 \001(\002\022\t\n\001y\030\002 \001(\002*!\n\014Resour" +
+      "ceType\022\010\n\004CASH\020\001\022\007\n\003OIL\020\002*3\n\021StructOrien" +
+      "tation\022\016\n\nPOSITION_1\020\001\022\016\n\nPOSITION_2\020\002B2" +
+      "\n com.lvl6.mobsters.noneventprotosB\016Stru" +
+      "ctureProto"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -6582,7 +6640,7 @@ public final class StructureProto {
           internal_static_proto_TownHallProto_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_proto_TownHallProto_descriptor,
-              new java.lang.String[] { "StructInfo", "NumResourceOneGenerators", "NumResourceOneStorages", "NumResourceTwoGenerators", "NumResourceTwoStorages", "NumHospitals", "NumResidences", "NumMonsterSlots", },
+              new java.lang.String[] { "StructInfo", "NumResourceOneGenerators", "NumResourceOneStorages", "NumResourceTwoGenerators", "NumResourceTwoStorages", "NumHospitals", "NumResidences", "NumMonsterSlots", "NumLabs", },
               com.lvl6.mobsters.noneventprotos.StructureProto.TownHallProto.class,
               com.lvl6.mobsters.noneventprotos.StructureProto.TownHallProto.Builder.class);
           internal_static_proto_FullUserStructureProto_descriptor =

@@ -21,7 +21,7 @@ public class StartDungeonController extends EventController {
 //	protected UserConsumableQueueEntityManager userConsumableQueueEntityManager;
 //	
 //	@Autowired
-//	protected UserStructureService userStructureService;
+//	protected StructureForUserService structureForUserService;
 //
 //	@Autowired
 //	protected UserEntityManager userEntityManager;
@@ -142,9 +142,9 @@ public class StartDungeonController extends EventController {
 		}
 		
 		//user can't enter dungeon with full storage
-		List<UserStructure> usList = getUserStructureService().getAllUserStructuresForUser(inDb.getId());
+		List<StructureForUser> usList = getUserStructureService().getAllUserStructuresForUser(inDb.getId());
 		int equipStorageSize = 0;
-		for(UserStructure us : usList) {
+		for(StructureForUser us : usList) {
 			Structure s = getUserStructureService().getStructureCorrespondingToUserStructure(us);
 			if(s.getFunctionalityType() == FunctionalityType.STORAGE_VALUE) {
 				equipStorageSize = s.getFunctionalityCapacity();
@@ -283,12 +283,12 @@ public class StartDungeonController extends EventController {
 
 
 
-	public UserStructureService getUserStructureService() {
-		return userStructureService;
+	public StructureForUserService getUserStructureService() {
+		return structureForUserService;
 	}
 
-	public void setUserStructureService(UserStructureService userStructureService) {
-		this.userStructureService = userStructureService;
+	public void setUserStructureService(StructureForUserService structureForUserService) {
+		this.userStructureService = structureForUserService;
 	}
 
 	public TaskStageMonsterRetrieveUtils getCombatRoomRetrieveUtils() {

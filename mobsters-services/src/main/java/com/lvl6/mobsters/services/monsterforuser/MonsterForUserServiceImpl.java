@@ -355,32 +355,34 @@ public class MonsterForUserServiceImpl implements MonsterForUserService {
 	public MonsterForUser getSpecificUserMonster(UUID userMonsterId) {
 		log.debug("retrieving user monster for userMonsterId: " + userMonsterId);
 		
-		//construct the search parameters
-		Map<String, Object> equalityConditions = new HashMap<String, Object>();
-		equalityConditions.put(MobstersDbTables.MONSTER_FOR_USER__ID, userMonsterId);
-
-		//query db, "values" is not used 
-		//(its purpose is to hold the values that were supposed to be put
-		// into a prepared statement)
-		List<Object> values = new ArrayList<Object>();
-		boolean preparedStatement = false;
-		String cqlQuery = getQueryConstructionUtil().selectRowsQueryEqualityConditions(
-				TABLE_NAME, equalityConditions, values, preparedStatement);
-		List<MonsterForUser> mfuList = getMonsterForUserEntityManager().get().find(cqlQuery);
-
-		if (null == mfuList || mfuList.isEmpty()) {
-			log.warn("no MonsterForUser exists for id=" + userMonsterId);
-			return null;
-		} else if (mfuList.size() > 1) {
-			log.warn("multiple MonsterForUser exists for id=" + userMonsterId +
-					"\t monsters=" + mfuList + "\t keeping first one");
-			
-			return mfuList.get(0);
-		} else{
-			MonsterForUser mfu = mfuList.get(0);
-			log.info("retrieved one MonsterForUser. mfu=" + mfu);
-			return mfu;
-		}
+		MonsterForUser mfu = getMonsterForUserEntityManager().get().get(userMonsterId);
+		return mfu;
+//		//construct the search parameters
+//		Map<String, Object> equalityConditions = new HashMap<String, Object>();
+//		equalityConditions.put(MobstersDbTables.MONSTER_FOR_USER__ID, userMonsterId);
+//
+//		//query db, "values" is not used 
+//		//(its purpose is to hold the values that were supposed to be put
+//		// into a prepared statement)
+//		List<Object> values = new ArrayList<Object>();
+//		boolean preparedStatement = false;
+//		String cqlQuery = getQueryConstructionUtil().selectRowsQueryEqualityConditions(
+//				TABLE_NAME, equalityConditions, values, preparedStatement);
+//		List<MonsterForUser> mfuList = getMonsterForUserEntityManager().get().find(cqlQuery);
+//
+//		if (null == mfuList || mfuList.isEmpty()) {
+//			log.warn("no MonsterForUser exists for id=" + userMonsterId);
+//			return null;
+//		} else if (mfuList.size() > 1) {
+//			log.warn("multiple MonsterForUser exists for id=" + userMonsterId +
+//					"\t monsters=" + mfuList + "\t keeping first one");
+//			
+//			return mfuList.get(0);
+//		} else{
+//			MonsterForUser mfu = mfuList.get(0);
+//			log.info("retrieved one MonsterForUser. mfu=" + mfu);
+//			return mfu;
+//		}
 	}
 	
 	@Override

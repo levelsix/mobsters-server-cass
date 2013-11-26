@@ -22,7 +22,7 @@
 //import com.lvl6.mobsters.po.UserStructure;
 //import com.lvl6.mobsters.po.nonstaticdata.User;
 //import com.lvl6.mobsters.properties.MobstersTableConstants;
-//import com.lvl6.mobsters.services.userstructure.UserStructureService;
+//import com.lvl6.mobsters.services.structureforuser.StructureForUserService;
 //
 //
 //@Component
@@ -38,7 +38,7 @@
 //	protected UserEntityManager userEntityManager;
 //	
 //	@Autowired
-//	protected UserStructureService userStructureService;
+//	protected StructureForUserService userStructureService;
 //
 //	private static Logger log = LoggerFactory.getLogger(new Object() { }.getClass().getEnclosingClass());
 //	
@@ -207,9 +207,9 @@
 //	}
 //	
 //	public int calculateGemCostForMissingResources(User u, int missingResources, int missingResourcesType) {
-//		List<UserStructure> usList = getUserStructureService().getAllUserStructuresForUser(u.getId());
+//		List<StructureForUser> usList = getUserStructureService().getAllUserStructuresForUser(u.getId());
 //		int maxStorage = 0;
-//		for(UserStructure us : usList) {
+//		for(StructureForUser us : usList) {
 //			Structure s = getUserStructureService().getStructureCorrespondingToUserStructure(us);
 //			if((s.getFunctionalityResourceType() == missingResourcesType) && (s.getFunctionalityType() == FunctionalityType.RESOURCE_STORAGE_VALUE)) {
 //				maxStorage = maxStorage + s.getFunctionalityCapacity();
@@ -287,11 +287,11 @@
 //		this.userEntityManager = userEntityManager;
 //	}
 //
-//	public UserStructureService getUserStructureService() {
+//	public StructureForUserService getUserStructureService() {
 //		return userStructureService;
 //	}
 //
-//	public void setUserStructureService(UserStructureService userStructureService) {
+//	public void setUserStructureService(StructureForUserService userStructureService) {
 //		this.userStructureService = userStructureService;
 //	}
 //

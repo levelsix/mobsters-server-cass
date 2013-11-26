@@ -5,15 +5,15 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.lvl6.mobsters.entitymanager.UserStructureEntityManager;
 import com.lvl6.mobsters.entitymanager.nonstaticdata.MonsterForUserEntityManager;
 import com.lvl6.mobsters.entitymanager.nonstaticdata.MonsterHealingForUserEntityManager;
 import com.lvl6.mobsters.entitymanager.nonstaticdata.UserEntityManager;
+import com.lvl6.mobsters.entitymanager.nonstaticdata.StructureForUserEntityManager;
 import com.lvl6.mobsters.entitymanager.staticdata.StructureLabRetrieveUtils;
 import com.lvl6.mobsters.events.RequestEvent;
 import com.lvl6.mobsters.events.request.CollectUserStructureRequestEvent;
+import com.lvl6.mobsters.services.structureforuser.StructureForUserService;
 import com.lvl6.mobsters.services.user.UserService;
-import com.lvl6.mobsters.services.userstructure.UserStructureService;
 import com.lvl6.mobsters.widerows.RestrictionOnNumberOfUserStructure;
 
 
@@ -26,10 +26,10 @@ public class CollectUserStructureController extends EventController {
 	protected StructureLabRetrieveUtils structureLabRetrieveUtils; 
 	
 	@Autowired
-	protected UserStructureService userStructureService; 
+	protected StructureForUserService structureForUserService; 
 	
 	@Autowired
-	protected UserStructureEntityManager userStructureEntityManager;
+	protected StructureForUserEntityManager structureForUserEntityManager;
 
 	@Autowired
 	protected MonsterHealingForUserEntityManager monsterHealingForUserEntityManager;
@@ -82,7 +82,7 @@ public class CollectUserStructureController extends EventController {
 		try {
 			//get whatever we need from the database
 			User inDb = getUserEntityManager().get().get(userId);
-			UserStructure us = getUserStructureEntityManager().get().get(userStructureId);
+			StructureForUser us = getUserStructureEntityManager().get().get(userStructureId);
 			Structure s = getUserStructureService().getStructureCorrespondingToUserStructure(us);
 			
 			//validate request
@@ -119,7 +119,7 @@ public class CollectUserStructureController extends EventController {
 	}
 /*
 	private boolean isValidRequest(Builder responseBuilder, MinimumUserProto sender,
-			User inDb, UserStructure us, Structure s, Date clientDate) throws ConnectionException {
+			User inDb, StructureForUser us, Structure s, Date clientDate) throws ConnectionException {
 		if (null == inDb || null == us) {
 			log.error("unexpected error: no user or list of equips to fix exist");
 			return false;
@@ -145,7 +145,7 @@ public class CollectUserStructureController extends EventController {
 		return true;
 	}
 
-	private boolean writeChangesToDb(User inDb, UserStructure us, Date clientDate) {
+	private boolean writeChangesToDb(User inDb, StructureForUser us, Date clientDate) {
 		try {
 			us.setFinishedConstructing(true);
 			getUserStructureEntityManager().get().put(us);
@@ -161,12 +161,12 @@ public class CollectUserStructureController extends EventController {
 
 
 
-	public UserStructureService getUserStructureService() {
-		return userStructureService;
+	public StructureForUserService getUserStructureService() {
+		return structureForUserService;
 	}
 
-	public void setUserStructureService(UserStructureService userStructureService) {
-		this.userStructureService = userStructureService;
+	public void setUserStructureService(StructureForUserService structureForUserService) {
+		this.userStructureService = structureForUserService;
 	}
 
 	public MonsterHealingForUserEntityManager getUserEquipRepairEntityManager() {
@@ -221,13 +221,13 @@ public class CollectUserStructureController extends EventController {
 		this.monsterForUserEntityManager = monsterForUserEntityManager;
 	}
 
-	public UserStructureEntityManager getUserStructureEntityManager() {
-		return userStructureEntityManager;
+	public StructureForUserEntityManager getUserStructureEntityManager() {
+		return structureForUserEntityManager;
 	}
 
 	public void setUserStructureEntityManager(
-			UserStructureEntityManager userStructureEntityManager) {
-		this.userStructureEntityManager = userStructureEntityManager;
+			StructureForUserEntityManager structureForUserEntityManager) {
+		this.userStructureEntityManager = structureForUserEntityManager;
 	}
 
 */
