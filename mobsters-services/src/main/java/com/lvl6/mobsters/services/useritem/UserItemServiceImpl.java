@@ -111,7 +111,7 @@ public class UserItemServiceImpl implements UserItemService {
 	
 	@Override
 	public StructureResidence getItemCorrespondingToUserItem(UserItem ui) {
-		return getItemRetrieveUtils().getItemAccordingToName(ui.getItemId());
+		return null;//getItemRetrieveUtils().getItemAccordingToName(ui.getItemId());
 	}
 	
 	
