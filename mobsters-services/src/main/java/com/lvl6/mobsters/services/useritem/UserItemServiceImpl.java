@@ -11,11 +11,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.lvl6.mobsters.entitymanager.ItemEntityManager;
 import com.lvl6.mobsters.entitymanager.UserItemEntityManager;
-import com.lvl6.mobsters.entitymanager.staticdata.ItemRetrieveUtils;
-import com.lvl6.mobsters.po.Item;
+import com.lvl6.mobsters.entitymanager.staticdata.StructureResidenceEntityManager;
+import com.lvl6.mobsters.entitymanager.staticdata.StructureResidenceRetrieveUtils;
 import com.lvl6.mobsters.po.UserItem;
+import com.lvl6.mobsters.po.staticdata.StructureResidence;
 
 
 @Component
@@ -25,10 +25,10 @@ public class UserItemServiceImpl implements UserItemService {
 	protected UserItemEntityManager userItemEntityManager;
 	
 	@Autowired
-	protected ItemEntityManager itemEntityManager;
+	protected StructureResidenceEntityManager structureResidenceEntityManager;
 	
 	@Autowired
-	protected ItemRetrieveUtils itemRetrieveUtils;
+	protected StructureResidenceRetrieveUtils structureResidenceRetrieveUtils;
 	
 	
 	private  Logger log = LoggerFactory.getLogger(new Object() { }.getClass().getEnclosingClass());
@@ -110,7 +110,7 @@ public class UserItemServiceImpl implements UserItemService {
 	}
 	
 	@Override
-	public Item getItemCorrespondingToUserItem(UserItem ui) {
+	public StructureResidence getItemCorrespondingToUserItem(UserItem ui) {
 		return getItemRetrieveUtils().getItemAccordingToName(ui.getItemId());
 	}
 	
@@ -128,20 +128,20 @@ public class UserItemServiceImpl implements UserItemService {
 	}
 
 
-	public ItemEntityManager getItemEntityManager() {
-		return itemEntityManager;
+	public StructureResidenceEntityManager getItemEntityManager() {
+		return structureResidenceEntityManager;
 	}
 
-	public void setItemEntityManager(ItemEntityManager itemEntityManager) {
-		this.itemEntityManager = itemEntityManager;
+	public void setItemEntityManager(StructureResidenceEntityManager structureResidenceEntityManager) {
+		this.structureResidenceEntityManager = structureResidenceEntityManager;
 	}
 
-	public ItemRetrieveUtils getItemRetrieveUtils() {
-		return itemRetrieveUtils;
+	public StructureResidenceRetrieveUtils getItemRetrieveUtils() {
+		return structureResidenceRetrieveUtils;
 	}
 
-	public void setItemRetrieveUtils(ItemRetrieveUtils itemRetrieveUtils) {
-		this.itemRetrieveUtils = itemRetrieveUtils;
+	public void setItemRetrieveUtils(StructureResidenceRetrieveUtils structureResidenceRetrieveUtils) {
+		this.structureResidenceRetrieveUtils = structureResidenceRetrieveUtils;
 	}
 	
 	

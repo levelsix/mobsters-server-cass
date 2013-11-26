@@ -6,8 +6,8 @@ import java.util.Map;
 import java.util.UUID;
 
 import com.lvl6.mobsters.entitymanager.UserItemEntityManager;
-import com.lvl6.mobsters.po.Item;
 import com.lvl6.mobsters.po.UserItem;
+import com.lvl6.mobsters.po.staticdata.StructureResidence;
 
 public interface UserItemService {
 	
@@ -27,6 +27,6 @@ public interface UserItemService {
 	
 	public abstract List<UserItem> getAllUserItemsForUser(UUID userId);
 	
-	public abstract Item getItemCorrespondingToUserItem(UserItem ui);
+	public abstract StructureResidence getItemCorrespondingToUserItem(UserItem ui);
 	
 }
