@@ -14,13 +14,7 @@ import com.dekayd.astyanax.cassandra.entitymanager.Index;
 @Entity
 public class Structure extends BasePersistentObject<Integer> implements Serializable{
 
-
-
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 851303431734583065L;
+	private static final long serialVersionUID = 2989353159971903797L;
 
 	@Id
 	protected Integer id = 0;
@@ -75,6 +69,9 @@ public class Structure extends BasePersistentObject<Integer> implements Serializ
 	@Column(name="description")
 	protected String description = "";
 
+	@Column(name="short_description")
+	protected String shortDescription = "";
+	
 	public Integer getId() {
 		return id;
 	}
@@ -195,6 +192,14 @@ public class Structure extends BasePersistentObject<Integer> implements Serializ
 		this.description = description;
 	}
 
+	public String getShortDescription() {
+		return shortDescription;
+	}
+
+	public void setShortDescription(String shortDescription) {
+		this.shortDescription = shortDescription;
+	}
+
 	@Override
 	public String toString() {
 		return "Structure [id=" + id + ", name=" + name + ", lvl=" + lvl
@@ -206,7 +211,8 @@ public class Structure extends BasePersistentObject<Integer> implements Serializ
 				+ ", predecessorStructId=" + predecessorStructId
 				+ ", successorStructId=" + successorStructId + ", imgName="
 				+ imgName + ", imgVerticalPixelOffset="
-				+ imgVerticalPixelOffset + ", description=" + description + "]";
+				+ imgVerticalPixelOffset + ", description=" + description
+				+ ", shortDescription=" + shortDescription + "]";
 	}
 
 
