@@ -26,9 +26,9 @@ public class UserCurrencyHistory extends BasePersistentObject<UUID>{
 	@Index
 	protected Date date = null;
 	
-	@Column(name="is_cash")
+	@Column(name="resource_type")
 	@Index
-	protected boolean isCash = false;
+	protected String resourceType = "";
 	
 	@Column(name="currency_change")
 	@Index
@@ -46,7 +46,6 @@ public class UserCurrencyHistory extends BasePersistentObject<UUID>{
 	@Column(name="details")
 	protected String details = "";
 
-	
 	
 	
 	
@@ -74,12 +73,12 @@ public class UserCurrencyHistory extends BasePersistentObject<UUID>{
 		this.date = date;
 	}
 
-	public boolean isCash() {
-		return isCash;
+	public String getResourceType() {
+		return resourceType;
 	}
 
-	public void setCash(boolean isCash) {
-		this.isCash = isCash;
+	public void setResourceType(String resourceType) {
+		this.resourceType = resourceType;
 	}
 
 	public int getCurrencyChange() {
@@ -125,11 +124,11 @@ public class UserCurrencyHistory extends BasePersistentObject<UUID>{
 	@Override
 	public String toString() {
 		return "UserCurrencyHistory [id=" + id + ", userId=" + userId
-				+ ", date=" + date + ", isCash=" + isCash + ", currencyChange="
-				+ currencyChange + ", currencyBeforeChange="
-				+ currencyBeforeChange + ", currencyAfterChange="
-				+ currencyAfterChange + ", reasonForChange=" + reasonForChange
-				+ ", details=" + details + "]";
-	}
-	
+				+ ", date=" + date + ", resourceType=" + resourceType
+				+ ", currencyChange=" + currencyChange
+				+ ", currencyBeforeChange=" + currencyBeforeChange
+				+ ", currencyAfterChange=" + currencyAfterChange
+				+ ", reasonForChange=" + reasonForChange + ", details="
+				+ details + "]";
+	}	
 }
