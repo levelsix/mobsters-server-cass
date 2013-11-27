@@ -34,7 +34,7 @@ public class CreateNoneventProtoUtilsImpl implements CreateNoneventProtoUtils {
     	classTypeNumToClassType.put(ClassType.WIZARD_VALUE, ClassType.WIZARD);
     }*/
 
-	//MONSTER PROTO
+	//MONSTER PROTO****************************************************************
 	@Override
 	public List<FullUserMonsterProto> createFullUserMonsterProtoList(
 			List<MonsterForUser> userMonsters) {
@@ -80,7 +80,7 @@ public class CreateNoneventProtoUtilsImpl implements CreateNoneventProtoUtils {
 	  
 	
 
-	//QUEST PROTO
+	//QUEST PROTO****************************************************************
 	@Override
 	public QuestProto createQuestProtoFromQuest(Quest q) {
 		QuestProto.Builder qpb = QuestProto.newBuilder();
@@ -190,7 +190,7 @@ public class CreateNoneventProtoUtilsImpl implements CreateNoneventProtoUtils {
 	}
 	
 	
-	//USER PROTO
+	//USER PROTO****************************************************************
 	@Override
 	public FullUserProto createFullUserProtoFromUser(User u) {
 		// TODO Auto-generated method stub
@@ -252,5 +252,5 @@ public class CreateNoneventProtoUtilsImpl implements CreateNoneventProtoUtils {
 		
 		return fupb.build();
 	}
-
+	
 }

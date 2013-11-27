@@ -13,6 +13,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.lvl6.mobsters.controller.utils.CreateEventProtoUtils;
 import com.lvl6.mobsters.entitymanager.staticdata.StructureRetrieveUtils;
 import com.lvl6.mobsters.eventprotos.EventStructureProto.PurchaseNormStructureRequestProto;
 import com.lvl6.mobsters.eventprotos.EventStructureProto.PurchaseNormStructureResponseProto;
@@ -21,6 +22,7 @@ import com.lvl6.mobsters.eventprotos.EventStructureProto.PurchaseNormStructureRe
 import com.lvl6.mobsters.events.RequestEvent;
 import com.lvl6.mobsters.events.request.PurchaseNormStructureRequestEvent;
 import com.lvl6.mobsters.events.response.PurchaseNormStructureResponseEvent;
+import com.lvl6.mobsters.events.response.UpdateClientUserResponseEvent;
 import com.lvl6.mobsters.noneventprotos.MobstersEventProtocolProto.MobstersEventProtocolRequest;
 import com.lvl6.mobsters.noneventprotos.StructureProto.ResourceType;
 import com.lvl6.mobsters.noneventprotos.StructureProto.StructOrientation;
@@ -53,6 +55,9 @@ public class PurchaseNormStructureController extends EventController {
 	
 	@Autowired
 	protected UserCurrencyHistoryService userCurrencyHistoryService;
+	
+	@Autowired
+	protected CreateEventProtoUtils createEventProtoUtils;
 	
 
 	@Override
@@ -117,8 +122,10 @@ public class PurchaseNormStructureController extends EventController {
 			}
 
 			if (successful) {
-				sfu = uStructList.get(0);
 				responseBuilder.setStatus(PurchaseNormStructureStatus.SUCCESS);
+				sfu = uStructList.get(0);
+				String sfuId = sfu.getId().toString();
+				responseBuilder.setUserStructUuid(sfuId);
 			}
 
 			//write to client
@@ -126,9 +133,16 @@ public class PurchaseNormStructureController extends EventController {
 			log.info("Writing event: " + resEvent);
 			getEventWriter().handleEvent(resEvent);
 			
-			//write to currency history
-			writeToUserCurrencyHistory(user, structId, sfu, timeOfPurchase, moneyChange,
-					previousMoney);
+			if (successful) {
+				UpdateClientUserResponseEvent resEventUpdate = getCreateEventProtoUtils()
+						.createUpdateClientUserResponseEvent(user);
+				log.info("Writing update event: " + resEventUpdate);
+				getEventWriter().handleEvent(resEventUpdate);
+				
+				//write to currency history
+				writeToUserCurrencyHistory(user, structId, sfu, timeOfPurchase, moneyChange,
+						previousMoney);
+			}
 
 		} catch (Exception e) {
 			log.error("exception in PurchaseNormStructureController processRequestEvent", e);
@@ -318,5 +332,14 @@ public class PurchaseNormStructureController extends EventController {
 			UserCurrencyHistoryService userCurrencyHistoryService) {
 		this.userCurrencyHistoryService = userCurrencyHistoryService;
 	}
+
+	public CreateEventProtoUtils getCreateEventProtoUtils() {
+		return createEventProtoUtils;
+	}
+
+	public void setCreateEventProtoUtils(CreateEventProtoUtils createEventProtoUtils) {
+		this.createEventProtoUtils = createEventProtoUtils;
+	}
+	
 }
 

@@ -15,14 +15,14 @@ import com.lvl6.mobsters.utils.Dialogue;
 
 public interface CreateNoneventProtoUtils {
 	
-	//MONSTER PROTO
+	//MONSTER PROTO****************************************************************
 	public abstract List<FullUserMonsterProto> createFullUserMonsterProtoList(
 	  		List<MonsterForUser> userMonsters);
 	
 	public FullUserMonsterProto createFullUserMonsterProtoFromUserMonster(MonsterForUser mfu);
 	
 	
-	//QUEST PROTO
+	//QUEST PROTO****************************************************************
 	public abstract QuestProto createQuestProtoFromQuest(Quest q);
 	
 	public abstract DialogueProto createDialogueProtoFromDialogue(Dialogue d);
@@ -30,8 +30,7 @@ public interface CreateNoneventProtoUtils {
 	public abstract SpeechSegmentProto createSpeechSegmentProto(
 			int speakerInt, String speakerText);
 	
-	//USER PROTO
+	//USER PROTO****************************************************************
 	public abstract FullUserProto createFullUserProtoFromUser(User u);
-	
 	
 }
