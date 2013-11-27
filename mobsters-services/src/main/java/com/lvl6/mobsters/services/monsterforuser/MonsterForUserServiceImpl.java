@@ -41,7 +41,7 @@ public class MonsterForUserServiceImpl implements MonsterForUserService {
 	protected QueryConstructionUtil queryConstructionUtil;
 	
 	
-	//CONTROLLER LOGIC STUFF
+	//CONTROLLER LOGIC STUFF****************************************************************
 	
 	// ASSUMPTION: WHATEVER MONSTER ID EXISTS IN  monsterIdToIncompleteUserMonster
 	// THERE IS A CORRESPONDING ENTRY IN monsterIdToQuantity
@@ -289,7 +289,7 @@ public class MonsterForUserServiceImpl implements MonsterForUserService {
 	
 	
 
-	//RETRIEVING STUFF
+	//RETRIEVING STUFF****************************************************************
 	
 	public List<MonsterForUser> getMonstersForUser(UUID userId) {
 		log.debug("retrieving user monsters for userId " + userId);
@@ -456,12 +456,13 @@ public class MonsterForUserServiceImpl implements MonsterForUserService {
 	
 	
 	
-	//INSERTING STUFF
+	//INSERTING STUFF****************************************************************
 	
 	
+	//SAVING STUFF****************************************************************
 	
 	
-	//UPDATING STUFF
+	//UPDATING STUFF****************************************************************
 	
 	//method to reward a user with some monsters
 	@Override
@@ -540,7 +541,7 @@ public class MonsterForUserServiceImpl implements MonsterForUserService {
 		log.info("saved mfuList");
 	}
 	
-	// DELETING STUFF
+	// DELETING STUFF****************************************************************
 	
 	public void deleteUserMonster(UUID deleteUserMonsterUuid) {
 		getMonsterForUserEntityManager().get().delete(deleteUserMonsterUuid);
@@ -553,7 +554,7 @@ public class MonsterForUserServiceImpl implements MonsterForUserService {
 	
 	
 	
-	//for the setter dependency injection or something
+	//for the setter dependency injection or something****************************************************************
 	@Override
 	public MonsterForUserEntityManager getMonsterForUserEntityManager() {
 		return monsterForUserEntityManager;
@@ -586,7 +587,7 @@ public class MonsterForUserServiceImpl implements MonsterForUserService {
 	
 	
 	/*
-	//OLD AOC2 STUFF
+	//OLD AOC2 STUFF****************************************************************
 	@Override
 	public Map<UUID, MonsterForUser> getUserEquipsByUserEquipIds(Collection<UUID> ids) {
 		Map<UUID, MonsterForUser> returnVal = new HashMap<UUID, MonsterForUser>();

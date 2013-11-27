@@ -3,6 +3,7 @@ package com.lvl6.mobsters.services.structureforuser;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,6 +19,7 @@ import com.lvl6.mobsters.entitymanager.staticdata.StructureEntityManager;
 import com.lvl6.mobsters.entitymanager.staticdata.StructureRetrieveUtils;
 import com.lvl6.mobsters.po.nonstaticdata.StructureForUser;
 import com.lvl6.mobsters.properties.MobstersDbTables;
+import com.lvl6.mobsters.utils.CoordinatePair;
 import com.lvl6.mobsters.utils.QueryConstructionUtil;
 
 
@@ -41,9 +43,9 @@ public class StructureForUserServiceImpl implements StructureForUserService {
 	protected QueryConstructionUtil queryConstructionUtil;
 	
 	
-	//CONTROLLER LOGIC STUFF
+	//CONTROLLER LOGIC STUFF****************************************************************
 
-	//RETRIEVING STUFF
+	//RETRIEVING STUFF****************************************************************
 	@Override
 	public  List<StructureForUser> getAllUserStructuresForUser(UUID userId) {
 		log.debug("retrieve StructureForUser data for user with id " + userId);
@@ -128,30 +130,45 @@ public class StructureForUserServiceImpl implements StructureForUserService {
 		
 		return userStructureIdsToUserStructures;
 	}
-
-	/*@Override
-	public  Map<UUID, StructureForUser> getUserStructuresForIds(List<UUID> ids) {
-		log.debug("retrieve UserStructures data for ids " + ids);
-		Map<UUID, StructureForUser> toreturn = new HashMap<UUID, StructureForUser>();
-//		for (UUID id : ids) {
-//			toreturn.put(id,  idsToUserStructures.get(id));
-//		}
-		return toreturn;
-	}
-
-	@Override
-	public Structure getStructureCorrespondingToUserStructure(StructureForUser us) {
-		int structureId = us.getStructureId();
-		return getStructureRetrieveUtils().getStructureForId(structureId);
-	}*/
 	
 
 
-	//INSERTING STUFF
+	//INSERTING STUFF****************************************************************
+	@Override
+	public StructureForUser insertUserStruct(UUID userId, int structId,
+			 Date lastRetrievedTime, CoordinatePair coords, Date timeOfPurchase,
+			boolean isComplete, String orientation) {
+		StructureForUser sfu = new StructureForUser();
+		
+		sfu.setUserId(userId);
+		sfu.setStructureId(structId);
+		sfu.setLastCollectTime(lastRetrievedTime);
+		float xCoordinate = coords.getX();
+		sfu.setxCoordinate(xCoordinate);
+		float yCoordinate = coords.getY();
+		sfu.setyCoordinate(yCoordinate);
+		sfu.setPurchaseTime(timeOfPurchase);
+		sfu.setComplete(isComplete);
+		sfu.setStructOrientation(orientation);
+		
+		saveStructureForUser(sfu);
+		return sfu;
+	}
 
-	//UPDATING STUFF
+	//SAVING STUFF****************************************************************
+	@Override
+	public void saveStructureForUser(StructureForUser sfu) {
+		getStructureForUserEntityManager().get().put(sfu);
+	}
+	
+	@Override
+	public void saveStructuresForUser(List<StructureForUser> sfuList) {
+		getStructureForUserEntityManager().get().put(sfuList);
+	}
+	
+	//UPDATING STUFF****************************************************************
 
-	//DELETING STUFF
+	//DELETING STUFF****************************************************************
 	
 	
 	
@@ -192,4 +209,21 @@ public class StructureForUserServiceImpl implements StructureForUserService {
 		this.queryConstructionUtil = queryConstructionUtil;
 	}
 
+	//old aoc2 stuff****************************************************************
+	/*@Override
+	public  Map<UUID, StructureForUser> getUserStructuresForIds(List<UUID> ids) {
+		log.debug("retrieve UserStructures data for ids " + ids);
+		Map<UUID, StructureForUser> toreturn = new HashMap<UUID, StructureForUser>();
+//		for (UUID id : ids) {
+//			toreturn.put(id,  idsToUserStructures.get(id));
+//		}
+		return toreturn;
+	}
+
+	@Override
+	public Structure getStructureCorrespondingToUserStructure(StructureForUser us) {
+		int structureId = us.getStructureId();
+		return getStructureRetrieveUtils().getStructureForId(structureId);
+	}*/
+	
 }

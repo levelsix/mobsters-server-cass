@@ -59,6 +59,7 @@ public interface MonsterForUserService {
 	
 	//INSERTING STUFF
 	
+	//SAVING STUFF****************************************************************
 	
 	//UPDATING STUFF
 	public abstract List<MonsterForUser> updateUserMonstersForUser(UUID userId,

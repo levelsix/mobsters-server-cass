@@ -2964,6 +2964,18 @@ public final class EventStructureProto {
     // optional int64 timeOfUpgrade = 3;
     boolean hasTimeOfUpgrade();
     long getTimeOfUpgrade();
+    
+    // optional int32 gemsSpent = 4;
+    boolean hasGemsSpent();
+    int getGemsSpent();
+    
+    // optional sint32 resourceChange = 5;
+    boolean hasResourceChange();
+    int getResourceChange();
+    
+    // optional .proto.ResourceType resourceType = 6 [default = CASH];
+    boolean hasResourceType();
+    com.lvl6.mobsters.noneventprotos.StructureProto.ResourceType getResourceType();
   }
   public static final class UpgradeNormStructureRequestProto extends
       com.google.protobuf.GeneratedMessage
@@ -3049,10 +3061,43 @@ public final class EventStructureProto {
       return timeOfUpgrade_;
     }
     
+    // optional int32 gemsSpent = 4;
+    public static final int GEMSSPENT_FIELD_NUMBER = 4;
+    private int gemsSpent_;
+    public boolean hasGemsSpent() {
+      return ((bitField0_ & 0x00000008) == 0x00000008);
+    }
+    public int getGemsSpent() {
+      return gemsSpent_;
+    }
+    
+    // optional sint32 resourceChange = 5;
+    public static final int RESOURCECHANGE_FIELD_NUMBER = 5;
+    private int resourceChange_;
+    public boolean hasResourceChange() {
+      return ((bitField0_ & 0x00000010) == 0x00000010);
+    }
+    public int getResourceChange() {
+      return resourceChange_;
+    }
+    
+    // optional .proto.ResourceType resourceType = 6 [default = CASH];
+    public static final int RESOURCETYPE_FIELD_NUMBER = 6;
+    private com.lvl6.mobsters.noneventprotos.StructureProto.ResourceType resourceType_;
+    public boolean hasResourceType() {
+      return ((bitField0_ & 0x00000020) == 0x00000020);
+    }
+    public com.lvl6.mobsters.noneventprotos.StructureProto.ResourceType getResourceType() {
+      return resourceType_;
+    }
+    
     private void initFields() {
       sender_ = com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto.getDefaultInstance();
       userStructUuid_ = "";
       timeOfUpgrade_ = 0L;
+      gemsSpent_ = 0;
+      resourceChange_ = 0;
+      resourceType_ = com.lvl6.mobsters.noneventprotos.StructureProto.ResourceType.CASH;
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -3075,6 +3120,15 @@ public final class EventStructureProto {
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
         output.writeInt64(3, timeOfUpgrade_);
       }
+      if (((bitField0_ & 0x00000008) == 0x00000008)) {
+        output.writeInt32(4, gemsSpent_);
+      }
+      if (((bitField0_ & 0x00000010) == 0x00000010)) {
+        output.writeSInt32(5, resourceChange_);
+      }
+      if (((bitField0_ & 0x00000020) == 0x00000020)) {
+        output.writeEnum(6, resourceType_.getNumber());
+      }
       getUnknownFields().writeTo(output);
     }
     
@@ -3095,6 +3149,18 @@ public final class EventStructureProto {
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
         size += com.google.protobuf.CodedOutputStream
           .computeInt64Size(3, timeOfUpgrade_);
+      }
+      if (((bitField0_ & 0x00000008) == 0x00000008)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(4, gemsSpent_);
+      }
+      if (((bitField0_ & 0x00000010) == 0x00000010)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeSInt32Size(5, resourceChange_);
+      }
+      if (((bitField0_ & 0x00000020) == 0x00000020)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeEnumSize(6, resourceType_.getNumber());
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -3231,6 +3297,12 @@ public final class EventStructureProto {
         bitField0_ = (bitField0_ & ~0x00000002);
         timeOfUpgrade_ = 0L;
         bitField0_ = (bitField0_ & ~0x00000004);
+        gemsSpent_ = 0;
+        bitField0_ = (bitField0_ & ~0x00000008);
+        resourceChange_ = 0;
+        bitField0_ = (bitField0_ & ~0x00000010);
+        resourceType_ = com.lvl6.mobsters.noneventprotos.StructureProto.ResourceType.CASH;
+        bitField0_ = (bitField0_ & ~0x00000020);
         return this;
       }
       
@@ -3285,6 +3357,18 @@ public final class EventStructureProto {
           to_bitField0_ |= 0x00000004;
         }
         result.timeOfUpgrade_ = timeOfUpgrade_;
+        if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
+          to_bitField0_ |= 0x00000008;
+        }
+        result.gemsSpent_ = gemsSpent_;
+        if (((from_bitField0_ & 0x00000010) == 0x00000010)) {
+          to_bitField0_ |= 0x00000010;
+        }
+        result.resourceChange_ = resourceChange_;
+        if (((from_bitField0_ & 0x00000020) == 0x00000020)) {
+          to_bitField0_ |= 0x00000020;
+        }
+        result.resourceType_ = resourceType_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -3309,6 +3393,15 @@ public final class EventStructureProto {
         }
         if (other.hasTimeOfUpgrade()) {
           setTimeOfUpgrade(other.getTimeOfUpgrade());
+        }
+        if (other.hasGemsSpent()) {
+          setGemsSpent(other.getGemsSpent());
+        }
+        if (other.hasResourceChange()) {
+          setResourceChange(other.getResourceChange());
+        }
+        if (other.hasResourceType()) {
+          setResourceType(other.getResourceType());
         }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
@@ -3358,6 +3451,27 @@ public final class EventStructureProto {
             case 24: {
               bitField0_ |= 0x00000004;
               timeOfUpgrade_ = input.readInt64();
+              break;
+            }
+            case 32: {
+              bitField0_ |= 0x00000008;
+              gemsSpent_ = input.readInt32();
+              break;
+            }
+            case 40: {
+              bitField0_ |= 0x00000010;
+              resourceChange_ = input.readSInt32();
+              break;
+            }
+            case 48: {
+              int rawValue = input.readEnum();
+              com.lvl6.mobsters.noneventprotos.StructureProto.ResourceType value = com.lvl6.mobsters.noneventprotos.StructureProto.ResourceType.valueOf(rawValue);
+              if (value == null) {
+                unknownFields.mergeVarintField(6, rawValue);
+              } else {
+                bitField0_ |= 0x00000020;
+                resourceType_ = value;
+              }
               break;
             }
           }
@@ -3509,6 +3623,72 @@ public final class EventStructureProto {
       public Builder clearTimeOfUpgrade() {
         bitField0_ = (bitField0_ & ~0x00000004);
         timeOfUpgrade_ = 0L;
+        onChanged();
+        return this;
+      }
+      
+      // optional int32 gemsSpent = 4;
+      private int gemsSpent_ ;
+      public boolean hasGemsSpent() {
+        return ((bitField0_ & 0x00000008) == 0x00000008);
+      }
+      public int getGemsSpent() {
+        return gemsSpent_;
+      }
+      public Builder setGemsSpent(int value) {
+        bitField0_ |= 0x00000008;
+        gemsSpent_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearGemsSpent() {
+        bitField0_ = (bitField0_ & ~0x00000008);
+        gemsSpent_ = 0;
+        onChanged();
+        return this;
+      }
+      
+      // optional sint32 resourceChange = 5;
+      private int resourceChange_ ;
+      public boolean hasResourceChange() {
+        return ((bitField0_ & 0x00000010) == 0x00000010);
+      }
+      public int getResourceChange() {
+        return resourceChange_;
+      }
+      public Builder setResourceChange(int value) {
+        bitField0_ |= 0x00000010;
+        resourceChange_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearResourceChange() {
+        bitField0_ = (bitField0_ & ~0x00000010);
+        resourceChange_ = 0;
+        onChanged();
+        return this;
+      }
+      
+      // optional .proto.ResourceType resourceType = 6 [default = CASH];
+      private com.lvl6.mobsters.noneventprotos.StructureProto.ResourceType resourceType_ = com.lvl6.mobsters.noneventprotos.StructureProto.ResourceType.CASH;
+      public boolean hasResourceType() {
+        return ((bitField0_ & 0x00000020) == 0x00000020);
+      }
+      public com.lvl6.mobsters.noneventprotos.StructureProto.ResourceType getResourceType() {
+        return resourceType_;
+      }
+      public Builder setResourceType(com.lvl6.mobsters.noneventprotos.StructureProto.ResourceType value) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        bitField0_ |= 0x00000020;
+        resourceType_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearResourceType() {
+        bitField0_ = (bitField0_ & ~0x00000020);
+        resourceType_ = com.lvl6.mobsters.noneventprotos.StructureProto.ResourceType.CASH;
         onChanged();
         return this;
       }
@@ -10002,70 +10182,73 @@ public final class EventStructureProto {
       "M.proto.MoveOrRotateNormStructureRespons" +
       "eProto.MoveOrRotateNormStructureStatus\">",
       "\n\037MoveOrRotateNormStructureStatus\022\013\n\007SUC" +
-      "CESS\020\001\022\016\n\nOTHER_FAIL\020\002\"z\n UpgradeNormStr" +
-      "uctureRequestProto\022\'\n\006sender\030\001 \001(\0132\027.pro" +
-      "to.MinimumUserProto\022\026\n\016userStructUuid\030\002 " +
-      "\001(\t\022\025\n\rtimeOfUpgrade\030\003 \001(\003\"\374\002\n!UpgradeNo" +
-      "rmStructureResponseProto\022\'\n\006sender\030\001 \001(\013" +
-      "2\027.proto.MinimumUserProto\022S\n\006status\030\002 \001(" +
-      "\0162C.proto.UpgradeNormStructureResponsePr" +
-      "oto.UpgradeNormStructureStatus\"\330\001\n\032Upgra" +
-      "deNormStructureStatus\022\013\n\007SUCCESS\020\001\022\030\n\024FA",
-      "IL_NOT_ENOUGH_CASH\020\002\022\030\n\024FAIL_NOT_ENOUGH_" +
-      "GEMS\020\003\022\027\n\023FAIL_NOT_ENOUGH_OIL\020\004\022\026\n\022FAIL_" +
-      "NOT_BUILT_YET\020\005\022\031\n\025FAIL_NOT_USERS_STRUCT" +
-      "\020\006\022\035\n\031FAIL_AT_MAX_LEVEL_ALREADY\020\010\022\016\n\nFAI" +
-      "L_OTHER\020\t\"\244\001\n0FinishNormStructWaittimeWi" +
-      "thDiamondsRequestProto\022\'\n\006sender\030\001 \001(\0132\027" +
-      ".proto.MinimumUserProto\022\026\n\016userStructUui" +
-      "d\030\002 \001(\t\022\025\n\rtimeOfSpeedup\030\003 \001(\003\022\030\n\020gemCos" +
-      "tToSpeedup\030\004 \001(\005\"\236\002\n1FinishNormStructWai" +
-      "ttimeWithDiamondsResponseProto\022\'\n\006sender",
-      "\030\001 \001(\0132\027.proto.MinimumUserProto\022g\n\006statu" +
-      "s\030\002 \001(\0162W.proto.FinishNormStructWaittime" +
-      "WithDiamondsResponseProto.FinishNormStru" +
-      "ctWaittimeStatus\"W\n\036FinishNormStructWait" +
-      "timeStatus\022\013\n\007SUCCESS\020\001\022\030\n\024FAIL_NOT_ENOU" +
-      "GH_GEMS\020\002\022\016\n\nFAIL_OTHER\020\003\"v\n\"NormStructW" +
-      "aitCompleteRequestProto\022\'\n\006sender\030\001 \001(\0132" +
-      "\027.proto.MinimumUserProto\022\026\n\016userStructUu" +
-      "id\030\002 \003(\t\022\017\n\007curTime\030\003 \001(\003\"\256\002\n#NormStruct" +
-      "WaitCompleteResponseProto\022\'\n\006sender\030\001 \001(",
-      "\0132\027.proto.MinimumUserProto\022W\n\006status\030\002 \001" +
-      "(\0162G.proto.NormStructWaitCompleteRespons" +
-      "eProto.NormStructWaitCompleteStatus\0221\n\nu" +
-      "serStruct\030\003 \003(\0132\035.proto.FullUserStructur" +
-      "eProto\"R\n\034NormStructWaitCompleteStatus\022\013" +
-      "\n\007SUCCESS\020\001\022\025\n\021FAIL_NOT_DONE_YET\020\002\022\016\n\nFA" +
-      "IL_OTHER\020\003\"\225\002\n-RetrieveCurrencyFromNormS" +
-      "tructureRequestProto\022\'\n\006sender\030\001 \001(\0132\027.p" +
-      "roto.MinimumUserProto\022^\n\020structRetrieval" +
-      "s\030\002 \003(\0132D.proto.RetrieveCurrencyFromNorm",
-      "StructureRequestProto.StructRetrieval\032[\n" +
-      "\017StructRetrieval\022\026\n\016userStructUuid\030\001 \001(\t" +
-      "\022\027\n\017timeOfRetrieval\030\002 \001(\003\022\027\n\017amountColle" +
-      "cted\030\003 \001(\005\"\220\002\n.RetrieveCurrencyFromNormS" +
-      "tructureResponseProto\022\'\n\006sender\030\001 \001(\0132\027." +
-      "proto.MinimumUserProto\022m\n\006status\030\002 \001(\0162]" +
-      ".proto.RetrieveCurrencyFromNormStructure" +
-      "ResponseProto.RetrieveCurrencyFromNormSt" +
-      "ructureStatus\"F\n\'RetrieveCurrencyFromNor" +
-      "mStructureStatus\022\013\n\007SUCCESS\020\001\022\016\n\nFAIL_OT",
-      "HER\020\002\"\256\001\n!ExpansionWaitCompleteRequestPr" +
+      "CESS\020\001\022\016\n\nOTHER_FAIL\020\002\"\326\001\n UpgradeNormSt" +
+      "ructureRequestProto\022\'\n\006sender\030\001 \001(\0132\027.pr" +
+      "oto.MinimumUserProto\022\026\n\016userStructUuid\030\002" +
+      " \001(\t\022\025\n\rtimeOfUpgrade\030\003 \001(\003\022\021\n\tgemsSpent" +
+      "\030\004 \001(\005\022\026\n\016resourceChange\030\005 \001(\021\022/\n\014resour" +
+      "ceType\030\006 \001(\0162\023.proto.ResourceType:\004CASH\"" +
+      "\374\002\n!UpgradeNormStructureResponseProto\022\'\n" +
+      "\006sender\030\001 \001(\0132\027.proto.MinimumUserProto\022S" +
+      "\n\006status\030\002 \001(\0162C.proto.UpgradeNormStruct",
+      "ureResponseProto.UpgradeNormStructureSta" +
+      "tus\"\330\001\n\032UpgradeNormStructureStatus\022\013\n\007SU" +
+      "CCESS\020\001\022\030\n\024FAIL_NOT_ENOUGH_CASH\020\002\022\030\n\024FAI" +
+      "L_NOT_ENOUGH_GEMS\020\003\022\027\n\023FAIL_NOT_ENOUGH_O" +
+      "IL\020\004\022\026\n\022FAIL_NOT_BUILT_YET\020\005\022\031\n\025FAIL_NOT" +
+      "_USERS_STRUCT\020\006\022\035\n\031FAIL_AT_MAX_LEVEL_ALR" +
+      "EADY\020\010\022\016\n\nFAIL_OTHER\020\t\"\244\001\n0FinishNormStr" +
+      "uctWaittimeWithDiamondsRequestProto\022\'\n\006s" +
+      "ender\030\001 \001(\0132\027.proto.MinimumUserProto\022\026\n\016" +
+      "userStructUuid\030\002 \001(\t\022\025\n\rtimeOfSpeedup\030\003 ",
+      "\001(\003\022\030\n\020gemCostToSpeedup\030\004 \001(\005\"\236\002\n1Finish" +
+      "NormStructWaittimeWithDiamondsResponsePr" +
       "oto\022\'\n\006sender\030\001 \001(\0132\027.proto.MinimumUserP" +
-      "roto\022\017\n\007curTime\030\002 \001(\003\022\021\n\txPosition\030\003 \001(\021" +
-      "\022\021\n\tyPosition\030\004 \001(\021\022\017\n\007speedUp\030\005 \001(\010\022\030\n\020" +
-      "gemCostToSpeedup\030\006 \001(\005\"\342\002\n\"ExpansionWait" +
-      "CompleteResponseProto\022\'\n\006sender\030\001 \001(\0132\027." +
-      "proto.MinimumUserProto\022U\n\006status\030\002 \001(\0162E" +
-      ".proto.ExpansionWaitCompleteResponseProt" +
-      "o.ExpansionWaitCompleteStatus\0220\n\005ucedp\030\003" +
-      " \001(\0132!.proto.UserCityExpansionDataProto\"",
-      "\211\001\n\033ExpansionWaitCompleteStatus\022\013\n\007SUCCE" +
-      "SS\020\001\022\032\n\026FAIL_WAS_NOT_EXPANDING\020\002\022\025\n\021FAIL" +
-      "_NOT_DONE_YET\020\003\022\032\n\026FAIL_INSUFFICIENT_GEM" +
-      "S\020\004\022\016\n\nFAIL_OTHER\020\005B4\n\035com.lvl6.mobsters" +
-      ".eventprotosB\023EventStructureProto"
+      "roto\022g\n\006status\030\002 \001(\0162W.proto.FinishNormS" +
+      "tructWaittimeWithDiamondsResponseProto.F" +
+      "inishNormStructWaittimeStatus\"W\n\036FinishN" +
+      "ormStructWaittimeStatus\022\013\n\007SUCCESS\020\001\022\030\n\024" +
+      "FAIL_NOT_ENOUGH_GEMS\020\002\022\016\n\nFAIL_OTHER\020\003\"v" +
+      "\n\"NormStructWaitCompleteRequestProto\022\'\n\006" +
+      "sender\030\001 \001(\0132\027.proto.MinimumUserProto\022\026\n",
+      "\016userStructUuid\030\002 \003(\t\022\017\n\007curTime\030\003 \001(\003\"\256" +
+      "\002\n#NormStructWaitCompleteResponseProto\022\'" +
+      "\n\006sender\030\001 \001(\0132\027.proto.MinimumUserProto\022" +
+      "W\n\006status\030\002 \001(\0162G.proto.NormStructWaitCo" +
+      "mpleteResponseProto.NormStructWaitComple" +
+      "teStatus\0221\n\nuserStruct\030\003 \003(\0132\035.proto.Ful" +
+      "lUserStructureProto\"R\n\034NormStructWaitCom" +
+      "pleteStatus\022\013\n\007SUCCESS\020\001\022\025\n\021FAIL_NOT_DON" +
+      "E_YET\020\002\022\016\n\nFAIL_OTHER\020\003\"\225\002\n-RetrieveCurr" +
+      "encyFromNormStructureRequestProto\022\'\n\006sen",
+      "der\030\001 \001(\0132\027.proto.MinimumUserProto\022^\n\020st" +
+      "ructRetrievals\030\002 \003(\0132D.proto.RetrieveCur" +
+      "rencyFromNormStructureRequestProto.Struc" +
+      "tRetrieval\032[\n\017StructRetrieval\022\026\n\016userStr" +
+      "uctUuid\030\001 \001(\t\022\027\n\017timeOfRetrieval\030\002 \001(\003\022\027" +
+      "\n\017amountCollected\030\003 \001(\005\"\220\002\n.RetrieveCurr" +
+      "encyFromNormStructureResponseProto\022\'\n\006se" +
+      "nder\030\001 \001(\0132\027.proto.MinimumUserProto\022m\n\006s" +
+      "tatus\030\002 \001(\0162].proto.RetrieveCurrencyFrom" +
+      "NormStructureResponseProto.RetrieveCurre",
+      "ncyFromNormStructureStatus\"F\n\'RetrieveCu" +
+      "rrencyFromNormStructureStatus\022\013\n\007SUCCESS" +
+      "\020\001\022\016\n\nFAIL_OTHER\020\002\"\256\001\n!ExpansionWaitComp" +
+      "leteRequestProto\022\'\n\006sender\030\001 \001(\0132\027.proto" +
+      ".MinimumUserProto\022\017\n\007curTime\030\002 \001(\003\022\021\n\txP" +
+      "osition\030\003 \001(\021\022\021\n\tyPosition\030\004 \001(\021\022\017\n\007spee" +
+      "dUp\030\005 \001(\010\022\030\n\020gemCostToSpeedup\030\006 \001(\005\"\342\002\n\"" +
+      "ExpansionWaitCompleteResponseProto\022\'\n\006se" +
+      "nder\030\001 \001(\0132\027.proto.MinimumUserProto\022U\n\006s" +
+      "tatus\030\002 \001(\0162E.proto.ExpansionWaitComplet",
+      "eResponseProto.ExpansionWaitCompleteStat" +
+      "us\0220\n\005ucedp\030\003 \001(\0132!.proto.UserCityExpans" +
+      "ionDataProto\"\211\001\n\033ExpansionWaitCompleteSt" +
+      "atus\022\013\n\007SUCCESS\020\001\022\032\n\026FAIL_WAS_NOT_EXPAND" +
+      "ING\020\002\022\025\n\021FAIL_NOT_DONE_YET\020\003\022\032\n\026FAIL_INS" +
+      "UFFICIENT_GEMS\020\004\022\016\n\nFAIL_OTHER\020\005B4\n\035com." +
+      "lvl6.mobsters.eventprotosB\023EventStructur" +
+      "eProto"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -10109,7 +10292,7 @@ public final class EventStructureProto {
           internal_static_proto_UpgradeNormStructureRequestProto_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_proto_UpgradeNormStructureRequestProto_descriptor,
-              new java.lang.String[] { "Sender", "UserStructUuid", "TimeOfUpgrade", },
+              new java.lang.String[] { "Sender", "UserStructUuid", "TimeOfUpgrade", "GemsSpent", "ResourceChange", "ResourceType", },
               com.lvl6.mobsters.eventprotos.EventStructureProto.UpgradeNormStructureRequestProto.class,
               com.lvl6.mobsters.eventprotos.EventStructureProto.UpgradeNormStructureRequestProto.Builder.class);
           internal_static_proto_UpgradeNormStructureResponseProto_descriptor =

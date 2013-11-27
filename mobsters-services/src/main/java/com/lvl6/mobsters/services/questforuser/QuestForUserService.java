@@ -15,7 +15,7 @@ import com.lvl6.mobsters.utils.QueryConstructionUtil;
 
 public interface QuestForUserService {
 		
-	//RETRIEVING STUFF
+	//RETRIEVING STUFF****************************************************************
 	public abstract Map<Integer, QuestForUser> getQuestIdsToUserQuestsForUser(UUID userId);
 	
 	public abstract List<Integer> getAvailableQuestIdsForUser(UUID userId, int questIdJustRedeemed);
@@ -29,18 +29,18 @@ public interface QuestForUserService {
 			List<Integer> prospectiveQuestIds, int prerequisiteQuestId);
 	
 	
-	//INSERTING STUFF
+	//INSERTING STUFF****************************************************************
 	public abstract QuestForUser createNewUserQuestForUser(UUID userId, int questId, Date now);
 	
 	
-	//SAVING STUFF
+	//SAVING STUFF****************************************************************
 	public abstract void saveQuestForUser(QuestForUser qfu);
 	
 	public abstract void saveQuestsForUser(Collection<QuestForUser> qfuList);
 	
 	
 	
-	//for the setter dependency injection or something
+	//for the setter dependency injection or something****************************************************************
 	public abstract QuestRetrieveUtils getQuestRetrieveUtils();
 	
 	public abstract void setQuestRetrieveUtils(QuestRetrieveUtils questRetrieveUtils);

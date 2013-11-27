@@ -77,8 +77,9 @@ public class UserSpellServiceImpl implements UserSpellService {
 
 	@Override
 	public StructureResourceGenerator getSpellCorrespondingToUserSpell(UserSpell us) {
-		UUID spellId = us.getSpellId();
-		return getSpellRetrieveUtils().getSpellForId(spellId);
+//		UUID spellId = us.getSpellId();
+//		return getSpellRetrieveUtils().getSpellForId(spellId);
+		return null;
 	}
 
 	public UserSpellEntityManager getUserSpellEntityManager() {

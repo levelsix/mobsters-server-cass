@@ -14,7 +14,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.dekayd.astyanax.cassandra.Cassandra;
-import com.lvl6.mobsters.entitymanager.UserEntityManager;
+import com.lvl6.mobsters.entitymanager.nonstaticdata.UserEntityManager;
 import com.lvl6.mobsters.po.nonstaticdata.User;
 import com.netflix.astyanax.connectionpool.exceptions.ConnectionException;
 import com.netflix.astyanax.model.Column;

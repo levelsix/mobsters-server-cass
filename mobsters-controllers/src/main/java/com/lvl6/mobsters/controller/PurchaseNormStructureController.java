@@ -22,10 +22,13 @@ import com.lvl6.mobsters.events.request.PurchaseNormStructureRequestEvent;
 import com.lvl6.mobsters.events.response.PurchaseNormStructureResponseEvent;
 import com.lvl6.mobsters.noneventprotos.MobstersEventProtocolProto.MobstersEventProtocolRequest;
 import com.lvl6.mobsters.noneventprotos.StructureProto.ResourceType;
+import com.lvl6.mobsters.noneventprotos.StructureProto.StructOrientation;
 import com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto;
-import com.lvl6.mobsters.po.nonstaticdata.User;
 import com.lvl6.mobsters.po.nonstaticdata.StructureForUser;
+import com.lvl6.mobsters.po.nonstaticdata.User;
 import com.lvl6.mobsters.po.staticdata.Structure;
+import com.lvl6.mobsters.properties.MobstersDbTables;
+import com.lvl6.mobsters.services.structureforuser.StructureForUserService;
 import com.lvl6.mobsters.services.user.UserService;
 import com.lvl6.mobsters.utils.CoordinatePair;
 
@@ -42,6 +45,8 @@ public class PurchaseNormStructureController extends EventController {
 	@Autowired
 	protected StructureRetrieveUtils structureRetrieveUtils;
 	
+	@Autowired
+	protected StructureForUserService structureForUserService;
 	
 
 	@Override
@@ -113,6 +118,8 @@ public class PurchaseNormStructureController extends EventController {
 			resEvent.setPurchaseNormStructureResponseProto(responseBuilder.build());
 			log.info("Writing event: " + resEvent);
 			getEventWriter().handleEvent(resEvent);
+			
+			//TODO: write to currency history
 
 		} catch (Exception e) {
 			log.error("exception in PurchaseNormStructureController processRequestEvent", e);
@@ -154,6 +161,9 @@ public class PurchaseNormStructureController extends EventController {
 			return false;
 		}
 
+		//don't think it will ever be positive though
+		//positive means refund, negative means charge user
+		//if refund, then requiredResourceAmount is negative which would always be < user's amount
 		int requiredResourceAmount = -1 * resourceChange;
 		if (resourceType == ResourceType.CASH) {
 			int userResource = user.getCash();
@@ -179,58 +189,56 @@ public class PurchaseNormStructureController extends EventController {
 		return true;
 	}
 
-	  //uStructId will store the newly created user structure
-	  private boolean writeChangesToDb(User user, int structId, CoordinatePair cp,
-	  		Timestamp purchaseTime, int gemsSpent, int resourceChange, ResourceType resourceType,
-	  		List<StructureForUser> uStructList, Map<String, Integer> money) {
-	    UUID userId = user.getId();
-	    Timestamp lastRetrievedTime = null;
-	    boolean isComplete = false;
-	    if (gemsSpent > 0) {
-	    	lastRetrievedTime = purchaseTime;
-	    	isComplete = true;
-	    }
-	    
-	    int userStructId = insertUtils.insertUserStruct(userId, structId, cp, purchaseTime,
-	    		lastRetrievedTime, isComplete);
-	    if (userStructId <= 0) {
-	      log.error("problem with giving struct " + structId + " at " + purchaseTime +
-	      		" on " + cp);
-	      return false;
-	    }
-	    
-	    //TAKE AWAY THE CORRECT RESOURCE
-	    int gemChange = -1 * gemsSpent;
-	    int cashChange = 0;
-	    int oilChange = 0;
-	    
-	    if (resourceType == ResourceType.CASH) {
-	    	cashChange = resourceChange;
-	    } else if (resourceType == ResourceType.OIL) {
-	    	oilChange = resourceChange;
-	    }
+	//uStructId will store the newly created user structure
+	private boolean writeChangesToDb(User user, int structId, CoordinatePair cp,
+			Timestamp purchaseTime, int gemsSpent, int resourceChange, ResourceType resourceType,
+			List<StructureForUser> uStructList, Map<String, Integer> money) {
+		try {
 
-	    int num = user.updateRelativeCashAndOilAndGems(cashChange, oilChange, gemChange);
-	    if (1 != num) {
-	      log.error("problem with updating user currency. gemChange=" + gemChange +
-	      		" cashChange=" + cashChange + "\t numRowsUpdated=" + num);
-	      return false;
-	    } else {//things went ok
-	      if (0 != gemChange) {
-	        money.put(MiscMethods.gems, gemChange * -1);
-	      }
-	      if (0 != cashChange) {
-	        money.put(MiscMethods.cash, cashChange);
-	      }
-	      if (0 != oilChange) {
-	      	money.put(MiscMethods.oil, oilChange);
-	      }
-	    }
-	    
-	    uStructId.add(userStructId);
-	    return true;
-	  }
-	
+			UUID userId = user.getId();
+			Timestamp lastRetrievedTime = null;
+			boolean isComplete = false;
+			String orientation = StructOrientation.POSITION_1.name();
+			
+			//give the user his new structure
+			StructureForUser sfu = getStructureForUserService().insertUserStruct(userId, structId,
+					lastRetrievedTime, cp, purchaseTime, isComplete, orientation);
+			if (null == sfu) {
+				log.error("problem with giving struct " + structId + " at " + purchaseTime +
+						" on " + cp);
+				return false;
+			}
+
+			//TAKE AWAY THE CORRECT RESOURCE
+			int gemChange = -1 * gemsSpent;
+			int cashChange = 0;
+			int oilChange = 0;
+
+			if (resourceType == ResourceType.CASH) {
+				cashChange = resourceChange;
+			} else if (resourceType == ResourceType.OIL) {
+				oilChange = resourceChange;
+			}
+
+			getUserService().updateUserResources(user, gemChange, oilChange, cashChange);
+			if (0 != gemChange) {
+				money.put(MobstersDbTables.USER__GEMS, gemChange * -1);
+			}
+			if (0 != cashChange) {
+				money.put(MobstersDbTables.USER__CASH, cashChange);
+			}
+			if (0 != oilChange) {
+				money.put(MobstersDbTables.USER__OIL, oilChange);
+			}
+
+			uStructList.add(sfu);
+			return true;
+		} catch (Exception e) {
+			log.error("unexpected error: problem with saving to db.", e);
+		}
+		return false;
+	}
+
 	
 
 	public UserService getUserService() {
@@ -249,7 +257,15 @@ public class PurchaseNormStructureController extends EventController {
 			StructureRetrieveUtils structureRetrieveUtils) {
 		this.structureRetrieveUtils = structureRetrieveUtils;
 	}
-	
 
+	public StructureForUserService getStructureForUserService() {
+		return structureForUserService;
+	}
+
+	public void setStructureForUserService(
+			StructureForUserService structureForUserService) {
+		this.structureForUserService = structureForUserService;
+	}
+	
 }
 

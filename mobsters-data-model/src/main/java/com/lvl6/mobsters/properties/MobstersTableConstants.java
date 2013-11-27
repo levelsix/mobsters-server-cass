@@ -63,8 +63,4 @@ public class MobstersTableConstants {
 	public static int USER__TONIC = 500;
 	public static int USER__GEMS = 50;
 	
-	//resource type
-	public static int RESOURCE_TYPE__GOLD = 0;
-	public static int RESOURCE_TYPE__TONIC = 1;
-	
 }

@@ -43,7 +43,7 @@ public class QuestForUserServiceImpl implements QuestForUserService {
 	private TimeUtils timeUtils;
 	
 	
-	//RETRIEVING STUFF
+	//RETRIEVING STUFF****************************************************************
 	@Override
 	public  Map<Integer, QuestForUser> getQuestIdsToUserQuestsForUser(UUID userId) {
 		log.debug("retrieving user quest for userId " + userId);
@@ -186,7 +186,7 @@ public class QuestForUserServiceImpl implements QuestForUserService {
 	
 	
 	
-	//INSERTING STUFF
+	//INSERTING STUFF****************************************************************
 	@Override
 	public QuestForUser createNewUserQuestForUser(UUID userId, int questId, Date now) {
 		QuestForUser qfu = new QuestForUser();
@@ -201,7 +201,7 @@ public class QuestForUserServiceImpl implements QuestForUserService {
 		return qfu;
 	}
 	
-	//SAVING STUFF
+	//SAVING STUFF****************************************************************
 	@Override
 	public void saveQuestForUser(QuestForUser qfu) {
 		getQuestForUserEntityManager().get().put(qfu);
@@ -213,8 +213,7 @@ public class QuestForUserServiceImpl implements QuestForUserService {
 	}
 	
 	
-	
-	
+	//for the setter dependency injection or something****************************************************************
 	@Override
 	public QuestRetrieveUtils getQuestRetrieveUtils() {
 		return questRetrieveUtils;

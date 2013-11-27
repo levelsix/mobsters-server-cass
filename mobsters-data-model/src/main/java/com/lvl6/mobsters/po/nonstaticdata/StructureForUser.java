@@ -32,10 +32,10 @@ public class StructureForUser extends BasePersistentObject<UUID>{
 	protected Date lastCollectTime = new Date();
 	
 	@Column(name="x_coordinate")
-	protected int xCoordinate = 0;
+	protected float xCoordinate = 0;
 	
 	@Column(name="y_coordinate")
-	protected int yCoordinate = 0;
+	protected float yCoordinate = 0;
 
 	@Column(name="purchase_time")
 	@Index
@@ -81,19 +81,19 @@ public class StructureForUser extends BasePersistentObject<UUID>{
 		this.lastCollectTime = lastCollectTime;
 	}
 
-	public int getxCoordinate() {
+	public float getxCoordinate() {
 		return xCoordinate;
 	}
 
-	public void setxCoordinate(int xCoordinate) {
+	public void setxCoordinate(float xCoordinate) {
 		this.xCoordinate = xCoordinate;
 	}
 
-	public int getyCoordinate() {
+	public float getyCoordinate() {
 		return yCoordinate;
 	}
 
-	public void setyCoordinate(int yCoordinate) {
+	public void setyCoordinate(float yCoordinate) {
 		this.yCoordinate = yCoordinate;
 	}
 

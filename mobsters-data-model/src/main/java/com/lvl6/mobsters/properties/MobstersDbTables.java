@@ -366,6 +366,7 @@ public class MobstersDbTables {
 	public static final String USER__LEVEL = "level";
 	public static final String USER__GEMS = "gems";
 	public static final String USER__CASH = "cash";
+	public static final String USER__OIL = "oil";
 	public static final String USER__EXPERIENCE = "experience";
 	public static final String USER__TASKS_COMPLETED = "tasks_completed";
 	public static final String USER__BATTLES_WON = "battles_won";
@@ -384,6 +385,7 @@ public class MobstersDbTables {
 	public static final String USER__IS_ADMIN = "is_admin";
 	public static final String USER__APSALAR_ID = "apsalar_id";
 	public static final String USER__NUM_COINS_RETRIEVED_FROM_STRUCTS = "num_coins_retrieved_from_structs";
+	public static final String USER__NUM_OIL_RETRIEVED_FROM_STRUCTS = "num_oil_retrieved_from_structs";
 	public static final String USER__NUM_CONSECUTIVE_DAYS_PLAYED = "num_consecutive_days_played";
 	public static final String USER__CLAN_ID = "clan_id";
 	public static final String USER__LAST_WALL_POST_NOTIFICATION_TIME = "last_wall_post_notification_time";
