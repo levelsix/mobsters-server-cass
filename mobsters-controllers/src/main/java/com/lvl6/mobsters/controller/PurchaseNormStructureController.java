@@ -2,6 +2,7 @@ package com.lvl6.mobsters.controller;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -28,8 +29,10 @@ import com.lvl6.mobsters.po.nonstaticdata.StructureForUser;
 import com.lvl6.mobsters.po.nonstaticdata.User;
 import com.lvl6.mobsters.po.staticdata.Structure;
 import com.lvl6.mobsters.properties.MobstersDbTables;
+import com.lvl6.mobsters.properties.MobstersTableConstants;
 import com.lvl6.mobsters.services.structureforuser.StructureForUserService;
 import com.lvl6.mobsters.services.user.UserService;
+import com.lvl6.mobsters.services.usercurrencyhistory.UserCurrencyHistoryService;
 import com.lvl6.mobsters.utils.CoordinatePair;
 
 
@@ -47,6 +50,9 @@ public class PurchaseNormStructureController extends EventController {
 	
 	@Autowired
 	protected StructureForUserService structureForUserService;
+	
+	@Autowired
+	protected UserCurrencyHistoryService userCurrencyHistoryService;
 	
 
 	@Override
@@ -68,7 +74,7 @@ public class PurchaseNormStructureController extends EventController {
 	    MinimumUserProto senderProto = reqProto.getSender();
 	    int structId = reqProto.getStructId();
 	    CoordinatePair cp = new CoordinatePair(reqProto.getStructCoordinates().getX(), reqProto.getStructCoordinates().getY());
-	    Timestamp timeOfPurchase = new Timestamp(reqProto.getTimeOfPurchase());
+	    Date timeOfPurchase = new Date(reqProto.getTimeOfPurchase());
 	    //positive value, need to convert to negative when updating user
 	    int gemsSpent = reqProto.getGemsSpent();
 	    //positive means refund, negative means charge user
@@ -91,26 +97,27 @@ public class PurchaseNormStructureController extends EventController {
 			User user = getUserService().retrieveUser(gameCenterId, userId);
 			Structure struct = getStructureRetrieveUtils().getStructureForId(structId);
 
-			//currency history purposes
-			int previousGems = 0;
-			int previousOil = 0;
-			int previousCash = 0;
-
 			boolean legitPurchaseNorm = checkLegitPurchaseNorm(responseBuilder, struct, user,
 		      		timeOfPurchase, gemsSpent, resourceChange, resourceType);
 
 			boolean successful = false;
 			List<StructureForUser> uStructList = new ArrayList<StructureForUser>();
-			Map<String, Integer> money = new HashMap<String, Integer>();
+			StructureForUser sfu = null;
+			Map<String, Integer> previousMoney = new HashMap<String, Integer>();
+			Map<String, Integer> moneyChange = new HashMap<String, Integer>();
 			if (legitPurchaseNorm) {
-				previousGems = user.getGems();
-		      	previousOil = user.getOil();
-		      	previousCash = user.getCash();
+				previousMoney.put(MobstersDbTables.USER__GEMS, user.getGems());
+				previousMoney.put(MobstersDbTables.USER__OIL, user.getOil());
+				previousMoney.put(MobstersDbTables.USER__CASH, user.getCash());
+				
 		      	successful = writeChangesToDb(user, structId, cp, timeOfPurchase, gemsSpent,
-		      			resourceChange, resourceType, uStructList, money);
+		      			resourceChange, resourceType, uStructList, moneyChange);
+		      	
+		      	
 			}
 
 			if (successful) {
+				sfu = uStructList.get(0);
 				responseBuilder.setStatus(PurchaseNormStructureStatus.SUCCESS);
 			}
 
@@ -119,7 +126,9 @@ public class PurchaseNormStructureController extends EventController {
 			log.info("Writing event: " + resEvent);
 			getEventWriter().handleEvent(resEvent);
 			
-			//TODO: write to currency history
+			//write to currency history
+			writeToUserCurrencyHistory(user, structId, sfu, timeOfPurchase, moneyChange,
+					previousMoney);
 
 		} catch (Exception e) {
 			log.error("exception in PurchaseNormStructureController processRequestEvent", e);
@@ -138,7 +147,7 @@ public class PurchaseNormStructureController extends EventController {
 
 
 	private boolean checkLegitPurchaseNorm(Builder resBuilder, Structure prospective,
-			User user, Timestamp timeOfPurchase, int gemsSpent, int resourceChange,
+			User user, Date timeOfPurchase, int gemsSpent, int resourceChange,
 			ResourceType resourceType) {
 		if (user == null || prospective == null || timeOfPurchase == null) {
 			log.error("parameter passed in is null. user=" + user + ", struct=" + prospective 
@@ -191,7 +200,7 @@ public class PurchaseNormStructureController extends EventController {
 
 	//uStructId will store the newly created user structure
 	private boolean writeChangesToDb(User user, int structId, CoordinatePair cp,
-			Timestamp purchaseTime, int gemsSpent, int resourceChange, ResourceType resourceType,
+			Date purchaseTime, int gemsSpent, int resourceChange, ResourceType resourceType,
 			List<StructureForUser> uStructList, Map<String, Integer> money) {
 		try {
 
@@ -240,6 +249,40 @@ public class PurchaseNormStructureController extends EventController {
 	}
 
 	
+	public void writeToUserCurrencyHistory(User user, int structId, StructureForUser sfu,
+			Date date, Map<String, Integer> moneyChange, Map<String, Integer> previousMoney) {
+		UUID userId = user.getId();
+		
+		Map<String, Integer> currentMoney = new HashMap<String, Integer>();
+		Map<String, String> reasonsForChanges = new HashMap<String, String>();
+		Map<String, String> detailsMap = new HashMap<String, String>();
+		String gems = MobstersDbTables.USER__GEMS;
+		String oil = MobstersDbTables.USER__OIL;
+		String cash = MobstersDbTables.USER__CASH;
+		
+		String reasonForChange = MobstersTableConstants.UCHRFC__PURCHASE_NORM_STRUCT;
+		StringBuilder sb = new StringBuilder();
+		sb.append("structId=");
+		sb.append(structId);
+		sb.append(" uStructId=" + sfu.getId());
+		String detail = sb.toString();
+		
+		currentMoney.put(gems, user.getGems());
+      	currentMoney.put(oil, user.getOil());
+      	currentMoney.put(cash, user.getCash());
+      	reasonsForChanges.put(gems, reasonForChange);
+      	reasonsForChanges.put(oil, reasonForChange);
+      	reasonsForChanges.put(cash, reasonForChange);
+      	detailsMap.put(gems, detail);
+      	detailsMap.put(oil, detail);
+      	detailsMap.put(cash, detail);
+      	
+      	boolean saveToDb = true;
+      	getUserCurrencyHistoryService().createUserCurrencyHistories(userId, date,
+      			moneyChange, previousMoney, currentMoney, reasonsForChanges,
+      			detailsMap, saveToDb);
+	}
+	
 
 	public UserService getUserService() {
 		return userService;
@@ -266,6 +309,14 @@ public class PurchaseNormStructureController extends EventController {
 			StructureForUserService structureForUserService) {
 		this.structureForUserService = structureForUserService;
 	}
-	
+
+	public UserCurrencyHistoryService getUserCurrencyHistoryService() {
+		return userCurrencyHistoryService;
+	}
+
+	public void setUserCurrencyHistoryService(
+			UserCurrencyHistoryService userCurrencyHistoryService) {
+		this.userCurrencyHistoryService = userCurrencyHistoryService;
+	}
 }
 
