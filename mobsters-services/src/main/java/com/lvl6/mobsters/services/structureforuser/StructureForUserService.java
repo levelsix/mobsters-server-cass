@@ -38,6 +38,9 @@ public interface StructureForUserService {
 	public abstract void saveStructuresForUser(List<StructureForUser> sfuList);
 	
 	//UPDATING STUFF****************************************************************
+	public abstract void updateUserStructCoordinates(StructureForUser sfu,
+			CoordinatePair coordinates);
+	
 	
 	//DELETING STUFF****************************************************************
 	

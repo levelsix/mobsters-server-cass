@@ -167,6 +167,16 @@ public class StructureForUserServiceImpl implements StructureForUserService {
 	}
 	
 	//UPDATING STUFF****************************************************************
+	@Override
+	public void updateUserStructCoordinates(StructureForUser sfu, CoordinatePair coordinates) {
+		float x = coordinates.getX();
+		float y = coordinates.getY();
+		
+		sfu.setxCoordinate(x);
+		sfu.setyCoordinate(y);
+		
+		saveStructureForUser(sfu);
+	}
 
 	//DELETING STUFF****************************************************************
 	
