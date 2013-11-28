@@ -5,8 +5,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.lvl6.mobsters.entitymanager.UserDungeonStatusEntityManager;
-import com.lvl6.mobsters.entitymanager.UserDungeonStatusHistoryEntityManager;
 import com.lvl6.mobsters.entitymanager.UserItemEntityManager;
 import com.lvl6.mobsters.entitymanager.nonstaticdata.MonsterEnhancingForUserEntityManager;
 import com.lvl6.mobsters.entitymanager.nonstaticdata.MonsterForUserEntityManager;
@@ -31,12 +29,6 @@ public class CompleteDungeonController extends EventController {
 	@Autowired
 	protected UserEntityManager userEntityManager;
 	
-	@Autowired
-	protected UserDungeonStatusEntityManager userDungeonStatusEntityManager;
-	
-	@Autowired
-	protected UserDungeonStatusHistoryEntityManager userDungeonStatusHistoryEntityManager;
-
 	@Autowired
 	protected StructureForUserService structureForUserService;
 		

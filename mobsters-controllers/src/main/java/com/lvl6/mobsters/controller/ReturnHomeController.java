@@ -5,8 +5,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.lvl6.mobsters.entitymanager.UserDungeonStatusEntityManager;
-import com.lvl6.mobsters.entitymanager.UserDungeonStatusHistoryEntityManager;
 import com.lvl6.mobsters.entitymanager.nonstaticdata.MonsterForUserEntityManager;
 import com.lvl6.mobsters.entitymanager.nonstaticdata.UserEntityManager;
 import com.lvl6.mobsters.events.RequestEvent;
@@ -27,13 +25,6 @@ public class ReturnHomeController extends EventController {
 	@Autowired
 	protected UserEntityManager userEntityManager;
 	
-	@Autowired
-	protected UserDungeonStatusEntityManager userDungeonStatusEntityManager;
-	
-	@Autowired
-	protected UserDungeonStatusHistoryEntityManager userDungeonStatusHistoryEntityManager;
-
-
 	@Autowired
 	protected MonsterForUserService monsterForUserService; 
 	
