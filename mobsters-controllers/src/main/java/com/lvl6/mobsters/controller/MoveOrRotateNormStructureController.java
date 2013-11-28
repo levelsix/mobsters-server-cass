@@ -18,7 +18,6 @@ import com.lvl6.mobsters.events.response.MoveOrRotateNormStructureResponseEvent;
 import com.lvl6.mobsters.noneventprotos.MobstersEventProtocolProto.MobstersEventProtocolRequest;
 import com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto;
 import com.lvl6.mobsters.po.nonstaticdata.StructureForUser;
-import com.lvl6.mobsters.po.nonstaticdata.User;
 import com.lvl6.mobsters.services.structureforuser.StructureForUserService;
 import com.lvl6.mobsters.services.user.UserService;
 import com.lvl6.mobsters.utils.CoordinatePair;
@@ -57,7 +56,6 @@ public class MoveOrRotateNormStructureController extends EventController {
 	    UUID userStructId = UUID.fromString(userStructIdStr);
 	    MoveOrRotateNormStructType type = reqProto.getType();
 	    String userIdStr = senderProto.getUserUuid();
-	    UUID userId = UUID.fromString(userIdStr);
 
 	    CoordinatePair newCoords = null;
 	    if (type == MoveOrRotateNormStructType.MOVE) {
@@ -73,18 +71,17 @@ public class MoveOrRotateNormStructureController extends EventController {
 
 		try {
 			//get whatever we need from the database
-			String gameCenterId = null;
-			User user = getUserService().retrieveUser(gameCenterId, userId);
+			
 			StructureForUser userStruct = getStructureForUserService()
 					.getSpecificUserStruct(userStructId);
 
 			//validate request
-			boolean validRequest = isValidRequest(responseBuilder, user, userStruct,
+			boolean validRequest = isValidRequest(responseBuilder, userStruct,
 					newCoords, type);
 
 			boolean successful = false;
 			if (validRequest) { 
-				successful = writeChangesToDb(user, userStruct, newCoords);
+				successful = writeChangesToDb(userStruct, newCoords);
 			}
 
 			if (successful) {
@@ -111,11 +108,10 @@ public class MoveOrRotateNormStructureController extends EventController {
 		}
 	}
 	
-	private boolean isValidRequest(Builder responseBuilder, User inDb, StructureForUser sfu,
+	private boolean isValidRequest(Builder responseBuilder, StructureForUser sfu,
 			CoordinatePair newCoords, MoveOrRotateNormStructType type) {
-		if (null == inDb || null == sfu) {
-			log.error("unexpected error: no user or sfu exists. inDb=" + inDb + "\t inDb=" +
-					inDb + "\t userStruct=" + sfu);
+		if (null == sfu) {
+			log.error("unexpected error: no sfu exists. userStruct=" + sfu);
 			return false;
 		}
 		
@@ -128,7 +124,7 @@ public class MoveOrRotateNormStructureController extends EventController {
 		return true;
 	}
 
-	private boolean writeChangesToDb(User inDb, StructureForUser sfu,
+	private boolean writeChangesToDb(StructureForUser sfu,
 			CoordinatePair coordinates) {
 			
 		try {

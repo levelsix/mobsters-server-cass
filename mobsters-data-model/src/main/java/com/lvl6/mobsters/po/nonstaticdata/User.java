@@ -96,8 +96,8 @@ public class User extends BasePersistentObject<UUID>{
 	@Index
 	protected String apsalarId = null;
 	
-	@Column(name="num_coins_retrieved_from_structs")
-	protected int numCoinsRetrievedFromStructs = 0;
+	@Column(name="num_cash_retrieved_from_structs")
+	protected int numCashRetrievedFromStructs = 0;
 	
 	@Column(name="num_oil_retrieved_from_structs")
 	protected int numOilRetrievedFromStructs = 0;
@@ -356,12 +356,12 @@ public class User extends BasePersistentObject<UUID>{
 		this.apsalarId = apsalarId;
 	}
 
-	public int getNumCoinsRetrievedFromStructs() {
-		return numCoinsRetrievedFromStructs;
+	public int getNumCashRetrievedFromStructs() {
+		return numCashRetrievedFromStructs;
 	}
 
-	public void setNumCoinsRetrievedFromStructs(int numCoinsRetrievedFromStructs) {
-		this.numCoinsRetrievedFromStructs = numCoinsRetrievedFromStructs;
+	public void setNumCashRetrievedFromStructs(int numCashRetrievedFromStructs) {
+		this.numCashRetrievedFromStructs = numCashRetrievedFromStructs;
 	}
 
 	public int getNumOilRetrievedFromStructs() {
@@ -545,8 +545,8 @@ public class User extends BasePersistentObject<UUID>{
 				+ ", numBadges=" + numBadges + ", isFake=" + isFake
 				+ ", createTime=" + createTime + ", isAdmin=" + isAdmin
 				+ ", apsalarId=" + apsalarId
-				+ ", numCoinsRetrievedFromStructs="
-				+ numCoinsRetrievedFromStructs
+				+ ", numCashRetrievedFromStructs="
+				+ numCashRetrievedFromStructs
 				+ ", numOilRetrievedFromStructs=" + numOilRetrievedFromStructs
 				+ ", numConsecutiveDaysPlayed=" + numConsecutiveDaysPlayed
 				+ ", clanId=" + clanId + ", lastWallPostNotificationTime="

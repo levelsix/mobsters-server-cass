@@ -54,12 +54,12 @@ public class CreateNoneventProtoUtilsImpl implements CreateNoneventProtoUtils {
 	public FullUserMonsterProto createFullUserMonsterProtoFromUserMonster(MonsterForUser mfu) {
 		FullUserMonsterProto.Builder fumpb = FullUserMonsterProto.newBuilder();
 		UUID id = mfu.getId();
-		String uuidStr = id.toString();
-		fumpb.setUserMonsterUuid(uuidStr);
+		String aStr = id.toString();
+		fumpb.setUserMonsterUuid(aStr);
 		
 		id = mfu.getUserId();
-		uuidStr = id.toString();
-		fumpb.setUserUuid(uuidStr);
+		aStr = id.toString();
+		fumpb.setUserUuid(aStr);
 		
 		fumpb.setMonsterId(mfu.getMonsterId());
 		fumpb.setCurrentExp(mfu.getCurrentExp());
@@ -196,57 +196,125 @@ public class CreateNoneventProtoUtilsImpl implements CreateNoneventProtoUtils {
 		// TODO Auto-generated method stub
 		FullUserProto.Builder fupb = FullUserProto.newBuilder();
 		
-		String uId = u.getId().toString();
-		String name = u.getName();
-		int level = u.getLvl();
-		int gems = u.getGems();
-		int cash = u.getCash();
-		int exp = u.getExp();
-		int tasksCompleted = u.getTasksCompleted();
-		int battlesWon = u.getBattlesWon();
-		int battlesLost = u.getBattlesLost();
-		int flees = u.getFlees();
-		String referralCode = u.getReferralCode();
-		int numReferrals = u.getNumReferrals();
-		Date lastLoginDate = u.getLastLogin();
-		Date lastLogoutDate = u.getLastLogout();
-		boolean isFake = u.isFake();
-		boolean isAdmin = u.isAdmin();
-		int numCoinsRetrievedFromStructs = u.getNumCoinsRetrievedFromStructs();
-		UUID clanId = u.getClanId();
-		boolean hasReceivedFbReward = u.isHasReceivedFbReward();
-		int numAdditionalMonsterSlots = u.getNumAdditionalMonsterSlots();
-		int numBeginnerSalesPurchased = u.getNumBeginnerSalesPurchased();
-		boolean hasActiveShield = u.isHasActiveShield();
-		Date shieldEndTime = u.getShieldEndTime();
-		int elo = u.getElo();
-		String rank = u.getRank();
-		Date lastTimeQueued = u.getLastTimeQueued();
-		int attacksWon = u.getAttacksWon();
-		int defensesWon = u.getDefensesWon();
-		int attacksLost = u.getAttacksLost();
-		int defensesLost = u.getDefensesLost();
-		String facebookId = u.getFacebookId();
+		String aStr = u.getId().toString();
+		fupb.setUserUuid(aStr);
 		
+		aStr = u.getName();
+		if (null != aStr) {
+			fupb.setName(aStr);
+		}
+		
+		int anInt = u.getLvl();
+		fupb.setLevel(anInt);
+		
+		anInt = u.getGems();
+		fupb.setGems(anInt);
+		
+		anInt= u.getCash();
+		fupb.setCash(anInt);
+		
+		anInt = u.getOil();
+		fupb.setOil(anInt);
+		
+		anInt = u.getExp();
+		fupb.setExperience(anInt);
+		
+		anInt = u.getTasksCompleted();
+		fupb.setTasksCompleted(anInt);
+		
+		anInt = u.getBattlesWon();
+		fupb.setBattlesWon(anInt);
+		
+		anInt = u.getBattlesLost();
+		fupb.setBattlesLost(anInt);
+		
+		anInt = u.getFlees();
+		fupb.setFlees(anInt);
+		
+		aStr = u.getReferralCode();
+		if (null != aStr) {
+			fupb.setReferralCode(aStr);
+		}
+		
+		anInt = u.getNumReferrals();
+		fupb.setNumReferrals(anInt);
+		
+		Date aDate = u.getLastLogin();
+		if (null != aDate) {
+			fupb.setLastLoginTime(aDate.getTime());
+		}
+		
+		aDate = u.getLastLogout();
+		if (null != aDate) {
+			fupb.setLastLogoutTime(aDate.getTime());
+		}
+		
+		boolean aBool = u.isFake();
+		fupb.setIsFake(aBool);
+		
+		aBool = u.isAdmin();
+		fupb.setIsAdmin(aBool);
+		
+		anInt = u.getNumCashRetrievedFromStructs();
+		fupb.setNumCashRetrievedFromStructs(anInt);
+		
+		anInt = u.getNumOilRetrievedFromStructs();
+		fupb.setNumOilRetrievedFromStructs(anInt);
+		
+		//make the clan proto
+		UUID clanId = u.getClanId();
+		
+		aBool = u.isHasReceivedFbReward();
+		fupb.setHasReceivedfbReward(aBool);
+		
+		anInt = u.getNumAdditionalMonsterSlots();
+		fupb.setNumAdditionalMonsterSlots(anInt);
+		
+		anInt = u.getNumBeginnerSalesPurchased();
+		fupb.setNumBeginnerSalesPurchased(anInt);
+		
+		aBool = u.isHasActiveShield();
+		fupb.setHasActiveShield(aBool);
+		
+		
+		aDate = u.getShieldEndTime();
+		if (null != aDate) {
+			fupb.setShieldEndTime(aDate.getTime());
+		}
+		
+		anInt = u.getElo();
+		fupb.setElo(anInt);
+		
+		aStr = u.getRank();
+		if (null != aStr) {
+			fupb.setRank(aStr);
+		}
+		
+		aDate = u.getLastTimeQueued();
+		fupb.setLastTimeQueued(aDate.getTime());
+		
+		anInt = u.getAttacksWon();
+		fupb.setAttacksWon(anInt);
+		
+		anInt = u.getDefensesWon();
+		fupb.setDefensesWon(anInt);
+		
+		anInt = u.getAttacksLost();
+		fupb.setAttacksLost(anInt);
+		
+		anInt = u.getDefensesLost();
+		fupb.setDefensesLost(anInt);
+		
+		aStr = u.getFacebookId();
+		if (null != aStr) {
+			fupb.setFacebookId(aStr);
+		}
 		
 //		String gameCenterId = u.getGameCenterId();
 		//Date dateCreated = u.getDateCreated();
 		
-		fupb.setUserUuid(uId.toString());
-		fupb.setName(name);
-		fupb.setLevel(level);
-		fupb.setGems(gems);
-		fupb.setCash(cash);
-		fupb.setExperience(exp);
-		fupb.setTasksCompleted(tasksCompleted);
-		fupb.setBattlesWon(battlesWon);
-		fupb.setBattlesLost(battlesLost);
-		fupb.setFlees(flees);
-		fupb.setReferralCode(referralCode);
-		fupb.setNumReferrals(numReferrals);
-		
-		if (null != lastLoginDate) {
-			fupb.setLastLoginTime(lastLoginDate.getTime());
+		if (null != aDate) {
+			fupb.setLastLoginTime(aDate.getTime());
 		}
 		//TODO: FINISH THE REST OF THIS
 		

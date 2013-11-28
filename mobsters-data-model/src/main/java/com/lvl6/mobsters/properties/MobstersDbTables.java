@@ -384,7 +384,7 @@ public class MobstersDbTables {
 	public static final String USER__CREATE_TIME = "create_time";
 	public static final String USER__IS_ADMIN = "is_admin";
 	public static final String USER__APSALAR_ID = "apsalar_id";
-	public static final String USER__NUM_COINS_RETRIEVED_FROM_STRUCTS = "num_coins_retrieved_from_structs";
+	public static final String USER__NUM_CASH_RETRIEVED_FROM_STRUCTS = "num_cash_retrieved_from_structs";
 	public static final String USER__NUM_OIL_RETRIEVED_FROM_STRUCTS = "num_oil_retrieved_from_structs";
 	public static final String USER__NUM_CONSECUTIVE_DAYS_PLAYED = "num_consecutive_days_played";
 	public static final String USER__CLAN_ID = "clan_id";
@@ -414,7 +414,7 @@ public class MobstersDbTables {
 	public static final String USER_BEFORE_TUTORIAL_COMPLETION__ADVERTISER_ID = "advertiser_id";
 	public static final String USER_BEFORE_TUTORIAL_COMPLETION__CREATE_TIME = "create_time";
 
-	/*USER CURRENCY HISTORY (FOR GOLD/DIAMONDS AND SILVER/COINS*/
+	/*USER CURRENCY HISTORY*/
 	public static final String USER_CURRENCY_HISTORY__USER_ID = GENERIC__USER_ID;
 	public static final String USER_CURRENCY_HISTORY__DATE = "date";
 	public static final String USER_CURRENCY_HISTORY__RESOURCE_TYPE = "resource_type";
