@@ -31,6 +31,7 @@ import com.lvl6.mobsters.po.nonstaticdata.QuestForUser;
 import com.lvl6.mobsters.po.nonstaticdata.User;
 import com.lvl6.mobsters.po.nonstaticdata.UserCurrencyHistory;
 import com.lvl6.mobsters.po.staticdata.Quest;
+import com.lvl6.mobsters.properties.MobstersDbTables;
 import com.lvl6.mobsters.properties.MobstersTableConstants;
 import com.lvl6.mobsters.services.monsterforuser.MonsterForUserService;
 import com.lvl6.mobsters.services.questforuser.QuestForUserService;
@@ -251,20 +252,21 @@ public class QuestRedeemController extends EventController {
 	
 	private List<UserCurrencyHistory> createCurrencyHistory(User u, int questId,
 			Date timeRedeemed, int cashGained, int gemsGained) {
-		boolean isCash = true;
+		String cashStr = MobstersDbTables.USER__CASH;
+		String gemsStr = MobstersDbTables.USER__GEMS;
 		String reasonForChange = MobstersTableConstants.UCHRFC__REDEEMED_QUEST;
 		StringBuilder sb = new StringBuilder();
 		sb.append("questId=");
 		sb.append(questId);
 		String details = sb.toString();
 
+		boolean saveToDb = false;
 		UserCurrencyHistory cash = getUserCurrencyHistoryService()
-				.createNewUserCurrencyHistory(u, timeRedeemed, isCash, cashGained,
-						reasonForChange, details);
-		isCash = false;
+				.createNewUserCurrencyHistory(u, timeRedeemed, cashStr, cashGained,
+						reasonForChange, details, saveToDb);
 		UserCurrencyHistory gems = getUserCurrencyHistoryService()
-				.createNewUserCurrencyHistory(u, timeRedeemed, isCash, gemsGained,
-						reasonForChange, details);
+				.createNewUserCurrencyHistory(u, timeRedeemed, gemsStr, gemsGained,
+						reasonForChange, details, saveToDb);
 		
 		List<UserCurrencyHistory> uchList = new ArrayList<UserCurrencyHistory>();
 		if (null != cash) {
