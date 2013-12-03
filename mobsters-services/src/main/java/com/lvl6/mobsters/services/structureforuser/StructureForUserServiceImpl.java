@@ -18,6 +18,7 @@ import com.lvl6.mobsters.entitymanager.nonstaticdata.StructureForUserEntityManag
 import com.lvl6.mobsters.entitymanager.staticdata.StructureEntityManager;
 import com.lvl6.mobsters.entitymanager.staticdata.StructureRetrieveUtils;
 import com.lvl6.mobsters.po.nonstaticdata.StructureForUser;
+import com.lvl6.mobsters.po.staticdata.Structure;
 import com.lvl6.mobsters.properties.MobstersDbTables;
 import com.lvl6.mobsters.utils.CoordinatePair;
 import com.lvl6.mobsters.utils.QueryConstructionUtil;
@@ -176,6 +177,23 @@ public class StructureForUserServiceImpl implements StructureForUserService {
 		sfu.setyCoordinate(y);
 		
 		saveStructureForUser(sfu);
+	}
+	
+	@Override
+	public void upgradeUserStruct(StructureForUser userStruct, Structure nextLevelStruct,
+			Date timeOfUpgrade) {
+		if (null == nextLevelStruct) {
+			Structure currentStructure = null;
+			int structId = userStruct.getStructureId();
+			nextLevelStruct = getStructureRetrieveUtils().getUpgradedStructure(currentStructure, structId);
+		}
+		int nextLevelStructId = nextLevelStruct.getId();
+		
+		userStruct.setStructureId(nextLevelStructId);
+		userStruct.setPurchaseTime(timeOfUpgrade);
+		userStruct.setComplete(false);
+		
+		saveStructureForUser(userStruct);
 	}
 
 	//DELETING STUFF****************************************************************

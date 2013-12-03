@@ -10,6 +10,7 @@ import com.lvl6.mobsters.entitymanager.nonstaticdata.StructureForUserEntityManag
 import com.lvl6.mobsters.entitymanager.staticdata.StructureEntityManager;
 import com.lvl6.mobsters.entitymanager.staticdata.StructureRetrieveUtils;
 import com.lvl6.mobsters.po.nonstaticdata.StructureForUser;
+import com.lvl6.mobsters.po.staticdata.Structure;
 import com.lvl6.mobsters.utils.CoordinatePair;
 import com.lvl6.mobsters.utils.QueryConstructionUtil;
 
@@ -40,6 +41,9 @@ public interface StructureForUserService {
 	//UPDATING STUFF****************************************************************
 	public abstract void updateUserStructCoordinates(StructureForUser sfu,
 			CoordinatePair coordinates);
+	
+	public abstract void upgradeUserStruct(StructureForUser userStruct, Structure nextLevelStruct,
+			Date timeOfUpgrade);
 	
 	
 	//DELETING STUFF****************************************************************
