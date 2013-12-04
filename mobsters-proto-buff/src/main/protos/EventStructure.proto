@@ -109,7 +109,7 @@ message FinishNormStructWaittimeWithDiamondsRequestProto {
 	optional MinimumUserProto sender = 1;
 	optional string userStructUuid = 2;
 	
-	//user's userstruct's lastRetrieved will start with this date
+	//user's userstruct's lastRetrieved will start with this date, consequently,
 	//if the structure is a generator, the uncollected resources will be lost when upgraded
 	optional int64 timeOfSpeedup = 3;			
 	

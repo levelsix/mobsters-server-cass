@@ -195,7 +195,29 @@ public class StructureForUserServiceImpl implements StructureForUserService {
 		
 		saveStructureForUser(userStruct);
 	}
+	
+	@Override
+	public void updateUserStructBuildingIsComplete(StructureForUser buildDone,
+			Date newRetrievedTime) {
+		buildDone.setLastCollectTime(newRetrievedTime);
+		buildDone.setComplete(true);
+		saveStructureForUser(buildDone);
+	}
 
+	@Override
+	public void updateUserStructsBuildingIsComplete(List<StructureForUser> buildsDone,
+			List<Date> newRetrievedTimes) {
+		boolean isComplete = true;
+		for (int index = 0; index < buildsDone.size(); index++) {
+			StructureForUser userStruct = buildsDone.get(index);
+			Date newRetrievedTime = newRetrievedTimes.get(index);
+			
+			userStruct.setLastCollectTime(newRetrievedTime);
+			userStruct.setComplete(isComplete);
+		}
+		saveStructuresForUser(buildsDone);
+	}
+	
 	//DELETING STUFF****************************************************************
 	
 	

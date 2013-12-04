@@ -45,6 +45,11 @@ public interface StructureForUserService {
 	public abstract void upgradeUserStruct(StructureForUser userStruct, Structure nextLevelStruct,
 			Date timeOfUpgrade);
 	
+	public abstract void updateUserStructBuildingIsComplete(StructureForUser buildDone,
+			Date newRetrievedTime);
+	
+	public abstract void updateUserStructsBuildingIsComplete(List<StructureForUser> buildsDone,
+			List<Date> newRetrievedTimes);
 	
 	//DELETING STUFF****************************************************************
 	
