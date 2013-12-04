@@ -16,80 +16,64 @@ import com.lvl6.mobsters.properties.MobstersDbTables;
 
 	private  Logger log = LoggerFactory.getLogger(new Object() { }.getClass().getEnclosingClass());
 
-	private  Map<Integer, StructureResourceGenerator> idsToSpells;
+	private  Map<Integer, StructureResourceGenerator> idsToStructureResourceGenerators;
 	
 	private  final String TABLE_NAME = MobstersDbTables.TABLE_STRUCTURE_RESOURCE_GENERATOR;
 
 	@Autowired
 	protected StructureResourceGeneratorEntityManager structureResourceGeneratorEntityManager;
-
-	public  StructureResourceGenerator getSpellForId(Integer id) {
-		log.debug("retrieve spell data for id " + id);
-		if (idsToSpells == null) {
-			setStaticIdsToSpells();      
+	
+	public Map<Integer, StructureResourceGenerator> getStructIdsToResourceGenerators() {
+		if (null == idsToStructureResourceGenerators) {
+			setStaticIdsToStructureResourceGenerators();
 		}
-		return idsToSpells.get(id);
+		return idsToStructureResourceGenerators;
 	}
 
-	public  Map<Integer, StructureResourceGenerator> getSpellsForIds(List<Integer> ids) {
-		log.debug("retrieve spells data for ids " + ids);
-		if (idsToSpells == null) {
-			setStaticIdsToSpells();      
+	public StructureResourceGenerator getStructureResourceGeneratorForId(Integer id) {
+		log.debug("retrieve StructureResourceGenerator for id " + id);
+		if (idsToStructureResourceGenerators == null) {
+			setStaticIdsToStructureResourceGenerators();      
+		}
+		return idsToStructureResourceGenerators.get(id);
+	}
+
+	public  Map<Integer, StructureResourceGenerator> getStructureResourceGeneratorsForIds(List<Integer> ids) {
+		log.debug("retrieve StructureResourceGenerator for ids " + ids);
+		if (idsToStructureResourceGenerators == null) {
+			setStaticIdsToStructureResourceGenerators();      
 		}
 		Map<Integer, StructureResourceGenerator> toreturn = new HashMap<Integer, StructureResourceGenerator>();
 		for (Integer id : ids) {
-			toreturn.put(id,  idsToSpells.get(id));
+			toreturn.put(id,  idsToStructureResourceGenerators.get(id));
 		}
 		return toreturn;
 	}
 
-	private  void setStaticIdsToSpells() {
+	private  void setStaticIdsToStructureResourceGenerators() {
 		log.debug("setting  map of consumableIds to consumables");
 
-		String cqlquery = "select * from spell;"; 
-		List <StructureResourceGenerator> list = getSpellEntityManager().get().find(cqlquery);
-		idsToSpells = new HashMap<Integer, StructureResourceGenerator>();
+		String cqlquery = "select * from " + TABLE_NAME; 
+		List<StructureResourceGenerator> list = getStructureResourceGeneratorEntityManager().get().find(cqlquery);
+		idsToStructureResourceGenerators = new HashMap<Integer, StructureResourceGenerator>();
 		for(StructureResourceGenerator s : list) {
 			Integer id= s.getId();
-			idsToSpells.put(id, s);
+			idsToStructureResourceGenerators.put(id, s);
 		}		
 	}
-//	
-//	public StructureResourceGenerator getUpgradedSpell(StructureResourceGenerator s) {
-//		if(idsToSpells == null) {
-//			setStaticIdsToSpells();
-//		}
-//		for(StructureResourceGenerator value : idsToSpells.values()) {
-//			if((value.getName() == s.getName()) && (value.getLvl() == s.getLvl()+1))
-//				return value;	
-//		}
-//		return null;
-//		
-//	}
-//	
-//	public StructureResourceGenerator getSpellAccordingToNameAndLevel(String name, int level) {
-//		if(idsToSpells == null) {
-//			setStaticIdsToSpells();
-//		}
-//		for(StructureResourceGenerator value : idsToSpells.values()) {
-//			if((value.getName() == name) && (value.getLvl() == level))
-//				return value;
-//		}
-//		return null;
-//	}
 	
 
 	public  void reload() {
-		setStaticIdsToSpells();
+		setStaticIdsToStructureResourceGenerators();
 	}
 	
 	
 
-	public StructureResourceGeneratorEntityManager getSpellEntityManager() {
+	public StructureResourceGeneratorEntityManager getStructureResourceGeneratorEntityManager() {
 		return structureResourceGeneratorEntityManager;
 	}
 
-	public void setSpellEntityManager(
+	public void setStructureResourceGeneratorEntityManager(
 			StructureResourceGeneratorEntityManager structureResourceGeneratorEntityManager) {
 		this.structureResourceGeneratorEntityManager = structureResourceGeneratorEntityManager;
 	}

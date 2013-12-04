@@ -14,14 +14,15 @@ import com.dekayd.astyanax.cassandra.entitymanager.Index;
 @Entity
 public class StructureResourceGenerator extends BasePersistentObject<Integer> implements Serializable{
 
-	private static final long serialVersionUID = -4801397898325695257L;
+
+	private static final long serialVersionUID = -575496210438261163L;
 
 	@Id
 	protected Integer id = 0;
 	
 	@Column(name="resource_type")
 	@Index
-	protected String resource_type = "";
+	protected String resourceType = "";
 	
 	@Column(name="production_rate")
 	@Index
@@ -31,8 +32,6 @@ public class StructureResourceGenerator extends BasePersistentObject<Integer> im
 	@Index
 	protected int capacity = 0;
 
-	
-	
 	public Integer getId() {
 		return id;
 	}
@@ -41,12 +40,12 @@ public class StructureResourceGenerator extends BasePersistentObject<Integer> im
 		this.id = id;
 	}
 
-	public String getResource_type() {
-		return resource_type;
+	public String getResourceType() {
+		return resourceType;
 	}
 
-	public void setResource_type(String resource_type) {
-		this.resource_type = resource_type;
+	public void setResourceType(String resourceType) {
+		this.resourceType = resourceType;
 	}
 
 	public float getProductionRate() {
@@ -67,8 +66,8 @@ public class StructureResourceGenerator extends BasePersistentObject<Integer> im
 
 	@Override
 	public String toString() {
-		return "StructureResourceGenerator [id=" + id + ", resource_type="
-				+ resource_type + ", productionRate=" + productionRate
+		return "StructureResourceGenerator [id=" + id + ", resourceType="
+				+ resourceType + ", productionRate=" + productionRate
 				+ ", capacity=" + capacity + "]";
 	}
 	

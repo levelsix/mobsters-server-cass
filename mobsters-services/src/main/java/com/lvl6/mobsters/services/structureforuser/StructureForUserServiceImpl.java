@@ -16,9 +16,13 @@ import org.springframework.stereotype.Component;
 
 import com.lvl6.mobsters.entitymanager.nonstaticdata.StructureForUserEntityManager;
 import com.lvl6.mobsters.entitymanager.staticdata.StructureEntityManager;
+import com.lvl6.mobsters.entitymanager.staticdata.StructureResourceGeneratorRetrieveUtils;
 import com.lvl6.mobsters.entitymanager.staticdata.StructureRetrieveUtils;
+import com.lvl6.mobsters.noneventprotos.StructureProto.ResourceType;
 import com.lvl6.mobsters.po.nonstaticdata.StructureForUser;
+import com.lvl6.mobsters.po.nonstaticdata.User;
 import com.lvl6.mobsters.po.staticdata.Structure;
+import com.lvl6.mobsters.po.staticdata.StructureResourceGenerator;
 import com.lvl6.mobsters.properties.MobstersDbTables;
 import com.lvl6.mobsters.services.time.TimeUtils;
 import com.lvl6.mobsters.utils.CoordinatePair;
@@ -46,6 +50,9 @@ public class StructureForUserServiceImpl implements StructureForUserService {
 	
 	@Autowired
 	protected TimeUtils timeUtils;
+	
+	@Autowired
+	protected StructureResourceGeneratorRetrieveUtils structureResourceGeneratorRetrieveUtils;
 	
 	//CONTROLLER LOGIC STUFF****************************************************************
 	@Override
@@ -85,10 +92,87 @@ public class StructureForUserServiceImpl implements StructureForUserService {
 		}
 		return timesBuildsFinished;
 	}
+	
+	@Override
+	public Map<UUID, StructureResourceGenerator> getUserStructIdsToResourceGenerators(
+			Collection<StructureForUser> userStructs) {
+		Map<UUID, StructureResourceGenerator> returnValue =
+	    		new HashMap<UUID, StructureResourceGenerator>();
+	    Map<Integer, StructureResourceGenerator> structIdsToStructs = 
+	    		getStructureResourceGeneratorRetrieveUtils().getStructIdsToResourceGenerators();
+	    
+	    if(null == userStructs || userStructs.isEmpty()) {
+	      log.error("There are no user structs.");
+	    }
+	    
+	    for(StructureForUser us : userStructs) {
+	      int structId = us.getStructureId();
+	      UUID userStructId = us.getId();
+	      
+	      StructureResourceGenerator s = structIdsToStructs.get(structId);
+	      if(null != s) {
+	        returnValue.put(userStructId, s);
+	      } else {
+	        log.error("structure with id " + structId + " does not exist, therefore UserStruct is invalid:" + us);
+	      }
+	    }
+	    
+	    return returnValue;
+	}
+	
+	@Override
+	public void collectFromUserStructs(User aUser, List<UUID> userStructIds,
+			Map<UUID, StructureForUser> userStructIdsToUserStructs,
+			Map<UUID, StructureResourceGenerator> userStructIdsToGenerators,
+			Map<UUID, Date> userStructIdsToTimesOfRetrieval,
+			Map<UUID, Integer> userStructIdsToAmountCollected,
+			Map<String, Integer> resourcesGained) {
+		UUID userId = aUser.getId();
+		//go through the userStructIds the user sent, checking which structs can be
+		//retrieved
+		int cash = 0;
+		int oil = 0;
+		for (UUID id : userStructIds) {
+			StructureForUser userStruct = userStructIdsToUserStructs.get(id);
+			StructureResourceGenerator resGen = userStructIdsToGenerators.get(id);
 
+			if (null == userStruct || !userId.equals(userStruct.getUserId()) || !userStruct.isComplete()) {
+				log.error("(will continue processing) struct owner is not user, or struct" +
+						" is not complete yet. userStruct=" + userStruct);
+				//remove invalid user structure
+				userStructIdsToUserStructs.remove(id);
+				userStructIdsToTimesOfRetrieval.remove(id);
+				userStructIdsToAmountCollected.remove(id);
+				continue;
+			}
+
+			String type = resGen.getResourceType();
+			ResourceType rt = ResourceType.valueOf(type);
+			if (ResourceType.CASH.equals(rt)) {
+				cash += userStructIdsToAmountCollected.get(id);
+			} else if (ResourceType.OIL.equals(rt)) {
+				oil += userStructIdsToAmountCollected.get(id);
+			} else {
+				log.error("(will continue processing) unknown resource type: " + rt);
+				//remove invalid user structure
+				userStructIdsToUserStructs.remove(id);
+				userStructIdsToTimesOfRetrieval.remove(id);
+				userStructIdsToAmountCollected.remove(id);
+			}
+		}
+		//return to the caller the amount of money the user can collect 
+		resourcesGained.put(MobstersDbTables.USER__CASH, cash);
+		resourcesGained.put(MobstersDbTables.USER__OIL, oil);
+
+	}
+	
+	
+	
+	
+	
 	//RETRIEVING STUFF****************************************************************
 	@Override
-	public  List<StructureForUser> getAllUserStructuresForUser(UUID userId) {
+	public List<StructureForUser> getAllUserStructuresForUser(UUID userId) {
 		log.debug("retrieve StructureForUser data for user with id " + userId);
 		
 		//construct the search parameters
@@ -258,6 +342,23 @@ public class StructureForUserServiceImpl implements StructureForUserService {
 		saveStructuresForUser(buildsDone);
 	}
 	
+	@Override
+	public void updateUserStructsLastCollectedTime(
+			Map<UUID, Date> userStructIdsToTimesOfRetrieval,
+			Map<UUID, StructureForUser> userStructIdsToUserStructs) {
+		List<StructureForUser> saveMeList = new ArrayList<StructureForUser>();
+		
+		for (UUID userStructId : userStructIdsToTimesOfRetrieval.keySet()) {
+			Date newCollectedTime = userStructIdsToTimesOfRetrieval.get(userStructId);
+			StructureForUser us = userStructIdsToUserStructs.get(userStructId);
+			
+			us.setLastCollectTime(newCollectedTime);
+			saveMeList.add(us);
+		}
+		
+		saveStructuresForUser(saveMeList);
+	}
+	
 	//DELETING STUFF****************************************************************
 	
 	
@@ -306,7 +407,15 @@ public class StructureForUserServiceImpl implements StructureForUserService {
 	public void setTimeUtils(TimeUtils timeUtils) {
 		this.timeUtils = timeUtils;
 	}
-	
+	@Override
+	public StructureResourceGeneratorRetrieveUtils getStructureResourceGeneratorRetrieveUtils() {
+		return structureResourceGeneratorRetrieveUtils; 
+	}
+	@Override
+	public void setStructureResourceGeneratorRetrieveUtils(
+			StructureResourceGeneratorRetrieveUtils structureResourceGeneratorRetrieveUtils) {
+		this.structureResourceGeneratorRetrieveUtils = structureResourceGeneratorRetrieveUtils;
+	}
 
 	//old aoc2 stuff****************************************************************
 	/*@Override
