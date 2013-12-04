@@ -13,7 +13,7 @@ public class NormStructWaitCompleteResponseEvent extends NormalResponseEvent {
   
   public NormStructWaitCompleteResponseEvent(String playerId) {
     super(playerId);
-    eventType = MobstersEventProtocolResponse.S_UPGRADE_NORM_STRUCTURE_EVENT_VALUE;
+    eventType = MobstersEventProtocolResponse.S_NORM_STRUCT_WAIT_COMPLETE_EVENT_VALUE;
   }
   
   @Override

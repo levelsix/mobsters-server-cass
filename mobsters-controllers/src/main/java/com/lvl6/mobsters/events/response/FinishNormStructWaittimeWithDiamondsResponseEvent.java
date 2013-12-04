@@ -13,7 +13,7 @@ public class FinishNormStructWaittimeWithDiamondsResponseEvent extends NormalRes
   
   public FinishNormStructWaittimeWithDiamondsResponseEvent(String playerId) {
     super(playerId);
-    eventType = MobstersEventProtocolResponse.S_UPGRADE_NORM_STRUCTURE_EVENT_VALUE;
+    eventType = MobstersEventProtocolResponse.S_FINISH_NORM_STRUCT_WAITTIME_WITH_DIAMONDS_EVENT_VALUE;
   }
   
   @Override
