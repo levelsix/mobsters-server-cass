@@ -44,4 +44,10 @@ public class TimeUtils {
 	  
 	  return ldOne.isBefore(ldTwo);
   }
+  
+  public Date addMillisToDate(Date aDate, long millis) {
+	  DateTime dt = new DateTime(aDate);
+	  dt.plus(millis);
+	  return dt.toDate();
+  }
 }

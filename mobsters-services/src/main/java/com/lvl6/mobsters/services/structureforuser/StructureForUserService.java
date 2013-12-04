@@ -11,12 +11,16 @@ import com.lvl6.mobsters.entitymanager.staticdata.StructureEntityManager;
 import com.lvl6.mobsters.entitymanager.staticdata.StructureRetrieveUtils;
 import com.lvl6.mobsters.po.nonstaticdata.StructureForUser;
 import com.lvl6.mobsters.po.staticdata.Structure;
+import com.lvl6.mobsters.services.time.TimeUtils;
 import com.lvl6.mobsters.utils.CoordinatePair;
 import com.lvl6.mobsters.utils.QueryConstructionUtil;
 
 public interface StructureForUserService {
 		
 	//CONTROLLER LOGIC STUFF****************************************************************
+	public abstract List<Date> calculateValidUserStructs(Date clientTime,
+			List<StructureForUser> userStructs, List<UUID> validUserStructIds,
+			List<StructureForUser> validUserStructs);
 	
 	//RETRIEVING STUFF****************************************************************
 	public abstract List<StructureForUser> getAllUserStructuresForUser(UUID userId);
@@ -73,6 +77,10 @@ public interface StructureForUserService {
 
 	public abstract void setQueryConstructionUtil(QueryConstructionUtil queryConstructionUtil);
 
+	public abstract TimeUtils getTimeUtils();
+	
+	public abstract void setTimeUtils(TimeUtils timeUtils);
+	
 	//old aoc2 stuff ****************************************************************
 	//public abstract Map<UUID, StructureForUser> getUserStructuresForIds(List<UUID> ids);
 	

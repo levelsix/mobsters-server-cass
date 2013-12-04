@@ -20,6 +20,7 @@ import com.lvl6.mobsters.entitymanager.staticdata.StructureRetrieveUtils;
 import com.lvl6.mobsters.po.nonstaticdata.StructureForUser;
 import com.lvl6.mobsters.po.staticdata.Structure;
 import com.lvl6.mobsters.properties.MobstersDbTables;
+import com.lvl6.mobsters.services.time.TimeUtils;
 import com.lvl6.mobsters.utils.CoordinatePair;
 import com.lvl6.mobsters.utils.QueryConstructionUtil;
 
@@ -43,8 +44,47 @@ public class StructureForUserServiceImpl implements StructureForUserService {
 	@Autowired
 	protected QueryConstructionUtil queryConstructionUtil;
 	
+	@Autowired
+	protected TimeUtils timeUtils;
 	
 	//CONTROLLER LOGIC STUFF****************************************************************
+	@Override
+	public List<Date> calculateValidUserStructs(Date clientTime,
+			List<StructureForUser> userStructs, List<UUID> validUserStructIds,
+			List<StructureForUser> validUserStructs) {
+		List<Date> timesBuildsFinished = new ArrayList<Date>();
+		Map<Integer, Structure> structures = getStructureRetrieveUtils().getStructIdsToStructs();
+		
+		//for each structure for user, see if it can be considered valid and complete
+		//and keep track of the time;
+		for (StructureForUser us : userStructs) {
+			int structId = us.getStructureId();
+			Structure struct = structures.get(structId);
+			if (null == struct) {
+				log.warn("no struct in db exists with id " + us.getStructureId() +  "\t userStructure=" + us);
+		        continue;
+			}
+			
+			Date purchaseDate = us.getPurchaseTime();
+			long buildTimeMillis = 60000 * struct.getBuildTimeMinutes();
+			if (null == purchaseDate) {
+				log.warn("user struct has never been bought or purchased according to db. " + us);
+				continue;
+			}
+			
+			Date timeBuildFinishes = getTimeUtils().addMillisToDate(purchaseDate, buildTimeMillis);
+			if (getTimeUtils().isFirstEarlierThanSecond(clientTime, timeBuildFinishes)) {
+				log.warn("the building is not done yet. userstruct=" + us + ", client time is " +
+						clientTime + ", purchase time was " + purchaseDate);
+				continue;
+			}//else this building is done now
+			
+			validUserStructIds.add(us.getId());
+			validUserStructs.add(us);
+			timesBuildsFinished.add(timeBuildFinishes);
+		}
+		return timesBuildsFinished;
+	}
 
 	//RETRIEVING STUFF****************************************************************
 	@Override
@@ -258,6 +298,15 @@ public class StructureForUserServiceImpl implements StructureForUserService {
 	public void setQueryConstructionUtil(QueryConstructionUtil queryConstructionUtil) {
 		this.queryConstructionUtil = queryConstructionUtil;
 	}
+	@Override
+	public TimeUtils getTimeUtils() {
+		return timeUtils;
+	}
+	@Override
+	public void setTimeUtils(TimeUtils timeUtils) {
+		this.timeUtils = timeUtils;
+	}
+	
 
 	//old aoc2 stuff****************************************************************
 	/*@Override
