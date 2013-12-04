@@ -62,7 +62,7 @@ public class UpgradeNormStructureController extends EventController {
 
 	@Override
 	public int getEventType() {
-		return MobstersEventProtocolRequest.C_PURCHASE_NORM_STRUCTURE_EVENT_VALUE;
+		return MobstersEventProtocolRequest.C_UPGRADE_NORM_STRUCTURE_EVENT_VALUE;
 	}
 
 	@Override

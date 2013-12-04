@@ -61,7 +61,7 @@ public class FinishNormStructWaittimeWithDiamondsController extends EventControl
 
 	@Override
 	public int getEventType() {
-		return MobstersEventProtocolRequest.C_PURCHASE_NORM_STRUCTURE_EVENT_VALUE;
+		return MobstersEventProtocolRequest.C_FINISH_NORM_STRUCT_WAITTIME_WITH_DIAMONDS_EVENT_VALUE;
 	}
 
 	@Override

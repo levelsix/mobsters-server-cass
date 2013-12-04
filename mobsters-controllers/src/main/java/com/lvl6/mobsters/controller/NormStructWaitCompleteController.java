@@ -68,7 +68,7 @@ public class NormStructWaitCompleteController extends EventController {
 
 	@Override
 	public int getEventType() {
-		return MobstersEventProtocolRequest.C_PURCHASE_NORM_STRUCTURE_EVENT_VALUE;
+		return MobstersEventProtocolRequest.C_NORM_STRUCT_WAIT_COMPLETE_EVENT_VALUE;
 	}
 
 	@Override
