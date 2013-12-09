@@ -8,8 +8,8 @@ import org.springframework.stereotype.Component;
 import com.lvl6.mobsters.entitymanager.nonstaticdata.MonsterForUserEntityManager;
 import com.lvl6.mobsters.entitymanager.nonstaticdata.UserEntityManager;
 import com.lvl6.mobsters.events.RequestEvent;
-import com.lvl6.mobsters.services.equipment.EquipmentService;
 import com.lvl6.mobsters.services.monsterforuser.MonsterForUserService;
+import com.lvl6.mobsters.services.structurelab.StructureLabService;
 
 
 
@@ -29,7 +29,7 @@ public class ReturnHomeController extends EventController {
 	protected MonsterForUserService monsterForUserService; 
 	
 	@Autowired
-	protected EquipmentService equipmentService;
+	protected StructureLabService structureLabService;
 	
 	@Override
 	public RequestEvent createRequestEvent() {
@@ -169,12 +169,12 @@ public class ReturnHomeController extends EventController {
 		this.monsterForUserService = monsterForUserService;
 	}
 
-	public EquipmentService getEquipmentService() {
-		return equipmentService;
+	public StructureLabService getEquipmentService() {
+		return structureLabService;
 	}
 
-	public void setEquipmentService(EquipmentService equipmentService) {
-		this.equipmentService = equipmentService;
+	public void setEquipmentService(StructureLabService structureLabService) {
+		this.equipmentService = structureLabService;
 	}
 
 		*/

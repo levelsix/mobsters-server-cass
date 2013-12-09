@@ -12,9 +12,9 @@ import com.lvl6.mobsters.entitymanager.nonstaticdata.UserEntityManager;
 import com.lvl6.mobsters.entitymanager.staticdata.StructureRetrieveUtils;
 import com.lvl6.mobsters.events.RequestEvent;
 import com.lvl6.mobsters.events.request.CompleteDungeonRequestEvent;
-import com.lvl6.mobsters.services.equipment.EquipmentService;
 import com.lvl6.mobsters.services.monsterforuser.MonsterForUserService;
 import com.lvl6.mobsters.services.structureforuser.StructureForUserService;
+import com.lvl6.mobsters.services.structurelab.StructureLabService;
 
 
 @Component
@@ -36,7 +36,7 @@ public class CompleteDungeonController extends EventController {
 	protected StructureRetrieveUtils structureRetrieveUtils;
 	
 	@Autowired
-	protected EquipmentService equipmentServices;
+	protected StructureLabService structureLabServices;
 	
 	@Autowired
 	protected MonsterForUserService monsterForUserService;
@@ -284,12 +284,12 @@ public class CompleteDungeonController extends EventController {
 		this.structureRetrieveUtils = structureRetrieveUtils;
 	}
 
-	public EquipmentService getEquipmentServices() {
-		return equipmentServices;
+	public StructureLabService getEquipmentServices() {
+		return structureLabServices;
 	}
 
-	public void setEquipmentServices(EquipmentService equipmentServices) {
-		this.equipmentServices = equipmentServices;
+	public void setEquipmentServices(StructureLabService structureLabServices) {
+		this.equipmentServices = structureLabServices;
 	}
 
 	public MonsterForUserService getUserEquipService() {

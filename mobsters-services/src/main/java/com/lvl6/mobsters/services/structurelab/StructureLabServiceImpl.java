@@ -1,4 +1,4 @@
-package com.lvl6.mobsters.services.equipment;
+package com.lvl6.mobsters.services.structurelab;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -8,7 +8,7 @@ import com.lvl6.mobsters.entitymanager.staticdata.StructureLabRetrieveUtils;
 
 
 @Component
-public class EquipmentServiceImpl implements EquipmentService {
+public class StructureLabServiceImpl implements StructureLabService {
 	
 	@Autowired
 	protected StructureLabRetrieveUtils structureLabRetrieveUtils;
@@ -22,12 +22,12 @@ public class EquipmentServiceImpl implements EquipmentService {
 	}
 	
 	@Override
-	public StructureLabRetrieveUtils getEquipmentRetrieveUtils() {
+	public StructureLabRetrieveUtils getStructureLabRetrieveUtils() {
 		return structureLabRetrieveUtils;
 	}
 
 	@Override
-	public void setEquipmentRetrieveUtils(
+	public void setStructureLabRetrieveUtils(
 			StructureLabRetrieveUtils structureLabRetrieveUtils) {
 		this.structureLabRetrieveUtils = structureLabRetrieveUtils;
 	}
