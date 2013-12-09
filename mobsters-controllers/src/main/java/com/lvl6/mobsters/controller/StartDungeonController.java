@@ -39,7 +39,7 @@ public class StartDungeonController extends EventController {
 //	protected PreDungeonUserEquipInfoEntityManager preDungeonUserEquipInfoEntityManager;
 //	
 //	@Autowired
-//	protected PreDungeonUserConsumableInfoEntityManager preDungeonUserConsumableInfoEntityManager;
+//	protected TaskForUserOngoingEntityManager preDungeonUserConsumableInfoEntityManager;
 //	
 //	@Autowired
 //	protected TaskStageMonsterRetrieveUtils taskStageMonsterRetrieveUtils;
@@ -213,7 +213,7 @@ public class StartDungeonController extends EventController {
 			for(Map.Entry<QuestForUser, Integer> entry : userConsumablesMap.entrySet()) {
 				QuestForUser uc = entry.getKey();
 				Integer quantity = entry.getValue();
-				PreDungeonUserConsumableInfo pduci = new PreDungeonUserConsumableInfo();
+				TaskForUserOngoing pduci = new TaskForUserOngoing();
 				pduci.setId(UUID.randomUUID());
 				pduci.setConsumableId(uc.getId());
 				pduci.setQuantity(quantity);
@@ -318,12 +318,12 @@ public class StartDungeonController extends EventController {
 		this.preDungeonUserEquipInfoEntityManager = preDungeonUserEquipInfoEntityManager;
 	}
 
-	public PreDungeonUserConsumableInfoEntityManager getPreDungeonUserConsumableInfoEntityManager() {
+	public TaskForUserOngoingEntityManager getPreDungeonUserConsumableInfoEntityManager() {
 		return preDungeonUserConsumableInfoEntityManager;
 	}
 
 	public void setPreDungeonUserConsumableInfoEntityManager(
-			PreDungeonUserConsumableInfoEntityManager preDungeonUserConsumableInfoEntityManager) {
+			TaskForUserOngoingEntityManager preDungeonUserConsumableInfoEntityManager) {
 		this.preDungeonUserConsumableInfoEntityManager = preDungeonUserConsumableInfoEntityManager;
 	}
 
