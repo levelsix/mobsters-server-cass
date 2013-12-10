@@ -14,7 +14,6 @@ import com.lvl6.mobsters.events.RequestEvent;
 import com.lvl6.mobsters.events.request.CompleteDungeonRequestEvent;
 import com.lvl6.mobsters.services.monsterforuser.MonsterForUserService;
 import com.lvl6.mobsters.services.structureforuser.StructureForUserService;
-import com.lvl6.mobsters.services.structurelab.StructureLabService;
 
 
 @Component
@@ -34,9 +33,6 @@ public class CompleteDungeonController extends EventController {
 		
 	@Autowired
 	protected StructureRetrieveUtils structureRetrieveUtils;
-	
-	@Autowired
-	protected StructureLabService structureLabServices;
 	
 	@Autowired
 	protected MonsterForUserService monsterForUserService;

@@ -43,7 +43,7 @@ public class TaskForUserOngoingServiceImpl implements TaskForUserOngoingService 
 
 		//construct the search parameters
 		Map<String, Object> equalityConditions = new HashMap<String, Object>();
-		equalityConditions.put(MobstersDbTables.STRUCTURE_FOR_USER__USER_ID, userId);
+		equalityConditions.put(MobstersDbTables.TASK_FOR_USER_ONGOING__USER_ID, userId);
 
 		//query db, "values" is not used
 		List<Object> values = new ArrayList<Object>();

@@ -36,7 +36,7 @@ public class StartDungeonController extends EventController {
 //	protected PreDungeonUserInfoEntityManager preDungeonUserInfoEntityManager;
 //
 //	@Autowired
-//	protected PreDungeonUserEquipInfoEntityManager preDungeonUserEquipInfoEntityManager;
+//	protected TaskStageForUserEntityManager preDungeonUserEquipInfoEntityManager;
 //	
 //	@Autowired
 //	protected TaskForUserOngoingEntityManager preDungeonUserConsumableInfoEntityManager;
@@ -201,7 +201,7 @@ public class StartDungeonController extends EventController {
 			getPreDungeonUserInfoEntityManager().get().put(pdui);
 			
 			for(MonsterForUser ue : equippedList) {
-				PreDungeonUserEquipInfo pduei = new PreDungeonUserEquipInfo();
+				TaskStageForUser pduei = new TaskStageForUser();
 				pduei.setDurability(ue.getDurability());
 				pduei.setEquipId(ue.getId());
 				pduei.setId(UUID.randomUUID());
@@ -309,12 +309,12 @@ public class StartDungeonController extends EventController {
 		this.preDungeonUserInfoEntityManager = preDungeonUserInfoEntityManager;
 	}
 
-	public PreDungeonUserEquipInfoEntityManager getPreDungeonUserEquipInfoEntityManager() {
+	public TaskStageForUserEntityManager getPreDungeonUserEquipInfoEntityManager() {
 		return preDungeonUserEquipInfoEntityManager;
 	}
 
 	public void setPreDungeonUserEquipInfoEntityManager(
-			PreDungeonUserEquipInfoEntityManager preDungeonUserEquipInfoEntityManager) {
+			TaskStageForUserEntityManager preDungeonUserEquipInfoEntityManager) {
 		this.preDungeonUserEquipInfoEntityManager = preDungeonUserEquipInfoEntityManager;
 	}
 

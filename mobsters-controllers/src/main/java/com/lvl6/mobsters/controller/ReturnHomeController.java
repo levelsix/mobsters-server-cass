@@ -9,7 +9,6 @@ import com.lvl6.mobsters.entitymanager.nonstaticdata.MonsterForUserEntityManager
 import com.lvl6.mobsters.entitymanager.nonstaticdata.UserEntityManager;
 import com.lvl6.mobsters.events.RequestEvent;
 import com.lvl6.mobsters.services.monsterforuser.MonsterForUserService;
-import com.lvl6.mobsters.services.structurelab.StructureLabService;
 
 
 
@@ -27,9 +26,6 @@ public class ReturnHomeController extends EventController {
 	
 	@Autowired
 	protected MonsterForUserService monsterForUserService; 
-	
-	@Autowired
-	protected StructureLabService structureLabService;
 	
 	@Override
 	public RequestEvent createRequestEvent() {
