@@ -25,6 +25,8 @@ public interface UserService {
 	
 	//UPDATING STUFF****************************************************************
 	public abstract void updateUserResources(User u, int gemsChange, int oilChange, int cashChange);
+	
+	public abstract void updateDeviceToken(User u, String deviceToken);
 
 	
 	//setters and getters for the Setter Dependency Injection (or something)****************************************************************

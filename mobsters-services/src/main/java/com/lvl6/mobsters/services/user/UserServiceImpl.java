@@ -107,6 +107,11 @@ public class UserServiceImpl implements UserService {
 		saveUser(u);
 	}
 
+	@Override
+	public void updateDeviceToken(User u, String deviceToken) {
+		u.setDeviceToken(deviceToken);
+		saveUser(u);
+	}
 	
 	
 	//setters and getters for the Setter Dependency Injection (or something)****************************************************************
