@@ -19,7 +19,7 @@ public class LevelUpController extends EventController {
 //	protected UserConsumableQueueService userConsumableQueueService;
 //	
 //	@Autowired
-//	protected UserConsumableQueueEntityManager userConsumableQueueEntityManager;
+//	protected TaskHistoryEntityManager userConsumableQueueEntityManager;
 //
 //	@Autowired
 //	protected UserEntityManager userEntityManager;
@@ -195,12 +195,12 @@ public class LevelUpController extends EventController {
 		this.userService = userService;
 	}
 
-	public UserConsumableQueueEntityManager getUserConsumableQueueEntityManager() {
+	public TaskHistoryEntityManager getUserConsumableQueueEntityManager() {
 		return userConsumableQueueEntityManager;
 	}
 
 	public void setUserConsumableQueueEntityManager(
-			UserConsumableQueueEntityManager userConsumableQueueEntityManager) {
+			TaskHistoryEntityManager userConsumableQueueEntityManager) {
 		this.userConsumableQueueEntityManager = userConsumableQueueEntityManager;
 	}
 

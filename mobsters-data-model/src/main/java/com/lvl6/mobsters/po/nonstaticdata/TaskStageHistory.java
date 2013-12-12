@@ -12,27 +12,25 @@ import com.dekayd.astyanax.cassandra.entitymanager.Index;
 
 
 @Entity
-public class TaskStageForUser extends BasePersistentObject<UUID>{
+public class TaskStageHistory extends BasePersistentObject<UUID>{
 
+	//id in taskStageForUser class/table
 	@Id
 	protected UUID id = UUID.randomUUID();
 	
-	@Column(name="user_task_id")
+	@Column(name="task_for_user_id")
 	@Index
-	protected UUID userTaskId = null;
+	protected UUID taskForUserId = null;
 	
 	@Column(name="stage_num")
 	@Index
 	protected int stageNum = 0;
 	
 	@Column(name="task_stage_monster_id")
-	protected int taskStageMonsterId = 0;
-	
-	@Column(name="monster_type")
-	protected String monsterType = "";
-	
-	@Column(name="exp_gained")
 	@Index
+	protected int taskStageMonsterId = 0;
+
+	@Column(name="exp_gained")
 	protected int expGained = 0;
 	
 	@Column(name="cash_gained")
@@ -41,13 +39,7 @@ public class TaskStageForUser extends BasePersistentObject<UUID>{
 	@Column(name="monster_piece_dropped")
 	protected boolean monsterPieceDropped = false;
 	
-	//not stored in db
-	protected int taskStageId = 0;
-	protected int monsterId = 0;
-	protected int monsterLvl = 0;
-	
-	
-	
+
 	public UUID getId() {
 		return id;
 	}
@@ -56,12 +48,12 @@ public class TaskStageForUser extends BasePersistentObject<UUID>{
 		this.id = id;
 	}
 
-	public UUID getUserTaskId() {
-		return userTaskId;
+	public UUID getTaskForUserId() {
+		return taskForUserId;
 	}
 
-	public void setUserTaskId(UUID userTaskId) {
-		this.userTaskId = userTaskId;
+	public void setTaskForUserId(UUID taskForUserId) {
+		this.taskForUserId = taskForUserId;
 	}
 
 	public int getStageNum() {
@@ -78,14 +70,6 @@ public class TaskStageForUser extends BasePersistentObject<UUID>{
 
 	public void setTaskStageMonsterId(int taskStageMonsterId) {
 		this.taskStageMonsterId = taskStageMonsterId;
-	}
-
-	public String getMonsterType() {
-		return monsterType;
-	}
-
-	public void setMonsterType(String monsterType) {
-		this.monsterType = monsterType;
 	}
 
 	public int getExpGained() {
@@ -111,40 +95,14 @@ public class TaskStageForUser extends BasePersistentObject<UUID>{
 	public void setMonsterPieceDropped(boolean monsterPieceDropped) {
 		this.monsterPieceDropped = monsterPieceDropped;
 	}
-	
-	public int getMonsterId() {
-		return monsterId;
-	}
-
-	public void setMonsterId(int monsterId) {
-		this.monsterId = monsterId;
-	}
-
-	public int getTaskStageId() {
-		return taskStageId;
-	}
-
-	public void setTaskStageId(int taskStageId) {
-		this.taskStageId = taskStageId;
-	}
-
-	public int getMonsterLvl() {
-		return monsterLvl;
-	}
-
-	public void setMonsterLvl(int monsterLvl) {
-		this.monsterLvl = monsterLvl;
-	}
 
 	@Override
 	public String toString() {
-		return "TaskStageForUser [id=" + id + ", userTaskId=" + userTaskId
-				+ ", stageNum=" + stageNum + ", taskStageMonsterId="
-				+ taskStageMonsterId + ", monsterType=" + monsterType
-				+ ", expGained=" + expGained + ", cashGained=" + cashGained
-				+ ", monsterPieceDropped=" + monsterPieceDropped
-				+ ", taskStageId=" + taskStageId + ", monsterId=" + monsterId
-				+ ", monsterLvl=" + monsterLvl + "]";
+		return "TaskStageHistory [id=" + id + ", taskForUserId="
+				+ taskForUserId + ", stageNum=" + stageNum
+				+ ", taskStageMonsterId=" + taskStageMonsterId + ", expGained="
+				+ expGained + ", cashGained=" + cashGained
+				+ ", monsterPieceDropped=" + monsterPieceDropped + "]";
 	}
 
 }

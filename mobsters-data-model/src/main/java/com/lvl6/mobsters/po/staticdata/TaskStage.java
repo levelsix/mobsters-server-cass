@@ -14,7 +14,7 @@ import com.dekayd.astyanax.cassandra.entitymanager.Index;
 @Entity
 public class TaskStage extends BasePersistentObject<Integer> implements Serializable {
 
-	private static final long serialVersionUID = 8657577336196999283L;
+	private static final long serialVersionUID = 991811355776313516L;
 
 	//explicit values are useless, I just made random values
 	@Id
@@ -28,8 +28,9 @@ public class TaskStage extends BasePersistentObject<Integer> implements Serializ
 	@Index
 	protected int stageNum = 0;
 	
-	@Column(name="equip_drop_rate")
-	protected double equipDropRate = 0.5;
+	//don't think this is used
+//	@Column(name="equip_drop_rate")
+//	protected double equipDropRate = 0.5;
 
 	
 	
@@ -57,18 +58,18 @@ public class TaskStage extends BasePersistentObject<Integer> implements Serializ
 		this.stageNum = stageNum;
 	}
 
-	public double getEquipDropRate() {
-		return equipDropRate;
-	}
-
-	public void setEquipDropRate(double equipDropRate) {
-		this.equipDropRate = equipDropRate;
-	}
-
 	@Override
 	public String toString() {
 		return "TaskStage [id=" + id + ", taskId=" + taskId + ", stageNum="
-				+ stageNum + ", equipDropRate=" + equipDropRate + "]";
+				+ stageNum + "]";
 	}
-	
+
+//	public double getEquipDropRate() {
+//		return equipDropRate;
+//	}
+//
+//	public void setEquipDropRate(double equipDropRate) {
+//		this.equipDropRate = equipDropRate;
+//	}
+
 }

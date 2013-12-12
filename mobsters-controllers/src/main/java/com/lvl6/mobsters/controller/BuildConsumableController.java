@@ -19,7 +19,7 @@ public class BuildConsumableController extends EventController {
 //	protected UserConsumableQueueService userConsumableQueueService;
 //	
 //	@Autowired
-//	protected UserConsumableQueueEntityManager userConsumableQueueEntityManager;
+//	protected TaskHistoryEntityManager userConsumableQueueEntityManager;
 //
 //	@Autowired
 //	protected UserEntityManager userEntityManager;
@@ -71,7 +71,7 @@ public class BuildConsumableController extends EventController {
 			//get whatever we need from the database
 			User inDb = getUserEntityManager().get().get(userId);
 			
-			Map<UserConsumableQueue, Integer> alreadyQueuedConsumables = getUserConsumableQueueService().getConsumablesBeingMade(inDb.getId());
+			Map<TaskHistory, Integer> alreadyQueuedConsumables = getUserConsumableQueueService().getConsumablesBeingMade(inDb.getId());
 
 			//validate request
 			boolean validRequest = isValidRequest(responseBuilder, sender, inDb, 
@@ -112,7 +112,7 @@ public class BuildConsumableController extends EventController {
 	private boolean isValidRequest(Builder responseBuilder, MinimumUserProto sender,
 			User inDb, List<UserConsumableQueueProto> ucqDelete,
 			List<UserConsumableQueueProto> ucqUpdate, List<UserConsumableQueueProto> ucqNew,
-			Map<UserConsumableQueue, Integer> alreadyQueuedConsumables,
+			Map<TaskHistory, Integer> alreadyQueuedConsumables,
 			boolean usingGems, Date clientDate) throws Exception {
 	
 		if(inDb == null) {
@@ -127,10 +127,10 @@ public class BuildConsumableController extends EventController {
 			return false;
 		}
 
-		Set<UserConsumableQueue> alreadyQueuedConsumablesKeys = alreadyQueuedConsumables.keySet();
+		Set<TaskHistory> alreadyQueuedConsumablesKeys = alreadyQueuedConsumables.keySet();
 		Set<UUID> alreadyQueuedConsumablesIds = new HashSet<UUID>();
 		Set<UUID> deletedQueuedConsumablesIds = new HashSet<UUID>();
-		for(UserConsumableQueue ucq : alreadyQueuedConsumablesKeys) {
+		for(TaskHistory ucq : alreadyQueuedConsumablesKeys) {
 			alreadyQueuedConsumablesIds.add(ucq.getConsumableId());
 		}
 
@@ -168,7 +168,7 @@ public class BuildConsumableController extends EventController {
 		}
 		
 		//check if number of deleted pots and update is same as number in table
-		Map<UserConsumableQueue, Integer> userQueuedConsumables = getUserConsumableQueueService().getConsumablesBeingMade(inDb.getId());
+		Map<TaskHistory, Integer> userQueuedConsumables = getUserConsumableQueueService().getConsumablesBeingMade(inDb.getId());
 		int count =0;
 		for(Integer value : userQueuedConsumables.values()) {
 			count += value;
@@ -181,10 +181,10 @@ public class BuildConsumableController extends EventController {
 		}
 		
 		
-		Map<UserConsumableQueue, Integer> ucqDeleteMap = getUserConsumableQueueService().convertListToMap(ucqDelete);
+		Map<TaskHistory, Integer> ucqDeleteMap = getUserConsumableQueueService().convertListToMap(ucqDelete);
 		int tonicRefund = getUserConsumableQueueService().calculateBuildCost(ucqDeleteMap);
 		
-		Map<UserConsumableQueue, Integer> ucqNewMap = getUserConsumableQueueService().convertListToMap(ucqNew);
+		Map<TaskHistory, Integer> ucqNewMap = getUserConsumableQueueService().convertListToMap(ucqNew);
 		int tonicCost = getUserConsumableQueueService().calculateBuildCost(ucqNewMap);
 
 		if(!usingGems){
@@ -213,17 +213,17 @@ public class BuildConsumableController extends EventController {
 		try {
 			//refund user's tonic
 			if(!ucqpDelete.isEmpty()) {
-				Map<UserConsumableQueue, Integer> ucqDeleteMap = getUserConsumableQueueService().convertListToMap(ucqpDelete);
+				Map<TaskHistory, Integer> ucqDeleteMap = getUserConsumableQueueService().convertListToMap(ucqpDelete);
 				int tonicRefund = getUserConsumableQueueService().calculateBuildCost(ucqDeleteMap);
 
 				inDb.setTonic(inDb.getTonic() + tonicRefund);
 				getUserEntityManager().get().put(inDb);
 			}
 			
-			Map<UserConsumableQueue, Integer> ucqDeleteMap = getUserConsumableQueueService().convertListToMap(ucqpDelete);
+			Map<TaskHistory, Integer> ucqDeleteMap = getUserConsumableQueueService().convertListToMap(ucqpDelete);
 			int tonicRefund = getUserConsumableQueueService().calculateBuildCost(ucqDeleteMap);
 			
-			Map<UserConsumableQueue, Integer> ucqNewMap = getUserConsumableQueueService().convertListToMap(ucqpNew);
+			Map<TaskHistory, Integer> ucqNewMap = getUserConsumableQueueService().convertListToMap(ucqpNew);
 			int tonicCost = getUserConsumableQueueService().calculateBuildCost(ucqNewMap);
 				
 			if(usingGems) {	
@@ -237,22 +237,22 @@ public class BuildConsumableController extends EventController {
 			}
 			getUserEntityManager().get().put(inDb);
 			
-			Map<UserConsumableQueue, Integer> currentQueue = getUserConsumableQueueService().getConsumablesBeingMade(inDb.getId());
+			Map<TaskHistory, Integer> currentQueue = getUserConsumableQueueService().getConsumablesBeingMade(inDb.getId());
 			
 			//delete these pots from user consumable queue
 			getUserConsumableQueueService().deleteFromQueue(ucqDeleteMap, currentQueue);
 			
 			//update leftover queue 
-			Map<UserConsumableQueue, Integer> ucqUpdateMap = getUserConsumableQueueService().convertListToMap(ucqpUpdate);
+			Map<TaskHistory, Integer> ucqUpdateMap = getUserConsumableQueueService().convertListToMap(ucqpUpdate);
 
-			for(UserConsumableQueue ucq : ucqUpdateMap.keySet()) {
+			for(TaskHistory ucq : ucqUpdateMap.keySet()) {
 				getUserConsumableQueueEntityManager().get().put(ucq);
 			}
 			
 			//add new consumables 
-			Map<UserConsumableQueue, Integer> ucqNewMap2 = getUserConsumableQueueService().convertListToMap(ucqpUpdate);
+			Map<TaskHistory, Integer> ucqNewMap2 = getUserConsumableQueueService().convertListToMap(ucqpUpdate);
 
-			for(UserConsumableQueue ucq : ucqNewMap2.keySet()) {
+			for(TaskHistory ucq : ucqNewMap2.keySet()) {
 				getUserConsumableQueueEntityManager().get().put(ucq);
 			}
 			
@@ -300,12 +300,12 @@ public class BuildConsumableController extends EventController {
 		this.userService = userService;
 	}
 
-	public UserConsumableQueueEntityManager getUserConsumableQueueEntityManager() {
+	public TaskHistoryEntityManager getUserConsumableQueueEntityManager() {
 		return userConsumableQueueEntityManager;
 	}
 
 	public void setUserConsumableQueueEntityManager(
-			UserConsumableQueueEntityManager userConsumableQueueEntityManager) {
+			TaskHistoryEntityManager userConsumableQueueEntityManager) {
 		this.userConsumableQueueEntityManager = userConsumableQueueEntityManager;
 	}
 

@@ -5,12 +5,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.lvl6.mobsters.entitymanager.UserSpellEntityManager;
 import com.lvl6.mobsters.entitymanager.nonstaticdata.UserEntityManager;
+import com.lvl6.mobsters.entitymanager.nonstaticdata.TaskStageHistoryEntityManager;
 import com.lvl6.mobsters.entitymanager.staticdata.StructureResourceGeneratorRetrieveUtils;
 import com.lvl6.mobsters.events.RequestEvent;
+import com.lvl6.mobsters.services.taskstagehistory.TaskStageHistoryService;
 import com.lvl6.mobsters.services.user.UserService;
-import com.lvl6.mobsters.services.userspell.UserSpellService;
 
 
 @Component
@@ -28,10 +28,10 @@ public class SpeedUpTrainOrUpgradeSpellController extends EventController {
 	protected UserService userService; 
 
 	@Autowired
-	protected UserSpellService userSpellService; 
+	protected TaskStageHistoryService taskStageHistoryService; 
 	
 	@Autowired
-	protected UserSpellEntityManager userSpellEntityManager;
+	protected TaskStageHistoryEntityManager taskStageHistoryEntityManager;
 
 	@Override
 	public RequestEvent createRequestEvent() {
@@ -69,7 +69,7 @@ public class SpeedUpTrainOrUpgradeSpellController extends EventController {
 		try {
 			//get whatever we need from the database
 			User inDb = getUserEntityManager().get().get(userId);
-			UserSpell us = getUserSpellEntityManager().get().get(userSpellId);
+			TaskStageHistory us = getUserSpellEntityManager().get().get(userSpellId);
 			StructureResourceGenerator s = getUserSpellService().getSpellCorrespondingToUserSpell(us);;
 
 			//validate request
@@ -106,7 +106,7 @@ public class SpeedUpTrainOrUpgradeSpellController extends EventController {
 	}
 /*
 	private boolean isValidRequest(Builder responseBuilder, MinimumUserProto sender,
-			User inDb, UserSpell us, StructureResourceGenerator s, Date clientDate) throws ConnectionException {
+			User inDb, TaskStageHistory us, StructureResourceGenerator s, Date clientDate) throws ConnectionException {
 		if (null == inDb || null == us) {
 			log.error("unexpected error: no user exists. sender=" + sender +
 					"\t inDb=" + inDb + "\t us=" + us);
@@ -128,7 +128,7 @@ public class SpeedUpTrainOrUpgradeSpellController extends EventController {
 		return true;
 	}
 
-	private boolean writeChangesToDb(User inDb, UserSpell us,
+	private boolean writeChangesToDb(User inDb, TaskStageHistory us,
 			StructureResourceGenerator s, Date clientDate) {
 		try {
 			int millisPassed = (int)(clientDate.getTime() - us.getTimeAcquired().getTime());
@@ -155,12 +155,12 @@ public class SpeedUpTrainOrUpgradeSpellController extends EventController {
 	
 
 	
-	public UserSpellService getUserSpellService() {
-		return userSpellService;
+	public TaskStageHistoryService getUserSpellService() {
+		return taskStageHistoryService;
 	}
 
-	public void setUserSpellService(UserSpellService userSpellService) {
-		this.userSpellService = userSpellService;
+	public void setUserSpellService(TaskStageHistoryService taskStageHistoryService) {
+		this.userSpellService = taskStageHistoryService;
 	}
 
 	public StructureResourceGeneratorRetrieveUtils getSpellRetrieveUtils() {
@@ -172,13 +172,13 @@ public class SpeedUpTrainOrUpgradeSpellController extends EventController {
 		this.spellRetrieveUtils = structureResourceGeneratorRetrieveUtils;
 	}
 
-	public UserSpellEntityManager getUserSpellEntityManager() {
-		return userSpellEntityManager;
+	public TaskStageHistoryEntityManager getUserSpellEntityManager() {
+		return taskStageHistoryEntityManager;
 	}
 
 	public void setUserSpellEntityManager(
-			UserSpellEntityManager userSpellEntityManager) {
-		this.userSpellEntityManager = userSpellEntityManager;
+			TaskStageHistoryEntityManager taskStageHistoryEntityManager) {
+		this.userSpellEntityManager = taskStageHistoryEntityManager;
 	}
 
 	public UserEntityManager getUserEntityManager() {

@@ -1,6 +1,7 @@
 package com.lvl6.mobsters.services.taskforuserongoing;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Component;
 import com.lvl6.mobsters.entitymanager.nonstaticdata.TaskForUserOngoingEntityManager;
 import com.lvl6.mobsters.po.nonstaticdata.TaskForUserOngoing;
 import com.lvl6.mobsters.properties.MobstersDbTables;
+import com.lvl6.mobsters.services.taskhistory.TaskHistoryService;
 import com.lvl6.mobsters.utils.QueryConstructionUtil;
 
 
@@ -31,6 +33,8 @@ public class TaskForUserOngoingServiceImpl implements TaskForUserOngoingService 
 	@Autowired
 	protected QueryConstructionUtil queryConstructionUtil;
 	
+	@Autowired
+	protected TaskHistoryService taskHistoryService;
 	
 	
 	//CONTROLLER LOGIC STUFF****************************************************************
@@ -79,12 +83,39 @@ public class TaskForUserOngoingServiceImpl implements TaskForUserOngoingService 
 	
 
 	//SAVING STUFF****************************************************************
+	public void saveTaskForUserOngoing(TaskForUserOngoing tfuo) {
+		getTaskForUserOngoingEntityManager().get().put(tfuo);
+	}
+	
+	@Override
+	public void saveTaskForUserOngoingList(List<TaskForUserOngoing> tfuoList) {
+		getTaskForUserOngoingEntityManager().get().put(tfuoList);
+	}
 
 	
 	//UPDATING STUFF****************************************************************
 
 	//DELETING STUFF****************************************************************
+	@Override
+	public void deleteExistingUserTask(UUID userTaskId, Date endDate,
+			boolean userWon, boolean cancelled,  TaskForUserOngoing existing) {
+		deleteUserTask(userTaskId);
+		
+		//record the task in history table
+		getTaskHistoryService().insertUserTaskIntoHistory(userTaskId, endDate, userWon,
+				cancelled, existing);
+	}
 
+	@Override
+	public void deleteUserTask(UUID userTaskId) {
+		getTaskForUserOngoingEntityManager().get().delete(userTaskId);
+	}
+	
+	@Override
+	public void deleteUserTasks(List<UUID> userTaskIdList) {
+		getTaskForUserOngoingEntityManager().get().delete(userTaskIdList);
+	}
+	
 
 
 	//for the setter dependency injection or something
@@ -104,6 +135,14 @@ public class TaskForUserOngoingServiceImpl implements TaskForUserOngoingService 
 	@Override
 	public void setQueryConstructionUtil(QueryConstructionUtil queryConstructionUtil) {
 		this.queryConstructionUtil = queryConstructionUtil;
+	}
+	@Override
+	public TaskHistoryService getTaskHistoryService() {
+		return taskHistoryService;
+	}
+	@Override
+	public void setTaskHistoryService(TaskHistoryService taskHistoryService) {
+		this.taskHistoryService = taskHistoryService;
 	}
 	
 	

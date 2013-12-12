@@ -8,617 +8,6 @@ public final class TaskProto {
   public static void registerAllExtensions(
       com.google.protobuf.ExtensionRegistry registry) {
   }
-  public interface TaskStageProtoOrBuilder
-      extends com.google.protobuf.MessageOrBuilder {
-    
-    // optional int32 stageId = 1;
-    boolean hasStageId();
-    int getStageId();
-    
-    // repeated .proto.TaskStageMonsterProto stageMonsters = 2;
-    java.util.List<com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageMonsterProto> 
-        getStageMonstersList();
-    com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageMonsterProto getStageMonsters(int index);
-    int getStageMonstersCount();
-    java.util.List<? extends com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageMonsterProtoOrBuilder> 
-        getStageMonstersOrBuilderList();
-    com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageMonsterProtoOrBuilder getStageMonstersOrBuilder(
-        int index);
-  }
-  public static final class TaskStageProto extends
-      com.google.protobuf.GeneratedMessage
-      implements TaskStageProtoOrBuilder {
-    // Use TaskStageProto.newBuilder() to construct.
-    private TaskStageProto(Builder builder) {
-      super(builder);
-    }
-    private TaskStageProto(boolean noInit) {}
-    
-    private static final TaskStageProto defaultInstance;
-    public static TaskStageProto getDefaultInstance() {
-      return defaultInstance;
-    }
-    
-    public TaskStageProto getDefaultInstanceForType() {
-      return defaultInstance;
-    }
-    
-    public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
-      return com.lvl6.mobsters.noneventprotos.TaskProto.internal_static_proto_TaskStageProto_descriptor;
-    }
-    
-    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
-        internalGetFieldAccessorTable() {
-      return com.lvl6.mobsters.noneventprotos.TaskProto.internal_static_proto_TaskStageProto_fieldAccessorTable;
-    }
-    
-    private int bitField0_;
-    // optional int32 stageId = 1;
-    public static final int STAGEID_FIELD_NUMBER = 1;
-    private int stageId_;
-    public boolean hasStageId() {
-      return ((bitField0_ & 0x00000001) == 0x00000001);
-    }
-    public int getStageId() {
-      return stageId_;
-    }
-    
-    // repeated .proto.TaskStageMonsterProto stageMonsters = 2;
-    public static final int STAGEMONSTERS_FIELD_NUMBER = 2;
-    private java.util.List<com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageMonsterProto> stageMonsters_;
-    public java.util.List<com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageMonsterProto> getStageMonstersList() {
-      return stageMonsters_;
-    }
-    public java.util.List<? extends com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageMonsterProtoOrBuilder> 
-        getStageMonstersOrBuilderList() {
-      return stageMonsters_;
-    }
-    public int getStageMonstersCount() {
-      return stageMonsters_.size();
-    }
-    public com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageMonsterProto getStageMonsters(int index) {
-      return stageMonsters_.get(index);
-    }
-    public com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageMonsterProtoOrBuilder getStageMonstersOrBuilder(
-        int index) {
-      return stageMonsters_.get(index);
-    }
-    
-    private void initFields() {
-      stageId_ = 0;
-      stageMonsters_ = java.util.Collections.emptyList();
-    }
-    private byte memoizedIsInitialized = -1;
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized != -1) return isInitialized == 1;
-      
-      memoizedIsInitialized = 1;
-      return true;
-    }
-    
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
-      getSerializedSize();
-      if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        output.writeInt32(1, stageId_);
-      }
-      for (int i = 0; i < stageMonsters_.size(); i++) {
-        output.writeMessage(2, stageMonsters_.get(i));
-      }
-      getUnknownFields().writeTo(output);
-    }
-    
-    private int memoizedSerializedSize = -1;
-    public int getSerializedSize() {
-      int size = memoizedSerializedSize;
-      if (size != -1) return size;
-    
-      size = 0;
-      if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(1, stageId_);
-      }
-      for (int i = 0; i < stageMonsters_.size(); i++) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(2, stageMonsters_.get(i));
-      }
-      size += getUnknownFields().getSerializedSize();
-      memoizedSerializedSize = size;
-      return size;
-    }
-    
-    private static final long serialVersionUID = 0L;
-    @java.lang.Override
-    protected java.lang.Object writeReplace()
-        throws java.io.ObjectStreamException {
-      return super.writeReplace();
-    }
-    
-    public static com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageProto parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return newBuilder().mergeFrom(data).buildParsed();
-    }
-    public static com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageProto parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return newBuilder().mergeFrom(data, extensionRegistry)
-               .buildParsed();
-    }
-    public static com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageProto parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return newBuilder().mergeFrom(data).buildParsed();
-    }
-    public static com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageProto parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return newBuilder().mergeFrom(data, extensionRegistry)
-               .buildParsed();
-    }
-    public static com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageProto parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return newBuilder().mergeFrom(input).buildParsed();
-    }
-    public static com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageProto parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return newBuilder().mergeFrom(input, extensionRegistry)
-               .buildParsed();
-    }
-    public static com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageProto parseDelimitedFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      Builder builder = newBuilder();
-      if (builder.mergeDelimitedFrom(input)) {
-        return builder.buildParsed();
-      } else {
-        return null;
-      }
-    }
-    public static com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageProto parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      Builder builder = newBuilder();
-      if (builder.mergeDelimitedFrom(input, extensionRegistry)) {
-        return builder.buildParsed();
-      } else {
-        return null;
-      }
-    }
-    public static com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageProto parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return newBuilder().mergeFrom(input).buildParsed();
-    }
-    public static com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageProto parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return newBuilder().mergeFrom(input, extensionRegistry)
-               .buildParsed();
-    }
-    
-    public static Builder newBuilder() { return Builder.create(); }
-    public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder(com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageProto prototype) {
-      return newBuilder().mergeFrom(prototype);
-    }
-    public Builder toBuilder() { return newBuilder(this); }
-    
-    @java.lang.Override
-    protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
-    }
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessage.Builder<Builder>
-       implements com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageProtoOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
-        return com.lvl6.mobsters.noneventprotos.TaskProto.internal_static_proto_TaskStageProto_descriptor;
-      }
-      
-      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
-          internalGetFieldAccessorTable() {
-        return com.lvl6.mobsters.noneventprotos.TaskProto.internal_static_proto_TaskStageProto_fieldAccessorTable;
-      }
-      
-      // Construct using com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageProto.newBuilder()
-      private Builder() {
-        maybeForceBuilderInitialization();
-      }
-      
-      private Builder(BuilderParent parent) {
-        super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
-          getStageMonstersFieldBuilder();
-        }
-      }
-      private static Builder create() {
-        return new Builder();
-      }
-      
-      public Builder clear() {
-        super.clear();
-        stageId_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000001);
-        if (stageMonstersBuilder_ == null) {
-          stageMonsters_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000002);
-        } else {
-          stageMonstersBuilder_.clear();
-        }
-        return this;
-      }
-      
-      public Builder clone() {
-        return create().mergeFrom(buildPartial());
-      }
-      
-      public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
-        return com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageProto.getDescriptor();
-      }
-      
-      public com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageProto getDefaultInstanceForType() {
-        return com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageProto.getDefaultInstance();
-      }
-      
-      public com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageProto build() {
-        com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageProto result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
-        }
-        return result;
-      }
-      
-      private com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageProto buildParsed()
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageProto result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(
-            result).asInvalidProtocolBufferException();
-        }
-        return result;
-      }
-      
-      public com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageProto buildPartial() {
-        com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageProto result = new com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageProto(this);
-        int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
-        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
-          to_bitField0_ |= 0x00000001;
-        }
-        result.stageId_ = stageId_;
-        if (stageMonstersBuilder_ == null) {
-          if (((bitField0_ & 0x00000002) == 0x00000002)) {
-            stageMonsters_ = java.util.Collections.unmodifiableList(stageMonsters_);
-            bitField0_ = (bitField0_ & ~0x00000002);
-          }
-          result.stageMonsters_ = stageMonsters_;
-        } else {
-          result.stageMonsters_ = stageMonstersBuilder_.build();
-        }
-        result.bitField0_ = to_bitField0_;
-        onBuilt();
-        return result;
-      }
-      
-      public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageProto) {
-          return mergeFrom((com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageProto)other);
-        } else {
-          super.mergeFrom(other);
-          return this;
-        }
-      }
-      
-      public Builder mergeFrom(com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageProto other) {
-        if (other == com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageProto.getDefaultInstance()) return this;
-        if (other.hasStageId()) {
-          setStageId(other.getStageId());
-        }
-        if (stageMonstersBuilder_ == null) {
-          if (!other.stageMonsters_.isEmpty()) {
-            if (stageMonsters_.isEmpty()) {
-              stageMonsters_ = other.stageMonsters_;
-              bitField0_ = (bitField0_ & ~0x00000002);
-            } else {
-              ensureStageMonstersIsMutable();
-              stageMonsters_.addAll(other.stageMonsters_);
-            }
-            onChanged();
-          }
-        } else {
-          if (!other.stageMonsters_.isEmpty()) {
-            if (stageMonstersBuilder_.isEmpty()) {
-              stageMonstersBuilder_.dispose();
-              stageMonstersBuilder_ = null;
-              stageMonsters_ = other.stageMonsters_;
-              bitField0_ = (bitField0_ & ~0x00000002);
-              stageMonstersBuilder_ = 
-                com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders ?
-                   getStageMonstersFieldBuilder() : null;
-            } else {
-              stageMonstersBuilder_.addAllMessages(other.stageMonsters_);
-            }
-          }
-        }
-        this.mergeUnknownFields(other.getUnknownFields());
-        return this;
-      }
-      
-      public final boolean isInitialized() {
-        return true;
-      }
-      
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder(
-            this.getUnknownFields());
-        while (true) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              this.setUnknownFields(unknownFields.build());
-              onChanged();
-              return this;
-            default: {
-              if (!parseUnknownField(input, unknownFields,
-                                     extensionRegistry, tag)) {
-                this.setUnknownFields(unknownFields.build());
-                onChanged();
-                return this;
-              }
-              break;
-            }
-            case 8: {
-              bitField0_ |= 0x00000001;
-              stageId_ = input.readInt32();
-              break;
-            }
-            case 18: {
-              com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageMonsterProto.Builder subBuilder = com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageMonsterProto.newBuilder();
-              input.readMessage(subBuilder, extensionRegistry);
-              addStageMonsters(subBuilder.buildPartial());
-              break;
-            }
-          }
-        }
-      }
-      
-      private int bitField0_;
-      
-      // optional int32 stageId = 1;
-      private int stageId_ ;
-      public boolean hasStageId() {
-        return ((bitField0_ & 0x00000001) == 0x00000001);
-      }
-      public int getStageId() {
-        return stageId_;
-      }
-      public Builder setStageId(int value) {
-        bitField0_ |= 0x00000001;
-        stageId_ = value;
-        onChanged();
-        return this;
-      }
-      public Builder clearStageId() {
-        bitField0_ = (bitField0_ & ~0x00000001);
-        stageId_ = 0;
-        onChanged();
-        return this;
-      }
-      
-      // repeated .proto.TaskStageMonsterProto stageMonsters = 2;
-      private java.util.List<com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageMonsterProto> stageMonsters_ =
-        java.util.Collections.emptyList();
-      private void ensureStageMonstersIsMutable() {
-        if (!((bitField0_ & 0x00000002) == 0x00000002)) {
-          stageMonsters_ = new java.util.ArrayList<com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageMonsterProto>(stageMonsters_);
-          bitField0_ |= 0x00000002;
-         }
-      }
-      
-      private com.google.protobuf.RepeatedFieldBuilder<
-          com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageMonsterProto, com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageMonsterProto.Builder, com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageMonsterProtoOrBuilder> stageMonstersBuilder_;
-      
-      public java.util.List<com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageMonsterProto> getStageMonstersList() {
-        if (stageMonstersBuilder_ == null) {
-          return java.util.Collections.unmodifiableList(stageMonsters_);
-        } else {
-          return stageMonstersBuilder_.getMessageList();
-        }
-      }
-      public int getStageMonstersCount() {
-        if (stageMonstersBuilder_ == null) {
-          return stageMonsters_.size();
-        } else {
-          return stageMonstersBuilder_.getCount();
-        }
-      }
-      public com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageMonsterProto getStageMonsters(int index) {
-        if (stageMonstersBuilder_ == null) {
-          return stageMonsters_.get(index);
-        } else {
-          return stageMonstersBuilder_.getMessage(index);
-        }
-      }
-      public Builder setStageMonsters(
-          int index, com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageMonsterProto value) {
-        if (stageMonstersBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          ensureStageMonstersIsMutable();
-          stageMonsters_.set(index, value);
-          onChanged();
-        } else {
-          stageMonstersBuilder_.setMessage(index, value);
-        }
-        return this;
-      }
-      public Builder setStageMonsters(
-          int index, com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageMonsterProto.Builder builderForValue) {
-        if (stageMonstersBuilder_ == null) {
-          ensureStageMonstersIsMutable();
-          stageMonsters_.set(index, builderForValue.build());
-          onChanged();
-        } else {
-          stageMonstersBuilder_.setMessage(index, builderForValue.build());
-        }
-        return this;
-      }
-      public Builder addStageMonsters(com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageMonsterProto value) {
-        if (stageMonstersBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          ensureStageMonstersIsMutable();
-          stageMonsters_.add(value);
-          onChanged();
-        } else {
-          stageMonstersBuilder_.addMessage(value);
-        }
-        return this;
-      }
-      public Builder addStageMonsters(
-          int index, com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageMonsterProto value) {
-        if (stageMonstersBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          ensureStageMonstersIsMutable();
-          stageMonsters_.add(index, value);
-          onChanged();
-        } else {
-          stageMonstersBuilder_.addMessage(index, value);
-        }
-        return this;
-      }
-      public Builder addStageMonsters(
-          com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageMonsterProto.Builder builderForValue) {
-        if (stageMonstersBuilder_ == null) {
-          ensureStageMonstersIsMutable();
-          stageMonsters_.add(builderForValue.build());
-          onChanged();
-        } else {
-          stageMonstersBuilder_.addMessage(builderForValue.build());
-        }
-        return this;
-      }
-      public Builder addStageMonsters(
-          int index, com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageMonsterProto.Builder builderForValue) {
-        if (stageMonstersBuilder_ == null) {
-          ensureStageMonstersIsMutable();
-          stageMonsters_.add(index, builderForValue.build());
-          onChanged();
-        } else {
-          stageMonstersBuilder_.addMessage(index, builderForValue.build());
-        }
-        return this;
-      }
-      public Builder addAllStageMonsters(
-          java.lang.Iterable<? extends com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageMonsterProto> values) {
-        if (stageMonstersBuilder_ == null) {
-          ensureStageMonstersIsMutable();
-          super.addAll(values, stageMonsters_);
-          onChanged();
-        } else {
-          stageMonstersBuilder_.addAllMessages(values);
-        }
-        return this;
-      }
-      public Builder clearStageMonsters() {
-        if (stageMonstersBuilder_ == null) {
-          stageMonsters_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000002);
-          onChanged();
-        } else {
-          stageMonstersBuilder_.clear();
-        }
-        return this;
-      }
-      public Builder removeStageMonsters(int index) {
-        if (stageMonstersBuilder_ == null) {
-          ensureStageMonstersIsMutable();
-          stageMonsters_.remove(index);
-          onChanged();
-        } else {
-          stageMonstersBuilder_.remove(index);
-        }
-        return this;
-      }
-      public com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageMonsterProto.Builder getStageMonstersBuilder(
-          int index) {
-        return getStageMonstersFieldBuilder().getBuilder(index);
-      }
-      public com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageMonsterProtoOrBuilder getStageMonstersOrBuilder(
-          int index) {
-        if (stageMonstersBuilder_ == null) {
-          return stageMonsters_.get(index);  } else {
-          return stageMonstersBuilder_.getMessageOrBuilder(index);
-        }
-      }
-      public java.util.List<? extends com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageMonsterProtoOrBuilder> 
-           getStageMonstersOrBuilderList() {
-        if (stageMonstersBuilder_ != null) {
-          return stageMonstersBuilder_.getMessageOrBuilderList();
-        } else {
-          return java.util.Collections.unmodifiableList(stageMonsters_);
-        }
-      }
-      public com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageMonsterProto.Builder addStageMonstersBuilder() {
-        return getStageMonstersFieldBuilder().addBuilder(
-            com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageMonsterProto.getDefaultInstance());
-      }
-      public com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageMonsterProto.Builder addStageMonstersBuilder(
-          int index) {
-        return getStageMonstersFieldBuilder().addBuilder(
-            index, com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageMonsterProto.getDefaultInstance());
-      }
-      public java.util.List<com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageMonsterProto.Builder> 
-           getStageMonstersBuilderList() {
-        return getStageMonstersFieldBuilder().getBuilderList();
-      }
-      private com.google.protobuf.RepeatedFieldBuilder<
-          com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageMonsterProto, com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageMonsterProto.Builder, com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageMonsterProtoOrBuilder> 
-          getStageMonstersFieldBuilder() {
-        if (stageMonstersBuilder_ == null) {
-          stageMonstersBuilder_ = new com.google.protobuf.RepeatedFieldBuilder<
-              com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageMonsterProto, com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageMonsterProto.Builder, com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageMonsterProtoOrBuilder>(
-                  stageMonsters_,
-                  ((bitField0_ & 0x00000002) == 0x00000002),
-                  getParentForChildren(),
-                  isClean());
-          stageMonsters_ = null;
-        }
-        return stageMonstersBuilder_;
-      }
-      
-      // @@protoc_insertion_point(builder_scope:proto.TaskStageProto)
-    }
-    
-    static {
-      defaultInstance = new TaskStageProto(true);
-      defaultInstance.initFields();
-    }
-    
-    // @@protoc_insertion_point(class_scope:proto.TaskStageProto)
-  }
-  
   public interface FullTaskProtoOrBuilder
       extends com.google.protobuf.MessageOrBuilder {
     
@@ -1862,6 +1251,617 @@ public final class TaskProto {
     // @@protoc_insertion_point(class_scope:proto.MinimumUserTaskProto)
   }
   
+  public interface TaskStageProtoOrBuilder
+      extends com.google.protobuf.MessageOrBuilder {
+    
+    // optional int32 stageId = 1;
+    boolean hasStageId();
+    int getStageId();
+    
+    // repeated .proto.TaskStageMonsterProto stageMonsters = 2;
+    java.util.List<com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageMonsterProto> 
+        getStageMonstersList();
+    com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageMonsterProto getStageMonsters(int index);
+    int getStageMonstersCount();
+    java.util.List<? extends com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageMonsterProtoOrBuilder> 
+        getStageMonstersOrBuilderList();
+    com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageMonsterProtoOrBuilder getStageMonstersOrBuilder(
+        int index);
+  }
+  public static final class TaskStageProto extends
+      com.google.protobuf.GeneratedMessage
+      implements TaskStageProtoOrBuilder {
+    // Use TaskStageProto.newBuilder() to construct.
+    private TaskStageProto(Builder builder) {
+      super(builder);
+    }
+    private TaskStageProto(boolean noInit) {}
+    
+    private static final TaskStageProto defaultInstance;
+    public static TaskStageProto getDefaultInstance() {
+      return defaultInstance;
+    }
+    
+    public TaskStageProto getDefaultInstanceForType() {
+      return defaultInstance;
+    }
+    
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.lvl6.mobsters.noneventprotos.TaskProto.internal_static_proto_TaskStageProto_descriptor;
+    }
+    
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.lvl6.mobsters.noneventprotos.TaskProto.internal_static_proto_TaskStageProto_fieldAccessorTable;
+    }
+    
+    private int bitField0_;
+    // optional int32 stageId = 1;
+    public static final int STAGEID_FIELD_NUMBER = 1;
+    private int stageId_;
+    public boolean hasStageId() {
+      return ((bitField0_ & 0x00000001) == 0x00000001);
+    }
+    public int getStageId() {
+      return stageId_;
+    }
+    
+    // repeated .proto.TaskStageMonsterProto stageMonsters = 2;
+    public static final int STAGEMONSTERS_FIELD_NUMBER = 2;
+    private java.util.List<com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageMonsterProto> stageMonsters_;
+    public java.util.List<com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageMonsterProto> getStageMonstersList() {
+      return stageMonsters_;
+    }
+    public java.util.List<? extends com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageMonsterProtoOrBuilder> 
+        getStageMonstersOrBuilderList() {
+      return stageMonsters_;
+    }
+    public int getStageMonstersCount() {
+      return stageMonsters_.size();
+    }
+    public com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageMonsterProto getStageMonsters(int index) {
+      return stageMonsters_.get(index);
+    }
+    public com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageMonsterProtoOrBuilder getStageMonstersOrBuilder(
+        int index) {
+      return stageMonsters_.get(index);
+    }
+    
+    private void initFields() {
+      stageId_ = 0;
+      stageMonsters_ = java.util.Collections.emptyList();
+    }
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized != -1) return isInitialized == 1;
+      
+      memoizedIsInitialized = 1;
+      return true;
+    }
+    
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      getSerializedSize();
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        output.writeInt32(1, stageId_);
+      }
+      for (int i = 0; i < stageMonsters_.size(); i++) {
+        output.writeMessage(2, stageMonsters_.get(i));
+      }
+      getUnknownFields().writeTo(output);
+    }
+    
+    private int memoizedSerializedSize = -1;
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+    
+      size = 0;
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(1, stageId_);
+      }
+      for (int i = 0; i < stageMonsters_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(2, stageMonsters_.get(i));
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSerializedSize = size;
+      return size;
+    }
+    
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    protected java.lang.Object writeReplace()
+        throws java.io.ObjectStreamException {
+      return super.writeReplace();
+    }
+    
+    public static com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageProto parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data).buildParsed();
+    }
+    public static com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageProto parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data, extensionRegistry)
+               .buildParsed();
+    }
+    public static com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageProto parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data).buildParsed();
+    }
+    public static com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageProto parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data, extensionRegistry)
+               .buildParsed();
+    }
+    public static com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageProto parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input).buildParsed();
+    }
+    public static com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageProto parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input, extensionRegistry)
+               .buildParsed();
+    }
+    public static com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageProto parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      Builder builder = newBuilder();
+      if (builder.mergeDelimitedFrom(input)) {
+        return builder.buildParsed();
+      } else {
+        return null;
+      }
+    }
+    public static com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageProto parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      Builder builder = newBuilder();
+      if (builder.mergeDelimitedFrom(input, extensionRegistry)) {
+        return builder.buildParsed();
+      } else {
+        return null;
+      }
+    }
+    public static com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageProto parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input).buildParsed();
+    }
+    public static com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageProto parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input, extensionRegistry)
+               .buildParsed();
+    }
+    
+    public static Builder newBuilder() { return Builder.create(); }
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder(com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageProto prototype) {
+      return newBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() { return newBuilder(this); }
+    
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder>
+       implements com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageProtoOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.lvl6.mobsters.noneventprotos.TaskProto.internal_static_proto_TaskStageProto_descriptor;
+      }
+      
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.lvl6.mobsters.noneventprotos.TaskProto.internal_static_proto_TaskStageProto_fieldAccessorTable;
+      }
+      
+      // Construct using com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageProto.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+      
+      private Builder(BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+          getStageMonstersFieldBuilder();
+        }
+      }
+      private static Builder create() {
+        return new Builder();
+      }
+      
+      public Builder clear() {
+        super.clear();
+        stageId_ = 0;
+        bitField0_ = (bitField0_ & ~0x00000001);
+        if (stageMonstersBuilder_ == null) {
+          stageMonsters_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000002);
+        } else {
+          stageMonstersBuilder_.clear();
+        }
+        return this;
+      }
+      
+      public Builder clone() {
+        return create().mergeFrom(buildPartial());
+      }
+      
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageProto.getDescriptor();
+      }
+      
+      public com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageProto getDefaultInstanceForType() {
+        return com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageProto.getDefaultInstance();
+      }
+      
+      public com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageProto build() {
+        com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageProto result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+      
+      private com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageProto buildParsed()
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageProto result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(
+            result).asInvalidProtocolBufferException();
+        }
+        return result;
+      }
+      
+      public com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageProto buildPartial() {
+        com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageProto result = new com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageProto(this);
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
+          to_bitField0_ |= 0x00000001;
+        }
+        result.stageId_ = stageId_;
+        if (stageMonstersBuilder_ == null) {
+          if (((bitField0_ & 0x00000002) == 0x00000002)) {
+            stageMonsters_ = java.util.Collections.unmodifiableList(stageMonsters_);
+            bitField0_ = (bitField0_ & ~0x00000002);
+          }
+          result.stageMonsters_ = stageMonsters_;
+        } else {
+          result.stageMonsters_ = stageMonstersBuilder_.build();
+        }
+        result.bitField0_ = to_bitField0_;
+        onBuilt();
+        return result;
+      }
+      
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageProto) {
+          return mergeFrom((com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageProto)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+      
+      public Builder mergeFrom(com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageProto other) {
+        if (other == com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageProto.getDefaultInstance()) return this;
+        if (other.hasStageId()) {
+          setStageId(other.getStageId());
+        }
+        if (stageMonstersBuilder_ == null) {
+          if (!other.stageMonsters_.isEmpty()) {
+            if (stageMonsters_.isEmpty()) {
+              stageMonsters_ = other.stageMonsters_;
+              bitField0_ = (bitField0_ & ~0x00000002);
+            } else {
+              ensureStageMonstersIsMutable();
+              stageMonsters_.addAll(other.stageMonsters_);
+            }
+            onChanged();
+          }
+        } else {
+          if (!other.stageMonsters_.isEmpty()) {
+            if (stageMonstersBuilder_.isEmpty()) {
+              stageMonstersBuilder_.dispose();
+              stageMonstersBuilder_ = null;
+              stageMonsters_ = other.stageMonsters_;
+              bitField0_ = (bitField0_ & ~0x00000002);
+              stageMonstersBuilder_ = 
+                com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders ?
+                   getStageMonstersFieldBuilder() : null;
+            } else {
+              stageMonstersBuilder_.addAllMessages(other.stageMonsters_);
+            }
+          }
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        return this;
+      }
+      
+      public final boolean isInitialized() {
+        return true;
+      }
+      
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder(
+            this.getUnknownFields());
+        while (true) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              this.setUnknownFields(unknownFields.build());
+              onChanged();
+              return this;
+            default: {
+              if (!parseUnknownField(input, unknownFields,
+                                     extensionRegistry, tag)) {
+                this.setUnknownFields(unknownFields.build());
+                onChanged();
+                return this;
+              }
+              break;
+            }
+            case 8: {
+              bitField0_ |= 0x00000001;
+              stageId_ = input.readInt32();
+              break;
+            }
+            case 18: {
+              com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageMonsterProto.Builder subBuilder = com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageMonsterProto.newBuilder();
+              input.readMessage(subBuilder, extensionRegistry);
+              addStageMonsters(subBuilder.buildPartial());
+              break;
+            }
+          }
+        }
+      }
+      
+      private int bitField0_;
+      
+      // optional int32 stageId = 1;
+      private int stageId_ ;
+      public boolean hasStageId() {
+        return ((bitField0_ & 0x00000001) == 0x00000001);
+      }
+      public int getStageId() {
+        return stageId_;
+      }
+      public Builder setStageId(int value) {
+        bitField0_ |= 0x00000001;
+        stageId_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearStageId() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        stageId_ = 0;
+        onChanged();
+        return this;
+      }
+      
+      // repeated .proto.TaskStageMonsterProto stageMonsters = 2;
+      private java.util.List<com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageMonsterProto> stageMonsters_ =
+        java.util.Collections.emptyList();
+      private void ensureStageMonstersIsMutable() {
+        if (!((bitField0_ & 0x00000002) == 0x00000002)) {
+          stageMonsters_ = new java.util.ArrayList<com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageMonsterProto>(stageMonsters_);
+          bitField0_ |= 0x00000002;
+         }
+      }
+      
+      private com.google.protobuf.RepeatedFieldBuilder<
+          com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageMonsterProto, com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageMonsterProto.Builder, com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageMonsterProtoOrBuilder> stageMonstersBuilder_;
+      
+      public java.util.List<com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageMonsterProto> getStageMonstersList() {
+        if (stageMonstersBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(stageMonsters_);
+        } else {
+          return stageMonstersBuilder_.getMessageList();
+        }
+      }
+      public int getStageMonstersCount() {
+        if (stageMonstersBuilder_ == null) {
+          return stageMonsters_.size();
+        } else {
+          return stageMonstersBuilder_.getCount();
+        }
+      }
+      public com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageMonsterProto getStageMonsters(int index) {
+        if (stageMonstersBuilder_ == null) {
+          return stageMonsters_.get(index);
+        } else {
+          return stageMonstersBuilder_.getMessage(index);
+        }
+      }
+      public Builder setStageMonsters(
+          int index, com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageMonsterProto value) {
+        if (stageMonstersBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureStageMonstersIsMutable();
+          stageMonsters_.set(index, value);
+          onChanged();
+        } else {
+          stageMonstersBuilder_.setMessage(index, value);
+        }
+        return this;
+      }
+      public Builder setStageMonsters(
+          int index, com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageMonsterProto.Builder builderForValue) {
+        if (stageMonstersBuilder_ == null) {
+          ensureStageMonstersIsMutable();
+          stageMonsters_.set(index, builderForValue.build());
+          onChanged();
+        } else {
+          stageMonstersBuilder_.setMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      public Builder addStageMonsters(com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageMonsterProto value) {
+        if (stageMonstersBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureStageMonstersIsMutable();
+          stageMonsters_.add(value);
+          onChanged();
+        } else {
+          stageMonstersBuilder_.addMessage(value);
+        }
+        return this;
+      }
+      public Builder addStageMonsters(
+          int index, com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageMonsterProto value) {
+        if (stageMonstersBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureStageMonstersIsMutable();
+          stageMonsters_.add(index, value);
+          onChanged();
+        } else {
+          stageMonstersBuilder_.addMessage(index, value);
+        }
+        return this;
+      }
+      public Builder addStageMonsters(
+          com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageMonsterProto.Builder builderForValue) {
+        if (stageMonstersBuilder_ == null) {
+          ensureStageMonstersIsMutable();
+          stageMonsters_.add(builderForValue.build());
+          onChanged();
+        } else {
+          stageMonstersBuilder_.addMessage(builderForValue.build());
+        }
+        return this;
+      }
+      public Builder addStageMonsters(
+          int index, com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageMonsterProto.Builder builderForValue) {
+        if (stageMonstersBuilder_ == null) {
+          ensureStageMonstersIsMutable();
+          stageMonsters_.add(index, builderForValue.build());
+          onChanged();
+        } else {
+          stageMonstersBuilder_.addMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      public Builder addAllStageMonsters(
+          java.lang.Iterable<? extends com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageMonsterProto> values) {
+        if (stageMonstersBuilder_ == null) {
+          ensureStageMonstersIsMutable();
+          super.addAll(values, stageMonsters_);
+          onChanged();
+        } else {
+          stageMonstersBuilder_.addAllMessages(values);
+        }
+        return this;
+      }
+      public Builder clearStageMonsters() {
+        if (stageMonstersBuilder_ == null) {
+          stageMonsters_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000002);
+          onChanged();
+        } else {
+          stageMonstersBuilder_.clear();
+        }
+        return this;
+      }
+      public Builder removeStageMonsters(int index) {
+        if (stageMonstersBuilder_ == null) {
+          ensureStageMonstersIsMutable();
+          stageMonsters_.remove(index);
+          onChanged();
+        } else {
+          stageMonstersBuilder_.remove(index);
+        }
+        return this;
+      }
+      public com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageMonsterProto.Builder getStageMonstersBuilder(
+          int index) {
+        return getStageMonstersFieldBuilder().getBuilder(index);
+      }
+      public com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageMonsterProtoOrBuilder getStageMonstersOrBuilder(
+          int index) {
+        if (stageMonstersBuilder_ == null) {
+          return stageMonsters_.get(index);  } else {
+          return stageMonstersBuilder_.getMessageOrBuilder(index);
+        }
+      }
+      public java.util.List<? extends com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageMonsterProtoOrBuilder> 
+           getStageMonstersOrBuilderList() {
+        if (stageMonstersBuilder_ != null) {
+          return stageMonstersBuilder_.getMessageOrBuilderList();
+        } else {
+          return java.util.Collections.unmodifiableList(stageMonsters_);
+        }
+      }
+      public com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageMonsterProto.Builder addStageMonstersBuilder() {
+        return getStageMonstersFieldBuilder().addBuilder(
+            com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageMonsterProto.getDefaultInstance());
+      }
+      public com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageMonsterProto.Builder addStageMonstersBuilder(
+          int index) {
+        return getStageMonstersFieldBuilder().addBuilder(
+            index, com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageMonsterProto.getDefaultInstance());
+      }
+      public java.util.List<com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageMonsterProto.Builder> 
+           getStageMonstersBuilderList() {
+        return getStageMonstersFieldBuilder().getBuilderList();
+      }
+      private com.google.protobuf.RepeatedFieldBuilder<
+          com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageMonsterProto, com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageMonsterProto.Builder, com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageMonsterProtoOrBuilder> 
+          getStageMonstersFieldBuilder() {
+        if (stageMonstersBuilder_ == null) {
+          stageMonstersBuilder_ = new com.google.protobuf.RepeatedFieldBuilder<
+              com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageMonsterProto, com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageMonsterProto.Builder, com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageMonsterProtoOrBuilder>(
+                  stageMonsters_,
+                  ((bitField0_ & 0x00000002) == 0x00000002),
+                  getParentForChildren(),
+                  isClean());
+          stageMonsters_ = null;
+        }
+        return stageMonstersBuilder_;
+      }
+      
+      // @@protoc_insertion_point(builder_scope:proto.TaskStageProto)
+    }
+    
+    static {
+      defaultInstance = new TaskStageProto(true);
+      defaultInstance.initFields();
+    }
+    
+    // @@protoc_insertion_point(class_scope:proto.TaskStageProto)
+  }
+  
   public interface TaskStageMonsterProtoOrBuilder
       extends com.google.protobuf.MessageOrBuilder {
     
@@ -2567,11 +2567,6 @@ public final class TaskProto {
   }
   
   private static com.google.protobuf.Descriptors.Descriptor
-    internal_static_proto_TaskStageProto_descriptor;
-  private static
-    com.google.protobuf.GeneratedMessage.FieldAccessorTable
-      internal_static_proto_TaskStageProto_fieldAccessorTable;
-  private static com.google.protobuf.Descriptors.Descriptor
     internal_static_proto_FullTaskProto_descriptor;
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
@@ -2581,6 +2576,11 @@ public final class TaskProto {
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_proto_MinimumUserTaskProto_fieldAccessorTable;
+  private static com.google.protobuf.Descriptors.Descriptor
+    internal_static_proto_TaskStageProto_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_proto_TaskStageProto_fieldAccessorTable;
   private static com.google.protobuf.Descriptors.Descriptor
     internal_static_proto_TaskStageMonsterProto_descriptor;
   private static
@@ -2596,15 +2596,15 @@ public final class TaskProto {
   static {
     java.lang.String[] descriptorData = {
       "\n\nTask.proto\022\005proto\032\022MonsterStuff.proto\"" +
-      "V\n\016TaskStageProto\022\017\n\007stageId\030\001 \001(\005\0223\n\rst" +
-      "ageMonsters\030\002 \003(\0132\034.proto.TaskStageMonst" +
-      "erProto\"\247\001\n\rFullTaskProto\022\016\n\006taskId\030\001 \001(" +
-      "\005\022\014\n\004name\030\002 \001(\t\022\023\n\013description\030\003 \001(\t\022\016\n\006" +
-      "cityId\030\004 \001(\005\022\032\n\022assetNumWithinCity\030\005 \001(\005" +
-      "\022\032\n\022prerequisiteTaskId\030\006 \001(\005\022\033\n\023prerequi" +
-      "siteQuestId\030\007 \001(\005\"O\n\024MinimumUserTaskProt" +
-      "o\022\020\n\010userUuid\030\001 \001(\t\022\016\n\006taskId\030\002 \001(\005\022\025\n\rn" +
-      "umTimesActed\030\003 \001(\005\"\360\001\n\025TaskStageMonsterP",
+      "\247\001\n\rFullTaskProto\022\016\n\006taskId\030\001 \001(\005\022\014\n\004nam" +
+      "e\030\002 \001(\t\022\023\n\013description\030\003 \001(\t\022\016\n\006cityId\030\004" +
+      " \001(\005\022\032\n\022assetNumWithinCity\030\005 \001(\005\022\032\n\022prer" +
+      "equisiteTaskId\030\006 \001(\005\022\033\n\023prerequisiteQues" +
+      "tId\030\007 \001(\005\"O\n\024MinimumUserTaskProto\022\020\n\010use" +
+      "rUuid\030\001 \001(\t\022\016\n\006taskId\030\002 \001(\005\022\025\n\rnumTimesA" +
+      "cted\030\003 \001(\005\"V\n\016TaskStageProto\022\017\n\007stageId\030" +
+      "\001 \001(\005\0223\n\rstageMonsters\030\002 \003(\0132\034.proto.Tas" +
+      "kStageMonsterProto\"\360\001\n\025TaskStageMonsterP",
       "roto\022\021\n\tmonsterId\030\001 \001(\005\022=\n\013monsterType\030\002" +
       " \001(\0162(.proto.TaskStageMonsterProto.Monst" +
       "erType\022\021\n\texpReward\030\003 \001(\005\022\022\n\ncashReward\030" +
@@ -2618,16 +2618,8 @@ public final class TaskProto {
         public com.google.protobuf.ExtensionRegistry assignDescriptors(
             com.google.protobuf.Descriptors.FileDescriptor root) {
           descriptor = root;
-          internal_static_proto_TaskStageProto_descriptor =
-            getDescriptor().getMessageTypes().get(0);
-          internal_static_proto_TaskStageProto_fieldAccessorTable = new
-            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-              internal_static_proto_TaskStageProto_descriptor,
-              new java.lang.String[] { "StageId", "StageMonsters", },
-              com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageProto.class,
-              com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageProto.Builder.class);
           internal_static_proto_FullTaskProto_descriptor =
-            getDescriptor().getMessageTypes().get(1);
+            getDescriptor().getMessageTypes().get(0);
           internal_static_proto_FullTaskProto_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_proto_FullTaskProto_descriptor,
@@ -2635,13 +2627,21 @@ public final class TaskProto {
               com.lvl6.mobsters.noneventprotos.TaskProto.FullTaskProto.class,
               com.lvl6.mobsters.noneventprotos.TaskProto.FullTaskProto.Builder.class);
           internal_static_proto_MinimumUserTaskProto_descriptor =
-            getDescriptor().getMessageTypes().get(2);
+            getDescriptor().getMessageTypes().get(1);
           internal_static_proto_MinimumUserTaskProto_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_proto_MinimumUserTaskProto_descriptor,
               new java.lang.String[] { "UserUuid", "TaskId", "NumTimesActed", },
               com.lvl6.mobsters.noneventprotos.TaskProto.MinimumUserTaskProto.class,
               com.lvl6.mobsters.noneventprotos.TaskProto.MinimumUserTaskProto.Builder.class);
+          internal_static_proto_TaskStageProto_descriptor =
+            getDescriptor().getMessageTypes().get(2);
+          internal_static_proto_TaskStageProto_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_proto_TaskStageProto_descriptor,
+              new java.lang.String[] { "StageId", "StageMonsters", },
+              com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageProto.class,
+              com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageProto.Builder.class);
           internal_static_proto_TaskStageMonsterProto_descriptor =
             getDescriptor().getMessageTypes().get(3);
           internal_static_proto_TaskStageMonsterProto_fieldAccessorTable = new

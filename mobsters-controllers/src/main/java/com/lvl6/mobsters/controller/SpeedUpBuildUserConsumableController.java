@@ -18,7 +18,7 @@ public class SpeedUpBuildUserConsumableController extends EventController {
 //	protected UserEntityManager userEntityManager;
 //	
 //	@Autowired
-//	protected UserConsumableQueueEntityManager userConsumableQueueEntityManager;
+//	protected TaskHistoryEntityManager userConsumableQueueEntityManager;
 //	
 //	@Autowired
 //	protected UserConsumableQueueService userConsumableQueueService;
@@ -113,7 +113,7 @@ public class SpeedUpBuildUserConsumableController extends EventController {
 			return false;
 		}
 		
-		Map<UserConsumableQueue, Integer> consumablesInQueueMap = getUserConsumableQueueService().convertListToMap(consumablesInQueue);
+		Map<TaskHistory, Integer> consumablesInQueueMap = getUserConsumableQueueService().convertListToMap(consumablesInQueue);
 		
 		int secondsRemaining = getUserConsumableQueueService().calculateTotalTimeOfQueuedUserConsumable(consumablesInQueueMap, clientDate);
 		if(secondsRemaining <= 0) {
@@ -137,7 +137,7 @@ public class SpeedUpBuildUserConsumableController extends EventController {
 	private boolean writeChangesToDb(User inDb, List<UserConsumableQueueProto> consumablesInQueue, Date clientDate) {
 		try {
 			//remove gems from user
-			Map<UserConsumableQueue, Integer> consumablesInQueueMap = getUserConsumableQueueService().convertListToMap(consumablesInQueue);
+			Map<TaskHistory, Integer> consumablesInQueueMap = getUserConsumableQueueService().convertListToMap(consumablesInQueue);
 
 			int secondsRemaining = getUserConsumableQueueService().calculateTotalTimeOfQueuedUserConsumable(consumablesInQueueMap, clientDate);
 			int gemCostToSpeedUp = getUserService().calculateGemCostForSpeedUp(secondsRemaining);
@@ -147,7 +147,7 @@ public class SpeedUpBuildUserConsumableController extends EventController {
 
 
 			//change column is finished building to true
-			for(UserConsumableQueue ucq : consumablesInQueueMap.keySet()) {
+			for(TaskHistory ucq : consumablesInQueueMap.keySet()) {
 				ucq.setFinishedBuilding(true);
 				getUserConsumableQueueEntityManager().get().put(ucq);
 			}
@@ -163,12 +163,12 @@ public class SpeedUpBuildUserConsumableController extends EventController {
 
 
 
-	public UserConsumableQueueEntityManager getUserConsumableQueueEntityManager() {
+	public TaskHistoryEntityManager getUserConsumableQueueEntityManager() {
 		return userConsumableQueueEntityManager;
 	}
 
 	public void setUserConsumableQueueEntityManager(
-			UserConsumableQueueEntityManager userConsumableQueueEntityManager) {
+			TaskHistoryEntityManager userConsumableQueueEntityManager) {
 		this.userConsumableQueueEntityManager = userConsumableQueueEntityManager;
 	}
 

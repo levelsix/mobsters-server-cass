@@ -5,12 +5,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.lvl6.mobsters.entitymanager.UserSpellEntityManager;
 import com.lvl6.mobsters.entitymanager.nonstaticdata.UserEntityManager;
+import com.lvl6.mobsters.entitymanager.nonstaticdata.TaskStageHistoryEntityManager;
 import com.lvl6.mobsters.entitymanager.staticdata.StructureResourceGeneratorRetrieveUtils;
 import com.lvl6.mobsters.events.RequestEvent;
+import com.lvl6.mobsters.services.taskstagehistory.TaskStageHistoryService;
 import com.lvl6.mobsters.services.user.UserService;
-import com.lvl6.mobsters.services.userspell.UserSpellService;
 
 
 @Component
@@ -28,10 +28,10 @@ public class TrainOrUpgradeSpellController extends EventController {
 	protected UserService userService; 
 
 	@Autowired
-	protected UserSpellService userSpellService; 
+	protected TaskStageHistoryService taskStageHistoryService; 
 	
 	@Autowired
-	protected UserSpellEntityManager userSpellEntityManager;
+	protected TaskStageHistoryEntityManager taskStageHistoryEntityManager;
 
 	@Override
 	public RequestEvent createRequestEvent() {
@@ -70,7 +70,7 @@ public class TrainOrUpgradeSpellController extends EventController {
 		try {
 			//get whatever we need from the database
 			User inDb = getUserEntityManager().get().get(userId);
-			UserSpell us = getUserSpellEntityManager().get().get(userSpellId);
+			TaskStageHistory us = getUserSpellEntityManager().get().get(userSpellId);
 			List<StructureResourceGenerator> sList = new ArrayList<StructureResourceGenerator>();
 
 			//validate request
@@ -108,7 +108,7 @@ public class TrainOrUpgradeSpellController extends EventController {
 	}
 /*
 	private boolean isValidRequest(Builder responseBuilder, MinimumUserProto sender,
-			User inDb, UserSpell us, List<StructureResourceGenerator> sList, boolean usingGems, Date clientDate) throws ConnectionException {
+			User inDb, TaskStageHistory us, List<StructureResourceGenerator> sList, boolean usingGems, Date clientDate) throws ConnectionException {
 		if (null == inDb || null == us) {
 			log.error("unexpected error: no user exists. sender=" + sender +
 					"\t inDb=" + inDb + "\t us=" + us);
@@ -187,8 +187,8 @@ public class TrainOrUpgradeSpellController extends EventController {
 		}
 		
 		int count=0;
-		List<UserSpell> userSpells = getUserSpellService().getAllUserSpellsForUser(inDb.getId());
-		for(UserSpell us2: userSpells) {
+		List<TaskStageHistory> userSpells = getUserSpellService().getAllUserSpellsForUser(inDb.getId());
+		for(TaskStageHistory us2: userSpells) {
 			if(us2.getIsTraining())
 				count++;
 		}
@@ -211,7 +211,7 @@ public class TrainOrUpgradeSpellController extends EventController {
 		return true;
 	}
 
-	private boolean writeChangesToDb(User inDb, UserSpell us,
+	private boolean writeChangesToDb(User inDb, TaskStageHistory us,
 			StructureResourceGenerator s, boolean usingGems, Date clientDate) {
 		try {
 			if(!usingGems) {
@@ -242,7 +242,7 @@ public class TrainOrUpgradeSpellController extends EventController {
 			//and update his user spell rows
 			
 			//update user spell
-			UserSpell us2 = new UserSpell();
+			TaskStageHistory us2 = new TaskStageHistory();
 			
 			us2.setId(newId);
 			us2.setUserId(inDb.getId());
@@ -262,7 +262,7 @@ public class TrainOrUpgradeSpellController extends EventController {
 	}
 		
 	
-	private boolean trainingIsCompleteBeforeAttemptingUpgrade(StructureResourceGenerator s, UserSpell us, Date clientDate) {
+	private boolean trainingIsCompleteBeforeAttemptingUpgrade(StructureResourceGenerator s, TaskStageHistory us, Date clientDate) {
 		int buildTime = s.getResearchTimeMillis();
 		long purchaseTime = us.getTimeAcquired().getTime();
 		if(buildTime + purchaseTime < clientDate.getTime())
@@ -275,12 +275,12 @@ public class TrainOrUpgradeSpellController extends EventController {
 	
 
 	
-	public UserSpellService getUserSpellService() {
-		return userSpellService;
+	public TaskStageHistoryService getUserSpellService() {
+		return taskStageHistoryService;
 	}
 
-	public void setUserSpellService(UserSpellService userSpellService) {
-		this.userSpellService = userSpellService;
+	public void setUserSpellService(TaskStageHistoryService taskStageHistoryService) {
+		this.userSpellService = taskStageHistoryService;
 	}
 
 	public StructureResourceGeneratorRetrieveUtils getSpellRetrieveUtils() {
@@ -292,13 +292,13 @@ public class TrainOrUpgradeSpellController extends EventController {
 		this.spellRetrieveUtils = structureResourceGeneratorRetrieveUtils;
 	}
 
-	public UserSpellEntityManager getUserSpellEntityManager() {
-		return userSpellEntityManager;
+	public TaskStageHistoryEntityManager getUserSpellEntityManager() {
+		return taskStageHistoryEntityManager;
 	}
 
 	public void setUserSpellEntityManager(
-			UserSpellEntityManager userSpellEntityManager) {
-		this.userSpellEntityManager = userSpellEntityManager;
+			TaskStageHistoryEntityManager taskStageHistoryEntityManager) {
+		this.userSpellEntityManager = taskStageHistoryEntityManager;
 	}
 
 	public UserEntityManager getUserEntityManager() {

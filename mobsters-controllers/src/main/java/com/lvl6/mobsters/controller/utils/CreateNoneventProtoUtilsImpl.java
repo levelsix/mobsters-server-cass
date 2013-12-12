@@ -14,8 +14,12 @@ import com.lvl6.mobsters.noneventprotos.QuestStuffProto.DialogueProto.SpeechSegm
 import com.lvl6.mobsters.noneventprotos.QuestStuffProto.DialogueProto.SpeechSegmentProto.DialogueSpeaker;
 import com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProto;
 import com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProto.QuestType;
+import com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageMonsterProto;
+import com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageMonsterProto.MonsterType;
+import com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageProto;
 import com.lvl6.mobsters.noneventprotos.UserProto.FullUserProto;
 import com.lvl6.mobsters.po.nonstaticdata.MonsterForUser;
+import com.lvl6.mobsters.po.nonstaticdata.TaskStageForUser;
 import com.lvl6.mobsters.po.nonstaticdata.User;
 import com.lvl6.mobsters.po.staticdata.Quest;
 import com.lvl6.mobsters.utils.Dialogue;
@@ -189,6 +193,50 @@ public class CreateNoneventProtoUtilsImpl implements CreateNoneventProtoUtils {
 		return sspb.build();
 	}
 	
+	
+	//USER PROTO****************************************************************
+	@Override
+	public TaskStageProto createTaskStageProtoFromTaskStageForUser(int taskStageId,
+			List<TaskStageForUser> tsfuList) {
+		TaskStageProto.Builder tspb = TaskStageProto.newBuilder();
+		
+		tspb.setStageId(taskStageId);
+		
+		for (TaskStageForUser tsfu : tsfuList) {
+			TaskStageMonsterProto tsmp = createTaskStageMonsterProtoFromTaskStageForUser(tsfu);
+			tspb.addStageMonsters(tsmp);
+		}
+		return tspb.build();
+	}
+	
+	@Override
+	public TaskStageMonsterProto createTaskStageMonsterProtoFromTaskStageForUser(
+			TaskStageForUser tsfu) {
+		TaskStageMonsterProto.Builder tsmpb = TaskStageMonsterProto.newBuilder();
+		
+		int monsterId = tsfu.getMonsterId();
+		tsmpb.setMonsterId(monsterId);
+		
+		String monsterType = tsfu.getMonsterType();
+		MonsterType type = MonsterType.valueOf(monsterType);
+		if (null != type) {
+			tsmpb.setMonsterType(type);
+		}
+		
+		int expReward = tsfu.getExpGained();
+		tsmpb.setExpReward(expReward);
+		
+		int cashReward = tsfu.getCashGained();
+		tsmpb.setCashReward(cashReward);
+		
+		boolean puzzlePieceDropped = tsfu.isMonsterPieceDropped();
+		tsmpb.setPuzzlePieceDropped(puzzlePieceDropped);
+		
+		int lvl = tsfu.getMonsterLvl();
+		tsmpb.setLevel(lvl);
+		
+		return tsmpb.build();
+	}
 	
 	//USER PROTO****************************************************************
 	@Override

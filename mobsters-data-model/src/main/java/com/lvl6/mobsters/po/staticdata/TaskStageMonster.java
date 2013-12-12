@@ -1,6 +1,7 @@
 package com.lvl6.mobsters.po.staticdata;
 
 import java.io.Serializable;
+import java.util.Random;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -19,6 +20,7 @@ public class TaskStageMonster extends BasePersistentObject<Integer> implements S
 	@Id
 	protected Integer id = 0;
 	
+	//also task_stage_id
 	@Column(name="stage_id")
 	@Index
 	protected int stageId = 0;
@@ -52,7 +54,31 @@ public class TaskStageMonster extends BasePersistentObject<Integer> implements S
 	protected float chanceToAppear = 0.1F;
 
 	
-	
+	//not represented in db
+	protected Random rand = null;
+	//convenience method for logic regarding computing cash reward and if a piece dropped
+	public int getCashDrop() {
+		//example goal: [min,max]=[5, 10], transform range to start at 0.
+		//[min-min, max-min] = [0,max-min] = [0,10-5] = [0,5]
+		//this means there are (10-5)+1 possible numbers
+
+		int minMaxDiff = getMaxCashDrop() - getMinCashDrop();
+		int randCash = rand.nextInt(minMaxDiff + 1); 
+
+		//number generated in [0, max-min] range, but need to transform
+		//back to original range [min, max]. so add min. [0+min, max-min+min]
+		return randCash + getMinCashDrop();
+	}
+	public boolean didPuzzlePieceDrop() {
+		float randFloat = this.rand.nextFloat();
+
+		if (randFloat < this.puzzlePieceDropRate) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
 	
 	public Integer getId() {
 		return id;
@@ -134,6 +160,13 @@ public class TaskStageMonster extends BasePersistentObject<Integer> implements S
 		this.chanceToAppear = chanceToAppear;
 	}
 
+	public Random getRand() {
+		return rand;
+	}
+	public void setRand(Random rand) {
+		this.rand = rand;
+	}
+	
 	@Override
 	public String toString() {
 		return "TaskStageMonster [id=" + id + ", stageId=" + stageId

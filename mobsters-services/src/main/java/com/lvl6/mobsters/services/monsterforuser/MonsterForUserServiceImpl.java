@@ -461,6 +461,26 @@ public class MonsterForUserServiceImpl implements MonsterForUserService {
 	
 	//SAVING STUFF****************************************************************
 	
+	@Override
+	public void saveUserMonsters(List<MonsterForUser> mfuList, Date combineDate,
+			String additionalSop) {
+		log.info("(before) saving mfuList=" + mfuList);
+		for (MonsterForUser mfu : mfuList) {
+			mfu.setCombineStartTime(combineDate);
+			
+			StringBuilder sb = new StringBuilder();
+			sb.append(mfu.getSourceOfPieces());
+			sb.append(additionalSop);
+			
+			String newSop = sb.toString();
+			mfu.setSourceOfPieces(newSop);
+		}
+		
+		log.info("(after) saving mfuList=" + mfuList);
+		getMonsterForUserEntityManager().get().put(mfuList);
+		log.info("saved mfuList");
+	}
+	
 	
 	//UPDATING STUFF****************************************************************
 	
@@ -519,26 +539,6 @@ public class MonsterForUserServiceImpl implements MonsterForUserService {
 		//	  	List<FullUserMonsterProto> protos = CreateInfoProtoUtils
 		//	  			.createFullUserMonsterProtoList(newOrUpdated);
 		//	  	return protos;
-	}
-	
-	@Override
-	public void saveUserMonsters(List<MonsterForUser> mfuList, Date combineDate,
-			String additionalSop) {
-		log.info("(before) saving mfuList=" + mfuList);
-		for (MonsterForUser mfu : mfuList) {
-			mfu.setCombineStartTime(combineDate);
-			
-			StringBuilder sb = new StringBuilder();
-			sb.append(mfu.getSourceOfPieces());
-			sb.append(additionalSop);
-			
-			String newSop = sb.toString();
-			mfu.setSourceOfPieces(newSop);
-		}
-		
-		log.info("(after) saving mfuList=" + mfuList);
-		getMonsterForUserEntityManager().get().put(mfuList);
-		log.info("saved mfuList");
 	}
 	
 	// DELETING STUFF****************************************************************

@@ -13,8 +13,9 @@ import com.dekayd.astyanax.cassandra.entitymanager.Index;
 
 
 @Entity
-public class TaskForUserOngoing extends BasePersistentObject<UUID>{
+public class TaskHistory extends BasePersistentObject<UUID>{
 
+	//this is the id from task_for_user_ongoing table
 	@Id
 	protected UUID id = UUID.randomUUID();
 	
@@ -28,18 +29,28 @@ public class TaskForUserOngoing extends BasePersistentObject<UUID>{
 	
 	@Column(name="exp_gained")
 	protected int expGained = 0;
-
+	
 	@Column(name="cash_gained")
+	@Index
 	protected int cashGained = 0;
 	
 	@Column(name="num_revives")
+	@Index
 	protected int numRevives = 0;
-	
-	@Column(name="start_date")
-	protected Date startDate = null;
 
+	@Column(name="start_time")
+	protected Date startTime = null;
 	
+	@Column(name="end_time")
+	protected Date endTime = null;
 	
+	@Column(name="user_won")
+	protected boolean userWon = false;
+	
+	@Column(name="cancelled")
+	protected boolean cancelled = false;
+	
+
 	public UUID getId() {
 		return id;
 	}
@@ -88,20 +99,44 @@ public class TaskForUserOngoing extends BasePersistentObject<UUID>{
 		this.numRevives = numRevives;
 	}
 
-	public Date getStartDate() {
-		return startDate;
+	public Date getStartTime() {
+		return startTime;
 	}
 
-	public void setStartDate(Date startDate) {
-		this.startDate = startDate;
+	public void setStartTime(Date startTime) {
+		this.startTime = startTime;
+	}
+
+	public Date getEndTime() {
+		return endTime;
+	}
+
+	public void setEndTime(Date endTime) {
+		this.endTime = endTime;
+	}
+
+	public boolean isUserWon() {
+		return userWon;
+	}
+
+	public void setUserWon(boolean userWon) {
+		this.userWon = userWon;
+	}
+
+	public boolean isCancelled() {
+		return cancelled;
+	}
+
+	public void setCancelled(boolean cancelled) {
+		this.cancelled = cancelled;
 	}
 
 	@Override
 	public String toString() {
-		return "TaskForUserOngoing [id=" + id + ", userId=" + userId
-				+ ", taskId=" + taskId + ", expGained=" + expGained
-				+ ", cashGained=" + cashGained + ", numRevives=" + numRevives
-				+ ", startDate=" + startDate + "]";
-	}	
-	
+		return "TaskHistory [id=" + id + ", userId=" + userId + ", taskId="
+				+ taskId + ", expGained=" + expGained + ", cashGained="
+				+ cashGained + ", numRevives=" + numRevives + ", startTime="
+				+ startTime + ", endTime=" + endTime + ", userWon=" + userWon
+				+ ", cancelled=" + cancelled + "]";
+	}
 }

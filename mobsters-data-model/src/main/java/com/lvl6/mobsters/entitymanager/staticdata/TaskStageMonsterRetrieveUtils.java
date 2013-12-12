@@ -5,6 +5,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -80,8 +81,11 @@ import com.lvl6.mobsters.utils.QueryConstructionUtil;
 		taskStageIdsToTaskStageMonsters = new HashMap<Integer, List<TaskStageMonster>>();
 		taskStageMonsterIdsToTaskStageMonsters = new HashMap<Integer, TaskStageMonster>();
 
+		//used for logic regarding computing cash reward and if a piece dropped
+		Random rand = new Random();
 		for(TaskStageMonster tsm : list) {
-
+			tsm.setRand(rand);
+			
 			int stageId = tsm.getStageId();
 			if (!taskStageIdsToTaskStageMonsters.containsKey(stageId)) {
 				//just say first monster for stageId, initialize list
@@ -99,7 +103,8 @@ import com.lvl6.mobsters.utils.QueryConstructionUtil;
 	}
 
 	
-
+	
+	
 	public void reload() {
 		setStaticTaskStageIdsToTaskStageMonster();
 	}

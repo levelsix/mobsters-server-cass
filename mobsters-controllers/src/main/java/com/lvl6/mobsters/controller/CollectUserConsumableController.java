@@ -18,7 +18,7 @@ public class CollectUserConsumableController extends EventController {
 //	protected UserEntityManager userEntityManager;
 //	
 //	@Autowired
-//	protected UserConsumableQueueEntityManager userConsumableQueueEntityManager;
+//	protected TaskHistoryEntityManager userConsumableQueueEntityManager;
 //	
 //	@Autowired
 //	protected QuestForUserEntityManager questForUserEntityManager;
@@ -136,10 +136,10 @@ public class CollectUserConsumableController extends EventController {
 	private boolean writeChangesToDb(User inDb, List<UserConsumableQueueProto> ucqpList, Date clientDate) {
 		try {
 			//delete finished consumables from user consumable and add to user equip
-			Map<UserConsumableQueue, Integer> userConsumableQueueMap = getUserConsumableQueueService().convertListToMap(ucqpList);
+			Map<TaskHistory, Integer> userConsumableQueueMap = getUserConsumableQueueService().convertListToMap(ucqpList);
 			
-			for(Map.Entry<UserConsumableQueue, Integer> entry : userConsumableQueueMap.entrySet()) {
-				UserConsumableQueue ucq = entry.getKey();
+			for(Map.Entry<TaskHistory, Integer> entry : userConsumableQueueMap.entrySet()) {
+				TaskHistory ucq = entry.getKey();
 				Integer quantityRemoved = entry.getValue();
 				if(ucq.getQuantity() == quantityRemoved) {
 					getUserConsumableQueueEntityManager().get().delete(ucq.getId());
@@ -195,12 +195,12 @@ public class CollectUserConsumableController extends EventController {
 		this.userService = userService;
 	}
 
-	public UserConsumableQueueEntityManager getUserConsumableQueueEntityManager() {
+	public TaskHistoryEntityManager getUserConsumableQueueEntityManager() {
 		return userConsumableQueueEntityManager;
 	}
 
 	public void setUserConsumableQueueEntityManager(
-			UserConsumableQueueEntityManager userConsumableQueueEntityManager) {
+			TaskHistoryEntityManager userConsumableQueueEntityManager) {
 		this.userConsumableQueueEntityManager = userConsumableQueueEntityManager;
 	}
 

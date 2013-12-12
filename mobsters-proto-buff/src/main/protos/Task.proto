@@ -9,11 +9,6 @@ option java_package = "com.lvl6.mobsters.noneventprotos";
 option java_outer_classname = "TaskProto";
 //DO NOT USE ID AS THE NAME OF A PROPERTY IN ANY PROTO
 
-message TaskStageProto {
-	optional int32 stageId = 1;
-	repeated TaskStageMonsterProto stageMonsters = 2;
-}
-
 //------------------------------------------------------------------------------------------
 
 message FullTaskProto {
@@ -35,6 +30,11 @@ message MinimumUserTaskProto {
 }
 
 //------------------------------------------------------------------------------------------
+
+message TaskStageProto {
+	optional int32 stageId = 1;
+	repeated TaskStageMonsterProto stageMonsters = 2;
+}
 
 message TaskStageMonsterProto {
 	optional int32 monsterId = 1;
