@@ -13,7 +13,7 @@ public class EnableAPNSResponseEvent extends NormalResponseEvent {
   
   public EnableAPNSResponseEvent(String playerId) {
     super(playerId);
-    eventType = MobstersEventProtocolResponse.S_QUEST_ACCEPT_EVENT_VALUE;
+    eventType = MobstersEventProtocolResponse.S_ENABLE_APNS_EVENT_VALUE;
   }
   
   @Override
