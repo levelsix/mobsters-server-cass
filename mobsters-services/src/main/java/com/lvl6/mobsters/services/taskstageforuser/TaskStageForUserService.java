@@ -44,7 +44,8 @@ public interface TaskStageForUserService {
 	//UPDATING STUFF****************************************************************
 
 	//DELETING STUFF****************************************************************
-	public abstract void deleteExistingTaskStagesForUserTaskId(UUID userTaskId);
+	public abstract void deleteExistingTaskStagesForUserTaskId(UUID userTaskId,
+			boolean getMonsterPieces, Map<Integer, Integer> monsterIdToNumPieces);
 	
 	public abstract void deleteUserTaskStage(UUID userTaskStageId);
 	

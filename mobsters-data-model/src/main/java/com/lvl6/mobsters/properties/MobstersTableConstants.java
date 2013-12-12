@@ -19,8 +19,8 @@ public class MobstersTableConstants {
 	public static final int MONSTER_FOR_USER__INITIAL_MAX_NUM_MONSTER_LIMIT = 10;
 
 	//MFUSOP = monster_for_user_source_of_pieces
-	public static final String MFUSOP__END_DUNGEON = "Task4UserId ";
-	public static final String MFUSOP__QUEST = "questId "; 
+	public static final String MFUSOP__END_DUNGEON = "Task4UserId";
+	public static final String MFUSOP__QUEST = "questId"; 
 	public static final String MFUSOP__BOOSTER_PACK = "boosterPackId";
 
 	//MFUDR = monster_for_user_delete_reasons

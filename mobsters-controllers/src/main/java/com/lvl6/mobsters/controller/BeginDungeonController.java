@@ -168,8 +168,12 @@ public class BeginDungeonController extends EventController {
 			boolean cancelled = true;
 			getTaskForUserOngoingService().deleteExistingUserTask(userTaskId, clientDate,
 					userWon, cancelled, existing);
-			//DELETE FROM TASK STAGE FOR USER AND PUT IT INTO TASK STAGE HISTORY
-			getTaskStageForUserService().deleteExistingTaskStagesForUserTaskId(userTaskId);
+			//DELETE FROM TASK STAGE FOR USER AND PUT IT INTO TASK STAGE HISTORY,
+			//don't want to find out what monster pieces the user could have gotten
+			boolean getMonsterPieces = false;
+			Map<Integer, Integer> monsterIdToNumPieces = null;
+			getTaskStageForUserService().deleteExistingTaskStagesForUserTaskId(userTaskId,
+					getMonsterPieces, monsterIdToNumPieces);
 		}
 
 		resBuilder.setStatus(BeginDungeonStatus.SUCCESS);

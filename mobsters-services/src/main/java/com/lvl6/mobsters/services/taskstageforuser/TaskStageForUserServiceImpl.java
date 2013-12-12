@@ -1,6 +1,7 @@
 package com.lvl6.mobsters.services.taskstageforuser;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -252,12 +253,21 @@ public class TaskStageForUserServiceImpl implements TaskStageForUserService {
 
 	//DELETING STUFF****************************************************************
 	@Override
-	public void deleteExistingTaskStagesForUserTaskId(UUID userTaskId) {
+	public void deleteExistingTaskStagesForUserTaskId(UUID userTaskId, boolean getMonsterPieces, 
+			Map<Integer, Integer> monsterIdToNumPieces) {
+		//get from db
 		List<TaskStageForUser> existingList = getAllUserTaskStagesForUserTask(userTaskId);
 		
+		//collect the primary keys that will be deleted
 		List<UUID> userTaskStageIdList = new ArrayList<UUID>();
 		
+		//task stage history objects to be saved later
 		List<TaskStageHistory> tshList = new ArrayList<TaskStageHistory>();
+		
+		//keep track of how many pieces dropped and by which task stage monster
+	  	Map<Integer, Integer> taskStageMonsterIdToQuantity =
+	  			new HashMap<Integer, Integer>();
+	  	
 		//convert the task stage for user objects into task stage history objects
 		for (TaskStageForUser tsfu : existingList) {
 			UUID userTaskStageId = tsfu.getId();
@@ -278,6 +288,17 @@ public class TaskStageForUserServiceImpl implements TaskStageForUserService {
 			tsh.setCashGained(cashGained);
 			tsh.setMonsterPieceDropped(monsterPieceDropped);
 			tshList.add(tsh);
+
+			//since monster piece dropped, update our current stats on monster pieces
+			if (taskStageMonsterIdToQuantity.containsKey(taskStageMonsterId)) {
+				//saw this task stage monster id before, increment quantity
+				int quantity = 1 + taskStageMonsterIdToQuantity.get(taskStageMonsterId);
+				taskStageMonsterIdToQuantity.put(taskStageMonsterId, quantity);
+
+			} else {
+				//haven't seen this task stage monster id yet, so start off at 1
+				taskStageMonsterIdToQuantity.put(taskStageMonsterId, 1);
+			}
 		}
 	
 		//delete the existing task stage for user
@@ -285,7 +306,38 @@ public class TaskStageForUserServiceImpl implements TaskStageForUserService {
 		
 		//record the task stage history objects
 		getTaskStageHistoryService().saveTaskStageHistories(tshList);
+
+		if (getMonsterPieces) {
+			aggregateMonsterPieces(taskStageMonsterIdToQuantity, monsterIdToNumPieces);
+		}
 	}
+
+	private void aggregateMonsterPieces(Map<Integer, Integer> taskStageMonsterIdToQuantity,
+			Map<Integer, Integer> monsterIdToNumPieces) {
+		//retrieve those task stage monsters. aggregate the quantities by monster id
+		//assume different task stage monsters can be the same monster
+		Collection<Integer> taskStageMonsterIds = taskStageMonsterIdToQuantity.keySet();
+		Map<Integer, TaskStageMonster> monstersThatDropped = getTaskStageMonsterRetrieveUtils()
+				.getTaskStageMonstersForIds(taskStageMonsterIds);
+
+		for (int taskStageMonsterId : taskStageMonsterIds) {
+			TaskStageMonster monsterThatDropped = monstersThatDropped.get(taskStageMonsterId);
+			int monsterId = monsterThatDropped.getMonsterId();
+			int numPiecesDroppedForMonster = taskStageMonsterIdToQuantity.get(taskStageMonsterId); 
+
+			//aggregate pieces based on monsterId, since assuming different task
+			//stage monsters can be the same monster
+			if (monsterIdToNumPieces.containsKey(monsterId)) {
+				int newAmount = numPiecesDroppedForMonster + monsterIdToNumPieces.get(monsterId);
+				monsterIdToNumPieces.put(monsterId, newAmount);
+
+			} else {
+				//first time seeing this monster, store existing quantity
+				monsterIdToNumPieces.put(monsterId, numPiecesDroppedForMonster);
+			}
+		}
+	}
+	
 
 	@Override
 	public void deleteUserTaskStage(UUID userTaskStageId) {

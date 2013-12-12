@@ -13,7 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.lvl6.mobsters.controller.utils.CreateNoneventProtoUtils;
-import com.lvl6.mobsters.controller.utils.MonsterStuffUtils;
 import com.lvl6.mobsters.entitymanager.staticdata.QuestRetrieveUtils;
 import com.lvl6.mobsters.eventprotos.EventQuestProto.QuestRedeemRequestProto;
 import com.lvl6.mobsters.eventprotos.EventQuestProto.QuestRedeemResponseProto;
@@ -58,9 +57,6 @@ public class QuestRedeemController extends EventController {
 	
 	@Autowired
 	protected MonsterForUserService monsterForUserService;
-	
-	@Autowired
-	protected MonsterStuffUtils monsterStuffUtils;
 	
 	@Autowired
 	protected UserCurrencyHistoryService userCurrencyHistoryService;
@@ -186,11 +182,10 @@ public class QuestRedeemController extends EventController {
 		
 		int monsterIdReward = quest.getMonsterIdReward();
 		if (monsterIdReward > 0) {
-			//WHEN GIVING USER A MONSTER, CALL MonsterStuffUtils.updateUserMonsters(...)
 	    	Map<Integer, Integer> monsterIdToNumPieces = new HashMap<Integer, Integer>();
 	    	monsterIdToNumPieces.put(monsterIdReward, 1);
 	    	
-	    	String mfusop = MobstersTableConstants.MFUSOP__QUEST + questId;
+	    	String mfusop = MobstersTableConstants.MFUSOP__QUEST + " " + questId;
 	    	List<MonsterForUser> rewardList = getMonsterForUserService()
 	    			.updateUserMonstersForUser(userId, monsterIdToNumPieces, mfusop, combineStartDate);
 	    	List<FullUserMonsterProto> rewardProtoList = getCreateNoneventProtoUtils()
@@ -320,14 +315,6 @@ public class QuestRedeemController extends EventController {
 
 	public void setMonsterForUserService(MonsterForUserService monsterForUserService) {
 		this.monsterForUserService = monsterForUserService;
-	}
-
-	public MonsterStuffUtils getMonsterStuffUtils() {
-		return monsterStuffUtils;
-	}
-
-	public void setMonsterStuffUtils(MonsterStuffUtils monsterStuffUtils) {
-		this.monsterStuffUtils = monsterStuffUtils;
 	}
 
 	public UserCurrencyHistoryService getUserCurrencyHistoryService() {
