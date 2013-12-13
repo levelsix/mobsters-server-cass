@@ -33,7 +33,7 @@ public class StartDungeonController extends EventController {
 //	protected UserCurrencyHistoryService userCurrencyHistoryService;
 //	
 //	@Autowired
-//	protected PreDungeonUserInfoEntityManager preDungeonUserInfoEntityManager;
+//	protected BoosterItemEntityManager preDungeonUserInfoEntityManager;
 //
 //	@Autowired
 //	protected TaskStageForUserEntityManager preDungeonUserEquipInfoEntityManager;
@@ -190,7 +190,7 @@ public class StartDungeonController extends EventController {
 			Map<QuestForUser, Integer> userConsumablesMap, UUID combatRoomId, Date clientDate) {
 		try {
 			//save all the info
-			PreDungeonUserInfo pdui = new PreDungeonUserInfo();
+			BoosterItem pdui = new BoosterItem();
 			pdui.setCombatRoomId(combatRoomId);
 			pdui.setHealth(inDb.getHp());
 			pdui.setId(UUID.randomUUID());
@@ -300,12 +300,12 @@ public class StartDungeonController extends EventController {
 		this.taskStageMonsterRetrieveUtils = taskStageMonsterRetrieveUtils;
 	}
 
-	public PreDungeonUserInfoEntityManager getPreDungeonUserInfoEntityManager() {
+	public BoosterItemEntityManager getPreDungeonUserInfoEntityManager() {
 		return preDungeonUserInfoEntityManager;
 	}
 
 	public void setPreDungeonUserInfoEntityManager(
-			PreDungeonUserInfoEntityManager preDungeonUserInfoEntityManager) {
+			BoosterItemEntityManager preDungeonUserInfoEntityManager) {
 		this.preDungeonUserInfoEntityManager = preDungeonUserInfoEntityManager;
 	}
 
