@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.lvl6.mobsters.controller.utils.BoosterPackStuffUtils;
+import com.lvl6.mobsters.controller.utils.CreateEventProtoUtils;
 import com.lvl6.mobsters.entitymanager.staticdata.BoosterItemRetrieveUtils;
 import com.lvl6.mobsters.entitymanager.staticdata.BoosterPackRetrieveUtils;
 import com.lvl6.mobsters.eventprotos.EventBoosterPackProto.PurchaseBoosterPackRequestProto;
@@ -21,6 +22,7 @@ import com.lvl6.mobsters.eventprotos.EventBoosterPackProto.PurchaseBoosterPackRe
 import com.lvl6.mobsters.events.RequestEvent;
 import com.lvl6.mobsters.events.request.PurchaseBoosterPackRequestEvent;
 import com.lvl6.mobsters.events.response.PurchaseBoosterPackResponseEvent;
+import com.lvl6.mobsters.events.response.UpdateClientUserResponseEvent;
 import com.lvl6.mobsters.noneventprotos.MobstersEventProtocolProto.MobstersEventProtocolRequest;
 import com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto;
 import com.lvl6.mobsters.po.nonstaticdata.User;
@@ -56,6 +58,9 @@ public class PurchaseBoosterPackController extends EventController {
 	
 	@Autowired
 	protected QueryConstructionUtil queryConstructionUtil;
+	
+	@Autowired
+	protected CreateEventProtoUtils createEventProtoUtils;
 	
 	@Override
 	public RequestEvent createRequestEvent() {
@@ -119,13 +124,19 @@ public class PurchaseBoosterPackController extends EventController {
 			}
 			
 			if (successful) {
-				
+				responseBuilder.setStatus(PurchaseBoosterPackStatus.SUCCESS);
 			}
 			
 			//write to client
 			resEvent.setPurchaseBoosterPackResponseProto(responseBuilder.build());
 			log.info("Writing event: " + resEvent);
 			getEventWriter().handleEvent(resEvent);
+			
+			if (successful) {
+				UpdateClientUserResponseEvent update = getCreateEventProtoUtils()
+						.createUpdateClientUserResponseEvent(user);
+				getEventWriter().handleEvent(update);
+			}
 
 		} catch (Exception e) {
 			log.error("exception in PurchaseBoosterPackController processRequestEvent", e);
@@ -271,6 +282,14 @@ public class PurchaseBoosterPackController extends EventController {
 
 	public void setQueryConstructionUtil(QueryConstructionUtil queryConstructionUtil) {
 		this.queryConstructionUtil = queryConstructionUtil;
+	}
+
+	public CreateEventProtoUtils getCreateEventProtoUtils() {
+		return createEventProtoUtils;
+	}
+
+	public void setCreateEventProtoUtils(CreateEventProtoUtils createEventProtoUtils) {
+		this.createEventProtoUtils = createEventProtoUtils;
 	}
 
 }
