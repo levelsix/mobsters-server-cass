@@ -93,7 +93,8 @@ public class QuestRedeemController extends EventController {
 		responseBuilder.setSender(senderProto);
 		responseBuilder.setStatus(QuestRedeemStatus.FAIL_OTHER);
 		responseBuilder.setQuestId(questId);
-		
+		QuestRedeemResponseEvent resEvent = new QuestRedeemResponseEvent(userIdString);
+		resEvent.setTag(event.getTag());
 
 		try {
 			//get whatever we need from the database
@@ -122,8 +123,6 @@ public class QuestRedeemController extends EventController {
 				responseBuilder.setStatus(QuestRedeemStatus.SUCCESS);
 			}
 
-			QuestRedeemResponseEvent resEvent = new QuestRedeemResponseEvent(userIdString);
-			resEvent.setTag(event.getTag());
 			resEvent.setQuestRedeemResponseProto(responseBuilder.build());
 			//write to client
 			log.info("Writing event: " + resEvent);
@@ -134,8 +133,6 @@ public class QuestRedeemController extends EventController {
 
 			try {
 				//try to tell client that something failed
-				QuestRedeemResponseEvent resEvent = new QuestRedeemResponseEvent(userIdString);
-				resEvent.setTag(event.getTag());
 				responseBuilder.setStatus(QuestRedeemStatus.FAIL_OTHER);
 				resEvent.setQuestRedeemResponseProto(responseBuilder.build());
 				getEventWriter().handleEvent(resEvent);

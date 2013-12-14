@@ -19,6 +19,9 @@ import com.lvl6.mobsters.utils.QueryConstructionUtil;
 	private  Logger log = LoggerFactory.getLogger(new Object() { }.getClass().getEnclosingClass());
 
 	private  Map<Integer, BoosterItem> boosterItemIdsToBoosterItems;
+	//key:booster pack id --> value:(key: booster item id --> value: booster item)
+	private static Map<Integer, Map<Integer, BoosterItem>> 
+		boosterItemIdsToBoosterItemsForBoosterPackIds;
 
 	private  final String TABLE_NAME = MobstersDbTables.TABLE_BOOSTER_ITEM;
 
@@ -29,20 +32,82 @@ import com.lvl6.mobsters.utils.QueryConstructionUtil;
 	private QueryConstructionUtil queryConstructionUtil;
 	
 
+
 	public Map<Integer, BoosterItem> getBoosterItemIdsToBoosterItems() {
-		log.debug("retrieving all booster items data map");
+		log.debug("retrieving all BoosterItems data map");
 		if (boosterItemIdsToBoosterItems == null) {
 			setStaticBoosterItemIdsToBoosterItems();
 		}
 		return boosterItemIdsToBoosterItems;
 	}
 
+	public Map<Integer, Map<Integer, BoosterItem>> getBoosterItemIdsToBoosterItemsForBoosterPackIds() {
+		if(null == boosterItemIdsToBoosterItemsForBoosterPackIds) {
+			setStaticBoosterItemIdsToBoosterItemsForBoosterPackIds();
+		}
+		return boosterItemIdsToBoosterItemsForBoosterPackIds;
+	}
+
+	public Map<Integer, BoosterItem> getBoosterItemIdsToBoosterItemsForBoosterPackId(int boosterPackId) {
+		try {
+			log.debug("retrieve boosterPack data for boosterPack " + boosterPackId);
+			if (boosterItemIdsToBoosterItems == null) {
+				setStaticBoosterItemIdsToBoosterItems();
+			}
+			if (boosterItemIdsToBoosterItemsForBoosterPackIds == null) {
+				boosterItemIdsToBoosterItemsForBoosterPackIds = new HashMap<Integer, Map<Integer, BoosterItem>>();
+			}
+			List<BoosterItem> bis = new ArrayList<BoosterItem>(boosterItemIdsToBoosterItems.values());
+			for(BoosterItem bi : bis) {
+				int packId = bi.getBoosterPackId();
+				if(!boosterItemIdsToBoosterItemsForBoosterPackIds.containsKey(packId)) {
+					Map<Integer, BoosterItem> bItemIdToBItem = new HashMap<Integer, BoosterItem>();
+					boosterItemIdsToBoosterItemsForBoosterPackIds.put(packId, bItemIdToBItem);
+				}
+				//each itemId is unique (autoincrementing in the table)
+				Map<Integer, BoosterItem> itemIdToItem =
+						boosterItemIdsToBoosterItemsForBoosterPackIds.get(packId);
+				itemIdToItem.put(bi.getId(), bi);
+			}
+			return boosterItemIdsToBoosterItemsForBoosterPackIds.get(boosterPackId);
+		} catch (Exception e) {
+			log.error("error creating a map of booster item ids to booster items.", e);
+		}
+		return null;
+	}
+
 	public BoosterItem getBoosterItemForBoosterItemId(int boosterItemId) {
-		log.debug("retrieve booster item data for booster item " + boosterItemId);
+		log.debug("retrieve boosterItem data for boosterItem " + boosterItemId);
 		if (boosterItemIdsToBoosterItems == null) {
 			setStaticBoosterItemIdsToBoosterItems();      
 		}
 		return boosterItemIdsToBoosterItems.get(boosterItemId);
+	}
+ 
+
+	public void setStaticBoosterItemIdsToBoosterItemsForBoosterPackIds() {
+		try {
+			log.debug("setting static map of boosterPackId to (boosterItemIds to boosterItems) ");
+			if (boosterItemIdsToBoosterItems == null) {
+				setStaticBoosterItemIdsToBoosterItems();      
+			}
+
+			boosterItemIdsToBoosterItemsForBoosterPackIds = new HashMap<Integer, Map<Integer, BoosterItem>>();
+			List<BoosterItem> bis = new ArrayList<BoosterItem>(boosterItemIdsToBoosterItems.values());
+			for(BoosterItem bi : bis) {
+				int packId = bi.getBoosterPackId();
+				if(!boosterItemIdsToBoosterItemsForBoosterPackIds.containsKey(packId)) {
+					Map<Integer, BoosterItem> bItemIdToBItem = new HashMap<Integer, BoosterItem>();
+					boosterItemIdsToBoosterItemsForBoosterPackIds.put(packId, bItemIdToBItem);
+				}
+				//each itemId is unique (autoincrementing in the table)
+				Map<Integer, BoosterItem> itemIdToItem =
+						boosterItemIdsToBoosterItemsForBoosterPackIds.get(packId);
+				itemIdToItem.put(bi.getId(), bi);
+			}
+		} catch (Exception e) {
+			log.error("error creating a map of booster item ids to booster items.", e);
+		}
 	}
 	
 
@@ -72,6 +137,7 @@ import com.lvl6.mobsters.utils.QueryConstructionUtil;
 
 	public  void reload() {
 		setStaticBoosterItemIdsToBoosterItems();
+		setStaticBoosterItemIdsToBoosterItemsForBoosterPackIds();
 	}
 	
 
