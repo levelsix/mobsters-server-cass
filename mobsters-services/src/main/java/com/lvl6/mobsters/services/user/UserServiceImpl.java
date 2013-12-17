@@ -10,9 +10,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.lvl6.mobsters.entitymanager.UserDeviceEntityManager;
 import com.lvl6.mobsters.entitymanager.nonstaticdata.UserEntityManager;
 import com.lvl6.mobsters.entitymanager.staticdata.StructureResourceStorageRetrieveUtils;
+import com.lvl6.mobsters.entitymanager.staticdata.ProfanityEntityManager;
 import com.lvl6.mobsters.po.nonstaticdata.User;
 import com.lvl6.mobsters.services.structureforuser.StructureForUserService;
 
@@ -24,7 +24,7 @@ public class UserServiceImpl implements UserService {
 	protected StructureResourceStorageRetrieveUtils classLevelInfoRetrieveUtils;
 	
 	@Autowired
-	protected UserDeviceEntityManager userDeviceEntityManager;
+	protected ProfanityEntityManager profanityEntityManager;
 	
 	@Autowired
 	protected UserEntityManager userEntityManager;

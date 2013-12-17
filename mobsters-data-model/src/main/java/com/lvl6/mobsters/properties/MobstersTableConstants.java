@@ -53,8 +53,9 @@ public class MobstersTableConstants {
 	public static final String UCHRFC__SPED_UP_ENHANCING = "sped up enhancing user monster";
 	
 	
-	
-	
+
+	//SEND GROUP CHAT
+	public static final int SEND_GROUP_CHAT__MAX_LENGTH_OF_CHAT_STRING = 200;
 	
 	//AOC2 STUFF
 	//user_equip_repair

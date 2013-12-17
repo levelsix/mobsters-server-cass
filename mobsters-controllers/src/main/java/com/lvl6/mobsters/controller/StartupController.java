@@ -240,7 +240,7 @@ public class StartupController extends EventController {
 		} else {
 			 u = uList.get(0);
 		}
-		Map<String, UserDevice> udidsToDevices = bootOtherDevicesSharingAccount(u, udid);
+		Map<String, Profanity> udidsToDevices = bootOtherDevicesSharingAccount(u, udid);
 		
 		//give the user the initial currency and stuff, if needed
 		initializeUser(u, loginDate);
@@ -254,10 +254,10 @@ public class StartupController extends EventController {
 	//if another device, device1, is on in the foreground then device1 gets kicked off
 	//if device1 is in the background but in the dungeon, user is penalized 
 	//and device1 will startup regularly, not in the dungeon.
-	private Map<String, UserDevice> bootOtherDevicesSharingAccount(User u, String udid) {
+	private Map<String, Profanity> bootOtherDevicesSharingAccount(User u, String udid) {
 		UUID userId = u.getId();
 		String userIdStr = userId.toString();
-		Map<String, UserDevice> udidsToDevices = 
+		Map<String, Profanity> udidsToDevices = 
 				getUserDeviceService().getUdidsToDevicesForUser(userId);
 		
 		boolean exitDungeon = false;
@@ -299,15 +299,15 @@ public class StartupController extends EventController {
 		return u;
 	}
 	
-	private void updateUserLogin(Map<String, UserDevice> udidsToDevices,
+	private void updateUserLogin(Map<String, Profanity> udidsToDevices,
 			String currentUdid, Date loginDate) {
-		Collection<UserDevice> udCollection = new ArrayList<UserDevice>();
+		Collection<Profanity> udCollection = new ArrayList<Profanity>();
 		
 		//go through each device and make lastLogin < lastLogout, except for
 		//the current device
 		for (String udid : udidsToDevices.keySet()) {
 			
-			UserDevice ud = udidsToDevices.get(udid);
+			Profanity ud = udidsToDevices.get(udid);
 			Date login = ud.getLastLogin();
 			Date logout = ud.getLastLogout();
 			

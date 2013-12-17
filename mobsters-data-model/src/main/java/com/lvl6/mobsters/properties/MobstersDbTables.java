@@ -64,7 +64,7 @@ public class MobstersDbTables {
 	public static final String TABLE_TOURNAMENT_EVENT_FOR_USER = "tournament_event_for_user";
 	public static final String TABLE_TOURNAMENT_REWARD = "tournament_reward";
 	public static final String TABLE_USER = "user";
-	public static final String TABLE_BANNED_USER = "user_banned";
+	public static final String TABLE_USER_BANNED = "user_banned";
 	public static final String TABLE_USER_BEFORE_TUTORIAL_COMPLETION = "user_before_tutorial_completion";
 	public static final String TABLE_USER_CURRENCY_HISTORY = "user_currency_history";
 	public static final String TABLE_USER_FACEBOOK_INVITE_FOR_SLOT = "user_facebook_invite_for_slot";
@@ -406,6 +406,11 @@ public class MobstersDbTables {
 	public static final String USER__FACEBOOK_ID = "facebook_id";
 	public static final String USER__NTH_EXTRA_SLOTS_VIA_FB = "nth_extra_slots_via_fb";
 
+	/* USER BANNED */
+	public static final String USER_BANNED__ID = GENERIC__ID;
+	public static final String USER_BANNED__USER_ID = GENERIC__USER_ID;
+	public static final String USER_BANNED__TIME_BANNED = "time_banned";
+	public static final String USER_BANNED__REASON = "reason";
 
 	/* USER BEFORE TUTORIAL COMPLETION*/
 	public static final String USER_BEFORE_TUTORIAL_COMPLETION__ID = GENERIC__ID;

@@ -12,7 +12,7 @@ import com.lvl6.mobsters.entitymanager.staticdata.StructureLabRetrieveUtils;
 import com.lvl6.mobsters.events.RequestEvent;
 import com.lvl6.mobsters.events.request.CollectUserEquipRequestEvent;
 import com.lvl6.mobsters.services.user.UserService;
-//import com.lvl6.mobsters.services.userequiprepair.UserEquipRepairService;
+//import com.lvl6.mobsters.services.clanchatpost.UserEquipRepairService;
 import com.lvl6.mobsters.widerows.RestrictionOnNumberOfUserStructure;
 
 

@@ -38,9 +38,9 @@ message SendGroupChatResponseProto {
 	
 	enum SendGroupChatStatus {
 		SUCCESS = 1;
-		TOO_LONG = 2;
-		OTHER_FAIL = 3;
-		BANNED = 4;
+		FAIL_TOO_LONG = 2;
+		FAIL_OTHER = 3;
+		FAIL_BANNED = 4;
 	}
 }
 

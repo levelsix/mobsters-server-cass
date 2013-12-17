@@ -5,11 +5,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.lvl6.mobsters.entitymanager.UserItemEntityManager;
 import com.lvl6.mobsters.entitymanager.nonstaticdata.MonsterEnhancingForUserEntityManager;
 import com.lvl6.mobsters.entitymanager.nonstaticdata.MonsterForUserEntityManager;
 import com.lvl6.mobsters.entitymanager.nonstaticdata.UserEntityManager;
 import com.lvl6.mobsters.entitymanager.staticdata.StructureRetrieveUtils;
+import com.lvl6.mobsters.entitymanager.staticdata.UserBannedEntityManager;
 import com.lvl6.mobsters.events.RequestEvent;
 import com.lvl6.mobsters.events.request.CompleteDungeonRequestEvent;
 import com.lvl6.mobsters.services.monsterforuser.MonsterForUserService;
@@ -41,7 +41,7 @@ public class CompleteDungeonController extends EventController {
 	protected MonsterEnhancingForUserEntityManager monsterEnhancingForUserEntityManager;
 	
 	@Autowired
-	protected UserItemEntityManager userItemEntityManager;
+	protected UserBannedEntityManager userBannedEntityManager;
 	
 	@Override
 	public RequestEvent createRequestEvent() {
@@ -175,7 +175,7 @@ public class CompleteDungeonController extends EventController {
 				getUserChestEntityManager().get().put(uc);
 			}
 			for(ItemProto ip : itemsRewarded) {
-				UserItem ui = new UserItem();
+				UserBanned ui = new UserBanned();
 				UUID newId = UUID.randomUUID();
 				//TODO: CORRECT THESE
 //				ui.setDungeonRoomAcquiredIn(dungeonRoomId);
@@ -305,12 +305,12 @@ public class CompleteDungeonController extends EventController {
 		this.monsterEnhancingForUserEntityManager = monsterEnhancingForUserEntityManager;
 	}
 
-	public UserItemEntityManager getUserItemEntityManager() {
-		return userItemEntityManager;
+	public UserBannedEntityManager getUserItemEntityManager() {
+		return userBannedEntityManager;
 	}
 
-	public void setUserItemEntityManager(UserItemEntityManager userItemEntityManager) {
-		this.userItemEntityManager = userItemEntityManager;
+	public void setUserItemEntityManager(UserBannedEntityManager userBannedEntityManager) {
+		this.userItemEntityManager = userBannedEntityManager;
 	}
 */
 	
