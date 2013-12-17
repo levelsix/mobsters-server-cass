@@ -21,14 +21,21 @@ import com.lvl6.mobsters.utils.QueryConstructionUtil;
 	private  Map<Integer, Structure> idsToStructures;
 	private  final String TABLE_NAME = MobstersDbTables.TABLE_STRUCTURE;
 
-	
-	
 	@Autowired
 	protected StructureEntityManager structureEntityManager;
 	
 	@Autowired
 	private QueryConstructionUtil queryConstructionUtil;
+
 	
+	
+	public Map<Integer, Structure> getStructIdsToStructs() {
+		if (null == idsToStructures) {
+			setStaticIdsToStructures();
+		}
+		
+		return idsToStructures;
+	}
 
 	public  Structure getStructureForId(Integer id) {
 		log.debug("retrieve structure data for id " + id);
@@ -38,13 +45,6 @@ import com.lvl6.mobsters.utils.QueryConstructionUtil;
 		return idsToStructures.get(id);
 	}
 
-	public Map<Integer, Structure> getStructIdsToStructs() {
-		if (null == idsToStructures) {
-			setStaticIdsToStructures();
-		}
-		
-		return idsToStructures;
-	}
 	public  Map<Integer, Structure> getStructuresForIds(List<Integer> ids) {
 		log.debug("retrieve structures data for ids " + ids);
 		if (idsToStructures == null) {

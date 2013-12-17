@@ -18,7 +18,10 @@ import com.lvl6.mobsters.utils.QueryConstructionUtil;
 
 	private  Logger log = LoggerFactory.getLogger(new Object() { }.getClass().getEnclosingClass());
 
-	private  Map<Integer, BoosterDisplayItem> boosterDisplayItemIdsToBoosterDisplayItems;
+	private static Map<Integer, BoosterDisplayItem> boosterDisplayItemIdsToBoosterDisplayItems;
+	//key:booster pack id --> value:(key: booster item id --> value: booster item)
+	private static Map<Integer, Map<Integer, BoosterDisplayItem>> 
+		boosterDisplayItemIdsToBoosterDisplayItemsForBoosterPackIds;
 
 	private  final String TABLE_NAME = MobstersDbTables.TABLE_BOOSTER_DISPLAY_ITEM;
 
@@ -30,21 +33,39 @@ import com.lvl6.mobsters.utils.QueryConstructionUtil;
 	
 
 	public Map<Integer, BoosterDisplayItem> getBoosterDisplayItemIdsToBoosterDisplayItems() {
-		log.debug("retrieving all booster display items data map");
+		log.debug("retrieving all BoosterDisplayItems data map");
 		if (boosterDisplayItemIdsToBoosterDisplayItems == null) {
 			setStaticBoosterDisplayItemIdsToBoosterDisplayItems();
 		}
 		return boosterDisplayItemIdsToBoosterDisplayItems;
 	}
 
+	public Map<Integer, Map<Integer, BoosterDisplayItem>> getBoosterDisplayItemIdsToBoosterDisplayItemsForBoosterPackIds() {
+		if(null == boosterDisplayItemIdsToBoosterDisplayItemsForBoosterPackIds) {
+			setStaticBoosterDisplayItemIdsToBoosterDisplayItemsForBoosterPackIds();
+		}
+		return boosterDisplayItemIdsToBoosterDisplayItemsForBoosterPackIds;
+	}
+
+	public Map<Integer, BoosterDisplayItem> getBoosterDisplayItemIdsToBoosterDisplayItemsForBoosterPackId(int boosterPackId) {
+		log.debug("retrieve boosterPack data for boosterPack " + boosterPackId);
+		if (boosterDisplayItemIdsToBoosterDisplayItems == null) {
+			setStaticBoosterDisplayItemIdsToBoosterDisplayItems();
+		}
+		if (boosterDisplayItemIdsToBoosterDisplayItemsForBoosterPackIds == null) {
+			//boosterDisplayItemIdsToBoosterDisplayItemsForBoosterPackIds = new HashMap<Integer, Map<Integer, BoosterDisplayItem>>();
+			setStaticBoosterDisplayItemIdsToBoosterDisplayItemsForBoosterPackIds();
+		}
+		return boosterDisplayItemIdsToBoosterDisplayItemsForBoosterPackIds.get(boosterPackId);
+	}
+
 	public BoosterDisplayItem getBoosterDisplayItemForBoosterDisplayItemId(int boosterDisplayItemId) {
-		log.debug("retrieve booster item data for booster item " + boosterDisplayItemId);
+		log.debug("retrieve boosterDisplayItem data for boosterDisplayItem " + boosterDisplayItemId);
 		if (boosterDisplayItemIdsToBoosterDisplayItems == null) {
 			setStaticBoosterDisplayItemIdsToBoosterDisplayItems();      
 		}
 		return boosterDisplayItemIdsToBoosterDisplayItems.get(boosterDisplayItemId);
 	}
-	
 
 	private void setStaticBoosterDisplayItemIdsToBoosterDisplayItems() {
 		log.debug("setting  map of boosterDisplayItemIds to booster display items");
@@ -62,10 +83,45 @@ import com.lvl6.mobsters.utils.QueryConstructionUtil;
 		
 		//fill up the map
 		boosterDisplayItemIdsToBoosterDisplayItems = new HashMap<Integer, BoosterDisplayItem>();
-		for(BoosterDisplayItem m : boosterDisplayItemList) {
-			Integer intId = m.getId();
-			boosterDisplayItemIdsToBoosterDisplayItems.put(intId, m);
+		boosterDisplayItemIdsToBoosterDisplayItemsForBoosterPackIds =
+				new HashMap<Integer, Map<Integer, BoosterDisplayItem>>();
+		for(BoosterDisplayItem bdi : boosterDisplayItemList) {
+			Integer intId = bdi.getId();
+			boosterDisplayItemIdsToBoosterDisplayItems.put(intId, bdi);
+			
+			int packId = bdi.getBoosterPackId();
+	        if(!boosterDisplayItemIdsToBoosterDisplayItemsForBoosterPackIds.containsKey(packId)) {
+	          Map<Integer, BoosterDisplayItem> bItemIdToBItem = new HashMap<Integer, BoosterDisplayItem>();
+	          boosterDisplayItemIdsToBoosterDisplayItemsForBoosterPackIds.put(packId, bItemIdToBItem);
+	        }
+	        //each itemId is unique (autoincrementing in the table)
+	        Map<Integer, BoosterDisplayItem> itemIdToItem =
+	            boosterDisplayItemIdsToBoosterDisplayItemsForBoosterPackIds.get(packId);
+	        itemIdToItem.put(bdi.getId(), bdi);
 		}
+	}
+	
+	public void setStaticBoosterDisplayItemIdsToBoosterDisplayItemsForBoosterPackIds() {
+		if (null == boosterDisplayItemIdsToBoosterDisplayItems) {
+			setStaticBoosterDisplayItemIdsToBoosterDisplayItems();
+
+		} else if (null == boosterDisplayItemIdsToBoosterDisplayItemsForBoosterPackIds) {
+			boosterDisplayItemIdsToBoosterDisplayItemsForBoosterPackIds =
+					new HashMap<Integer, Map<Integer, BoosterDisplayItem>>();
+			for(BoosterDisplayItem bdi : boosterDisplayItemIdsToBoosterDisplayItems.values()) {
+				int packId = bdi.getBoosterPackId();
+				
+				//check base case where no booster display items for booster pack is recorded
+		        if(!boosterDisplayItemIdsToBoosterDisplayItemsForBoosterPackIds.containsKey(packId)) {
+		          Map<Integer, BoosterDisplayItem> bItemIdToBItem = new HashMap<Integer, BoosterDisplayItem>();
+		          boosterDisplayItemIdsToBoosterDisplayItemsForBoosterPackIds.put(packId, bItemIdToBItem);
+		        }
+		        //each itemId is unique (autoincrementing in the table)
+		        Map<Integer, BoosterDisplayItem> itemIdToItem =
+		            boosterDisplayItemIdsToBoosterDisplayItemsForBoosterPackIds.get(packId);
+		        itemIdToItem.put(bdi.getId(), bdi);
+			}
+		} // else, things should be set
 	}
 
 

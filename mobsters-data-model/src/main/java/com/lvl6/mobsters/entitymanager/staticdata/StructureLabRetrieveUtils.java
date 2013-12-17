@@ -1,5 +1,6 @@
 package com.lvl6.mobsters.entitymanager.staticdata;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -9,117 +10,128 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.lvl6.mobsters.po.staticdata.Structure;
 import com.lvl6.mobsters.po.staticdata.StructureLab;
 import com.lvl6.mobsters.properties.MobstersDbTables;
+import com.lvl6.mobsters.utils.QueryConstructionUtil;
 
 @Component public class StructureLabRetrieveUtils {
 
 	private  Logger log = LoggerFactory.getLogger(
 			new Object() { }.getClass().getEnclosingClass());
 
-	private  Map<Integer, StructureLab> idsToEquipments;
-	private Map<String, Map<Integer, StructureLab>> equipIdsToLevelsToEquips;
-
+	private static Map<Integer, StructureLab> structIdsToLabs;
 	private  final String TABLE_NAME = MobstersDbTables.TABLE_STRUCTURE_LAB;
 
 	@Autowired
-	protected StructureLabEntityManager equipEntityManager;
+	protected StructureLabEntityManager structureLabEntityManager;
 
-	public  StructureLab getEquipmentForId(Integer id) {
-		log.debug("retrieve equip data for id " + id);
-		if (idsToEquipments == null) {
-			setMaps();      
+	@Autowired
+	protected StructureRetrieveUtils structureRetrieveUtils;
+	
+	@Autowired
+	protected QueryConstructionUtil queryConstructionUtil;
+	
+	
+
+	public Map<Integer, StructureLab> getStructIdsToLabs() {
+		log.debug("retrieving all structs data");
+		if (structIdsToLabs == null) {
+			setStaticStructIdsToLabs();
 		}
-		return idsToEquipments.get(id);
+		return structIdsToLabs;
+	}
+
+	public StructureLab getLabForStructId(int structId) {
+		log.debug("retrieve struct data for structId " + structId);
+		if (structIdsToLabs == null) {
+			setStaticStructIdsToLabs();      
+		}
+		return structIdsToLabs.get(structId);
+	}
+
+	public StructureLab getUpgradedLabForStructId(int structId) {
+		log.debug("retrieve upgraded struct data for structId " + structId);
+		if (structIdsToLabs == null) {
+			setStaticStructIdsToLabs();      
+		}
+		Structure currentStructure = null;
+		Structure curStruct = getStructureRetrieveUtils().getUpgradedStructure(
+				currentStructure, structId);
+		if (null != curStruct) {
+			int successorStructId = curStruct.getId();
+			StructureLab upgradedStruct = structIdsToLabs.get(successorStructId);
+			return upgradedStruct;
+		}
+		return null;
+	}
+
+	public StructureLab getPredecessorLabForStructId(int structId) {
+		log.debug("retrieve predecessor struct data for structId " + structId);
+		if (structIdsToLabs == null) {
+			setStaticStructIdsToLabs();      
+		}
+		Structure currentStructure = null;
+		Structure curStruct = getStructureRetrieveUtils().getPredecessorStructure(
+				currentStructure, structId);
+		if (null != curStruct) {
+			int predecessorStructId = curStruct.getId();
+			StructureLab predecessorStruct = structIdsToLabs.get(predecessorStructId);
+			return predecessorStruct;
+		}
+		return null;
+	}
+
+	private void setStaticStructIdsToLabs() {
+		//log.debug("setting  map of structureIds to town halls");		
+
+		//construct the search parameters
+		Map<String, Object> equalityConditions = null;
+
+		//query db, "values" is not used 
+		//(its purpose is to hold the values that were supposed to be put
+		// into a prepared statement) 
+		List<Object> values = new ArrayList<Object>();
+		boolean preparedStatement = false;
+		String cqlquery = getQueryConstructionUtil().selectRowsQueryEqualityConditions(TABLE_NAME, equalityConditions, values, preparedStatement);
+		List<StructureLab> list = getStructureLabEntityManager().get().find(cqlquery);
+
+		structIdsToLabs = new HashMap<Integer, StructureLab>();
+		for(StructureLab c : list) {
+			structIdsToLabs.put(c.getId(), c);
+		}
 	}
 	
-	public Map<Integer, StructureLab> getEquipmentsForEquipId(Integer equipId) {
-		if (null == equipIdsToLevelsToEquips) {
-			setMaps();
-		}
-		return equipIdsToLevelsToEquips.get(equipId);
-	}
-	
-	public StructureLab getEquipmentForEquipIdAndLevel(Integer equipId,
-			int equipLevel) {
-		Map<Integer, StructureLab> levelsToEquip =
-				getEquipmentsForEquipId(equipId);
-		if (null == levelsToEquip) {
-			return new StructureLab();
-		} else {
-			return levelsToEquip.get(equipLevel);
-		}
-	}
-
-	public  Map<Integer, StructureLab> getEquipmentsForIds(List<Integer> ids) {
-		log.debug("retrieve equips data for ids " + ids);
-		if (idsToEquipments == null) {
-			setMaps();      
-		}
-		Map<Integer, StructureLab> toreturn = new HashMap<Integer, StructureLab>();
-		for (Integer id : ids) {
-			toreturn.put(id,  idsToEquipments.get(id));
-		}
-		return toreturn;
-	}
-
-	private  void setMaps() {
-		log.debug("setting  map of equipIds to equips");
-
-//		String cqlquery = "select * from equipment;"; 
-//		List <StructureLab> list =
-//				getEquipmentEntityManager().get().find(cqlquery);
-//		idsToEquipments = new HashMap<Integer, StructureLab>();
-//		for(StructureLab e : list) {
-//			Integer id = e.getId();
-//			idsToEquipments.put(id, e); //some map for (randomId->equip)
-//			
-//			
-//			//populate map: (equipId->
-//			//					(level->equip)
-//			//				)
-//			String equipName = e.getName();
-//			int level = e.getLevel();
-//			
-//			//get the map containing the different levels of this equip
-//			Map<Integer, StructureLab> existing =
-//					equipIdsToLevelsToEquips.get(equipName);
-//			
-//			if (null == existing) {
-//				//base case: create a new map to store all diff levels
-//				//of this equip
-//				existing = new HashMap<Integer, StructureLab>();
-//				equipIdsToLevelsToEquips.put(equipName, existing);
-//			}
-//			
-//			existing.put(level, e);
-//		}
-	}
-
-	public StructureLab getEquipmentCorrespondingToId(String equipIdStr, Integer equipId) {
-//		
-//		if (idsToEquipments == null) {
-//			setMaps();      
-//		}
-//		if (null == equipId) {
-//			equipId = Integer.fromString(equipIdStr);
-//		}
-		
-		return idsToEquipments.get(equipId);
-	}
 
 	public  void reload() {
-		setMaps();
-	}
-	
-	
-
-	public StructureLabEntityManager getEquipmentEntityManager() {
-		return equipEntityManager;
+		setStaticStructIdsToLabs();
 	}
 
-	public void setEquipmentEntityManager(
-			StructureLabEntityManager equipEntityManager) {
-		this.equipEntityManager = equipEntityManager;
+	public StructureLabEntityManager getStructureLabEntityManager() {
+		return structureLabEntityManager;
 	}
+
+	public void setStructureLabEntityManager(
+			StructureLabEntityManager structureLabEntityManager) {
+		this.structureLabEntityManager = structureLabEntityManager;
+	}
+
+	public StructureRetrieveUtils getStructureRetrieveUtils() {
+		return structureRetrieveUtils;
+	}
+
+	public void setStructureRetrieveUtils(
+			StructureRetrieveUtils structureRetrieveUtils) {
+		this.structureRetrieveUtils = structureRetrieveUtils;
+	}
+
+	public QueryConstructionUtil getQueryConstructionUtil() {
+		return queryConstructionUtil;
+	}
+
+	public void setQueryConstructionUtil(QueryConstructionUtil queryConstructionUtil) {
+		this.queryConstructionUtil = queryConstructionUtil;
+	}
+	
+
 }
