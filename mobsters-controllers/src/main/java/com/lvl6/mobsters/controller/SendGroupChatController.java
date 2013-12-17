@@ -97,10 +97,11 @@ public class SendGroupChatController extends EventController {
 		        		chatMessage, blackList);
 		        writeChangesToDB(user, scope, censoredChatMessage, timeOfPost);
 		        //TODO: SEND ReceivedGroupChatResponseProto TO global or clan chat
+		        //Note:
 		        //looking at mysql version of server
 		        //EventWriter.java has a HandleClanEvent()
 		        //which calls abstract method processClanResponseEvent()
-		        //EventWriterAmqp.java processes clan response event like it
+		        //EventWriterAmqp.java processes clan response events like it
 		        //processes global chat response events
 			}
 			//write to client
