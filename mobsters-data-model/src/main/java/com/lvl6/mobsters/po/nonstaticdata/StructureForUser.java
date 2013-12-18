@@ -9,6 +9,7 @@ import javax.persistence.Id;
 
 import com.dekayd.astyanax.cassandra.entitymanager.BasePersistentObject;
 import com.dekayd.astyanax.cassandra.entitymanager.Index;
+import com.lvl6.mobsters.utils.CoordinatePair;
 
 
 
@@ -47,6 +48,15 @@ public class StructureForUser extends BasePersistentObject<UUID>{
 
 	@Column(name="struct_orientation")
 	protected String structOrientation = "";
+	
+	@Column(name="fb_invite_struct_lvl")
+	protected int fbInviteStructLvl;
+	
+	
+	//convenience methods
+	public CoordinatePair getCoordinates() {
+		return new CoordinatePair(getxCoordinate(), getyCoordinate());
+	}
 
 	
 	public UUID getId() {
@@ -121,6 +131,14 @@ public class StructureForUser extends BasePersistentObject<UUID>{
 		this.structOrientation = structOrientation;
 	}
 
+	public int getFbInviteStructLvl() {
+		return fbInviteStructLvl;
+	}
+
+	public void setFbInviteStructLvl(int fbInviteStructLvl) {
+		this.fbInviteStructLvl = fbInviteStructLvl;
+	}
+
 	@Override
 	public String toString() {
 		return "StructureForUser [id=" + id + ", userId=" + userId
@@ -128,7 +146,8 @@ public class StructureForUser extends BasePersistentObject<UUID>{
 				+ lastCollectTime + ", xCoordinate=" + xCoordinate
 				+ ", yCoordinate=" + yCoordinate + ", purchaseTime="
 				+ purchaseTime + ", isComplete=" + isComplete
-				+ ", structOrientation=" + structOrientation + "]";
+				+ ", structOrientation=" + structOrientation
+				+ ", fbInviteStructLvl=" + fbInviteStructLvl + "]";
 	}
 
 }

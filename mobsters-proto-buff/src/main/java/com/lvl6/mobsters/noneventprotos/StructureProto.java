@@ -5351,13 +5351,13 @@ public final class StructureProto {
   public interface FullUserStructureProtoOrBuilder
       extends com.google.protobuf.MessageOrBuilder {
     
-    // optional int32 userStructId = 1;
-    boolean hasUserStructId();
-    int getUserStructId();
+    // optional string userStructUuid = 1;
+    boolean hasUserStructUuid();
+    String getUserStructUuid();
     
-    // optional int32 userId = 2;
-    boolean hasUserId();
-    int getUserId();
+    // optional string userUuid = 2;
+    boolean hasUserUuid();
+    String getUserUuid();
     
     // optional int32 structId = 3;
     boolean hasStructId();
@@ -5383,6 +5383,10 @@ public final class StructureProto {
     // optional .proto.StructOrientation orientation = 8;
     boolean hasOrientation();
     com.lvl6.mobsters.noneventprotos.StructureProto.StructOrientation getOrientation();
+    
+    // optional int32 fbInviteStructLvl = 9;
+    boolean hasFbInviteStructLvl();
+    int getFbInviteStructLvl();
   }
   public static final class FullUserStructureProto extends
       com.google.protobuf.GeneratedMessage
@@ -5413,24 +5417,68 @@ public final class StructureProto {
     }
     
     private int bitField0_;
-    // optional int32 userStructId = 1;
-    public static final int USERSTRUCTID_FIELD_NUMBER = 1;
-    private int userStructId_;
-    public boolean hasUserStructId() {
+    // optional string userStructUuid = 1;
+    public static final int USERSTRUCTUUID_FIELD_NUMBER = 1;
+    private java.lang.Object userStructUuid_;
+    public boolean hasUserStructUuid() {
       return ((bitField0_ & 0x00000001) == 0x00000001);
     }
-    public int getUserStructId() {
-      return userStructId_;
+    public String getUserStructUuid() {
+      java.lang.Object ref = userStructUuid_;
+      if (ref instanceof String) {
+        return (String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        String s = bs.toStringUtf8();
+        if (com.google.protobuf.Internal.isValidUtf8(bs)) {
+          userStructUuid_ = s;
+        }
+        return s;
+      }
+    }
+    private com.google.protobuf.ByteString getUserStructUuidBytes() {
+      java.lang.Object ref = userStructUuid_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8((String) ref);
+        userStructUuid_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
     }
     
-    // optional int32 userId = 2;
-    public static final int USERID_FIELD_NUMBER = 2;
-    private int userId_;
-    public boolean hasUserId() {
+    // optional string userUuid = 2;
+    public static final int USERUUID_FIELD_NUMBER = 2;
+    private java.lang.Object userUuid_;
+    public boolean hasUserUuid() {
       return ((bitField0_ & 0x00000002) == 0x00000002);
     }
-    public int getUserId() {
-      return userId_;
+    public String getUserUuid() {
+      java.lang.Object ref = userUuid_;
+      if (ref instanceof String) {
+        return (String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        String s = bs.toStringUtf8();
+        if (com.google.protobuf.Internal.isValidUtf8(bs)) {
+          userUuid_ = s;
+        }
+        return s;
+      }
+    }
+    private com.google.protobuf.ByteString getUserUuidBytes() {
+      java.lang.Object ref = userUuid_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8((String) ref);
+        userUuid_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
     }
     
     // optional int32 structId = 3;
@@ -5496,15 +5544,26 @@ public final class StructureProto {
       return orientation_;
     }
     
+    // optional int32 fbInviteStructLvl = 9;
+    public static final int FBINVITESTRUCTLVL_FIELD_NUMBER = 9;
+    private int fbInviteStructLvl_;
+    public boolean hasFbInviteStructLvl() {
+      return ((bitField0_ & 0x00000100) == 0x00000100);
+    }
+    public int getFbInviteStructLvl() {
+      return fbInviteStructLvl_;
+    }
+    
     private void initFields() {
-      userStructId_ = 0;
-      userId_ = 0;
+      userStructUuid_ = "";
+      userUuid_ = "";
       structId_ = 0;
       lastRetrieved_ = 0L;
       purchaseTime_ = 0L;
       isComplete_ = false;
       coordinates_ = com.lvl6.mobsters.noneventprotos.StructureProto.CoordinateProto.getDefaultInstance();
       orientation_ = com.lvl6.mobsters.noneventprotos.StructureProto.StructOrientation.POSITION_1;
+      fbInviteStructLvl_ = 0;
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -5519,10 +5578,10 @@ public final class StructureProto {
                         throws java.io.IOException {
       getSerializedSize();
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        output.writeInt32(1, userStructId_);
+        output.writeBytes(1, getUserStructUuidBytes());
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        output.writeInt32(2, userId_);
+        output.writeBytes(2, getUserUuidBytes());
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
         output.writeInt32(3, structId_);
@@ -5542,6 +5601,9 @@ public final class StructureProto {
       if (((bitField0_ & 0x00000080) == 0x00000080)) {
         output.writeEnum(8, orientation_.getNumber());
       }
+      if (((bitField0_ & 0x00000100) == 0x00000100)) {
+        output.writeInt32(9, fbInviteStructLvl_);
+      }
       getUnknownFields().writeTo(output);
     }
     
@@ -5553,11 +5615,11 @@ public final class StructureProto {
       size = 0;
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(1, userStructId_);
+          .computeBytesSize(1, getUserStructUuidBytes());
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(2, userId_);
+          .computeBytesSize(2, getUserUuidBytes());
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
         size += com.google.protobuf.CodedOutputStream
@@ -5582,6 +5644,10 @@ public final class StructureProto {
       if (((bitField0_ & 0x00000080) == 0x00000080)) {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(8, orientation_.getNumber());
+      }
+      if (((bitField0_ & 0x00000100) == 0x00000100)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(9, fbInviteStructLvl_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -5708,9 +5774,9 @@ public final class StructureProto {
       
       public Builder clear() {
         super.clear();
-        userStructId_ = 0;
+        userStructUuid_ = "";
         bitField0_ = (bitField0_ & ~0x00000001);
-        userId_ = 0;
+        userUuid_ = "";
         bitField0_ = (bitField0_ & ~0x00000002);
         structId_ = 0;
         bitField0_ = (bitField0_ & ~0x00000004);
@@ -5728,6 +5794,8 @@ public final class StructureProto {
         bitField0_ = (bitField0_ & ~0x00000040);
         orientation_ = com.lvl6.mobsters.noneventprotos.StructureProto.StructOrientation.POSITION_1;
         bitField0_ = (bitField0_ & ~0x00000080);
+        fbInviteStructLvl_ = 0;
+        bitField0_ = (bitField0_ & ~0x00000100);
         return this;
       }
       
@@ -5769,11 +5837,11 @@ public final class StructureProto {
         if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
           to_bitField0_ |= 0x00000001;
         }
-        result.userStructId_ = userStructId_;
+        result.userStructUuid_ = userStructUuid_;
         if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
           to_bitField0_ |= 0x00000002;
         }
-        result.userId_ = userId_;
+        result.userUuid_ = userUuid_;
         if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
           to_bitField0_ |= 0x00000004;
         }
@@ -5802,6 +5870,10 @@ public final class StructureProto {
           to_bitField0_ |= 0x00000080;
         }
         result.orientation_ = orientation_;
+        if (((from_bitField0_ & 0x00000100) == 0x00000100)) {
+          to_bitField0_ |= 0x00000100;
+        }
+        result.fbInviteStructLvl_ = fbInviteStructLvl_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -5818,11 +5890,11 @@ public final class StructureProto {
       
       public Builder mergeFrom(com.lvl6.mobsters.noneventprotos.StructureProto.FullUserStructureProto other) {
         if (other == com.lvl6.mobsters.noneventprotos.StructureProto.FullUserStructureProto.getDefaultInstance()) return this;
-        if (other.hasUserStructId()) {
-          setUserStructId(other.getUserStructId());
+        if (other.hasUserStructUuid()) {
+          setUserStructUuid(other.getUserStructUuid());
         }
-        if (other.hasUserId()) {
-          setUserId(other.getUserId());
+        if (other.hasUserUuid()) {
+          setUserUuid(other.getUserUuid());
         }
         if (other.hasStructId()) {
           setStructId(other.getStructId());
@@ -5841,6 +5913,9 @@ public final class StructureProto {
         }
         if (other.hasOrientation()) {
           setOrientation(other.getOrientation());
+        }
+        if (other.hasFbInviteStructLvl()) {
+          setFbInviteStructLvl(other.getFbInviteStructLvl());
         }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
@@ -5873,14 +5948,14 @@ public final class StructureProto {
               }
               break;
             }
-            case 8: {
+            case 10: {
               bitField0_ |= 0x00000001;
-              userStructId_ = input.readInt32();
+              userStructUuid_ = input.readBytes();
               break;
             }
-            case 16: {
+            case 18: {
               bitField0_ |= 0x00000002;
-              userId_ = input.readInt32();
+              userUuid_ = input.readBytes();
               break;
             }
             case 24: {
@@ -5923,52 +5998,87 @@ public final class StructureProto {
               }
               break;
             }
+            case 72: {
+              bitField0_ |= 0x00000100;
+              fbInviteStructLvl_ = input.readInt32();
+              break;
+            }
           }
         }
       }
       
       private int bitField0_;
       
-      // optional int32 userStructId = 1;
-      private int userStructId_ ;
-      public boolean hasUserStructId() {
+      // optional string userStructUuid = 1;
+      private java.lang.Object userStructUuid_ = "";
+      public boolean hasUserStructUuid() {
         return ((bitField0_ & 0x00000001) == 0x00000001);
       }
-      public int getUserStructId() {
-        return userStructId_;
+      public String getUserStructUuid() {
+        java.lang.Object ref = userStructUuid_;
+        if (!(ref instanceof String)) {
+          String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
+          userStructUuid_ = s;
+          return s;
+        } else {
+          return (String) ref;
+        }
       }
-      public Builder setUserStructId(int value) {
-        bitField0_ |= 0x00000001;
-        userStructId_ = value;
+      public Builder setUserStructUuid(String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000001;
+        userStructUuid_ = value;
         onChanged();
         return this;
       }
-      public Builder clearUserStructId() {
+      public Builder clearUserStructUuid() {
         bitField0_ = (bitField0_ & ~0x00000001);
-        userStructId_ = 0;
+        userStructUuid_ = getDefaultInstance().getUserStructUuid();
         onChanged();
         return this;
+      }
+      void setUserStructUuid(com.google.protobuf.ByteString value) {
+        bitField0_ |= 0x00000001;
+        userStructUuid_ = value;
+        onChanged();
       }
       
-      // optional int32 userId = 2;
-      private int userId_ ;
-      public boolean hasUserId() {
+      // optional string userUuid = 2;
+      private java.lang.Object userUuid_ = "";
+      public boolean hasUserUuid() {
         return ((bitField0_ & 0x00000002) == 0x00000002);
       }
-      public int getUserId() {
-        return userId_;
+      public String getUserUuid() {
+        java.lang.Object ref = userUuid_;
+        if (!(ref instanceof String)) {
+          String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
+          userUuid_ = s;
+          return s;
+        } else {
+          return (String) ref;
+        }
       }
-      public Builder setUserId(int value) {
-        bitField0_ |= 0x00000002;
-        userId_ = value;
+      public Builder setUserUuid(String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000002;
+        userUuid_ = value;
         onChanged();
         return this;
       }
-      public Builder clearUserId() {
+      public Builder clearUserUuid() {
         bitField0_ = (bitField0_ & ~0x00000002);
-        userId_ = 0;
+        userUuid_ = getDefaultInstance().getUserUuid();
         onChanged();
         return this;
+      }
+      void setUserUuid(com.google.protobuf.ByteString value) {
+        bitField0_ |= 0x00000002;
+        userUuid_ = value;
+        onChanged();
       }
       
       // optional int32 structId = 3;
@@ -6165,6 +6275,27 @@ public final class StructureProto {
       public Builder clearOrientation() {
         bitField0_ = (bitField0_ & ~0x00000080);
         orientation_ = com.lvl6.mobsters.noneventprotos.StructureProto.StructOrientation.POSITION_1;
+        onChanged();
+        return this;
+      }
+      
+      // optional int32 fbInviteStructLvl = 9;
+      private int fbInviteStructLvl_ ;
+      public boolean hasFbInviteStructLvl() {
+        return ((bitField0_ & 0x00000100) == 0x00000100);
+      }
+      public int getFbInviteStructLvl() {
+        return fbInviteStructLvl_;
+      }
+      public Builder setFbInviteStructLvl(int value) {
+        bitField0_ |= 0x00000100;
+        fbInviteStructLvl_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearFbInviteStructLvl() {
+        bitField0_ = (bitField0_ & ~0x00000100);
+        fbInviteStructLvl_ = 0;
         onChanged();
         return this;
       }
@@ -6667,18 +6798,18 @@ public final class StructureProto {
       "Generators\030\004 \001(\005\022\036\n\026numResourceTwoStorag" +
       "es\030\005 \001(\005\022\024\n\014numHospitals\030\006 \001(\005\022\025\n\rnumRes" +
       "idences\030\007 \001(\005\022\027\n\017numMonsterSlots\030\010 \001(\005\022\017" +
-      "\n\007numLabs\030\t \001(\005\"\355\001\n\026FullUserStructurePro" +
-      "to\022\024\n\014userStructId\030\001 \001(\005\022\016\n\006userId\030\002 \001(\005",
-      "\022\020\n\010structId\030\003 \001(\005\022\025\n\rlastRetrieved\030\004 \001(" +
-      "\003\022\024\n\014purchaseTime\030\005 \001(\003\022\022\n\nisComplete\030\006 " +
-      "\001(\010\022+\n\013coordinates\030\007 \001(\0132\026.proto.Coordin" +
-      "ateProto\022-\n\013orientation\030\010 \001(\0162\030.proto.St" +
-      "ructOrientation\"\'\n\017CoordinateProto\022\t\n\001x\030" +
-      "\001 \001(\002\022\t\n\001y\030\002 \001(\002*+\n\014ResourceType\022\010\n\004CASH" +
-      "\020\001\022\007\n\003OIL\020\002\022\010\n\004GEMS\020\003*3\n\021StructOrientati" +
-      "on\022\016\n\nPOSITION_1\020\001\022\016\n\nPOSITION_2\020\002B2\n co" +
-      "m.lvl6.mobsters.noneventprotosB\016Structur" +
-      "eProto"
+      "\n\007numLabs\030\t \001(\005\"\214\002\n\026FullUserStructurePro" +
+      "to\022\026\n\016userStructUuid\030\001 \001(\t\022\020\n\010userUuid\030\002",
+      " \001(\t\022\020\n\010structId\030\003 \001(\005\022\025\n\rlastRetrieved\030" +
+      "\004 \001(\003\022\024\n\014purchaseTime\030\005 \001(\003\022\022\n\nisComplet" +
+      "e\030\006 \001(\010\022+\n\013coordinates\030\007 \001(\0132\026.proto.Coo" +
+      "rdinateProto\022-\n\013orientation\030\010 \001(\0162\030.prot" +
+      "o.StructOrientation\022\031\n\021fbInviteStructLvl" +
+      "\030\t \001(\005\"\'\n\017CoordinateProto\022\t\n\001x\030\001 \001(\002\022\t\n\001" +
+      "y\030\002 \001(\002*+\n\014ResourceType\022\010\n\004CASH\020\001\022\007\n\003OIL" +
+      "\020\002\022\010\n\004GEMS\020\003*3\n\021StructOrientation\022\016\n\nPOS" +
+      "ITION_1\020\001\022\016\n\nPOSITION_2\020\002B2\n com.lvl6.mo" +
+      "bsters.noneventprotosB\016StructureProto"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -6746,7 +6877,7 @@ public final class StructureProto {
           internal_static_proto_FullUserStructureProto_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_proto_FullUserStructureProto_descriptor,
-              new java.lang.String[] { "UserStructId", "UserId", "StructId", "LastRetrieved", "PurchaseTime", "IsComplete", "Coordinates", "Orientation", },
+              new java.lang.String[] { "UserStructUuid", "UserUuid", "StructId", "LastRetrieved", "PurchaseTime", "IsComplete", "Coordinates", "Orientation", "FbInviteStructLvl", },
               com.lvl6.mobsters.noneventprotos.StructureProto.FullUserStructureProto.class,
               com.lvl6.mobsters.noneventprotos.StructureProto.FullUserStructureProto.Builder.class);
           internal_static_proto_CoordinateProto_descriptor =

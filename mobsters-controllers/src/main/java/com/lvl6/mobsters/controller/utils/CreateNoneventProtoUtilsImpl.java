@@ -14,14 +14,20 @@ import com.lvl6.mobsters.noneventprotos.QuestStuffProto.DialogueProto.SpeechSegm
 import com.lvl6.mobsters.noneventprotos.QuestStuffProto.DialogueProto.SpeechSegmentProto.DialogueSpeaker;
 import com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProto;
 import com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProto.QuestType;
+import com.lvl6.mobsters.noneventprotos.StructureProto.CoordinateProto;
+import com.lvl6.mobsters.noneventprotos.StructureProto.FullUserStructureProto;
+import com.lvl6.mobsters.noneventprotos.StructureProto.StructOrientation;
 import com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageMonsterProto;
 import com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageMonsterProto.MonsterType;
 import com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageProto;
 import com.lvl6.mobsters.noneventprotos.UserProto.FullUserProto;
+import com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto;
 import com.lvl6.mobsters.po.nonstaticdata.MonsterForUser;
+import com.lvl6.mobsters.po.nonstaticdata.StructureForUser;
 import com.lvl6.mobsters.po.nonstaticdata.TaskStageForUser;
 import com.lvl6.mobsters.po.nonstaticdata.User;
 import com.lvl6.mobsters.po.staticdata.Quest;
+import com.lvl6.mobsters.utils.CoordinatePair;
 import com.lvl6.mobsters.utils.Dialogue;
 
 @Component
@@ -37,6 +43,7 @@ public class CreateNoneventProtoUtilsImpl implements CreateNoneventProtoUtils {
     	classTypeNumToClassType.put(ClassType.WARRIOR_VALUE, ClassType.WARRIOR);
     	classTypeNumToClassType.put(ClassType.WIZARD_VALUE, ClassType.WIZARD);
     }*/
+	
 
 	//MONSTER PROTO****************************************************************
 	@Override
@@ -192,9 +199,53 @@ public class CreateNoneventProtoUtilsImpl implements CreateNoneventProtoUtils {
 		
 		return sspb.build();
 	}
+
+
+	//STRUCTURE PROTO****************************************************************
+	public FullUserStructureProto createFullUserStructureProtoFromUserStruct(
+			StructureForUser userStruct) {
+		FullUserStructureProto.Builder builder = FullUserStructureProto.newBuilder();
+		UUID aUuid = userStruct.getId();
+		String aStr = aUuid.toString();
+		builder.setUserStructUuid(aStr);
+
+		aUuid = userStruct.getUserId();
+		aStr = aUuid.toString(); 
+		builder.setUserUuid(aStr);
+
+		builder.setStructId(userStruct.getStructureId());
+		//		    builder.setLevel(userStruct.getLevel());
+		builder.setFbInviteStructLvl(userStruct.getFbInviteStructLvl());
+		builder.setIsComplete(userStruct.isComplete());
+		builder.setCoordinates(createCoordinateProtoFromCoordinatePair(userStruct.getCoordinates()));
+		
+		aStr = userStruct.getStructOrientation();
+		StructOrientation orientation = StructOrientation.valueOf(aStr);
+		if (null != orientation) {
+			builder.setOrientation(orientation);
+		}
+		
+		if (userStruct.getPurchaseTime() != null) {
+			builder.setPurchaseTime(userStruct.getPurchaseTime().getTime());
+		}
+		if (userStruct.getLastCollectTime() != null) {
+			builder.setLastRetrieved(userStruct.getLastCollectTime().getTime());
+		}
+		//		    if (userStruct.getLastUpgradeTime() != null) {
+		//		      builder.setLastUpgradeTime(userStruct.getLastUpgradeTime().getTime());
+		//		    }
+		return builder.build();
+	}
+
+	@Override
+	public CoordinateProto createCoordinateProtoFromCoordinatePair(CoordinatePair cp) {
+		CoordinateProto.Builder builder = CoordinateProto.newBuilder();
+		builder.setX(cp.getX());
+		builder.setY(cp.getY());
+		return builder.build();
+	}
 	
-	
-	//USER PROTO****************************************************************
+	//TASK PROTO****************************************************************
 	@Override
 	public TaskStageProto createTaskStageProtoFromTaskStageForUser(int taskStageId,
 			List<TaskStageForUser> tsfuList) {
@@ -309,7 +360,7 @@ public class CreateNoneventProtoUtilsImpl implements CreateNoneventProtoUtils {
 		anInt = u.getNumOilRetrievedFromStructs();
 		fupb.setNumOilRetrievedFromStructs(anInt);
 		
-		//make the clan proto
+		//TODO: make the clan proto
 		UUID clanId = u.getClanId();
 		
 		aBool = u.isHasReceivedFbReward();
@@ -369,4 +420,19 @@ public class CreateNoneventProtoUtilsImpl implements CreateNoneventProtoUtils {
 		return fupb.build();
 	}
 	
+	@Override
+	public MinimumUserProto createMinimumUserProtoFromUser(User u) {
+		UUID userId = u.getId();
+		String userIdStr = userId.toString();
+		
+		MinimumUserProto.Builder builder = MinimumUserProto.newBuilder();
+		builder.setName(u.getName());
+		builder.setUserUuid(userIdStr);
+		//TODO: IMPLEMENT CLANS
+//		if (null != u.getClanId()) {
+//			Clan clan = ClanRetrieveUtils.getClanWithId(u.getClanId());
+//			builder.setClan(createMinimumClanProtoFromClan(clan));
+//		}
+		return builder.build();
+	}
 }

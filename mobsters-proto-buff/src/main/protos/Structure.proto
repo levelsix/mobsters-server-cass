@@ -131,14 +131,15 @@ message TownHallProto {
 //------------------------------------------------------------------------------------------
 
 message FullUserStructureProto {
-	optional int32 userStructId = 1;
-	optional int32 userId = 2;
+	optional string userStructUuid = 1;
+	optional string userUuid = 2;
 	optional int32 structId = 3;
 	optional int64 lastRetrieved = 4; //only makes sense for generators
 	optional int64 purchaseTime = 5;
 	optional bool isComplete = 6;
 	optional CoordinateProto coordinates = 7;
 	optional StructOrientation orientation = 8;
+	optional int32 fbInviteStructLvl = 9;
 }
 
 //------------------------------------------------------------------------------------------

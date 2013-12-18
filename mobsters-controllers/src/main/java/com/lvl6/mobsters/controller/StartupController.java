@@ -11,7 +11,6 @@ import com.lvl6.mobsters.events.RequestEvent;
 import com.lvl6.mobsters.noneventprotos.MobstersEventProtocolProto.MobstersEventProtocolRequest;
 import com.lvl6.mobsters.services.time.TimeUtils;
 import com.lvl6.mobsters.services.user.UserService;
-import com.lvl6.mobsters.services.userdevice.UserDeviceService;
 
 
 @Component
@@ -19,8 +18,8 @@ public class StartupController extends EventController {
 
 	private static Logger log = LoggerFactory.getLogger(new Object() { }.getClass().getEnclosingClass());
 	
-	@Autowired
-	protected UserDeviceService userDeviceService;
+//	@Autowired
+//	protected UserDeviceService userDeviceService;
 	
 	@Autowired
 	protected UserService userService;
