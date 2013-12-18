@@ -1,47 +1,55 @@
-package com.lvl6.mobsters.entitymanager.staticdata;
+package com.lvl6.mobsters.entitymanager.staticdata.utils;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
-import java.util.UUID;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.lvl6.mobsters.po.staticdata.UserBanned;
+import com.lvl6.mobsters.entitymanager.staticdata.CityEntityManager;
+import com.lvl6.mobsters.po.staticdata.City;
 import com.lvl6.mobsters.properties.MobstersDbTables;
 import com.lvl6.mobsters.utils.QueryConstructionUtil;
 
-@Component public class UserBannedRetrieveUtils {
+@Component public class CityRetrieveUtils {
 
 	private  Logger log = LoggerFactory.getLogger(new Object() { }.getClass().getEnclosingClass());
 
-	private Map<UUID, UserBanned> userIdsToBannedUsers;
+	private static Map<Integer, City> cityIdToCity;
 
-	private final String TABLE_NAME = MobstersDbTables.TABLE_USER_BANNED;
-	
+	private  final String TABLE_NAME = MobstersDbTables.TABLE_CITY;
+
 	@Autowired
-	private UserBannedEntityManager userBannedEntityManager;
+	protected CityEntityManager cityEntityManager;
 
 	@Autowired
 	private QueryConstructionUtil queryConstructionUtil;
 	
 	
-	public Set<UUID> getAllBannedUserIds() {
-		log.debug("setting  map of user ids to banned users");
-		if (null == userIdsToBannedUsers) {
-			setStaticBannedUsers();
+	public City getCityForCityId(int cityId) {
+		log.debug("retrieve booster pack data for booster pack " + cityId);
+		if (cityIdToCity == null) {
+			setStaticCityIdsToCities();      
 		}
-		return userIdsToBannedUsers.keySet();
+		return cityIdToCity.get(cityId);
 	}
 
-	private void setStaticBannedUsers() {
-		log.debug("setting static set of banned users");
+	public Map<Integer, City> getCityIdsToCities() {
+		log.debug("retrieving all booster packs data map");
+		if (cityIdToCity == null) {
+			setStaticCityIdsToCities();
+		}
+		return cityIdToCity;
+	}
+	
 
+	private void setStaticCityIdsToCities() {
+		log.debug("setting map of cityIds to cities");
+		
 		//construct the search parameters
 		Map<String, Object> equalityConditions = null;
 
@@ -51,30 +59,32 @@ import com.lvl6.mobsters.utils.QueryConstructionUtil;
 		List<Object> values = new ArrayList<Object>();
 		boolean preparedStatement = false;
 		String cqlquery = getQueryConstructionUtil().selectRowsQueryEqualityConditions(TABLE_NAME, equalityConditions, values, preparedStatement);
-		List<UserBanned> userBannedList = getUserBannedEntityManager().get().find(cqlquery);
-
+		List<City> cityList = getCityEntityManager().get().find(cqlquery);
+		
 		//fill up the map
-		userIdsToBannedUsers = new HashMap<UUID, UserBanned>();
-		for(UserBanned ub : userBannedList) {
-			UUID userId = ub.getUserId();
-			userIdsToBannedUsers.put(userId, ub);
+		cityIdToCity = new HashMap<Integer, City>();
+		for(City c : cityList) {
+			Integer intId = c.getId();
+			cityIdToCity.put(intId, c);
 		}
 	}
 
 
+
 	public  void reload() {
-		setStaticBannedUsers();
+		setStaticCityIdsToCities();
 	}
 	
 
-
-	public UserBannedEntityManager getUserBannedEntityManager() {
-		return userBannedEntityManager;
+	
+	
+	public CityEntityManager getCityEntityManager() {
+		return cityEntityManager;
 	}
 
-	public void setUserBannedEntityManager(
-			UserBannedEntityManager userBannedEntityManager) {
-		this.userBannedEntityManager = userBannedEntityManager;
+	public void setCityEntityManager(
+			CityEntityManager cityEntityManager) {
+		this.cityEntityManager = cityEntityManager;
 	}
 
 	public QueryConstructionUtil getQueryConstructionUtil() {

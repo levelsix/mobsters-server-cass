@@ -1,4 +1,4 @@
-package com.lvl6.mobsters.entitymanager.staticdata;
+package com.lvl6.mobsters.entitymanager.staticdata.utils;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -10,81 +10,80 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.lvl6.mobsters.entitymanager.staticdata.StructureLabEntityManager;
 import com.lvl6.mobsters.po.staticdata.Structure;
-import com.lvl6.mobsters.po.staticdata.StructureResidence;
+import com.lvl6.mobsters.po.staticdata.StructureLab;
 import com.lvl6.mobsters.properties.MobstersDbTables;
 import com.lvl6.mobsters.utils.QueryConstructionUtil;
 
-@Component public class StructureResidenceRetrieveUtils {
+@Component public class StructureLabRetrieveUtils {
 
-	private  Logger log = LoggerFactory.getLogger(new Object() { }.getClass().getEnclosingClass());
+	private  Logger log = LoggerFactory.getLogger(
+			new Object() { }.getClass().getEnclosingClass());
 
-	private  Map<Integer, StructureResidence> structIdsToResidences;
-
-	private  final String TABLE_NAME = MobstersDbTables.TABLE_STRUCTURE_RESIDENCE;
+	private static Map<Integer, StructureLab> structIdsToLabs;
+	private  final String TABLE_NAME = MobstersDbTables.TABLE_STRUCTURE_LAB;
 
 	@Autowired
-	protected StructureResidenceEntityManager structureResidenceEntityManager;
-	
+	protected StructureLabEntityManager structureLabEntityManager;
+
 	@Autowired
 	protected StructureRetrieveUtils structureRetrieveUtils;
 	
 	@Autowired
 	protected QueryConstructionUtil queryConstructionUtil;
+	
+	
 
-	
-	
-	
-	public Map<Integer, StructureResidence> getStructIdsToResidences() {
+	public Map<Integer, StructureLab> getStructIdsToLabs() {
 		log.debug("retrieving all structs data");
-		if (structIdsToResidences == null) {
-			setStaticStructIdsToResidences();
+		if (structIdsToLabs == null) {
+			setStaticStructIdsToLabs();
 		}
-		return structIdsToResidences;
+		return structIdsToLabs;
 	}
 
-	public StructureResidence getResidenceForStructId(int structId) {
+	public StructureLab getLabForStructId(int structId) {
 		log.debug("retrieve struct data for structId " + structId);
-		if (structIdsToResidences == null) {
-			setStaticStructIdsToResidences();      
+		if (structIdsToLabs == null) {
+			setStaticStructIdsToLabs();      
 		}
-		return structIdsToResidences.get(structId);
+		return structIdsToLabs.get(structId);
 	}
 
-	public StructureResidence getUpgradedResidenceForStructId(int structId) {
+	public StructureLab getUpgradedLabForStructId(int structId) {
 		log.debug("retrieve upgraded struct data for structId " + structId);
-		if (structIdsToResidences == null) {
-			setStaticStructIdsToResidences();      
+		if (structIdsToLabs == null) {
+			setStaticStructIdsToLabs();      
 		}
 		Structure currentStructure = null;
 		Structure curStruct = getStructureRetrieveUtils().getUpgradedStructure(
 				currentStructure, structId);
 		if (null != curStruct) {
 			int successorStructId = curStruct.getId();
-			StructureResidence upgradedStruct = structIdsToResidences.get(successorStructId);
+			StructureLab upgradedStruct = structIdsToLabs.get(successorStructId);
 			return upgradedStruct;
 		}
 		return null;
 	}
 
-	public StructureResidence getPredecessorResidenceForStructId(int structId) {
+	public StructureLab getPredecessorLabForStructId(int structId) {
 		log.debug("retrieve predecessor struct data for structId " + structId);
-		if (structIdsToResidences == null) {
-			setStaticStructIdsToResidences();      
+		if (structIdsToLabs == null) {
+			setStaticStructIdsToLabs();      
 		}
 		Structure currentStructure = null;
 		Structure curStruct = getStructureRetrieveUtils().getPredecessorStructure(
 				currentStructure, structId);
 		if (null != curStruct) {
 			int predecessorStructId = curStruct.getId();
-			StructureResidence predecessorStruct = structIdsToResidences.get(predecessorStructId);
+			StructureLab predecessorStruct = structIdsToLabs.get(predecessorStructId);
 			return predecessorStruct;
 		}
 		return null;
 	}
-	
 
-	private void setStaticStructIdsToResidences() {
+	private void setStaticStructIdsToLabs() {
 		//log.debug("setting  map of structureIds to town halls");		
 
 		//construct the search parameters
@@ -96,28 +95,26 @@ import com.lvl6.mobsters.utils.QueryConstructionUtil;
 		List<Object> values = new ArrayList<Object>();
 		boolean preparedStatement = false;
 		String cqlquery = getQueryConstructionUtil().selectRowsQueryEqualityConditions(TABLE_NAME, equalityConditions, values, preparedStatement);
-		List<StructureResidence> list = getResidenceEntityManager().get().find(cqlquery);
+		List<StructureLab> list = getStructureLabEntityManager().get().find(cqlquery);
 
-		structIdsToResidences = new HashMap<Integer, StructureResidence>();
-		for(StructureResidence c : list) {
-			structIdsToResidences.put(c.getId(), c);
+		structIdsToLabs = new HashMap<Integer, StructureLab>();
+		for(StructureLab c : list) {
+			structIdsToLabs.put(c.getId(), c);
 		}
 	}
 	
-	
-	public void reload() {
-		setStaticStructIdsToResidences();
-	}
-	
-	
 
-	public StructureResidenceEntityManager getResidenceEntityManager() {
-		return structureResidenceEntityManager;
+	public  void reload() {
+		setStaticStructIdsToLabs();
 	}
 
-	public void setResidenceEntityManager(
-			StructureResidenceEntityManager structureResidenceEntityManager) {
-		this.structureResidenceEntityManager = structureResidenceEntityManager;
+	public StructureLabEntityManager getStructureLabEntityManager() {
+		return structureLabEntityManager;
+	}
+
+	public void setStructureLabEntityManager(
+			StructureLabEntityManager structureLabEntityManager) {
+		this.structureLabEntityManager = structureLabEntityManager;
 	}
 
 	public StructureRetrieveUtils getStructureRetrieveUtils() {
@@ -137,4 +134,5 @@ import com.lvl6.mobsters.utils.QueryConstructionUtil;
 		this.queryConstructionUtil = queryConstructionUtil;
 	}
 	
+
 }

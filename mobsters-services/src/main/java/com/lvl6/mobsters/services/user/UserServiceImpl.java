@@ -11,8 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.lvl6.mobsters.entitymanager.nonstaticdata.UserEntityManager;
-import com.lvl6.mobsters.entitymanager.staticdata.StructureResourceStorageRetrieveUtils;
 import com.lvl6.mobsters.entitymanager.staticdata.ProfanityEntityManager;
+import com.lvl6.mobsters.entitymanager.staticdata.utils.StructureResourceStorageRetrieveUtils;
 import com.lvl6.mobsters.po.nonstaticdata.User;
 import com.lvl6.mobsters.services.structureforuser.StructureForUserService;
 

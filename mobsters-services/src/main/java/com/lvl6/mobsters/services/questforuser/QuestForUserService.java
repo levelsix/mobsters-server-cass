@@ -7,7 +7,7 @@ import java.util.Map;
 import java.util.UUID;
 
 import com.lvl6.mobsters.entitymanager.nonstaticdata.QuestForUserEntityManager;
-import com.lvl6.mobsters.entitymanager.staticdata.QuestRetrieveUtils;
+import com.lvl6.mobsters.entitymanager.staticdata.utils.QuestRetrieveUtils;
 import com.lvl6.mobsters.po.nonstaticdata.QuestForUser;
 import com.lvl6.mobsters.po.staticdata.Quest;
 import com.lvl6.mobsters.services.time.TimeUtils;

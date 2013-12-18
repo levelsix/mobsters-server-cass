@@ -13,8 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.lvl6.mobsters.controller.utils.CreateNoneventProtoUtils;
-import com.lvl6.mobsters.entitymanager.staticdata.TaskRetrieveUtils;
-import com.lvl6.mobsters.entitymanager.staticdata.TaskStageRetrieveUtils;
+import com.lvl6.mobsters.entitymanager.staticdata.utils.TaskRetrieveUtils;
+import com.lvl6.mobsters.entitymanager.staticdata.utils.TaskStageRetrieveUtils;
 import com.lvl6.mobsters.eventprotos.EventDungeonProto.EndDungeonRequestProto;
 import com.lvl6.mobsters.eventprotos.EventDungeonProto.EndDungeonResponseProto;
 import com.lvl6.mobsters.eventprotos.EventDungeonProto.EndDungeonResponseProto.Builder;

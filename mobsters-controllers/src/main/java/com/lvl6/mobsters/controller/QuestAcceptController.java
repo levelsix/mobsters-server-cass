@@ -9,7 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.lvl6.mobsters.entitymanager.staticdata.QuestRetrieveUtils;
+import com.lvl6.mobsters.entitymanager.staticdata.utils.QuestRetrieveUtils;
 import com.lvl6.mobsters.eventprotos.EventQuestProto.QuestAcceptRequestProto;
 import com.lvl6.mobsters.eventprotos.EventQuestProto.QuestAcceptResponseProto;
 import com.lvl6.mobsters.eventprotos.EventQuestProto.QuestAcceptResponseProto.Builder;

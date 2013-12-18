@@ -14,7 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.lvl6.mobsters.controller.utils.CreateEventProtoUtils;
-import com.lvl6.mobsters.entitymanager.staticdata.StructureRetrieveUtils;
+import com.lvl6.mobsters.entitymanager.staticdata.utils.StructureRetrieveUtils;
 import com.lvl6.mobsters.eventprotos.EventStructureProto.PurchaseNormStructureRequestProto;
 import com.lvl6.mobsters.eventprotos.EventStructureProto.PurchaseNormStructureResponseProto;
 import com.lvl6.mobsters.eventprotos.EventStructureProto.PurchaseNormStructureResponseProto.Builder;

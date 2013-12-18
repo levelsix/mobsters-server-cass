@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 
 import com.lvl6.mobsters.entitymanager.nonstaticdata.UserEntityManager;
 import com.lvl6.mobsters.entitymanager.nonstaticdata.TaskStageHistoryEntityManager;
-import com.lvl6.mobsters.entitymanager.staticdata.StructureResourceGeneratorRetrieveUtils;
+import com.lvl6.mobsters.entitymanager.staticdata.utils.StructureResourceGeneratorRetrieveUtils;
 import com.lvl6.mobsters.events.RequestEvent;
 import com.lvl6.mobsters.services.taskstagehistory.TaskStageHistoryService;
 import com.lvl6.mobsters.services.user.UserService;

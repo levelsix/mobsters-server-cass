@@ -1,4 +1,4 @@
-package com.lvl6.mobsters.entitymanager.staticdata;
+package com.lvl6.mobsters.entitymanager.staticdata.utils;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -12,6 +12,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.lvl6.mobsters.entitymanager.staticdata.TaskStageMonsterEntityManager;
 import com.lvl6.mobsters.po.staticdata.TaskStageMonster;
 import com.lvl6.mobsters.properties.MobstersDbTables;
 import com.lvl6.mobsters.utils.QueryConstructionUtil;

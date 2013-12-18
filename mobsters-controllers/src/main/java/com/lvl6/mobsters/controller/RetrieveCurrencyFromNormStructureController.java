@@ -13,8 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.lvl6.mobsters.controller.utils.CreateEventProtoUtils;
-import com.lvl6.mobsters.entitymanager.staticdata.StructureResourceGeneratorRetrieveUtils;
-import com.lvl6.mobsters.entitymanager.staticdata.StructureRetrieveUtils;
+import com.lvl6.mobsters.entitymanager.staticdata.utils.StructureResourceGeneratorRetrieveUtils;
+import com.lvl6.mobsters.entitymanager.staticdata.utils.StructureRetrieveUtils;
 import com.lvl6.mobsters.eventprotos.EventStructureProto.RetrieveCurrencyFromNormStructureRequestProto;
 import com.lvl6.mobsters.eventprotos.EventStructureProto.RetrieveCurrencyFromNormStructureRequestProto.StructRetrieval;
 import com.lvl6.mobsters.eventprotos.EventStructureProto.RetrieveCurrencyFromNormStructureResponseProto;

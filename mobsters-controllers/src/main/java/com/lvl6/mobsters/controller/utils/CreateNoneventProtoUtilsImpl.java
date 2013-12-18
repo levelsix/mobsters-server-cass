@@ -8,6 +8,8 @@ import java.util.UUID;
 
 import org.springframework.stereotype.Component;
 
+import com.lvl6.mobsters.noneventprotos.CityProto.CityElementProto;
+import com.lvl6.mobsters.noneventprotos.CityProto.CityElementProto.CityElemType;
 import com.lvl6.mobsters.noneventprotos.MonsterStuffProto.FullUserMonsterProto;
 import com.lvl6.mobsters.noneventprotos.QuestStuffProto.DialogueProto;
 import com.lvl6.mobsters.noneventprotos.QuestStuffProto.DialogueProto.SpeechSegmentProto;
@@ -26,6 +28,7 @@ import com.lvl6.mobsters.po.nonstaticdata.MonsterForUser;
 import com.lvl6.mobsters.po.nonstaticdata.StructureForUser;
 import com.lvl6.mobsters.po.nonstaticdata.TaskStageForUser;
 import com.lvl6.mobsters.po.nonstaticdata.User;
+import com.lvl6.mobsters.po.staticdata.CityElement;
 import com.lvl6.mobsters.po.staticdata.Quest;
 import com.lvl6.mobsters.utils.CoordinatePair;
 import com.lvl6.mobsters.utils.Dialogue;
@@ -43,7 +46,44 @@ public class CreateNoneventProtoUtilsImpl implements CreateNoneventProtoUtils {
     	classTypeNumToClassType.put(ClassType.WARRIOR_VALUE, ClassType.WARRIOR);
     	classTypeNumToClassType.put(ClassType.WIZARD_VALUE, ClassType.WIZARD);
     }*/
-	
+
+	//CITY PROTO****************************************************************
+	@Override
+	public CityElementProto createCityElementProtoFromCityElement(CityElement ce) {
+		CityElementProto.Builder builder = CityElementProto.newBuilder();
+		builder.setCityId(ce.getCityId());
+		builder.setAssetId(ce.getAssetId());
+		
+		String aStr = ce.getCityElemType();
+		CityElemType cet = CityElemType.valueOf(aStr); 
+		if (null != cet) {
+			builder.setType(cet);
+		}
+		builder.setCoords(createCoordinateProtoFromCoordinatePair(ce.getCoords()));
+
+		if (ce.getxLength() > 0) {
+			builder.setXLength(ce.getxLength());
+		}
+		if (ce.getyLength() > 0) {
+			builder.setYLength(ce.getyLength());
+		}
+		
+		aStr = ce.getImgGood();
+		if (null != aStr) {
+			builder.setImgId(aStr);
+		}
+		
+		aStr = ce.getStructOrientation();
+		StructOrientation orientation = StructOrientation.valueOf(aStr);
+		if (null != orientation) {
+			builder.setOrientation(orientation);
+		}
+
+		builder.setSpriteCoords(createCoordinateProtoFromCoordinatePair(ce.getSpriteCoords()));
+
+		return builder.build();
+	}
+
 
 	//MONSTER PROTO****************************************************************
 	@Override

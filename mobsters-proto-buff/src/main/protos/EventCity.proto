@@ -78,8 +78,8 @@ message LoadCityResponseProto {
      
      enum LoadCityStatus {
      	SUCCESS = 1;
-     	NOT_ACCESSIBLE_TO_USER = 2;
-     	OTHER_FAIL = 3;
+     	FAIL_NOT_ACCESSIBLE_TO_USER = 2;
+     	FAIL_OTHER = 3;
      }    
 }
 

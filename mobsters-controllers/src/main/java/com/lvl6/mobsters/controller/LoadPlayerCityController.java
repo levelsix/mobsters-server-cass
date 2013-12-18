@@ -68,6 +68,7 @@ public class LoadPlayerCityController extends EventController {
 		//response to send back to client
 		Builder responseBuilder = LoadPlayerCityResponseProto.newBuilder();
 		responseBuilder.setStatus(LoadPlayerCityStatus.SUCCESS);
+		responseBuilder.setSender(sender);
 		LoadPlayerCityResponseEvent resEvent = new LoadPlayerCityResponseEvent(userIdStr);
 		resEvent.setTag(event.getTag());
 

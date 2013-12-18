@@ -2,6 +2,7 @@ package com.lvl6.mobsters.controller.utils;
 
 import java.util.List;
 
+import com.lvl6.mobsters.noneventprotos.CityProto.CityElementProto;
 import com.lvl6.mobsters.noneventprotos.MonsterStuffProto.FullUserMonsterProto;
 import com.lvl6.mobsters.noneventprotos.QuestStuffProto.DialogueProto;
 import com.lvl6.mobsters.noneventprotos.QuestStuffProto.DialogueProto.SpeechSegmentProto;
@@ -16,12 +17,16 @@ import com.lvl6.mobsters.po.nonstaticdata.MonsterForUser;
 import com.lvl6.mobsters.po.nonstaticdata.StructureForUser;
 import com.lvl6.mobsters.po.nonstaticdata.TaskStageForUser;
 import com.lvl6.mobsters.po.nonstaticdata.User;
+import com.lvl6.mobsters.po.staticdata.CityElement;
 import com.lvl6.mobsters.po.staticdata.Quest;
 import com.lvl6.mobsters.utils.CoordinatePair;
 import com.lvl6.mobsters.utils.Dialogue;
 
 
 public interface CreateNoneventProtoUtils {
+	
+	//CITY PROTO****************************************************************
+	public abstract CityElementProto createCityElementProtoFromCityElement(CityElement ce);
 	
 	//MONSTER PROTO****************************************************************
 	public abstract List<FullUserMonsterProto> createFullUserMonsterProtoList(

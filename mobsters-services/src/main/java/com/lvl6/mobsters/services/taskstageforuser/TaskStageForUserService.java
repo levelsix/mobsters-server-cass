@@ -5,7 +5,7 @@ import java.util.Map;
 import java.util.UUID;
 
 import com.lvl6.mobsters.entitymanager.nonstaticdata.TaskStageForUserEntityManager;
-import com.lvl6.mobsters.entitymanager.staticdata.TaskStageMonsterRetrieveUtils;
+import com.lvl6.mobsters.entitymanager.staticdata.utils.TaskStageMonsterRetrieveUtils;
 import com.lvl6.mobsters.po.nonstaticdata.TaskStageForUser;
 import com.lvl6.mobsters.po.staticdata.TaskStage;
 import com.lvl6.mobsters.po.staticdata.TaskStageMonster;

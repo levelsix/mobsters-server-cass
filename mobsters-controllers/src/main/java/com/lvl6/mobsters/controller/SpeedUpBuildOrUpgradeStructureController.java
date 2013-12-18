@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 
 import com.lvl6.mobsters.entitymanager.nonstaticdata.UserEntityManager;
 import com.lvl6.mobsters.entitymanager.nonstaticdata.StructureForUserEntityManager;
-import com.lvl6.mobsters.entitymanager.staticdata.StructureRetrieveUtils;
+import com.lvl6.mobsters.entitymanager.staticdata.utils.StructureRetrieveUtils;
 import com.lvl6.mobsters.events.RequestEvent;
 import com.lvl6.mobsters.services.structureforuser.StructureForUserService;
 import com.lvl6.mobsters.services.user.UserService;

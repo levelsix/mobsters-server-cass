@@ -16,7 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.lvl6.mobsters.entitymanager.nonstaticdata.MonsterForUserEntityManager;
-import com.lvl6.mobsters.entitymanager.staticdata.MonsterRetrieveUtils;
+import com.lvl6.mobsters.entitymanager.staticdata.utils.MonsterRetrieveUtils;
 import com.lvl6.mobsters.po.nonstaticdata.MonsterForUser;
 import com.lvl6.mobsters.po.staticdata.Monster;
 import com.lvl6.mobsters.po.staticdata.TaskStageMonster;

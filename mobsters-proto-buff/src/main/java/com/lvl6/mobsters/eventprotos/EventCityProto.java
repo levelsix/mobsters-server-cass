@@ -3631,13 +3631,13 @@ public final class EventCityProto {
     public enum LoadCityStatus
         implements com.google.protobuf.ProtocolMessageEnum {
       SUCCESS(0, 1),
-      NOT_ACCESSIBLE_TO_USER(1, 2),
-      OTHER_FAIL(2, 3),
+      FAIL_NOT_ACCESSIBLE_TO_USER(1, 2),
+      FAIL_OTHER(2, 3),
       ;
       
       public static final int SUCCESS_VALUE = 1;
-      public static final int NOT_ACCESSIBLE_TO_USER_VALUE = 2;
-      public static final int OTHER_FAIL_VALUE = 3;
+      public static final int FAIL_NOT_ACCESSIBLE_TO_USER_VALUE = 2;
+      public static final int FAIL_OTHER_VALUE = 3;
       
       
       public final int getNumber() { return value; }
@@ -3645,8 +3645,8 @@ public final class EventCityProto {
       public static LoadCityStatus valueOf(int value) {
         switch (value) {
           case 1: return SUCCESS;
-          case 2: return NOT_ACCESSIBLE_TO_USER;
-          case 3: return OTHER_FAIL;
+          case 2: return FAIL_NOT_ACCESSIBLE_TO_USER;
+          case 3: return FAIL_OTHER;
           default: return null;
         }
       }
@@ -3677,7 +3677,7 @@ public final class EventCityProto {
       }
       
       private static final LoadCityStatus[] VALUES = {
-        SUCCESS, NOT_ACCESSIBLE_TO_USER, OTHER_FAIL, 
+        SUCCESS, FAIL_NOT_ACCESSIBLE_TO_USER, FAIL_OTHER, 
       };
       
       public static LoadCityStatus valueOf(
@@ -4797,16 +4797,16 @@ public final class EventCityProto {
       "\004\022%\n!CLIENT_TOO_APART_FROM_SERVER_TIME\020\005" +
       "\"O\n\024LoadCityRequestProto\022\'\n\006sender\030\001 \001(\013" +
       "2\027.proto.MinimumUserProto\022\016\n\006cityId\030\002 \001(" +
-      "\005\"\311\002\n\025LoadCityResponseProto\022\'\n\006sender\030\001 ",
+      "\005\"\316\002\n\025LoadCityResponseProto\022\'\n\006sender\030\001 ",
       "\001(\0132\027.proto.MinimumUserProto\022;\n\006status\030\002" +
       " \001(\0162+.proto.LoadCityResponseProto.LoadC" +
       "ityStatus\022-\n\014cityElements\030\003 \003(\0132\027.proto." +
       "CityElementProto\022\016\n\006cityId\030\004 \001(\005\022@\n\035inPr" +
       "ogressUserQuestDataInCity\030\005 \003(\0132\031.proto." +
-      "FullUserQuestProto\"I\n\016LoadCityStatus\022\013\n\007" +
-      "SUCCESS\020\001\022\032\n\026NOT_ACCESSIBLE_TO_USER\020\002\022\016\n" +
-      "\nOTHER_FAIL\020\003B/\n\035com.lvl6.mobsters.event" +
-      "protosB\016EventCityProto"
+      "FullUserQuestProto\"N\n\016LoadCityStatus\022\013\n\007" +
+      "SUCCESS\020\001\022\037\n\033FAIL_NOT_ACCESSIBLE_TO_USER" +
+      "\020\002\022\016\n\nFAIL_OTHER\020\003B/\n\035com.lvl6.mobsters." +
+      "eventprotosB\016EventCityProto"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {

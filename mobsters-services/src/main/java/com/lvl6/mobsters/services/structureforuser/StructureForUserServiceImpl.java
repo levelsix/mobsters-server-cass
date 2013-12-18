@@ -16,8 +16,8 @@ import org.springframework.stereotype.Component;
 
 import com.lvl6.mobsters.entitymanager.nonstaticdata.StructureForUserEntityManager;
 import com.lvl6.mobsters.entitymanager.staticdata.StructureEntityManager;
-import com.lvl6.mobsters.entitymanager.staticdata.StructureResourceGeneratorRetrieveUtils;
-import com.lvl6.mobsters.entitymanager.staticdata.StructureRetrieveUtils;
+import com.lvl6.mobsters.entitymanager.staticdata.utils.StructureResourceGeneratorRetrieveUtils;
+import com.lvl6.mobsters.entitymanager.staticdata.utils.StructureRetrieveUtils;
 import com.lvl6.mobsters.noneventprotos.StructureProto.ResourceType;
 import com.lvl6.mobsters.po.nonstaticdata.StructureForUser;
 import com.lvl6.mobsters.po.nonstaticdata.User;

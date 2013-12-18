@@ -15,7 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.lvl6.mobsters.entitymanager.nonstaticdata.QuestForUserEntityManager;
-import com.lvl6.mobsters.entitymanager.staticdata.QuestRetrieveUtils;
+import com.lvl6.mobsters.entitymanager.staticdata.utils.QuestRetrieveUtils;
 import com.lvl6.mobsters.po.nonstaticdata.QuestForUser;
 import com.lvl6.mobsters.po.staticdata.Quest;
 import com.lvl6.mobsters.properties.MobstersDbTables;

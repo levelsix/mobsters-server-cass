@@ -9,7 +9,7 @@ import com.lvl6.mobsters.entitymanager.nonstaticdata.MonsterForUserEntityManager
 import com.lvl6.mobsters.entitymanager.nonstaticdata.MonsterHealingForUserEntityManager;
 import com.lvl6.mobsters.entitymanager.nonstaticdata.UserEntityManager;
 import com.lvl6.mobsters.entitymanager.nonstaticdata.StructureForUserEntityManager;
-import com.lvl6.mobsters.entitymanager.staticdata.StructureLabRetrieveUtils;
+import com.lvl6.mobsters.entitymanager.staticdata.utils.StructureLabRetrieveUtils;
 import com.lvl6.mobsters.events.RequestEvent;
 import com.lvl6.mobsters.events.request.CollectUserStructureRequestEvent;
 import com.lvl6.mobsters.services.structureforuser.StructureForUserService;

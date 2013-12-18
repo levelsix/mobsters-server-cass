@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 
 import com.lvl6.mobsters.controller.utils.CreateNoneventProtoUtils;
 import com.lvl6.mobsters.controller.utils.MonsterStuffUtils;
-import com.lvl6.mobsters.entitymanager.staticdata.QuestRetrieveUtils;
+import com.lvl6.mobsters.entitymanager.staticdata.utils.QuestRetrieveUtils;
 import com.lvl6.mobsters.eventprotos.EventQuestProto.QuestProgressRequestProto;
 import com.lvl6.mobsters.eventprotos.EventQuestProto.QuestProgressResponseProto;
 import com.lvl6.mobsters.eventprotos.EventQuestProto.QuestProgressResponseProto.Builder;

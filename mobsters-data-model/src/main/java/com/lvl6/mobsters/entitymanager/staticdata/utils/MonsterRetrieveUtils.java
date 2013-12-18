@@ -1,4 +1,4 @@
-package com.lvl6.mobsters.entitymanager.staticdata;
+package com.lvl6.mobsters.entitymanager.staticdata.utils;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -11,6 +11,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.lvl6.mobsters.entitymanager.staticdata.MonsterEntityManager;
 import com.lvl6.mobsters.po.staticdata.Monster;
 import com.lvl6.mobsters.properties.MobstersDbTables;
 import com.lvl6.mobsters.utils.QueryConstructionUtil;

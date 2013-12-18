@@ -10,8 +10,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.lvl6.mobsters.entitymanager.staticdata.ProfanityRetrieveUtils;
-import com.lvl6.mobsters.entitymanager.staticdata.UserBannedRetrieveUtils;
+import com.lvl6.mobsters.entitymanager.staticdata.utils.ProfanityRetrieveUtils;
+import com.lvl6.mobsters.entitymanager.staticdata.utils.UserBannedRetrieveUtils;
 import com.lvl6.mobsters.eventprotos.EventChatProto.SendGroupChatRequestProto;
 import com.lvl6.mobsters.eventprotos.EventChatProto.SendGroupChatResponseProto;
 import com.lvl6.mobsters.eventprotos.EventChatProto.SendGroupChatResponseProto.Builder;

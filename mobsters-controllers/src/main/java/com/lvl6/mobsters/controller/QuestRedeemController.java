@@ -13,7 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.lvl6.mobsters.controller.utils.CreateNoneventProtoUtils;
-import com.lvl6.mobsters.entitymanager.staticdata.QuestRetrieveUtils;
+import com.lvl6.mobsters.entitymanager.staticdata.utils.QuestRetrieveUtils;
 import com.lvl6.mobsters.eventprotos.EventQuestProto.QuestRedeemRequestProto;
 import com.lvl6.mobsters.eventprotos.EventQuestProto.QuestRedeemResponseProto;
 import com.lvl6.mobsters.eventprotos.EventQuestProto.QuestRedeemResponseProto.Builder;

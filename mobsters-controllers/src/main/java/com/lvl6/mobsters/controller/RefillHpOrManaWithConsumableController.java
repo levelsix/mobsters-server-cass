@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 
 import com.lvl6.mobsters.entitymanager.nonstaticdata.QuestForUserEntityManager;
 import com.lvl6.mobsters.entitymanager.nonstaticdata.UserEntityManager;
-import com.lvl6.mobsters.entitymanager.staticdata.StructureHospitalRetrieveUtils;
+import com.lvl6.mobsters.entitymanager.staticdata.utils.StructureHospitalRetrieveUtils;
 import com.lvl6.mobsters.events.RequestEvent;
 
 

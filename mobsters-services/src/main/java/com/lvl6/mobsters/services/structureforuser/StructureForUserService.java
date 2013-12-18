@@ -8,8 +8,8 @@ import java.util.UUID;
 
 import com.lvl6.mobsters.entitymanager.nonstaticdata.StructureForUserEntityManager;
 import com.lvl6.mobsters.entitymanager.staticdata.StructureEntityManager;
-import com.lvl6.mobsters.entitymanager.staticdata.StructureResourceGeneratorRetrieveUtils;
-import com.lvl6.mobsters.entitymanager.staticdata.StructureRetrieveUtils;
+import com.lvl6.mobsters.entitymanager.staticdata.utils.StructureResourceGeneratorRetrieveUtils;
+import com.lvl6.mobsters.entitymanager.staticdata.utils.StructureRetrieveUtils;
 import com.lvl6.mobsters.po.nonstaticdata.StructureForUser;
 import com.lvl6.mobsters.po.nonstaticdata.User;
 import com.lvl6.mobsters.po.staticdata.Structure;
