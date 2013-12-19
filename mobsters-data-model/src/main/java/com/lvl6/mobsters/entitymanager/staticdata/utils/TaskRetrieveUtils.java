@@ -134,13 +134,15 @@ import com.lvl6.mobsters.utils.QueryConstructionUtil;
 
 		//construct the search parameters, null to get whole table
 		Map<String, Object> equalityConditions = null;
-
+		String conditionDelimiter = getQueryConstructionUtil().getAnd();
+		
 		//query db, "values" is not used 
 		//(its purpose is to hold the values that were supposed to be put
 		// into a prepared statement) 
 		List<Object> values = new ArrayList<Object>();
 		boolean preparedStatement = false;
-		String cqlquery = getQueryConstructionUtil().selectRowsQueryEqualityConditions(TABLE_NAME, equalityConditions, values, preparedStatement);
+		String cqlquery = getQueryConstructionUtil().selectRowsQueryEqualityConditions(
+				TABLE_NAME, equalityConditions, conditionDelimiter, values, preparedStatement);
 		List<Task> taskList = getTaskEntityManager().get().find(cqlquery);
 		
 		//fill up the maps

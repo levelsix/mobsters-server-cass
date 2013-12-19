@@ -76,7 +76,7 @@ public class QuestAcceptController extends EventController {
 		try {
 			//get whatever we need from the database
 			String gameCenterId = null;
-			User user = getUserService().retrieveUser(gameCenterId, userId);
+			User user = getUserService().getUserByGamcenterIdOrUserId(gameCenterId, userId);
 			Quest quest = getQuestRetrieveUtils().getQuestForId(questId);
 			
 			boolean legitAccept = checkLegitAccept(responseBuilder, user,

@@ -14,22 +14,24 @@ import org.slf4j.LoggerFactory;
 public class QueryConstructionUtil {
 
 	private static final Logger log = LoggerFactory.getLogger(QueryConstructionUtil.class);
-	private static final String and = "AND";
-	private static final String comma = ",";
-	private static final String equality = "=";
-	private static final String greaterThan = ">";
-	private static final String in = "IN"; 
-	private static final String question = "?";
-	private static final String space = " ";
-	private static final int spaceLength = 1;
+	private final String and = " AND ";
+	private final String or = " OR ";
+	private final String comma = ",";
+	private final String equality = "=";
+	private final String greaterThan = ">";
+	private final String in = "IN"; 
+	private final String question = "?";
+	private final String space = " ";
+	private final int spaceLength = 1;
 
 
 	//at the moment, just equality conditions and greater than conditions and 
 	//"in ()" conditions, the argument "values" is another return value. It will contain
 	//the values to be set into the CqlPreparedStatement in the proper order
 	public String selectRowsQueryAllConditions(String tableName, Map<String, ?> equalityConditions,
-			Map<String, ?> greaterThanConditions, Map<String, Collection<?>> inConditions,
-			List<Object> values) {
+			String equalityCondDelim, Map<String, ?> greaterThanConditions,
+			String greaterThanCondDelim, Map<String, Collection<?>> inConditions,
+			String inCondDelim, String delimAcrossConditions, List<Object> values) {
 		StringBuilder sb = new StringBuilder();
 		sb.append("select * from ");
 		sb.append(tableName);
@@ -51,19 +53,19 @@ public class QueryConstructionUtil {
 		String conjunction = "";
 		if (!emptyEqConditions) {
 			String equalityConditionsStr = createComparisonConditionsString(
-					equalityConditions, values, equality);
+					equalityConditions, values, equality, equalityCondDelim);
 			sb.append(equalityConditionsStr);
 
-			conjunction = " and ";
+			conjunction = delimAcrossConditions;
 		}
 		//GREATER THAN CONDITIONS
 		if (!emptyGtConditions) {
 			String gtConditionsStr = createComparisonConditionsString(greaterThanConditions,
-					values, greaterThan);
+					values, greaterThan, greaterThanCondDelim);
 			sb.append(conjunction);
 			sb.append(gtConditionsStr);
 
-			conjunction = " and ";
+			conjunction = delimAcrossConditions;
 		} else {
 			conjunction = "";
 		}
@@ -73,11 +75,11 @@ public class QueryConstructionUtil {
 				Collection<?> inValues = inConditions.get(column);
 				String inConditionsStr = createColInValuesString(column, inValues);
 
-				sb.append(conjunction);
+				sb.append(inCondDelim);
 				sb.append(inConditionsStr);
 
-				conjunction = " and ";
 			}
+			conjunction = delimAcrossConditions;
 		} else {
 			conjunction = "";
 		}
@@ -93,8 +95,8 @@ public class QueryConstructionUtil {
 	//value. It will contain the values to be set into the CqlPreparedStatement in the
 	//proper order
 	public String selectRowsQueryEqualityConditions(String tableName,
-			Map<String, ?> equalityConditions, List<Object> values,
-			boolean preparedStatement) {
+			Map<String, ?> equalityConditions, String conditionDelimiter,
+			List<Object> values, boolean preparedStatement) {
 		StringBuilder sb = new StringBuilder();
 		sb.append("select * from ");
 		sb.append(tableName);
@@ -108,11 +110,11 @@ public class QueryConstructionUtil {
 
 		if (preparedStatement) {
 			String preparedEqualityConditionsStr = createPreparedComparisonConditionsString(
-					equalityConditions, values, equality);
+					equalityConditions, values, equality, conditionDelimiter);
 			sb.append(preparedEqualityConditionsStr);
 		} else {
 			String equalityConditionsStr = createComparisonConditionsString(
-					equalityConditions, values, equality);
+					equalityConditions, values, equality, conditionDelimiter);
 			sb.append(equalityConditionsStr);
 		}
 
@@ -124,7 +126,7 @@ public class QueryConstructionUtil {
 
 	//look at createComparisonConditionsString() for details. This is just a copy of it.
 	public String createPreparedComparisonConditionsString(Map<String, ?> equalityConditions,
-			List<Object> values, String comparator) {
+			List<Object> values, String comparator, String conditionDelimiter) {
 		List<Object> clauses = new ArrayList<Object>();
 
 		for (String key : equalityConditions.keySet()) {
@@ -140,7 +142,7 @@ public class QueryConstructionUtil {
 			String clause = clauseSb.toString();
 			clauses.add(clause);
 		}
-		String equalityConditionsStr = implode(clauses, and); 
+		String equalityConditionsStr = implode(clauses, conditionDelimiter); 
 
 		log.info("equalityConditionsStr=" + equalityConditionsStr + "\t values=" + values);
 		return equalityConditionsStr;
@@ -150,7 +152,7 @@ public class QueryConstructionUtil {
 	//to be set into the CqlPreparedStatement in the proper order. string
 	//will not be a prepared statement unless specified by boolean "preparedStatement"
 	public String createComparisonConditionsString(Map<String, ?> equalityConditions,
-			List<Object> values, String comparator) {
+			List<Object> values, String comparator, String conditionDelimiter) {
 
 		List<Object> clauses = new ArrayList<Object>();
 
@@ -176,7 +178,7 @@ public class QueryConstructionUtil {
 		//implode (join together) the equality conditions with "AND"
 
 		//e.g. List becomes String(String(col1=x) + AND +...+String(colN=something))
-		String equalityConditionsStr = implode(clauses, and); 
+		String equalityConditionsStr = implode(clauses, conditionDelimiter); 
 
 		log.info("equalityConditionsStr=" + equalityConditionsStr + "\t values=" + values);
 		return equalityConditionsStr;
@@ -266,7 +268,7 @@ public class QueryConstructionUtil {
 		return toReturn.toString();
 	}
 	
-	public static String asteriskify(String wordToAskerify) {
+	public String asteriskify(String wordToAskerify) {
 		int len = wordToAskerify.length();
 		StringBuilder sb = new StringBuilder();
 
@@ -275,4 +277,15 @@ public class QueryConstructionUtil {
 		}
 		return sb.toString();
 	}
+
+
+	public String getAnd() {
+		return and;
+	}
+
+
+	public String getOr() {
+		return or;
+	}
+	
 }

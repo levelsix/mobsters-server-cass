@@ -90,7 +90,7 @@ public class FinishNormStructWaittimeWithDiamondsController extends EventControl
 		try {
 			//get whatever we need from the database
 			String gameCenterId = null;
-			User user = getUserService().retrieveUser(gameCenterId, userId);
+			User user = getUserService().getUserByGamcenterIdOrUserId(gameCenterId, userId);
 			StructureForUser userStruct = getStructureForUserService().getSpecificUserStruct(userStructId);
 			Structure currentStruct = null;
 			

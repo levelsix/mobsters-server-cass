@@ -34,6 +34,9 @@ public class MobstersTableConstants {
 	//pvp
 	public static final int PVP__REQUIRED_MIN_LEVEL = 30;
 	
+	public static final int USER_CREATE__MAX_NAME_LENGTH = 15;
+	public static final int USER_CREATE__MIN_NAME_LENGTH = 5;
+	
 	//USER CURRENCY HISTORY REASON FOR CHANGE     VALUES
 	public static final String UCHRFC__CREATE_CLAN = "created clan";
 	public static final String UCHRFC__EARN_FREE_DIAMONDS_FB_CONNECT = "connecting to facebook";

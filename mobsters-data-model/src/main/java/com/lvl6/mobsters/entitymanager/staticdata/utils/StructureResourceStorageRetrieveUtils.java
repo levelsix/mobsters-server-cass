@@ -85,13 +85,15 @@ import com.lvl6.mobsters.utils.QueryConstructionUtil;
 		log.debug("setting static map of structIds to structs");
 
 		Map<String, Object> equalityConditions = null;
-
+		String conditionDelimiter = getQueryConstructionUtil().getAnd();
+		
 		//query db, "values" is not used 
 		//(its purpose is to hold the values that were supposed to be put
 		// into a prepared statement) 
 		List<Object> values = new ArrayList<Object>();
 		boolean preparedStatement = false;
-		String cqlquery = getQueryConstructionUtil().selectRowsQueryEqualityConditions(TABLE_NAME, equalityConditions, values, preparedStatement);
+		String cqlquery = getQueryConstructionUtil().selectRowsQueryEqualityConditions(
+				TABLE_NAME, equalityConditions, conditionDelimiter, values, preparedStatement);
 		List<StructureResourceStorage> list = getResourceStorageEntityManager().get().find(cqlquery);
 		
 		structIdsToResourceStorages = new HashMap<Integer, StructureResourceStorage>();

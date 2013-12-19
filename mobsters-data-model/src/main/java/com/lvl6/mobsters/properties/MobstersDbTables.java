@@ -405,6 +405,8 @@ public class MobstersDbTables {
 	public static final String USER__DEFENSES_LOST = "defenses_lost";
 	public static final String USER__FACEBOOK_ID = "facebook_id";
 	public static final String USER__NTH_EXTRA_SLOTS_VIA_FB = "nth_extra_slots_via_fb";
+	//might not be used and not implemented yet
+	public static final String USER__GAME_CENTER_ID = "game_center_id";
 
 	/* USER BANNED */
 	public static final String USER_BANNED__ID = GENERIC__ID;

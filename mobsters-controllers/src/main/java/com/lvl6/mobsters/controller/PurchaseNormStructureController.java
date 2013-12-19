@@ -99,7 +99,7 @@ public class PurchaseNormStructureController extends EventController {
 		try {
 			//get whatever we need from the database
 			String gameCenterId = null;
-			User user = getUserService().retrieveUser(gameCenterId, userId);
+			User user = getUserService().getUserByGamcenterIdOrUserId(gameCenterId, userId);
 			Structure struct = getStructureRetrieveUtils().getStructureForId(structId);
 
 			boolean legitPurchaseNorm = checkLegitPurchaseNorm(responseBuilder, struct, user,

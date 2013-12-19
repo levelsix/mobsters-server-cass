@@ -101,7 +101,7 @@ public class RetrieveCurrencyFromNormStructureController extends EventController
 		try {
 			//get whatever we need from the database
 			String gameCenterId = null;
-			User user = getUserService().retrieveUser(gameCenterId, userId);
+			User user = getUserService().getUserByGamcenterIdOrUserId(gameCenterId, userId);
 			List<UUID> userStructIds = new ArrayList<UUID>(userStructIdsToTimesOfRetrieval.keySet());
 			Map<UUID, StructureForUser> userStructIdsToUserStructs = getStructureForUserService()
 					.getSpecificOrAllUserStructuresForUser(userId, userStructIds);
