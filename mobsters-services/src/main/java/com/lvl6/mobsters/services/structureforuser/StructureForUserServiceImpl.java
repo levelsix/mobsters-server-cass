@@ -178,12 +178,13 @@ public class StructureForUserServiceImpl implements StructureForUserService {
 		//construct the search parameters
 		Map<String, Object> equalityConditions = new HashMap<String, Object>();
 		equalityConditions.put(MobstersDbTables.STRUCTURE_FOR_USER__USER_ID, userId);
+		String conditionDelimiter = getQueryConstructionUtil().getAnd();
 		
 		//query db, "values" is not used
 		List<Object> values = new ArrayList<Object>();
 		boolean preparedStatement = false;
 		String cqlquery = getQueryConstructionUtil().selectRowsQueryEqualityConditions(
-				TABLE_NAME, equalityConditions, values, preparedStatement);
+				TABLE_NAME, equalityConditions, conditionDelimiter, values, preparedStatement);
 		List<StructureForUser> list = getStructureForUserEntityManager().get().find(cqlquery);
 		return list;
 	}
@@ -231,19 +232,27 @@ public class StructureForUserServiceImpl implements StructureForUserService {
 		//construct the search parameters
 		Map<String, Object> equalityConditions = new HashMap<String, Object>();
 		equalityConditions.put(MobstersDbTables.STRUCTURE_FOR_USER__USER_ID, userId);
+		String equalityCondDelim = getQueryConstructionUtil().getAnd();
+		
 		Map<String, Object> greaterThanConditions = null;
+		String greaterThanCondDelim = getQueryConstructionUtil().getAnd();
+		
 		Map<String, Collection<?>> inConditions = null;
 		if(null != userStructureIds && !userStructureIds.isEmpty()) {
 			inConditions = new HashMap<String, Collection<?>>();
 			inConditions.put(MobstersDbTables.STRUCTURE_FOR_USER__ID, userStructureIds);
 		}
+		String inCondDelim = getQueryConstructionUtil().getAnd();
+		String delimAcrossConditions = getQueryConstructionUtil().getAnd();
+		
 		
 		//query db, "values" is not used
 		//(its purpose is to hold the values that were supposed to be put
 		//into a prepared statement)
 		List<Object> values = new ArrayList<Object>();
 		String cqlQuery = getQueryConstructionUtil().selectRowsQueryAllConditions(TABLE_NAME,
-				equalityConditions, greaterThanConditions, inConditions, values);
+				equalityConditions, equalityCondDelim, greaterThanConditions,
+				greaterThanCondDelim, inConditions, inCondDelim, delimAcrossConditions, values);
 		List<StructureForUser> sfuList = getStructureForUserEntityManager().get().find(cqlQuery);
 		
 		Map<UUID, StructureForUser> userStructureIdsToUserStructures =

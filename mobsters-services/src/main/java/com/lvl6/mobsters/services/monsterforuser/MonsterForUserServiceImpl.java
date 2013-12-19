@@ -297,6 +297,7 @@ public class MonsterForUserServiceImpl implements MonsterForUserService {
 		//construct the search parameters
 		Map<String, Object> equalityConditions = new HashMap<String, Object>();
 		equalityConditions.put(MobstersDbTables.MONSTER_FOR_USER__USER_ID, userId);
+		String conditionDelimiter = getQueryConstructionUtil().getAnd();
 		
 		//query db, "values" is not used 
 		//(its purpose is to hold the values that were supposed to be put
@@ -304,7 +305,7 @@ public class MonsterForUserServiceImpl implements MonsterForUserService {
 		List<Object> values = new ArrayList<Object>();
 		boolean preparedStatement = false;
 		String cqlQuery = getQueryConstructionUtil().selectRowsQueryEqualityConditions(
-				TABLE_NAME, equalityConditions, values, preparedStatement);
+				TABLE_NAME, equalityConditions, conditionDelimiter, values, preparedStatement);
 		List<MonsterForUser> mfuList = getMonsterForUserEntityManager().get().find(cqlQuery);
 		
 		return mfuList;
@@ -317,20 +318,24 @@ public class MonsterForUserServiceImpl implements MonsterForUserService {
 		
 		//construct the search parameters
 		Map<String, Object> equalityConditions = null;
+		String equalityCondDelim = getQueryConstructionUtil().getAnd();
 		int lowestTeamSlot = 0;
 		Map<String, Object> greaterThanConditions = new HashMap<String, Object>();
 		greaterThanConditions.put(MobstersDbTables.MONSTER_FOR_USER__TEAM_SLOT_NUM,
 				lowestTeamSlot);
+		String greaterThanCondDelim = getQueryConstructionUtil().getAnd();
 		Map<String, Collection<?>> inConditions = new HashMap<String, Collection<?>>();
 		inConditions.put(MobstersDbTables.MONSTER_FOR_USER__USER_ID, userIds);
+		String inCondDelim = getQueryConstructionUtil().getAnd();
+		String delimAcrossConditions = getQueryConstructionUtil().getAnd();
 		
 		//query db, "values" is not used 
 		//(its purpose is to hold the values that were supposed to be put
 		// into a prepared statement)
 		List<Object> values = new ArrayList<Object>();
 		String cqlQuery = getQueryConstructionUtil().selectRowsQueryAllConditions(
-				TABLE_NAME, equalityConditions, greaterThanConditions,
-				inConditions, values);
+				TABLE_NAME, equalityConditions, equalityCondDelim, greaterThanConditions,
+				greaterThanCondDelim, inConditions, inCondDelim, delimAcrossConditions, values);
 		List<MonsterForUser> mfuList = getMonsterForUserEntityManager().get().find(cqlQuery);
 		
 		
@@ -394,19 +399,26 @@ public class MonsterForUserServiceImpl implements MonsterForUserService {
 		//construct the search parameters
 		Map<String, Object> equalityConditions = new HashMap<String, Object>();
 		equalityConditions.put(MobstersDbTables.MONSTER_FOR_USER__USER_ID, userId);
+		String equalityCondDelim = getQueryConstructionUtil().getAnd();
+		
 		Map<String, Object> greaterThanConditions = null;
+		String greaterThanCondDelim = getQueryConstructionUtil().getAnd();
+		
 		Map<String, Collection<?>> inConditions = null;
 		if(null != userMonsterIds && !userMonsterIds.isEmpty()) {
 			inConditions = new HashMap<String, Collection<?>>();
 			inConditions.put(MobstersDbTables.MONSTER_FOR_USER__ID, userMonsterIds);
 		}
+		String inCondDelim = getQueryConstructionUtil().getAnd();
+		String delimAcrossConditions = getQueryConstructionUtil().getAnd();
 		
 		//query db, "values" is not used
 		//(its purpose is to hold the values that were supposed to be put
 		//into a prepared statement)
 		List<Object> values = new ArrayList<Object>();
 		String cqlQuery = getQueryConstructionUtil().selectRowsQueryAllConditions(TABLE_NAME,
-				equalityConditions, greaterThanConditions, inConditions, values);
+				equalityConditions, equalityCondDelim, greaterThanConditions,
+				greaterThanCondDelim, inConditions, inCondDelim, delimAcrossConditions, values);
 		List<MonsterForUser> mfuList = getMonsterForUserEntityManager().get().find(cqlQuery);
 		
 		Map<UUID, MonsterForUser> userMonsterIdsToUserMonsters =
@@ -429,14 +441,21 @@ public class MonsterForUserServiceImpl implements MonsterForUserService {
 		Map<String, Object> equalityConditions = new HashMap<String, Object>();
 		equalityConditions.put(MobstersDbTables.MONSTER_FOR_USER__USER_ID, userId);
 		equalityConditions.put(MobstersDbTables.MONSTER_FOR_USER__IS_COMPLETE, false);
+		String equalityCondDelim = getQueryConstructionUtil().getAnd();
+		
 		Map<String, Object> greaterThanConditions = null;
+		String greaterThanCondDelim = getQueryConstructionUtil().getAnd();
+		
 		Map<String, Collection<?>> inConditions = new HashMap<String, Collection<?>>();
 		inConditions.put(MobstersDbTables.MONSTER_FOR_USER__MONSTER_ID, monsterIds);
+		String inCondDelim = getQueryConstructionUtil().getAnd();
+		String delimAcrossConditions = getQueryConstructionUtil().getAnd();
 		
 		//query db, "values" is not used
 		List<Object> values = new ArrayList<Object>();
 		String cqlQuery = getQueryConstructionUtil().selectRowsQueryAllConditions(TABLE_NAME,
-				equalityConditions, greaterThanConditions, inConditions, values);
+				equalityConditions, equalityCondDelim, greaterThanConditions,
+				greaterThanCondDelim, inConditions, inCondDelim, delimAcrossConditions, values);
 		List<MonsterForUser> mfuList = getMonsterForUserEntityManager().get().find(cqlQuery);
 		
 		Map<Integer, MonsterForUser> monsterIdsToUserMonsters =

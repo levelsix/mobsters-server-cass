@@ -50,7 +50,8 @@ public class QuestForUserServiceImpl implements QuestForUserService {
 		
 		//construct the search parameters
 		Map<String, Object> equalityConditions = new HashMap<String, Object>();
-		equalityConditions.put(MobstersDbTables.QUEST_FOR_USER___USER_ID, userId);
+		equalityConditions.put(MobstersDbTables.QUEST_FOR_USER__USER_ID, userId);
+		String conditionDelimiter = getQueryConstructionUtil().getAnd();
 		
 		//query db, "values" is not used 
 		//(its purpose is to hold the values that were supposed to be put
@@ -58,7 +59,7 @@ public class QuestForUserServiceImpl implements QuestForUserService {
 		List<Object> values = new ArrayList<Object>();
 		boolean preparedStatement = false;
 		String cqlquery = getQueryConstructionUtil().selectRowsQueryEqualityConditions(
-				TABLE_NAME, equalityConditions, values, preparedStatement); 
+				TABLE_NAME, equalityConditions, conditionDelimiter, values, preparedStatement); 
 		List<QuestForUser> qfuList = getQuestForUserEntityManager().get().find(cqlquery);
 		
 		Map<Integer, QuestForUser> questIdsToUserQuests = new HashMap<Integer, QuestForUser>();
@@ -106,9 +107,10 @@ public class QuestForUserServiceImpl implements QuestForUserService {
 	public QuestForUser getSpecificUnredeemedUserQuest(UUID userId, int questId) {
 		//construct the search parameters
 		Map<String, Object> equalityConditions = new HashMap<String, Object>();
-		equalityConditions.put(MobstersDbTables.QUEST_FOR_USER___USER_ID, userId);
+		equalityConditions.put(MobstersDbTables.QUEST_FOR_USER__USER_ID, userId);
 		equalityConditions.put(MobstersDbTables.QUEST_FOR_USER__QUEST_ID, questId);
 		equalityConditions.put(MobstersDbTables.QUEST_FOR_USER__IS_REDEEMED, false);
+		String conditionDelimiter = getQueryConstructionUtil().getAnd();
 		
 		//query db, "values" is not used 
 		//(its purpose is to hold the values that were supposed to be put
@@ -116,7 +118,7 @@ public class QuestForUserServiceImpl implements QuestForUserService {
 		List<Object> values = new ArrayList<Object>();
 		boolean preparedStatement = false;
 		String cqlQuery = getQueryConstructionUtil().selectRowsQueryEqualityConditions(
-				TABLE_NAME, equalityConditions, values, preparedStatement);
+				TABLE_NAME, equalityConditions, conditionDelimiter, values, preparedStatement);
 		List<QuestForUser> qfuList = getQuestForUserEntityManager().get().find(cqlQuery);
 		
 		if (null == qfuList || qfuList.isEmpty()) {

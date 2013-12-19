@@ -52,10 +52,10 @@ message PurchaseCityExpansionResponseProto {
     
     enum PurchaseCityExpansionStatus {
     	SUCCESS = 1;
-    	NOT_ENOUGH_COINS = 2;
-    	ALREADY_EXPANDING = 3;
-    	OTHER_FAIL = 4;
-    	CLIENT_TOO_APART_FROM_SERVER_TIME = 5;
+    	FAIL_NOT_ENOUGH_COINS = 2;
+    	FAIL_ALREADY_EXPANDING = 3;
+    	FAIL_OTHER = 4;
+    	//CLIENT_TOO_APART_FROM_SERVER_TIME = 5;
     }
 }
 

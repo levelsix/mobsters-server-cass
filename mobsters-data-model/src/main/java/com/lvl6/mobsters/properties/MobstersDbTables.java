@@ -265,7 +265,7 @@ public class MobstersDbTables {
 	public static final String QUEST__INT_ID = "int_id";
 
 	/*USER QUESTS TABLE*/
-	public static final String QUEST_FOR_USER___USER_ID = GENERIC__USER_ID;
+	public static final String QUEST_FOR_USER__USER_ID = GENERIC__USER_ID;
 	public static final String QUEST_FOR_USER__QUEST_ID = "quest_id";
 	public static final String QUEST_FOR_USER__IS_REDEEMED = "is_redeemed"; 
 	public static final String QUEST_FOR_USER__IS_COMPLETE = "is_complete";

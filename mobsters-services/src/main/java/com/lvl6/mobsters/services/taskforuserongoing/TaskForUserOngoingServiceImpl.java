@@ -48,12 +48,13 @@ public class TaskForUserOngoingServiceImpl implements TaskForUserOngoingService 
 		//construct the search parameters
 		Map<String, Object> equalityConditions = new HashMap<String, Object>();
 		equalityConditions.put(MobstersDbTables.TASK_FOR_USER_ONGOING__USER_ID, userId);
-
+		String equalityCondDelim = getQueryConstructionUtil().getAnd();
+		
 		//query db, "values" is not used
 		List<Object> values = new ArrayList<Object>();
 		boolean preparedStatement = false;
 		String cqlquery = getQueryConstructionUtil().selectRowsQueryEqualityConditions(
-				TABLE_NAME, equalityConditions, values, preparedStatement);
+				TABLE_NAME, equalityConditions, equalityCondDelim, values, preparedStatement);
 		List<TaskForUserOngoing> utList = getTaskForUserOngoingEntityManager().get().find(cqlquery);
 		
 		//error checking. There should only be one row in user_task table for any user

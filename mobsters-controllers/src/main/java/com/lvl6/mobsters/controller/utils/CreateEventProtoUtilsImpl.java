@@ -1,13 +1,16 @@
 package com.lvl6.mobsters.controller.utils;
 
 import java.util.Date;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.lvl6.mobsters.eventprotos.EventUserProto.UpdateClientUserResponseProto;
 import com.lvl6.mobsters.events.response.UpdateClientUserResponseEvent;
+import com.lvl6.mobsters.noneventprotos.CityProto.UserCityExpansionDataProto;
 import com.lvl6.mobsters.noneventprotos.UserProto.FullUserProto;
+import com.lvl6.mobsters.po.nonstaticdata.ExpansionPurchaseForUser;
 import com.lvl6.mobsters.po.nonstaticdata.User;
 
 @Component
@@ -26,8 +29,29 @@ public class CreateEventProtoUtilsImpl implements CreateEventProtoUtils {
 	
 	@Autowired
 	protected CreateNoneventProtoUtils createNoneventProtoUtils;
+	
+	//CITY PROTO****************************************************************
+	@Override
+	public UserCityExpansionDataProto createUserCityExpansionDataProtoFromUserExpansion(
+			ExpansionPurchaseForUser epfu) {
+		UserCityExpansionDataProto.Builder builder = UserCityExpansionDataProto.newBuilder();
+		
+		UUID userId = epfu.getUserId();
+		String userIdStr = userId.toString();
+		builder.setUserUuid(userIdStr);
+		builder.setXPosition(epfu.getxPosition());
+		builder.setYPosition(epfu.getyPosition());
+		builder.setIsExpanding(epfu.isExpanding());
+		
+		if (epfu.getExpandStartTime() != null) {
+			builder.setExpandStartTime(epfu.getExpandStartTime().getTime());
+		}
+		return builder.build();
+	}
+	
+	
 
-	//USER PROTO
+	//USER PROTO****************************************************************
 	@Override
 	public UpdateClientUserResponseEvent createUpdateClientUserResponseEvent(User u) {
 		String userIdStr = u.getId().toString();

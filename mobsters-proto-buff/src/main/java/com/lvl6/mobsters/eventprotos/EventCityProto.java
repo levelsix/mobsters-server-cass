@@ -2420,17 +2420,15 @@ public final class EventCityProto {
     public enum PurchaseCityExpansionStatus
         implements com.google.protobuf.ProtocolMessageEnum {
       SUCCESS(0, 1),
-      NOT_ENOUGH_COINS(1, 2),
-      ALREADY_EXPANDING(2, 3),
-      OTHER_FAIL(3, 4),
-      CLIENT_TOO_APART_FROM_SERVER_TIME(4, 5),
+      FAIL_NOT_ENOUGH_COINS(1, 2),
+      FAIL_ALREADY_EXPANDING(2, 3),
+      FAIL_OTHER(3, 4),
       ;
       
       public static final int SUCCESS_VALUE = 1;
-      public static final int NOT_ENOUGH_COINS_VALUE = 2;
-      public static final int ALREADY_EXPANDING_VALUE = 3;
-      public static final int OTHER_FAIL_VALUE = 4;
-      public static final int CLIENT_TOO_APART_FROM_SERVER_TIME_VALUE = 5;
+      public static final int FAIL_NOT_ENOUGH_COINS_VALUE = 2;
+      public static final int FAIL_ALREADY_EXPANDING_VALUE = 3;
+      public static final int FAIL_OTHER_VALUE = 4;
       
       
       public final int getNumber() { return value; }
@@ -2438,10 +2436,9 @@ public final class EventCityProto {
       public static PurchaseCityExpansionStatus valueOf(int value) {
         switch (value) {
           case 1: return SUCCESS;
-          case 2: return NOT_ENOUGH_COINS;
-          case 3: return ALREADY_EXPANDING;
-          case 4: return OTHER_FAIL;
-          case 5: return CLIENT_TOO_APART_FROM_SERVER_TIME;
+          case 2: return FAIL_NOT_ENOUGH_COINS;
+          case 3: return FAIL_ALREADY_EXPANDING;
+          case 4: return FAIL_OTHER;
           default: return null;
         }
       }
@@ -2472,7 +2469,7 @@ public final class EventCityProto {
       }
       
       private static final PurchaseCityExpansionStatus[] VALUES = {
-        SUCCESS, NOT_ENOUGH_COINS, ALREADY_EXPANDING, OTHER_FAIL, CLIENT_TOO_APART_FROM_SERVER_TIME, 
+        SUCCESS, FAIL_NOT_ENOUGH_COINS, FAIL_ALREADY_EXPANDING, FAIL_OTHER, 
       };
       
       public static PurchaseCityExpansionStatus valueOf(
@@ -4785,28 +4782,27 @@ public final class EventCityProto {
       "\002\022\016\n\nFAIL_OTHER\020\003\"\212\001\n!PurchaseCityExpans" +
       "ionRequestProto\022\'\n\006sender\030\001 \001(\0132\027.proto." +
       "MinimumUserProto\022\021\n\txPosition\030\002 \001(\021\022\021\n\ty" +
-      "Position\030\003 \001(\021\022\026\n\016timeOfPurchase\030\004 \001(\003\"\347" +
+      "Position\030\003 \001(\021\022\026\n\016timeOfPurchase\030\004 \001(\003\"\311" +
       "\002\n\"PurchaseCityExpansionResponseProto\022\'\n" +
       "\006sender\030\001 \001(\0132\027.proto.MinimumUserProto\022U",
       "\n\006status\030\002 \001(\0162E.proto.PurchaseCityExpan" +
       "sionResponseProto.PurchaseCityExpansionS" +
       "tatus\0220\n\005ucedp\030\003 \001(\0132!.proto.UserCityExp" +
-      "ansionDataProto\"\216\001\n\033PurchaseCityExpansio" +
-      "nStatus\022\013\n\007SUCCESS\020\001\022\024\n\020NOT_ENOUGH_COINS" +
-      "\020\002\022\025\n\021ALREADY_EXPANDING\020\003\022\016\n\nOTHER_FAIL\020" +
-      "\004\022%\n!CLIENT_TOO_APART_FROM_SERVER_TIME\020\005" +
-      "\"O\n\024LoadCityRequestProto\022\'\n\006sender\030\001 \001(\013" +
-      "2\027.proto.MinimumUserProto\022\016\n\006cityId\030\002 \001(" +
-      "\005\"\316\002\n\025LoadCityResponseProto\022\'\n\006sender\030\001 ",
-      "\001(\0132\027.proto.MinimumUserProto\022;\n\006status\030\002" +
-      " \001(\0162+.proto.LoadCityResponseProto.LoadC" +
-      "ityStatus\022-\n\014cityElements\030\003 \003(\0132\027.proto." +
-      "CityElementProto\022\016\n\006cityId\030\004 \001(\005\022@\n\035inPr" +
-      "ogressUserQuestDataInCity\030\005 \003(\0132\031.proto." +
-      "FullUserQuestProto\"N\n\016LoadCityStatus\022\013\n\007" +
-      "SUCCESS\020\001\022\037\n\033FAIL_NOT_ACCESSIBLE_TO_USER" +
-      "\020\002\022\016\n\nFAIL_OTHER\020\003B/\n\035com.lvl6.mobsters." +
-      "eventprotosB\016EventCityProto"
+      "ansionDataProto\"q\n\033PurchaseCityExpansion" +
+      "Status\022\013\n\007SUCCESS\020\001\022\031\n\025FAIL_NOT_ENOUGH_C" +
+      "OINS\020\002\022\032\n\026FAIL_ALREADY_EXPANDING\020\003\022\016\n\nFA" +
+      "IL_OTHER\020\004\"O\n\024LoadCityRequestProto\022\'\n\006se" +
+      "nder\030\001 \001(\0132\027.proto.MinimumUserProto\022\016\n\006c" +
+      "ityId\030\002 \001(\005\"\316\002\n\025LoadCityResponseProto\022\'\n" +
+      "\006sender\030\001 \001(\0132\027.proto.MinimumUserProto\022;",
+      "\n\006status\030\002 \001(\0162+.proto.LoadCityResponseP" +
+      "roto.LoadCityStatus\022-\n\014cityElements\030\003 \003(" +
+      "\0132\027.proto.CityElementProto\022\016\n\006cityId\030\004 \001" +
+      "(\005\022@\n\035inProgressUserQuestDataInCity\030\005 \003(" +
+      "\0132\031.proto.FullUserQuestProto\"N\n\016LoadCity" +
+      "Status\022\013\n\007SUCCESS\020\001\022\037\n\033FAIL_NOT_ACCESSIB" +
+      "LE_TO_USER\020\002\022\016\n\nFAIL_OTHER\020\003B/\n\035com.lvl6" +
+      ".mobsters.eventprotosB\016EventCityProto"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {

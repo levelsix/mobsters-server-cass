@@ -216,12 +216,13 @@ public class TaskStageForUserServiceImpl implements TaskStageForUserService {
 		//construct the search parameters
 		Map<String, Object> equalityConditions = new HashMap<String, Object>();
 		equalityConditions.put(MobstersDbTables.TASK_STAGE_FOR_USER__TASK_FOR_USER_ID, userTaskId);
-
+		String conditionDelimiter = getQueryConstructionUtil().getAnd();
+		
 		//query db, "values" is not used
 		List<Object> values = new ArrayList<Object>();
 		boolean preparedStatement = false;
 		String cqlquery = getQueryConstructionUtil().selectRowsQueryEqualityConditions(
-				TABLE_NAME, equalityConditions, values, preparedStatement);
+				TABLE_NAME, equalityConditions, conditionDelimiter, values, preparedStatement);
 		List<TaskStageForUser> tsfuList = getTaskStageForUserEntityManager().get().find(cqlquery);
 		
 		return tsfuList;
