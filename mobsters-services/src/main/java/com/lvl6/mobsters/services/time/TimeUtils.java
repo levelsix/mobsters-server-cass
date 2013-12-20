@@ -45,6 +45,20 @@ public class TimeUtils {
 	  return ldOne.isBefore(ldTwo);
   }
   
+  public boolean isFirstEarlierThanSecond(Date one, int additionalMinsOne, Date two,
+		  int additionalMinsTwo) {
+	  long numMillisOne = one.getTime() + (additionalMinsOne * 60000); 
+	  one = new Date(numMillisOne);
+	  
+	  long numMillisTwo = two.getTime() + (additionalMinsTwo * 60000);
+	  two = new Date(numMillisTwo);
+	  
+	  LocalDate ldOne = new LocalDate(one);
+	  LocalDate ldTwo = new LocalDate(two);
+	  
+	  return ldOne.isBefore(ldTwo);
+  }
+  
   public Date addMillisToDate(Date aDate, long millis) {
 	  DateTime dt = new DateTime(aDate);
 	  dt.plus(millis);

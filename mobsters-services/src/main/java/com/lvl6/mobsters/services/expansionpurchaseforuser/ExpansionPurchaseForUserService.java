@@ -8,13 +8,18 @@ import java.util.UUID;
 import com.lvl6.mobsters.entitymanager.nonstaticdata.ExpansionPurchaseForUserEntityManager;
 import com.lvl6.mobsters.entitymanager.staticdata.utils.ExpansionCostRetrieveUtils;
 import com.lvl6.mobsters.po.nonstaticdata.ExpansionPurchaseForUser;
+import com.lvl6.mobsters.po.staticdata.ExpansionCost;
 import com.lvl6.mobsters.utils.QueryConstructionUtil;
 
 public interface ExpansionPurchaseForUserService {
 	
 	//CONTROLLER LOGIC STUFF****************************************************************
-	public abstract int calculateExpansionCost(int numOfExpansions);
+	public abstract ExpansionCost getExpansionCost(int nthExpansion);
 	
+	public abstract int calculateExpansionCostCash(int numOfExpansions);
+	
+	public abstract ExpansionPurchaseForUser selectSpecificExpansion(int xPosition, int yPosition,
+			List<ExpansionPurchaseForUser> epfuList);
 		
 	//RETRIEVING STUFF****************************************************************
 	public abstract List<ExpansionPurchaseForUser> getExpansionPurchasesForUser(UUID userId);

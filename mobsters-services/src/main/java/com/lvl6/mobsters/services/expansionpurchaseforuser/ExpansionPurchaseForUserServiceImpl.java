@@ -39,13 +39,42 @@ public class ExpansionPurchaseForUserServiceImpl implements ExpansionPurchaseFor
 
 	//CONTROLLER LOGIC STUFF****************************************************************
 	@Override
-	public int calculateExpansionCost(int numOfExpansions) {
+	public ExpansionCost getExpansionCost(int nthExpansion) {
+		ExpansionCost ec = getExpansionCostRetrieveUtils().getCityExpansionCostById(nthExpansion);
+		
+		return ec;
+	}
+	
+	@Override
+	public int calculateExpansionCostCash(int numOfExpansions) {
 		ExpansionCost ec = getExpansionCostRetrieveUtils()
 				.getCityExpansionCostById(numOfExpansions);
 		
 		return ec.getExpansionCostCash();
 	}
 	
+	@Override
+	public ExpansionPurchaseForUser selectSpecificExpansion(int xPosition, int yPosition,
+			List<ExpansionPurchaseForUser> epfuList) {
+		
+		//if there aren't any expansion purchases return null;
+		if (null == epfuList || epfuList.isEmpty()) {
+			return null;
+		}
+		
+		//go through each of the user's expansion purchases get the one with the
+		//corresponding x and y coordinates
+		for (ExpansionPurchaseForUser epfu : epfuList) {
+			int x = epfu.getxPosition();
+			int y = epfu.getyPosition();
+			
+			if (x == xPosition && y == yPosition) {
+				return epfu;
+			}
+		}
+		
+		return null;
+	}
 	
 	//RETRIEVING STUFF****************************************************************
 	@Override

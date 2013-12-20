@@ -166,7 +166,7 @@ public class PurchaseCityExpansionController extends EventController {
 		}
 
 		//see if user has enough to buy next expansion
-		int cost = getExpansionPurchaseForUserService().calculateExpansionCost(numOfExpansions + 1);
+		int cost = getExpansionPurchaseForUserService().calculateExpansionCostCash(numOfExpansions + 1);
 		if (user.getCash() < cost) {
 			resBuilder.setStatus(PurchaseCityExpansionStatus.FAIL_NOT_ENOUGH_COINS);
 			return false;            
