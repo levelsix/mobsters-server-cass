@@ -27,7 +27,7 @@ public class MonsterStuffUtils {
 	
 	//extract and return the ids from the UserMonsterCurrentHealthProtos, also
 	//return mapping of userMonsterIdToExpectedHealth
-  public static List<UUID> getUserMonsterIds(List<UserMonsterCurrentHealthProto> umchpList,
+  public List<UUID> getUserMonsterIds(List<UserMonsterCurrentHealthProto> umchpList,
   		Map<UUID, Integer> userMonsterIdToExpectedHealth) {
   	List<UUID> idList = new ArrayList<UUID>();
   	
@@ -46,7 +46,7 @@ public class MonsterStuffUtils {
   	return idList;
   }
   
-  public static List<UUID> getUserMonsterIds(List<FullUserMonsterProto> mfuList) {
+  public List<UUID> getUserMonsterIds(List<FullUserMonsterProto> mfuList) {
   	List<UUID> idList = new ArrayList<UUID>();
   	
   	if (null == mfuList) {
@@ -63,7 +63,7 @@ public class MonsterStuffUtils {
   }
   
   //transforming list to map with key = monsterForUserId.
-  public static Map<UUID, UserMonsterHealingProto> convertIntoUserMonsterIdToUmhpProtoMap(
+  public Map<UUID, UserMonsterHealingProto> convertIntoUserMonsterIdToUmhpProtoMap(
   		List<UserMonsterHealingProto> umhpList) {
   	Map<UUID, UserMonsterHealingProto> returnMap = new HashMap<UUID, UserMonsterHealingProto>();
   	if (null == umhpList) {
@@ -78,7 +78,7 @@ public class MonsterStuffUtils {
   	return returnMap;
   }
   
-  public static Map<UUID, UserEnhancementItemProto> convertIntoUserMonsterIdToUeipProtoMap(
+  public Map<UUID, UserEnhancementItemProto> convertIntoUserMonsterIdToUeipProtoMap(
   		List<UserEnhancementItemProto> ueipList) {
   	Map<UUID, UserEnhancementItemProto> returnMap = new HashMap<UUID, UserEnhancementItemProto>();
   	if(null == ueipList) {
@@ -96,12 +96,12 @@ public class MonsterStuffUtils {
   /*
    * selected monsters (the second argument) might be modified
    */
-  public static void retainValidMonsters(Set<Long> domain,  Map<Long, ?> selectedMonsters,
+  public void retainValidMonsters(Set<UUID> domain,  Map<UUID, ?> selectedMonsters,
   		boolean keepThingsInDomain, boolean keepThingsNotInDomain) {
-  	Set<Long> selectedIds = selectedMonsters.keySet();
-  	selectedIds = new HashSet<Long>(selectedIds);
+  	Set<UUID> selectedIds = selectedMonsters.keySet();
+  	selectedIds = new HashSet<UUID>(selectedIds);
   	
-  	for (Long selectedId : selectedIds) {
+  	for (UUID selectedId : selectedIds) {
   		if (domain.contains(selectedId) && keepThingsInDomain) {
   			continue;
   		}
@@ -119,11 +119,11 @@ public class MonsterStuffUtils {
   /*
    * selected monsters (the second argument) might be modified
    */
-  public static void retainValidMonsterIds(Set<Long> existing, List<Long> ids) {
+  public void retainValidMonsterIds(Set<UUID> existing, List<UUID> ids) {
 //  	ids.add(123456789L);
 //  	log.info("existing=" + existing + "\t ids=" + ids);
   	
-  	List<Long> copyIds = new ArrayList<Long>(ids);
+  	List<UUID> copyIds = new ArrayList<UUID>(ids);
   	// remove the invalid ids from ids client sent 
   	// (modifying argument so calling function doesn't have to do it)
   	ids.retainAll(existing);
@@ -135,7 +135,7 @@ public class MonsterStuffUtils {
   	}
   }
 
-  public static List<MonsterHealingForUser> convertToMonsterHealingForUser(
+  public List<MonsterHealingForUser> convertToMonsterHealingForUser(
   		UUID userId, Map<UUID, UserMonsterHealingProto> protos) {
   	
   	List<MonsterHealingForUser> nonProtos = new ArrayList<MonsterHealingForUser>();
@@ -156,7 +156,7 @@ public class MonsterStuffUtils {
   	return nonProtos;
   }
   
-  public static List<MonsterEnhancingForUser> convertToMonsterEnhancingForUser(
+  public List<MonsterEnhancingForUser> convertToMonsterEnhancingForUser(
   		UUID userId, Map<UUID, UserEnhancementItemProto> protos) {
   	
   	List<MonsterEnhancingForUser> nonProtos = new ArrayList<MonsterEnhancingForUser>();
@@ -184,7 +184,7 @@ public class MonsterStuffUtils {
   	return nonProtos;
   }
 
-  public static Map<UUID, Integer> convertToMonsterForUserIdToCashAmount(
+  public Map<UUID, Integer> convertToMonsterForUserIdToCashAmount(
   		List<MinimumUserMonsterSellProto> userMonsters) {
   	Map<UUID, Integer> idToCashAmount = new HashMap<UUID, Integer>();
   	
