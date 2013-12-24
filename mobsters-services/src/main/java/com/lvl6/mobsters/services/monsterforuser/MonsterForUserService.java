@@ -63,7 +63,9 @@ public interface MonsterForUserService {
 	
 	public abstract void saveUserMonster(MonsterForUser mfu);
 	
-	public abstract void saveUserMonsters(List<MonsterForUser> mfuList, Date combineDate,
+	public abstract void saveUserMonsters(Collection<MonsterForUser> mfuList);
+	
+	public abstract void saveUserMonsters(Collection<MonsterForUser> mfuList, Date combineDate,
 			String additionalSop);
 	
 	
@@ -71,6 +73,9 @@ public interface MonsterForUserService {
 	public abstract List<MonsterForUser> updateUserMonstersForUser(UUID userId,
 			Map<Integer, Integer> monsterIdToNumPieces, String sourceOfPieces,
 			Date combineStartDate);
+	
+	public abstract void updateUserMonstersHealths(Map<UUID, Integer> userMonsterIdToExpectedHealth,
+			Map<UUID, MonsterForUser> existingUserMonsters);
 	
 	//DELETING STUFF
 	public abstract void deleteUserMonster(UUID deleteUserMonsterUuid);

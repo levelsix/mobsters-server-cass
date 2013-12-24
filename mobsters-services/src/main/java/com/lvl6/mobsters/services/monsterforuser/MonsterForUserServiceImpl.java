@@ -485,7 +485,12 @@ public class MonsterForUserServiceImpl implements MonsterForUserService {
 	}
 	
 	@Override
-	public void saveUserMonsters(List<MonsterForUser> mfuList, Date combineDate,
+	public void saveUserMonsters(Collection<MonsterForUser> mfuList) {
+		getMonsterForUserEntityManager().get().put(mfuList);
+	}
+	
+	@Override
+	public void saveUserMonsters(Collection<MonsterForUser> mfuList, Date combineDate,
 			String additionalSop) {
 		log.info("(before) saving mfuList=" + mfuList);
 		for (MonsterForUser mfu : mfuList) {
@@ -562,6 +567,19 @@ public class MonsterForUserServiceImpl implements MonsterForUserService {
 		//	  	List<FullUserMonsterProto> protos = CreateInfoProtoUtils
 		//	  			.createFullUserMonsterProtoList(newOrUpdated);
 		//	  	return protos;
+	}
+	
+	@Override
+	public void updateUserMonstersHealths(Map<UUID, Integer> userMonsterIdToExpectedHealth,
+			Map<UUID, MonsterForUser> existingUserMonsters) {
+		
+		for (UUID mfuId : existingUserMonsters.keySet()) {
+			int hp = userMonsterIdToExpectedHealth.get(mfuId);
+			MonsterForUser mfu = existingUserMonsters.get(mfuId);
+			
+			mfu.setCurrentHealth(hp);
+		}
+		saveUserMonsters(existingUserMonsters.values());
 	}
 	
 	// DELETING STUFF****************************************************************
