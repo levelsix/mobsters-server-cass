@@ -61,6 +61,8 @@ public interface MonsterForUserService {
 	
 	//SAVING STUFF****************************************************************
 	
+	public abstract void saveUserMonster(MonsterForUser mfu);
+	
 	public abstract void saveUserMonsters(List<MonsterForUser> mfuList, Date combineDate,
 			String additionalSop);
 	

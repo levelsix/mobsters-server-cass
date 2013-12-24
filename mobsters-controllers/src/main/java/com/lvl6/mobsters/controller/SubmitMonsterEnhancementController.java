@@ -1,6 +1,7 @@
 package com.lvl6.mobsters.controller;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
@@ -38,6 +39,7 @@ import com.lvl6.mobsters.services.monsterforuser.MonsterForUserService;
 import com.lvl6.mobsters.services.monsterhealingforuser.MonsterHealingForUserService;
 import com.lvl6.mobsters.services.user.UserService;
 import com.lvl6.mobsters.services.usercurrencyhistory.UserCurrencyHistoryService;
+import com.lvl6.mobsters.utils.QueryConstructionUtil;
 
 
 @Component
@@ -66,6 +68,10 @@ public class SubmitMonsterEnhancementController extends EventController {
 	@Autowired
 	protected CreateEventProtoUtils createEventProtoUtils;
 
+	@Autowired
+	protected QueryConstructionUtil queryConstructionUtil;
+	
+	
 	@Override
 	public RequestEvent createRequestEvent() {
 		return new SubmitMonsterEnhancementRequestEvent();
@@ -338,27 +344,24 @@ public class SubmitMonsterEnhancementController extends EventController {
 		//maybe shouldn't keep track...oh well, more info hopefully is better than none
 		if (null != protoDeleteMap && !protoDeleteMap.isEmpty()) {
 			sb.append("deleteIds=");
-			for (UserEnhancementItemProto ueip : protoDeleteMap.values()) {
-				String id = ueip.getUserMonsterUuid();
-				sb.append(id);
-				sb.append(" ");
-			}
+			Collection<UUID> deleteIds = protoDeleteMap.keySet();
+			String deleteIdsStr = getQueryConstructionUtil().implode(deleteIds, " ");
+			sb.append(deleteIdsStr);
+			sb.append(" ");
 		}
 		if (null != protoUpdateMap && !protoUpdateMap.isEmpty()) {
 			sb.append("updateIds=");
-			for (UserEnhancementItemProto ueip : protoUpdateMap.values()) {
-				String id = ueip.getUserMonsterUuid();
-				sb.append(id);
-				sb.append(" ");
-			}
+			Collection<UUID> updateIds = protoUpdateMap.keySet();
+			String updateIdsStr = getQueryConstructionUtil().implode(updateIds, " ");
+			sb.append(updateIdsStr);
+			sb.append(" ");
 		}
 		if (null != protoNewMap && !protoNewMap.isEmpty()) {
 			sb.append("newIds=");
-			for (UserEnhancementItemProto ueip : protoNewMap.values()) {
-				String id = ueip.getUserMonsterUuid();
-				sb.append(id);
-				sb.append(" ");
-			}
+			Collection<UUID> newIds = protoNewMap.keySet();
+			String newIdsStr = getQueryConstructionUtil().implode(newIds, " ");
+			sb.append(newIdsStr);
+			sb.append(" ");
 		}
 		
 		String details = sb.toString();
@@ -438,6 +441,14 @@ public class SubmitMonsterEnhancementController extends EventController {
 
 	public void setCreateEventProtoUtils(CreateEventProtoUtils createEventProtoUtils) {
 		this.createEventProtoUtils = createEventProtoUtils;
+	}
+
+	public QueryConstructionUtil getQueryConstructionUtil() {
+		return queryConstructionUtil;
+	}
+
+	public void setQueryConstructionUtil(QueryConstructionUtil queryConstructionUtil) {
+		this.queryConstructionUtil = queryConstructionUtil;
 	}
 	
 }

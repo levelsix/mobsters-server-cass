@@ -1,6 +1,7 @@
 package com.lvl6.mobsters.controller.utils;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -198,6 +199,16 @@ public class MonsterStuffUtils {
   	}
   	
   	return idToCashAmount;
+  }
+  
+  public List<UUID> getMonsterEnhancingForUserIds(Collection<MonsterEnhancingForUser> mefuList) {
+	  List<UUID> ids = new ArrayList<UUID>();
+	  
+	  for (MonsterEnhancingForUser mefu : mefuList) {
+		  UUID id = mefu.getId();
+		  ids.add(id);
+	  }
+	  return ids;
   }
 
 }

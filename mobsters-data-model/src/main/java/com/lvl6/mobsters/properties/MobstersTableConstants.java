@@ -49,13 +49,13 @@ public class MobstersTableConstants {
 	public static final String UCHRFC__PURCHASE_NORM_STRUCT = "purchased norm struct";
 	public static final String UCHRFC__RETRIEVE_CURRENCY_FROM_NORM_STRUCT = "retrieve currency from normal structures";
 	public static final String UCHRFC__SPED_UP_CITY_EXPANSION = "sped up city expansion";
+	public static final String UCHRFC__SPED_UP_ENHANCING = "sped up enhancing user monster";
 	public static final String UCHRFC__SPED_UP_NORM_STRUCT = "sped up norm struct";
 	public static final String UCHRFC__UPGRADE_NORM_STRUCT = "upgrading norm struct";
 	
 	public static final String UCHRFC__REDEEMED_QUEST = "redeemed quest";
 	public static final String UCHRFC__SOLD_USER_MONSTERS = "sold user monsters";
 	public static final String UCHRFC__SPED_UP_COMBINING_MONSTER = "sped up combining user monster";
-	public static final String UCHRFC__SPED_UP_ENHANCING = "sped up enhancing user monster";
 	
 	
 

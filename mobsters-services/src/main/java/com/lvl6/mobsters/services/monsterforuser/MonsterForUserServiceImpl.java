@@ -479,6 +479,10 @@ public class MonsterForUserServiceImpl implements MonsterForUserService {
 	
 	
 	//SAVING STUFF****************************************************************
+	@Override
+	public void saveUserMonster(MonsterForUser mfu) {
+		getMonsterForUserEntityManager().get().put(mfu);
+	}
 	
 	@Override
 	public void saveUserMonsters(List<MonsterForUser> mfuList, Date combineDate,

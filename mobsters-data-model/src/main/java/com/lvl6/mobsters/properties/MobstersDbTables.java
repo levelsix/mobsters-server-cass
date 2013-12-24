@@ -237,9 +237,9 @@ public class MobstersDbTables {
 	public static final String MONSTER_FOR_USER_DELETED__ID = "monster_for_user_id";
 	public static final String MONSTER_FOR_USER_DELETED__USER_ID = GENERIC__USER_ID;
 	public static final String MONSTER_FOR_USER_DELETED__MONSTER_ID = "monster_id";
-	public static final String MONSTER_FOR_USER_DELETED__CURRENT_EXPERIENCE = "current_experience";
-	public static final String MONSTER_FOR_USER_DELETED__CURRENT_LEVEL = "current_level";
-	public static final String MONSTER_FOR_USER_DELETED__CURRENT_HEALTH = "current_health";
+	public static final String MONSTER_FOR_USER_DELETED__EXP = "exp";
+	public static final String MONSTER_FOR_USER_DELETED__LVL = "lvl";
+	public static final String MONSTER_FOR_USER_DELETED__HEALTH = "health";
 	public static final String MONSTER_FOR_USER_DELETED__NUM_PIECES = "num_pieces";
 	public static final String MONSTER_FOR_USER_DELETED__IS_COMPLETE = "is_complete";
 	public static final String MONSTER_FOR_USER_DELETED__COMBINE_START_TIME = "combine_start_time";
