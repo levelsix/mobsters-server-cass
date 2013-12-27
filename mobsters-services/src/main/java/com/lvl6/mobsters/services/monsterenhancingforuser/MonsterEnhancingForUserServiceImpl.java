@@ -2,6 +2,7 @@ package com.lvl6.mobsters.services.monsterenhancingforuser;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -37,7 +38,18 @@ public class MonsterEnhancingForUserServiceImpl implements MonsterEnhancingForUs
 	
 	
 	//CONTROLLER LOGIC STUFF****************************************************************
-	
+	@Override
+	public UUID selectBaseEnhancingMonsterId(Map<UUID, MonsterEnhancingForUser> mefuIdToMefu) {
+		for (UUID mefuId : mefuIdToMefu.keySet()) {
+			MonsterEnhancingForUser mefu = mefuIdToMefu.get(mefuId);
+			
+			Date startDate = mefu.getExpectedStartTime();
+			if (null == startDate) {
+				return mefuId;
+			}
+		}
+		return null;
+	}
 
 	//RETRIEVING STUFF****************************************************************
 	

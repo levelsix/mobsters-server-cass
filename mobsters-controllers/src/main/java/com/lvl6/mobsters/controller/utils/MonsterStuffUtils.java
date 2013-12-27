@@ -136,20 +136,30 @@ public class MonsterStuffUtils {
   	}
   }
 
-  public List<MonsterHealingForUser> convertToMonsterHealingForUser(
-  		UUID userId, Map<UUID, UserMonsterHealingProto> protos) {
+  //creates a new MonsterHealingForUser from a proto, or
+  //updates existing MonsterHealingForUser
+  public List<MonsterHealingForUser> convertToMonsterHealingForUser(UUID userId,
+		  Map<UUID, MonsterHealingForUser> mhfuIdToMonsterHealingForUser,
+		  Map<UUID, UserMonsterHealingProto> protos) {
   	
   	List<MonsterHealingForUser> nonProtos = new ArrayList<MonsterHealingForUser>();
   	
-  	for(UserMonsterHealingProto umhp: protos.values()) {
-  		String monsterForUserIdStr = umhp.getUserMonsterUuid();
-  		UUID monsterForUserId = UUID.fromString(monsterForUserIdStr);
+  	for(UUID monsterForUserId : protos.keySet()) {
+  		UserMonsterHealingProto umhp = protos.get(monsterForUserId);
+  		
+  		MonsterHealingForUser mhfu;
+  		if (!mhfuIdToMonsterHealingForUser.containsKey(monsterForUserId)) {
+  			//create new MonsterHealingForUser object from proto
+  			mhfu = new MonsterHealingForUser();
+  			mhfu.setUserId(userId);
+  			mhfu.setMonsterForUserId(monsterForUserId);
+  		} else {
+  			//update existing MonsterHealingForUser object
+  			mhfu = mhfuIdToMonsterHealingForUser.get(monsterForUserId);
+  		}
   		
   		Date expectedStartTime = new Date(umhp.getExpectedStartTimeMillis());
 //  		Date queuedTime = new Date(umhp.getQueuedTimeMillis());
-  		MonsterHealingForUser mhfu = new MonsterHealingForUser();
-  		mhfu.setUserId(userId);
-  		mhfu.setMonsterForUserId(monsterForUserId);
   		mhfu.setExpectedStartTime(expectedStartTime);//, queuedTime);
   		nonProtos.add(mhfu);
   	}
@@ -201,12 +211,21 @@ public class MonsterStuffUtils {
   	return idToCashAmount;
   }
   
-  public List<UUID> getMonsterEnhancingForUserIds(Collection<MonsterEnhancingForUser> mefuList) {
+  //for given monster_for_user ids get corresponding monster_enhancing_for_users ids
+  public List<UUID> getMonsterEnhancingForUserIds(Collection<UUID> finishedMfuIds,
+		  Map<UUID, MonsterEnhancingForUser> inEnhancing) {
 	  List<UUID> ids = new ArrayList<UUID>();
 	  
-	  for (MonsterEnhancingForUser mefu : mefuList) {
-		  UUID id = mefu.getId();
-		  ids.add(id);
+	  for (UUID mfuId : finishedMfuIds) {
+		  //for each monster_for_user_id get corresponding enhancing object in the map
+		  
+		  if (inEnhancing.containsKey(mfuId)) {
+			  MonsterEnhancingForUser mefu = inEnhancing.get(mfuId);
+
+			  //keep track of its monster_enhancing id
+			  UUID id = mefu.getId();
+			  ids.add(id);
+		  }
 	  }
 	  return ids;
   }

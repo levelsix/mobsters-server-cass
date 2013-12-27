@@ -185,13 +185,16 @@ public class MobstersDbTables {
 	/*MONSTER ENHANCING HISTORY*/
 	public static final String MONSTER_ENHANCING_HISTORY__ID = "id";
 	public static final String MONSTER_ENHANCING_HISTORY__USER_ID = GENERIC__USER_ID;
+	public static final String MONSTER_ENHANCING_HISTORY__MONSTER_ENHANCING_FOR_USER_ID = "monster_enhancing_for_user_id";
+	//enhancing id of monster this monster was sacrificed for,
+	//otherwise the enhancing id of the base monster (which is this monster)
+	public static final String MONSTER_ENHANCING_HISTORY__BASE_ENHANCING_ID = "base_enhancing_id";
+	public static final String MONSTER_ENHANCING_HISTORY__TIME_OF_ENTRY = "time_of_entry";
+	public static final String MONSTER_ENHANCING_HISTORY__ENHANCING_START_TIME = "enhancing_start_time";
 	public static final String MONSTER_ENHANCING_HISTORY__MONSTER_FOR_USER_ID = "monster_for_user_id";
 	public static final String MONSTER_ENHANCING_HISTORY__MONSTER_ID = "monster_id";
-	public static final String MONSTER_ENHANCING_HISTORY__CURRENT_EXPERIENCE = "current_experience";
-	public static final String MONSTER_ENHANCING_HISTORY__PREVIOUS_EXPERIENCE = "previous_experience";
-	public static final String MONSTER_ENHANCING_HISTORY__ENHANCING_START_TIME = "enhancing_start_time";
-	public static final String MONSTER_ENHANCING_HISTORY__TIME_OF_ENTRY = "time_of_entry";
-	public static final String MONSTER_ENHANCING_HISTORY__IS_FEEDER = "is_feeder";
+	public static final String MONSTER_ENHANCING_HISTORY__CUR_EXPERIENCE = "cur_experience";
+	public static final String MONSTER_ENHANCING_HISTORY__PREV_EXPERIENCE = "prev_experience";
 	public static final String MONSTER_ENHANCING_HISTORY__ENHANCING_CANCELLED = "enhancing_cancelled";
 
 

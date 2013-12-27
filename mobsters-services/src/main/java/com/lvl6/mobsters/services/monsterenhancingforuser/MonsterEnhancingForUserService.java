@@ -13,6 +13,7 @@ import com.lvl6.mobsters.utils.QueryConstructionUtil;
 public interface MonsterEnhancingForUserService {
 	
 	//CONTROLLER LOGIC STUFF
+	public abstract UUID selectBaseEnhancingMonsterId(Map<UUID, MonsterEnhancingForUser> mefuIdToMefu);
 	
 	//RETRIEVING STUFF
 	public abstract Map<UUID, MonsterEnhancingForUser> getMonstersEnhancingForUser(UUID userId);

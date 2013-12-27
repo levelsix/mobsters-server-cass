@@ -35,6 +35,7 @@ import com.lvl6.mobsters.po.nonstaticdata.UserCurrencyHistory;
 import com.lvl6.mobsters.properties.MobstersDbTables;
 import com.lvl6.mobsters.properties.MobstersTableConstants;
 import com.lvl6.mobsters.services.monsterenhancingforuser.MonsterEnhancingForUserService;
+import com.lvl6.mobsters.services.monsterenhancingforuser.MonsterEnhancingHistoryService;
 import com.lvl6.mobsters.services.monsterforuser.MonsterForUserService;
 import com.lvl6.mobsters.services.monsterhealingforuser.MonsterHealingForUserService;
 import com.lvl6.mobsters.services.user.UserService;
@@ -71,6 +72,8 @@ public class SubmitMonsterEnhancementController extends EventController {
 	@Autowired
 	protected QueryConstructionUtil queryConstructionUtil;
 	
+	@Autowired
+	protected MonsterEnhancingHistoryService monsterEnhancingHistoryService;
 	
 	@Override
 	public RequestEvent createRequestEvent() {
@@ -125,9 +128,13 @@ public class SubmitMonsterEnhancementController extends EventController {
 			Map<UUID, MonsterHealingForUser> alreadyHealing = getMonsterHealingForUserService()
 					.getMonstersHealingForUser(userId);
 			
-			//retrieve only the new monsters that will be used in enhancing
+			//retrieve only the new monsters that will be used in enhancing and base
+			//enhancing monster (to be used for monster_enhancing_for_user history stuff)
+			UUID baseEnhancingUserMonsterId = getMonsterEnhancingForUserService()
+					.selectBaseEnhancingMonsterId(alreadyEnhancing);
 			Set<UUID> newIds = new HashSet<UUID>();
 			newIds.addAll(newMap.keySet());
+			newIds.add(baseEnhancingUserMonsterId);
 			Map<UUID, MonsterForUser> existingUserMonsters = getMonsterForUserService()
 					.getSpecificOrAllUserMonstersForUser(userId, newIds);
 
@@ -158,6 +165,11 @@ public class SubmitMonsterEnhancementController extends EventController {
 						.createUpdateClientUserResponseEvent(aUser);
 				resEventUpdate.setTag(event.getTag());
 				getEventWriter().handleEvent(resEventUpdate);
+				//keep track of the monsters enhancing for user objects that are deleted.
+				//If delete ids just contain base monster id, treat as not cancelled
+				Set<UUID> deleteUserMonsterIds = deleteMap.keySet();
+				writeChangesToHistory(userId, clientTime, alreadyEnhancing,
+						deleteUserMonsterIds, existingUserMonsters, baseEnhancingUserMonsterId);
 			}
 
 		} catch (Exception e) {
@@ -383,6 +395,30 @@ public class SubmitMonsterEnhancementController extends EventController {
 		}
 		return uchList;
 	}
+	
+	//keep track of the monsters enhancing for user objects that are deleted.
+	//If delete ids just contains base monster id, treat as not cancelled
+	private void writeChangesToHistory(UUID uId, Date deleteTime,
+			Map<UUID, MonsterEnhancingForUser> inEnhancing, Set<UUID> deleteMfuIds,
+			Map<UUID, MonsterForUser> idsToUserMonsters, UUID enhancingBaseMfuId) {
+
+		try {
+			//keep track of the monsters that were used up in enhancing
+			boolean enhancingCancelled = true;
+
+			if (deleteMfuIds.contains(enhancingBaseMfuId) && 1 == deleteMfuIds.size()) {
+				enhancingCancelled = false;
+			}
+
+			MonsterForUser baseMonster = idsToUserMonsters.get(enhancingBaseMfuId);
+			int baseMonsterPrevExp = baseMonster.getCurrentExp();
+			getMonsterEnhancingHistoryService().insertEnhancingHistory(uId, deleteTime,
+					baseMonsterPrevExp, inEnhancing, deleteMfuIds, idsToUserMonsters,
+					enhancingBaseMfuId, enhancingCancelled);
+		} catch (Exception e) {
+			log.error("problem with recording monster enhancing history.", e);
+		}
+	}
 
 	public UserService getUserService() {
 		return userService;
@@ -450,5 +486,13 @@ public class SubmitMonsterEnhancementController extends EventController {
 	public void setQueryConstructionUtil(QueryConstructionUtil queryConstructionUtil) {
 		this.queryConstructionUtil = queryConstructionUtil;
 	}
-	
+
+	public MonsterEnhancingHistoryService getMonsterEnhancingHistoryService() {
+		return monsterEnhancingHistoryService;
+	}
+
+	public void setMonsterEnhancingHistoryService(
+			MonsterEnhancingHistoryService monsterEnhancingHistoryService) {
+		this.monsterEnhancingHistoryService = monsterEnhancingHistoryService;
+	}
 }

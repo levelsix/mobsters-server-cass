@@ -34,6 +34,7 @@ import com.lvl6.mobsters.po.nonstaticdata.UserCurrencyHistory;
 import com.lvl6.mobsters.properties.MobstersDbTables;
 import com.lvl6.mobsters.properties.MobstersTableConstants;
 import com.lvl6.mobsters.services.monsterenhancingforuser.MonsterEnhancingForUserService;
+import com.lvl6.mobsters.services.monsterenhancingforuser.MonsterEnhancingHistoryService;
 import com.lvl6.mobsters.services.monsterforuser.MonsterForUserService;
 import com.lvl6.mobsters.services.monsterforuserdeleted.MonsterForUserDeletedService;
 import com.lvl6.mobsters.services.monsterhealingforuser.MonsterHealingForUserService;
@@ -73,6 +74,9 @@ public class EnhancementWaitTimeCompleteController extends EventController {
 	
 	@Autowired
 	protected MonsterForUserDeletedService monsterForUserDeletedService;
+	
+	@Autowired
+	protected MonsterEnhancingHistoryService monsterEnhancingHistoryService;
 	
 
 	@Override
@@ -134,6 +138,8 @@ public class EnhancementWaitTimeCompleteController extends EventController {
 					gemsForSpeedUp);
 
 			boolean successful = false;
+			MonsterForUser baseEnhancingMonster = idsToUserMonsters.get(umcepId);
+			int prevExp = baseEnhancingMonster.getCurrentExp();
 			if (legit) {
 				successful = writeChangesToDb(aUser, userId, clientTime, umcepId, umcep,
 						idsToUserMonsters, finishedUserMonsterIds, isSpeedUp, gemsForSpeedUp);
@@ -154,7 +160,7 @@ public class EnhancementWaitTimeCompleteController extends EventController {
 						.createUpdateClientUserResponseEvent(aUser);
 				resEventUpdate.setTag(event.getTag());
 				getEventWriter().handleEvent(resEventUpdate);
-				writeChangesToHistory(userId, clientTime, userMonsterIdsToMefu,
+				writeChangesToHistory(userId, clientTime, prevExp, userMonsterIdsToMefu,
 						finishedUserMonsterIds, idsToUserMonsters, umcepId);
 			}
 
@@ -324,35 +330,38 @@ public class EnhancementWaitTimeCompleteController extends EventController {
 		return uchList;
 	}
 	
-	private void writeChangesToHistory(UUID uId, Date deleteTime,
+	private void writeChangesToHistory(UUID uId, Date deleteTime, int prevExp,
 			Map<UUID, MonsterEnhancingForUser> inEnhancing, List<UUID> finishedMfuIds,
-			Map<UUID, MonsterForUser> idsToUserMonsters, UUID umcepId) {
+			Map<UUID, MonsterForUser> idsToUserMonsters, UUID enhancingBaseMfuId) {
 		String deleteReason = MobstersTableConstants.MFUDR__ENHANCING;
 		StringBuilder sb = new StringBuilder();
 		sb.append("enhancing userMonsterId:");
-		sb.append(umcepId);
+		sb.append(enhancingBaseMfuId);
 		String details = sb.toString();
 
 		//keep track of the userMonsters that are deleted, except the monster user is
 		//enhancing
 		Map<UUID, MonsterForUser> idsToUserMonstersCopy = new HashMap<UUID, MonsterForUser>();
 		idsToUserMonstersCopy.putAll(idsToUserMonsters);
-		idsToUserMonstersCopy.remove(umcepId);
+		idsToUserMonstersCopy.remove(enhancingBaseMfuId);
 		Collection<MonsterForUser> deleted = idsToUserMonstersCopy.values();
 		getMonsterForUserDeletedService().createUserMonsterDeletedFromUserMonsters(
 				deleteReason, details, deleteTime, deleted);
 		
 
-		//TODO: keep track of the monsters that were enhancing
-		Collection<MonsterEnhancingForUser> mefuList = inEnhancing.values();
-		
+		//keep track of the monsters that were used up in enhancing
+		boolean enhancingCancelled = false;
+		getMonsterEnhancingHistoryService().insertEnhancingHistory(uId, deleteTime,
+				prevExp, inEnhancing, finishedMfuIds, idsToUserMonsters,
+				enhancingBaseMfuId, enhancingCancelled);
 		
 
 		//delete the selected monsters from  the enhancing table
-		List<UUID> mefuIdList = getMonsterStuffUtils()
-				.getMonsterEnhancingForUserIds(mefuList);
-		getMonsterEnhancingForUserService().deleteUserMonstersEnhancing(mefuIdList);
-		log.info("deleted monster healing rows. inEnhancing=" + inEnhancing);
+		List<UUID> finishedMefuIdList = getMonsterStuffUtils()
+				.getMonsterEnhancingForUserIds(finishedMfuIds, inEnhancing);
+		getMonsterEnhancingForUserService().deleteUserMonstersEnhancing(finishedMefuIdList);
+		log.info("deleted monster healing rows. inEnhancing=" + inEnhancing +
+				"\t monster_enhancing_ids deleted=" + finishedMefuIdList);
 
 
 		//delete the userMonsterIds from the monster_for_user table, but don't delete
@@ -437,6 +446,15 @@ public class EnhancementWaitTimeCompleteController extends EventController {
 	public void setMonsterForUserDeletedService(
 			MonsterForUserDeletedService monsterForUserDeletedService) {
 		this.monsterForUserDeletedService = monsterForUserDeletedService;
+	}
+
+	public MonsterEnhancingHistoryService getMonsterEnhancingHistoryService() {
+		return monsterEnhancingHistoryService;
+	}
+
+	public void setMonsterEnhancingHistoryService(
+			MonsterEnhancingHistoryService monsterEnhancingHistoryService) {
+		this.monsterEnhancingHistoryService = monsterEnhancingHistoryService;
 	}
 	
 }
