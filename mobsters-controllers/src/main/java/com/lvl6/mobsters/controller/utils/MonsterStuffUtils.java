@@ -19,6 +19,7 @@ import com.lvl6.mobsters.noneventprotos.MonsterStuffProto.UserEnhancementItemPro
 import com.lvl6.mobsters.noneventprotos.MonsterStuffProto.UserMonsterCurrentHealthProto;
 import com.lvl6.mobsters.noneventprotos.MonsterStuffProto.UserMonsterHealingProto;
 import com.lvl6.mobsters.po.nonstaticdata.MonsterEnhancingForUser;
+import com.lvl6.mobsters.po.nonstaticdata.MonsterForUser;
 import com.lvl6.mobsters.po.nonstaticdata.MonsterHealingForUser;
 
 
@@ -229,5 +230,31 @@ public class MonsterStuffUtils {
 	  }
 	  return ids;
   }
+  
+  //only the entries in the map that have their key in validIds will be kept  
+  public Map<UUID, Integer> getValidEntries(List<UUID> validIds, 
+		  Map<UUID, Integer> idsToValues) {
 
+	  Map<UUID, Integer> returnMap = new HashMap<UUID, Integer>();
+
+	  for(UUID id : validIds) {
+		  int value = idsToValues.get(id);
+		  returnMap.put(id, value);
+	  }
+	  return returnMap;
+  }
+
+  public Map<UUID, Integer> getHealths(Collection<UUID> mfuIds, 
+		  Map<UUID, MonsterForUser> idsToUserMonsters) {
+	  Map<UUID, Integer> curHps = new HashMap<UUID, Integer>();
+	  //there is no prevHp for the user monsters that are deleted
+	  for (UUID mfuId : mfuIds) {
+		  MonsterForUser mfu = idsToUserMonsters.get(mfuId);
+		  int prevHp = mfu.getCurrentHealth();
+		  curHps.put(mfuId, prevHp);
+	  }
+	  
+	  return curHps;
+  }
+  
 }

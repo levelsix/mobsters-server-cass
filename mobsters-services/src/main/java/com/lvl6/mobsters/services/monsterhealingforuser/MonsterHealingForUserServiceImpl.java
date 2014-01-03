@@ -14,8 +14,10 @@ import org.springframework.stereotype.Component;
 
 import com.lvl6.mobsters.entitymanager.nonstaticdata.MonsterHealingForUserEntityManager;
 import com.lvl6.mobsters.entitymanager.staticdata.utils.MonsterRetrieveUtils;
+import com.lvl6.mobsters.po.nonstaticdata.MonsterForUser;
 import com.lvl6.mobsters.po.nonstaticdata.MonsterHealingForUser;
 import com.lvl6.mobsters.properties.MobstersDbTables;
+import com.lvl6.mobsters.services.monsterforuser.MonsterForUserService;
 import com.lvl6.mobsters.utils.QueryConstructionUtil;
 
 
@@ -35,6 +37,8 @@ public class MonsterHealingForUserServiceImpl implements MonsterHealingForUserSe
 	@Autowired
 	protected QueryConstructionUtil queryConstructionUtil;
 	
+	@Autowired
+	protected MonsterForUserService monsterForUserService;
 	
 	//CONTROLLER LOGIC STUFF****************************************************************
 	
@@ -68,40 +72,6 @@ public class MonsterHealingForUserServiceImpl implements MonsterHealingForUserSe
 		
 		return userMonsterIdsToUserMonstersHealing;
 	}
-	
-//	@Override
-//	public MonsterHealingForUser getSpecificUserMonster(UUID userMonsterId) {
-//		log.debug("retrieving user monster for userMonsterId: " + userMonsterId);
-//		
-//		MonsterHealingForUser mfu = getMonsterHealingForUserEntityManager().get().get(userMonsterId);
-//		return mfu;
-//		//construct the search parameters
-//		Map<String, Object> equalityConditions = new HashMap<String, Object>();
-//		equalityConditions.put(MobstersDbTables.MONSTER_FOR_USER__ID, userMonsterId);
-//
-//		//query db, "values" is not used 
-//		//(its purpose is to hold the values that were supposed to be put
-//		// into a prepared statement)
-//		List<Object> values = new ArrayList<Object>();
-//		boolean preparedStatement = false;
-//		String cqlQuery = getQueryConstructionUtil().selectRowsQueryEqualityConditions(
-//				TABLE_NAME, equalityConditions, values, preparedStatement);
-//		List<MonsterHealingForUser> mfuList = getMonsterHealingForUserEntityManager().get().find(cqlQuery);
-//
-//		if (null == mfuList || mfuList.isEmpty()) {
-//			log.warn("no MonsterHealingForUser exists for id=" + userMonsterId);
-//			return null;
-//		} else if (mfuList.size() > 1) {
-//			log.warn("multiple MonsterHealingForUser exists for id=" + userMonsterId +
-//					"\t monsters=" + mfuList + "\t keeping first one");
-//			
-//			return mfuList.get(0);
-//		} else{
-//			MonsterHealingForUser mfu = mfuList.get(0);
-//			log.info("retrieved one MonsterHealingForUser. mfu=" + mfu);
-//			return mfu;
-//		}
-//	}
 	
 	@Override
 	public Map<UUID, MonsterHealingForUser> getSpecificOrAllUserMonstersHealingForUser(UUID userId,
@@ -156,15 +126,35 @@ public class MonsterHealingForUserServiceImpl implements MonsterHealingForUserSe
 	
 	
 	//UPDATING STUFF****************************************************************
-	
+	@Override
+	public void healUserMonsters(Map<UUID, Integer> userMonsterIdsToHealths,
+			Map<UUID, MonsterForUser> idsToUserMonsters) {
+		Collection<MonsterForUser> healedMonsters = new ArrayList<MonsterForUser>();
+		Collection<UUID> mfuIds = userMonsterIdsToHealths.keySet();
+		
+		for (UUID mfuId : mfuIds) {
+			int newHp = userMonsterIdsToHealths.get(mfuId);
+			
+			if (idsToUserMonsters.containsKey(mfuId)) {
+				MonsterForUser mfu = idsToUserMonsters.get(mfuId);
+				mfu.setCurrentHealth(newHp);
+				healedMonsters.add(mfu);
+			}
+		}
+		
+		if (!healedMonsters.isEmpty()) {
+			getMonsterForUserService().saveUserMonsters(healedMonsters);
+			deleteUserMonstersHealing(mfuIds);
+		}
+	}
 	
 	// DELETING STUFF****************************************************************
 	@Override
-	public void deleteUserMonster(UUID deleteUserMonsterUuid) {
+	public void deleteUserMonsterHealing(UUID deleteUserMonsterUuid) {
 		getMonsterHealingForUserEntityManager().get().delete(deleteUserMonsterUuid);
 	}
 	@Override
-	public void deleteUserMonsters(List<UUID> deleteUserMonstersList) {
+	public void deleteUserMonstersHealing(Collection<UUID> deleteUserMonstersList) {
 		getMonsterHealingForUserEntityManager().get().delete(deleteUserMonstersList);
 	}
 	
@@ -196,6 +186,14 @@ public class MonsterHealingForUserServiceImpl implements MonsterHealingForUserSe
 	@Override
 	public void setQueryConstructionUtil(QueryConstructionUtil queryConstructionUtil) {
 		this.queryConstructionUtil = queryConstructionUtil;
+	}
+	@Override
+	public MonsterForUserService getMonsterForUserService() {
+		return monsterForUserService;
+	}
+	@Override
+	public void setMonsterForUserService(MonsterForUserService monsterForUserService) {
+		this.monsterForUserService = monsterForUserService;
 	}
 
 }

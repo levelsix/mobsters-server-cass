@@ -302,7 +302,7 @@ public class HealMonsterController extends EventController {
 			//any to delete
 			if (!protoDeleteMap.isEmpty()) {
 				List<UUID> deleteIds = new ArrayList<UUID>(protoDeleteMap.keySet());
-				getMonsterHealingForUserService().deleteUserMonsters(deleteIds);
+				getMonsterHealingForUserService().deleteUserMonstersHealing(deleteIds);
 				log.info("deleted monster healing rows. idsDeleted=" + deleteIds +
 						"\t protoDeleteMap=" + protoDeleteMap + "\t alreadyHealing=" +
 						alreadyHealing);
@@ -396,26 +396,20 @@ public class HealMonsterController extends EventController {
 		return uchList;
 	}
 	
-	private void writeChangesToHistory(UUID uId, Date now,
+	private void writeChangesToHistory(UUID uId, Date now, 
 			Map<UUID, MonsterHealingForUser> inHealing, Collection<UUID> finishedMfuIds,
 			Map<UUID, MonsterForUser> idsToUserMonsters) {
 		try {
 			boolean healingCancelled = true;
 			
-			Map<UUID, Integer> prevHps = new HashMap<UUID, Integer>();
-			//there is no prevHp for the user monsters that are deleted
-			for (UUID mfuId : finishedMfuIds) {
-				MonsterForUser mfu = idsToUserMonsters.get(mfuId);
-				int prevHp = mfu.getCurrentHealth();
-				prevHps.put(mfuId, prevHp);
-			}
+			Map<UUID, Integer> prevHps = getMonsterStuffUtils().getHealths(finishedMfuIds, idsToUserMonsters);
 			
 			getMonsterHealingHistoryService().insertHealingHistory(uId, now,
 					prevHps, inHealing, finishedMfuIds, idsToUserMonsters,
 					healingCancelled);
 			
 		} catch (Exception e) {
-			// TODO: handle exception
+			log.error("unexpected error: problem with saving history to db.", e);
 		}
 	}
 

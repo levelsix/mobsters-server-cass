@@ -50,6 +50,7 @@ public class MobstersTableConstants {
 	public static final String UCHRFC__RETRIEVE_CURRENCY_FROM_NORM_STRUCT = "retrieve currency from normal structures";
 	public static final String UCHRFC__SPED_UP_CITY_EXPANSION = "sped up city expansion";
 	public static final String UCHRFC__SPED_UP_ENHANCING = "sped up enhancing user monster";
+	public static final String UCHRFC__SPED_UP_HEALING = "sped up healing user monster";
 	public static final String UCHRFC__SPED_UP_NORM_STRUCT = "sped up norm struct";
 	public static final String UCHRFC__UPGRADE_NORM_STRUCT = "upgrading norm struct";
 	
