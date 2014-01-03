@@ -285,7 +285,21 @@ public class MonsterForUserServiceImpl implements MonsterForUserService {
 		return sumProbabilities;
 	}
 
-	  
+	@Override
+	public List<MonsterForUser> replaceBattleTeamSlot(int oldTeamSlotNum, int newTeamSlotNum, 
+			Map<UUID, MonsterForUser> existingUserMonsters) {
+		List<MonsterForUser> modifiedMfuList = new ArrayList<MonsterForUser>();
+
+		for (MonsterForUser mfu : existingUserMonsters.values()) {
+			if (mfu.getTeamSlotNum() == oldTeamSlotNum) {
+				mfu.setTeamSlotNum(newTeamSlotNum);
+				modifiedMfuList.add(mfu);
+			}
+		}
+
+		return modifiedMfuList;
+	}
+
 	
 	
 
@@ -581,6 +595,13 @@ public class MonsterForUserServiceImpl implements MonsterForUserService {
 		}
 		saveUserMonsters(existingUserMonsters.values());
 	}
+	
+	@Override
+	public void updateBattleTeamSlot(int newTeamSlotNum, MonsterForUser mfu) {
+		mfu.setTeamSlotNum(newTeamSlotNum);
+		saveUserMonster(mfu);
+	}
+	
 	
 	// DELETING STUFF****************************************************************
 	

@@ -38,7 +38,8 @@ public interface MonsterForUserService {
 	
 	public float sumProbabilities(List<TaskStageMonster> taskStageMonsters);
 	
-	
+	public abstract List<MonsterForUser> replaceBattleTeamSlot(int oldTeamSlotNum,
+			int newTeamSlotNum, Map<UUID, MonsterForUser> idsToUserMonsters);
 	
 	//RETRIEVING STUFF
 	public abstract List<MonsterForUser> getMonstersForUser(UUID userId);
@@ -76,6 +77,8 @@ public interface MonsterForUserService {
 	
 	public abstract void updateUserMonstersHealths(Map<UUID, Integer> userMonsterIdToExpectedHealth,
 			Map<UUID, MonsterForUser> existingUserMonsters);
+	
+	public abstract void updateBattleTeamSlot(int newTeamSlotNum, MonsterForUser mfu);
 	
 	//DELETING STUFF
 	public abstract void deleteUserMonster(UUID deleteUserMonsterUuid);
