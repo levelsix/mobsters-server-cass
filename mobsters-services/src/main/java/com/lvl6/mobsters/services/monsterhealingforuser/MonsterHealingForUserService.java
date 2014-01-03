@@ -1,7 +1,6 @@
 package com.lvl6.mobsters.services.monsterhealingforuser;
 
 import java.util.Collection;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -13,9 +12,9 @@ import com.lvl6.mobsters.utils.QueryConstructionUtil;
 
 public interface MonsterHealingForUserService {
 	
-	//CONTROLLER LOGIC STUFF
+	//CONTROLLER LOGIC STUFF****************************************************************
 	
-	//RETRIEVING STUFF
+	//RETRIEVING STUFF****************************************************************
 	public abstract Map<UUID, MonsterHealingForUser> getMonstersHealingForUser(UUID userId);
 	
 //	public abstract MonsterHealingForUser getSpecificUserMonster(UUID userMonsterId);
@@ -24,26 +23,21 @@ public interface MonsterHealingForUserService {
 			UUID userId, Collection<UUID> userMonsterIds);
 	
 	
-	//INSERTING STUFF
+	//INSERTING STUFF****************************************************************
 	
 	//SAVING STUFF****************************************************************
+	public abstract void saveUserMonsterHealing(Collection<MonsterHealingForUser> mhfuList);
 	
-	public abstract void saveUserMonsters(List<MonsterHealingForUser> mfuList, Date combineDate,
-			String additionalSop);
+	//UPDATING STUFF****************************************************************
 	
 	
-	//UPDATING STUFF
-//	public abstract List<MonsterHealingForUser> updateUserMonstersHealingForUser(UUID userId,
-//			Map<Integer, Integer> monsterIdToNumPieces, String sourceOfPieces,
-//			Date combineStartDate);
-	
-	//DELETING STUFF
+	//DELETING STUFF****************************************************************
 	public abstract void deleteUserMonster(UUID deleteUserMonsterUuid);
 	
 	public abstract void deleteUserMonsters(List<UUID> deleteUserMonstersList);
 	
 	
-	//for the setter dependency injection or something
+	//for the setter dependency injection or something****************************************************************
 	public abstract MonsterHealingForUserEntityManager getMonsterHealingForUserEntityManager();
 	
 	public abstract void setMonsterHealingForUserEntityManager(MonsterHealingForUserEntityManager monsterHealingForUserEntityManager);

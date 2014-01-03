@@ -31,8 +31,16 @@ public class MonsterHealingForUser extends BasePersistentObject<UUID>{
 	@Index
 	protected Date expectedStartTime = null;
 
+	@Column(name="user_struct_hospital_id")
+	protected UUID userStructHospitalId = null;
 	
+	//how much hp has been healed since last time
+	@Column(name="health_progress")
+	protected int healthProgress = 0;
 	
+	@Column(name="priority")
+	protected int priority = 0;
+
 	public UUID getId() {
 		return id;
 	}
@@ -65,11 +73,40 @@ public class MonsterHealingForUser extends BasePersistentObject<UUID>{
 		this.expectedStartTime = expectedStartTime;
 	}
 
+	public UUID getUserStructHospitalId() {
+		return userStructHospitalId;
+	}
+
+	public void setUserStructHospitalId(UUID userStructHospitalId) {
+		this.userStructHospitalId = userStructHospitalId;
+	}
+
+	public int getHealthProgress() {
+		return healthProgress;
+	}
+
+	public void setHealthProgress(int healthProgress) {
+		this.healthProgress = healthProgress;
+	}
+
+	public int getPriority() {
+		return priority;
+	}
+
+	public void setPriority(int priority) {
+		this.priority = priority;
+	}
+
+	
+	
 	@Override
 	public String toString() {
 		return "MonsterHealingForUser [id=" + id + ", userId=" + userId
 				+ ", monsterForUserId=" + monsterForUserId
-				+ ", expectedStartTime=" + expectedStartTime + "]";
+				+ ", expectedStartTime=" + expectedStartTime
+				+ ", userStructHospitalId=" + userStructHospitalId
+				+ ", healthProgress=" + healthProgress + ", priority="
+				+ priority + "]";
 	}
 	
 }

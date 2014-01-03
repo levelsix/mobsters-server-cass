@@ -398,7 +398,7 @@ public class SubmitMonsterEnhancementController extends EventController {
 	
 	//keep track of the monsters enhancing for user objects that are deleted.
 	//If delete ids just contains base monster id, treat as not cancelled
-	private void writeChangesToHistory(UUID uId, Date deleteTime,
+	private void writeChangesToHistory(UUID uId, Date timeOfEntry,
 			Map<UUID, MonsterEnhancingForUser> inEnhancing, Set<UUID> deleteMfuIds,
 			Map<UUID, MonsterForUser> idsToUserMonsters, UUID enhancingBaseMfuId) {
 
@@ -412,7 +412,7 @@ public class SubmitMonsterEnhancementController extends EventController {
 
 			MonsterForUser baseMonster = idsToUserMonsters.get(enhancingBaseMfuId);
 			int baseMonsterPrevExp = baseMonster.getCurrentExp();
-			getMonsterEnhancingHistoryService().insertEnhancingHistory(uId, deleteTime,
+			getMonsterEnhancingHistoryService().insertEnhancingHistory(uId, timeOfEntry,
 					baseMonsterPrevExp, inEnhancing, deleteMfuIds, idsToUserMonsters,
 					enhancingBaseMfuId, enhancingCancelled);
 		} catch (Exception e) {

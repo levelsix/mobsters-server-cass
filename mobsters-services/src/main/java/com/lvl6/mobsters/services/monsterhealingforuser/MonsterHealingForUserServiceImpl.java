@@ -2,7 +2,6 @@ package com.lvl6.mobsters.services.monsterhealingforuser;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -41,7 +40,7 @@ public class MonsterHealingForUserServiceImpl implements MonsterHealingForUserSe
 	
 
 	//RETRIEVING STUFF****************************************************************
-	
+	@Override
 	public Map<UUID, MonsterHealingForUser> getMonstersHealingForUser(UUID userId) {
 		log.debug("retrieving user monsters for userId " + userId);
 
@@ -150,93 +149,21 @@ public class MonsterHealingForUserServiceImpl implements MonsterHealingForUserSe
 	
 	
 	//SAVING STUFF****************************************************************
-	
 	@Override
-	public void saveUserMonsters(List<MonsterHealingForUser> mfuList, Date combineDate,
-			String additionalSop) {
-//		log.info("(before) saving mfuList=" + mfuList);
-//		for (MonsterHealingForUser mfu : mfuList) {
-//			mfu.setCombineStartTime(combineDate);
-//			
-//			StringBuilder sb = new StringBuilder();
-//			sb.append(mfu.getSourceOfPieces());
-//			sb.append(additionalSop);
-//			
-//			String newSop = sb.toString();
-//			mfu.setSourceOfPieces(newSop);
-//		}
-//		
-//		log.info("(after) saving mfuList=" + mfuList);
-//		getMonsterHealingForUserEntityManager().get().put(mfuList);
-//		log.info("saved mfuList");
+	public void saveUserMonsterHealing(Collection<MonsterHealingForUser> mhfuList) {
+		getMonsterHealingForUserEntityManager().get().put(mhfuList);
 	}
 	
 	
 	//UPDATING STUFF****************************************************************
 	
-	//method to reward a user with some monsters
-//	@Override
-//	public List<MonsterHealingForUser> updateUserMonstersHealingForUser(UUID userId,
-//			Map<Integer, Integer> monsterIdToNumPieces, String sourceOfPieces,
-//			Date combineStartDate) {
-//		log.info("the monster pieces the user gets: " + monsterIdToNumPieces);
-//
-//		if (monsterIdToNumPieces.isEmpty()) {
-//			return new ArrayList<MonsterHealingForUser>();
-//		}
-//
-//		//for all the monster pieces the user will receive, see if he already has any
-//		//retrieve all of user's incomplete monsters that have these monster ids 
-//		Set<Integer> droppedMonsterIds = monsterIdToNumPieces.keySet();
-//
-//		Map<Integer, MonsterHealingForUser> monsterIdsToIncompletes =
-//				getIncompleteMonstersWithUserAndMonsterIds(userId, droppedMonsterIds);
-//
-//		//take however many pieces necessary from monsterIdToNumPieces to
-//		//complete these incomplete monsterHealingForUsers
-//		//monsterIdsToIncompletes will be modified
-//		Map<Integer, Integer> monsterIdToRemainingPieces = 
-//				completeMonsterHealingForUserFromMonsterIdsAndQuantities(
-//						monsterIdsToIncompletes, monsterIdToNumPieces);
-//
-//		//UPDATE THESE INCOMPLETE MONSTERS, IF ANY. SINCE UPDATING, UPDATE THE
-//		//combineStartTime
-//		List<MonsterHealingForUser> dirtyMonsterHealingForUserList = 
-//				new ArrayList<MonsterHealingForUser>(monsterIdsToIncompletes.values());
-//		if (!dirtyMonsterHealingForUserList.isEmpty()) {
-//			log.info("the monsters that are updated: " + dirtyMonsterHealingForUserList);
-////			saveUserMonsters(dirtyMonsterHealingForUserList, combineStartDate, sourceOfPieces);
-//		}
-//
-//		//monsterIdToRemainingPieces now contains all the new monsters
-//		//the user will get. SET THE combineStartTime
-//		List<MonsterHealingForUser> newMonsters = createMonstersHealingForUserFromQuantities(
-//				userId, monsterIdToRemainingPieces, combineStartDate);
-//		if (!newMonsters.isEmpty()) {
-//			log.info("the monsters that are new: " + newMonsters);
-////			saveUserMonsters(newMonsters, combineStartDate, sourceOfPieces);
-//		}
-//
-//		//combine new and updated for one db save call instead of one for each
-//		List<MonsterHealingForUser> newOrUpdated = new ArrayList<MonsterHealingForUser>();
-//		newOrUpdated.addAll(dirtyMonsterHealingForUserList);
-//		newOrUpdated.addAll(newMonsters);
-//		
-//		//save these new or updated monsters to the DB
-//		saveUserMonsters(newOrUpdated, combineStartDate, sourceOfPieces);
-//		
-//		return newOrUpdated;
-//		//	  	List<FullUserMonsterProto> protos = CreateInfoProtoUtils
-//		//	  			.createFullUserMonsterProtoList(newOrUpdated);
-//		//	  	return protos;
-//	}
 	
 	// DELETING STUFF****************************************************************
-	
+	@Override
 	public void deleteUserMonster(UUID deleteUserMonsterUuid) {
 		getMonsterHealingForUserEntityManager().get().delete(deleteUserMonsterUuid);
 	}
-	
+	@Override
 	public void deleteUserMonsters(List<UUID> deleteUserMonstersList) {
 		getMonsterHealingForUserEntityManager().get().delete(deleteUserMonstersList);
 	}

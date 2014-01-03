@@ -20,7 +20,7 @@ public interface MonsterEnhancingHistoryService {
 	//INSERTING STUFF
 	
 	//SAVING STUFF****************************************************************
-	public abstract void insertEnhancingHistory(UUID uId, Date deleteTime, int prevExp,
+	public abstract void insertEnhancingHistory(UUID uId, Date timeOfEntry, int prevExp,
 			Map<UUID, MonsterEnhancingForUser> inEnhancing, Collection<UUID> finishedMfuIds,
 			Map<UUID, MonsterForUser> idsToUserMonsters, UUID enhancingBaseMfuId,
 			boolean enhancingCancelled);

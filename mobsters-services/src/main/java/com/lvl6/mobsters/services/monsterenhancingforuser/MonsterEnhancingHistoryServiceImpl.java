@@ -36,10 +36,15 @@ public class MonsterEnhancingHistoryServiceImpl implements MonsterEnhancingHisto
 	
 	//INSERTING STUFF****************************************************************
 	@Override
-	public void insertEnhancingHistory(UUID uId, Date deleteTime, int prevExp,
+	public void insertEnhancingHistory(UUID uId, Date timeOfEntry, int prevExp,
 			Map<UUID, MonsterEnhancingForUser> inEnhancing, Collection<UUID> finishedMfuIds,
 			Map<UUID, MonsterForUser> idsToUserMonsters, UUID enhancingBaseMfuId,
 			boolean enhancingCancelled) {
+		
+		//for now (12/28/13) don't record cancelled enhancements
+		if (enhancingCancelled) {
+			return;
+		}
 		
 		List<MonsterEnhancingHistory> saveMe = new ArrayList<MonsterEnhancingHistory>();
 		
@@ -49,7 +54,7 @@ public class MonsterEnhancingHistoryServiceImpl implements MonsterEnhancingHisto
 		//create MonsterEnhancingHistory object for base monster
 		UUID enhancingBaseMefuId = baseEnhancingMonster.getId();
 		MonsterEnhancingHistory meh = createMonsterEnhancingHistory(baseMonster,
-				baseEnhancingMonster, enhancingBaseMefuId, deleteTime, prevExp, uId,
+				baseEnhancingMonster, enhancingBaseMefuId, timeOfEntry, prevExp, uId,
 				enhancingCancelled);
 		saveMe.add(meh);
 		
@@ -61,7 +66,7 @@ public class MonsterEnhancingHistoryServiceImpl implements MonsterEnhancingHisto
 			prevExp = mfu.getCurrentExp();
 			
 			meh = createMonsterEnhancingHistory(mfu, mefu, enhancingBaseMefuId,
-					deleteTime, prevExp, uId, enhancingCancelled);
+					timeOfEntry, prevExp, uId, enhancingCancelled);
 			saveMe.add(meh);
 		}
 		
@@ -72,13 +77,13 @@ public class MonsterEnhancingHistoryServiceImpl implements MonsterEnhancingHisto
 	//SAVING STUFF****************************************************************
 	
 	private MonsterEnhancingHistory createMonsterEnhancingHistory(MonsterForUser mfu,
-			MonsterEnhancingForUser mefu, UUID enhancingBaseMefuId, Date deleteTime,
+			MonsterEnhancingForUser mefu, UUID enhancingBaseMefuId, Date timeOfEntry,
 			int prevExp, UUID userId, boolean enhancingCancelled) {
 		MonsterEnhancingHistory meh = new MonsterEnhancingHistory();
 		meh.setUserId(userId);
 		meh.setMonsterEnhancingForUserId(mefu.getId());
 		meh.setBaseEnhancingId(enhancingBaseMefuId);
-		meh.setTimeOfEntry(deleteTime);
+		meh.setTimeOfEntry(timeOfEntry);
 		meh.setEnhancingStartTime(mefu.getExpectedStartTime());
 		meh.setMonsterForUserId(mfu.getId());
 		meh.setCurExp(mfu.getCurrentExp());
