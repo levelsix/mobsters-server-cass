@@ -26,6 +26,7 @@ import com.lvl6.mobsters.events.request.HealMonsterRequestEvent;
 import com.lvl6.mobsters.events.response.HealMonsterResponseEvent;
 import com.lvl6.mobsters.events.response.UpdateClientUserResponseEvent;
 import com.lvl6.mobsters.noneventprotos.MobstersEventProtocolProto.MobstersEventProtocolRequest;
+import com.lvl6.mobsters.noneventprotos.MonsterStuffProto.UserMonsterCurrentHealthProto;
 import com.lvl6.mobsters.noneventprotos.MonsterStuffProto.UserMonsterHealingProto;
 import com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto;
 import com.lvl6.mobsters.po.nonstaticdata.MonsterEnhancingForUser;
@@ -105,7 +106,19 @@ public class HealMonsterController extends EventController {
 	    List<UserMonsterHealingProto> umhNew = reqProto.getUmhNewList();
 	    //positive means refund, negative means charge user
 	    int cashChange = reqProto.getCashChange();
-	    int gemCost = reqProto.getTotalGemCost();
+	    int gemCostForHealing = reqProto.getGemCostForHealing();
+	    
+	    //stuff from HealMonsterWaitTimeCompleteController
+		boolean isSpeedup = reqProto.getIsSpeedup();
+		int gemsForSpeedup = reqProto.getGemsForSpeedup();
+		List<UserMonsterCurrentHealthProto> umchpList = reqProto.getUmchpList();
+		//will be populated by MonsterStuffUtils.getUserMonsterIds()
+		Map<UUID, Integer> userMonsterIdToExpectedHealth = new HashMap<UUID, Integer>();
+		//converts protos to a map and also returns a list of user monster ids
+		List<UUID> userMonsterIds = getMonsterStuffUtils()
+				.getUserMonsterIds(umchpList, userMonsterIdToExpectedHealth);
+
+	    int totalGemCost = reqProto.getTotalGemCost();
 	    Date clientDate = new Date();
 	    
 	    Map<UUID, UserMonsterHealingProto> deleteMap = getMonsterStuffUtils()
@@ -140,20 +153,34 @@ public class HealMonsterController extends EventController {
 	    	if (null != newMap && !newMap.isEmpty()) {
 	    		Set<UUID> newIds = new HashSet<UUID>();
 	    		newIds.addAll(newMap.keySet());
+	    		newIds.addAll(deleteMap.keySet());
+	    		
+	    		//since incorporating HealMonsterWaitTimeCompleteController also get
+	    		//the ones that correspond to the list "userMonsterIds"
+	    		newIds.addAll(userMonsterIds);
+	    		
 	    		existingUserMonsters = getMonsterForUserService()
 	    				.getSpecificOrAllUserMonstersForUser(userId, newIds);
 	    	}
 	    	
 			//validate request
+	    	//for the delete, update, new maps and userMonsterIds, only the valid entries
+	    	//will be retained
 			boolean validRequest = checkLegit(responseBuilder, aUser, userId,
-		      		cashChange, gemCost, existingUserMonsters, alreadyHealing,
-		      		alreadyEnhancing, deleteMap, updateMap, newMap);
+		      		cashChange, totalGemCost, existingUserMonsters, alreadyHealing,
+		      		alreadyEnhancing, deleteMap, updateMap, newMap, userMonsterIds);
 
 
 			boolean successful = false;
 			if (validRequest) {
-				successful = writeChangesToDb(aUser, userId, cashChange, gemCost,
-						clientDate, alreadyHealing, deleteMap, updateMap, newMap);
+				//modify map(userMonsterIds -> expected healths) to contain only valid
+				//mappings (valid mappings determined by the list "userMonsterIds")
+				userMonsterIdToExpectedHealth = getMonsterStuffUtils().getValidEntries(
+						userMonsterIds, userMonsterIdToExpectedHealth);
+				successful = writeChangesToDb(aUser, userId, cashChange, totalGemCost,
+						clientDate, alreadyHealing, deleteMap, updateMap, newMap,
+						userMonsterIds, userMonsterIdToExpectedHealth, existingUserMonsters,
+						gemCostForHealing, isSpeedup, gemsForSpeedup);
 			}
 
 			if (successful) {
@@ -172,10 +199,12 @@ public class HealMonsterController extends EventController {
 				resEventUpdate.setTag(event.getTag());
 				getEventWriter().handleEvent(resEventUpdate);
 				
-				Collection<UUID> finishedMfuIds = deleteMap.keySet();
-				//the deleteIds contain ids of monster healings that have been cancelled
+				//the deleteMfuIds contain ids of monster healings that have been cancelled
+				Collection<UUID> deletedMfuIds = deleteMap.keySet();
+				
+				
 				writeChangesToHistory(userId, clientDate, alreadyHealing,
-						finishedMfuIds, existingUserMonsters);
+						deletedMfuIds, existingUserMonsters, userMonsterIds);
 			}
 		} catch (Exception e) {
 			log.error("exception in HealMonsterController processRequestEvent", e);
@@ -198,6 +227,9 @@ public class HealMonsterController extends EventController {
 	 * builder status to the appropriate value. delete, update, new maps
 	 * MIGHT BE MODIFIED.
 	 * 
+	 * from HealMonsterWaitTimeComplete controller logic
+	 * @healedUp MIGHT ALSO BE MODIFIED.
+	 * 
 	 * For the most part, will always return success. Why?
 	 * (Will return fail if user does not have enough funds.) 
 	 * Answer: For the map
@@ -218,7 +250,7 @@ public class HealMonsterController extends EventController {
 			Map<UUID, MonsterEnhancingForUser> alreadyEnhancing,
 			Map<UUID, UserMonsterHealingProto> deleteMap,
 			Map<UUID, UserMonsterHealingProto> updateMap,
-			Map<UUID, UserMonsterHealingProto> newMap) {
+			Map<UUID, UserMonsterHealingProto> newMap, List<UUID> healedUp) {
 		if (null == u ) {
 			log.error("unexpected error: user is null. user=" + u + "\t deleteMap="+ deleteMap +
 					"\t updateMap=" + updateMap + "\t newMap=" + newMap);
@@ -270,7 +302,15 @@ public class HealMonsterController extends EventController {
 		getMonsterStuffUtils().retainValidMonsters(alreadyEnhancingIds, newMap,
 				keepThingsInDomain, keepThingsNotInDomain);
 
-
+		
+		log.info("alreadyHealing=" + alreadyHealing);
+		//don't really need to do empty-check, but eh
+		if (!healedUp.isEmpty()) {
+			//FROM HealMonsterWaitTimeComplete CONTROLLER
+			//modify healedUp to contain only those that exist
+			getMonsterStuffUtils().retainValidMonsterIds(alreadyHealingIds, healedUp);
+		}
+		
 		resBuilder.setStatus(HealMonsterStatus.SUCCESS);
 		return true;
 	}
@@ -279,7 +319,10 @@ public class HealMonsterController extends EventController {
 			Date clientDate, Map<UUID, MonsterHealingForUser> alreadyHealing, 
 			Map<UUID, UserMonsterHealingProto> protoDeleteMap,
 			Map<UUID, UserMonsterHealingProto> protoUpdateMap,
-			Map<UUID, UserMonsterHealingProto> protoNewMap) {
+			Map<UUID, UserMonsterHealingProto> protoNewMap, List<UUID> userMonsterIds,
+			Map<UUID, Integer> userMonsterIdsToHealths,
+			Map<UUID, MonsterForUser> idsToUserMonsters, int gemCostForHealing, 
+			boolean isSpeedup, int gemsForSpeedup) {
 
 		try {
 			//CHARGE THE USER
@@ -288,7 +331,9 @@ public class HealMonsterController extends EventController {
 			int newGems = gemChange + user.getGems();
 			//create history first
 			List<UserCurrencyHistory> uchList = createCurrencyHistory(user, clientDate,
-					cashChange, gemChange, protoDeleteMap, protoUpdateMap, protoUpdateMap);
+					cashChange, gemChange, protoDeleteMap, protoUpdateMap, protoUpdateMap,
+					gemCostForHealing, isSpeedup, gemsForSpeedup, userMonsterIds,
+					userMonsterIdsToHealths, idsToUserMonsters);
 			user.setCash(newCash);
 			user.setGems(newGems);
 			getUserService().saveUser(user);
@@ -336,6 +381,15 @@ public class HealMonsterController extends EventController {
 			//		  	num = UpdateUtils.get().updateNullifyUserMonstersTeamSlotNum(userMonsterIdList, teamSlotNumList);
 			//		  	log.info("updated user monster rows. numUpdated=" + num);
 			//		  }
+			
+			
+			//LOGIC FROM HealMonsterWaitTimeCompleteController
+			//heal the monsters
+			if (null != userMonsterIdsToHealths && !userMonsterIdsToHealths.isEmpty()) {
+				getMonsterHealingForUserService().healUserMonsters(userMonsterIdsToHealths,
+						idsToUserMonsters);
+			}
+			
 			return true;
 		} catch (Exception e) {
 			log.error("unexpected error: problem with saving to db.", e);
@@ -347,36 +401,69 @@ public class HealMonsterController extends EventController {
 			int cashChange, int gemChange,
 			Map<UUID, UserMonsterHealingProto> protoDeleteMap,
 			Map<UUID, UserMonsterHealingProto> protoUpdateMap,
-			Map<UUID, UserMonsterHealingProto> protoNewMap) {
+			Map<UUID, UserMonsterHealingProto> protoNewMap,  int gemCostForHealing, 
+			boolean isSpeedup, int gemsForSpeedup, List<UUID> userMonsterIds,
+			Map<UUID, Integer> userMonsterIdsToHealths,
+			Map<UUID, MonsterForUser> idsToUserMonsters) {
 		String cashStr = MobstersDbTables.USER__CASH;
 		String gemsStr = MobstersDbTables.USER__GEMS;
-		String reasonForChange = MobstersTableConstants.UCHRFC__HEAL_MONSTER;
-		StringBuilder sb = new StringBuilder();
+		String reasonForChange = MobstersTableConstants.UCHRFC__HEAL_MONSTER_OR_SPED_UP_HEALING;
+		StringBuilder detailSb = new StringBuilder();
+		
+		if (0 != gemCostForHealing || 0 != cashChange) {
+			detailSb.append("heal monster info: ");
+			detailSb.append("gemChange=");
+			detailSb.append(-1*gemCostForHealing);
+			detailSb.append(" cashChange=");
+			detailSb.append(cashChange);
+			detailSb.append(" ");
+		}
 
 		//maybe shouldn't keep track...oh well, more info hopefully is better than none
 		if (null != protoDeleteMap && !protoDeleteMap.isEmpty()) {
-			sb.append("deleteIds=");
+			detailSb.append("deleteIds=");
 			Collection<UUID> deleteIds = protoDeleteMap.keySet();
 			String deleteIdsStr = getQueryConstructionUtil().implode(deleteIds, " ");
-			sb.append(deleteIdsStr);
-			sb.append(" ");
+			detailSb.append(deleteIdsStr);
+			detailSb.append(" ");
 		}
 		if (null != protoUpdateMap && !protoUpdateMap.isEmpty()) {
-			sb.append("updateIds=");
+			detailSb.append("updateIds=");
 			Collection<UUID> updateIds = protoUpdateMap.keySet();
 			String updateIdsStr = getQueryConstructionUtil().implode(updateIds, " ");
-			sb.append(updateIdsStr);
-			sb.append(" ");
+			detailSb.append(updateIdsStr);
+			detailSb.append(" ");
 		}
 		if (null != protoNewMap && !protoNewMap.isEmpty()) {
-			sb.append("newIds=");
+			detailSb.append("newIds=");
 			Collection<UUID> newIds = protoNewMap.keySet();
 			String newIdsStr = getQueryConstructionUtil().implode(newIds, " ");
-			sb.append(newIdsStr);
-			sb.append(" ");
+			detailSb.append(newIdsStr);
+			detailSb.append(" ");
+		}
+		
+		//merging currency tracking from HealMonsterWaitTimeCompleteController 
+		if (isSpeedup) {
+			detailSb.append("sped up healing info: ");
+			detailSb.append("gemChange=");
+			detailSb.append(-1*gemsForSpeedup);
+			detailSb.append(" (prev,curHp):");
+
+			//maybe shouldn't keep track...oh well, more info hopefully is better than none
+			for (UUID id : userMonsterIds) {
+				MonsterForUser mfu = idsToUserMonsters.get(id);
+				int prevHp = mfu.getCurrentHealth();
+				int curHp = userMonsterIdsToHealths.get(id);
+
+				detailSb.append("(");
+				detailSb.append(prevHp);
+				detailSb.append(",");
+				detailSb.append(curHp);
+				detailSb.append(") ");
+			}
 		}
 
-		String details = sb.toString();
+		String details = detailSb.toString();
 
 		boolean saveToDb = false;
 		UserCurrencyHistory cash = getUserCurrencyHistoryService()
@@ -396,14 +483,26 @@ public class HealMonsterController extends EventController {
 		return uchList;
 	}
 	
+	//TODO: COMBINE THESE TWO DB CALLS INTO ONE
 	private void writeChangesToHistory(UUID uId, Date now, 
-			Map<UUID, MonsterHealingForUser> inHealing, Collection<UUID> finishedMfuIds,
-			Map<UUID, MonsterForUser> idsToUserMonsters) {
+			Map<UUID, MonsterHealingForUser> inHealing, Collection<UUID> deletedMfuIds,
+			Map<UUID, MonsterForUser> idsToUserMonsters, List<UUID> finishedMfuIds) {
 		try {
+			//for now (12/28/13) for the monsters that are deleted don't record them
 			boolean healingCancelled = true;
 			
-			Map<UUID, Integer> prevHps = getMonsterStuffUtils().getHealths(finishedMfuIds, idsToUserMonsters);
+			Map<UUID, Integer> prevHps = getMonsterStuffUtils()
+					.getHealths(deletedMfuIds, idsToUserMonsters);
 			
+			getMonsterHealingHistoryService().insertHealingHistory(uId, now,
+					prevHps, inHealing, deletedMfuIds, idsToUserMonsters,
+					healingCancelled);
+			
+			//logic from HealMonsterWaitTimeCompleteController
+			prevHps = getMonsterStuffUtils().getHealths(finishedMfuIds, idsToUserMonsters);
+			
+			//don't know why HealMonsterWaitTimeCompleteController has cancelled=true
+			healingCancelled = false;
 			getMonsterHealingHistoryService().insertHealingHistory(uId, now,
 					prevHps, inHealing, finishedMfuIds, idsToUserMonsters,
 					healingCancelled);
