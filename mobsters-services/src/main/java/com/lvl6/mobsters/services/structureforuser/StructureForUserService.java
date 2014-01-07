@@ -72,6 +72,9 @@ public interface StructureForUserService {
 			Map<UUID, Date> userStructIdsToTimesOfRetrieval,
 			Map<UUID, StructureForUser> userStructIdsToUserStructs);
 	
+	public abstract void updateUserStructFbInviteLvl(StructureForUser sfu,
+			int fbInviteLvlDelta);
+	
 	//DELETING STUFF****************************************************************
 	
 	

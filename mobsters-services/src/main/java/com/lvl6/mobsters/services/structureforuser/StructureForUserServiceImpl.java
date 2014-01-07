@@ -243,16 +243,20 @@ public class StructureForUserServiceImpl implements StructureForUserService {
 			inConditions.put(MobstersDbTables.STRUCTURE_FOR_USER__ID, userStructureIds);
 		}
 		String inCondDelim = getQueryConstructionUtil().getAnd();
-		String delimAcrossConditions = getQueryConstructionUtil().getAnd();
 		
+		Map<String, Collection<?>> isConditions = null;
+		String isCondDelim = null;
+		
+		String delimAcrossConditions = getQueryConstructionUtil().getAnd();
 		
 		//query db, "values" is not used
 		//(its purpose is to hold the values that were supposed to be put
 		//into a prepared statement)
 		List<Object> values = new ArrayList<Object>();
-		String cqlQuery = getQueryConstructionUtil().selectRowsQueryAllConditions(TABLE_NAME,
-				equalityConditions, equalityCondDelim, greaterThanConditions,
-				greaterThanCondDelim, inConditions, inCondDelim, delimAcrossConditions, values);
+		String cqlQuery = getQueryConstructionUtil().selectRowsQueryAllConditions(
+				TABLE_NAME, equalityConditions, equalityCondDelim, greaterThanConditions,
+				greaterThanCondDelim, inConditions, inCondDelim, isConditions,
+				isCondDelim, delimAcrossConditions, values);
 		List<StructureForUser> sfuList = getStructureForUserEntityManager().get().find(cqlQuery);
 		
 		Map<UUID, StructureForUser> userStructureIdsToUserStructures =
@@ -366,6 +370,13 @@ public class StructureForUserServiceImpl implements StructureForUserService {
 		}
 		
 		saveStructuresForUser(saveMeList);
+	}
+	
+	@Override
+	public void updateUserStructFbInviteLvl(StructureForUser sfu, int fbInviteLvlDelta) {
+		int newFbInviteStructLvl = sfu.getFbInviteStructLvl() + fbInviteLvlDelta;
+		sfu.setFbInviteStructLvl(newFbInviteStructLvl);
+		saveStructureForUser(sfu);
 	}
 	
 	//DELETING STUFF****************************************************************

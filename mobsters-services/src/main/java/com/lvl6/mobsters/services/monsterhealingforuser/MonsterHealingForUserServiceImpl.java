@@ -93,15 +93,19 @@ public class MonsterHealingForUserServiceImpl implements MonsterHealingForUserSe
 			inConditions.put(MobstersDbTables.MONSTER_HEALING_FOR_USER__ID, userMonsterIds);
 		}
 		String inCondDelim = getQueryConstructionUtil().getAnd();
+
+		Map<String, Collection<?>> isConditions = null;
+		String isCondDelim = null;
 		String delimAcrossConditions = getQueryConstructionUtil().getAnd();
 		
 		//query db, "values" is not used
 		//(its purpose is to hold the values that were supposed to be put
 		//into a prepared statement)
 		List<Object> values = new ArrayList<Object>();
-		String cqlQuery = getQueryConstructionUtil().selectRowsQueryAllConditions(TABLE_NAME,
-				equalityConditions, equalityCondDelim, greaterThanConditions,
-				greaterThanCondDelim, inConditions, inCondDelim, delimAcrossConditions, values);
+		String cqlQuery = getQueryConstructionUtil().selectRowsQueryAllConditions(
+				TABLE_NAME, equalityConditions, equalityCondDelim, greaterThanConditions,
+				greaterThanCondDelim, isConditions, isCondDelim, inConditions,
+				inCondDelim, delimAcrossConditions, values);
 		List<MonsterHealingForUser> mfuList = getMonsterHealingForUserEntityManager().get().find(cqlQuery);
 		
 		Map<UUID, MonsterHealingForUser> userMonsterIdsToUserMonsters =

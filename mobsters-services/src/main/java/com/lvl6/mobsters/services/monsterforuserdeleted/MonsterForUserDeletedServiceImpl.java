@@ -81,6 +81,9 @@ public class MonsterForUserDeletedServiceImpl implements MonsterForUserDeletedSe
 		Map<String, Collection<?>> inConditions = new HashMap<String, Collection<?>>();
 		inConditions.put(MobstersDbTables.MONSTER_FOR_USER__USER_ID, userIds);
 		String inCondDelim = getQueryConstructionUtil().getAnd();
+
+		Map<String, Collection<?>> isConditions = null;
+		String isCondDelim = null;
 		String delimAcrossConditions = getQueryConstructionUtil().getAnd();
 		
 		//query db, "values" is not used 
@@ -89,7 +92,8 @@ public class MonsterForUserDeletedServiceImpl implements MonsterForUserDeletedSe
 		List<Object> values = new ArrayList<Object>();
 		String cqlQuery = getQueryConstructionUtil().selectRowsQueryAllConditions(
 				TABLE_NAME, equalityConditions, equalityCondDelim, greaterThanConditions,
-				greaterThanCondDelim, inConditions, inCondDelim, delimAcrossConditions, values);
+				greaterThanCondDelim, isConditions, isCondDelim, inConditions,
+				inCondDelim, delimAcrossConditions, values);
 		List<MonsterForUserDeleted> mfuList = getMonsterForUserDeletedEntityManager().get().find(cqlQuery);
 		
 		
@@ -164,15 +168,19 @@ public class MonsterForUserDeletedServiceImpl implements MonsterForUserDeletedSe
 			inConditions.put(MobstersDbTables.MONSTER_FOR_USER__ID, userMonsterIds);
 		}
 		String inCondDelim = getQueryConstructionUtil().getAnd();
+
+		Map<String, Collection<?>> isConditions = null;
+		String isCondDelim = null;
 		String delimAcrossConditions = getQueryConstructionUtil().getAnd();
 		
 		//query db, "values" is not used
 		//(its purpose is to hold the values that were supposed to be put
 		//into a prepared statement)
 		List<Object> values = new ArrayList<Object>();
-		String cqlQuery = getQueryConstructionUtil().selectRowsQueryAllConditions(TABLE_NAME,
-				equalityConditions, equalityCondDelim, greaterThanConditions,
-				greaterThanCondDelim, inConditions, inCondDelim, delimAcrossConditions, values);
+		String cqlQuery = getQueryConstructionUtil().selectRowsQueryAllConditions(
+				TABLE_NAME, equalityConditions, equalityCondDelim, greaterThanConditions,
+				greaterThanCondDelim, isConditions, isCondDelim, inConditions,
+				inCondDelim, delimAcrossConditions, values);
 		List<MonsterForUserDeleted> mfuList = getMonsterForUserDeletedEntityManager().get().find(cqlQuery);
 		
 		Map<UUID, MonsterForUserDeleted> userMonsterIdsToUserMonsters =
@@ -203,13 +211,17 @@ public class MonsterForUserDeletedServiceImpl implements MonsterForUserDeletedSe
 		Map<String, Collection<?>> inConditions = new HashMap<String, Collection<?>>();
 		inConditions.put(MobstersDbTables.MONSTER_FOR_USER__MONSTER_ID, monsterIds);
 		String inCondDelim = getQueryConstructionUtil().getAnd();
+
+		Map<String, Collection<?>> isConditions = null;
+		String isCondDelim = null;
 		String delimAcrossConditions = getQueryConstructionUtil().getAnd();
 		
 		//query db, "values" is not used
 		List<Object> values = new ArrayList<Object>();
-		String cqlQuery = getQueryConstructionUtil().selectRowsQueryAllConditions(TABLE_NAME,
-				equalityConditions, equalityCondDelim, greaterThanConditions,
-				greaterThanCondDelim, inConditions, inCondDelim, delimAcrossConditions, values);
+		String cqlQuery = getQueryConstructionUtil().selectRowsQueryAllConditions(
+				TABLE_NAME, equalityConditions, equalityCondDelim, greaterThanConditions,
+				greaterThanCondDelim, isConditions, isCondDelim, inConditions,
+				inCondDelim, delimAcrossConditions, values);
 		List<MonsterForUserDeleted> mfuList = getMonsterForUserDeletedEntityManager().get().find(cqlQuery);
 		
 		Map<Integer, MonsterForUserDeleted> monsterIdsToUserMonsters =

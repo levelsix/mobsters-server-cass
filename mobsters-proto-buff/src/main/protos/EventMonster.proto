@@ -115,8 +115,17 @@ message HealMonsterRequestProto {
 	//The user should get refunded for the monster that was dequeued 
 	optional sint32 cashChange = 5; 
 	
-	//positive amount
-	optional int32 gemCost = 6;
+	//positive amount if charging user, negative if refunding user
+	optional int32 gemCostForHealing = 6; //(for history purposes)
+	
+	
+	//smushing HealMonsterWaitTimeCompleteRequestProto logic into this event
+	optional bool isSpeedup = 7;
+	optional int32 gemsForSpeedup = 8; //pos amount if charging user, (for history purposes) 
+	repeated UserMonsterCurrentHealthProto umchp = 9;
+	
+	//pos amount if charging user, negative if user gains gems
+	optional int32 totalGemCost = 10;
 }
 
 message HealMonsterResponseProto {
@@ -129,11 +138,13 @@ message HealMonsterResponseProto {
 		FAIL_ALL_MONSTERS_ALREADY_HEALING = 3;
 		FAIL_ALL_MONSTERS_NONEXISTENT = 4;
 		FAIL_OTHER = 5;
+		
+		FAIL_HEALING_NOT_COMPLETE = 6;
 	}
 }
 
 //------------------------------------------------------------------------------------------
-
+/*
 message HealMonsterWaitTimeCompleteRequestProto {
 	optional MinimumUserProto sender = 1;
 	
@@ -156,6 +167,7 @@ message HealMonsterWaitTimeCompleteResponseProto {
 		FAIL_OTHER = 4;
 	}
 }
+*/
 
 //------------------------------------------------------------------------------------------
 
@@ -193,15 +205,17 @@ message RemoveMonsterFromBattleTeamResponseProto {
 }
 
 //------------------------------------------------------------------------------------------
-
+//request will not be batched
 message IncreaseMonsterInventorySlotRequestProto {
 	optional MinimumUserProto sender = 1;
 	optional IncreaseSlotType increaseSlotType = 2;
+	optional string userStructId = 3;
 	
-	optional int32 numPurchases = 3;
 	//EVERY TIME USER BUYS SLOTS, RESET user_facebook_invite_for_slot table
 	//no need to update clients that this happened
 	
+	//all these invites are for one userstruct
+	repeated string userFbInviteForSlotIds = 4;
 	
 	enum IncreaseSlotType {
 		PURCHASE = 1;
@@ -213,11 +227,13 @@ message IncreaseMonsterInventorySlotResponseProto {
 	optional MinimumUserProto sender = 1;
 	optional IncreaseMonsterInventorySlotStatus status = 2;
 	
-	 enum IncreaseMonsterInventorySlotStatus {
+	enum IncreaseMonsterInventorySlotStatus {
 		SUCCESS = 1;
 		FAIL_INSUFFICIENT_FUNDS = 2;
 		FAIL_INSUFFICIENT_FACEBOOK_INVITES = 3;
 		FAIL_OTHER = 4;
+		//user struct id/fb lvl not consistent across invites
+		FAIL_INCONSISTENT_INVITE_DATA = 5;
 	}
 }
 

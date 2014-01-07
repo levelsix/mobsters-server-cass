@@ -105,7 +105,7 @@ public class HealMonsterController extends EventController {
 	    List<UserMonsterHealingProto> umhNew = reqProto.getUmhNewList();
 	    //positive means refund, negative means charge user
 	    int cashChange = reqProto.getCashChange();
-	    int gemCost = reqProto.getGemCost();
+	    int gemCost = reqProto.getTotalGemCost();
 	    Date clientDate = new Date();
 	    
 	    Map<UUID, UserMonsterHealingProto> deleteMap = getMonsterStuffUtils()

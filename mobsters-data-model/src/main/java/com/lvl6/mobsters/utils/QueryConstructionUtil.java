@@ -15,11 +15,14 @@ public class QueryConstructionUtil {
 
 	private static final Logger log = LoggerFactory.getLogger(QueryConstructionUtil.class);
 	private final String and = " AND ";
+	private final String notNull = " NOT NULL ";
+	private final String nullStr = " NULL ";
 	private final String or = " OR ";
 	private final String comma = ",";
 	private final String equality = "=";
 	private final String greaterThan = ">";
 	private final String in = "IN"; 
+	private final String is = "IS"; 
 	private final String question = "?";
 	private final String space = " ";
 	private final int spaceLength = 1;
@@ -31,7 +34,8 @@ public class QueryConstructionUtil {
 	public String selectRowsQueryAllConditions(String tableName, Map<String, ?> equalityConditions,
 			String equalityCondDelim, Map<String, ?> greaterThanConditions,
 			String greaterThanCondDelim, Map<String, Collection<?>> inConditions,
-			String inCondDelim, String delimAcrossConditions, List<Object> values) {
+			String inCondDelim, Map<String, ?> isConditions, String isCondDelim,
+			String delimAcrossConditions, List<Object> values) {
 		StringBuilder sb = new StringBuilder();
 		sb.append("select * from ");
 		sb.append(tableName);
@@ -39,6 +43,7 @@ public class QueryConstructionUtil {
 		boolean emptyEqConditions = (null == equalityConditions || equalityConditions.isEmpty()); 
 		boolean emptyGtConditions = (null == greaterThanConditions || greaterThanConditions.isEmpty());
 		boolean emptyInConditions = (null == inConditions || inConditions.isEmpty());
+		boolean emptyIsConditions = (null == isConditions || isConditions.isEmpty());
 
 		//(paranoia) if caller doesn't provide anything, select whole table
 		if (emptyEqConditions && emptyGtConditions && emptyInConditions) {
@@ -79,6 +84,16 @@ public class QueryConstructionUtil {
 				sb.append(inConditionsStr);
 
 			}
+			conjunction = delimAcrossConditions;
+		} else {
+			conjunction = "";
+		}
+		// IS CONDITIONS
+		if (!emptyIsConditions) {
+			String strConditionStr = createIsConditionString(isConditions, values, isCondDelim);
+			sb.append(conjunction);
+			sb.append(strConditionStr);
+			
 			conjunction = delimAcrossConditions;
 		} else {
 			conjunction = "";
@@ -198,6 +213,36 @@ public class QueryConstructionUtil {
 		String result = sb.toString();
 		return result;
 	}
+	
+	//the argument "values" is another return value. It will contain the values
+	//to be set into the CqlPreparedStatement in the proper order. string
+	//will not be a prepared statement unless specified by boolean "preparedStatement"
+	public String createIsConditionString(Map<String, ?> isConditions, List<Object> values,
+			String conditionDelimiter) {
+		List<Object> clauses = new ArrayList<Object>();
+
+		for (String key : isConditions.keySet()) {
+			StringBuilder clauseSb = new StringBuilder();
+			Object obj = isConditions.get(key);
+
+			clauseSb.append(key);
+			clauseSb.append(space);
+			clauseSb.append(is);
+			clauseSb.append(space);
+			clauseSb.append(obj);
+
+			values.add(obj);
+
+			String clause = clauseSb.toString();
+			clauses.add(clause);
+		}
+
+
+		String isConditionsStr = implode(clauses, conditionDelimiter); 
+
+		log.info("equalityConditionsStr=" + isConditionsStr + "\t values=" + values);
+		return isConditionsStr;
+	}
 
 
 	public String implode(Collection<?> thingsToImplode, String delimiter) {
@@ -283,6 +328,13 @@ public class QueryConstructionUtil {
 		return and;
 	}
 
+	public String getNotNull() {
+		return notNull;
+	}
+
+	public String getNullStr() {
+		return nullStr;
+	}
 
 	public String getOr() {
 		return or;
