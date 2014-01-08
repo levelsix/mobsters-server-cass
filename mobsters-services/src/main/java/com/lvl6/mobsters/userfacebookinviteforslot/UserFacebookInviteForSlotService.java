@@ -13,7 +13,7 @@ import com.lvl6.mobsters.utils.QueryConstructionUtil;
 
 public interface UserFacebookInviteForSlotService {
 
-	//CONTROLLER LOGIC STUFF
+	//CONTROLLER LOGIC STUFF****************************************************************
 	//if user struct ids and user struct fb lvls are inconsistent, return false
 	public abstract boolean areConsistentInvites(UUID userStructId,
 			Map<UUID, UserFacebookInviteForSlot> idsToInvites);
@@ -25,7 +25,10 @@ public interface UserFacebookInviteForSlotService {
 	public abstract void orderUserFacebookAcceptedInvitesForSlots(
 			List<UserFacebookInviteForSlot> invites);
 	
-	//RETRIEVING STUFF
+	public abstract List<String> getNewInvites(List<String> fbIdsOfFriends,
+			Map<UUID, UserFacebookInviteForSlot> idsToInvites);
+	
+	//RETRIEVING STUFF****************************************************************
 //	public abstract UserFacebookInviteForSlot getInviteForId(UUID inviteId);
 	
 	public abstract Map<UUID, UserFacebookInviteForSlot> getInvitesForIds(
@@ -46,19 +49,24 @@ public interface UserFacebookInviteForSlotService {
 			List<UUID> userFbInviteIds);
 	
 	
-	//INSERTING STUFF
+	//INSERTING STUFF****************************************************************
+	public abstract List<UserFacebookInviteForSlot> insertIntoUserFbInviteForSlot(
+			UUID userId, List<String> facebookIds, Date curTime,
+			Map<String, UUID> fbIdsToUserStructIds,
+			Map<String, Integer> fbIdsToUserStructsFbLvl);
+	
 	
 	//SAVING STUFF****************************************************************
 	
 	public abstract void saveUserFacebookInvites(List<UserFacebookInviteForSlot> ufiList);
 	
 	
-	//UPDATING STUFF
+	//UPDATING STUFF****************************************************************
 	public abstract void updateUserFacebookInviteForSlotRedeemTime(Date redeemTime,
 			List<UserFacebookInviteForSlot> redeemedInvites);
 	
 	
-	//DELETING STUFF
+	//DELETING STUFF****************************************************************
 	public abstract void deleteUserFacebookInvite(UUID userFacebookInviteUuid);
 	
 	public abstract void deleteUserFacebookInvitesForIds(List<UUID> userFacebookInviteList);

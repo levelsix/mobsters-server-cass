@@ -13,10 +13,13 @@ import com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageMonsterProto;
 import com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageProto;
 import com.lvl6.mobsters.noneventprotos.UserProto.FullUserProto;
 import com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto;
+import com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProtoWithFacebookId;
+import com.lvl6.mobsters.noneventprotos.UserProto.UserFacebookInviteForSlotProto;
 import com.lvl6.mobsters.po.nonstaticdata.MonsterForUser;
 import com.lvl6.mobsters.po.nonstaticdata.StructureForUser;
 import com.lvl6.mobsters.po.nonstaticdata.TaskStageForUser;
 import com.lvl6.mobsters.po.nonstaticdata.User;
+import com.lvl6.mobsters.po.nonstaticdata.UserFacebookInviteForSlot;
 import com.lvl6.mobsters.po.staticdata.CityElement;
 import com.lvl6.mobsters.po.staticdata.Quest;
 import com.lvl6.mobsters.utils.CoordinatePair;
@@ -62,4 +65,9 @@ public interface CreateNoneventProtoUtils {
 	
 	public abstract MinimumUserProto createMinimumUserProtoFromUser(User u);
 	
+	public abstract MinimumUserProtoWithFacebookId createMinimumUserProtoWithFacebookIdFromUser(User u);
+	
+	public abstract UserFacebookInviteForSlotProto createUserFacebookInviteForSlotProtoFromInvite(
+			UserFacebookInviteForSlot invite, User inviter,
+			MinimumUserProtoWithFacebookId inviterProto);
 }

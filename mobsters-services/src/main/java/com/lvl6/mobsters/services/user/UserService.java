@@ -17,6 +17,9 @@ public interface UserService {
 	
 	public abstract List<User> getUserByUDIDorFbId(String udid, String facebookId);
 	
+	public abstract List<User> getUsersByFbIds(Collection<String> fbIds);
+	
+	public abstract List<UUID> getUserIdsForFacebookIds(Collection<String> fbIds);
 	
 	//INSERT STUFF****************************************************************
 	

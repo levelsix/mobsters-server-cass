@@ -2507,6 +2507,18 @@ public final class UserProto {
     // optional int64 timeAccepted = 5;
     boolean hasTimeAccepted();
     long getTimeAccepted();
+    
+    // optional string userStructUuid = 6;
+    boolean hasUserStructUuid();
+    String getUserStructUuid();
+    
+    // optional int32 structFbLvl = 7;
+    boolean hasStructFbLvl();
+    int getStructFbLvl();
+    
+    // optional int64 redeemedTime = 8;
+    boolean hasRedeemedTime();
+    long getRedeemedTime();
   }
   public static final class UserFacebookInviteForSlotProto extends
       com.google.protobuf.GeneratedMessage
@@ -2634,12 +2646,67 @@ public final class UserProto {
       return timeAccepted_;
     }
     
+    // optional string userStructUuid = 6;
+    public static final int USERSTRUCTUUID_FIELD_NUMBER = 6;
+    private java.lang.Object userStructUuid_;
+    public boolean hasUserStructUuid() {
+      return ((bitField0_ & 0x00000020) == 0x00000020);
+    }
+    public String getUserStructUuid() {
+      java.lang.Object ref = userStructUuid_;
+      if (ref instanceof String) {
+        return (String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        String s = bs.toStringUtf8();
+        if (com.google.protobuf.Internal.isValidUtf8(bs)) {
+          userStructUuid_ = s;
+        }
+        return s;
+      }
+    }
+    private com.google.protobuf.ByteString getUserStructUuidBytes() {
+      java.lang.Object ref = userStructUuid_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8((String) ref);
+        userStructUuid_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    
+    // optional int32 structFbLvl = 7;
+    public static final int STRUCTFBLVL_FIELD_NUMBER = 7;
+    private int structFbLvl_;
+    public boolean hasStructFbLvl() {
+      return ((bitField0_ & 0x00000040) == 0x00000040);
+    }
+    public int getStructFbLvl() {
+      return structFbLvl_;
+    }
+    
+    // optional int64 redeemedTime = 8;
+    public static final int REDEEMEDTIME_FIELD_NUMBER = 8;
+    private long redeemedTime_;
+    public boolean hasRedeemedTime() {
+      return ((bitField0_ & 0x00000080) == 0x00000080);
+    }
+    public long getRedeemedTime() {
+      return redeemedTime_;
+    }
+    
     private void initFields() {
       inviteUuid_ = "";
       inviter_ = com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProtoWithFacebookId.getDefaultInstance();
       recipientFacebookId_ = "";
       timeOfInvite_ = 0L;
       timeAccepted_ = 0L;
+      userStructUuid_ = "";
+      structFbLvl_ = 0;
+      redeemedTime_ = 0L;
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -2667,6 +2734,15 @@ public final class UserProto {
       }
       if (((bitField0_ & 0x00000010) == 0x00000010)) {
         output.writeInt64(5, timeAccepted_);
+      }
+      if (((bitField0_ & 0x00000020) == 0x00000020)) {
+        output.writeBytes(6, getUserStructUuidBytes());
+      }
+      if (((bitField0_ & 0x00000040) == 0x00000040)) {
+        output.writeInt32(7, structFbLvl_);
+      }
+      if (((bitField0_ & 0x00000080) == 0x00000080)) {
+        output.writeInt64(8, redeemedTime_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -2696,6 +2772,18 @@ public final class UserProto {
       if (((bitField0_ & 0x00000010) == 0x00000010)) {
         size += com.google.protobuf.CodedOutputStream
           .computeInt64Size(5, timeAccepted_);
+      }
+      if (((bitField0_ & 0x00000020) == 0x00000020)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(6, getUserStructUuidBytes());
+      }
+      if (((bitField0_ & 0x00000040) == 0x00000040)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(7, structFbLvl_);
+      }
+      if (((bitField0_ & 0x00000080) == 0x00000080)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(8, redeemedTime_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -2836,6 +2924,12 @@ public final class UserProto {
         bitField0_ = (bitField0_ & ~0x00000008);
         timeAccepted_ = 0L;
         bitField0_ = (bitField0_ & ~0x00000010);
+        userStructUuid_ = "";
+        bitField0_ = (bitField0_ & ~0x00000020);
+        structFbLvl_ = 0;
+        bitField0_ = (bitField0_ & ~0x00000040);
+        redeemedTime_ = 0L;
+        bitField0_ = (bitField0_ & ~0x00000080);
         return this;
       }
       
@@ -2898,6 +2992,18 @@ public final class UserProto {
           to_bitField0_ |= 0x00000010;
         }
         result.timeAccepted_ = timeAccepted_;
+        if (((from_bitField0_ & 0x00000020) == 0x00000020)) {
+          to_bitField0_ |= 0x00000020;
+        }
+        result.userStructUuid_ = userStructUuid_;
+        if (((from_bitField0_ & 0x00000040) == 0x00000040)) {
+          to_bitField0_ |= 0x00000040;
+        }
+        result.structFbLvl_ = structFbLvl_;
+        if (((from_bitField0_ & 0x00000080) == 0x00000080)) {
+          to_bitField0_ |= 0x00000080;
+        }
+        result.redeemedTime_ = redeemedTime_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -2928,6 +3034,15 @@ public final class UserProto {
         }
         if (other.hasTimeAccepted()) {
           setTimeAccepted(other.getTimeAccepted());
+        }
+        if (other.hasUserStructUuid()) {
+          setUserStructUuid(other.getUserStructUuid());
+        }
+        if (other.hasStructFbLvl()) {
+          setStructFbLvl(other.getStructFbLvl());
+        }
+        if (other.hasRedeemedTime()) {
+          setRedeemedTime(other.getRedeemedTime());
         }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
@@ -2987,6 +3102,21 @@ public final class UserProto {
             case 40: {
               bitField0_ |= 0x00000010;
               timeAccepted_ = input.readInt64();
+              break;
+            }
+            case 50: {
+              bitField0_ |= 0x00000020;
+              userStructUuid_ = input.readBytes();
+              break;
+            }
+            case 56: {
+              bitField0_ |= 0x00000040;
+              structFbLvl_ = input.readInt32();
+              break;
+            }
+            case 64: {
+              bitField0_ |= 0x00000080;
+              redeemedTime_ = input.readInt64();
               break;
             }
           }
@@ -3195,6 +3325,84 @@ public final class UserProto {
       public Builder clearTimeAccepted() {
         bitField0_ = (bitField0_ & ~0x00000010);
         timeAccepted_ = 0L;
+        onChanged();
+        return this;
+      }
+      
+      // optional string userStructUuid = 6;
+      private java.lang.Object userStructUuid_ = "";
+      public boolean hasUserStructUuid() {
+        return ((bitField0_ & 0x00000020) == 0x00000020);
+      }
+      public String getUserStructUuid() {
+        java.lang.Object ref = userStructUuid_;
+        if (!(ref instanceof String)) {
+          String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
+          userStructUuid_ = s;
+          return s;
+        } else {
+          return (String) ref;
+        }
+      }
+      public Builder setUserStructUuid(String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000020;
+        userStructUuid_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearUserStructUuid() {
+        bitField0_ = (bitField0_ & ~0x00000020);
+        userStructUuid_ = getDefaultInstance().getUserStructUuid();
+        onChanged();
+        return this;
+      }
+      void setUserStructUuid(com.google.protobuf.ByteString value) {
+        bitField0_ |= 0x00000020;
+        userStructUuid_ = value;
+        onChanged();
+      }
+      
+      // optional int32 structFbLvl = 7;
+      private int structFbLvl_ ;
+      public boolean hasStructFbLvl() {
+        return ((bitField0_ & 0x00000040) == 0x00000040);
+      }
+      public int getStructFbLvl() {
+        return structFbLvl_;
+      }
+      public Builder setStructFbLvl(int value) {
+        bitField0_ |= 0x00000040;
+        structFbLvl_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearStructFbLvl() {
+        bitField0_ = (bitField0_ & ~0x00000040);
+        structFbLvl_ = 0;
+        onChanged();
+        return this;
+      }
+      
+      // optional int64 redeemedTime = 8;
+      private long redeemedTime_ ;
+      public boolean hasRedeemedTime() {
+        return ((bitField0_ & 0x00000080) == 0x00000080);
+      }
+      public long getRedeemedTime() {
+        return redeemedTime_;
+      }
+      public Builder setRedeemedTime(long value) {
+        bitField0_ |= 0x00000080;
+        redeemedTime_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearRedeemedTime() {
+        bitField0_ = (bitField0_ & ~0x00000080);
+        redeemedTime_ = 0L;
         onChanged();
         return this;
       }
@@ -6836,40 +7044,41 @@ public final class UserProto {
       ".proto.MinimumUserProto\022\r\n\005level\030\002 \001(\005\"c" +
       "\n\036MinimumUserProtoWithFacebookId\022-\n\014minU",
       "serProto\030\001 \001(\0132\027.proto.MinimumUserProto\022" +
-      "\022\n\nfacebookId\030\002 \001(\t\"\265\001\n\036UserFacebookInvi" +
+      "\022\n\nfacebookId\030\002 \001(\t\"\370\001\n\036UserFacebookInvi" +
       "teForSlotProto\022\022\n\ninviteUuid\030\001 \001(\t\0226\n\007in" +
       "viter\030\002 \001(\0132%.proto.MinimumUserProtoWith" +
       "FacebookId\022\033\n\023recipientFacebookId\030\003 \001(\t\022" +
       "\024\n\014timeOfInvite\030\004 \001(\003\022\024\n\014timeAccepted\030\005 " +
-      "\001(\003\"\335\007\n\rFullUserProto\022\020\n\010userUuid\030\001 \001(\t\022" +
-      "\014\n\004name\030\002 \001(\t\022\r\n\005level\030\003 \001(\005\022\014\n\004gems\030\004 \001" +
-      "(\005\022\014\n\004cash\030\005 \001(\005\022\013\n\003oil\030* \001(\005\022\022\n\nexperie" +
-      "nce\030\006 \001(\005\022\026\n\016tasksCompleted\030\007 \001(\005\022\022\n\nbat",
-      "tlesWon\030\010 \001(\005\022\023\n\013battlesLost\030\t \001(\005\022\r\n\005fl" +
-      "ees\030\n \001(\005\022\024\n\014referralCode\030\013 \001(\t\022\024\n\014numRe" +
-      "ferrals\030\014 \001(\005\022\025\n\rlastLoginTime\030\016 \001(\003\022\026\n\016" +
-      "lastLogoutTime\030\017 \001(\003\022\016\n\006isFake\030\023 \001(\010\022\017\n\007" +
-      "isAdmin\030\025 \001(\010\022#\n\033numCashRetrievedFromStr" +
-      "ucts\030\027 \001(\005\022\"\n\032numOilRetrievedFromStructs" +
-      "\030+ \001(\005\022%\n\004clan\030\031 \001(\0132\027.proto.MinimumClan" +
-      "Proto\022\033\n\023hasReceivedfbReward\030\034 \001(\010\022!\n\031nu" +
-      "mAdditionalMonsterSlots\030\035 \001(\005\022!\n\031numBegi" +
-      "nnerSalesPurchased\030\036 \001(\005\022\027\n\017hasActiveShi",
-      "eld\030\037 \001(\010\022\025\n\rshieldEndTime\030  \001(\003\022\013\n\003elo\030" +
-      "! \001(\005\022\014\n\004rank\030\" \001(\t\022\026\n\016lastTimeQueued\030# " +
-      "\001(\003\022\022\n\nattacksWon\030$ \001(\005\022\023\n\013defensesWon\030%" +
-      " \001(\005\022\023\n\013attacksLost\030& \001(\005\022\024\n\014defensesLos" +
-      "t\030\' \001(\005\022\022\n\nfacebookId\030( \001(\t\022\014\n\004udid\030\r \001(" +
-      "\t\022\023\n\013deviceToken\030\020 \001(\t\022\"\n\032lastBattleNoti" +
-      "ficationTime\030\021 \001(\003\022\021\n\tnumBadges\030\022 \001(\005\022\022\n" +
-      "\ncreateTime\030\024 \001(\003\022\021\n\tapsalarId\030\026 \001(\005\022 \n\030" +
-      "numConsecutiveDaysPlayed\030\030 \001(\005\022$\n\034lastWa" +
-      "llPostNotificationTime\030\032 \001(\003\022\021\n\tkabamNai",
-      "d\030\033 \001(\t\022\032\n\022nthExtraSlotsViaFb\030) \001(\005\"V\n\030S" +
-      "taticUserLevelInfoProto\022\r\n\005level\030\001 \001(\005\022\032" +
-      "\n\022requiredExperience\030\002 \001(\005\022\017\n\007maxCash\030\003 " +
-      "\001(\005B-\n com.lvl6.mobsters.noneventprotosB" +
-      "\tUserProto"
+      "\001(\003\022\026\n\016userStructUuid\030\006 \001(\t\022\023\n\013structFbL" +
+      "vl\030\007 \001(\005\022\024\n\014redeemedTime\030\010 \001(\003\"\335\007\n\rFullU" +
+      "serProto\022\020\n\010userUuid\030\001 \001(\t\022\014\n\004name\030\002 \001(\t" +
+      "\022\r\n\005level\030\003 \001(\005\022\014\n\004gems\030\004 \001(\005\022\014\n\004cash\030\005 ",
+      "\001(\005\022\013\n\003oil\030* \001(\005\022\022\n\nexperience\030\006 \001(\005\022\026\n\016" +
+      "tasksCompleted\030\007 \001(\005\022\022\n\nbattlesWon\030\010 \001(\005" +
+      "\022\023\n\013battlesLost\030\t \001(\005\022\r\n\005flees\030\n \001(\005\022\024\n\014" +
+      "referralCode\030\013 \001(\t\022\024\n\014numReferrals\030\014 \001(\005" +
+      "\022\025\n\rlastLoginTime\030\016 \001(\003\022\026\n\016lastLogoutTim" +
+      "e\030\017 \001(\003\022\016\n\006isFake\030\023 \001(\010\022\017\n\007isAdmin\030\025 \001(\010" +
+      "\022#\n\033numCashRetrievedFromStructs\030\027 \001(\005\022\"\n" +
+      "\032numOilRetrievedFromStructs\030+ \001(\005\022%\n\004cla" +
+      "n\030\031 \001(\0132\027.proto.MinimumClanProto\022\033\n\023hasR" +
+      "eceivedfbReward\030\034 \001(\010\022!\n\031numAdditionalMo",
+      "nsterSlots\030\035 \001(\005\022!\n\031numBeginnerSalesPurc" +
+      "hased\030\036 \001(\005\022\027\n\017hasActiveShield\030\037 \001(\010\022\025\n\r" +
+      "shieldEndTime\030  \001(\003\022\013\n\003elo\030! \001(\005\022\014\n\004rank" +
+      "\030\" \001(\t\022\026\n\016lastTimeQueued\030# \001(\003\022\022\n\nattack" +
+      "sWon\030$ \001(\005\022\023\n\013defensesWon\030% \001(\005\022\023\n\013attac" +
+      "ksLost\030& \001(\005\022\024\n\014defensesLost\030\' \001(\005\022\022\n\nfa" +
+      "cebookId\030( \001(\t\022\014\n\004udid\030\r \001(\t\022\023\n\013deviceTo" +
+      "ken\030\020 \001(\t\022\"\n\032lastBattleNotificationTime\030" +
+      "\021 \001(\003\022\021\n\tnumBadges\030\022 \001(\005\022\022\n\ncreateTime\030\024" +
+      " \001(\003\022\021\n\tapsalarId\030\026 \001(\005\022 \n\030numConsecutiv",
+      "eDaysPlayed\030\030 \001(\005\022$\n\034lastWallPostNotific" +
+      "ationTime\030\032 \001(\003\022\021\n\tkabamNaid\030\033 \001(\t\022\032\n\022nt" +
+      "hExtraSlotsViaFb\030) \001(\005\"V\n\030StaticUserLeve" +
+      "lInfoProto\022\r\n\005level\030\001 \001(\005\022\032\n\022requiredExp" +
+      "erience\030\002 \001(\005\022\017\n\007maxCash\030\003 \001(\005B-\n com.lv" +
+      "l6.mobsters.noneventprotosB\tUserProto"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -6913,7 +7122,7 @@ public final class UserProto {
           internal_static_proto_UserFacebookInviteForSlotProto_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_proto_UserFacebookInviteForSlotProto_descriptor,
-              new java.lang.String[] { "InviteUuid", "Inviter", "RecipientFacebookId", "TimeOfInvite", "TimeAccepted", },
+              new java.lang.String[] { "InviteUuid", "Inviter", "RecipientFacebookId", "TimeOfInvite", "TimeAccepted", "UserStructUuid", "StructFbLvl", "RedeemedTime", },
               com.lvl6.mobsters.noneventprotos.UserProto.UserFacebookInviteForSlotProto.class,
               com.lvl6.mobsters.noneventprotos.UserProto.UserFacebookInviteForSlotProto.Builder.class);
           internal_static_proto_FullUserProto_descriptor =

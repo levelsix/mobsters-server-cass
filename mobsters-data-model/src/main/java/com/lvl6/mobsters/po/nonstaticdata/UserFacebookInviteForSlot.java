@@ -34,6 +34,7 @@ public class UserFacebookInviteForSlot extends BasePersistentObject<UUID>{
 	@Column(name="time_accepted")
 	protected Date timeAccepted = null;
 	
+	//inviter's user_struct_id
 	@Column(name="user_struct_id")
 	protected UUID userStructId = null;
 	

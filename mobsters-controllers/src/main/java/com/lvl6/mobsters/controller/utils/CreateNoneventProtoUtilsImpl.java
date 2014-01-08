@@ -24,10 +24,13 @@ import com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageMonsterProto.MonsterT
 import com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageProto;
 import com.lvl6.mobsters.noneventprotos.UserProto.FullUserProto;
 import com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto;
+import com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProtoWithFacebookId;
+import com.lvl6.mobsters.noneventprotos.UserProto.UserFacebookInviteForSlotProto;
 import com.lvl6.mobsters.po.nonstaticdata.MonsterForUser;
 import com.lvl6.mobsters.po.nonstaticdata.StructureForUser;
 import com.lvl6.mobsters.po.nonstaticdata.TaskStageForUser;
 import com.lvl6.mobsters.po.nonstaticdata.User;
+import com.lvl6.mobsters.po.nonstaticdata.UserFacebookInviteForSlot;
 import com.lvl6.mobsters.po.staticdata.CityElement;
 import com.lvl6.mobsters.po.staticdata.Quest;
 import com.lvl6.mobsters.utils.CoordinatePair;
@@ -474,5 +477,65 @@ public class CreateNoneventProtoUtilsImpl implements CreateNoneventProtoUtils {
 //			builder.setClan(createMinimumClanProtoFromClan(clan));
 //		}
 		return builder.build();
+	}
+	
+	@Override
+	public MinimumUserProtoWithFacebookId createMinimumUserProtoWithFacebookIdFromUser(User u) {
+		MinimumUserProto mup = createMinimumUserProtoFromUser(u);
+		MinimumUserProtoWithFacebookId.Builder b = MinimumUserProtoWithFacebookId.newBuilder();
+		b.setMinUserProto(mup);
+		String facebookId = u.getFacebookId();
+		if (null != facebookId) {
+			b.setFacebookId(facebookId);
+		}
+
+		return b.build();
+	}
+	
+	@Override
+	public UserFacebookInviteForSlotProto createUserFacebookInviteForSlotProtoFromInvite(
+			UserFacebookInviteForSlot invite, User inviter, MinimumUserProtoWithFacebookId inviterProto) {
+		UserFacebookInviteForSlotProto.Builder inviteProtoBuilder =
+				UserFacebookInviteForSlotProto.newBuilder();
+		UUID inviteId = invite.getId();
+		String inviteIdStr = inviteId.toString();
+		inviteProtoBuilder.setInviteUuid(inviteIdStr);
+
+		if (null == inviterProto) {
+			inviterProto = createMinimumUserProtoWithFacebookIdFromUser(inviter);
+
+		}
+
+		inviteProtoBuilder.setInviter(inviterProto);
+		String aStr = invite.getRecipientFbId();
+		if (null != aStr) {
+			inviteProtoBuilder.setRecipientFacebookId(aStr);
+		}
+
+		Date d = invite.getTimeOfInvite();
+		if (null != d) {
+			inviteProtoBuilder.setTimeOfInvite(d.getTime());
+		}
+
+		d = invite.getTimeAccepted();
+		if (null != d) {
+			inviteProtoBuilder.setTimeAccepted(d.getTime());
+		}
+
+		UUID userStructId = invite.getUserStructId();
+		aStr = userStructId.toString();
+		if (null != aStr) {
+			inviteProtoBuilder.setUserStructUuid(aStr);
+		}
+
+		int userStructFbLvl = invite.getUserStructFbLvl();
+		inviteProtoBuilder.setStructFbLvl(userStructFbLvl);
+
+		d = invite.getTimeRedeemed();
+		if (null != d) {
+			inviteProtoBuilder.setRedeemedTime(d.getTime());
+		}
+
+		return inviteProtoBuilder.build();
 	}
 }

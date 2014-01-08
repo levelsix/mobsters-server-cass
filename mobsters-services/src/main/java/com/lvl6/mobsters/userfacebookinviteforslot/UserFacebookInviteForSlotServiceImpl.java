@@ -119,6 +119,54 @@ public class UserFacebookInviteForSlotServiceImpl implements UserFacebookInviteF
 	  	});
 	}
 	
+	@Override
+	public List<String> getNewInvites(List<String> fbIdsOfFriends,
+			Map<UUID, UserFacebookInviteForSlot> idsToInvites) {
+		//CONTAINS THE DUPLICATE INVITES, THAT NEED TO BE DELETED
+		//E.G. TWO INVITES EXIST WITH SAME INVITERID AND RECIPIENTID
+		List<UUID> inviteIdsOfDuplicateInvites = new ArrayList<UUID>();
+
+		//running collection of recipient ids already seen
+		Set<String> processedRecipientIds = new HashSet<String>();
+
+		//for each recipientId separate the unique ones from the duplicates
+		for (UUID inviteId : idsToInvites.keySet()) {
+			UserFacebookInviteForSlot invite = idsToInvites.get(inviteId);
+			String recipientId = invite.getRecipientFbId(); 
+
+			//if seen this recipientId place it in the duplicates list
+			if (processedRecipientIds.contains(recipientId)) {
+				//done to ensure a user does not invite another user more than once
+				//i.e. tuple (inviterId, recipientId) is unique
+				inviteIdsOfDuplicateInvites.add(inviteId);
+			} else {
+				//keep track of the recipientIds seen so far (the unique ones)
+				processedRecipientIds.add(recipientId);
+			}
+		}
+
+		//DELETE THE DUPLICATE INVITES THAT ARE ALREADY IN DB
+		//maybe need to determine which invites should be deleted, as in most recent or somethings
+		//because right now, any of the nonunique invites could be deleted
+		if (!inviteIdsOfDuplicateInvites.isEmpty()) {
+			deleteUserFacebookInvitesForIds(inviteIdsOfDuplicateInvites);
+			log.warn("duplicate invites deleted: " + inviteIdsOfDuplicateInvites);
+		}
+
+
+		List<String> newFacebookIdsToInvite = new ArrayList<String>();
+		//don't want to generate an invite to a recipient the user has already invited
+		//going through the facebook ids client sends and select only the new ones
+		for (String prospectiveRecipientId : fbIdsOfFriends) {
+
+			//keep only the recipient ids that have not been seen/invited
+			if(!processedRecipientIds.contains(prospectiveRecipientId)) {
+				newFacebookIdsToInvite.add(prospectiveRecipientId);
+			}
+		}
+		return newFacebookIdsToInvite;
+	}
+
 	
 	//RETRIEVING STUFF****************************************************************
 //	@Override
@@ -333,7 +381,39 @@ public class UserFacebookInviteForSlotServiceImpl implements UserFacebookInviteF
 
 	
 	//INSERTING STUFF****************************************************************
+	@Override
+	public List<UserFacebookInviteForSlot> insertIntoUserFbInviteForSlot(UUID userId,
+			List<String> facebookIds, Date curTime, Map<String, UUID> fbIdsToUserStructIds,
+			Map<String, Integer> fbIdsToUserStructsFbLvl) {
+		
+		List<UserFacebookInviteForSlot> retVal = new ArrayList<UserFacebookInviteForSlot>();
+		
+		//creates new UserFacebookInviteForSlot
+		for (String fbId : facebookIds) {
+			UUID inviterUserStructId = fbIdsToUserStructIds.get(fbId);
+			Integer userStructFbLvl = fbIdsToUserStructsFbLvl.get(fbId);
+			
+			UserFacebookInviteForSlot ufifs = createNewUserFbInviteForSlot(userId, fbId,
+					curTime, inviterUserStructId, userStructFbLvl);
+			
+			retVal.add(ufifs);
+		}
+		
+		return retVal;
+	}
 	
+	private UserFacebookInviteForSlot createNewUserFbInviteForSlot(UUID inviterId,
+			String recipientFbId, Date timeOfInvite, UUID inviterUserStructId, 
+			int userStructFbLvl) {
+		UserFacebookInviteForSlot ufifs = new UserFacebookInviteForSlot();
+		ufifs.setInviterUserId(inviterId);
+		ufifs.setRecipientFbId(recipientFbId);
+		ufifs.setTimeOfInvite(timeOfInvite);
+		ufifs.setUserStructId(inviterUserStructId);
+		ufifs.setUserStructFbLvl(userStructFbLvl);
+		
+		return ufifs;
+	}
 	
 	//SAVING STUFF****************************************************************
 	
