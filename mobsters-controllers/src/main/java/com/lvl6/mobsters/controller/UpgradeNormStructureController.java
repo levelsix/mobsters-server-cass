@@ -10,7 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.lvl6.mobsters.controller.utils.CreateEventProtoUtils;
+import com.lvl6.mobsters.controller.utils.CreateEventProtoUtil;
 import com.lvl6.mobsters.entitymanager.staticdata.utils.StructureRetrieveUtils;
 import com.lvl6.mobsters.eventprotos.EventStructureProto.UpgradeNormStructureRequestProto;
 import com.lvl6.mobsters.eventprotos.EventStructureProto.UpgradeNormStructureResponseProto;
@@ -52,7 +52,7 @@ public class UpgradeNormStructureController extends EventController {
 	protected UserCurrencyHistoryService userCurrencyHistoryService;
 	
 	@Autowired
-	protected CreateEventProtoUtils createEventProtoUtils;
+	protected CreateEventProtoUtil createEventProtoUtil;
 	
 
 	@Override
@@ -326,12 +326,12 @@ public class UpgradeNormStructureController extends EventController {
 		this.userCurrencyHistoryService = userCurrencyHistoryService;
 	}
 
-	public CreateEventProtoUtils getCreateEventProtoUtils() {
-		return createEventProtoUtils;
+	public CreateEventProtoUtil getCreateEventProtoUtils() {
+		return createEventProtoUtil;
 	}
 
-	public void setCreateEventProtoUtils(CreateEventProtoUtils createEventProtoUtils) {
-		this.createEventProtoUtils = createEventProtoUtils;
+	public void setCreateEventProtoUtils(CreateEventProtoUtil createEventProtoUtil) {
+		this.createEventProtoUtil = createEventProtoUtil;
 	}
 	
 }

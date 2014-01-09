@@ -37,7 +37,7 @@ import com.lvl6.mobsters.utils.CoordinatePair;
 import com.lvl6.mobsters.utils.Dialogue;
 
 @Component
-public class CreateNoneventProtoUtilsImpl implements CreateNoneventProtoUtils {
+public class CreateNoneventProtoUtilImpl implements CreateNoneventProtoUtil {
 
 	/*//static initializing this map because didn't know how else to initialize
 	private static Map<Integer, ClassType> classTypeNumToClassType =

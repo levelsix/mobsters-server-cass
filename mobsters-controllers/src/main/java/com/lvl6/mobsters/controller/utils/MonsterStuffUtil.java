@@ -4,14 +4,12 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.UUID;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+//import org.slf4j.Logger;
+//import org.slf4j.LoggerFactory;
 
 import com.lvl6.mobsters.noneventprotos.MonsterStuffProto.FullUserMonsterProto;
 import com.lvl6.mobsters.noneventprotos.MonsterStuffProto.MinimumUserMonsterSellProto;
@@ -23,9 +21,9 @@ import com.lvl6.mobsters.po.nonstaticdata.MonsterForUser;
 import com.lvl6.mobsters.po.nonstaticdata.MonsterHealingForUser;
 
 //utility class that messes with protos
-public class MonsterStuffUtils {
+public class MonsterStuffUtil {
 	
-	private static Logger log = LoggerFactory.getLogger(new Object() { }.getClass().getEnclosingClass());
+//	private static Logger log = LoggerFactory.getLogger(new Object() { }.getClass().getEnclosingClass());
 	
 	//extract and return the ids from the UserMonsterCurrentHealthProtos, also
 	//return mapping of userMonsterIdToExpectedHealth
@@ -95,47 +93,6 @@ public class MonsterStuffUtils {
   	return returnMap;
   }
   
-  /*
-   * selected monsters (the second argument) might be modified
-   */
-  public void retainValidMonsters(Set<UUID> domain,  Map<UUID, ?> selectedMonsters,
-  		boolean keepThingsInDomain, boolean keepThingsNotInDomain) {
-  	Set<UUID> selectedIds = selectedMonsters.keySet();
-  	selectedIds = new HashSet<UUID>(selectedIds);
-  	
-  	for (UUID selectedId : selectedIds) {
-  		if (domain.contains(selectedId) && keepThingsInDomain) {
-  			continue;
-  		}
-  		if (!domain.contains(selectedId) && keepThingsNotInDomain) {
-  			continue;
-  		}
-  		//since selectedId isn't in the domain and want to keep things in domain
-  		//or is in the domain and want to keep things not in domain, remove it
-  		Object umhp = selectedMonsters.remove(selectedId);
-  		log.warn("Not retaining. object=" + umhp + "; keepThingsInDomain=" + keepThingsInDomain +
-  				"; keepThingsNotInDomain=" + keepThingsNotInDomain);
-  	}
-  }
-  
-  /*
-   * selected monsters (the second argument) might be modified
-   */
-  public void retainValidMonsterIds(Set<UUID> existing, List<UUID> ids) {
-//  	ids.add(123456789L);
-//  	log.info("existing=" + existing + "\t ids=" + ids);
-  	
-  	List<UUID> copyIds = new ArrayList<UUID>(ids);
-  	// remove the invalid ids from ids client sent 
-  	// (modifying argument so calling function doesn't have to do it)
-  	ids.retainAll(existing);
-  	
-  	if (copyIds.size() != ids.size()) {
-  		//client asked for invalid ids
-  		log.warn("client asked for some invalid ids. asked for ids=" + copyIds + 
-  				"\t existingIds=" + existing + "\t remainingIds after purge =" + ids);
-  	}
-  }
 
   //creates a new MonsterHealingForUser from a proto, or
   //updates existing MonsterHealingForUser
@@ -231,19 +188,6 @@ public class MonsterStuffUtils {
 	  return ids;
   }
   
-  //only the entries in the map that have their key in validIds will be kept  
-  public Map<UUID, Integer> getValidEntries(List<UUID> validIds, 
-		  Map<UUID, Integer> idsToValues) {
-
-	  Map<UUID, Integer> returnMap = new HashMap<UUID, Integer>();
-
-	  for(UUID id : validIds) {
-		  int value = idsToValues.get(id);
-		  returnMap.put(id, value);
-	  }
-	  return returnMap;
-  }
-
   public Map<UUID, Integer> getHealths(Collection<UUID> mfuIds, 
 		  Map<UUID, MonsterForUser> idsToUserMonsters) {
 	  Map<UUID, Integer> curHps = new HashMap<UUID, Integer>();

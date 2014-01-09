@@ -13,7 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.lvl6.mobsters.entitymanager.nonstaticdata.UserEntityManager;
-import com.lvl6.mobsters.po.nonstaticdata.MonsterForUser;
 import com.lvl6.mobsters.po.nonstaticdata.User;
 import com.lvl6.mobsters.properties.MobstersDbTables;
 import com.lvl6.mobsters.utils.QueryConstructionUtil;
@@ -140,6 +139,42 @@ public class UserServiceImpl implements UserService {
 		for (User u : uList) {
 			UUID uId = u.getId();
 			retVal.add(uId);
+		}
+		return retVal;
+	}
+	
+	@Override
+	public Map<UUID, User> getUserIdsToUsersForIds(Collection<UUID> uIdList) {
+		//construct the search parameters
+		Map<String, Object> equalityConditions = null;
+		String equalityCondDelim = getQueryConstructionUtil().getAnd();
+
+		Map<String, Object> greaterThanConditions = null;
+		String greaterThanCondDelim = getQueryConstructionUtil().getAnd();
+
+		Map<String, Collection<?>> inConditions = new HashMap<String, Collection<?>>();
+		inConditions.put(MobstersDbTables.USER__ID, uIdList);
+		String inCondDelim = getQueryConstructionUtil().getAnd();
+
+		Map<String, Collection<?>> isConditions = null;
+		String isCondDelim = null;
+		String delimAcrossConditions = getQueryConstructionUtil().getAnd();
+
+		//query db, "values" is not used 
+		//(its purpose is to hold the values that were supposed to be put
+		// into a prepared statement)
+		List<Object> values = new ArrayList<Object>();
+		String cqlQuery = getQueryConstructionUtil().selectRowsQueryAllConditions(
+				TABLE_NAME, equalityConditions, equalityCondDelim, greaterThanConditions,
+				greaterThanCondDelim, isConditions, isCondDelim, inConditions,
+				inCondDelim, delimAcrossConditions, values);
+		List<User> uList = getUserEntityManager().get().find(cqlQuery);
+		
+		//mapify the list of users with the key being the userId
+		Map<UUID, User> retVal = new HashMap<UUID, User>();
+		for (User u : uList) {
+			UUID uId = u.getId();
+			retVal.put(uId, u);
 		}
 		return retVal;
 	}

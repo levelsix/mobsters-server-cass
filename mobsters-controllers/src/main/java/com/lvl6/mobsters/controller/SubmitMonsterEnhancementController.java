@@ -14,8 +14,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.lvl6.mobsters.controller.utils.CreateEventProtoUtils;
-import com.lvl6.mobsters.controller.utils.MonsterStuffUtils;
+import com.lvl6.mobsters.controller.utils.CreateEventProtoUtil;
+import com.lvl6.mobsters.controller.utils.MiscUtil;
+import com.lvl6.mobsters.controller.utils.MonsterStuffUtil;
 import com.lvl6.mobsters.eventprotos.EventMonsterProto.SubmitMonsterEnhancementRequestProto;
 import com.lvl6.mobsters.eventprotos.EventMonsterProto.SubmitMonsterEnhancementResponseProto;
 import com.lvl6.mobsters.eventprotos.EventMonsterProto.SubmitMonsterEnhancementResponseProto.Builder;
@@ -52,7 +53,7 @@ public class SubmitMonsterEnhancementController extends EventController {
 	protected UserService userService;
 	
 	@Autowired
-	protected MonsterStuffUtils monsterStuffUtils;
+	protected MonsterStuffUtil monsterStuffUtil;
 
 	@Autowired
 	protected MonsterEnhancingForUserService monsterEnhancingForUserService;
@@ -67,13 +68,16 @@ public class SubmitMonsterEnhancementController extends EventController {
 	protected UserCurrencyHistoryService userCurrencyHistoryService;
 	
 	@Autowired
-	protected CreateEventProtoUtils createEventProtoUtils;
+	protected CreateEventProtoUtil createEventProtoUtil;
 
 	@Autowired
 	protected QueryConstructionUtil queryConstructionUtil;
 	
 	@Autowired
 	protected MonsterEnhancingHistoryService monsterEnhancingHistoryService;
+	
+	@Autowired
+	protected MiscUtil miscUtil;
 	
 	@Override
 	public RequestEvent createRequestEvent() {
@@ -106,11 +110,11 @@ public class SubmitMonsterEnhancementController extends EventController {
 		//uuid's are not strings, need to convert from string to uuid, vice versa
 		UUID userId = UUID.fromString(userIdString);
 		
-		Map<UUID, UserEnhancementItemProto> deleteMap = getMonsterStuffUtils().
+		Map<UUID, UserEnhancementItemProto> deleteMap = getMonsterStuffUtil().
 				convertIntoUserMonsterIdToUeipProtoMap(ueipDelete);
-		Map<UUID, UserEnhancementItemProto> updateMap = getMonsterStuffUtils().
+		Map<UUID, UserEnhancementItemProto> updateMap = getMonsterStuffUtil().
 				convertIntoUserMonsterIdToUeipProtoMap(ueipUpdated);
-		Map<UUID, UserEnhancementItemProto> newMap = getMonsterStuffUtils().
+		Map<UUID, UserEnhancementItemProto> newMap = getMonsterStuffUtil().
 				convertIntoUserMonsterIdToUeipProtoMap(ueipNew);
 		
 		//response to send back to client
@@ -161,7 +165,7 @@ public class SubmitMonsterEnhancementController extends EventController {
 			
 			if (successful) {
 				//since modified user's resources need to send update client user event
-				UpdateClientUserResponseEvent resEventUpdate = getCreateEventProtoUtils()
+				UpdateClientUserResponseEvent resEventUpdate = getCreateEventProtoUtil()
 						.createUpdateClientUserResponseEvent(aUser);
 				resEventUpdate.setTag(event.getTag());
 				getEventWriter().handleEvent(resEventUpdate);
@@ -224,26 +228,26 @@ public class SubmitMonsterEnhancementController extends EventController {
 		boolean keepThingsNotInDomain = false;
 		Set<UUID> alreadyEnhancingIds = alreadyEnhancing.keySet();
 		if (null != deleteMap && !deleteMap.isEmpty()) {
-			getMonsterStuffUtils().retainValidMonsters(alreadyEnhancingIds, deleteMap,
+			getMiscUtil().retainValidMapEntries(alreadyEnhancingIds, deleteMap,
 					keepThingsInDomain, keepThingsNotInDomain);
 		}
 
 		if (null != updateMap && !updateMap.isEmpty()) {
-			getMonsterStuffUtils().retainValidMonsters(alreadyEnhancingIds, updateMap,
+			getMiscUtil().retainValidMapEntries(alreadyEnhancingIds, updateMap,
 					keepThingsInDomain, keepThingsNotInDomain);
 		}
 
 		if (null != newMap && !newMap.isEmpty()) {
 			//retain only the userMonsters in newMap that are in the db
 			Set<UUID> existingIds = existingUserMonsters.keySet();
-			getMonsterStuffUtils().retainValidMonsters(existingIds, newMap,
+			getMiscUtil().retainValidMapEntries(existingIds, newMap,
 					keepThingsInDomain, keepThingsNotInDomain);
 
 			//retain only the userMonsters in newMap that are not in healing
 			keepThingsInDomain = false;
 			keepThingsNotInDomain = true;
 			Set<UUID> alreadyHealingIds = alreadyHealing.keySet();
-			getMonsterStuffUtils().retainValidMonsters(alreadyHealingIds, newMap,
+			getMiscUtil().retainValidMapEntries(alreadyHealingIds, newMap,
 					keepThingsInDomain, keepThingsNotInDomain);
 		}
 
@@ -323,10 +327,10 @@ public class SubmitMonsterEnhancementController extends EventController {
 			}
 			
 			//convert protos to java counterparts
-			List<MonsterEnhancingForUser> updateMap = getMonsterStuffUtils()
+			List<MonsterEnhancingForUser> updateMap = getMonsterStuffUtil()
 					.convertToMonsterEnhancingForUser(uId, protoUpdateMap);
 			log.info("updateMap=" + updateMap);
-			List<MonsterEnhancingForUser> newMap = getMonsterStuffUtils()
+			List<MonsterEnhancingForUser> newMap = getMonsterStuffUtil()
 					.convertToMonsterEnhancingForUser(uId, protoNewMap);
 			log.info("newMap=" + newMap);
 
@@ -428,14 +432,6 @@ public class SubmitMonsterEnhancementController extends EventController {
 		this.userService = userService;
 	}
 
-	public MonsterStuffUtils getMonsterStuffUtils() {
-		return monsterStuffUtils;
-	}
-
-	public void setMonsterStuffUtils(MonsterStuffUtils monsterStuffUtils) {
-		this.monsterStuffUtils = monsterStuffUtils;
-	}
-
 	public MonsterEnhancingForUserService getMonsterEnhancingForUserService() {
 		return monsterEnhancingForUserService;
 	}
@@ -471,14 +467,6 @@ public class SubmitMonsterEnhancementController extends EventController {
 		this.userCurrencyHistoryService = userCurrencyHistoryService;
 	}
 
-	public CreateEventProtoUtils getCreateEventProtoUtils() {
-		return createEventProtoUtils;
-	}
-
-	public void setCreateEventProtoUtils(CreateEventProtoUtils createEventProtoUtils) {
-		this.createEventProtoUtils = createEventProtoUtils;
-	}
-
 	public QueryConstructionUtil getQueryConstructionUtil() {
 		return queryConstructionUtil;
 	}
@@ -495,4 +483,29 @@ public class SubmitMonsterEnhancementController extends EventController {
 			MonsterEnhancingHistoryService monsterEnhancingHistoryService) {
 		this.monsterEnhancingHistoryService = monsterEnhancingHistoryService;
 	}
+
+	public MonsterStuffUtil getMonsterStuffUtil() {
+		return monsterStuffUtil;
+	}
+
+	public void setMonsterStuffUtil(MonsterStuffUtil monsterStuffUtil) {
+		this.monsterStuffUtil = monsterStuffUtil;
+	}
+
+	public CreateEventProtoUtil getCreateEventProtoUtil() {
+		return createEventProtoUtil;
+	}
+
+	public void setCreateEventProtoUtil(CreateEventProtoUtil createEventProtoUtil) {
+		this.createEventProtoUtil = createEventProtoUtil;
+	}
+
+	public MiscUtil getMiscUtil() {
+		return miscUtil;
+	}
+
+	public void setMiscUtil(MiscUtil miscUtil) {
+		this.miscUtil = miscUtil;
+	}
+
 }

@@ -11,7 +11,7 @@ import com.lvl6.mobsters.po.staticdata.StructureResidence;
 
 
 //utility class that messes with protos
-public class StructureStuffUtils {
+public class StructureStuffUtil {
 	
 	@Autowired
 	protected StructureRetrieveUtils structureRetrieveUtils;

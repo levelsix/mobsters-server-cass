@@ -167,6 +167,81 @@ public class UserFacebookInviteForSlotServiceImpl implements UserFacebookInviteF
 		return newFacebookIdsToInvite;
 	}
 
+	//returns map of user-id-of-inviter to invite id
+	@Override
+	public Map<UUID, UUID> getInviterUserIdsToInviteIds(List<UUID> inviteIds,
+			Map<UUID, UserFacebookInviteForSlot> idsToInvites) {
+		Map<UUID, UUID> inviterUserIdsToInviteIds = new HashMap<UUID, UUID>();
+
+		for (UUID inviteId : inviteIds) {
+			UserFacebookInviteForSlot invite = idsToInvites.get(inviteId);
+			UUID inviterUserId = invite.getInviterUserId();
+			//what if this guy is used more than once? meh, fuck it
+			inviterUserIdsToInviteIds.put(inviterUserId, inviteId);
+		}
+
+		return inviterUserIdsToInviteIds;
+	}
+	
+	//given collection of UserFacebookInviteForSlot, returns collection of inviter user ids
+	@Override
+	public List<UUID> getInviterUserIds(Collection<UserFacebookInviteForSlot> invites) {
+		List<UUID> inviterUserIdList = new ArrayList<UUID>();
+		
+		for (UserFacebookInviteForSlot invite : invites) {
+			UUID inviterUserId = invite.getInviterUserId();
+			inviterUserIdList.add(inviterUserId);
+		}
+		return inviterUserIdList;
+	}
+	
+	//recordedInviterIds are the inviterIds in the invite table that belong to invites
+	//accepted by a user
+	@Override
+	public void retainInvitesFromUnusedInviters(Set<UUID> recordedInviterIds,
+			Map<UUID, UUID> acceptedInviterIdsToInviteIds, 
+			List<UUID> acceptedInviteIds, List<UUID> rejectedInviteIds) {
+		//if any of the inviter ids in acceptedInviterIdsToInviteIds are in
+		//recordedInviterIds, delete inviteId from the
+		//acceptedInviteIds list and put the inviteId into the rejectedInviteIds list
+
+		//keep track of the inviterIds that this user has previously already accepted  
+		Map<UUID, UUID> invalidInviteIdsToUserIds = new HashMap<UUID, UUID>();
+		for (UUID potentialNewInviterId : acceptedInviterIdsToInviteIds.keySet()) {
+			if (recordedInviterIds.contains(potentialNewInviterId)) {
+				//userA trying to accept an invite from a person userA has already 
+				//accepted an invite from
+				UUID inviteId = acceptedInviterIdsToInviteIds.get(potentialNewInviterId);
+
+				invalidInviteIdsToUserIds.put(inviteId, potentialNewInviterId);
+			}
+		}
+
+		Set<UUID> invalidInviteIds = invalidInviteIdsToUserIds.keySet();
+		if (invalidInviteIds.isEmpty()) {
+			return;
+		}
+		log.warn("user tried accepting invites from users he has already accepted." +
+				"invalidInviteIdsToUserIds=" + invalidInviteIdsToUserIds);
+
+		log.warn("before: rejectedInviteIds=" + acceptedInviteIds);
+		log.warn("before: acceptedInviteIds=" + acceptedInviteIds);
+		//go through acceptedInviteIds and remove invalid inviteIds
+		int lastIndex = acceptedInviteIds.size() - 1;
+		for (int index = lastIndex; index >= 0; index--) {
+			UUID acceptedInviteId = acceptedInviteIds.get(index);
+
+			if (invalidInviteIds.contains(acceptedInviteId)) {
+				acceptedInviteIds.remove(index);
+
+				//after removing it put it into rejectedInviteIds
+				rejectedInviteIds.add(acceptedInviteId);
+			}
+		}
+		log.warn("after: acceptedInviteIds=" + acceptedInviteIds);
+		log.warn("after: rejectedInviteIds=" + rejectedInviteIds);
+	}
+	
 	
 	//RETRIEVING STUFF****************************************************************
 //	@Override
@@ -434,6 +509,27 @@ public class UserFacebookInviteForSlotServiceImpl implements UserFacebookInviteF
 		saveUserFacebookInvites(redeemedInvites);
 	}
 	
+	//for each accepted invite id, get corresponding invite and update its
+	//accepted time
+	@Override
+	public void updateUserFacebookInviteForSlotAcceptTime(List<UUID> acceptedInviteIds,
+			Map<UUID, UserFacebookInviteForSlot> idsToInvites, Date acceptTime) {
+		
+		if (null == acceptedInviteIds || acceptedInviteIds.isEmpty()) {
+			return;
+		}
+	
+		List<UserFacebookInviteForSlot> updateMe = new ArrayList<UserFacebookInviteForSlot>();
+		
+		for (UUID inviteId : acceptedInviteIds) {
+			UserFacebookInviteForSlot accepted = idsToInvites.get(inviteId);
+			accepted.setTimeAccepted(acceptTime);
+			
+			updateMe.add(accepted);
+		}
+		
+		saveUserFacebookInvites(updateMe);
+	}
 	
 	//DELETING STUFF****************************************************************
 	@Override

@@ -9,7 +9,7 @@ import com.lvl6.mobsters.eventprotos.EventMonsterProto.InviteFbFriendsForSlotsRe
 
 
 //utility class that messes with protos
-public class FacebookStuffUtils {
+public class FacebookStuffUtil {
 	
 	public List<String> demultiplexFacebookInviteStructure(List<FacebookInviteStructure> invites,
 	  		Map<String, UUID> fbIdsToUserStructIds, Map<String, Integer> fbIdsToUserStructFbLvl) {

@@ -2,6 +2,7 @@ package com.lvl6.mobsters.services.user;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import com.lvl6.mobsters.entitymanager.nonstaticdata.UserEntityManager;
@@ -20,6 +21,8 @@ public interface UserService {
 	public abstract List<User> getUsersByFbIds(Collection<String> fbIds);
 	
 	public abstract List<UUID> getUserIdsForFacebookIds(Collection<String> fbIds);
+	
+	public abstract Map<UUID, User> getUserIdsToUsersForIds(Collection<UUID> uIdList);
 	
 	//INSERT STUFF****************************************************************
 	

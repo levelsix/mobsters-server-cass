@@ -28,6 +28,17 @@ public interface UserFacebookInviteForSlotService {
 	public abstract List<String> getNewInvites(List<String> fbIdsOfFriends,
 			Map<UUID, UserFacebookInviteForSlot> idsToInvites);
 	
+	//returns map of user-id-of-inviter to invite id
+	public abstract Map<UUID, UUID> getInviterUserIdsToInviteIds(List<UUID> inviteIds,
+	  		Map<UUID, UserFacebookInviteForSlot> idsToInvites);
+	
+	//given collection of UserFacebookInviteForSlot, returns collection of inviter user ids
+	public abstract List<UUID> getInviterUserIds(Collection<UserFacebookInviteForSlot> invites);
+	
+	public void retainInvitesFromUnusedInviters(Set<UUID> recordedInviterIds,
+			Map<UUID, UUID> acceptedInviterIdsToInviteIds, 
+			List<UUID> acceptedInviteIds, List<UUID> rejectedInviteIds);
+	
 	//RETRIEVING STUFF****************************************************************
 //	public abstract UserFacebookInviteForSlot getInviteForId(UUID inviteId);
 	
@@ -65,6 +76,8 @@ public interface UserFacebookInviteForSlotService {
 	public abstract void updateUserFacebookInviteForSlotRedeemTime(Date redeemTime,
 			List<UserFacebookInviteForSlot> redeemedInvites);
 	
+	public abstract void updateUserFacebookInviteForSlotAcceptTime(List<UUID> acceptedInviteIds,
+			Map<UUID, UserFacebookInviteForSlot> idsToInvites, Date acceptTime);
 	
 	//DELETING STUFF****************************************************************
 	public abstract void deleteUserFacebookInvite(UUID userFacebookInviteUuid);

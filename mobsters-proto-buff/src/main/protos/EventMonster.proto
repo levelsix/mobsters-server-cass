@@ -285,6 +285,8 @@ message AcceptAndRejectFbInviteForSlotsResponseProto {
 	optional MinimumUserProtoWithFacebookId sender = 1;
 	optional AcceptAndRejectFbInviteForSlotsStatus status = 2;
 	
+	repeated UserFacebookInviteForSlotProto acceptedInvites = 3;
+	
 	enum AcceptAndRejectFbInviteForSlotsStatus {
 		SUCCESS = 1;
 		FAIL_EXPIRED = 2; //3 PEOPLE ALREADY ACCEPTED INVITE

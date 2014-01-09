@@ -6,7 +6,7 @@ import com.lvl6.mobsters.po.nonstaticdata.ExpansionPurchaseForUser;
 import com.lvl6.mobsters.po.nonstaticdata.User;
 
 
-public interface CreateEventProtoUtils {
+public interface CreateEventProtoUtil {
 	
 	//CITY PROTO****************************************************************
 	public abstract UserCityExpansionDataProto createUserCityExpansionDataProtoFromUserExpansion(
@@ -17,8 +17,8 @@ public interface CreateEventProtoUtils {
 	
 	
 	//for the setter dependency injection or something****************************************************************
-	public abstract CreateNoneventProtoUtils getCreateNoneventProtoUtils();
+	public abstract CreateNoneventProtoUtil getCreateNoneventProtoUtils();
 	
 	public abstract void setCreateNoneventProtoUtils(
-			CreateNoneventProtoUtils createNoneventProtoUtils);
+			CreateNoneventProtoUtil createNoneventProtoUtil);
 }

@@ -15,8 +15,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.lvl6.mobsters.controller.utils.CreateEventProtoUtils;
-import com.lvl6.mobsters.controller.utils.MonsterStuffUtils;
+import com.lvl6.mobsters.controller.utils.CreateEventProtoUtil;
+import com.lvl6.mobsters.controller.utils.MiscUtil;
+import com.lvl6.mobsters.controller.utils.MonsterStuffUtil;
 import com.lvl6.mobsters.eventprotos.EventMonsterProto.HealMonsterRequestProto;
 import com.lvl6.mobsters.eventprotos.EventMonsterProto.HealMonsterResponseProto;
 import com.lvl6.mobsters.eventprotos.EventMonsterProto.HealMonsterResponseProto.Builder;
@@ -51,7 +52,7 @@ public class HealMonsterController extends EventController {
 	private static Logger log = LoggerFactory.getLogger(new Object() { }.getClass().getEnclosingClass());
 
 	@Autowired
-	protected MonsterStuffUtils monsterStuffUtils;
+	protected MonsterStuffUtil monsterStuffUtil;
 	
 	@Autowired
 	protected UserService userService;
@@ -72,10 +73,13 @@ public class HealMonsterController extends EventController {
 	protected UserCurrencyHistoryService userCurrencyHistoryService;
 	
 	@Autowired
-	protected CreateEventProtoUtils createEventProtoUtils;
+	protected CreateEventProtoUtil createEventProtoUtil;
 	
 	@Autowired
 	protected MonsterHealingHistoryService monsterHealingHistoryService;
+	
+	@Autowired
+	protected MiscUtil miscUtil;
 	
 	@Override
 	public RequestEvent createRequestEvent() {
@@ -112,20 +116,20 @@ public class HealMonsterController extends EventController {
 		boolean isSpeedup = reqProto.getIsSpeedup();
 		int gemsForSpeedup = reqProto.getGemsForSpeedup();
 		List<UserMonsterCurrentHealthProto> umchpList = reqProto.getUmchpList();
-		//will be populated by MonsterStuffUtils.getUserMonsterIds()
+		//will be populated by MonsterStuffUtil.getUserMonsterIds()
 		Map<UUID, Integer> userMonsterIdToExpectedHealth = new HashMap<UUID, Integer>();
 		//converts protos to a map and also returns a list of user monster ids
-		List<UUID> userMonsterIds = getMonsterStuffUtils()
+		List<UUID> userMonsterIds = getMonsterStuffUtil()
 				.getUserMonsterIds(umchpList, userMonsterIdToExpectedHealth);
 
 	    int totalGemCost = reqProto.getTotalGemCost();
 	    Date clientDate = new Date();
 	    
-	    Map<UUID, UserMonsterHealingProto> deleteMap = getMonsterStuffUtils()
+	    Map<UUID, UserMonsterHealingProto> deleteMap = getMonsterStuffUtil()
 	    		.convertIntoUserMonsterIdToUmhpProtoMap(umhDelete);
-	    Map<UUID, UserMonsterHealingProto> updateMap = getMonsterStuffUtils()
+	    Map<UUID, UserMonsterHealingProto> updateMap = getMonsterStuffUtil()
 	    		.convertIntoUserMonsterIdToUmhpProtoMap(umhUpdate);
-	    Map<UUID, UserMonsterHealingProto> newMap = getMonsterStuffUtils()
+	    Map<UUID, UserMonsterHealingProto> newMap = getMonsterStuffUtil()
 	    		.convertIntoUserMonsterIdToUmhpProtoMap(umhNew); 
 	    
 		//uuid's are not strings, need to convert from string to uuid, vice versa
@@ -175,7 +179,7 @@ public class HealMonsterController extends EventController {
 			if (validRequest) {
 				//modify map(userMonsterIds -> expected healths) to contain only valid
 				//mappings (valid mappings determined by the list "userMonsterIds")
-				userMonsterIdToExpectedHealth = getMonsterStuffUtils().getValidEntries(
+				userMonsterIdToExpectedHealth = getMiscUtil().getValidMapEntries(
 						userMonsterIds, userMonsterIdToExpectedHealth);
 				successful = writeChangesToDb(aUser, userId, cashChange, totalGemCost,
 						clientDate, alreadyHealing, deleteMap, updateMap, newMap,
@@ -194,7 +198,7 @@ public class HealMonsterController extends EventController {
 
 			if (successful) {
 				//since modified user's resources need to send update client user event
-				UpdateClientUserResponseEvent resEventUpdate = getCreateEventProtoUtils()
+				UpdateClientUserResponseEvent resEventUpdate = getCreateEventProtoUtil()
 						.createUpdateClientUserResponseEvent(aUser);
 				resEventUpdate.setTag(event.getTag());
 				getEventWriter().handleEvent(resEventUpdate);
@@ -285,21 +289,21 @@ public class HealMonsterController extends EventController {
 		boolean keepThingsInDomain = true;
 		boolean keepThingsNotInDomain = false;
 		Set<UUID> alreadyHealingIds = alreadyHealing.keySet();
-		getMonsterStuffUtils().retainValidMonsters(alreadyHealingIds, deleteMap,
+		getMiscUtil().retainValidMapEntries(alreadyHealingIds, deleteMap,
 				keepThingsInDomain, keepThingsNotInDomain);
-		getMonsterStuffUtils().retainValidMonsters(alreadyHealingIds, updateMap,
+		getMiscUtil().retainValidMapEntries(alreadyHealingIds, updateMap,
 				keepThingsInDomain, keepThingsNotInDomain);
 
 		//retain only the userMonsters, the client sent, that are in the db
 		Set<UUID> existingIds = existingUserMonsters.keySet();
-		getMonsterStuffUtils().retainValidMonsters(existingIds, newMap,
+		getMiscUtil().retainValidMapEntries(existingIds, newMap,
 				keepThingsInDomain, keepThingsNotInDomain);
 
 		//retain only the userMonsters, the client sent, that are not in enhancing
 		keepThingsInDomain = false;
 		keepThingsNotInDomain = true;
 		Set<UUID> alreadyEnhancingIds = alreadyEnhancing.keySet();
-		getMonsterStuffUtils().retainValidMonsters(alreadyEnhancingIds, newMap,
+		getMiscUtil().retainValidMapEntries(alreadyEnhancingIds, newMap,
 				keepThingsInDomain, keepThingsNotInDomain);
 
 		
@@ -308,7 +312,7 @@ public class HealMonsterController extends EventController {
 		if (!healedUp.isEmpty()) {
 			//FROM HealMonsterWaitTimeComplete CONTROLLER
 			//modify healedUp to contain only those that exist
-			getMonsterStuffUtils().retainValidMonsterIds(alreadyHealingIds, healedUp);
+			getMiscUtil().retainValidListEntries(alreadyHealingIds, healedUp);
 		}
 		
 		resBuilder.setStatus(HealMonsterStatus.SUCCESS);
@@ -354,9 +358,9 @@ public class HealMonsterController extends EventController {
 			}
 
 			//convert protos to java counterparts
-			List<MonsterHealingForUser> updateList = getMonsterStuffUtils()
+			List<MonsterHealingForUser> updateList = getMonsterStuffUtil()
 					.convertToMonsterHealingForUser(uId, alreadyHealing, protoUpdateMap);
-			List<MonsterHealingForUser> newList = getMonsterStuffUtils()
+			List<MonsterHealingForUser> newList = getMonsterStuffUtil()
 					.convertToMonsterHealingForUser(uId, alreadyHealing, protoNewMap);
 
 			List<MonsterHealingForUser> updateAndNew = new ArrayList<MonsterHealingForUser>();
@@ -491,7 +495,7 @@ public class HealMonsterController extends EventController {
 			//for now (12/28/13) for the monsters that are deleted don't record them
 			boolean healingCancelled = true;
 			
-			Map<UUID, Integer> prevHps = getMonsterStuffUtils()
+			Map<UUID, Integer> prevHps = getMonsterStuffUtil()
 					.getHealths(deletedMfuIds, idsToUserMonsters);
 			
 			getMonsterHealingHistoryService().insertHealingHistory(uId, now,
@@ -499,7 +503,7 @@ public class HealMonsterController extends EventController {
 					healingCancelled);
 			
 			//logic from HealMonsterWaitTimeCompleteController
-			prevHps = getMonsterStuffUtils().getHealths(finishedMfuIds, idsToUserMonsters);
+			prevHps = getMonsterStuffUtil().getHealths(finishedMfuIds, idsToUserMonsters);
 			
 			//don't know why HealMonsterWaitTimeCompleteController has cancelled=true
 			healingCancelled = false;
@@ -510,14 +514,6 @@ public class HealMonsterController extends EventController {
 		} catch (Exception e) {
 			log.error("unexpected error: problem with saving history to db.", e);
 		}
-	}
-
-	public MonsterStuffUtils getMonsterStuffUtils() {
-		return monsterStuffUtils;
-	}
-
-	public void setMonsterStuffUtils(MonsterStuffUtils monsterStuffUtils) {
-		this.monsterStuffUtils = monsterStuffUtils;
 	}
 
 	public UserService getUserService() {
@@ -571,14 +567,6 @@ public class HealMonsterController extends EventController {
 		this.userCurrencyHistoryService = userCurrencyHistoryService;
 	}
 
-	public CreateEventProtoUtils getCreateEventProtoUtils() {
-		return createEventProtoUtils;
-	}
-
-	public void setCreateEventProtoUtils(CreateEventProtoUtils createEventProtoUtils) {
-		this.createEventProtoUtils = createEventProtoUtils;
-	}
-
 	public MonsterHealingHistoryService getMonsterHealingHistoryService() {
 		return monsterHealingHistoryService;
 	}
@@ -586,6 +574,30 @@ public class HealMonsterController extends EventController {
 	public void setMonsterHealingHistoryService(
 			MonsterHealingHistoryService monsterHealingHistoryService) {
 		this.monsterHealingHistoryService = monsterHealingHistoryService;
+	}
+
+	public MonsterStuffUtil getMonsterStuffUtil() {
+		return monsterStuffUtil;
+	}
+
+	public void setMonsterStuffUtil(MonsterStuffUtil monsterStuffUtil) {
+		this.monsterStuffUtil = monsterStuffUtil;
+	}
+
+	public CreateEventProtoUtil getCreateEventProtoUtil() {
+		return createEventProtoUtil;
+	}
+
+	public void setCreateEventProtoUtil(CreateEventProtoUtil createEventProtoUtil) {
+		this.createEventProtoUtil = createEventProtoUtil;
+	}
+
+	public MiscUtil getMiscUtil() {
+		return miscUtil;
+	}
+
+	public void setMiscUtil(MiscUtil miscUtil) {
+		this.miscUtil = miscUtil;
 	}
 	
 }

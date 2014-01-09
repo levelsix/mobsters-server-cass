@@ -4,9 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.StringTokenizer;
-import java.util.UUID;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -273,54 +271,6 @@ public class QueryConstructionUtil {
 			returnValue.add(Integer.parseInt(st.nextToken()));
 		}
 		return returnValue;
-	}
-
-	public List<UUID> createUUIDListFromStrings(List<String> strings) {
-		if (strings == null) return null;
-
-		ArrayList<UUID> uuids = new ArrayList<UUID>();
-		for (String string : strings) {
-			uuids.add(UUID.fromString(string));
-		}
-		return uuids;
-	}
-
-	public String censorInput(String content, Set<String> blackList) {
-		StringBuilder toReturn = new StringBuilder(content.length());
-
-		String[] words = content.split(" ");
-		String space = " "; //split by space, need to add them back in
-		String w = "";
-
-		for(int i = 0; i < words.length; i++) {
-			w = words[i];
-
-			//if at the last word, don't add a space after "censoring" it
-			if ((words.length - 1) == i) {
-				space = "";
-			}
-			//get rid of all punctuation
-			String wWithNoPunctuation = w.replaceAll("\\p{Punct}", "");
-
-			//the profanity table only holds lower case one word profanities
-			if(blackList.contains(wWithNoPunctuation.toLowerCase())) {
-				toReturn.append(asteriskify(w) + space);
-			} else {
-				toReturn.append(w + space);
-			}
-		}
-
-		return toReturn.toString();
-	}
-	
-	public String asteriskify(String wordToAskerify) {
-		int len = wordToAskerify.length();
-		StringBuilder sb = new StringBuilder();
-
-		for(int i = 0; i < len; i++) {
-			sb.append("*");
-		}
-		return sb.toString();
 	}
 
 

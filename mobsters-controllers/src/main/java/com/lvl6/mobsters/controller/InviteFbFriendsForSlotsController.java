@@ -12,8 +12,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.lvl6.mobsters.controller.utils.CreateNoneventProtoUtils;
-import com.lvl6.mobsters.controller.utils.FacebookStuffUtils;
+import com.lvl6.mobsters.controller.utils.CreateNoneventProtoUtil;
+import com.lvl6.mobsters.controller.utils.FacebookStuffUtil;
 import com.lvl6.mobsters.eventprotos.EventMonsterProto.InviteFbFriendsForSlotsRequestProto;
 import com.lvl6.mobsters.eventprotos.EventMonsterProto.InviteFbFriendsForSlotsRequestProto.FacebookInviteStructure;
 import com.lvl6.mobsters.eventprotos.EventMonsterProto.InviteFbFriendsForSlotsResponseProto;
@@ -40,7 +40,7 @@ public class InviteFbFriendsForSlotsController extends EventController {
 	
 	
 	@Autowired
-	protected FacebookStuffUtils facebookStuffUtils;
+	protected FacebookStuffUtil facebookStuffUtil;
 	
 	@Autowired
 	protected UserService userService;
@@ -49,7 +49,7 @@ public class InviteFbFriendsForSlotsController extends EventController {
 	protected UserFacebookInviteForSlotService userFacebookInviteForSlotService;
 	
 	@Autowired
-	protected CreateNoneventProtoUtils createNoneventProtoUtils;
+	protected CreateNoneventProtoUtil createNoneventProtoUtil;
 	
 	@Override
 	public RequestEvent createRequestEvent() {
@@ -214,12 +214,12 @@ public class InviteFbFriendsForSlotsController extends EventController {
 	}
 
 
-	public FacebookStuffUtils getFacebookStuffUtils() {
-		return facebookStuffUtils;
+	public FacebookStuffUtil getFacebookStuffUtils() {
+		return facebookStuffUtil;
 	}
 
-	public void setFacebookStuffUtils(FacebookStuffUtils facebookStuffUtils) {
-		this.facebookStuffUtils = facebookStuffUtils;
+	public void setFacebookStuffUtils(FacebookStuffUtil facebookStuffUtil) {
+		this.facebookStuffUtil = facebookStuffUtil;
 	}
 
 	public UserService getUserService() {
@@ -239,13 +239,13 @@ public class InviteFbFriendsForSlotsController extends EventController {
 		this.userFacebookInviteForSlotService = userFacebookInviteForSlotService;
 	}
 
-	public CreateNoneventProtoUtils getCreateNoneventProtoUtils() {
-		return createNoneventProtoUtils;
+	public CreateNoneventProtoUtil getCreateNoneventProtoUtils() {
+		return createNoneventProtoUtil;
 	}
 
 	public void setCreateNoneventProtoUtils(
-			CreateNoneventProtoUtils createNoneventProtoUtils) {
-		this.createNoneventProtoUtils = createNoneventProtoUtils;
+			CreateNoneventProtoUtil createNoneventProtoUtil) {
+		this.createNoneventProtoUtil = createNoneventProtoUtil;
 	}
 
 }

@@ -12,7 +12,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.lvl6.mobsters.controller.utils.CreateNoneventProtoUtils;
+import com.lvl6.mobsters.controller.utils.CreateNoneventProtoUtil;
 import com.lvl6.mobsters.entitymanager.staticdata.utils.QuestRetrieveUtils;
 import com.lvl6.mobsters.eventprotos.EventQuestProto.QuestRedeemRequestProto;
 import com.lvl6.mobsters.eventprotos.EventQuestProto.QuestRedeemResponseProto;
@@ -53,7 +53,7 @@ public class QuestRedeemController extends EventController {
 	protected QuestForUserService questForUserService;
 	
 	@Autowired
-	protected CreateNoneventProtoUtils createNoneventProtoUtils;
+	protected CreateNoneventProtoUtil createNoneventProtoUtil;
 	
 	@Autowired
 	protected MonsterForUserService monsterForUserService;
@@ -297,13 +297,13 @@ public class QuestRedeemController extends EventController {
 		this.questForUserService = questForUserService;
 	}
 
-	public CreateNoneventProtoUtils getCreateNoneventProtoUtils() {
-		return createNoneventProtoUtils;
+	public CreateNoneventProtoUtil getCreateNoneventProtoUtils() {
+		return createNoneventProtoUtil;
 	}
 
 	public void setCreateNoneventProtoUtils(
-			CreateNoneventProtoUtils createNoneventProtoUtils) {
-		this.createNoneventProtoUtils = createNoneventProtoUtils;
+			CreateNoneventProtoUtil createNoneventProtoUtil) {
+		this.createNoneventProtoUtil = createNoneventProtoUtil;
 	}
 
 	public MonsterForUserService getMonsterForUserService() {

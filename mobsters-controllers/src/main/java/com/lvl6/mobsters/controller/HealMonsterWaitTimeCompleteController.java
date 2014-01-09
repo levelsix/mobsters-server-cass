@@ -14,8 +14,8 @@
 //import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.stereotype.Component;
 //
-//import com.lvl6.mobsters.controller.utils.CreateEventProtoUtils;
-//import com.lvl6.mobsters.controller.utils.MonsterStuffUtils;
+//import com.lvl6.mobsters.controller.utils.CreateEventProtoUtil;
+//import com.lvl6.mobsters.controller.utils.MonsterStuffUtil;
 //import com.lvl6.mobsters.eventprotos.EventMonsterProto.HealMonsterWaitTimeCompleteRequestProto;
 //import com.lvl6.mobsters.eventprotos.EventMonsterProto.HealMonsterWaitTimeCompleteResponseProto;
 //import com.lvl6.mobsters.eventprotos.EventMonsterProto.HealMonsterWaitTimeCompleteResponseProto.Builder;
@@ -45,7 +45,7 @@
 //	private static Logger log = LoggerFactory.getLogger(new Object() { }.getClass().getEnclosingClass());
 //
 //	@Autowired
-//	protected MonsterStuffUtils monsterStuffUtils;
+//	protected MonsterStuffUtil monsterStuffUtil;
 //
 //	@Autowired
 //	protected UserService userService;
@@ -60,7 +60,7 @@
 //	protected MonsterForUserService monsterForUserService;
 //
 //	@Autowired
-//	protected CreateEventProtoUtils createEventProtoUtils;
+//	protected CreateEventProtoUtil createEventProtoUtil;
 //	
 //	@Autowired
 //	protected MonsterHealingHistoryService monsterHealingHistoryService;
@@ -87,7 +87,7 @@
 //		String userIdString = senderProto.getUserUuid();
 //		boolean isSpeedUp = reqProto.getIsSpeedup();
 //		List<UserMonsterCurrentHealthProto> umchpList = reqProto.getUmchpList();
-//		//will be populated by MonsterStuffUtils.getUserMonsterIds()
+//		//will be populated by MonsterStuffUtil.getUserMonsterIds()
 //		Map<UUID, Integer> userMonsterIdToExpectedHealth = new HashMap<UUID, Integer>();
 //		//converts protos to a map and also returns a list of user monster ids
 //		List<UUID> userMonsterIds = getMonsterStuffUtils()
@@ -302,12 +302,12 @@
 //	}
 //	
 //
-//	public MonsterStuffUtils getMonsterStuffUtils() {
-//		return monsterStuffUtils;
+//	public MonsterStuffUtil getMonsterStuffUtils() {
+//		return monsterStuffUtil;
 //	}
 //
-//	public void setMonsterStuffUtils(MonsterStuffUtils monsterStuffUtils) {
-//		this.monsterStuffUtils = monsterStuffUtils;
+//	public void setMonsterStuffUtils(MonsterStuffUtil monsterStuffUtil) {
+//		this.monsterStuffUtils = monsterStuffUtil;
 //	}
 //
 //	public UserService getUserService() {
@@ -344,12 +344,12 @@
 //		this.monsterForUserService = monsterForUserService;
 //	}
 //
-//	public CreateEventProtoUtils getCreateEventProtoUtils() {
-//		return createEventProtoUtils;
+//	public CreateEventProtoUtil getCreateEventProtoUtils() {
+//		return createEventProtoUtil;
 //	}
 //
-//	public void setCreateEventProtoUtils(CreateEventProtoUtils createEventProtoUtils) {
-//		this.createEventProtoUtils = createEventProtoUtils;
+//	public void setCreateEventProtoUtils(CreateEventProtoUtil createEventProtoUtil) {
+//		this.createEventProtoUtils = createEventProtoUtil;
 //	}
 //
 //	public MonsterHealingHistoryService getMonsterHealingHistoryService() {

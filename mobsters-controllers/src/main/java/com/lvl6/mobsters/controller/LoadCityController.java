@@ -8,7 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.lvl6.mobsters.controller.utils.CreateNoneventProtoUtils;
+import com.lvl6.mobsters.controller.utils.CreateNoneventProtoUtil;
 import com.lvl6.mobsters.entitymanager.staticdata.utils.CityElementRetrieveUtils;
 import com.lvl6.mobsters.entitymanager.staticdata.utils.CityRetrieveUtils;
 import com.lvl6.mobsters.eventprotos.EventCityProto.LoadCityRequestProto;
@@ -43,7 +43,7 @@ public class LoadCityController extends EventController {
 	protected CityElementRetrieveUtils cityElementRetrieveUtils;
 	
 	@Autowired
-	protected CreateNoneventProtoUtils createNoneventProtoUtils;
+	protected CreateNoneventProtoUtil createNoneventProtoUtil;
 	
 	@Override
 	public RequestEvent createRequestEvent() {
@@ -160,13 +160,13 @@ public class LoadCityController extends EventController {
 		this.cityElementRetrieveUtils = cityElementRetrieveUtils;
 	}
 
-	public CreateNoneventProtoUtils getCreateNoneventProtoUtils() {
-		return createNoneventProtoUtils;
+	public CreateNoneventProtoUtil getCreateNoneventProtoUtils() {
+		return createNoneventProtoUtil;
 	}
 
 	public void setCreateNoneventProtoUtils(
-			CreateNoneventProtoUtils createNoneventProtoUtils) {
-		this.createNoneventProtoUtils = createNoneventProtoUtils;
+			CreateNoneventProtoUtil createNoneventProtoUtil) {
+		this.createNoneventProtoUtil = createNoneventProtoUtil;
 	}
 	
 }

@@ -26,7 +26,7 @@ import com.lvl6.mobsters.utils.CoordinatePair;
 import com.lvl6.mobsters.utils.Dialogue;
 
 
-public interface CreateNoneventProtoUtils {
+public interface CreateNoneventProtoUtil {
 	
 	//CITY PROTO****************************************************************
 	public abstract CityElementProto createCityElementProtoFromCityElement(CityElement ce);

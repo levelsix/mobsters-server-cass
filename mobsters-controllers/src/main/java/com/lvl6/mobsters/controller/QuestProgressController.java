@@ -10,8 +10,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.lvl6.mobsters.controller.utils.CreateNoneventProtoUtils;
-import com.lvl6.mobsters.controller.utils.MonsterStuffUtils;
+import com.lvl6.mobsters.controller.utils.CreateNoneventProtoUtil;
+import com.lvl6.mobsters.controller.utils.MonsterStuffUtil;
 import com.lvl6.mobsters.entitymanager.staticdata.utils.QuestRetrieveUtils;
 import com.lvl6.mobsters.eventprotos.EventQuestProto.QuestProgressRequestProto;
 import com.lvl6.mobsters.eventprotos.EventQuestProto.QuestProgressResponseProto;
@@ -47,13 +47,13 @@ public class QuestProgressController extends EventController {
 	protected QuestForUserService questForUserService;
 
 	@Autowired
-	protected CreateNoneventProtoUtils createNoneventProtoUtils;
+	protected CreateNoneventProtoUtil createNoneventProtoUtil;
 
 	@Autowired
 	protected MonsterForUserService monsterForUserService;
 
 	@Autowired
-	protected MonsterStuffUtils monsterStuffUtils;
+	protected MonsterStuffUtil monsterStuffUtil;
 
 	@Autowired
 	protected QueryConstructionUtil queryConstructionUtil;
@@ -270,13 +270,13 @@ public class QuestProgressController extends EventController {
 		this.questForUserService = questForUserService;
 	}
 
-	public CreateNoneventProtoUtils getCreateNoneventProtoUtils() {
-		return createNoneventProtoUtils;
+	public CreateNoneventProtoUtil getCreateNoneventProtoUtils() {
+		return createNoneventProtoUtil;
 	}
 
 	public void setCreateNoneventProtoUtils(
-			CreateNoneventProtoUtils createNoneventProtoUtils) {
-		this.createNoneventProtoUtils = createNoneventProtoUtils;
+			CreateNoneventProtoUtil createNoneventProtoUtil) {
+		this.createNoneventProtoUtil = createNoneventProtoUtil;
 	}
 
 	public MonsterForUserService getMonsterForUserService() {
@@ -287,12 +287,12 @@ public class QuestProgressController extends EventController {
 		this.monsterForUserService = monsterForUserService;
 	}
 
-	public MonsterStuffUtils getMonsterStuffUtils() {
-		return monsterStuffUtils;
+	public MonsterStuffUtil getMonsterStuffUtils() {
+		return monsterStuffUtil;
 	}
 
-	public void setMonsterStuffUtils(MonsterStuffUtils monsterStuffUtils) {
-		this.monsterStuffUtils = monsterStuffUtils;
+	public void setMonsterStuffUtils(MonsterStuffUtil monsterStuffUtil) {
+		this.monsterStuffUtil = monsterStuffUtil;
 	}
 
 	public QueryConstructionUtil getQueryConstructionUtil() {

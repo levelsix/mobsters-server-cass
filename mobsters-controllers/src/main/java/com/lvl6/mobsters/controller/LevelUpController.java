@@ -1,7 +1,7 @@
 package com.lvl6.mobsters.controller;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+//import org.slf4j.Logger;
+//import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import com.lvl6.mobsters.events.RequestEvent;
@@ -12,7 +12,7 @@ import com.lvl6.mobsters.events.request.LevelUpRequestEvent;
 @Component
 public class LevelUpController extends EventController {
 
-	private static Logger log = LoggerFactory.getLogger(new Object() { }.getClass().getEnclosingClass());
+//	private static Logger log = LoggerFactory.getLogger(new Object() { }.getClass().getEnclosingClass());
 
 	
 //	@Autowired

@@ -14,7 +14,7 @@ import com.lvl6.mobsters.po.nonstaticdata.ExpansionPurchaseForUser;
 import com.lvl6.mobsters.po.nonstaticdata.User;
 
 @Component
-public class CreateEventProtoUtilsImpl implements CreateEventProtoUtils {
+public class CreateEventProtoUtilImpl implements CreateEventProtoUtil {
 
 	/*//static initializing this map because didn't know how else to initialize
 	private static Map<Integer, ClassType> classTypeNumToClassType =
@@ -28,7 +28,7 @@ public class CreateEventProtoUtilsImpl implements CreateEventProtoUtils {
     }*/
 	
 	@Autowired
-	protected CreateNoneventProtoUtils createNoneventProtoUtils;
+	protected CreateNoneventProtoUtil createNoneventProtoUtil;
 	
 	//CITY PROTO****************************************************************
 	@Override
@@ -68,13 +68,13 @@ public class CreateEventProtoUtilsImpl implements CreateEventProtoUtils {
 
 	//for the setter dependency injection or something****************************************************************
 	@Override
-	public CreateNoneventProtoUtils getCreateNoneventProtoUtils() {
-		return createNoneventProtoUtils;
+	public CreateNoneventProtoUtil getCreateNoneventProtoUtils() {
+		return createNoneventProtoUtil;
 	}
 	@Override
 	public void setCreateNoneventProtoUtils(
-			CreateNoneventProtoUtils createNoneventProtoUtils) {
-		this.createNoneventProtoUtils = createNoneventProtoUtils;
+			CreateNoneventProtoUtil createNoneventProtoUtil) {
+		this.createNoneventProtoUtil = createNoneventProtoUtil;
 	}
 	
 	

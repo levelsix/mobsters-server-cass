@@ -14,8 +14,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.lvl6.mobsters.controller.utils.CreateEventProtoUtils;
-import com.lvl6.mobsters.controller.utils.MonsterStuffUtils;
+import com.lvl6.mobsters.controller.utils.CreateEventProtoUtil;
+import com.lvl6.mobsters.controller.utils.MiscUtil;
+import com.lvl6.mobsters.controller.utils.MonsterStuffUtil;
 import com.lvl6.mobsters.eventprotos.EventMonsterProto.EnhancementWaitTimeCompleteRequestProto;
 import com.lvl6.mobsters.eventprotos.EventMonsterProto.EnhancementWaitTimeCompleteResponseProto;
 import com.lvl6.mobsters.eventprotos.EventMonsterProto.EnhancementWaitTimeCompleteResponseProto.Builder;
@@ -49,13 +50,13 @@ public class EnhancementWaitTimeCompleteController extends EventController {
 	private static Logger log = LoggerFactory.getLogger(new Object() { }.getClass().getEnclosingClass());
 
 	@Autowired
-	protected QueryConstructionUtil queryConstructionUtil;
+	protected MiscUtil miscUtil;
 	
 	@Autowired
 	protected UserService userService;
 	
 	@Autowired
-	protected MonsterStuffUtils monsterStuffUtils;
+	protected MonsterStuffUtil monsterStuffUtil;
 
 	@Autowired
 	protected MonsterEnhancingForUserService monsterEnhancingForUserService;
@@ -70,13 +71,16 @@ public class EnhancementWaitTimeCompleteController extends EventController {
 	protected UserCurrencyHistoryService userCurrencyHistoryService;
 	
 	@Autowired
-	protected CreateEventProtoUtils createEventProtoUtils;
+	protected CreateEventProtoUtil createEventProtoUtil;
 	
 	@Autowired
 	protected MonsterForUserDeletedService monsterForUserDeletedService;
 	
 	@Autowired
 	protected MonsterEnhancingHistoryService monsterEnhancingHistoryService;
+	
+	@Autowired
+	protected QueryConstructionUtil queryConstructionUtil;
 	
 
 	@Override
@@ -103,7 +107,7 @@ public class EnhancementWaitTimeCompleteController extends EventController {
 	    UserMonsterCurrentExpProto umcep = reqProto.getUmcep();
 	    //ids of monster_enhancing_for_user to delete, does not include main monster
 	    List<String> userMonsterIdsThatFinished = reqProto.getUserMonsterUuidsList();
-	    List<UUID> finishedUserMonsterIds = getQueryConstructionUtil()
+	    List<UUID> finishedUserMonsterIds = getMiscUtil()
 	    		.createUUIDListFromStrings(userMonsterIdsThatFinished);
 		Date clientTime = new Date();
 
@@ -156,7 +160,7 @@ public class EnhancementWaitTimeCompleteController extends EventController {
 			
 			if (successful) {
 				//tell the client to update user because user's funds most likely changed
-				UpdateClientUserResponseEvent resEventUpdate = getCreateEventProtoUtils()
+				UpdateClientUserResponseEvent resEventUpdate = getCreateEventProtoUtil()
 						.createUpdateClientUserResponseEvent(aUser);
 				resEventUpdate.setTag(event.getTag());
 				getEventWriter().handleEvent(resEventUpdate);
@@ -220,7 +224,7 @@ public class EnhancementWaitTimeCompleteController extends EventController {
 		//make sure that the user monster ids that will be deleted will only be
 		//the ids that exist in enhancing table
 		Set<UUID> inEnhancingIds = inEnhancing.keySet();
-		getMonsterStuffUtils().retainValidMonsterIds(inEnhancingIds, usedUpMonsterIds);
+		getMiscUtil().retainValidListEntries(inEnhancingIds, usedUpMonsterIds);
 
 		//check to make sure the base monsterId is in enhancing
 		if (!inEnhancingIds.contains(umcepId)) {
@@ -241,7 +245,7 @@ public class EnhancementWaitTimeCompleteController extends EventController {
 
 		//retain only the valid monster for user ids that will be deleted
 		Set<UUID> existingIds = idsToUserMonsters.keySet();
-		getMonsterStuffUtils().retainValidMonsterIds(existingIds, usedUpMonsterIds);
+		getMiscUtil().retainValidListEntries(existingIds, usedUpMonsterIds);
 
 
 		//CHECK MONEY and CHECK SPEEDUP
@@ -357,7 +361,7 @@ public class EnhancementWaitTimeCompleteController extends EventController {
 		
 
 		//delete the selected monsters from  the enhancing table
-		List<UUID> finishedMefuIdList = getMonsterStuffUtils()
+		List<UUID> finishedMefuIdList = getMonsterStuffUtil()
 				.getMonsterEnhancingForUserIds(finishedMfuIds, inEnhancing);
 		getMonsterEnhancingForUserService().deleteUserMonstersEnhancing(finishedMefuIdList);
 		log.info("deleted monster healing rows. inEnhancing=" + inEnhancing +
@@ -372,12 +376,12 @@ public class EnhancementWaitTimeCompleteController extends EventController {
 	}
 	
 
-	public QueryConstructionUtil getQueryConstructionUtil() {
-		return queryConstructionUtil;
+	public MiscUtil getMiscUtil() {
+		return miscUtil;
 	}
 
-	public void setQueryConstructionUtil(QueryConstructionUtil queryConstructionUtil) {
-		this.queryConstructionUtil = queryConstructionUtil;
+	public void setMiscUtil(MiscUtil miscUtil) {
+		this.miscUtil = miscUtil;
 	}
 
 	public UserService getUserService() {
@@ -386,14 +390,6 @@ public class EnhancementWaitTimeCompleteController extends EventController {
 
 	public void setUserService(UserService userService) {
 		this.userService = userService;
-	}
-
-	public MonsterStuffUtils getMonsterStuffUtils() {
-		return monsterStuffUtils;
-	}
-
-	public void setMonsterStuffUtils(MonsterStuffUtils monsterStuffUtils) {
-		this.monsterStuffUtils = monsterStuffUtils;
 	}
 
 	public MonsterEnhancingForUserService getMonsterEnhancingForUserService() {
@@ -431,14 +427,6 @@ public class EnhancementWaitTimeCompleteController extends EventController {
 		this.userCurrencyHistoryService = userCurrencyHistoryService;
 	}
 
-	public CreateEventProtoUtils getCreateEventProtoUtils() {
-		return createEventProtoUtils;
-	}
-
-	public void setCreateEventProtoUtils(CreateEventProtoUtils createEventProtoUtils) {
-		this.createEventProtoUtils = createEventProtoUtils;
-	}
-
 	public MonsterForUserDeletedService getMonsterForUserDeletedService() {
 		return monsterForUserDeletedService;
 	}
@@ -455,6 +443,30 @@ public class EnhancementWaitTimeCompleteController extends EventController {
 	public void setMonsterEnhancingHistoryService(
 			MonsterEnhancingHistoryService monsterEnhancingHistoryService) {
 		this.monsterEnhancingHistoryService = monsterEnhancingHistoryService;
+	}
+
+	public MonsterStuffUtil getMonsterStuffUtil() {
+		return monsterStuffUtil;
+	}
+
+	public void setMonsterStuffUtil(MonsterStuffUtil monsterStuffUtil) {
+		this.monsterStuffUtil = monsterStuffUtil;
+	}
+
+	public CreateEventProtoUtil getCreateEventProtoUtil() {
+		return createEventProtoUtil;
+	}
+
+	public void setCreateEventProtoUtil(CreateEventProtoUtil createEventProtoUtil) {
+		this.createEventProtoUtil = createEventProtoUtil;
+	}
+
+	public QueryConstructionUtil getQueryConstructionUtil() {
+		return queryConstructionUtil;
+	}
+
+	public void setQueryConstructionUtil(QueryConstructionUtil queryConstructionUtil) {
+		this.queryConstructionUtil = queryConstructionUtil;
 	}
 	
 }

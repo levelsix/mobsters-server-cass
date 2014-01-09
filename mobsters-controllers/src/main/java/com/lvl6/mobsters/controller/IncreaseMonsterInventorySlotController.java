@@ -13,8 +13,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.lvl6.mobsters.controller.utils.CreateEventProtoUtils;
-import com.lvl6.mobsters.controller.utils.StructureStuffUtils;
+import com.lvl6.mobsters.controller.utils.CreateEventProtoUtil;
+import com.lvl6.mobsters.controller.utils.MiscUtil;
+import com.lvl6.mobsters.controller.utils.StructureStuffUtil;
 import com.lvl6.mobsters.eventprotos.EventMonsterProto.IncreaseMonsterInventorySlotRequestProto;
 import com.lvl6.mobsters.eventprotos.EventMonsterProto.IncreaseMonsterInventorySlotRequestProto.IncreaseSlotType;
 import com.lvl6.mobsters.eventprotos.EventMonsterProto.IncreaseMonsterInventorySlotResponseProto;
@@ -57,14 +58,16 @@ public class IncreaseMonsterInventorySlotController extends EventController {
 	protected QueryConstructionUtil queryConstructionUtil;
 	
 	@Autowired
-	protected StructureStuffUtils structureStuffUtils;
+	protected StructureStuffUtil structureStuffUtil;
 
 	@Autowired
 	protected UserCurrencyHistoryService userCurrencyHistoryService;
 
 	@Autowired
-	protected CreateEventProtoUtils createEventProtoUtils;
+	protected CreateEventProtoUtil createEventProtoUtil;
 	
+	@Autowired
+	protected MiscUtil miscUtil;
 	
 	@Override
 	public RequestEvent createRequestEvent() {
@@ -94,8 +97,7 @@ public class IncreaseMonsterInventorySlotController extends EventController {
 		//uuid's are not strings, need to convert from string to uuid, vice versa
 		UUID userId = UUID.fromString(userIdString);
 		UUID userStructureId = UUID.fromString(userStructureIdString);
-		List<UUID> userFbInviteIds = getQueryConstructionUtil()
-				.createUUIDListFromStrings(userFbInviteStringIds);
+		List<UUID> userFbInviteIds = getMiscUtil().createUUIDListFromStrings(userFbInviteStringIds);
 
 		//response to send back to client
 		Builder responseBuilder = IncreaseMonsterInventorySlotResponseProto.newBuilder();
@@ -117,7 +119,7 @@ public class IncreaseMonsterInventorySlotController extends EventController {
 
 			boolean successful = false;
 			if (validRequest) {
-				int gemCost = getStructureStuffUtils().getGemPriceForStruct(sfu); 
+				int gemCost = getStructureStuffUtil().getGemPriceForStruct(sfu); 
 				successful = writeChangesToDb(aUser, sfu, increaseType, gemCost, curTime,
 		    	  		idsToAcceptedInvites);
 			}
@@ -133,7 +135,7 @@ public class IncreaseMonsterInventorySlotController extends EventController {
 			
 			if (successful) {
 				//since modified user's resources need to send update client user event
-				UpdateClientUserResponseEvent resEventUpdate = getCreateEventProtoUtils()
+				UpdateClientUserResponseEvent resEventUpdate = getCreateEventProtoUtil()
 						.createUpdateClientUserResponseEvent(aUser);
 				resEventUpdate.setTag(event.getTag());
 				getEventWriter().handleEvent(resEventUpdate); 
@@ -193,7 +195,7 @@ public class IncreaseMonsterInventorySlotController extends EventController {
 	  		}
 
 	  		//required min num invites depends on the structure
-	  		int minNumInvites = getStructureStuffUtils().getMinNumInvitesForStruct(sfu);
+	  		int minNumInvites = getStructureStuffUtil().getMinNumInvitesForStruct(sfu);
 	  		//check if user has enough invites to gain a slot
 	  		int acceptedAmount = idsToAcceptedTemp.size(); 
 	  		if(acceptedAmount < minNumInvites) {
@@ -209,7 +211,7 @@ public class IncreaseMonsterInventorySlotController extends EventController {
 	  		//THE CHECK IF USER IS BUYING SLOTS
 	  	} else if (IncreaseSlotType.PURCHASE == aType) {
 	  		//gemprice depends on the structure;
-	  		int gemPrice = getStructureStuffUtils().getGemPriceForStruct(sfu);
+	  		int gemPrice = getStructureStuffUtil().getGemPriceForStruct(sfu);
 
 	  		//check if user has enough money
 	  		int userGems = u.getGems();
@@ -249,7 +251,7 @@ public class IncreaseMonsterInventorySlotController extends EventController {
 			
 			//
 			if (IncreaseSlotType.REDEEM_FACEBOOK_INVITES == increaseType) {
-				int minNumInvites = getStructureStuffUtils().getMinNumInvitesForStruct(sfu);
+				int minNumInvites = getStructureStuffUtil().getMinNumInvitesForStruct(sfu);
 				//if num accepted invites more than min required, just take the earliest ones
 				List<UUID> inviteIdsTheRest = new ArrayList<UUID>();
 				List<UserFacebookInviteForSlot> nEarliestInvites = 
@@ -364,14 +366,6 @@ public class IncreaseMonsterInventorySlotController extends EventController {
 		this.queryConstructionUtil = queryConstructionUtil;
 	}
 
-	public StructureStuffUtils getStructureStuffUtils() {
-		return structureStuffUtils;
-	}
-
-	public void setStructureStuffUtils(StructureStuffUtils structureStuffUtils) {
-		this.structureStuffUtils = structureStuffUtils;
-	}
-
 	public UserCurrencyHistoryService getUserCurrencyHistoryService() {
 		return userCurrencyHistoryService;
 	}
@@ -381,13 +375,28 @@ public class IncreaseMonsterInventorySlotController extends EventController {
 		this.userCurrencyHistoryService = userCurrencyHistoryService;
 	}
 
-	public CreateEventProtoUtils getCreateEventProtoUtils() {
-		return createEventProtoUtils;
+	public StructureStuffUtil getStructureStuffUtil() {
+		return structureStuffUtil;
 	}
 
-	public void setCreateEventProtoUtils(CreateEventProtoUtils createEventProtoUtils) {
-		this.createEventProtoUtils = createEventProtoUtils;
+	public void setStructureStuffUtil(StructureStuffUtil structureStuffUtil) {
+		this.structureStuffUtil = structureStuffUtil;
 	}
-	
+
+	public CreateEventProtoUtil getCreateEventProtoUtil() {
+		return createEventProtoUtil;
+	}
+
+	public void setCreateEventProtoUtil(CreateEventProtoUtil createEventProtoUtil) {
+		this.createEventProtoUtil = createEventProtoUtil;
+	}
+
+	public MiscUtil getMiscUtil() {
+		return miscUtil;
+	}
+
+	public void setMiscUtil(MiscUtil miscUtil) {
+		this.miscUtil = miscUtil;
+	}
 	
 }

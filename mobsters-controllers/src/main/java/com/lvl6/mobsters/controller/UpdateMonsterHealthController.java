@@ -10,7 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.lvl6.mobsters.controller.utils.MonsterStuffUtils;
+import com.lvl6.mobsters.controller.utils.MonsterStuffUtil;
 import com.lvl6.mobsters.eventprotos.EventMonsterProto.UpdateMonsterHealthRequestProto;
 import com.lvl6.mobsters.eventprotos.EventMonsterProto.UpdateMonsterHealthResponseProto;
 import com.lvl6.mobsters.eventprotos.EventMonsterProto.UpdateMonsterHealthResponseProto.Builder;
@@ -31,7 +31,7 @@ public class UpdateMonsterHealthController extends EventController {
 	private static Logger log = LoggerFactory.getLogger(new Object() { }.getClass().getEnclosingClass());
 	
 	@Autowired
-	protected MonsterStuffUtils monsterStuffUtils;
+	protected MonsterStuffUtil monsterStuffUtil;
 
 	@Autowired
 	protected MonsterForUserService monsterForUserService;
@@ -154,12 +154,12 @@ public class UpdateMonsterHealthController extends EventController {
 	
 	
 
-	public MonsterStuffUtils getMonsterStuffUtils() {
-		return monsterStuffUtils;
+	public MonsterStuffUtil getMonsterStuffUtils() {
+		return monsterStuffUtil;
 	}
 
-	public void setMonsterStuffUtils(MonsterStuffUtils monsterStuffUtils) {
-		this.monsterStuffUtils = monsterStuffUtils;
+	public void setMonsterStuffUtils(MonsterStuffUtil monsterStuffUtil) {
+		this.monsterStuffUtil = monsterStuffUtil;
 	}
 
 	public MonsterForUserService getMonsterForUserService() {

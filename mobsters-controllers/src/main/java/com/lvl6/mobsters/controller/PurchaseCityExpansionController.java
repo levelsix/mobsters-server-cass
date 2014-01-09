@@ -10,7 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.lvl6.mobsters.controller.utils.CreateEventProtoUtils;
+import com.lvl6.mobsters.controller.utils.CreateEventProtoUtil;
 import com.lvl6.mobsters.eventprotos.EventCityProto.PurchaseCityExpansionRequestProto;
 import com.lvl6.mobsters.eventprotos.EventCityProto.PurchaseCityExpansionResponseProto;
 import com.lvl6.mobsters.eventprotos.EventCityProto.PurchaseCityExpansionResponseProto.Builder;
@@ -45,7 +45,7 @@ public class PurchaseCityExpansionController extends EventController {
 	protected ExpansionPurchaseForUserService expansionPurchaseForUserService;
 	
 	@Autowired
-	protected CreateEventProtoUtils createEventProtoUtils;
+	protected CreateEventProtoUtil createEventProtoUtil;
 	
 	@Autowired
 	protected UserCurrencyHistoryService userCurrencyHistoryService;
@@ -253,12 +253,12 @@ public class PurchaseCityExpansionController extends EventController {
 		this.expansionPurchaseForUserService = expansionPurchaseForUserService;
 	}
 
-	public CreateEventProtoUtils getCreateEventProtoUtils() {
-		return createEventProtoUtils;
+	public CreateEventProtoUtil getCreateEventProtoUtils() {
+		return createEventProtoUtil;
 	}
 
-	public void setCreateEventProtoUtils(CreateEventProtoUtils createEventProtoUtils) {
-		this.createEventProtoUtils = createEventProtoUtils;
+	public void setCreateEventProtoUtils(CreateEventProtoUtil createEventProtoUtil) {
+		this.createEventProtoUtil = createEventProtoUtil;
 	}
 
 	public UserCurrencyHistoryService getUserCurrencyHistoryService() {
