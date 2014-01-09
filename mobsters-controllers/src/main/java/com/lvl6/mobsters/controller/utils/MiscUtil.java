@@ -128,4 +128,12 @@ public class MiscUtil {
 		}
 		return values;
 	}
+	
+	public int sumMapValues(Map<?, Integer> idsToValues) {
+		int sum = 0;
+		for (int value : idsToValues.values()) {
+			sum += value;
+		}
+		return sum;
+	}
 }

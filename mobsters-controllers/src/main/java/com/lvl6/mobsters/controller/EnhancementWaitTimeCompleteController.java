@@ -1,7 +1,6 @@
 package com.lvl6.mobsters.controller;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -339,19 +338,23 @@ public class EnhancementWaitTimeCompleteController extends EventController {
 			Map<UUID, MonsterEnhancingForUser> inEnhancing, List<UUID> finishedMfuIds,
 			Map<UUID, MonsterForUser> idsToUserMonsters, UUID enhancingBaseMfuId) {
 		String deleteReason = MobstersTableConstants.MFUDR__ENHANCING;
-		StringBuilder sb = new StringBuilder();
-		sb.append("enhancing userMonsterId:");
-		sb.append(enhancingBaseMfuId);
-		String details = sb.toString();
+		StringBuilder detailSb = new StringBuilder();
+		detailSb.append("enhancing userMonsterId:");
+		detailSb.append(enhancingBaseMfuId);
+		String detail = detailSb.toString();
 
 		//keep track of the userMonsters that are deleted, except the monster user is
 		//enhancing
 		Map<UUID, MonsterForUser> idsToUserMonstersCopy = new HashMap<UUID, MonsterForUser>();
 		idsToUserMonstersCopy.putAll(idsToUserMonsters);
 		idsToUserMonstersCopy.remove(enhancingBaseMfuId);
-		Collection<MonsterForUser> deleted = idsToUserMonstersCopy.values();
+		
+		Map<UUID, String> details = new HashMap<UUID, String>();
+		for (UUID mfuId : idsToUserMonstersCopy.keySet()) {
+			details.put(mfuId, detail);
+		}
 		getMonsterForUserDeletedService().createUserMonsterDeletedFromUserMonsters(
-				deleteReason, details, deleteTime, deleted);
+				deleteReason, details, deleteTime, idsToUserMonstersCopy);
 		
 
 		//keep track of the monsters that were used up in enhancing

@@ -34,7 +34,7 @@ public interface MonsterForUserDeletedService {
 	
 	//INSERTING STUFF
 	public abstract void createUserMonsterDeletedFromUserMonsters(String deleteReason,
-			String details, Date deleteTime, Collection<MonsterForUser> mfuList);
+			Map<UUID, String> details, Date date, Map<UUID, MonsterForUser> mfuMap);
 	
 	
 	

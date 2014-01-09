@@ -244,11 +244,11 @@ public class MonsterForUserDeletedServiceImpl implements MonsterForUserDeletedSe
 	//INSERTING STUFF****************************************************************
 	@Override
 	public void createUserMonsterDeletedFromUserMonsters(String deleteReason,
-			String details, Date deleteTime, Collection<MonsterForUser> mfuList) {
+			Map<UUID, String> details, Date date, Map<UUID, MonsterForUser> mfuMap) {
 		List<MonsterForUserDeleted> deleted = new ArrayList<MonsterForUserDeleted>();
 		
-		for (MonsterForUser mfu : mfuList) {
-			UUID id = mfu.getId();
+		for (UUID mfuId : mfuMap.keySet()) {
+			MonsterForUser mfu = mfuMap.get(mfuId);
 			UUID userId = mfu.getUserId();
 			int monsterId = mfu.getMonsterId();
 			int curExp = mfu.getCurrentExp();
@@ -262,7 +262,7 @@ public class MonsterForUserDeletedServiceImpl implements MonsterForUserDeletedSe
 			
 			//not sure if need to save the dude before setting more values
 			MonsterForUserDeleted mfud = new MonsterForUserDeleted();
-			mfud.setId(id);
+			mfud.setId(mfuId);
 			mfud.setUserId(userId);
 			mfud.setMonsterId(monsterId);
 			mfud.setExp(curExp);
@@ -275,8 +275,9 @@ public class MonsterForUserDeletedServiceImpl implements MonsterForUserDeletedSe
 			mfud.setSourceOfPieces(sourceOfPieces);
 			
 			mfud.setDeletedReason(deleteReason);
-			mfud.setDetails(details);
-			mfud.setDeletedTime(deleteTime);
+			String detail = details.get(mfud);
+			mfud.setDetails(detail);
+			mfud.setDeletedTime(date);
 			
 			deleted.add(mfud);
 		}
