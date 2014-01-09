@@ -331,16 +331,14 @@ public class HealMonsterController extends EventController {
 		try {
 			//CHARGE THE USER
 			int gemChange = -1 * gemCost;
-			int newCash = cashChange + user.getCash();
-			int newGems = gemChange + user.getGems();
 			//create history first
 			List<UserCurrencyHistory> uchList = createCurrencyHistory(user, clientDate,
 					cashChange, gemChange, protoDeleteMap, protoUpdateMap, protoUpdateMap,
 					gemCostForHealing, isSpeedup, gemsForSpeedup, userMonsterIds,
 					userMonsterIdsToHealths, idsToUserMonsters);
-			user.setCash(newCash);
-			user.setGems(newGems);
-			getUserService().saveUser(user);
+			int oilChange = 0;
+			getUserService().updateUserResources(user, gemChange, oilChange, cashChange);
+
 			
 			//keep track of currency stuff
 			if (!uchList.isEmpty()) {

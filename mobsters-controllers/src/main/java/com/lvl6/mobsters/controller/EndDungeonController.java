@@ -168,24 +168,20 @@ public class EndDungeonController extends EventController {
 	private boolean writeChangesToDb(User u, UUID uId, TaskForUserOngoing ut, boolean userWon,
 			  Date clientDate, List<FullUserMonsterProto> protos) {
 		try {
-			int cashGained = ut.getCashGained();
-			int gemsGained = 0;
-			int expGained = ut.getExpGained();
+			int cashChange = ut.getCashGained();
+			int gemChange = 0;
+			int expChange = ut.getExpGained();
 
 			//update user cash and experience
 			if (userWon) {
-				int newCash = cashGained + u.getCash();
-				int newGems = u.getGems();
-				int newExp = expGained + u.getExp();
+				int newExp = expChange + u.getExp();
 				List<UserCurrencyHistory> uchList = createCurrencyHistory(u, ut,
-						clientDate, cashGained);
+						clientDate, cashChange);
 
-				if (cashGained > 0 || gemsGained > 0 || expGained > 0) {
-					u.setCash(newCash);
-					u.setGems(newGems);
-					u.setExp(newExp);
-					getUserService().saveUser(u);
-				}
+				u.setExp(newExp);
+				int oilChange = 0;
+				getUserService().updateUserResources(u, gemChange, oilChange, cashChange);
+
 				//keep track of currency stuff
 				if (!uchList.isEmpty()) {
 					getUserCurrencyHistoryService().saveCurrencyHistories(uchList);

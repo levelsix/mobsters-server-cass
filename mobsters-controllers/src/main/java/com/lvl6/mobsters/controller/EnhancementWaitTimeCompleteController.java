@@ -273,12 +273,13 @@ public class EnhancementWaitTimeCompleteController extends EventController {
 			if(isSpeedup) {
 				//CHARGE THE USER
 				int gemChange = -1 * gemsForSpeedup;
-				int newGems = gemChange + aUser.getGems();
 				//create history first
 				List<UserCurrencyHistory> uchList = createCurrencyHistory(aUser, umcep,
 						userMonsterIds, clientTime, gemChange);
-				aUser.setGems(newGems);
-				getUserService().saveUser(aUser);
+				int oilChange = 0;
+				int cashChange = 0;
+				getUserService().updateUserResources(aUser, gemChange, oilChange, cashChange);
+
 
 				//keep track of currency stuff
 				if (!uchList.isEmpty()) {

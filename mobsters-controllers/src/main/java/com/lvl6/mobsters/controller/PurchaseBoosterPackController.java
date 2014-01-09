@@ -190,9 +190,9 @@ public class PurchaseBoosterPackController extends EventController {
 
 			//update user's money
 			if (0 != gemChange) {
-				int newGems = gemChange + user.getGems();
-				user.setGems(newGems);
-				getUserService().saveUser(user);
+				int oilChange = 0;
+				int cashChange = 0;
+				getUserService().updateUserResources(user, gemChange, oilChange, cashChange);
 			}
 			//record user currency
 			if (!uchList.isEmpty()) {

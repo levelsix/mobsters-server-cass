@@ -189,9 +189,10 @@ public class PurchaseCityExpansionController extends EventController {
 
 			//update user's money
 			if (0 != cashChange) {
-				int newCash = cashChange + user.getCash();
-				user.setCash(newCash);
-				getUserService().saveUser(user);
+				int gemChange = 0;
+				int oilChange = 0;
+				getUserService().updateUserResources(user, gemChange, oilChange, cashChange);
+
 			}
 			//record user currency
 			if (!uchList.isEmpty()) {

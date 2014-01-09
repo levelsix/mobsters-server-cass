@@ -305,14 +305,12 @@ public class SubmitMonsterEnhancementController extends EventController {
 		try {
 			//CHARGE THE USER
 			int gemChange = -1 * gemsSpent;
-			int newCash = cashChange + user.getCash();
-			int newGems = gemChange + user.getGems();
 			//create history first
 			List<UserCurrencyHistory> uchList = createCurrencyHistory(user, clientTime,
 					cashChange, gemChange, protoDeleteMap, protoUpdateMap, protoUpdateMap);
-			user.setCash(newCash);
-			user.setGems(newGems);
-			getUserService().saveUser(user);
+			int oilChange = 0;
+			getUserService().updateUserResources(user, gemChange, oilChange, cashChange);
+
 			
 			//keep track of currency stuff
 			if (!uchList.isEmpty()) {

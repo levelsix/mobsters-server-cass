@@ -269,13 +269,12 @@ public class IncreaseMonsterInventorySlotController extends EventController {
 			
 			int gemChange = -1 * gemCost;
 			if (IncreaseSlotType.PURCHASE == increaseType && 0 != gemChange) {
-				int newGems = gemChange + aUser.getGems();
-
 				//create history first
 				List<UserCurrencyHistory> uchList = createCurrencyHistory(aUser, curTime,
 						gemChange, sfu, prevFbInviteStructLvl);
-				aUser.setGems(newGems);
-				getUserService().saveUser(aUser);
+				int oilChange = 0;
+				int cashChange = 0;
+				getUserService().updateUserResources(aUser, gemChange, oilChange, cashChange);
 
 				//save currency stuff
 				if (!uchList.isEmpty()) {

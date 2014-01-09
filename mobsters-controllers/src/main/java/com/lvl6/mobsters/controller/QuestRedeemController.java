@@ -210,23 +210,19 @@ public class QuestRedeemController extends EventController {
 			getQuestForUserService().saveQuestForUser(userQuest);
 			
 			log.info("user before awarding quest rewards. u=" + u);
-			int cashGained = quest.getCashReward();
-			int gemsGained = quest.getGemReward();
-			int expGained = quest.getExpReward();
+			int cashChange = quest.getCashReward();
+			int gemChange = quest.getGemReward();
+			int expChange = quest.getExpReward();
 			
-			int newCash = cashGained + u.getCash();
-			int newGems = gemsGained + u.getGems();
-			int newExp = expGained + u.getExp();
+			int newExp = expChange + u.getExp();
 			
 			List<UserCurrencyHistory> uchList = createCurrencyHistory(u, questId,
-					timeRedeemed, cashGained, gemsGained);
-			
-			if (cashGained > 0 || gemsGained > 0 || expGained > 0) {
-				u.setCash(newCash);
-				u.setGems(newGems);
-				u.setExp(newExp);
-				getUserService().saveUser(u);
-			}
+					timeRedeemed, cashChange, gemChange);
+
+			u.setExp(newExp);
+			int oilChange = 0;
+			getUserService().updateUserResources(u, gemChange, oilChange, cashChange);
+				
 			//keep track of currency stuff
 			if (!uchList.isEmpty()) {
 				getUserCurrencyHistoryService().saveCurrencyHistories(uchList);

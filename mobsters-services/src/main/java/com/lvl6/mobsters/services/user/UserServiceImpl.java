@@ -195,20 +195,42 @@ public class UserServiceImpl implements UserService {
 
 	//UPDATING STUFF****************************************************************
 	@Override
-	public void updateUserResources(User u, int gemsChange, int oilChange, int cashChange) {
+	public void updateUserResources(User u, int gemChange, int oilChange, int cashChange) {
+		//if no change in resources, do nothing
+		if (0 == gemChange && 0 == oilChange && 0 == cashChange) {
+			return;
+		}
 
-		if (gemsChange != 0) {
-			int newGems = u.getGems() + gemsChange;
+		if (gemChange != 0) {
+			int newGems = u.getGems() + gemChange;
+			if (newGems < 0) {
+				log.error("gemChange is more than what the user has. gemChange=" +
+						gemChange + "\t userGems=" + u.getGems() +
+						"\t will set user's gems to 0.");
+				newGems = 0;
+			}
 			u.setGems(newGems);
 		}
 
 		if (oilChange != 0) {
 			int newOil = u.getOil() + oilChange;
+			if (newOil < 0) {
+				log.error("oilChange is more than what the user has. oilChange=" +
+						oilChange + "\t userOil=" + u.getOil() +
+						"\t will set user's oil to 0.");
+				newOil = 0;
+			}
 			u.setOil(newOil);
 		}
 
 		if (cashChange != 0) {
 			int newCash = u.getCash() + cashChange;
+			if (newCash < 0) {
+				log.error("cashChange is more than what the user has. cashChange=" +
+						cashChange + "\t userCash=" + u.getCash() +
+						"\t will set user's cash to 0.");
+				newCash = 0;
+			}
 			u.setCash(newCash);
 		}
 		saveUser(u);

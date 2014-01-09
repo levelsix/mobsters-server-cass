@@ -33,7 +33,7 @@ public interface UserService {
 	public abstract void saveUsers(Collection<User> uCollection);
 	
 	//UPDATING STUFF****************************************************************
-	public abstract void updateUserResources(User u, int gemsChange, int oilChange, int cashChange);
+	public abstract void updateUserResources(User u, int gemChange, int oilChange, int cashChange);
 	
 	public abstract void updateDeviceToken(User u, String deviceToken);
 

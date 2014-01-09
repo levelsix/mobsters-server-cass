@@ -190,9 +190,9 @@ public class ExpansionWaitCompleteController extends EventController {
 						clientTime, gemChange);
 				//update user's money
 				if (0 != gemChange) {
-					int newCash = gemChange + user.getCash();
-					user.setCash(newCash);
-					getUserService().saveUser(user);
+					int oilChange = 0;
+					int cashChange = 0;
+					getUserService().updateUserResources(user, gemChange, oilChange, cashChange);
 				}
 				//record user currency
 				if (!uchList.isEmpty()) {
