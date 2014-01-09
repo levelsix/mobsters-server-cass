@@ -1,6 +1,7 @@
 package com.lvl6.mobsters.controller;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -11,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.lvl6.mobsters.controller.utils.CreateNoneventProtoUtil;
+import com.lvl6.mobsters.controller.utils.MiscUtil;
 import com.lvl6.mobsters.controller.utils.MonsterStuffUtil;
 import com.lvl6.mobsters.entitymanager.staticdata.utils.QuestRetrieveUtils;
 import com.lvl6.mobsters.eventprotos.EventQuestProto.QuestProgressRequestProto;
@@ -26,10 +28,11 @@ import com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto;
 import com.lvl6.mobsters.po.nonstaticdata.MonsterForUser;
 import com.lvl6.mobsters.po.nonstaticdata.QuestForUser;
 import com.lvl6.mobsters.po.staticdata.Quest;
+import com.lvl6.mobsters.properties.MobstersTableConstants;
 import com.lvl6.mobsters.services.monsterforuser.MonsterForUserService;
+import com.lvl6.mobsters.services.monsterforuserdeleted.MonsterForUserDeletedService;
 import com.lvl6.mobsters.services.questforuser.QuestForUserService;
 import com.lvl6.mobsters.services.user.UserService;
-import com.lvl6.mobsters.utils.QueryConstructionUtil;
 
 
 @Component
@@ -41,7 +44,7 @@ public class QuestProgressController extends EventController {
 	protected UserService userService;
 
 	@Autowired
-	protected QuestRetrieveUtils questRetrieveUtils; 
+	protected QuestRetrieveUtils questRetrieveUtil; 
 
 	@Autowired
 	protected QuestForUserService questForUserService;
@@ -56,14 +59,15 @@ public class QuestProgressController extends EventController {
 	protected MonsterStuffUtil monsterStuffUtil;
 
 	@Autowired
-	protected QueryConstructionUtil queryConstructionUtil;
+	protected MiscUtil miscUtil;
 
+	@Autowired
+	protected MonsterForUserDeletedService monsterForUserDeletedService;
+	
 	@Override
 	public RequestEvent createRequestEvent() {
 		return new QuestProgressRequestEvent();
 	}
-
-
 
 	@Override
 	public int getEventType() {
@@ -87,7 +91,7 @@ public class QuestProgressController extends EventController {
 		//uuid's are not strings, need to convert from string to uuid, vice versa
 		String userIdString = senderProto.getUserUuid();
 		UUID userId = UUID.fromString(userIdString);
-		List<UUID> deleteUserMonsterIds = getQueryConstructionUtil().createUUIDListFromStrings(deleteUserMonsterIdStrings);
+		List<UUID> deleteUserMonsterIds = getMiscUtil().createUUIDListFromStrings(deleteUserMonsterIdStrings);
 		Date timeCompleted = new Date();
 
 		//response to send back to client
@@ -99,7 +103,7 @@ public class QuestProgressController extends EventController {
 
 		try {
 			//get whatever we need from the database
-			Quest quest = getQuestRetrieveUtils().getQuestForId(questId);
+			Quest quest = getQuestRetrieveUtil().getQuestForId(questId);
 			QuestForUser questForUser = getQuestForUserService().getSpecificUnredeemedUserQuest(userId, questId);
 			Map<UUID, MonsterForUser> deletedUserMonsters = getMonsterForUserService().getSpecificOrAllUserMonstersForUser(userId, deleteUserMonsterIds);
 
@@ -116,7 +120,8 @@ public class QuestProgressController extends EventController {
 			getEventWriter().handleEvent(resEvent);
 
 			if (legitProgress) {
-				// TODO: write to history
+				// write to monster deleted history
+				writeChangesToHistory(userId, questId, timeCompleted, deletedUserMonsters);
 			}
 
 		} catch (Exception e) {
@@ -224,24 +229,27 @@ public class QuestProgressController extends EventController {
 		getMonsterForUserService().deleteUserMonsters(deleteUserMonsterIds);
 	}
 
-	//TODO: FIX THIS
-	//	private void writeChangesToHistory(int userId, int questId,
-	//			Map<Long, MonsterForUser> deleteUserMonsters, Date deleteDate) {
-	//  	
-	//	  	if (null == deleteUserMonsters || deleteUserMonsters.isEmpty()) {
-	//	  		return;
-	//	  	}
-	//	  	String deleteReason = ControllerConstants.MFUDR__QUEST + questId;
-	//  	
-	//	  	int size = deleteUserMonsters.size();
-	//	  	List<String> deleteReasons = Collections.nCopies(size, deleteReason);
-	//	  	Collection<MonsterForUser> userMonsters = deleteUserMonsters.values();
-	//	  	List<MonsterForUser> userMonstersList = new ArrayList<MonsterForUser>(userMonsters);
-	//	  	int num = InsertUtils.get().insertIntoMonsterForUserDeleted(userId,
-	//	  			deleteReasons, userMonstersList, deleteDate);
-	//  	
-	//	  	log.info("user monsters deleted for questId=" + questId + ". num=" + num);
-	//	}
+	private void writeChangesToHistory(UUID userId, int questId,  Date deleteDate,
+			Map<UUID, MonsterForUser> idsToUserMonsters) {
+
+		if (null == idsToUserMonsters || idsToUserMonsters.isEmpty()) {
+			return;
+		}
+		String deleteReason = MobstersTableConstants.MFUDR__QUEST;
+		String detailStr = "questId=" + questId;
+
+		Map<UUID, String> details = new HashMap<UUID, String>();
+
+		for (UUID mfuId : idsToUserMonsters.keySet()) {
+			details.put(mfuId, detailStr);
+		}
+
+		getMonsterForUserDeletedService().createUserMonsterDeletedFromUserMonsters(
+				deleteReason, details, deleteDate, idsToUserMonsters);
+		
+
+		log.info("user monsters deleted for questId=" + questId + ". ids=" + details.keySet());
+	}
 
 
 
@@ -254,29 +262,12 @@ public class QuestProgressController extends EventController {
 		this.userService = userService;
 	}
 
-	public QuestRetrieveUtils getQuestRetrieveUtils() {
-		return questRetrieveUtils;
-	}
-
-	public void setQuestRetrieveUtils(QuestRetrieveUtils questRetrieveUtils) {
-		this.questRetrieveUtils = questRetrieveUtils;
-	}
-
 	public QuestForUserService getQuestForUserService() {
 		return questForUserService;
 	}
 
 	public void setQuestForUserService(QuestForUserService questForUserService) {
 		this.questForUserService = questForUserService;
-	}
-
-	public CreateNoneventProtoUtil getCreateNoneventProtoUtils() {
-		return createNoneventProtoUtil;
-	}
-
-	public void setCreateNoneventProtoUtils(
-			CreateNoneventProtoUtil createNoneventProtoUtil) {
-		this.createNoneventProtoUtil = createNoneventProtoUtil;
 	}
 
 	public MonsterForUserService getMonsterForUserService() {
@@ -287,20 +278,46 @@ public class QuestProgressController extends EventController {
 		this.monsterForUserService = monsterForUserService;
 	}
 
-	public MonsterStuffUtil getMonsterStuffUtils() {
+	public MiscUtil getMiscUtil() {
+		return miscUtil;
+	}
+
+	public void setMiscUtil(MiscUtil miscUtil) {
+		this.miscUtil = miscUtil;
+	}
+
+	public CreateNoneventProtoUtil getCreateNoneventProtoUtil() {
+		return createNoneventProtoUtil;
+	}
+
+	public void setCreateNoneventProtoUtil(
+			CreateNoneventProtoUtil createNoneventProtoUtil) {
+		this.createNoneventProtoUtil = createNoneventProtoUtil;
+	}
+
+	public MonsterStuffUtil getMonsterStuffUtil() {
 		return monsterStuffUtil;
 	}
 
-	public void setMonsterStuffUtils(MonsterStuffUtil monsterStuffUtil) {
+	public void setMonsterStuffUtil(MonsterStuffUtil monsterStuffUtil) {
 		this.monsterStuffUtil = monsterStuffUtil;
 	}
 
-	public QueryConstructionUtil getQueryConstructionUtil() {
-		return queryConstructionUtil;
+	public QuestRetrieveUtils getQuestRetrieveUtil() {
+		return questRetrieveUtil;
 	}
 
-	public void setQueryConstructionUtil(QueryConstructionUtil queryConstructionUtil) {
-		this.queryConstructionUtil = queryConstructionUtil;
+	public void setQuestRetrieveUtil(QuestRetrieveUtils questRetrieveUtil) {
+		this.questRetrieveUtil = questRetrieveUtil;
+	}
+
+	public MonsterForUserDeletedService getMonsterForUserDeletedService() {
+		return monsterForUserDeletedService;
+	}
+
+	public void setMonsterForUserDeletedService(
+			MonsterForUserDeletedService monsterForUserDeletedService) {
+		this.monsterForUserDeletedService = monsterForUserDeletedService;
 	}
 
 }

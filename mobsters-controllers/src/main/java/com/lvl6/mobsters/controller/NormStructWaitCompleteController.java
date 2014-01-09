@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.lvl6.mobsters.controller.utils.CreateEventProtoUtil;
+import com.lvl6.mobsters.controller.utils.MiscUtil;
 import com.lvl6.mobsters.entitymanager.staticdata.utils.StructureRetrieveUtils;
 import com.lvl6.mobsters.eventprotos.EventStructureProto.NormStructWaitCompleteRequestProto;
 import com.lvl6.mobsters.eventprotos.EventStructureProto.NormStructWaitCompleteResponseProto;
@@ -31,7 +32,6 @@ import com.lvl6.mobsters.properties.MobstersTableConstants;
 import com.lvl6.mobsters.services.structureforuser.StructureForUserService;
 import com.lvl6.mobsters.services.user.UserService;
 import com.lvl6.mobsters.services.usercurrencyhistory.UserCurrencyHistoryService;
-import com.lvl6.mobsters.utils.QueryConstructionUtil;
 
 
 
@@ -56,7 +56,7 @@ public class NormStructWaitCompleteController extends EventController {
 	protected CreateEventProtoUtil createEventProtoUtil;
 	
 	@Autowired
-	protected QueryConstructionUtil queryConstructionUtil;
+	protected MiscUtil miscUtil;
 	
 
 	
@@ -84,7 +84,7 @@ public class NormStructWaitCompleteController extends EventController {
 		//uuid's are not strings, need to convert from string to uuid, vice versa
 		String userIdString = senderProto.getUserUuid();
 		UUID userId = UUID.fromString(userIdString);
-		List<UUID> userStructIds = getQueryConstructionUtil().createUUIDListFromStrings(userStructIdStrs);
+		List<UUID> userStructIds = getMiscUtil().createUUIDListFromStrings(userStructIdStrs);
 
 		//response to send back to client
 		Builder responseBuilder = NormStructWaitCompleteResponseProto.newBuilder();
@@ -265,12 +265,12 @@ public class NormStructWaitCompleteController extends EventController {
 		this.createEventProtoUtil = createEventProtoUtil;
 	}
 
-	public QueryConstructionUtil getQueryConstructionUtil() {
-		return queryConstructionUtil;
+	public MiscUtil getMiscUtil() {
+		return miscUtil;
 	}
 
-	public void setQueryConstructionUtil(QueryConstructionUtil queryConstructionUtil) {
-		this.queryConstructionUtil = queryConstructionUtil;
+	public void setMiscUtil(MiscUtil miscUtil) {
+		this.miscUtil = miscUtil;
 	}
 }
 
