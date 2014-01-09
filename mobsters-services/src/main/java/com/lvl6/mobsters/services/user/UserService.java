@@ -37,6 +37,7 @@ public interface UserService {
 	
 	public abstract void updateDeviceToken(User u, String deviceToken);
 
+	public abstract void updateFacebookId(User u, String fbId);
 	
 	//setters and getters for the Setter Dependency Injection (or something)****************************************************************
 	public abstract UserEntityManager getUserEntityManager();

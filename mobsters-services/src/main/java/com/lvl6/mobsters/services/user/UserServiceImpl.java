@@ -242,6 +242,12 @@ public class UserServiceImpl implements UserService {
 		saveUser(u);
 	}
 	
+	@Override
+	public void updateFacebookId(User u, String fbId) {
+		u.setFacebookId(fbId);
+		saveUser(u);
+	}
+	
 	
 	//setters and getters for the Setter Dependency Injection (or something)****************************************************************
 	@Override
