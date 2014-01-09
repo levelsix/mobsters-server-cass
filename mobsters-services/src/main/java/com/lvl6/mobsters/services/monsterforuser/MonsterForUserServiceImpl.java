@@ -614,6 +614,18 @@ public class MonsterForUserServiceImpl implements MonsterForUserService {
 		saveUserMonster(mfu);
 	}
 	
+	@Override
+	public void updateCompleteUserMonsters(List<UUID> mfuIdList,
+			Map<UUID, MonsterForUser> idsToUserMonsters) {
+		List<MonsterForUser> mfuList = new ArrayList<MonsterForUser>();
+		
+		for (UUID mfuId : mfuIdList) {
+			MonsterForUser mfu = idsToUserMonsters.get(mfuId);
+			mfu.setComplete(true);
+		}
+		saveUserMonsters(mfuList);
+	}
+	
 	
 	// DELETING STUFF****************************************************************
 	

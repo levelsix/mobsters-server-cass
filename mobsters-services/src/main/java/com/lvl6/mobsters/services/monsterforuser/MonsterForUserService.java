@@ -15,7 +15,7 @@ import com.lvl6.mobsters.utils.QueryConstructionUtil;
 
 public interface MonsterForUserService {
 	
-	//CONTROLLER LOGIC STUFF
+	//CONTROLLER LOGIC STUFF****************************************************************
 	public abstract Map<Integer, Integer> completeMonsterForUserFromMonsterIdsAndQuantities(
 			Map<Integer, MonsterForUser> monsterIdToIncompleteUserMonster,
 			Map<Integer, Integer> monsterIdToQuantity);
@@ -41,7 +41,8 @@ public interface MonsterForUserService {
 	public abstract List<MonsterForUser> replaceBattleTeamSlot(int oldTeamSlotNum,
 			int newTeamSlotNum, Map<UUID, MonsterForUser> idsToUserMonsters);
 	
-	//RETRIEVING STUFF
+	
+	//RETRIEVING STUFF****************************************************************
 	public abstract List<MonsterForUser> getMonstersForUser(UUID userId);
 	
 	public abstract Map<UUID, List<MonsterForUser>> getUserIdsToMonsterTeamForUserIds(
@@ -58,7 +59,7 @@ public interface MonsterForUserService {
 	
 			
 	
-	//INSERTING STUFF
+	//INSERTING STUFF****************************************************************
 	
 	//SAVING STUFF****************************************************************
 	
@@ -70,7 +71,7 @@ public interface MonsterForUserService {
 			String additionalSop);
 	
 	
-	//UPDATING STUFF
+	//UPDATING STUFF****************************************************************
 	public abstract List<MonsterForUser> updateUserMonstersForUser(UUID userId,
 			Map<Integer, Integer> monsterIdToNumPieces, String sourceOfPieces,
 			Date combineStartDate);
@@ -80,7 +81,10 @@ public interface MonsterForUserService {
 	
 	public abstract void updateBattleTeamSlot(int newTeamSlotNum, MonsterForUser mfu);
 	
-	//DELETING STUFF
+	public abstract void updateCompleteUserMonsters(List<UUID> mfuIdList,
+			Map<UUID, MonsterForUser> idsToUserMonsters);
+	
+	//DELETING STUFF****************************************************************
 	public abstract void deleteUserMonster(UUID deleteUserMonsterUuid);
 	
 	public abstract void deleteUserMonsters(List<UUID> deleteUserMonstersList);
