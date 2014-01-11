@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.lvl6.mobsters.controller.utils.MiscUtil;
 import com.lvl6.mobsters.entitymanager.staticdata.utils.ProfanityRetrieveUtils;
 import com.lvl6.mobsters.entitymanager.staticdata.utils.UserBannedRetrieveUtils;
 import com.lvl6.mobsters.eventprotos.EventChatProto.SendGroupChatRequestProto;
@@ -26,7 +27,6 @@ import com.lvl6.mobsters.po.nonstaticdata.User;
 import com.lvl6.mobsters.properties.MobstersTableConstants;
 import com.lvl6.mobsters.services.clanchatpost.ClanChatPostService;
 import com.lvl6.mobsters.services.user.UserService;
-import com.lvl6.mobsters.utils.QueryConstructionUtil;
 
 
 @Component
@@ -44,17 +44,21 @@ public class SendGroupChatController extends EventController {
 	protected ProfanityRetrieveUtils profanityRetrieveUtils;
 	
 	@Autowired
-	protected QueryConstructionUtil queryConstructionUtil;
+	protected ClanChatPostService clanChatPostService;
 	
 	@Autowired
-	protected ClanChatPostService clanChatPostService;
+	protected MiscUtil miscUtil;
+
+	
+	
+	public SendGroupChatController() {
+		numAllocatedThreads = 4;
+	}
 	
 	@Override
 	public RequestEvent createRequestEvent() {
 		return new SendGroupChatRequestEvent();
 	}
-	
-	
 
 	@Override
 	public int getEventType() {
@@ -93,7 +97,7 @@ public class SendGroupChatController extends EventController {
 			if (legitSend) {
 		        log.info("Group chat message is legit... sending to group");
 		        Set<String> blackList = getProfanityRetrieveUtils().getAllProfanityTerms();
-		        String censoredChatMessage = getQueryConstructionUtil().censorInput(
+		        String censoredChatMessage = getMiscUtil().censorInput(
 		        		chatMessage, blackList);
 		        writeChangesToDB(user, scope, censoredChatMessage, timeOfPost);
 		        //TODO: SEND ReceivedGroupChatResponseProto TO global or clan chat
@@ -188,20 +192,20 @@ public class SendGroupChatController extends EventController {
 		this.profanityRetrieveUtils = profanityRetrieveUtils;
 	}
 
-	public QueryConstructionUtil getQueryConstructionUtil() {
-		return queryConstructionUtil;
-	}
-
-	public void setQueryConstructionUtil(QueryConstructionUtil queryConstructionUtil) {
-		this.queryConstructionUtil = queryConstructionUtil;
-	}
-
 	public ClanChatPostService getClanChatPostService() {
 		return clanChatPostService;
 	}
 
 	public void setClanChatPostService(ClanChatPostService clanChatPostService) {
 		this.clanChatPostService = clanChatPostService;
+	}
+
+	public MiscUtil getMiscUtil() {
+		return miscUtil;
+	}
+
+	public void setMiscUtil(MiscUtil miscUtil) {
+		this.miscUtil = miscUtil;
 	}
 	
 }

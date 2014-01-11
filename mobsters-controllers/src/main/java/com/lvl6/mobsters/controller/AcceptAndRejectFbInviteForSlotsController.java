@@ -51,6 +51,12 @@ public class AcceptAndRejectFbInviteForSlotsController extends EventController {
 	@Autowired
 	protected CreateNoneventProtoUtil createNoneventProtoUtil;
 	
+
+
+	public AcceptAndRejectFbInviteForSlotsController() {
+		numAllocatedThreads = 4;
+	}
+	
 	@Override
 	public RequestEvent createRequestEvent() {
 		return new AcceptAndRejectFbInviteForSlotsRequestEvent();

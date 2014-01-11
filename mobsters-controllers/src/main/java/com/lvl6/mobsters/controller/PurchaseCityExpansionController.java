@@ -50,6 +50,12 @@ public class PurchaseCityExpansionController extends EventController {
 	@Autowired
 	protected UserCurrencyHistoryService userCurrencyHistoryService;
 
+
+
+	public PurchaseCityExpansionController() {
+		numAllocatedThreads = 1;
+	}
+
 	@Override
 	public RequestEvent createRequestEvent() {
 		return new PurchaseCityExpansionRequestEvent();

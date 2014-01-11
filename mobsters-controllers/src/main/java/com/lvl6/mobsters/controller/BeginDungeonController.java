@@ -59,13 +59,17 @@ public class BeginDungeonController extends EventController {
 	
 	@Autowired
 	protected CreateNoneventProtoUtil createNoneventProtoUtil;
+
+
+
+	public BeginDungeonController() {
+		numAllocatedThreads = 4;
+	}
 	
 	@Override
 	public RequestEvent createRequestEvent() {
 		return new BeginDungeonRequestEvent();
 	}
-	
-	
 
 	@Override
 	public int getEventType() {

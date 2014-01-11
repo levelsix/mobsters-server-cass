@@ -54,6 +54,12 @@ public class CombineUserMonsterPiecesController extends EventController {
 	@Autowired
 	protected CreateEventProtoUtil createEventProtoUtil;
 
+
+
+	public CombineUserMonsterPiecesController() {
+		numAllocatedThreads = 4;
+	}
+	
 	@Override
 	public RequestEvent createRequestEvent() {
 		return new CombineUserMonsterPiecesRequestEvent();

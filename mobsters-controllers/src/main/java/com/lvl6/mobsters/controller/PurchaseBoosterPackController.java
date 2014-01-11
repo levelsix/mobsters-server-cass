@@ -62,16 +62,20 @@ public class PurchaseBoosterPackController extends EventController {
 	@Autowired
 	protected CreateEventProtoUtil createEventProtoUtil;
 	
+	
+	
+	public PurchaseBoosterPackController() {
+	    numAllocatedThreads = 4;
+	}
+	
 	@Override
 	public RequestEvent createRequestEvent() {
 		return new PurchaseBoosterPackRequestEvent();
 	}
-	
-	
 
 	@Override
 	public int getEventType() {
-		return MobstersEventProtocolRequest.C_ENABLE_APNS_EVENT_VALUE;
+		return MobstersEventProtocolRequest.C_PURCHASE_BOOSTER_PACK_EVENT_VALUE;
 	}
 
 	@Override

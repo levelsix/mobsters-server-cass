@@ -59,7 +59,10 @@ public class NormStructWaitCompleteController extends EventController {
 	protected MiscUtil miscUtil;
 	
 
-	
+
+	public NormStructWaitCompleteController() {
+		numAllocatedThreads = 5;
+	}
 	
 	@Override
 	public RequestEvent createRequestEvent() {

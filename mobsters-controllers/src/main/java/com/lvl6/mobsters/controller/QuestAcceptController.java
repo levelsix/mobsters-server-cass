@@ -38,14 +38,18 @@ public class QuestAcceptController extends EventController {
 	
 	@Autowired
 	protected QuestForUserService questForUserService;
-	
+
+
+
+	public QuestAcceptController() {
+		numAllocatedThreads = 5;
+	}
+	 
 	@Override
 	public RequestEvent createRequestEvent() {
 		return new QuestAcceptRequestEvent();
 	}
 	
-	
-
 	@Override
 	public int getEventType() {
 		return MobstersEventProtocolRequest.C_QUEST_ACCEPT_EVENT_VALUE;

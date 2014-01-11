@@ -13,12 +13,12 @@ public class Globals implements ApplicationContextAware {
 	protected String appleBundleId;
 	protected String appStoreUrl;
 	protected String reviewPageUrl;
+	protected String reviewPageConfirmationMessage;
 	protected boolean kabamEnabled = true;
 	protected boolean sandbox = true;
 	protected boolean iddictionOn = true;
 	protected float versionNumber = 1.0f;
 	protected int healthCheckTimeoutSeconds = 6;
-	
 	
 	
 	public boolean isKabamEnabled() {
@@ -53,7 +53,20 @@ public class Globals implements ApplicationContextAware {
 		this.reviewPageUrl = reviewPageUrl;
 	}
 
-    public int getHealthCheckTimeoutSeconds() {
+    public String getReviewPageConfirmationMessage() {
+    	if (null == reviewPageConfirmationMessage) {
+    		this.reviewPageConfirmationMessage = 
+    				 "Awesome! Rate us 5 Stars in the App Store to keep the updates coming!";
+    	}
+		return reviewPageConfirmationMessage;
+	}
+
+	public void setReviewPageConfirmationMessage(
+			String reviewPageConfirmationMessage) {
+		this.reviewPageConfirmationMessage = reviewPageConfirmationMessage;
+	}
+
+	public int getHealthCheckTimeoutSeconds() {
 		return healthCheckTimeoutSeconds;
 	}
 

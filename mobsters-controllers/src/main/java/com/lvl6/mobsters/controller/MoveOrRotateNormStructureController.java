@@ -34,6 +34,11 @@ public class MoveOrRotateNormStructureController extends EventController {
 	protected StructureForUserService structureForUserService;
 	
 
+
+	public MoveOrRotateNormStructureController() {
+		numAllocatedThreads = 3;
+	}
+	
 	@Override
 	public RequestEvent createRequestEvent() {
 		return new MoveOrRotateNormStructureRequestEvent();

@@ -39,6 +39,7 @@ public class MobstersTableConstants {
 	
 	//USER CURRENCY HISTORY REASON FOR CHANGE     VALUES
 	public static final String UCHRFC__CREATE_CLAN = "created clan";
+	public static final String UCHRFC__CURRENCY_EXCHANGED = "currency exchanged";
 	public static final String UCHRFC__EARN_FREE_DIAMONDS_FB_CONNECT = "connecting to facebook";
 	public static final String UCHRFC__END_TASK = "end task";
 	public static final String UCHRFC__ENHANCING = "enhancing user monsters";
@@ -47,16 +48,16 @@ public class MobstersTableConstants {
 	public static final String UCHRFC__PURHCASED_BOOSTER_PACK = "purchased booster pack";
 	public static final String UCHRFC__PURHCASED_CITY_EXPANSION = "purchased_city_expansion";
 	public static final String UCHRFC__PURCHASE_NORM_STRUCT = "purchased norm struct";
+	public static final String UCHRFC__REDEEMED_QUEST = "redeemed quest";
 	public static final String UCHRFC__RETRIEVE_CURRENCY_FROM_NORM_STRUCT = "retrieve currency from normal structures";
+	public static final String UCHRFC__SOLD_USER_MONSTERS = "sold user monsters";
 	public static final String UCHRFC__SPED_UP_CITY_EXPANSION = "sped up city expansion";
+	public static final String UCHRFC__SPED_UP_COMBINING_MONSTER = "sped up combining user monster";
 	public static final String UCHRFC__SPED_UP_ENHANCING = "sped up enhancing user monster";
 //	public static final String UCHRFC__SPED_UP_HEALING = "sped up healing user monster";
 	public static final String UCHRFC__SPED_UP_NORM_STRUCT = "sped up norm struct";
 	public static final String UCHRFC__UPGRADE_NORM_STRUCT = "upgrading norm struct";
 	
-	public static final String UCHRFC__REDEEMED_QUEST = "redeemed quest";
-	public static final String UCHRFC__SOLD_USER_MONSTERS = "sold user monsters";
-	public static final String UCHRFC__SPED_UP_COMBINING_MONSTER = "sped up combining user monster";
 	
 	
 

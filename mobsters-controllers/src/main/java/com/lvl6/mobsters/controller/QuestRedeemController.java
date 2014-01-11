@@ -61,13 +61,16 @@ public class QuestRedeemController extends EventController {
 	@Autowired
 	protected UserCurrencyHistoryService userCurrencyHistoryService;
 	
+
+	
+	public QuestRedeemController() {
+		numAllocatedThreads = 4;
+	}	
 	
 	@Override
 	public RequestEvent createRequestEvent() {
 		return new QuestRedeemRequestEvent();
 	}
-	
-	
 
 	@Override
 	public int getEventType() {

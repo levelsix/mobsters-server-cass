@@ -51,6 +51,12 @@ public class InviteFbFriendsForSlotsController extends EventController {
 	@Autowired
 	protected CreateNoneventProtoUtil createNoneventProtoUtil;
 	
+
+
+	public InviteFbFriendsForSlotsController() {
+		numAllocatedThreads = 4;
+	}
+	
 	@Override
 	public RequestEvent createRequestEvent() {
 		return new InviteFbFriendsForSlotsRequestEvent();

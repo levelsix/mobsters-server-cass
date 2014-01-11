@@ -45,6 +45,12 @@ public class LoadCityController extends EventController {
 	@Autowired
 	protected CreateNoneventProtoUtil createNoneventProtoUtil;
 	
+	
+
+	public LoadCityController() {
+		numAllocatedThreads = 3;
+	}
+	
 	@Override
 	public RequestEvent createRequestEvent() {
 		return new LoadCityRequestEvent();

@@ -53,6 +53,11 @@ public class FinishNormStructWaittimeWithDiamondsController extends EventControl
 	@Autowired
 	protected CreateEventProtoUtil createEventProtoUtil;
 	
+	
+
+	public FinishNormStructWaittimeWithDiamondsController() {
+		numAllocatedThreads = 2;
+	}
 
 	@Override
 	public RequestEvent createRequestEvent() {

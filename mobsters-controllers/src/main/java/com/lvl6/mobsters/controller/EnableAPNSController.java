@@ -29,6 +29,10 @@ public class EnableAPNSController extends EventController {
 	protected UserService userService;
 	
 	
+	public EnableAPNSController() {
+	    numAllocatedThreads = 1;
+	}
+	
 	@Override
 	public RequestEvent createRequestEvent() {
 		return new EnableAPNSRequestEvent();

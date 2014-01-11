@@ -18,7 +18,6 @@ import com.lvl6.mobsters.events.request.UserCreateRequestEvent;
 import com.lvl6.mobsters.events.response.UserCreateResponseEvent;
 import com.lvl6.mobsters.noneventprotos.MobstersEventProtocolProto.MobstersEventProtocolRequest;
 import com.lvl6.mobsters.po.nonstaticdata.User;
-import com.lvl6.mobsters.po.staticdata.Structure;
 import com.lvl6.mobsters.properties.MobstersTableConstants;
 import com.lvl6.mobsters.services.structureforuser.StructureForUserService;
 import com.lvl6.mobsters.services.user.UserService;
@@ -39,6 +38,12 @@ public class UserCreateController extends EventController {
 	@Autowired
 	protected UserService userService;
 
+	
+	
+	public UserCreateController() {
+		numAllocatedThreads = 3;
+	}
+	
 	@Override
 	public RequestEvent createRequestEvent() {
 		return new UserCreateRequestEvent();

@@ -35,9 +35,12 @@ public class UpdateMonsterHealthController extends EventController {
 
 	@Autowired
 	protected MonsterForUserService monsterForUserService;
+
+
 	
-	
-	
+	public UpdateMonsterHealthController() {
+		numAllocatedThreads = 4;
+	}
 	
 	@Override
 	public RequestEvent createRequestEvent() {

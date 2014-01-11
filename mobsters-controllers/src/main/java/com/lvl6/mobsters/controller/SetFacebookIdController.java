@@ -29,6 +29,12 @@ public class SetFacebookIdController extends EventController {
 	@Autowired
 	protected UserService userService; 
 
+	
+	
+	public SetFacebookIdController() {
+		numAllocatedThreads = 1;
+	}
+	
 	@Override
 	public RequestEvent createRequestEvent() {
 		return new SetFacebookIdRequestEvent();

@@ -34,6 +34,10 @@ public final class EventStartupProto {
     // optional bool isForceTutorial = 6;
     boolean hasIsForceTutorial();
     boolean getIsForceTutorial();
+    
+    // optional string fbId = 7;
+    boolean hasFbId();
+    String getFbId();
   }
   public static final class StartupRequestProto extends
       com.google.protobuf.GeneratedMessage
@@ -212,6 +216,38 @@ public final class EventStartupProto {
       return isForceTutorial_;
     }
     
+    // optional string fbId = 7;
+    public static final int FBID_FIELD_NUMBER = 7;
+    private java.lang.Object fbId_;
+    public boolean hasFbId() {
+      return ((bitField0_ & 0x00000040) == 0x00000040);
+    }
+    public String getFbId() {
+      java.lang.Object ref = fbId_;
+      if (ref instanceof String) {
+        return (String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        String s = bs.toStringUtf8();
+        if (com.google.protobuf.Internal.isValidUtf8(bs)) {
+          fbId_ = s;
+        }
+        return s;
+      }
+    }
+    private com.google.protobuf.ByteString getFbIdBytes() {
+      java.lang.Object ref = fbId_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8((String) ref);
+        fbId_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    
     private void initFields() {
       udid_ = "";
       versionNum_ = 0F;
@@ -219,6 +255,7 @@ public final class EventStartupProto {
       macAddress_ = "";
       advertiserId_ = "";
       isForceTutorial_ = false;
+      fbId_ = "";
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -249,6 +286,9 @@ public final class EventStartupProto {
       }
       if (((bitField0_ & 0x00000020) == 0x00000020)) {
         output.writeBool(6, isForceTutorial_);
+      }
+      if (((bitField0_ & 0x00000040) == 0x00000040)) {
+        output.writeBytes(7, getFbIdBytes());
       }
       getUnknownFields().writeTo(output);
     }
@@ -282,6 +322,10 @@ public final class EventStartupProto {
       if (((bitField0_ & 0x00000020) == 0x00000020)) {
         size += com.google.protobuf.CodedOutputStream
           .computeBoolSize(6, isForceTutorial_);
+      }
+      if (((bitField0_ & 0x00000040) == 0x00000040)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(7, getFbIdBytes());
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -419,6 +463,8 @@ public final class EventStartupProto {
         bitField0_ = (bitField0_ & ~0x00000010);
         isForceTutorial_ = false;
         bitField0_ = (bitField0_ & ~0x00000020);
+        fbId_ = "";
+        bitField0_ = (bitField0_ & ~0x00000040);
         return this;
       }
       
@@ -481,6 +527,10 @@ public final class EventStartupProto {
           to_bitField0_ |= 0x00000020;
         }
         result.isForceTutorial_ = isForceTutorial_;
+        if (((from_bitField0_ & 0x00000040) == 0x00000040)) {
+          to_bitField0_ |= 0x00000040;
+        }
+        result.fbId_ = fbId_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -514,6 +564,9 @@ public final class EventStartupProto {
         }
         if (other.hasIsForceTutorial()) {
           setIsForceTutorial(other.getIsForceTutorial());
+        }
+        if (other.hasFbId()) {
+          setFbId(other.getFbId());
         }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
@@ -574,6 +627,11 @@ public final class EventStartupProto {
             case 48: {
               bitField0_ |= 0x00000020;
               isForceTutorial_ = input.readBool();
+              break;
+            }
+            case 58: {
+              bitField0_ |= 0x00000040;
+              fbId_ = input.readBytes();
               break;
             }
           }
@@ -766,6 +824,42 @@ public final class EventStartupProto {
         isForceTutorial_ = false;
         onChanged();
         return this;
+      }
+      
+      // optional string fbId = 7;
+      private java.lang.Object fbId_ = "";
+      public boolean hasFbId() {
+        return ((bitField0_ & 0x00000040) == 0x00000040);
+      }
+      public String getFbId() {
+        java.lang.Object ref = fbId_;
+        if (!(ref instanceof String)) {
+          String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
+          fbId_ = s;
+          return s;
+        } else {
+          return (String) ref;
+        }
+      }
+      public Builder setFbId(String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000040;
+        fbId_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearFbId() {
+        bitField0_ = (bitField0_ & ~0x00000040);
+        fbId_ = getDefaultInstance().getFbId();
+        onChanged();
+        return this;
+      }
+      void setFbId(com.google.protobuf.ByteString value) {
+        bitField0_ |= 0x00000040;
+        fbId_ = value;
+        onChanged();
       }
       
       // @@protoc_insertion_point(builder_scope:proto.StartupRequestProto)
@@ -12831,101 +12925,102 @@ public final class EventStartupProto {
       "n.proto\032\023InAppPurchase.proto\032\020QuestStuff" +
       ".proto\032\020StaticData.proto\032\017Structure.prot" +
       "o\032\nTask.proto\032\nUser.proto\032\022MonsterStuff." +
-      "proto\"\215\001\n\023StartupRequestProto\022\014\n\004udid\030\001 " +
+      "proto\"\233\001\n\023StartupRequestProto\022\014\n\004udid\030\001 " +
       "\001(\t\022\022\n\nversionNum\030\002 \001(\002\022\021\n\tapsalarId\030\003 \001" +
       "(\t\022\022\n\nmacAddress\030\004 \001(\t\022\024\n\014advertiserId\030\005" +
-      " \001(\t\022\027\n\017isForceTutorial\030\006 \001(\010\"\202\034\n\024Startu" +
-      "pResponseProto\022\030\n\020serverTimeMillis\030\001 \001(\003",
-      "\022$\n\006sender\030\002 \001(\0132\024.proto.FullUserProto\022@" +
-      "\n\rstartupStatus\030\003 \001(\0162).proto.StartupRes" +
-      "ponseProto.StartupStatus\022>\n\014updateStatus" +
-      "\030\004 \001(\0162(.proto.StartupResponseProto.Upda" +
-      "teStatus\022F\n\020startupConstants\030\005 \001(\0132,.pro" +
-      "to.StartupResponseProto.StartupConstants" +
-      "\022-\n\nuserQuests\030\006 \003(\0132\031.proto.FullUserQue" +
-      "stProto\022\030\n\020redeemedQuestIds\030\033 \003(\005\022.\n\014use" +
-      "rClanInfo\030\007 \003(\0132\030.proto.FullUserClanProt" +
-      "o\022\030\n\020completedTaskIds\030\010 \003(\005\022\023\n\013appStoreU",
-      "RL\030\t \001(\t\022\025\n\rreviewPageURL\030\n \001(\t\022%\n\035revie" +
-      "wPageConfirmationMessage\030\013 \001(\t\022$\n\034player" +
-      "HasBoughtInAppPurchase\030\014 \001(\010\022R\n\023attackNo" +
-      "tifications\030\r \003(\01325.proto.StartupRespons" +
-      "eProto.AttackedNotificationProto\022T\n\025refe" +
-      "rralNotifications\030\016 \003(\01325.proto.StartupR" +
-      "esponseProto.ReferralNotificationProto\022\030" +
-      "\n\020noticesToPlayers\030\017 \003(\t\0221\n\013globalChats\030" +
-      "\020 \003(\0132\034.proto.GroupChatMessageProto\022/\n\tc" +
-      "lanChats\030\021 \003(\0132\034.proto.GroupChatMessageP",
-      "roto\022)\n\004pcpp\030\022 \003(\0132\033.proto.PrivateChatPo" +
-      "stProto\0222\n\rusersMonsters\030\023 \003(\0132\033.proto.F" +
-      "ullUserMonsterProto\0227\n\017monstersHealing\030\024" +
-      " \003(\0132\036.proto.UserMonsterHealingProto\0221\n\014" +
-      "enhancements\030\025 \001(\0132\033.proto.UserEnhanceme" +
-      "ntProto\022=\n\024rareBoosterPurchases\030\026 \003(\0132\037." +
-      "proto.RareBoosterPurchaseProto\022\021\n\tkabamN" +
-      "aid\030\027 \001(\t\022E\n\026usersUsedForExtraSlots\030\030 \003(" +
-      "\0132%.proto.MinimumUserProtoWithFacebookId" +
-      "\022B\n\023invitesToMeForSlots\030\031 \003(\0132%.proto.Us",
-      "erFacebookInviteForSlotProto\0224\n\024staticDa" +
-      "taStuffProto\030\032 \001(\0132\026.proto.StaticDataPro" +
-      "to\022 \n\030taskIdForCurrentCityBoss\030\034 \003(\005\032v\n\031" +
-      "AttackedNotificationProto\022)\n\010attacker\030\001 " +
-      "\001(\0132\027.proto.MinimumUserProto\022\032\n\022battleCo" +
-      "mpleteTime\030\002 \001(\003\022\022\n\ncashStolen\030\003 \001(\005\032x\n\031" +
-      "ReferralNotificationProto\022)\n\010referred\030\001 " +
-      "\001(\0132\027.proto.MinimumUserProto\022\023\n\013recruitT" +
-      "ime\030\002 \001(\003\022\033\n\023cashGivenToReferrer\030\003 \001(\005\032\301" +
-      "\016\n\020StartupConstants\022?\n\025inAppPurchasePack",
-      "ages\030\001 \003(\0132 .proto.InAppPurchasePackageP" +
-      "roto\022\027\n\017maxLevelForUser\030\002 \001(\005\022\034\n\024maxNumO" +
-      "fSingleStruct\030\003 \001(\005\022e\n\025animatedSpriteOff" +
-      "sets\030\004 \003(\0132F.proto.StartupResponseProto." +
-      "StartupConstants.AnimatedSpriteOffsetPro" +
-      "to\022\025\n\rminNameLength\030\005 \001(\005\022\025\n\rmaxNameLeng" +
-      "th\030\006 \001(\005\022\035\n\025maxLengthOfChatString\030\007 \001(\005\022" +
-      "Q\n\rclanConstants\030\010 \001(\0132:.proto.StartupRe" +
-      "sponseProto.StartupConstants.ClanConstan" +
-      "ts\022g\n\030downloadableNibConstants\030\t \001(\0132E.p",
+      " \001(\t\022\027\n\017isForceTutorial\030\006 \001(\010\022\014\n\004fbId\030\007 " +
+      "\001(\t\"\202\034\n\024StartupResponseProto\022\030\n\020serverTi",
+      "meMillis\030\001 \001(\003\022$\n\006sender\030\002 \001(\0132\024.proto.F" +
+      "ullUserProto\022@\n\rstartupStatus\030\003 \001(\0162).pr" +
+      "oto.StartupResponseProto.StartupStatus\022>" +
+      "\n\014updateStatus\030\004 \001(\0162(.proto.StartupResp" +
+      "onseProto.UpdateStatus\022F\n\020startupConstan" +
+      "ts\030\005 \001(\0132,.proto.StartupResponseProto.St" +
+      "artupConstants\022-\n\nuserQuests\030\006 \003(\0132\031.pro" +
+      "to.FullUserQuestProto\022\030\n\020redeemedQuestId" +
+      "s\030\033 \003(\005\022.\n\014userClanInfo\030\007 \003(\0132\030.proto.Fu" +
+      "llUserClanProto\022\030\n\020completedTaskIds\030\010 \003(",
+      "\005\022\023\n\013appStoreURL\030\t \001(\t\022\025\n\rreviewPageURL\030" +
+      "\n \001(\t\022%\n\035reviewPageConfirmationMessage\030\013" +
+      " \001(\t\022$\n\034playerHasBoughtInAppPurchase\030\014 \001" +
+      "(\010\022R\n\023attackNotifications\030\r \003(\01325.proto." +
+      "StartupResponseProto.AttackedNotificatio" +
+      "nProto\022T\n\025referralNotifications\030\016 \003(\01325." +
+      "proto.StartupResponseProto.ReferralNotif" +
+      "icationProto\022\030\n\020noticesToPlayers\030\017 \003(\t\0221" +
+      "\n\013globalChats\030\020 \003(\0132\034.proto.GroupChatMes" +
+      "sageProto\022/\n\tclanChats\030\021 \003(\0132\034.proto.Gro",
+      "upChatMessageProto\022)\n\004pcpp\030\022 \003(\0132\033.proto" +
+      ".PrivateChatPostProto\0222\n\rusersMonsters\030\023" +
+      " \003(\0132\033.proto.FullUserMonsterProto\0227\n\017mon" +
+      "stersHealing\030\024 \003(\0132\036.proto.UserMonsterHe" +
+      "alingProto\0221\n\014enhancements\030\025 \001(\0132\033.proto" +
+      ".UserEnhancementProto\022=\n\024rareBoosterPurc" +
+      "hases\030\026 \003(\0132\037.proto.RareBoosterPurchaseP" +
+      "roto\022\021\n\tkabamNaid\030\027 \001(\t\022E\n\026usersUsedForE" +
+      "xtraSlots\030\030 \003(\0132%.proto.MinimumUserProto" +
+      "WithFacebookId\022B\n\023invitesToMeForSlots\030\031 ",
+      "\003(\0132%.proto.UserFacebookInviteForSlotPro" +
+      "to\0224\n\024staticDataStuffProto\030\032 \001(\0132\026.proto" +
+      ".StaticDataProto\022 \n\030taskIdForCurrentCity" +
+      "Boss\030\034 \003(\005\032v\n\031AttackedNotificationProto\022" +
+      ")\n\010attacker\030\001 \001(\0132\027.proto.MinimumUserPro" +
+      "to\022\032\n\022battleCompleteTime\030\002 \001(\003\022\022\n\ncashSt" +
+      "olen\030\003 \001(\005\032x\n\031ReferralNotificationProto\022" +
+      ")\n\010referred\030\001 \001(\0132\027.proto.MinimumUserPro" +
+      "to\022\023\n\013recruitTime\030\002 \001(\003\022\033\n\023cashGivenToRe" +
+      "ferrer\030\003 \001(\005\032\301\016\n\020StartupConstants\022?\n\025inA",
+      "ppPurchasePackages\030\001 \003(\0132 .proto.InAppPu" +
+      "rchasePackageProto\022\027\n\017maxLevelForUser\030\002 " +
+      "\001(\005\022\034\n\024maxNumOfSingleStruct\030\003 \001(\005\022e\n\025ani" +
+      "matedSpriteOffsets\030\004 \003(\0132F.proto.Startup" +
+      "ResponseProto.StartupConstants.AnimatedS" +
+      "priteOffsetProto\022\025\n\rminNameLength\030\005 \001(\005\022" +
+      "\025\n\rmaxNameLength\030\006 \001(\005\022\035\n\025maxLengthOfCha" +
+      "tString\030\007 \001(\005\022Q\n\rclanConstants\030\010 \001(\0132:.p" +
       "roto.StartupResponseProto.StartupConstan" +
-      "ts.DownloadableNibConstants\022\'\n\037numHoursB" +
-      "eforeReshowingGoldSale\030\n \001(\005\022\036\n\026levelToS" +
-      "howRateUsPopup\030\013 \001(\005\022\\\n\022touramentConstan" +
-      "ts\030\014 \001(\0132@.proto.StartupResponseProto.St" +
-      "artupConstants.TournamentConstants\022\037\n\027fb" +
-      "ConnectRewardDiamonds\030\r \001(\005\022\023\n\013faqFileNa" +
-      "me\030\016 \001(\t\0223\n\022adminChatUserProto\030\017 \001(\0132\027.p" +
-      "roto.MinimumUserProto\022\037\n\027numBeginnerSale" +
-      "sAllowed\030\020 \001(\005\022_\n\024userMonsterConstants\030\021",
-      " \001(\0132A.proto.StartupResponseProto.Startu" +
-      "pConstants.UserMonsterConstants\022W\n\020monst" +
-      "erConstants\030\022 \001(\0132=.proto.StartupRespons" +
-      "eProto.StartupConstants.MonsterConstants" +
-      "\022\025\n\rminutesPerGem\030\023 \001(\002\022\031\n\021pvpRequiredMi" +
-      "nLvl\030\024 \001(\005\032V\n\031AnimatedSpriteOffsetProto\022" +
-      "\021\n\timageName\030\001 \001(\t\022&\n\006offSet\030\002 \001(\0132\026.pro" +
-      "to.CoordinateProto\032\232\001\n\rClanConstants\022\035\n\025" +
-      "coinPriceToCreateClan\030\001 \001(\005\022 \n\030maxCharLe" +
-      "ngthForClanName\030\002 \001(\005\022\'\n\037maxCharLengthFo",
-      "rClanDescription\030\003 \001(\005\022\037\n\027maxCharLengthF" +
-      "orClanTag\030\004 \001(\005\032c\n\030DownloadableNibConsta" +
-      "nts\022\022\n\nmapNibName\030\001 \001(\t\022\030\n\020expansionNibN" +
-      "ame\030\002 \001(\t\022\031\n\021goldShoppeNibName\030\003 \001(\t\032y\n\023" +
-      "TournamentConstants\022\022\n\nwinsWeight\030\001 \001(\005\022" +
-      "\024\n\014lossesWeight\030\002 \001(\005\022\023\n\013fleesWeight\030\003 \001" +
-      "(\005\022#\n\033numHoursToShowAfterEventEnd\030\004 \001(\005\032" +
-      "\304\001\n\024UserMonsterConstants\022\027\n\017maxNumTeamSl" +
-      "ots\030\001 \001(\005\022!\n\031initialMaxNumMonsterLimit\030\002" +
-      " \001(\005\022\'\n\037monsterInventoryIncrementAmount\030",
-      "\003 \001(\005\022\027\n\017gemPricePerSlot\030\004 \001(\005\022.\n&numFri" +
-      "endsToRecruitToIncreaseInventory\030\005 \001(\005\032\211" +
-      "\001\n\020MonsterConstants\022\032\n\022cashPerHealthPoin" +
-      "t\030\001 \001(\002\022#\n\033secondsToHealPerHealthPoint\030\002" +
-      " \001(\002\022\031\n\021elementalStrength\030\003 \001(\002\022\031\n\021eleme" +
-      "ntalWeakness\030\004 \001(\002\"A\n\014UpdateStatus\022\r\n\tNO" +
-      "_UPDATE\020\001\022\020\n\014MINOR_UPDATE\020\002\022\020\n\014MAJOR_UPD" +
-      "ATE\020\003\"3\n\rStartupStatus\022\016\n\nUSER_IN_DB\020\001\022\022" +
-      "\n\016USER_NOT_IN_DB\020\002B2\n\035com.lvl6.mobsters." +
-      "eventprotosB\021EventStartupProto"
+      "ts.ClanConstants\022g\n\030downloadableNibConst",
+      "ants\030\t \001(\0132E.proto.StartupResponseProto." +
+      "StartupConstants.DownloadableNibConstant" +
+      "s\022\'\n\037numHoursBeforeReshowingGoldSale\030\n \001" +
+      "(\005\022\036\n\026levelToShowRateUsPopup\030\013 \001(\005\022\\\n\022to" +
+      "uramentConstants\030\014 \001(\0132@.proto.StartupRe" +
+      "sponseProto.StartupConstants.TournamentC" +
+      "onstants\022\037\n\027fbConnectRewardDiamonds\030\r \001(" +
+      "\005\022\023\n\013faqFileName\030\016 \001(\t\0223\n\022adminChatUserP" +
+      "roto\030\017 \001(\0132\027.proto.MinimumUserProto\022\037\n\027n" +
+      "umBeginnerSalesAllowed\030\020 \001(\005\022_\n\024userMons",
+      "terConstants\030\021 \001(\0132A.proto.StartupRespon" +
+      "seProto.StartupConstants.UserMonsterCons" +
+      "tants\022W\n\020monsterConstants\030\022 \001(\0132=.proto." +
+      "StartupResponseProto.StartupConstants.Mo" +
+      "nsterConstants\022\025\n\rminutesPerGem\030\023 \001(\002\022\031\n" +
+      "\021pvpRequiredMinLvl\030\024 \001(\005\032V\n\031AnimatedSpri" +
+      "teOffsetProto\022\021\n\timageName\030\001 \001(\t\022&\n\006offS" +
+      "et\030\002 \001(\0132\026.proto.CoordinateProto\032\232\001\n\rCla" +
+      "nConstants\022\035\n\025coinPriceToCreateClan\030\001 \001(" +
+      "\005\022 \n\030maxCharLengthForClanName\030\002 \001(\005\022\'\n\037m",
+      "axCharLengthForClanDescription\030\003 \001(\005\022\037\n\027" +
+      "maxCharLengthForClanTag\030\004 \001(\005\032c\n\030Downloa" +
+      "dableNibConstants\022\022\n\nmapNibName\030\001 \001(\t\022\030\n" +
+      "\020expansionNibName\030\002 \001(\t\022\031\n\021goldShoppeNib" +
+      "Name\030\003 \001(\t\032y\n\023TournamentConstants\022\022\n\nwin" +
+      "sWeight\030\001 \001(\005\022\024\n\014lossesWeight\030\002 \001(\005\022\023\n\013f" +
+      "leesWeight\030\003 \001(\005\022#\n\033numHoursToShowAfterE" +
+      "ventEnd\030\004 \001(\005\032\304\001\n\024UserMonsterConstants\022\027" +
+      "\n\017maxNumTeamSlots\030\001 \001(\005\022!\n\031initialMaxNum" +
+      "MonsterLimit\030\002 \001(\005\022\'\n\037monsterInventoryIn",
+      "crementAmount\030\003 \001(\005\022\027\n\017gemPricePerSlot\030\004" +
+      " \001(\005\022.\n&numFriendsToRecruitToIncreaseInv" +
+      "entory\030\005 \001(\005\032\211\001\n\020MonsterConstants\022\032\n\022cas" +
+      "hPerHealthPoint\030\001 \001(\002\022#\n\033secondsToHealPe" +
+      "rHealthPoint\030\002 \001(\002\022\031\n\021elementalStrength\030" +
+      "\003 \001(\002\022\031\n\021elementalWeakness\030\004 \001(\002\"A\n\014Upda" +
+      "teStatus\022\r\n\tNO_UPDATE\020\001\022\020\n\014MINOR_UPDATE\020" +
+      "\002\022\020\n\014MAJOR_UPDATE\020\003\"3\n\rStartupStatus\022\016\n\n" +
+      "USER_IN_DB\020\001\022\022\n\016USER_NOT_IN_DB\020\002B2\n\035com." +
+      "lvl6.mobsters.eventprotosB\021EventStartupP",
+      "roto"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -12937,7 +13032,7 @@ public final class EventStartupProto {
           internal_static_proto_StartupRequestProto_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_proto_StartupRequestProto_descriptor,
-              new java.lang.String[] { "Udid", "VersionNum", "ApsalarId", "MacAddress", "AdvertiserId", "IsForceTutorial", },
+              new java.lang.String[] { "Udid", "VersionNum", "ApsalarId", "MacAddress", "AdvertiserId", "IsForceTutorial", "FbId", },
               com.lvl6.mobsters.eventprotos.EventStartupProto.StartupRequestProto.class,
               com.lvl6.mobsters.eventprotos.EventStartupProto.StartupRequestProto.Builder.class);
           internal_static_proto_StartupResponseProto_descriptor =

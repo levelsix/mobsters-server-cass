@@ -63,6 +63,12 @@ public class QuestProgressController extends EventController {
 
 	@Autowired
 	protected MonsterForUserDeletedService monsterForUserDeletedService;
+
+
+
+	public QuestProgressController() {
+		numAllocatedThreads = 5;
+	}
 	
 	@Override
 	public RequestEvent createRequestEvent() {

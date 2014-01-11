@@ -26,10 +26,15 @@ public class RemoveMonsterFromBattleTeamController extends EventController {
 
 	private static Logger log = LoggerFactory.getLogger(new Object() { }.getClass().getEnclosingClass());
 
-
 	@Autowired
 	protected MonsterForUserService monsterForUserService;
 
+
+
+	public RemoveMonsterFromBattleTeamController() {
+		numAllocatedThreads = 4;
+	}
+	
 	@Override
 	public RequestEvent createRequestEvent() {
 		return new RemoveMonsterFromBattleTeamRequestEvent();

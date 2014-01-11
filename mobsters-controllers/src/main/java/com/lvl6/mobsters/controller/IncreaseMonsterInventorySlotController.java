@@ -69,6 +69,12 @@ public class IncreaseMonsterInventorySlotController extends EventController {
 	@Autowired
 	protected MiscUtil miscUtil;
 	
+
+
+	public IncreaseMonsterInventorySlotController() {
+		numAllocatedThreads = 4;
+	}
+	
 	@Override
 	public RequestEvent createRequestEvent() {
 		return new IncreaseMonsterInventorySlotRequestEvent();

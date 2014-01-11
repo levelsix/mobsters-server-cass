@@ -55,6 +55,12 @@ public class ExpansionWaitCompleteController extends EventController {
 	@Autowired
 	protected TimeUtils timeUtils;
 
+
+	
+	public ExpansionWaitCompleteController() {
+		numAllocatedThreads = 1;
+	}
+	
 	@Override
 	public RequestEvent createRequestEvent() {
 		return new ExpansionWaitCompleteRequestEvent();

@@ -61,6 +61,12 @@ public class RetrieveCurrencyFromNormStructureController extends EventController
 	@Autowired
 	protected StructureResourceGeneratorRetrieveUtils structureResourceGeneratorRetrieveUtils;
 
+
+	
+	public RetrieveCurrencyFromNormStructureController() {
+		numAllocatedThreads = 14;
+	}
+	
 	@Override
 	public RequestEvent createRequestEvent() {
 		return new RetrieveCurrencyFromNormStructureRequestEvent();

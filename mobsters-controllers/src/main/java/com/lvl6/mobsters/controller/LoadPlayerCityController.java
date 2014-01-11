@@ -41,6 +41,12 @@ public class LoadPlayerCityController extends EventController {
 	@Autowired
 	protected CreateNoneventProtoUtil createNoneventProtoUtil;
 	
+
+
+	public LoadPlayerCityController() {
+		numAllocatedThreads = 5;
+	}
+	
 	@Override
 	public RequestEvent createRequestEvent() {
 		return new LoadPlayerCityRequestEvent();

@@ -59,6 +59,11 @@ public class PurchaseNormStructureController extends EventController {
 	@Autowired
 	protected CreateEventProtoUtil createEventProtoUtil;
 	
+	
+
+	public PurchaseNormStructureController() {
+		numAllocatedThreads = 3;
+	}
 
 	@Override
 	public RequestEvent createRequestEvent() {

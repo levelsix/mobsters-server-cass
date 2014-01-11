@@ -79,6 +79,12 @@ public class SubmitMonsterEnhancementController extends EventController {
 	@Autowired
 	protected MiscUtil miscUtil;
 	
+	
+
+	public SubmitMonsterEnhancementController() {
+		numAllocatedThreads = 3;
+	}
+	
 	@Override
 	public RequestEvent createRequestEvent() {
 		return new SubmitMonsterEnhancementRequestEvent();

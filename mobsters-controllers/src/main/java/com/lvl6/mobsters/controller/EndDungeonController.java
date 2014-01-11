@@ -69,12 +69,14 @@ public class EndDungeonController extends EventController {
 	
 	
 	
+	public EndDungeonController() {
+		numAllocatedThreads = 4;
+	}
+
 	@Override
 	public RequestEvent createRequestEvent() {
 		return new EndDungeonRequestEvent();
 	}
-	
-	
 
 	@Override
 	public int getEventType() {

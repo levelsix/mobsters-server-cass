@@ -65,6 +65,12 @@ public class SellUserMonsterController extends EventController {
 	@Autowired
 	protected MonsterForUserDeletedService monsterForUserDeletedService;
 	
+	
+
+	public SellUserMonsterController() {
+		numAllocatedThreads = 4;
+	}
+	
 	@Override
 	public RequestEvent createRequestEvent() {
 		return new SellUserMonsterRequestEvent();

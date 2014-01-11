@@ -80,7 +80,12 @@ public class EnhancementWaitTimeCompleteController extends EventController {
 	
 	@Autowired
 	protected QueryConstructionUtil queryConstructionUtil;
+
 	
+
+	public EnhancementWaitTimeCompleteController() {
+		numAllocatedThreads = 4;
+	}
 
 	@Override
 	public RequestEvent createRequestEvent() {

@@ -55,6 +55,11 @@ public class UpgradeNormStructureController extends EventController {
 	protected CreateEventProtoUtil createEventProtoUtil;
 	
 
+	
+	public UpgradeNormStructureController() {
+		numAllocatedThreads = 4;
+	}
+	
 	@Override
 	public RequestEvent createRequestEvent() {
 		return new UpgradeNormStructureRequestEvent();

@@ -11,6 +11,9 @@ import java.util.UUID;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.slf4j.MDC;
+
+import com.lvl6.mobsters.properties.MDCKeys;
 
 public class MiscUtil {
 
@@ -136,4 +139,38 @@ public class MiscUtil {
 		}
 		return sum;
 	}
+
+//	//copy pasted from aoc's MiscMethods.java
+//	//commenting it out, 1) don't know how to properly get ip, 2) just cause don't know what
+//	//these are used for or how they are used
+//	public void purgeMDCProperties() {
+//		MDC.remove(MDCKeys.UDID);
+//		MDC.remove(MDCKeys.PLAYER_ID);
+//		MDC.remove(MDCKeys.IP);
+//	}
+//
+//	public void setMDCProperties(String udid, UUID playerId, String ip) {
+//		purgeMDCProperties();
+//		if (udid != null) MDC.put(MDCKeys.UDID, udid);
+//		if (ip != null) MDC.put(MDCKeys.IP, ip);
+//		if (playerId != null) MDC.put(MDCKeys.PLAYER_ID.toString(), playerId.toString());
+//	}
+//
+//	public static String getIPOfPlayer(GameServer server, Integer playerId, String udid) {
+//		ConnectedPlayer player = null;
+//		if (playerId != null && playerId > 0) {
+//			player = server.getPlayerById(playerId); 
+//			if (player != null) {
+//				return player.getIp_connection_id();
+//			}
+//		}
+//		if (udid != null) {
+//			player = server.getPlayerByUdId(udid);
+//			if (player != null) {
+//				return player.getIp_connection_id();
+//			}
+//		}
+//		return null;
+//	}
+
 }

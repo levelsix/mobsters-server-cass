@@ -81,6 +81,12 @@ public class HealMonsterController extends EventController {
 	@Autowired
 	protected MiscUtil miscUtil;
 	
+
+
+	public HealMonsterController() {
+		numAllocatedThreads = 4;
+	}
+	
 	@Override
 	public RequestEvent createRequestEvent() {
 		return new HealMonsterRequestEvent();
