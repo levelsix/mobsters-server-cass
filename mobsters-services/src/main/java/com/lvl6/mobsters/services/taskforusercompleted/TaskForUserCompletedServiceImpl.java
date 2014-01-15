@@ -1,6 +1,7 @@
 package com.lvl6.mobsters.services.taskforusercompleted;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -75,17 +76,23 @@ public class TaskForUserCompletedServiceImpl implements TaskForUserCompletedServ
 	
 	
 	//INSERTING STUFF****************************************************************
-	
+	public void insertIntoTaskForUserCompleted(UUID userId, int taskId, Date now) {
+		TaskForUserCompleted tfuc = new TaskForUserCompleted();
+		tfuc.setUserId(userId);
+		tfuc.setTaskId(taskId);
+		
+		saveTaskForUserCompleted(tfuc);
+	}
 
 	//SAVING STUFF****************************************************************
 	@Override
-	public void saveTaskForUserCompleted(TaskForUserCompleted tfuo) {
-		getTaskForUserCompletedEntityManager().get().put(tfuo);
+	public void saveTaskForUserCompleted(TaskForUserCompleted tfuc) {
+		getTaskForUserCompletedEntityManager().get().put(tfuc);
 	}
 	
 	@Override
-	public void saveTaskForUserCompletedList(List<TaskForUserCompleted> tfuoList) {
-		getTaskForUserCompletedEntityManager().get().put(tfuoList);
+	public void saveTaskForUserCompletedList(List<TaskForUserCompleted> tfucList) {
+		getTaskForUserCompletedEntityManager().get().put(tfucList);
 	}
 
 	

@@ -32,6 +32,7 @@ import com.lvl6.mobsters.po.nonstaticdata.UserCurrencyHistory;
 import com.lvl6.mobsters.properties.MobstersDbTables;
 import com.lvl6.mobsters.properties.MobstersTableConstants;
 import com.lvl6.mobsters.services.monsterforuser.MonsterForUserService;
+import com.lvl6.mobsters.services.taskforusercompleted.TaskForUserCompletedService;
 import com.lvl6.mobsters.services.taskforuserongoing.TaskForUserOngoingService;
 import com.lvl6.mobsters.services.taskstageforuser.TaskStageForUserService;
 import com.lvl6.mobsters.services.user.UserService;
@@ -67,7 +68,8 @@ public class EndDungeonController extends EventController {
 	@Autowired
 	protected MonsterForUserService monsterForUserService;
 	
-	
+	@Autowired
+	protected TaskForUserCompletedService taskForUserCompletedService;
 	
 	public EndDungeonController() {
 		numAllocatedThreads = 4;
@@ -135,6 +137,12 @@ public class EndDungeonController extends EventController {
 			//write to client
 			log.info("Writing event: " + resEvent);
 			getEventWriter().handleEvent(resEvent);	
+			
+			if (successful) {
+				int taskId = ut.getTaskId();
+				writeToTaskForUserCompleted(userId, taskId, userWon, firstTimeUserWonTask,
+						clientDate);
+			}
 
 		} catch (Exception e) {
 			log.error("exception in EndDungeonController processRequestEvent", e);
@@ -205,7 +213,7 @@ public class EndDungeonController extends EventController {
 			String mfusop = MobstersTableConstants.MFUSOP__END_DUNGEON + " " + userTaskId;
 			List<MonsterForUser> rewardList = getMonsterForUserService()
 					.updateUserMonstersForUser(uId, monsterIdToNumPieces, mfusop, clientDate);
-			List<FullUserMonsterProto> rewardProtoList = getCreateNoneventProtoUtils()
+			List<FullUserMonsterProto> rewardProtoList = getCreateNoneventProtoUtil()
 					.createFullUserMonsterProtoList(rewardList);
 			
 			//send awarded monsters back up to sender
@@ -239,6 +247,16 @@ public class EndDungeonController extends EventController {
 			uchList.add(cash);
 		}
 		return uchList;
+	}
+	
+	private void writeToTaskForUserCompleted(UUID userId, int taskId, 
+			boolean userWon, boolean firstTimeUserWonTask, Date now) {
+		if (userWon && firstTimeUserWonTask) {
+			getTaskForUserCompletedService().insertIntoTaskForUserCompleted(userId,
+					taskId, now);
+
+			log.info("innserted into task_for_user_completed: taskId=" + taskId);
+		}
 	}
 
 	
@@ -285,11 +303,11 @@ public class EndDungeonController extends EventController {
 		this.taskStageForUserService = taskStageForUserService;
 	}
 
-	public CreateNoneventProtoUtil getCreateNoneventProtoUtils() {
+	public CreateNoneventProtoUtil getCreateNoneventProtoUtil() {
 		return createNoneventProtoUtil;
 	}
 
-	public void setCreateNoneventProtoUtils(
+	public void setCreateNoneventProtoUtil(
 			CreateNoneventProtoUtil createNoneventProtoUtil) {
 		this.createNoneventProtoUtil = createNoneventProtoUtil;
 	}
@@ -309,6 +327,15 @@ public class EndDungeonController extends EventController {
 
 	public void setMonsterForUserService(MonsterForUserService monsterForUserService) {
 		this.monsterForUserService = monsterForUserService;
+	}
+
+	public TaskForUserCompletedService getTaskForUserCompletedService() {
+		return taskForUserCompletedService;
+	}
+
+	public void setTaskForUserCompletedService(
+			TaskForUserCompletedService taskForUserCompletedService) {
+		this.taskForUserCompletedService = taskForUserCompletedService;
 	}
 	
 }

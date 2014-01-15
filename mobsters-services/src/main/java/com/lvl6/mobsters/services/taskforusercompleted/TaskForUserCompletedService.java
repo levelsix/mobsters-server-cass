@@ -1,5 +1,6 @@
 package com.lvl6.mobsters.services.taskforusercompleted;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Set;
 import java.util.UUID;
@@ -20,7 +21,7 @@ public interface TaskForUserCompletedService {
 	
 	
 	//INSERTING STUFF****************************************************************
-	
+	public abstract void insertIntoTaskForUserCompleted(UUID userId, int taskId, Date now);
 
 	//SAVING STUFF****************************************************************
 	public abstract void saveTaskForUserCompleted(TaskForUserCompleted tfuo);
