@@ -109,6 +109,9 @@ message ResidenceProto {
 	
 	//number of accepted fb invites to get one additional monster slot
 	optional int32 numAcceptedFbInvites = 5;
+	
+	//something about facebook invites and friends
+	optional string occupationName = 6;
 }
 
 //------------------------------------------------------------------------------------------

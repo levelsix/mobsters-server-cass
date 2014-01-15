@@ -35,7 +35,15 @@ public interface UserFacebookInviteForSlotService {
 	//given collection of UserFacebookInviteForSlot, returns collection of inviter user ids
 	public abstract List<UUID> getInviterUserIds(Collection<UserFacebookInviteForSlot> invites);
 	
-	public void retainInvitesFromUnusedInviters(Set<UUID> recordedInviterIds,
+	//given collection of UserFacebookInviteForSlot, returns collection of recipient fb ids
+	public abstract List<String> getRecipientFbIds(Collection<UserFacebookInviteForSlot> invites);
+	
+	//given collection of UserFacebookInviteForSlot, returns collection of recipient fb ids
+	//and also populates inviterIdsToInvites
+	public List<UUID> getInviterIds(Map<UUID, UserFacebookInviteForSlot> idsToInvites,
+			Map<UUID, UserFacebookInviteForSlot> inviterIdsToInvites);
+	
+	public abstract void retainInvitesFromUnusedInviters(Set<UUID> recordedInviterIds,
 			Map<UUID, UUID> acceptedInviterIdsToInviteIds, 
 			List<UUID> acceptedInviteIds, List<UUID> rejectedInviteIds);
 	

@@ -88,6 +88,10 @@ public final class QuestStuffProto {
     // optional string carrotId = 19;
     boolean hasCarrotId();
     String getCarrotId();
+    
+    // optional bool isAchievement = 20;
+    boolean hasIsAchievement();
+    boolean getIsAchievement();
   }
   public static final class QuestProto extends
       com.google.protobuf.GeneratedMessage
@@ -528,6 +532,16 @@ public final class QuestStuffProto {
       }
     }
     
+    // optional bool isAchievement = 20;
+    public static final int ISACHIEVEMENT_FIELD_NUMBER = 20;
+    private boolean isAchievement_;
+    public boolean hasIsAchievement() {
+      return ((bitField0_ & 0x00040000) == 0x00040000);
+    }
+    public boolean getIsAchievement() {
+      return isAchievement_;
+    }
+    
     private void initFields() {
       questId_ = 0;
       cityId_ = 0;
@@ -548,6 +562,7 @@ public final class QuestStuffProto {
       questGiverImageSuffix_ = "";
       priority_ = 0;
       carrotId_ = "";
+      isAchievement_ = false;
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -617,6 +632,9 @@ public final class QuestStuffProto {
       }
       if (((bitField0_ & 0x00020000) == 0x00020000)) {
         output.writeBytes(19, getCarrotIdBytes());
+      }
+      if (((bitField0_ & 0x00040000) == 0x00040000)) {
+        output.writeBool(20, isAchievement_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -707,6 +725,10 @@ public final class QuestStuffProto {
       if (((bitField0_ & 0x00020000) == 0x00020000)) {
         size += com.google.protobuf.CodedOutputStream
           .computeBytesSize(19, getCarrotIdBytes());
+      }
+      if (((bitField0_ & 0x00040000) == 0x00040000)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(20, isAchievement_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -875,6 +897,8 @@ public final class QuestStuffProto {
         bitField0_ = (bitField0_ & ~0x00020000);
         carrotId_ = "";
         bitField0_ = (bitField0_ & ~0x00040000);
+        isAchievement_ = false;
+        bitField0_ = (bitField0_ & ~0x00080000);
         return this;
       }
       
@@ -994,6 +1018,10 @@ public final class QuestStuffProto {
           to_bitField0_ |= 0x00020000;
         }
         result.carrotId_ = carrotId_;
+        if (((from_bitField0_ & 0x00080000) == 0x00080000)) {
+          to_bitField0_ |= 0x00040000;
+        }
+        result.isAchievement_ = isAchievement_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -1073,6 +1101,9 @@ public final class QuestStuffProto {
         }
         if (other.hasCarrotId()) {
           setCarrotId(other.getCarrotId());
+        }
+        if (other.hasIsAchievement()) {
+          setIsAchievement(other.getIsAchievement());
         }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
@@ -1217,6 +1248,11 @@ public final class QuestStuffProto {
             case 154: {
               bitField0_ |= 0x00040000;
               carrotId_ = input.readBytes();
+              break;
+            }
+            case 160: {
+              bitField0_ |= 0x00080000;
+              isAchievement_ = input.readBool();
               break;
             }
           }
@@ -1808,6 +1844,27 @@ public final class QuestStuffProto {
         bitField0_ |= 0x00040000;
         carrotId_ = value;
         onChanged();
+      }
+      
+      // optional bool isAchievement = 20;
+      private boolean isAchievement_ ;
+      public boolean hasIsAchievement() {
+        return ((bitField0_ & 0x00080000) == 0x00080000);
+      }
+      public boolean getIsAchievement() {
+        return isAchievement_;
+      }
+      public Builder setIsAchievement(boolean value) {
+        bitField0_ |= 0x00080000;
+        isAchievement_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearIsAchievement() {
+        bitField0_ = (bitField0_ & ~0x00080000);
+        isAchievement_ = false;
+        onChanged();
+        return this;
       }
       
       // @@protoc_insertion_point(builder_scope:proto.QuestProto)
@@ -3529,7 +3586,7 @@ public final class QuestStuffProto {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\020QuestStuff.proto\022\005proto\"\340\004\n\nQuestProto" +
+      "\n\020QuestStuff.proto\022\005proto\"\367\004\n\nQuestProto" +
       "\022\017\n\007questId\030\001 \001(\005\022\016\n\006cityId\030\002 \001(\005\022\014\n\004nam" +
       "e\030\003 \001(\t\022\023\n\013description\030\004 \001(\t\022\024\n\014doneResp" +
       "onse\030\005 \001(\t\022,\n\016acceptDialogue\030\006 \001(\0132\024.pro" +
@@ -3541,23 +3598,24 @@ public final class QuestStuffProto {
       "eward\030\016 \001(\005\022\031\n\021isCompleteMonster\030\017 \001(\010\022\037",
       "\n\027questIdsRequiredForThis\030\020 \003(\005\022\035\n\025quest" +
       "GiverImageSuffix\030\021 \001(\t\022\020\n\010priority\030\022 \001(\005" +
-      "\022\020\n\010carrotId\030\023 \001(\t\"\207\001\n\tQuestType\022\020\n\014KILL" +
-      "_MONSTER\020\001\022\022\n\016DONATE_MONSTER\020\002\022\021\n\rCOMPLE" +
-      "TE_TASK\020\003\022\033\n\027COLLECT_COINS_FROM_HOME\020\004\022\020" +
-      "\n\014BUILD_STRUCT\020\005\022\022\n\016UPGRADE_STRUCT\020\006\"\327\002\n" +
-      "\rDialogueProto\022>\n\rspeechSegment\030\001 \003(\0132\'." +
-      "proto.DialogueProto.SpeechSegmentProto\032\205" +
-      "\002\n\022SpeechSegmentProto\022H\n\007speaker\030\001 \001(\01627" +
-      ".proto.DialogueProto.SpeechSegmentProto.",
-      "DialogueSpeaker\022\023\n\013speakerText\030\002 \001(\t\"\217\001\n" +
-      "\017DialogueSpeaker\022\017\n\013PLAYER_TYPE\020\001\022\021\n\rTUT" +
-      "ORIAL_GIRL\020\002\022\020\n\014QUESTGIVER_1\020\003\022\020\n\014QUESTG" +
-      "IVER_2\020\004\022\020\n\014QUESTGIVER_3\020\005\022\020\n\014QUESTGIVER" +
-      "_4\020\006\022\020\n\014QUESTGIVER_5\020\007\"q\n\022FullUserQuestP" +
-      "roto\022\020\n\010userUuid\030\001 \001(\t\022\017\n\007questId\030\002 \001(\005\022" +
-      "\022\n\nisRedeemed\030\003 \001(\010\022\022\n\nisComplete\030\004 \001(\010\022" +
-      "\020\n\010progress\030\005 \001(\005B3\n com.lvl6.mobsters.n" +
-      "oneventprotosB\017QuestStuffProto"
+      "\022\020\n\010carrotId\030\023 \001(\t\022\025\n\risAchievement\030\024 \001(" +
+      "\010\"\207\001\n\tQuestType\022\020\n\014KILL_MONSTER\020\001\022\022\n\016DON" +
+      "ATE_MONSTER\020\002\022\021\n\rCOMPLETE_TASK\020\003\022\033\n\027COLL" +
+      "ECT_COINS_FROM_HOME\020\004\022\020\n\014BUILD_STRUCT\020\005\022" +
+      "\022\n\016UPGRADE_STRUCT\020\006\"\327\002\n\rDialogueProto\022>\n" +
+      "\rspeechSegment\030\001 \003(\0132\'.proto.DialoguePro" +
+      "to.SpeechSegmentProto\032\205\002\n\022SpeechSegmentP" +
+      "roto\022H\n\007speaker\030\001 \001(\01627.proto.DialoguePr",
+      "oto.SpeechSegmentProto.DialogueSpeaker\022\023" +
+      "\n\013speakerText\030\002 \001(\t\"\217\001\n\017DialogueSpeaker\022" +
+      "\017\n\013PLAYER_TYPE\020\001\022\021\n\rTUTORIAL_GIRL\020\002\022\020\n\014Q" +
+      "UESTGIVER_1\020\003\022\020\n\014QUESTGIVER_2\020\004\022\020\n\014QUEST" +
+      "GIVER_3\020\005\022\020\n\014QUESTGIVER_4\020\006\022\020\n\014QUESTGIVE" +
+      "R_5\020\007\"q\n\022FullUserQuestProto\022\020\n\010userUuid\030" +
+      "\001 \001(\t\022\017\n\007questId\030\002 \001(\005\022\022\n\nisRedeemed\030\003 \001" +
+      "(\010\022\022\n\nisComplete\030\004 \001(\010\022\020\n\010progress\030\005 \001(\005" +
+      "B3\n com.lvl6.mobsters.noneventprotosB\017Qu" +
+      "estStuffProto"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -3569,7 +3627,7 @@ public final class QuestStuffProto {
           internal_static_proto_QuestProto_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_proto_QuestProto_descriptor,
-              new java.lang.String[] { "QuestId", "CityId", "Name", "Description", "DoneResponse", "AcceptDialogue", "QuestType", "JobDescription", "StaticDataId", "Quantity", "CashReward", "GemReward", "ExpReward", "MonsterIdReward", "IsCompleteMonster", "QuestIdsRequiredForThis", "QuestGiverImageSuffix", "Priority", "CarrotId", },
+              new java.lang.String[] { "QuestId", "CityId", "Name", "Description", "DoneResponse", "AcceptDialogue", "QuestType", "JobDescription", "StaticDataId", "Quantity", "CashReward", "GemReward", "ExpReward", "MonsterIdReward", "IsCompleteMonster", "QuestIdsRequiredForThis", "QuestGiverImageSuffix", "Priority", "CarrotId", "IsAchievement", },
               com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProto.class,
               com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProto.Builder.class);
           internal_static_proto_DialogueProto_descriptor =

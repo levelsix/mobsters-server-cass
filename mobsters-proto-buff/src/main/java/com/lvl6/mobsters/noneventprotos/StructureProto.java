@@ -3839,6 +3839,10 @@ public final class StructureProto {
     // optional int32 numAcceptedFbInvites = 5;
     boolean hasNumAcceptedFbInvites();
     int getNumAcceptedFbInvites();
+    
+    // optional string occupationName = 6;
+    boolean hasOccupationName();
+    String getOccupationName();
   }
   public static final class ResidenceProto extends
       com.google.protobuf.GeneratedMessage
@@ -3922,12 +3926,45 @@ public final class StructureProto {
       return numAcceptedFbInvites_;
     }
     
+    // optional string occupationName = 6;
+    public static final int OCCUPATIONNAME_FIELD_NUMBER = 6;
+    private java.lang.Object occupationName_;
+    public boolean hasOccupationName() {
+      return ((bitField0_ & 0x00000020) == 0x00000020);
+    }
+    public String getOccupationName() {
+      java.lang.Object ref = occupationName_;
+      if (ref instanceof String) {
+        return (String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        String s = bs.toStringUtf8();
+        if (com.google.protobuf.Internal.isValidUtf8(bs)) {
+          occupationName_ = s;
+        }
+        return s;
+      }
+    }
+    private com.google.protobuf.ByteString getOccupationNameBytes() {
+      java.lang.Object ref = occupationName_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8((String) ref);
+        occupationName_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    
     private void initFields() {
       structInfo_ = com.lvl6.mobsters.noneventprotos.StructureProto.StructureInfoProto.getDefaultInstance();
       numMonsterSlots_ = 0;
       numBonusMonsterSlots_ = 0;
       numGemsRequired_ = 0;
       numAcceptedFbInvites_ = 0;
+      occupationName_ = "";
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -3955,6 +3992,9 @@ public final class StructureProto {
       }
       if (((bitField0_ & 0x00000010) == 0x00000010)) {
         output.writeInt32(5, numAcceptedFbInvites_);
+      }
+      if (((bitField0_ & 0x00000020) == 0x00000020)) {
+        output.writeBytes(6, getOccupationNameBytes());
       }
       getUnknownFields().writeTo(output);
     }
@@ -3984,6 +4024,10 @@ public final class StructureProto {
       if (((bitField0_ & 0x00000010) == 0x00000010)) {
         size += com.google.protobuf.CodedOutputStream
           .computeInt32Size(5, numAcceptedFbInvites_);
+      }
+      if (((bitField0_ & 0x00000020) == 0x00000020)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(6, getOccupationNameBytes());
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -4124,6 +4168,8 @@ public final class StructureProto {
         bitField0_ = (bitField0_ & ~0x00000008);
         numAcceptedFbInvites_ = 0;
         bitField0_ = (bitField0_ & ~0x00000010);
+        occupationName_ = "";
+        bitField0_ = (bitField0_ & ~0x00000020);
         return this;
       }
       
@@ -4186,6 +4232,10 @@ public final class StructureProto {
           to_bitField0_ |= 0x00000010;
         }
         result.numAcceptedFbInvites_ = numAcceptedFbInvites_;
+        if (((from_bitField0_ & 0x00000020) == 0x00000020)) {
+          to_bitField0_ |= 0x00000020;
+        }
+        result.occupationName_ = occupationName_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -4216,6 +4266,9 @@ public final class StructureProto {
         }
         if (other.hasNumAcceptedFbInvites()) {
           setNumAcceptedFbInvites(other.getNumAcceptedFbInvites());
+        }
+        if (other.hasOccupationName()) {
+          setOccupationName(other.getOccupationName());
         }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
@@ -4275,6 +4328,11 @@ public final class StructureProto {
             case 40: {
               bitField0_ |= 0x00000010;
               numAcceptedFbInvites_ = input.readInt32();
+              break;
+            }
+            case 50: {
+              bitField0_ |= 0x00000020;
+              occupationName_ = input.readBytes();
               break;
             }
           }
@@ -4455,6 +4513,42 @@ public final class StructureProto {
         numAcceptedFbInvites_ = 0;
         onChanged();
         return this;
+      }
+      
+      // optional string occupationName = 6;
+      private java.lang.Object occupationName_ = "";
+      public boolean hasOccupationName() {
+        return ((bitField0_ & 0x00000020) == 0x00000020);
+      }
+      public String getOccupationName() {
+        java.lang.Object ref = occupationName_;
+        if (!(ref instanceof String)) {
+          String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
+          occupationName_ = s;
+          return s;
+        } else {
+          return (String) ref;
+        }
+      }
+      public Builder setOccupationName(String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000020;
+        occupationName_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearOccupationName() {
+        bitField0_ = (bitField0_ & ~0x00000020);
+        occupationName_ = getDefaultInstance().getOccupationName();
+        onChanged();
+        return this;
+      }
+      void setOccupationName(com.google.protobuf.ByteString value) {
+        bitField0_ |= 0x00000020;
+        occupationName_ = value;
+        onChanged();
       }
       
       // @@protoc_insertion_point(builder_scope:proto.ResidenceProto)
@@ -6786,30 +6880,31 @@ public final class StructureProto {
       "nfoProto\022\021\n\tqueueSize\030\002 \001(\005\022\027\n\017healthPer" +
       "Second\030\003 \001(\002\"e\n\010LabProto\022-\n\nstructInfo\030\001" +
       " \001(\0132\031.proto.StructureInfoProto\022\021\n\tqueue" +
-      "Size\030\002 \001(\005\022\027\n\017pointsPerSecond\030\003 \001(\002\"\255\001\n\016" +
+      "Size\030\002 \001(\005\022\027\n\017pointsPerSecond\030\003 \001(\002\"\305\001\n\016" +
       "ResidenceProto\022-\n\nstructInfo\030\001 \001(\0132\031.pro" +
       "to.StructureInfoProto\022\027\n\017numMonsterSlots" +
       "\030\002 \001(\005\022\034\n\024numBonusMonsterSlots\030\003 \001(\005\022\027\n\017",
       "numGemsRequired\030\004 \001(\005\022\034\n\024numAcceptedFbIn" +
-      "vites\030\005 \001(\005\"\231\002\n\rTownHallProto\022-\n\nstructI" +
-      "nfo\030\001 \001(\0132\031.proto.StructureInfoProto\022 \n\030" +
-      "numResourceOneGenerators\030\002 \001(\005\022\036\n\026numRes" +
-      "ourceOneStorages\030\003 \001(\005\022 \n\030numResourceTwo" +
-      "Generators\030\004 \001(\005\022\036\n\026numResourceTwoStorag" +
-      "es\030\005 \001(\005\022\024\n\014numHospitals\030\006 \001(\005\022\025\n\rnumRes" +
-      "idences\030\007 \001(\005\022\027\n\017numMonsterSlots\030\010 \001(\005\022\017" +
-      "\n\007numLabs\030\t \001(\005\"\214\002\n\026FullUserStructurePro" +
-      "to\022\026\n\016userStructUuid\030\001 \001(\t\022\020\n\010userUuid\030\002",
-      " \001(\t\022\020\n\010structId\030\003 \001(\005\022\025\n\rlastRetrieved\030" +
-      "\004 \001(\003\022\024\n\014purchaseTime\030\005 \001(\003\022\022\n\nisComplet" +
-      "e\030\006 \001(\010\022+\n\013coordinates\030\007 \001(\0132\026.proto.Coo" +
-      "rdinateProto\022-\n\013orientation\030\010 \001(\0162\030.prot" +
-      "o.StructOrientation\022\031\n\021fbInviteStructLvl" +
-      "\030\t \001(\005\"\'\n\017CoordinateProto\022\t\n\001x\030\001 \001(\002\022\t\n\001" +
-      "y\030\002 \001(\002*+\n\014ResourceType\022\010\n\004CASH\020\001\022\007\n\003OIL" +
-      "\020\002\022\010\n\004GEMS\020\003*3\n\021StructOrientation\022\016\n\nPOS" +
-      "ITION_1\020\001\022\016\n\nPOSITION_2\020\002B2\n com.lvl6.mo" +
-      "bsters.noneventprotosB\016StructureProto"
+      "vites\030\005 \001(\005\022\026\n\016occupationName\030\006 \001(\t\"\231\002\n\r" +
+      "TownHallProto\022-\n\nstructInfo\030\001 \001(\0132\031.prot" +
+      "o.StructureInfoProto\022 \n\030numResourceOneGe" +
+      "nerators\030\002 \001(\005\022\036\n\026numResourceOneStorages" +
+      "\030\003 \001(\005\022 \n\030numResourceTwoGenerators\030\004 \001(\005" +
+      "\022\036\n\026numResourceTwoStorages\030\005 \001(\005\022\024\n\014numH" +
+      "ospitals\030\006 \001(\005\022\025\n\rnumResidences\030\007 \001(\005\022\027\n" +
+      "\017numMonsterSlots\030\010 \001(\005\022\017\n\007numLabs\030\t \001(\005\"" +
+      "\214\002\n\026FullUserStructureProto\022\026\n\016userStruct",
+      "Uuid\030\001 \001(\t\022\020\n\010userUuid\030\002 \001(\t\022\020\n\010structId" +
+      "\030\003 \001(\005\022\025\n\rlastRetrieved\030\004 \001(\003\022\024\n\014purchas" +
+      "eTime\030\005 \001(\003\022\022\n\nisComplete\030\006 \001(\010\022+\n\013coord" +
+      "inates\030\007 \001(\0132\026.proto.CoordinateProto\022-\n\013" +
+      "orientation\030\010 \001(\0162\030.proto.StructOrientat" +
+      "ion\022\031\n\021fbInviteStructLvl\030\t \001(\005\"\'\n\017Coordi" +
+      "nateProto\022\t\n\001x\030\001 \001(\002\022\t\n\001y\030\002 \001(\002*+\n\014Resou" +
+      "rceType\022\010\n\004CASH\020\001\022\007\n\003OIL\020\002\022\010\n\004GEMS\020\003*3\n\021" +
+      "StructOrientation\022\016\n\nPOSITION_1\020\001\022\016\n\nPOS" +
+      "ITION_2\020\002B2\n com.lvl6.mobsters.noneventp",
+      "rotosB\016StructureProto"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -6861,7 +6956,7 @@ public final class StructureProto {
           internal_static_proto_ResidenceProto_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_proto_ResidenceProto_descriptor,
-              new java.lang.String[] { "StructInfo", "NumMonsterSlots", "NumBonusMonsterSlots", "NumGemsRequired", "NumAcceptedFbInvites", },
+              new java.lang.String[] { "StructInfo", "NumMonsterSlots", "NumBonusMonsterSlots", "NumGemsRequired", "NumAcceptedFbInvites", "OccupationName", },
               com.lvl6.mobsters.noneventprotos.StructureProto.ResidenceProto.class,
               com.lvl6.mobsters.noneventprotos.StructureProto.ResidenceProto.Builder.class);
           internal_static_proto_TownHallProto_descriptor =

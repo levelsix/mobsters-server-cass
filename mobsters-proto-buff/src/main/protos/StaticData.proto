@@ -20,20 +20,25 @@ message StaticDataProto {
     optional MinimumUserProto sender = 1;
 	repeated CityExpansionCostProto expansionCosts = 2;
 	repeated FullCityProto allCities = 3;
-	repeated StructureInfoProto allStructs = 4;
-	repeated FullTaskProto allTasks = 5;
-	repeated MonsterProto allMonsters = 6;
-	repeated StaticUserLevelInfoProto slip = 7;
+	repeated FullTaskProto allTasks = 4;
+	repeated MonsterProto allMonsters = 5;
+	repeated StaticUserLevelInfoProto slip = 6;
 	
-	repeated QuestProto inProgressQuests = 8; //has not been completed
-    repeated QuestProto unredeemedQuests = 9; //is complete
-	repeated QuestProto availableQuests = 10; 
+	repeated QuestProto inProgressQuests = 7; //has not been completed
+    repeated QuestProto unredeemedQuests = 8; //is complete
+	repeated QuestProto availableQuests = 9; 
 	
-	//optional RetrieveStaticDataStatus status = 11; //defined near the end
-	repeated BoosterPackProto boosterPacks = 12;
+	//optional RetrieveStaticDataStatus status = 10; //defined near the end
+	repeated BoosterPackProto boosterPacks = 11;
 	
+	repeated ResourceGeneratorProto allGenerators = 12;
+	repeated ResourceStorageProto allStorages = 13;
+	repeated HospitalProto allHospitals = 14;
+	repeated ResidenceProto allResidences = 15;
+	repeated LabProto allLabs = 17;
+	repeated TownHallProto allTownHalls = 16;
 	
-	optional RetrieveStaticDataStatus status = 11;
+	//repeated LabProto allLabs = 17; //defined above
 	
 	enum RetrieveStaticDataStatus {
 		SUCCESS = 1;

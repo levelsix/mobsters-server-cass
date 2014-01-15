@@ -14,7 +14,7 @@ import com.dekayd.astyanax.cassandra.entitymanager.Index;
 @Entity
 public class StructureResidence extends BasePersistentObject<Integer> implements Serializable {
 
-	private static final long serialVersionUID = -7514248476784739606L;
+	private static final long serialVersionUID = 109219536351511475L;
 
 	@Id
 	protected Integer id = 0;
@@ -32,7 +32,9 @@ public class StructureResidence extends BasePersistentObject<Integer> implements
 	@Column(name="num_accepeted_fb_invites")
 	protected int numAcceptedFbInvites = 0;
 
-	
+	//I think something about facebook invites and friends 
+	@Column(name="occupation_name")
+	protected String occupationName = null;
 	
 	
 	public Integer getId() {
@@ -75,13 +77,21 @@ public class StructureResidence extends BasePersistentObject<Integer> implements
 		this.numAcceptedFbInvites = numAcceptedFbInvites;
 	}
 
-	@Override
-	public String toString() {
-		return "StructureResidence [id=" + id + ", numMonsterSlots=" + numMonsterSlots
-				+ ", numBonusMonsterSlots=" + numBonusMonsterSlots
-				+ ", numGemsRequired=" + numGemsRequired
-				+ ", numAcceptedFbInvites=" + numAcceptedFbInvites + "]";
+	public String getOccupationName() {
+		return occupationName;
 	}
 
+	public void setOccupationName(String occupationName) {
+		this.occupationName = occupationName;
+	}
+
+	@Override
+	public String toString() {
+		return "StructureResidence [id=" + id + ", numMonsterSlots="
+				+ numMonsterSlots + ", numBonusMonsterSlots="
+				+ numBonusMonsterSlots + ", numGemsRequired=" + numGemsRequired
+				+ ", numAcceptedFbInvites=" + numAcceptedFbInvites
+				+ ", occupationName=" + occupationName + "]";
+	}
 
 }

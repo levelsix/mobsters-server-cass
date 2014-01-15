@@ -195,6 +195,35 @@ public class UserFacebookInviteForSlotServiceImpl implements UserFacebookInviteF
 		return inviterUserIdList;
 	}
 	
+	//inviterIdsToInvites will be populated
+	//given collection of UserFacebookInviteForSlot, returns collection of recipient fb ids
+	//and also populates inviterIdsToInvites
+	@Override
+	public List<UUID> getInviterIds(Map<UUID, UserFacebookInviteForSlot> idsToInvites,
+			Map<UUID, UserFacebookInviteForSlot> inviterIdsToInvites) {
+
+		List<UUID> inviterIds = new ArrayList<UUID>(); 
+		for (UserFacebookInviteForSlot invite : idsToInvites.values()) {
+			UUID userId = invite.getInviterUserId();
+			inviterIds.add(userId);
+
+			inviterIdsToInvites.put(userId, invite);
+		}
+		return inviterIds;
+	}
+	
+	//given collection of UserFacebookInviteForSlot, returns collection of recipient fb ids
+	@Override
+	public List<String> getRecipientFbIds(Collection<UserFacebookInviteForSlot> invites) {
+		List<String> fbIds = new ArrayList<String>();
+		for (UserFacebookInviteForSlot invite : invites) {
+			String fbId = invite.getRecipientFbId();
+			fbIds.add(fbId);
+		}
+		return fbIds;
+	}
+	
+	
 	//recordedInviterIds are the inviterIds in the invite table that belong to invites
 	//accepted by a user
 	@Override

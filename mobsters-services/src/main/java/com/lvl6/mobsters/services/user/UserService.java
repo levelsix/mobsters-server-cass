@@ -11,6 +11,20 @@ import com.lvl6.mobsters.utils.QueryConstructionUtil;
 
 public interface UserService {
 	
+	//CONTROLLER LOGIC STUFF****************************************************************
+	//priority of user returned is 
+	//user with specified fbId
+	//user with specified udid
+	//null
+	public abstract User selectivelyChooseUser(List<User> uList, String fbId, String udid);
+	
+	//given map of userIds to users, list of recipient facebook ids and list of inviter
+	//user ids, separate the map of users into recipient and inviter
+	public abstract void separateUsersIntoRecipientsAndInviters(Map<UUID, User> idsToUsers,
+	  		List<String> recipientFacebookIds, List<UUID> inviterUserIds,
+	  		List<User> recipients, List<User> inviters);
+	
+	
 	//RETRIEVE STUFF****************************************************************
 	public abstract User getUserWithId(UUID userId);
 	
@@ -23,6 +37,9 @@ public interface UserService {
 	public abstract List<UUID> getUserIdsForFacebookIds(Collection<String> fbIds);
 	
 	public abstract Map<UUID, User> getUserIdsToUsersForIds(Collection<UUID> uIdList);
+	
+	public abstract Map<UUID, User> getUsersForFacebookIdsOrUserIds(List<String> fbIds,
+			List<UUID> uIdList);
 	
 	//INSERT STUFF****************************************************************
 	

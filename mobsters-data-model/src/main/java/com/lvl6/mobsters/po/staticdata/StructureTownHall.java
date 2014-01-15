@@ -14,13 +14,10 @@ import com.dekayd.astyanax.cassandra.entitymanager.Index;
 @Entity
 public class StructureTownHall extends BasePersistentObject<Integer> implements Serializable {
 
-
-	private static final long serialVersionUID = 7885677355052597869L;
-
+	private static final long serialVersionUID = 5145075440988063641L;
 
 	@Id
 	protected Integer id = 0;
-	
 	
 	@Column(name="num_resource_one_generators")
 	@Index
@@ -49,7 +46,7 @@ public class StructureTownHall extends BasePersistentObject<Integer> implements 
 	protected int numMonsterSlots = 0;
 	
 	@Column(name="num_labs")
-	protected int numlabs = 0;
+	protected int numLabs = 0;
 
 	
 	public Integer getId() {
@@ -116,12 +113,12 @@ public class StructureTownHall extends BasePersistentObject<Integer> implements 
 		this.numMonsterSlots = numMonsterSlots;
 	}
 
-	public int getNumlabs() {
-		return numlabs;
+	public int getNumLabs() {
+		return numLabs;
 	}
 
-	public void setNumlabs(int numlabs) {
-		this.numlabs = numlabs;
+	public void setNumLabs(int numLabs) {
+		this.numLabs = numLabs;
 	}
 
 	@Override
@@ -132,7 +129,7 @@ public class StructureTownHall extends BasePersistentObject<Integer> implements 
 				+ numResourceTwoGenerators + ", numResourceTwoStorages="
 				+ numResourceTwoStorages + ", numHospitals=" + numHospitals
 				+ ", numResidences=" + numResidences + ", numMonsterSlots="
-				+ numMonsterSlots + ", numlabs=" + numlabs + "]";
+				+ numMonsterSlots + ", numLabs=" + numLabs + "]";
 	}
 
 }

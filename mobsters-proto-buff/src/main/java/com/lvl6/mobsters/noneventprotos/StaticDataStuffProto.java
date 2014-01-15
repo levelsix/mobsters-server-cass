@@ -36,17 +36,7 @@ public final class StaticDataStuffProto {
     com.lvl6.mobsters.noneventprotos.CityProto.FullCityProtoOrBuilder getAllCitiesOrBuilder(
         int index);
     
-    // repeated .proto.StructureInfoProto allStructs = 4;
-    java.util.List<com.lvl6.mobsters.noneventprotos.StructureProto.StructureInfoProto> 
-        getAllStructsList();
-    com.lvl6.mobsters.noneventprotos.StructureProto.StructureInfoProto getAllStructs(int index);
-    int getAllStructsCount();
-    java.util.List<? extends com.lvl6.mobsters.noneventprotos.StructureProto.StructureInfoProtoOrBuilder> 
-        getAllStructsOrBuilderList();
-    com.lvl6.mobsters.noneventprotos.StructureProto.StructureInfoProtoOrBuilder getAllStructsOrBuilder(
-        int index);
-    
-    // repeated .proto.FullTaskProto allTasks = 5;
+    // repeated .proto.FullTaskProto allTasks = 4;
     java.util.List<com.lvl6.mobsters.noneventprotos.TaskProto.FullTaskProto> 
         getAllTasksList();
     com.lvl6.mobsters.noneventprotos.TaskProto.FullTaskProto getAllTasks(int index);
@@ -56,7 +46,7 @@ public final class StaticDataStuffProto {
     com.lvl6.mobsters.noneventprotos.TaskProto.FullTaskProtoOrBuilder getAllTasksOrBuilder(
         int index);
     
-    // repeated .proto.MonsterProto allMonsters = 6;
+    // repeated .proto.MonsterProto allMonsters = 5;
     java.util.List<com.lvl6.mobsters.noneventprotos.MonsterStuffProto.MonsterProto> 
         getAllMonstersList();
     com.lvl6.mobsters.noneventprotos.MonsterStuffProto.MonsterProto getAllMonsters(int index);
@@ -66,7 +56,7 @@ public final class StaticDataStuffProto {
     com.lvl6.mobsters.noneventprotos.MonsterStuffProto.MonsterProtoOrBuilder getAllMonstersOrBuilder(
         int index);
     
-    // repeated .proto.StaticUserLevelInfoProto slip = 7;
+    // repeated .proto.StaticUserLevelInfoProto slip = 6;
     java.util.List<com.lvl6.mobsters.noneventprotos.UserProto.StaticUserLevelInfoProto> 
         getSlipList();
     com.lvl6.mobsters.noneventprotos.UserProto.StaticUserLevelInfoProto getSlip(int index);
@@ -76,7 +66,7 @@ public final class StaticDataStuffProto {
     com.lvl6.mobsters.noneventprotos.UserProto.StaticUserLevelInfoProtoOrBuilder getSlipOrBuilder(
         int index);
     
-    // repeated .proto.QuestProto inProgressQuests = 8;
+    // repeated .proto.QuestProto inProgressQuests = 7;
     java.util.List<com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProto> 
         getInProgressQuestsList();
     com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProto getInProgressQuests(int index);
@@ -86,7 +76,7 @@ public final class StaticDataStuffProto {
     com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProtoOrBuilder getInProgressQuestsOrBuilder(
         int index);
     
-    // repeated .proto.QuestProto unredeemedQuests = 9;
+    // repeated .proto.QuestProto unredeemedQuests = 8;
     java.util.List<com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProto> 
         getUnredeemedQuestsList();
     com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProto getUnredeemedQuests(int index);
@@ -96,7 +86,7 @@ public final class StaticDataStuffProto {
     com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProtoOrBuilder getUnredeemedQuestsOrBuilder(
         int index);
     
-    // repeated .proto.QuestProto availableQuests = 10;
+    // repeated .proto.QuestProto availableQuests = 9;
     java.util.List<com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProto> 
         getAvailableQuestsList();
     com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProto getAvailableQuests(int index);
@@ -106,7 +96,7 @@ public final class StaticDataStuffProto {
     com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProtoOrBuilder getAvailableQuestsOrBuilder(
         int index);
     
-    // repeated .proto.BoosterPackProto boosterPacks = 12;
+    // repeated .proto.BoosterPackProto boosterPacks = 11;
     java.util.List<com.lvl6.mobsters.noneventprotos.BoosterPackStuffProto.BoosterPackProto> 
         getBoosterPacksList();
     com.lvl6.mobsters.noneventprotos.BoosterPackStuffProto.BoosterPackProto getBoosterPacks(int index);
@@ -116,9 +106,65 @@ public final class StaticDataStuffProto {
     com.lvl6.mobsters.noneventprotos.BoosterPackStuffProto.BoosterPackProtoOrBuilder getBoosterPacksOrBuilder(
         int index);
     
-    // optional .proto.StaticDataProto.RetrieveStaticDataStatus status = 11;
-    boolean hasStatus();
-    com.lvl6.mobsters.noneventprotos.StaticDataStuffProto.StaticDataProto.RetrieveStaticDataStatus getStatus();
+    // repeated .proto.ResourceGeneratorProto allGenerators = 12;
+    java.util.List<com.lvl6.mobsters.noneventprotos.StructureProto.ResourceGeneratorProto> 
+        getAllGeneratorsList();
+    com.lvl6.mobsters.noneventprotos.StructureProto.ResourceGeneratorProto getAllGenerators(int index);
+    int getAllGeneratorsCount();
+    java.util.List<? extends com.lvl6.mobsters.noneventprotos.StructureProto.ResourceGeneratorProtoOrBuilder> 
+        getAllGeneratorsOrBuilderList();
+    com.lvl6.mobsters.noneventprotos.StructureProto.ResourceGeneratorProtoOrBuilder getAllGeneratorsOrBuilder(
+        int index);
+    
+    // repeated .proto.ResourceStorageProto allStorages = 13;
+    java.util.List<com.lvl6.mobsters.noneventprotos.StructureProto.ResourceStorageProto> 
+        getAllStoragesList();
+    com.lvl6.mobsters.noneventprotos.StructureProto.ResourceStorageProto getAllStorages(int index);
+    int getAllStoragesCount();
+    java.util.List<? extends com.lvl6.mobsters.noneventprotos.StructureProto.ResourceStorageProtoOrBuilder> 
+        getAllStoragesOrBuilderList();
+    com.lvl6.mobsters.noneventprotos.StructureProto.ResourceStorageProtoOrBuilder getAllStoragesOrBuilder(
+        int index);
+    
+    // repeated .proto.HospitalProto allHospitals = 14;
+    java.util.List<com.lvl6.mobsters.noneventprotos.StructureProto.HospitalProto> 
+        getAllHospitalsList();
+    com.lvl6.mobsters.noneventprotos.StructureProto.HospitalProto getAllHospitals(int index);
+    int getAllHospitalsCount();
+    java.util.List<? extends com.lvl6.mobsters.noneventprotos.StructureProto.HospitalProtoOrBuilder> 
+        getAllHospitalsOrBuilderList();
+    com.lvl6.mobsters.noneventprotos.StructureProto.HospitalProtoOrBuilder getAllHospitalsOrBuilder(
+        int index);
+    
+    // repeated .proto.ResidenceProto allResidences = 15;
+    java.util.List<com.lvl6.mobsters.noneventprotos.StructureProto.ResidenceProto> 
+        getAllResidencesList();
+    com.lvl6.mobsters.noneventprotos.StructureProto.ResidenceProto getAllResidences(int index);
+    int getAllResidencesCount();
+    java.util.List<? extends com.lvl6.mobsters.noneventprotos.StructureProto.ResidenceProtoOrBuilder> 
+        getAllResidencesOrBuilderList();
+    com.lvl6.mobsters.noneventprotos.StructureProto.ResidenceProtoOrBuilder getAllResidencesOrBuilder(
+        int index);
+    
+    // repeated .proto.LabProto allLabs = 17;
+    java.util.List<com.lvl6.mobsters.noneventprotos.StructureProto.LabProto> 
+        getAllLabsList();
+    com.lvl6.mobsters.noneventprotos.StructureProto.LabProto getAllLabs(int index);
+    int getAllLabsCount();
+    java.util.List<? extends com.lvl6.mobsters.noneventprotos.StructureProto.LabProtoOrBuilder> 
+        getAllLabsOrBuilderList();
+    com.lvl6.mobsters.noneventprotos.StructureProto.LabProtoOrBuilder getAllLabsOrBuilder(
+        int index);
+    
+    // repeated .proto.TownHallProto allTownHalls = 16;
+    java.util.List<com.lvl6.mobsters.noneventprotos.StructureProto.TownHallProto> 
+        getAllTownHallsList();
+    com.lvl6.mobsters.noneventprotos.StructureProto.TownHallProto getAllTownHalls(int index);
+    int getAllTownHallsCount();
+    java.util.List<? extends com.lvl6.mobsters.noneventprotos.StructureProto.TownHallProtoOrBuilder> 
+        getAllTownHallsOrBuilderList();
+    com.lvl6.mobsters.noneventprotos.StructureProto.TownHallProtoOrBuilder getAllTownHallsOrBuilder(
+        int index);
   }
   public static final class StaticDataProto extends
       com.google.protobuf.GeneratedMessage
@@ -273,29 +319,8 @@ public final class StaticDataStuffProto {
       return allCities_.get(index);
     }
     
-    // repeated .proto.StructureInfoProto allStructs = 4;
-    public static final int ALLSTRUCTS_FIELD_NUMBER = 4;
-    private java.util.List<com.lvl6.mobsters.noneventprotos.StructureProto.StructureInfoProto> allStructs_;
-    public java.util.List<com.lvl6.mobsters.noneventprotos.StructureProto.StructureInfoProto> getAllStructsList() {
-      return allStructs_;
-    }
-    public java.util.List<? extends com.lvl6.mobsters.noneventprotos.StructureProto.StructureInfoProtoOrBuilder> 
-        getAllStructsOrBuilderList() {
-      return allStructs_;
-    }
-    public int getAllStructsCount() {
-      return allStructs_.size();
-    }
-    public com.lvl6.mobsters.noneventprotos.StructureProto.StructureInfoProto getAllStructs(int index) {
-      return allStructs_.get(index);
-    }
-    public com.lvl6.mobsters.noneventprotos.StructureProto.StructureInfoProtoOrBuilder getAllStructsOrBuilder(
-        int index) {
-      return allStructs_.get(index);
-    }
-    
-    // repeated .proto.FullTaskProto allTasks = 5;
-    public static final int ALLTASKS_FIELD_NUMBER = 5;
+    // repeated .proto.FullTaskProto allTasks = 4;
+    public static final int ALLTASKS_FIELD_NUMBER = 4;
     private java.util.List<com.lvl6.mobsters.noneventprotos.TaskProto.FullTaskProto> allTasks_;
     public java.util.List<com.lvl6.mobsters.noneventprotos.TaskProto.FullTaskProto> getAllTasksList() {
       return allTasks_;
@@ -315,8 +340,8 @@ public final class StaticDataStuffProto {
       return allTasks_.get(index);
     }
     
-    // repeated .proto.MonsterProto allMonsters = 6;
-    public static final int ALLMONSTERS_FIELD_NUMBER = 6;
+    // repeated .proto.MonsterProto allMonsters = 5;
+    public static final int ALLMONSTERS_FIELD_NUMBER = 5;
     private java.util.List<com.lvl6.mobsters.noneventprotos.MonsterStuffProto.MonsterProto> allMonsters_;
     public java.util.List<com.lvl6.mobsters.noneventprotos.MonsterStuffProto.MonsterProto> getAllMonstersList() {
       return allMonsters_;
@@ -336,8 +361,8 @@ public final class StaticDataStuffProto {
       return allMonsters_.get(index);
     }
     
-    // repeated .proto.StaticUserLevelInfoProto slip = 7;
-    public static final int SLIP_FIELD_NUMBER = 7;
+    // repeated .proto.StaticUserLevelInfoProto slip = 6;
+    public static final int SLIP_FIELD_NUMBER = 6;
     private java.util.List<com.lvl6.mobsters.noneventprotos.UserProto.StaticUserLevelInfoProto> slip_;
     public java.util.List<com.lvl6.mobsters.noneventprotos.UserProto.StaticUserLevelInfoProto> getSlipList() {
       return slip_;
@@ -357,8 +382,8 @@ public final class StaticDataStuffProto {
       return slip_.get(index);
     }
     
-    // repeated .proto.QuestProto inProgressQuests = 8;
-    public static final int INPROGRESSQUESTS_FIELD_NUMBER = 8;
+    // repeated .proto.QuestProto inProgressQuests = 7;
+    public static final int INPROGRESSQUESTS_FIELD_NUMBER = 7;
     private java.util.List<com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProto> inProgressQuests_;
     public java.util.List<com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProto> getInProgressQuestsList() {
       return inProgressQuests_;
@@ -378,8 +403,8 @@ public final class StaticDataStuffProto {
       return inProgressQuests_.get(index);
     }
     
-    // repeated .proto.QuestProto unredeemedQuests = 9;
-    public static final int UNREDEEMEDQUESTS_FIELD_NUMBER = 9;
+    // repeated .proto.QuestProto unredeemedQuests = 8;
+    public static final int UNREDEEMEDQUESTS_FIELD_NUMBER = 8;
     private java.util.List<com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProto> unredeemedQuests_;
     public java.util.List<com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProto> getUnredeemedQuestsList() {
       return unredeemedQuests_;
@@ -399,8 +424,8 @@ public final class StaticDataStuffProto {
       return unredeemedQuests_.get(index);
     }
     
-    // repeated .proto.QuestProto availableQuests = 10;
-    public static final int AVAILABLEQUESTS_FIELD_NUMBER = 10;
+    // repeated .proto.QuestProto availableQuests = 9;
+    public static final int AVAILABLEQUESTS_FIELD_NUMBER = 9;
     private java.util.List<com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProto> availableQuests_;
     public java.util.List<com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProto> getAvailableQuestsList() {
       return availableQuests_;
@@ -420,8 +445,8 @@ public final class StaticDataStuffProto {
       return availableQuests_.get(index);
     }
     
-    // repeated .proto.BoosterPackProto boosterPacks = 12;
-    public static final int BOOSTERPACKS_FIELD_NUMBER = 12;
+    // repeated .proto.BoosterPackProto boosterPacks = 11;
+    public static final int BOOSTERPACKS_FIELD_NUMBER = 11;
     private java.util.List<com.lvl6.mobsters.noneventprotos.BoosterPackStuffProto.BoosterPackProto> boosterPacks_;
     public java.util.List<com.lvl6.mobsters.noneventprotos.BoosterPackStuffProto.BoosterPackProto> getBoosterPacksList() {
       return boosterPacks_;
@@ -441,21 +466,136 @@ public final class StaticDataStuffProto {
       return boosterPacks_.get(index);
     }
     
-    // optional .proto.StaticDataProto.RetrieveStaticDataStatus status = 11;
-    public static final int STATUS_FIELD_NUMBER = 11;
-    private com.lvl6.mobsters.noneventprotos.StaticDataStuffProto.StaticDataProto.RetrieveStaticDataStatus status_;
-    public boolean hasStatus() {
-      return ((bitField0_ & 0x00000002) == 0x00000002);
+    // repeated .proto.ResourceGeneratorProto allGenerators = 12;
+    public static final int ALLGENERATORS_FIELD_NUMBER = 12;
+    private java.util.List<com.lvl6.mobsters.noneventprotos.StructureProto.ResourceGeneratorProto> allGenerators_;
+    public java.util.List<com.lvl6.mobsters.noneventprotos.StructureProto.ResourceGeneratorProto> getAllGeneratorsList() {
+      return allGenerators_;
     }
-    public com.lvl6.mobsters.noneventprotos.StaticDataStuffProto.StaticDataProto.RetrieveStaticDataStatus getStatus() {
-      return status_;
+    public java.util.List<? extends com.lvl6.mobsters.noneventprotos.StructureProto.ResourceGeneratorProtoOrBuilder> 
+        getAllGeneratorsOrBuilderList() {
+      return allGenerators_;
+    }
+    public int getAllGeneratorsCount() {
+      return allGenerators_.size();
+    }
+    public com.lvl6.mobsters.noneventprotos.StructureProto.ResourceGeneratorProto getAllGenerators(int index) {
+      return allGenerators_.get(index);
+    }
+    public com.lvl6.mobsters.noneventprotos.StructureProto.ResourceGeneratorProtoOrBuilder getAllGeneratorsOrBuilder(
+        int index) {
+      return allGenerators_.get(index);
+    }
+    
+    // repeated .proto.ResourceStorageProto allStorages = 13;
+    public static final int ALLSTORAGES_FIELD_NUMBER = 13;
+    private java.util.List<com.lvl6.mobsters.noneventprotos.StructureProto.ResourceStorageProto> allStorages_;
+    public java.util.List<com.lvl6.mobsters.noneventprotos.StructureProto.ResourceStorageProto> getAllStoragesList() {
+      return allStorages_;
+    }
+    public java.util.List<? extends com.lvl6.mobsters.noneventprotos.StructureProto.ResourceStorageProtoOrBuilder> 
+        getAllStoragesOrBuilderList() {
+      return allStorages_;
+    }
+    public int getAllStoragesCount() {
+      return allStorages_.size();
+    }
+    public com.lvl6.mobsters.noneventprotos.StructureProto.ResourceStorageProto getAllStorages(int index) {
+      return allStorages_.get(index);
+    }
+    public com.lvl6.mobsters.noneventprotos.StructureProto.ResourceStorageProtoOrBuilder getAllStoragesOrBuilder(
+        int index) {
+      return allStorages_.get(index);
+    }
+    
+    // repeated .proto.HospitalProto allHospitals = 14;
+    public static final int ALLHOSPITALS_FIELD_NUMBER = 14;
+    private java.util.List<com.lvl6.mobsters.noneventprotos.StructureProto.HospitalProto> allHospitals_;
+    public java.util.List<com.lvl6.mobsters.noneventprotos.StructureProto.HospitalProto> getAllHospitalsList() {
+      return allHospitals_;
+    }
+    public java.util.List<? extends com.lvl6.mobsters.noneventprotos.StructureProto.HospitalProtoOrBuilder> 
+        getAllHospitalsOrBuilderList() {
+      return allHospitals_;
+    }
+    public int getAllHospitalsCount() {
+      return allHospitals_.size();
+    }
+    public com.lvl6.mobsters.noneventprotos.StructureProto.HospitalProto getAllHospitals(int index) {
+      return allHospitals_.get(index);
+    }
+    public com.lvl6.mobsters.noneventprotos.StructureProto.HospitalProtoOrBuilder getAllHospitalsOrBuilder(
+        int index) {
+      return allHospitals_.get(index);
+    }
+    
+    // repeated .proto.ResidenceProto allResidences = 15;
+    public static final int ALLRESIDENCES_FIELD_NUMBER = 15;
+    private java.util.List<com.lvl6.mobsters.noneventprotos.StructureProto.ResidenceProto> allResidences_;
+    public java.util.List<com.lvl6.mobsters.noneventprotos.StructureProto.ResidenceProto> getAllResidencesList() {
+      return allResidences_;
+    }
+    public java.util.List<? extends com.lvl6.mobsters.noneventprotos.StructureProto.ResidenceProtoOrBuilder> 
+        getAllResidencesOrBuilderList() {
+      return allResidences_;
+    }
+    public int getAllResidencesCount() {
+      return allResidences_.size();
+    }
+    public com.lvl6.mobsters.noneventprotos.StructureProto.ResidenceProto getAllResidences(int index) {
+      return allResidences_.get(index);
+    }
+    public com.lvl6.mobsters.noneventprotos.StructureProto.ResidenceProtoOrBuilder getAllResidencesOrBuilder(
+        int index) {
+      return allResidences_.get(index);
+    }
+    
+    // repeated .proto.LabProto allLabs = 17;
+    public static final int ALLLABS_FIELD_NUMBER = 17;
+    private java.util.List<com.lvl6.mobsters.noneventprotos.StructureProto.LabProto> allLabs_;
+    public java.util.List<com.lvl6.mobsters.noneventprotos.StructureProto.LabProto> getAllLabsList() {
+      return allLabs_;
+    }
+    public java.util.List<? extends com.lvl6.mobsters.noneventprotos.StructureProto.LabProtoOrBuilder> 
+        getAllLabsOrBuilderList() {
+      return allLabs_;
+    }
+    public int getAllLabsCount() {
+      return allLabs_.size();
+    }
+    public com.lvl6.mobsters.noneventprotos.StructureProto.LabProto getAllLabs(int index) {
+      return allLabs_.get(index);
+    }
+    public com.lvl6.mobsters.noneventprotos.StructureProto.LabProtoOrBuilder getAllLabsOrBuilder(
+        int index) {
+      return allLabs_.get(index);
+    }
+    
+    // repeated .proto.TownHallProto allTownHalls = 16;
+    public static final int ALLTOWNHALLS_FIELD_NUMBER = 16;
+    private java.util.List<com.lvl6.mobsters.noneventprotos.StructureProto.TownHallProto> allTownHalls_;
+    public java.util.List<com.lvl6.mobsters.noneventprotos.StructureProto.TownHallProto> getAllTownHallsList() {
+      return allTownHalls_;
+    }
+    public java.util.List<? extends com.lvl6.mobsters.noneventprotos.StructureProto.TownHallProtoOrBuilder> 
+        getAllTownHallsOrBuilderList() {
+      return allTownHalls_;
+    }
+    public int getAllTownHallsCount() {
+      return allTownHalls_.size();
+    }
+    public com.lvl6.mobsters.noneventprotos.StructureProto.TownHallProto getAllTownHalls(int index) {
+      return allTownHalls_.get(index);
+    }
+    public com.lvl6.mobsters.noneventprotos.StructureProto.TownHallProtoOrBuilder getAllTownHallsOrBuilder(
+        int index) {
+      return allTownHalls_.get(index);
     }
     
     private void initFields() {
       sender_ = com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto.getDefaultInstance();
       expansionCosts_ = java.util.Collections.emptyList();
       allCities_ = java.util.Collections.emptyList();
-      allStructs_ = java.util.Collections.emptyList();
       allTasks_ = java.util.Collections.emptyList();
       allMonsters_ = java.util.Collections.emptyList();
       slip_ = java.util.Collections.emptyList();
@@ -463,7 +603,12 @@ public final class StaticDataStuffProto {
       unredeemedQuests_ = java.util.Collections.emptyList();
       availableQuests_ = java.util.Collections.emptyList();
       boosterPacks_ = java.util.Collections.emptyList();
-      status_ = com.lvl6.mobsters.noneventprotos.StaticDataStuffProto.StaticDataProto.RetrieveStaticDataStatus.SUCCESS;
+      allGenerators_ = java.util.Collections.emptyList();
+      allStorages_ = java.util.Collections.emptyList();
+      allHospitals_ = java.util.Collections.emptyList();
+      allResidences_ = java.util.Collections.emptyList();
+      allLabs_ = java.util.Collections.emptyList();
+      allTownHalls_ = java.util.Collections.emptyList();
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -486,32 +631,44 @@ public final class StaticDataStuffProto {
       for (int i = 0; i < allCities_.size(); i++) {
         output.writeMessage(3, allCities_.get(i));
       }
-      for (int i = 0; i < allStructs_.size(); i++) {
-        output.writeMessage(4, allStructs_.get(i));
-      }
       for (int i = 0; i < allTasks_.size(); i++) {
-        output.writeMessage(5, allTasks_.get(i));
+        output.writeMessage(4, allTasks_.get(i));
       }
       for (int i = 0; i < allMonsters_.size(); i++) {
-        output.writeMessage(6, allMonsters_.get(i));
+        output.writeMessage(5, allMonsters_.get(i));
       }
       for (int i = 0; i < slip_.size(); i++) {
-        output.writeMessage(7, slip_.get(i));
+        output.writeMessage(6, slip_.get(i));
       }
       for (int i = 0; i < inProgressQuests_.size(); i++) {
-        output.writeMessage(8, inProgressQuests_.get(i));
+        output.writeMessage(7, inProgressQuests_.get(i));
       }
       for (int i = 0; i < unredeemedQuests_.size(); i++) {
-        output.writeMessage(9, unredeemedQuests_.get(i));
+        output.writeMessage(8, unredeemedQuests_.get(i));
       }
       for (int i = 0; i < availableQuests_.size(); i++) {
-        output.writeMessage(10, availableQuests_.get(i));
-      }
-      if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        output.writeEnum(11, status_.getNumber());
+        output.writeMessage(9, availableQuests_.get(i));
       }
       for (int i = 0; i < boosterPacks_.size(); i++) {
-        output.writeMessage(12, boosterPacks_.get(i));
+        output.writeMessage(11, boosterPacks_.get(i));
+      }
+      for (int i = 0; i < allGenerators_.size(); i++) {
+        output.writeMessage(12, allGenerators_.get(i));
+      }
+      for (int i = 0; i < allStorages_.size(); i++) {
+        output.writeMessage(13, allStorages_.get(i));
+      }
+      for (int i = 0; i < allHospitals_.size(); i++) {
+        output.writeMessage(14, allHospitals_.get(i));
+      }
+      for (int i = 0; i < allResidences_.size(); i++) {
+        output.writeMessage(15, allResidences_.get(i));
+      }
+      for (int i = 0; i < allTownHalls_.size(); i++) {
+        output.writeMessage(16, allTownHalls_.get(i));
+      }
+      for (int i = 0; i < allLabs_.size(); i++) {
+        output.writeMessage(17, allLabs_.get(i));
       }
       getUnknownFields().writeTo(output);
     }
@@ -534,41 +691,57 @@ public final class StaticDataStuffProto {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(3, allCities_.get(i));
       }
-      for (int i = 0; i < allStructs_.size(); i++) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(4, allStructs_.get(i));
-      }
       for (int i = 0; i < allTasks_.size(); i++) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(5, allTasks_.get(i));
+          .computeMessageSize(4, allTasks_.get(i));
       }
       for (int i = 0; i < allMonsters_.size(); i++) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(6, allMonsters_.get(i));
+          .computeMessageSize(5, allMonsters_.get(i));
       }
       for (int i = 0; i < slip_.size(); i++) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(7, slip_.get(i));
+          .computeMessageSize(6, slip_.get(i));
       }
       for (int i = 0; i < inProgressQuests_.size(); i++) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(8, inProgressQuests_.get(i));
+          .computeMessageSize(7, inProgressQuests_.get(i));
       }
       for (int i = 0; i < unredeemedQuests_.size(); i++) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(9, unredeemedQuests_.get(i));
+          .computeMessageSize(8, unredeemedQuests_.get(i));
       }
       for (int i = 0; i < availableQuests_.size(); i++) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(10, availableQuests_.get(i));
-      }
-      if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeEnumSize(11, status_.getNumber());
+          .computeMessageSize(9, availableQuests_.get(i));
       }
       for (int i = 0; i < boosterPacks_.size(); i++) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(12, boosterPacks_.get(i));
+          .computeMessageSize(11, boosterPacks_.get(i));
+      }
+      for (int i = 0; i < allGenerators_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(12, allGenerators_.get(i));
+      }
+      for (int i = 0; i < allStorages_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(13, allStorages_.get(i));
+      }
+      for (int i = 0; i < allHospitals_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(14, allHospitals_.get(i));
+      }
+      for (int i = 0; i < allResidences_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(15, allResidences_.get(i));
+      }
+      for (int i = 0; i < allTownHalls_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(16, allTownHalls_.get(i));
+      }
+      for (int i = 0; i < allLabs_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(17, allLabs_.get(i));
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -689,7 +862,6 @@ public final class StaticDataStuffProto {
           getSenderFieldBuilder();
           getExpansionCostsFieldBuilder();
           getAllCitiesFieldBuilder();
-          getAllStructsFieldBuilder();
           getAllTasksFieldBuilder();
           getAllMonstersFieldBuilder();
           getSlipFieldBuilder();
@@ -697,6 +869,12 @@ public final class StaticDataStuffProto {
           getUnredeemedQuestsFieldBuilder();
           getAvailableQuestsFieldBuilder();
           getBoosterPacksFieldBuilder();
+          getAllGeneratorsFieldBuilder();
+          getAllStoragesFieldBuilder();
+          getAllHospitalsFieldBuilder();
+          getAllResidencesFieldBuilder();
+          getAllLabsFieldBuilder();
+          getAllTownHallsFieldBuilder();
         }
       }
       private static Builder create() {
@@ -723,56 +901,84 @@ public final class StaticDataStuffProto {
         } else {
           allCitiesBuilder_.clear();
         }
-        if (allStructsBuilder_ == null) {
-          allStructs_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000008);
-        } else {
-          allStructsBuilder_.clear();
-        }
         if (allTasksBuilder_ == null) {
           allTasks_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000010);
+          bitField0_ = (bitField0_ & ~0x00000008);
         } else {
           allTasksBuilder_.clear();
         }
         if (allMonstersBuilder_ == null) {
           allMonsters_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000020);
+          bitField0_ = (bitField0_ & ~0x00000010);
         } else {
           allMonstersBuilder_.clear();
         }
         if (slipBuilder_ == null) {
           slip_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000040);
+          bitField0_ = (bitField0_ & ~0x00000020);
         } else {
           slipBuilder_.clear();
         }
         if (inProgressQuestsBuilder_ == null) {
           inProgressQuests_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000080);
+          bitField0_ = (bitField0_ & ~0x00000040);
         } else {
           inProgressQuestsBuilder_.clear();
         }
         if (unredeemedQuestsBuilder_ == null) {
           unredeemedQuests_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000100);
+          bitField0_ = (bitField0_ & ~0x00000080);
         } else {
           unredeemedQuestsBuilder_.clear();
         }
         if (availableQuestsBuilder_ == null) {
           availableQuests_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000200);
+          bitField0_ = (bitField0_ & ~0x00000100);
         } else {
           availableQuestsBuilder_.clear();
         }
         if (boosterPacksBuilder_ == null) {
           boosterPacks_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000400);
+          bitField0_ = (bitField0_ & ~0x00000200);
         } else {
           boosterPacksBuilder_.clear();
         }
-        status_ = com.lvl6.mobsters.noneventprotos.StaticDataStuffProto.StaticDataProto.RetrieveStaticDataStatus.SUCCESS;
-        bitField0_ = (bitField0_ & ~0x00000800);
+        if (allGeneratorsBuilder_ == null) {
+          allGenerators_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000400);
+        } else {
+          allGeneratorsBuilder_.clear();
+        }
+        if (allStoragesBuilder_ == null) {
+          allStorages_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000800);
+        } else {
+          allStoragesBuilder_.clear();
+        }
+        if (allHospitalsBuilder_ == null) {
+          allHospitals_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00001000);
+        } else {
+          allHospitalsBuilder_.clear();
+        }
+        if (allResidencesBuilder_ == null) {
+          allResidences_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00002000);
+        } else {
+          allResidencesBuilder_.clear();
+        }
+        if (allLabsBuilder_ == null) {
+          allLabs_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00004000);
+        } else {
+          allLabsBuilder_.clear();
+        }
+        if (allTownHallsBuilder_ == null) {
+          allTownHalls_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00008000);
+        } else {
+          allTownHallsBuilder_.clear();
+        }
         return this;
       }
       
@@ -837,82 +1043,123 @@ public final class StaticDataStuffProto {
         } else {
           result.allCities_ = allCitiesBuilder_.build();
         }
-        if (allStructsBuilder_ == null) {
-          if (((bitField0_ & 0x00000008) == 0x00000008)) {
-            allStructs_ = java.util.Collections.unmodifiableList(allStructs_);
-            bitField0_ = (bitField0_ & ~0x00000008);
-          }
-          result.allStructs_ = allStructs_;
-        } else {
-          result.allStructs_ = allStructsBuilder_.build();
-        }
         if (allTasksBuilder_ == null) {
-          if (((bitField0_ & 0x00000010) == 0x00000010)) {
+          if (((bitField0_ & 0x00000008) == 0x00000008)) {
             allTasks_ = java.util.Collections.unmodifiableList(allTasks_);
-            bitField0_ = (bitField0_ & ~0x00000010);
+            bitField0_ = (bitField0_ & ~0x00000008);
           }
           result.allTasks_ = allTasks_;
         } else {
           result.allTasks_ = allTasksBuilder_.build();
         }
         if (allMonstersBuilder_ == null) {
-          if (((bitField0_ & 0x00000020) == 0x00000020)) {
+          if (((bitField0_ & 0x00000010) == 0x00000010)) {
             allMonsters_ = java.util.Collections.unmodifiableList(allMonsters_);
-            bitField0_ = (bitField0_ & ~0x00000020);
+            bitField0_ = (bitField0_ & ~0x00000010);
           }
           result.allMonsters_ = allMonsters_;
         } else {
           result.allMonsters_ = allMonstersBuilder_.build();
         }
         if (slipBuilder_ == null) {
-          if (((bitField0_ & 0x00000040) == 0x00000040)) {
+          if (((bitField0_ & 0x00000020) == 0x00000020)) {
             slip_ = java.util.Collections.unmodifiableList(slip_);
-            bitField0_ = (bitField0_ & ~0x00000040);
+            bitField0_ = (bitField0_ & ~0x00000020);
           }
           result.slip_ = slip_;
         } else {
           result.slip_ = slipBuilder_.build();
         }
         if (inProgressQuestsBuilder_ == null) {
-          if (((bitField0_ & 0x00000080) == 0x00000080)) {
+          if (((bitField0_ & 0x00000040) == 0x00000040)) {
             inProgressQuests_ = java.util.Collections.unmodifiableList(inProgressQuests_);
-            bitField0_ = (bitField0_ & ~0x00000080);
+            bitField0_ = (bitField0_ & ~0x00000040);
           }
           result.inProgressQuests_ = inProgressQuests_;
         } else {
           result.inProgressQuests_ = inProgressQuestsBuilder_.build();
         }
         if (unredeemedQuestsBuilder_ == null) {
-          if (((bitField0_ & 0x00000100) == 0x00000100)) {
+          if (((bitField0_ & 0x00000080) == 0x00000080)) {
             unredeemedQuests_ = java.util.Collections.unmodifiableList(unredeemedQuests_);
-            bitField0_ = (bitField0_ & ~0x00000100);
+            bitField0_ = (bitField0_ & ~0x00000080);
           }
           result.unredeemedQuests_ = unredeemedQuests_;
         } else {
           result.unredeemedQuests_ = unredeemedQuestsBuilder_.build();
         }
         if (availableQuestsBuilder_ == null) {
-          if (((bitField0_ & 0x00000200) == 0x00000200)) {
+          if (((bitField0_ & 0x00000100) == 0x00000100)) {
             availableQuests_ = java.util.Collections.unmodifiableList(availableQuests_);
-            bitField0_ = (bitField0_ & ~0x00000200);
+            bitField0_ = (bitField0_ & ~0x00000100);
           }
           result.availableQuests_ = availableQuests_;
         } else {
           result.availableQuests_ = availableQuestsBuilder_.build();
         }
         if (boosterPacksBuilder_ == null) {
-          if (((bitField0_ & 0x00000400) == 0x00000400)) {
+          if (((bitField0_ & 0x00000200) == 0x00000200)) {
             boosterPacks_ = java.util.Collections.unmodifiableList(boosterPacks_);
-            bitField0_ = (bitField0_ & ~0x00000400);
+            bitField0_ = (bitField0_ & ~0x00000200);
           }
           result.boosterPacks_ = boosterPacks_;
         } else {
           result.boosterPacks_ = boosterPacksBuilder_.build();
         }
-        if (((from_bitField0_ & 0x00000800) == 0x00000800)) {
-          to_bitField0_ |= 0x00000002;
+        if (allGeneratorsBuilder_ == null) {
+          if (((bitField0_ & 0x00000400) == 0x00000400)) {
+            allGenerators_ = java.util.Collections.unmodifiableList(allGenerators_);
+            bitField0_ = (bitField0_ & ~0x00000400);
+          }
+          result.allGenerators_ = allGenerators_;
+        } else {
+          result.allGenerators_ = allGeneratorsBuilder_.build();
         }
-        result.status_ = status_;
+        if (allStoragesBuilder_ == null) {
+          if (((bitField0_ & 0x00000800) == 0x00000800)) {
+            allStorages_ = java.util.Collections.unmodifiableList(allStorages_);
+            bitField0_ = (bitField0_ & ~0x00000800);
+          }
+          result.allStorages_ = allStorages_;
+        } else {
+          result.allStorages_ = allStoragesBuilder_.build();
+        }
+        if (allHospitalsBuilder_ == null) {
+          if (((bitField0_ & 0x00001000) == 0x00001000)) {
+            allHospitals_ = java.util.Collections.unmodifiableList(allHospitals_);
+            bitField0_ = (bitField0_ & ~0x00001000);
+          }
+          result.allHospitals_ = allHospitals_;
+        } else {
+          result.allHospitals_ = allHospitalsBuilder_.build();
+        }
+        if (allResidencesBuilder_ == null) {
+          if (((bitField0_ & 0x00002000) == 0x00002000)) {
+            allResidences_ = java.util.Collections.unmodifiableList(allResidences_);
+            bitField0_ = (bitField0_ & ~0x00002000);
+          }
+          result.allResidences_ = allResidences_;
+        } else {
+          result.allResidences_ = allResidencesBuilder_.build();
+        }
+        if (allLabsBuilder_ == null) {
+          if (((bitField0_ & 0x00004000) == 0x00004000)) {
+            allLabs_ = java.util.Collections.unmodifiableList(allLabs_);
+            bitField0_ = (bitField0_ & ~0x00004000);
+          }
+          result.allLabs_ = allLabs_;
+        } else {
+          result.allLabs_ = allLabsBuilder_.build();
+        }
+        if (allTownHallsBuilder_ == null) {
+          if (((bitField0_ & 0x00008000) == 0x00008000)) {
+            allTownHalls_ = java.util.Collections.unmodifiableList(allTownHalls_);
+            bitField0_ = (bitField0_ & ~0x00008000);
+          }
+          result.allTownHalls_ = allTownHalls_;
+        } else {
+          result.allTownHalls_ = allTownHallsBuilder_.build();
+        }
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -984,37 +1231,11 @@ public final class StaticDataStuffProto {
             }
           }
         }
-        if (allStructsBuilder_ == null) {
-          if (!other.allStructs_.isEmpty()) {
-            if (allStructs_.isEmpty()) {
-              allStructs_ = other.allStructs_;
-              bitField0_ = (bitField0_ & ~0x00000008);
-            } else {
-              ensureAllStructsIsMutable();
-              allStructs_.addAll(other.allStructs_);
-            }
-            onChanged();
-          }
-        } else {
-          if (!other.allStructs_.isEmpty()) {
-            if (allStructsBuilder_.isEmpty()) {
-              allStructsBuilder_.dispose();
-              allStructsBuilder_ = null;
-              allStructs_ = other.allStructs_;
-              bitField0_ = (bitField0_ & ~0x00000008);
-              allStructsBuilder_ = 
-                com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders ?
-                   getAllStructsFieldBuilder() : null;
-            } else {
-              allStructsBuilder_.addAllMessages(other.allStructs_);
-            }
-          }
-        }
         if (allTasksBuilder_ == null) {
           if (!other.allTasks_.isEmpty()) {
             if (allTasks_.isEmpty()) {
               allTasks_ = other.allTasks_;
-              bitField0_ = (bitField0_ & ~0x00000010);
+              bitField0_ = (bitField0_ & ~0x00000008);
             } else {
               ensureAllTasksIsMutable();
               allTasks_.addAll(other.allTasks_);
@@ -1027,7 +1248,7 @@ public final class StaticDataStuffProto {
               allTasksBuilder_.dispose();
               allTasksBuilder_ = null;
               allTasks_ = other.allTasks_;
-              bitField0_ = (bitField0_ & ~0x00000010);
+              bitField0_ = (bitField0_ & ~0x00000008);
               allTasksBuilder_ = 
                 com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders ?
                    getAllTasksFieldBuilder() : null;
@@ -1040,7 +1261,7 @@ public final class StaticDataStuffProto {
           if (!other.allMonsters_.isEmpty()) {
             if (allMonsters_.isEmpty()) {
               allMonsters_ = other.allMonsters_;
-              bitField0_ = (bitField0_ & ~0x00000020);
+              bitField0_ = (bitField0_ & ~0x00000010);
             } else {
               ensureAllMonstersIsMutable();
               allMonsters_.addAll(other.allMonsters_);
@@ -1053,7 +1274,7 @@ public final class StaticDataStuffProto {
               allMonstersBuilder_.dispose();
               allMonstersBuilder_ = null;
               allMonsters_ = other.allMonsters_;
-              bitField0_ = (bitField0_ & ~0x00000020);
+              bitField0_ = (bitField0_ & ~0x00000010);
               allMonstersBuilder_ = 
                 com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders ?
                    getAllMonstersFieldBuilder() : null;
@@ -1066,7 +1287,7 @@ public final class StaticDataStuffProto {
           if (!other.slip_.isEmpty()) {
             if (slip_.isEmpty()) {
               slip_ = other.slip_;
-              bitField0_ = (bitField0_ & ~0x00000040);
+              bitField0_ = (bitField0_ & ~0x00000020);
             } else {
               ensureSlipIsMutable();
               slip_.addAll(other.slip_);
@@ -1079,7 +1300,7 @@ public final class StaticDataStuffProto {
               slipBuilder_.dispose();
               slipBuilder_ = null;
               slip_ = other.slip_;
-              bitField0_ = (bitField0_ & ~0x00000040);
+              bitField0_ = (bitField0_ & ~0x00000020);
               slipBuilder_ = 
                 com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders ?
                    getSlipFieldBuilder() : null;
@@ -1092,7 +1313,7 @@ public final class StaticDataStuffProto {
           if (!other.inProgressQuests_.isEmpty()) {
             if (inProgressQuests_.isEmpty()) {
               inProgressQuests_ = other.inProgressQuests_;
-              bitField0_ = (bitField0_ & ~0x00000080);
+              bitField0_ = (bitField0_ & ~0x00000040);
             } else {
               ensureInProgressQuestsIsMutable();
               inProgressQuests_.addAll(other.inProgressQuests_);
@@ -1105,7 +1326,7 @@ public final class StaticDataStuffProto {
               inProgressQuestsBuilder_.dispose();
               inProgressQuestsBuilder_ = null;
               inProgressQuests_ = other.inProgressQuests_;
-              bitField0_ = (bitField0_ & ~0x00000080);
+              bitField0_ = (bitField0_ & ~0x00000040);
               inProgressQuestsBuilder_ = 
                 com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders ?
                    getInProgressQuestsFieldBuilder() : null;
@@ -1118,7 +1339,7 @@ public final class StaticDataStuffProto {
           if (!other.unredeemedQuests_.isEmpty()) {
             if (unredeemedQuests_.isEmpty()) {
               unredeemedQuests_ = other.unredeemedQuests_;
-              bitField0_ = (bitField0_ & ~0x00000100);
+              bitField0_ = (bitField0_ & ~0x00000080);
             } else {
               ensureUnredeemedQuestsIsMutable();
               unredeemedQuests_.addAll(other.unredeemedQuests_);
@@ -1131,7 +1352,7 @@ public final class StaticDataStuffProto {
               unredeemedQuestsBuilder_.dispose();
               unredeemedQuestsBuilder_ = null;
               unredeemedQuests_ = other.unredeemedQuests_;
-              bitField0_ = (bitField0_ & ~0x00000100);
+              bitField0_ = (bitField0_ & ~0x00000080);
               unredeemedQuestsBuilder_ = 
                 com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders ?
                    getUnredeemedQuestsFieldBuilder() : null;
@@ -1144,7 +1365,7 @@ public final class StaticDataStuffProto {
           if (!other.availableQuests_.isEmpty()) {
             if (availableQuests_.isEmpty()) {
               availableQuests_ = other.availableQuests_;
-              bitField0_ = (bitField0_ & ~0x00000200);
+              bitField0_ = (bitField0_ & ~0x00000100);
             } else {
               ensureAvailableQuestsIsMutable();
               availableQuests_.addAll(other.availableQuests_);
@@ -1157,7 +1378,7 @@ public final class StaticDataStuffProto {
               availableQuestsBuilder_.dispose();
               availableQuestsBuilder_ = null;
               availableQuests_ = other.availableQuests_;
-              bitField0_ = (bitField0_ & ~0x00000200);
+              bitField0_ = (bitField0_ & ~0x00000100);
               availableQuestsBuilder_ = 
                 com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders ?
                    getAvailableQuestsFieldBuilder() : null;
@@ -1170,7 +1391,7 @@ public final class StaticDataStuffProto {
           if (!other.boosterPacks_.isEmpty()) {
             if (boosterPacks_.isEmpty()) {
               boosterPacks_ = other.boosterPacks_;
-              bitField0_ = (bitField0_ & ~0x00000400);
+              bitField0_ = (bitField0_ & ~0x00000200);
             } else {
               ensureBoosterPacksIsMutable();
               boosterPacks_.addAll(other.boosterPacks_);
@@ -1183,7 +1404,7 @@ public final class StaticDataStuffProto {
               boosterPacksBuilder_.dispose();
               boosterPacksBuilder_ = null;
               boosterPacks_ = other.boosterPacks_;
-              bitField0_ = (bitField0_ & ~0x00000400);
+              bitField0_ = (bitField0_ & ~0x00000200);
               boosterPacksBuilder_ = 
                 com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders ?
                    getBoosterPacksFieldBuilder() : null;
@@ -1192,8 +1413,161 @@ public final class StaticDataStuffProto {
             }
           }
         }
-        if (other.hasStatus()) {
-          setStatus(other.getStatus());
+        if (allGeneratorsBuilder_ == null) {
+          if (!other.allGenerators_.isEmpty()) {
+            if (allGenerators_.isEmpty()) {
+              allGenerators_ = other.allGenerators_;
+              bitField0_ = (bitField0_ & ~0x00000400);
+            } else {
+              ensureAllGeneratorsIsMutable();
+              allGenerators_.addAll(other.allGenerators_);
+            }
+            onChanged();
+          }
+        } else {
+          if (!other.allGenerators_.isEmpty()) {
+            if (allGeneratorsBuilder_.isEmpty()) {
+              allGeneratorsBuilder_.dispose();
+              allGeneratorsBuilder_ = null;
+              allGenerators_ = other.allGenerators_;
+              bitField0_ = (bitField0_ & ~0x00000400);
+              allGeneratorsBuilder_ = 
+                com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders ?
+                   getAllGeneratorsFieldBuilder() : null;
+            } else {
+              allGeneratorsBuilder_.addAllMessages(other.allGenerators_);
+            }
+          }
+        }
+        if (allStoragesBuilder_ == null) {
+          if (!other.allStorages_.isEmpty()) {
+            if (allStorages_.isEmpty()) {
+              allStorages_ = other.allStorages_;
+              bitField0_ = (bitField0_ & ~0x00000800);
+            } else {
+              ensureAllStoragesIsMutable();
+              allStorages_.addAll(other.allStorages_);
+            }
+            onChanged();
+          }
+        } else {
+          if (!other.allStorages_.isEmpty()) {
+            if (allStoragesBuilder_.isEmpty()) {
+              allStoragesBuilder_.dispose();
+              allStoragesBuilder_ = null;
+              allStorages_ = other.allStorages_;
+              bitField0_ = (bitField0_ & ~0x00000800);
+              allStoragesBuilder_ = 
+                com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders ?
+                   getAllStoragesFieldBuilder() : null;
+            } else {
+              allStoragesBuilder_.addAllMessages(other.allStorages_);
+            }
+          }
+        }
+        if (allHospitalsBuilder_ == null) {
+          if (!other.allHospitals_.isEmpty()) {
+            if (allHospitals_.isEmpty()) {
+              allHospitals_ = other.allHospitals_;
+              bitField0_ = (bitField0_ & ~0x00001000);
+            } else {
+              ensureAllHospitalsIsMutable();
+              allHospitals_.addAll(other.allHospitals_);
+            }
+            onChanged();
+          }
+        } else {
+          if (!other.allHospitals_.isEmpty()) {
+            if (allHospitalsBuilder_.isEmpty()) {
+              allHospitalsBuilder_.dispose();
+              allHospitalsBuilder_ = null;
+              allHospitals_ = other.allHospitals_;
+              bitField0_ = (bitField0_ & ~0x00001000);
+              allHospitalsBuilder_ = 
+                com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders ?
+                   getAllHospitalsFieldBuilder() : null;
+            } else {
+              allHospitalsBuilder_.addAllMessages(other.allHospitals_);
+            }
+          }
+        }
+        if (allResidencesBuilder_ == null) {
+          if (!other.allResidences_.isEmpty()) {
+            if (allResidences_.isEmpty()) {
+              allResidences_ = other.allResidences_;
+              bitField0_ = (bitField0_ & ~0x00002000);
+            } else {
+              ensureAllResidencesIsMutable();
+              allResidences_.addAll(other.allResidences_);
+            }
+            onChanged();
+          }
+        } else {
+          if (!other.allResidences_.isEmpty()) {
+            if (allResidencesBuilder_.isEmpty()) {
+              allResidencesBuilder_.dispose();
+              allResidencesBuilder_ = null;
+              allResidences_ = other.allResidences_;
+              bitField0_ = (bitField0_ & ~0x00002000);
+              allResidencesBuilder_ = 
+                com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders ?
+                   getAllResidencesFieldBuilder() : null;
+            } else {
+              allResidencesBuilder_.addAllMessages(other.allResidences_);
+            }
+          }
+        }
+        if (allLabsBuilder_ == null) {
+          if (!other.allLabs_.isEmpty()) {
+            if (allLabs_.isEmpty()) {
+              allLabs_ = other.allLabs_;
+              bitField0_ = (bitField0_ & ~0x00004000);
+            } else {
+              ensureAllLabsIsMutable();
+              allLabs_.addAll(other.allLabs_);
+            }
+            onChanged();
+          }
+        } else {
+          if (!other.allLabs_.isEmpty()) {
+            if (allLabsBuilder_.isEmpty()) {
+              allLabsBuilder_.dispose();
+              allLabsBuilder_ = null;
+              allLabs_ = other.allLabs_;
+              bitField0_ = (bitField0_ & ~0x00004000);
+              allLabsBuilder_ = 
+                com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders ?
+                   getAllLabsFieldBuilder() : null;
+            } else {
+              allLabsBuilder_.addAllMessages(other.allLabs_);
+            }
+          }
+        }
+        if (allTownHallsBuilder_ == null) {
+          if (!other.allTownHalls_.isEmpty()) {
+            if (allTownHalls_.isEmpty()) {
+              allTownHalls_ = other.allTownHalls_;
+              bitField0_ = (bitField0_ & ~0x00008000);
+            } else {
+              ensureAllTownHallsIsMutable();
+              allTownHalls_.addAll(other.allTownHalls_);
+            }
+            onChanged();
+          }
+        } else {
+          if (!other.allTownHalls_.isEmpty()) {
+            if (allTownHallsBuilder_.isEmpty()) {
+              allTownHallsBuilder_.dispose();
+              allTownHallsBuilder_ = null;
+              allTownHalls_ = other.allTownHalls_;
+              bitField0_ = (bitField0_ & ~0x00008000);
+              allTownHallsBuilder_ = 
+                com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders ?
+                   getAllTownHallsFieldBuilder() : null;
+            } else {
+              allTownHallsBuilder_.addAllMessages(other.allTownHalls_);
+            }
+          }
         }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
@@ -1248,62 +1622,81 @@ public final class StaticDataStuffProto {
               break;
             }
             case 34: {
-              com.lvl6.mobsters.noneventprotos.StructureProto.StructureInfoProto.Builder subBuilder = com.lvl6.mobsters.noneventprotos.StructureProto.StructureInfoProto.newBuilder();
-              input.readMessage(subBuilder, extensionRegistry);
-              addAllStructs(subBuilder.buildPartial());
-              break;
-            }
-            case 42: {
               com.lvl6.mobsters.noneventprotos.TaskProto.FullTaskProto.Builder subBuilder = com.lvl6.mobsters.noneventprotos.TaskProto.FullTaskProto.newBuilder();
               input.readMessage(subBuilder, extensionRegistry);
               addAllTasks(subBuilder.buildPartial());
               break;
             }
-            case 50: {
+            case 42: {
               com.lvl6.mobsters.noneventprotos.MonsterStuffProto.MonsterProto.Builder subBuilder = com.lvl6.mobsters.noneventprotos.MonsterStuffProto.MonsterProto.newBuilder();
               input.readMessage(subBuilder, extensionRegistry);
               addAllMonsters(subBuilder.buildPartial());
               break;
             }
-            case 58: {
+            case 50: {
               com.lvl6.mobsters.noneventprotos.UserProto.StaticUserLevelInfoProto.Builder subBuilder = com.lvl6.mobsters.noneventprotos.UserProto.StaticUserLevelInfoProto.newBuilder();
               input.readMessage(subBuilder, extensionRegistry);
               addSlip(subBuilder.buildPartial());
               break;
             }
-            case 66: {
+            case 58: {
               com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProto.Builder subBuilder = com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProto.newBuilder();
               input.readMessage(subBuilder, extensionRegistry);
               addInProgressQuests(subBuilder.buildPartial());
               break;
             }
-            case 74: {
+            case 66: {
               com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProto.Builder subBuilder = com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProto.newBuilder();
               input.readMessage(subBuilder, extensionRegistry);
               addUnredeemedQuests(subBuilder.buildPartial());
               break;
             }
-            case 82: {
+            case 74: {
               com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProto.Builder subBuilder = com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProto.newBuilder();
               input.readMessage(subBuilder, extensionRegistry);
               addAvailableQuests(subBuilder.buildPartial());
               break;
             }
-            case 88: {
-              int rawValue = input.readEnum();
-              com.lvl6.mobsters.noneventprotos.StaticDataStuffProto.StaticDataProto.RetrieveStaticDataStatus value = com.lvl6.mobsters.noneventprotos.StaticDataStuffProto.StaticDataProto.RetrieveStaticDataStatus.valueOf(rawValue);
-              if (value == null) {
-                unknownFields.mergeVarintField(11, rawValue);
-              } else {
-                bitField0_ |= 0x00000800;
-                status_ = value;
-              }
-              break;
-            }
-            case 98: {
+            case 90: {
               com.lvl6.mobsters.noneventprotos.BoosterPackStuffProto.BoosterPackProto.Builder subBuilder = com.lvl6.mobsters.noneventprotos.BoosterPackStuffProto.BoosterPackProto.newBuilder();
               input.readMessage(subBuilder, extensionRegistry);
               addBoosterPacks(subBuilder.buildPartial());
+              break;
+            }
+            case 98: {
+              com.lvl6.mobsters.noneventprotos.StructureProto.ResourceGeneratorProto.Builder subBuilder = com.lvl6.mobsters.noneventprotos.StructureProto.ResourceGeneratorProto.newBuilder();
+              input.readMessage(subBuilder, extensionRegistry);
+              addAllGenerators(subBuilder.buildPartial());
+              break;
+            }
+            case 106: {
+              com.lvl6.mobsters.noneventprotos.StructureProto.ResourceStorageProto.Builder subBuilder = com.lvl6.mobsters.noneventprotos.StructureProto.ResourceStorageProto.newBuilder();
+              input.readMessage(subBuilder, extensionRegistry);
+              addAllStorages(subBuilder.buildPartial());
+              break;
+            }
+            case 114: {
+              com.lvl6.mobsters.noneventprotos.StructureProto.HospitalProto.Builder subBuilder = com.lvl6.mobsters.noneventprotos.StructureProto.HospitalProto.newBuilder();
+              input.readMessage(subBuilder, extensionRegistry);
+              addAllHospitals(subBuilder.buildPartial());
+              break;
+            }
+            case 122: {
+              com.lvl6.mobsters.noneventprotos.StructureProto.ResidenceProto.Builder subBuilder = com.lvl6.mobsters.noneventprotos.StructureProto.ResidenceProto.newBuilder();
+              input.readMessage(subBuilder, extensionRegistry);
+              addAllResidences(subBuilder.buildPartial());
+              break;
+            }
+            case 130: {
+              com.lvl6.mobsters.noneventprotos.StructureProto.TownHallProto.Builder subBuilder = com.lvl6.mobsters.noneventprotos.StructureProto.TownHallProto.newBuilder();
+              input.readMessage(subBuilder, extensionRegistry);
+              addAllTownHalls(subBuilder.buildPartial());
+              break;
+            }
+            case 138: {
+              com.lvl6.mobsters.noneventprotos.StructureProto.LabProto.Builder subBuilder = com.lvl6.mobsters.noneventprotos.StructureProto.LabProto.newBuilder();
+              input.readMessage(subBuilder, extensionRegistry);
+              addAllLabs(subBuilder.buildPartial());
               break;
             }
           }
@@ -1774,199 +2167,13 @@ public final class StaticDataStuffProto {
         return allCitiesBuilder_;
       }
       
-      // repeated .proto.StructureInfoProto allStructs = 4;
-      private java.util.List<com.lvl6.mobsters.noneventprotos.StructureProto.StructureInfoProto> allStructs_ =
-        java.util.Collections.emptyList();
-      private void ensureAllStructsIsMutable() {
-        if (!((bitField0_ & 0x00000008) == 0x00000008)) {
-          allStructs_ = new java.util.ArrayList<com.lvl6.mobsters.noneventprotos.StructureProto.StructureInfoProto>(allStructs_);
-          bitField0_ |= 0x00000008;
-         }
-      }
-      
-      private com.google.protobuf.RepeatedFieldBuilder<
-          com.lvl6.mobsters.noneventprotos.StructureProto.StructureInfoProto, com.lvl6.mobsters.noneventprotos.StructureProto.StructureInfoProto.Builder, com.lvl6.mobsters.noneventprotos.StructureProto.StructureInfoProtoOrBuilder> allStructsBuilder_;
-      
-      public java.util.List<com.lvl6.mobsters.noneventprotos.StructureProto.StructureInfoProto> getAllStructsList() {
-        if (allStructsBuilder_ == null) {
-          return java.util.Collections.unmodifiableList(allStructs_);
-        } else {
-          return allStructsBuilder_.getMessageList();
-        }
-      }
-      public int getAllStructsCount() {
-        if (allStructsBuilder_ == null) {
-          return allStructs_.size();
-        } else {
-          return allStructsBuilder_.getCount();
-        }
-      }
-      public com.lvl6.mobsters.noneventprotos.StructureProto.StructureInfoProto getAllStructs(int index) {
-        if (allStructsBuilder_ == null) {
-          return allStructs_.get(index);
-        } else {
-          return allStructsBuilder_.getMessage(index);
-        }
-      }
-      public Builder setAllStructs(
-          int index, com.lvl6.mobsters.noneventprotos.StructureProto.StructureInfoProto value) {
-        if (allStructsBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          ensureAllStructsIsMutable();
-          allStructs_.set(index, value);
-          onChanged();
-        } else {
-          allStructsBuilder_.setMessage(index, value);
-        }
-        return this;
-      }
-      public Builder setAllStructs(
-          int index, com.lvl6.mobsters.noneventprotos.StructureProto.StructureInfoProto.Builder builderForValue) {
-        if (allStructsBuilder_ == null) {
-          ensureAllStructsIsMutable();
-          allStructs_.set(index, builderForValue.build());
-          onChanged();
-        } else {
-          allStructsBuilder_.setMessage(index, builderForValue.build());
-        }
-        return this;
-      }
-      public Builder addAllStructs(com.lvl6.mobsters.noneventprotos.StructureProto.StructureInfoProto value) {
-        if (allStructsBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          ensureAllStructsIsMutable();
-          allStructs_.add(value);
-          onChanged();
-        } else {
-          allStructsBuilder_.addMessage(value);
-        }
-        return this;
-      }
-      public Builder addAllStructs(
-          int index, com.lvl6.mobsters.noneventprotos.StructureProto.StructureInfoProto value) {
-        if (allStructsBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          ensureAllStructsIsMutable();
-          allStructs_.add(index, value);
-          onChanged();
-        } else {
-          allStructsBuilder_.addMessage(index, value);
-        }
-        return this;
-      }
-      public Builder addAllStructs(
-          com.lvl6.mobsters.noneventprotos.StructureProto.StructureInfoProto.Builder builderForValue) {
-        if (allStructsBuilder_ == null) {
-          ensureAllStructsIsMutable();
-          allStructs_.add(builderForValue.build());
-          onChanged();
-        } else {
-          allStructsBuilder_.addMessage(builderForValue.build());
-        }
-        return this;
-      }
-      public Builder addAllStructs(
-          int index, com.lvl6.mobsters.noneventprotos.StructureProto.StructureInfoProto.Builder builderForValue) {
-        if (allStructsBuilder_ == null) {
-          ensureAllStructsIsMutable();
-          allStructs_.add(index, builderForValue.build());
-          onChanged();
-        } else {
-          allStructsBuilder_.addMessage(index, builderForValue.build());
-        }
-        return this;
-      }
-      public Builder addAllAllStructs(
-          java.lang.Iterable<? extends com.lvl6.mobsters.noneventprotos.StructureProto.StructureInfoProto> values) {
-        if (allStructsBuilder_ == null) {
-          ensureAllStructsIsMutable();
-          super.addAll(values, allStructs_);
-          onChanged();
-        } else {
-          allStructsBuilder_.addAllMessages(values);
-        }
-        return this;
-      }
-      public Builder clearAllStructs() {
-        if (allStructsBuilder_ == null) {
-          allStructs_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000008);
-          onChanged();
-        } else {
-          allStructsBuilder_.clear();
-        }
-        return this;
-      }
-      public Builder removeAllStructs(int index) {
-        if (allStructsBuilder_ == null) {
-          ensureAllStructsIsMutable();
-          allStructs_.remove(index);
-          onChanged();
-        } else {
-          allStructsBuilder_.remove(index);
-        }
-        return this;
-      }
-      public com.lvl6.mobsters.noneventprotos.StructureProto.StructureInfoProto.Builder getAllStructsBuilder(
-          int index) {
-        return getAllStructsFieldBuilder().getBuilder(index);
-      }
-      public com.lvl6.mobsters.noneventprotos.StructureProto.StructureInfoProtoOrBuilder getAllStructsOrBuilder(
-          int index) {
-        if (allStructsBuilder_ == null) {
-          return allStructs_.get(index);  } else {
-          return allStructsBuilder_.getMessageOrBuilder(index);
-        }
-      }
-      public java.util.List<? extends com.lvl6.mobsters.noneventprotos.StructureProto.StructureInfoProtoOrBuilder> 
-           getAllStructsOrBuilderList() {
-        if (allStructsBuilder_ != null) {
-          return allStructsBuilder_.getMessageOrBuilderList();
-        } else {
-          return java.util.Collections.unmodifiableList(allStructs_);
-        }
-      }
-      public com.lvl6.mobsters.noneventprotos.StructureProto.StructureInfoProto.Builder addAllStructsBuilder() {
-        return getAllStructsFieldBuilder().addBuilder(
-            com.lvl6.mobsters.noneventprotos.StructureProto.StructureInfoProto.getDefaultInstance());
-      }
-      public com.lvl6.mobsters.noneventprotos.StructureProto.StructureInfoProto.Builder addAllStructsBuilder(
-          int index) {
-        return getAllStructsFieldBuilder().addBuilder(
-            index, com.lvl6.mobsters.noneventprotos.StructureProto.StructureInfoProto.getDefaultInstance());
-      }
-      public java.util.List<com.lvl6.mobsters.noneventprotos.StructureProto.StructureInfoProto.Builder> 
-           getAllStructsBuilderList() {
-        return getAllStructsFieldBuilder().getBuilderList();
-      }
-      private com.google.protobuf.RepeatedFieldBuilder<
-          com.lvl6.mobsters.noneventprotos.StructureProto.StructureInfoProto, com.lvl6.mobsters.noneventprotos.StructureProto.StructureInfoProto.Builder, com.lvl6.mobsters.noneventprotos.StructureProto.StructureInfoProtoOrBuilder> 
-          getAllStructsFieldBuilder() {
-        if (allStructsBuilder_ == null) {
-          allStructsBuilder_ = new com.google.protobuf.RepeatedFieldBuilder<
-              com.lvl6.mobsters.noneventprotos.StructureProto.StructureInfoProto, com.lvl6.mobsters.noneventprotos.StructureProto.StructureInfoProto.Builder, com.lvl6.mobsters.noneventprotos.StructureProto.StructureInfoProtoOrBuilder>(
-                  allStructs_,
-                  ((bitField0_ & 0x00000008) == 0x00000008),
-                  getParentForChildren(),
-                  isClean());
-          allStructs_ = null;
-        }
-        return allStructsBuilder_;
-      }
-      
-      // repeated .proto.FullTaskProto allTasks = 5;
+      // repeated .proto.FullTaskProto allTasks = 4;
       private java.util.List<com.lvl6.mobsters.noneventprotos.TaskProto.FullTaskProto> allTasks_ =
         java.util.Collections.emptyList();
       private void ensureAllTasksIsMutable() {
-        if (!((bitField0_ & 0x00000010) == 0x00000010)) {
+        if (!((bitField0_ & 0x00000008) == 0x00000008)) {
           allTasks_ = new java.util.ArrayList<com.lvl6.mobsters.noneventprotos.TaskProto.FullTaskProto>(allTasks_);
-          bitField0_ |= 0x00000010;
+          bitField0_ |= 0x00000008;
          }
       }
       
@@ -2082,7 +2289,7 @@ public final class StaticDataStuffProto {
       public Builder clearAllTasks() {
         if (allTasksBuilder_ == null) {
           allTasks_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000010);
+          bitField0_ = (bitField0_ & ~0x00000008);
           onChanged();
         } else {
           allTasksBuilder_.clear();
@@ -2138,7 +2345,7 @@ public final class StaticDataStuffProto {
           allTasksBuilder_ = new com.google.protobuf.RepeatedFieldBuilder<
               com.lvl6.mobsters.noneventprotos.TaskProto.FullTaskProto, com.lvl6.mobsters.noneventprotos.TaskProto.FullTaskProto.Builder, com.lvl6.mobsters.noneventprotos.TaskProto.FullTaskProtoOrBuilder>(
                   allTasks_,
-                  ((bitField0_ & 0x00000010) == 0x00000010),
+                  ((bitField0_ & 0x00000008) == 0x00000008),
                   getParentForChildren(),
                   isClean());
           allTasks_ = null;
@@ -2146,13 +2353,13 @@ public final class StaticDataStuffProto {
         return allTasksBuilder_;
       }
       
-      // repeated .proto.MonsterProto allMonsters = 6;
+      // repeated .proto.MonsterProto allMonsters = 5;
       private java.util.List<com.lvl6.mobsters.noneventprotos.MonsterStuffProto.MonsterProto> allMonsters_ =
         java.util.Collections.emptyList();
       private void ensureAllMonstersIsMutable() {
-        if (!((bitField0_ & 0x00000020) == 0x00000020)) {
+        if (!((bitField0_ & 0x00000010) == 0x00000010)) {
           allMonsters_ = new java.util.ArrayList<com.lvl6.mobsters.noneventprotos.MonsterStuffProto.MonsterProto>(allMonsters_);
-          bitField0_ |= 0x00000020;
+          bitField0_ |= 0x00000010;
          }
       }
       
@@ -2268,7 +2475,7 @@ public final class StaticDataStuffProto {
       public Builder clearAllMonsters() {
         if (allMonstersBuilder_ == null) {
           allMonsters_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000020);
+          bitField0_ = (bitField0_ & ~0x00000010);
           onChanged();
         } else {
           allMonstersBuilder_.clear();
@@ -2324,7 +2531,7 @@ public final class StaticDataStuffProto {
           allMonstersBuilder_ = new com.google.protobuf.RepeatedFieldBuilder<
               com.lvl6.mobsters.noneventprotos.MonsterStuffProto.MonsterProto, com.lvl6.mobsters.noneventprotos.MonsterStuffProto.MonsterProto.Builder, com.lvl6.mobsters.noneventprotos.MonsterStuffProto.MonsterProtoOrBuilder>(
                   allMonsters_,
-                  ((bitField0_ & 0x00000020) == 0x00000020),
+                  ((bitField0_ & 0x00000010) == 0x00000010),
                   getParentForChildren(),
                   isClean());
           allMonsters_ = null;
@@ -2332,13 +2539,13 @@ public final class StaticDataStuffProto {
         return allMonstersBuilder_;
       }
       
-      // repeated .proto.StaticUserLevelInfoProto slip = 7;
+      // repeated .proto.StaticUserLevelInfoProto slip = 6;
       private java.util.List<com.lvl6.mobsters.noneventprotos.UserProto.StaticUserLevelInfoProto> slip_ =
         java.util.Collections.emptyList();
       private void ensureSlipIsMutable() {
-        if (!((bitField0_ & 0x00000040) == 0x00000040)) {
+        if (!((bitField0_ & 0x00000020) == 0x00000020)) {
           slip_ = new java.util.ArrayList<com.lvl6.mobsters.noneventprotos.UserProto.StaticUserLevelInfoProto>(slip_);
-          bitField0_ |= 0x00000040;
+          bitField0_ |= 0x00000020;
          }
       }
       
@@ -2454,7 +2661,7 @@ public final class StaticDataStuffProto {
       public Builder clearSlip() {
         if (slipBuilder_ == null) {
           slip_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000040);
+          bitField0_ = (bitField0_ & ~0x00000020);
           onChanged();
         } else {
           slipBuilder_.clear();
@@ -2510,7 +2717,7 @@ public final class StaticDataStuffProto {
           slipBuilder_ = new com.google.protobuf.RepeatedFieldBuilder<
               com.lvl6.mobsters.noneventprotos.UserProto.StaticUserLevelInfoProto, com.lvl6.mobsters.noneventprotos.UserProto.StaticUserLevelInfoProto.Builder, com.lvl6.mobsters.noneventprotos.UserProto.StaticUserLevelInfoProtoOrBuilder>(
                   slip_,
-                  ((bitField0_ & 0x00000040) == 0x00000040),
+                  ((bitField0_ & 0x00000020) == 0x00000020),
                   getParentForChildren(),
                   isClean());
           slip_ = null;
@@ -2518,13 +2725,13 @@ public final class StaticDataStuffProto {
         return slipBuilder_;
       }
       
-      // repeated .proto.QuestProto inProgressQuests = 8;
+      // repeated .proto.QuestProto inProgressQuests = 7;
       private java.util.List<com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProto> inProgressQuests_ =
         java.util.Collections.emptyList();
       private void ensureInProgressQuestsIsMutable() {
-        if (!((bitField0_ & 0x00000080) == 0x00000080)) {
+        if (!((bitField0_ & 0x00000040) == 0x00000040)) {
           inProgressQuests_ = new java.util.ArrayList<com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProto>(inProgressQuests_);
-          bitField0_ |= 0x00000080;
+          bitField0_ |= 0x00000040;
          }
       }
       
@@ -2640,7 +2847,7 @@ public final class StaticDataStuffProto {
       public Builder clearInProgressQuests() {
         if (inProgressQuestsBuilder_ == null) {
           inProgressQuests_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000080);
+          bitField0_ = (bitField0_ & ~0x00000040);
           onChanged();
         } else {
           inProgressQuestsBuilder_.clear();
@@ -2696,7 +2903,7 @@ public final class StaticDataStuffProto {
           inProgressQuestsBuilder_ = new com.google.protobuf.RepeatedFieldBuilder<
               com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProto, com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProto.Builder, com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProtoOrBuilder>(
                   inProgressQuests_,
-                  ((bitField0_ & 0x00000080) == 0x00000080),
+                  ((bitField0_ & 0x00000040) == 0x00000040),
                   getParentForChildren(),
                   isClean());
           inProgressQuests_ = null;
@@ -2704,13 +2911,13 @@ public final class StaticDataStuffProto {
         return inProgressQuestsBuilder_;
       }
       
-      // repeated .proto.QuestProto unredeemedQuests = 9;
+      // repeated .proto.QuestProto unredeemedQuests = 8;
       private java.util.List<com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProto> unredeemedQuests_ =
         java.util.Collections.emptyList();
       private void ensureUnredeemedQuestsIsMutable() {
-        if (!((bitField0_ & 0x00000100) == 0x00000100)) {
+        if (!((bitField0_ & 0x00000080) == 0x00000080)) {
           unredeemedQuests_ = new java.util.ArrayList<com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProto>(unredeemedQuests_);
-          bitField0_ |= 0x00000100;
+          bitField0_ |= 0x00000080;
          }
       }
       
@@ -2826,7 +3033,7 @@ public final class StaticDataStuffProto {
       public Builder clearUnredeemedQuests() {
         if (unredeemedQuestsBuilder_ == null) {
           unredeemedQuests_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000100);
+          bitField0_ = (bitField0_ & ~0x00000080);
           onChanged();
         } else {
           unredeemedQuestsBuilder_.clear();
@@ -2882,7 +3089,7 @@ public final class StaticDataStuffProto {
           unredeemedQuestsBuilder_ = new com.google.protobuf.RepeatedFieldBuilder<
               com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProto, com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProto.Builder, com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProtoOrBuilder>(
                   unredeemedQuests_,
-                  ((bitField0_ & 0x00000100) == 0x00000100),
+                  ((bitField0_ & 0x00000080) == 0x00000080),
                   getParentForChildren(),
                   isClean());
           unredeemedQuests_ = null;
@@ -2890,13 +3097,13 @@ public final class StaticDataStuffProto {
         return unredeemedQuestsBuilder_;
       }
       
-      // repeated .proto.QuestProto availableQuests = 10;
+      // repeated .proto.QuestProto availableQuests = 9;
       private java.util.List<com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProto> availableQuests_ =
         java.util.Collections.emptyList();
       private void ensureAvailableQuestsIsMutable() {
-        if (!((bitField0_ & 0x00000200) == 0x00000200)) {
+        if (!((bitField0_ & 0x00000100) == 0x00000100)) {
           availableQuests_ = new java.util.ArrayList<com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProto>(availableQuests_);
-          bitField0_ |= 0x00000200;
+          bitField0_ |= 0x00000100;
          }
       }
       
@@ -3012,7 +3219,7 @@ public final class StaticDataStuffProto {
       public Builder clearAvailableQuests() {
         if (availableQuestsBuilder_ == null) {
           availableQuests_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000200);
+          bitField0_ = (bitField0_ & ~0x00000100);
           onChanged();
         } else {
           availableQuestsBuilder_.clear();
@@ -3068,7 +3275,7 @@ public final class StaticDataStuffProto {
           availableQuestsBuilder_ = new com.google.protobuf.RepeatedFieldBuilder<
               com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProto, com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProto.Builder, com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProtoOrBuilder>(
                   availableQuests_,
-                  ((bitField0_ & 0x00000200) == 0x00000200),
+                  ((bitField0_ & 0x00000100) == 0x00000100),
                   getParentForChildren(),
                   isClean());
           availableQuests_ = null;
@@ -3076,13 +3283,13 @@ public final class StaticDataStuffProto {
         return availableQuestsBuilder_;
       }
       
-      // repeated .proto.BoosterPackProto boosterPacks = 12;
+      // repeated .proto.BoosterPackProto boosterPacks = 11;
       private java.util.List<com.lvl6.mobsters.noneventprotos.BoosterPackStuffProto.BoosterPackProto> boosterPacks_ =
         java.util.Collections.emptyList();
       private void ensureBoosterPacksIsMutable() {
-        if (!((bitField0_ & 0x00000400) == 0x00000400)) {
+        if (!((bitField0_ & 0x00000200) == 0x00000200)) {
           boosterPacks_ = new java.util.ArrayList<com.lvl6.mobsters.noneventprotos.BoosterPackStuffProto.BoosterPackProto>(boosterPacks_);
-          bitField0_ |= 0x00000400;
+          bitField0_ |= 0x00000200;
          }
       }
       
@@ -3198,7 +3405,7 @@ public final class StaticDataStuffProto {
       public Builder clearBoosterPacks() {
         if (boosterPacksBuilder_ == null) {
           boosterPacks_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000400);
+          bitField0_ = (bitField0_ & ~0x00000200);
           onChanged();
         } else {
           boosterPacksBuilder_.clear();
@@ -3254,7 +3461,7 @@ public final class StaticDataStuffProto {
           boosterPacksBuilder_ = new com.google.protobuf.RepeatedFieldBuilder<
               com.lvl6.mobsters.noneventprotos.BoosterPackStuffProto.BoosterPackProto, com.lvl6.mobsters.noneventprotos.BoosterPackStuffProto.BoosterPackProto.Builder, com.lvl6.mobsters.noneventprotos.BoosterPackStuffProto.BoosterPackProtoOrBuilder>(
                   boosterPacks_,
-                  ((bitField0_ & 0x00000400) == 0x00000400),
+                  ((bitField0_ & 0x00000200) == 0x00000200),
                   getParentForChildren(),
                   isClean());
           boosterPacks_ = null;
@@ -3262,28 +3469,1120 @@ public final class StaticDataStuffProto {
         return boosterPacksBuilder_;
       }
       
-      // optional .proto.StaticDataProto.RetrieveStaticDataStatus status = 11;
-      private com.lvl6.mobsters.noneventprotos.StaticDataStuffProto.StaticDataProto.RetrieveStaticDataStatus status_ = com.lvl6.mobsters.noneventprotos.StaticDataStuffProto.StaticDataProto.RetrieveStaticDataStatus.SUCCESS;
-      public boolean hasStatus() {
-        return ((bitField0_ & 0x00000800) == 0x00000800);
+      // repeated .proto.ResourceGeneratorProto allGenerators = 12;
+      private java.util.List<com.lvl6.mobsters.noneventprotos.StructureProto.ResourceGeneratorProto> allGenerators_ =
+        java.util.Collections.emptyList();
+      private void ensureAllGeneratorsIsMutable() {
+        if (!((bitField0_ & 0x00000400) == 0x00000400)) {
+          allGenerators_ = new java.util.ArrayList<com.lvl6.mobsters.noneventprotos.StructureProto.ResourceGeneratorProto>(allGenerators_);
+          bitField0_ |= 0x00000400;
+         }
       }
-      public com.lvl6.mobsters.noneventprotos.StaticDataStuffProto.StaticDataProto.RetrieveStaticDataStatus getStatus() {
-        return status_;
-      }
-      public Builder setStatus(com.lvl6.mobsters.noneventprotos.StaticDataStuffProto.StaticDataProto.RetrieveStaticDataStatus value) {
-        if (value == null) {
-          throw new NullPointerException();
+      
+      private com.google.protobuf.RepeatedFieldBuilder<
+          com.lvl6.mobsters.noneventprotos.StructureProto.ResourceGeneratorProto, com.lvl6.mobsters.noneventprotos.StructureProto.ResourceGeneratorProto.Builder, com.lvl6.mobsters.noneventprotos.StructureProto.ResourceGeneratorProtoOrBuilder> allGeneratorsBuilder_;
+      
+      public java.util.List<com.lvl6.mobsters.noneventprotos.StructureProto.ResourceGeneratorProto> getAllGeneratorsList() {
+        if (allGeneratorsBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(allGenerators_);
+        } else {
+          return allGeneratorsBuilder_.getMessageList();
         }
-        bitField0_ |= 0x00000800;
-        status_ = value;
-        onChanged();
+      }
+      public int getAllGeneratorsCount() {
+        if (allGeneratorsBuilder_ == null) {
+          return allGenerators_.size();
+        } else {
+          return allGeneratorsBuilder_.getCount();
+        }
+      }
+      public com.lvl6.mobsters.noneventprotos.StructureProto.ResourceGeneratorProto getAllGenerators(int index) {
+        if (allGeneratorsBuilder_ == null) {
+          return allGenerators_.get(index);
+        } else {
+          return allGeneratorsBuilder_.getMessage(index);
+        }
+      }
+      public Builder setAllGenerators(
+          int index, com.lvl6.mobsters.noneventprotos.StructureProto.ResourceGeneratorProto value) {
+        if (allGeneratorsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureAllGeneratorsIsMutable();
+          allGenerators_.set(index, value);
+          onChanged();
+        } else {
+          allGeneratorsBuilder_.setMessage(index, value);
+        }
         return this;
       }
-      public Builder clearStatus() {
-        bitField0_ = (bitField0_ & ~0x00000800);
-        status_ = com.lvl6.mobsters.noneventprotos.StaticDataStuffProto.StaticDataProto.RetrieveStaticDataStatus.SUCCESS;
-        onChanged();
+      public Builder setAllGenerators(
+          int index, com.lvl6.mobsters.noneventprotos.StructureProto.ResourceGeneratorProto.Builder builderForValue) {
+        if (allGeneratorsBuilder_ == null) {
+          ensureAllGeneratorsIsMutable();
+          allGenerators_.set(index, builderForValue.build());
+          onChanged();
+        } else {
+          allGeneratorsBuilder_.setMessage(index, builderForValue.build());
+        }
         return this;
+      }
+      public Builder addAllGenerators(com.lvl6.mobsters.noneventprotos.StructureProto.ResourceGeneratorProto value) {
+        if (allGeneratorsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureAllGeneratorsIsMutable();
+          allGenerators_.add(value);
+          onChanged();
+        } else {
+          allGeneratorsBuilder_.addMessage(value);
+        }
+        return this;
+      }
+      public Builder addAllGenerators(
+          int index, com.lvl6.mobsters.noneventprotos.StructureProto.ResourceGeneratorProto value) {
+        if (allGeneratorsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureAllGeneratorsIsMutable();
+          allGenerators_.add(index, value);
+          onChanged();
+        } else {
+          allGeneratorsBuilder_.addMessage(index, value);
+        }
+        return this;
+      }
+      public Builder addAllGenerators(
+          com.lvl6.mobsters.noneventprotos.StructureProto.ResourceGeneratorProto.Builder builderForValue) {
+        if (allGeneratorsBuilder_ == null) {
+          ensureAllGeneratorsIsMutable();
+          allGenerators_.add(builderForValue.build());
+          onChanged();
+        } else {
+          allGeneratorsBuilder_.addMessage(builderForValue.build());
+        }
+        return this;
+      }
+      public Builder addAllGenerators(
+          int index, com.lvl6.mobsters.noneventprotos.StructureProto.ResourceGeneratorProto.Builder builderForValue) {
+        if (allGeneratorsBuilder_ == null) {
+          ensureAllGeneratorsIsMutable();
+          allGenerators_.add(index, builderForValue.build());
+          onChanged();
+        } else {
+          allGeneratorsBuilder_.addMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      public Builder addAllAllGenerators(
+          java.lang.Iterable<? extends com.lvl6.mobsters.noneventprotos.StructureProto.ResourceGeneratorProto> values) {
+        if (allGeneratorsBuilder_ == null) {
+          ensureAllGeneratorsIsMutable();
+          super.addAll(values, allGenerators_);
+          onChanged();
+        } else {
+          allGeneratorsBuilder_.addAllMessages(values);
+        }
+        return this;
+      }
+      public Builder clearAllGenerators() {
+        if (allGeneratorsBuilder_ == null) {
+          allGenerators_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000400);
+          onChanged();
+        } else {
+          allGeneratorsBuilder_.clear();
+        }
+        return this;
+      }
+      public Builder removeAllGenerators(int index) {
+        if (allGeneratorsBuilder_ == null) {
+          ensureAllGeneratorsIsMutable();
+          allGenerators_.remove(index);
+          onChanged();
+        } else {
+          allGeneratorsBuilder_.remove(index);
+        }
+        return this;
+      }
+      public com.lvl6.mobsters.noneventprotos.StructureProto.ResourceGeneratorProto.Builder getAllGeneratorsBuilder(
+          int index) {
+        return getAllGeneratorsFieldBuilder().getBuilder(index);
+      }
+      public com.lvl6.mobsters.noneventprotos.StructureProto.ResourceGeneratorProtoOrBuilder getAllGeneratorsOrBuilder(
+          int index) {
+        if (allGeneratorsBuilder_ == null) {
+          return allGenerators_.get(index);  } else {
+          return allGeneratorsBuilder_.getMessageOrBuilder(index);
+        }
+      }
+      public java.util.List<? extends com.lvl6.mobsters.noneventprotos.StructureProto.ResourceGeneratorProtoOrBuilder> 
+           getAllGeneratorsOrBuilderList() {
+        if (allGeneratorsBuilder_ != null) {
+          return allGeneratorsBuilder_.getMessageOrBuilderList();
+        } else {
+          return java.util.Collections.unmodifiableList(allGenerators_);
+        }
+      }
+      public com.lvl6.mobsters.noneventprotos.StructureProto.ResourceGeneratorProto.Builder addAllGeneratorsBuilder() {
+        return getAllGeneratorsFieldBuilder().addBuilder(
+            com.lvl6.mobsters.noneventprotos.StructureProto.ResourceGeneratorProto.getDefaultInstance());
+      }
+      public com.lvl6.mobsters.noneventprotos.StructureProto.ResourceGeneratorProto.Builder addAllGeneratorsBuilder(
+          int index) {
+        return getAllGeneratorsFieldBuilder().addBuilder(
+            index, com.lvl6.mobsters.noneventprotos.StructureProto.ResourceGeneratorProto.getDefaultInstance());
+      }
+      public java.util.List<com.lvl6.mobsters.noneventprotos.StructureProto.ResourceGeneratorProto.Builder> 
+           getAllGeneratorsBuilderList() {
+        return getAllGeneratorsFieldBuilder().getBuilderList();
+      }
+      private com.google.protobuf.RepeatedFieldBuilder<
+          com.lvl6.mobsters.noneventprotos.StructureProto.ResourceGeneratorProto, com.lvl6.mobsters.noneventprotos.StructureProto.ResourceGeneratorProto.Builder, com.lvl6.mobsters.noneventprotos.StructureProto.ResourceGeneratorProtoOrBuilder> 
+          getAllGeneratorsFieldBuilder() {
+        if (allGeneratorsBuilder_ == null) {
+          allGeneratorsBuilder_ = new com.google.protobuf.RepeatedFieldBuilder<
+              com.lvl6.mobsters.noneventprotos.StructureProto.ResourceGeneratorProto, com.lvl6.mobsters.noneventprotos.StructureProto.ResourceGeneratorProto.Builder, com.lvl6.mobsters.noneventprotos.StructureProto.ResourceGeneratorProtoOrBuilder>(
+                  allGenerators_,
+                  ((bitField0_ & 0x00000400) == 0x00000400),
+                  getParentForChildren(),
+                  isClean());
+          allGenerators_ = null;
+        }
+        return allGeneratorsBuilder_;
+      }
+      
+      // repeated .proto.ResourceStorageProto allStorages = 13;
+      private java.util.List<com.lvl6.mobsters.noneventprotos.StructureProto.ResourceStorageProto> allStorages_ =
+        java.util.Collections.emptyList();
+      private void ensureAllStoragesIsMutable() {
+        if (!((bitField0_ & 0x00000800) == 0x00000800)) {
+          allStorages_ = new java.util.ArrayList<com.lvl6.mobsters.noneventprotos.StructureProto.ResourceStorageProto>(allStorages_);
+          bitField0_ |= 0x00000800;
+         }
+      }
+      
+      private com.google.protobuf.RepeatedFieldBuilder<
+          com.lvl6.mobsters.noneventprotos.StructureProto.ResourceStorageProto, com.lvl6.mobsters.noneventprotos.StructureProto.ResourceStorageProto.Builder, com.lvl6.mobsters.noneventprotos.StructureProto.ResourceStorageProtoOrBuilder> allStoragesBuilder_;
+      
+      public java.util.List<com.lvl6.mobsters.noneventprotos.StructureProto.ResourceStorageProto> getAllStoragesList() {
+        if (allStoragesBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(allStorages_);
+        } else {
+          return allStoragesBuilder_.getMessageList();
+        }
+      }
+      public int getAllStoragesCount() {
+        if (allStoragesBuilder_ == null) {
+          return allStorages_.size();
+        } else {
+          return allStoragesBuilder_.getCount();
+        }
+      }
+      public com.lvl6.mobsters.noneventprotos.StructureProto.ResourceStorageProto getAllStorages(int index) {
+        if (allStoragesBuilder_ == null) {
+          return allStorages_.get(index);
+        } else {
+          return allStoragesBuilder_.getMessage(index);
+        }
+      }
+      public Builder setAllStorages(
+          int index, com.lvl6.mobsters.noneventprotos.StructureProto.ResourceStorageProto value) {
+        if (allStoragesBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureAllStoragesIsMutable();
+          allStorages_.set(index, value);
+          onChanged();
+        } else {
+          allStoragesBuilder_.setMessage(index, value);
+        }
+        return this;
+      }
+      public Builder setAllStorages(
+          int index, com.lvl6.mobsters.noneventprotos.StructureProto.ResourceStorageProto.Builder builderForValue) {
+        if (allStoragesBuilder_ == null) {
+          ensureAllStoragesIsMutable();
+          allStorages_.set(index, builderForValue.build());
+          onChanged();
+        } else {
+          allStoragesBuilder_.setMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      public Builder addAllStorages(com.lvl6.mobsters.noneventprotos.StructureProto.ResourceStorageProto value) {
+        if (allStoragesBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureAllStoragesIsMutable();
+          allStorages_.add(value);
+          onChanged();
+        } else {
+          allStoragesBuilder_.addMessage(value);
+        }
+        return this;
+      }
+      public Builder addAllStorages(
+          int index, com.lvl6.mobsters.noneventprotos.StructureProto.ResourceStorageProto value) {
+        if (allStoragesBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureAllStoragesIsMutable();
+          allStorages_.add(index, value);
+          onChanged();
+        } else {
+          allStoragesBuilder_.addMessage(index, value);
+        }
+        return this;
+      }
+      public Builder addAllStorages(
+          com.lvl6.mobsters.noneventprotos.StructureProto.ResourceStorageProto.Builder builderForValue) {
+        if (allStoragesBuilder_ == null) {
+          ensureAllStoragesIsMutable();
+          allStorages_.add(builderForValue.build());
+          onChanged();
+        } else {
+          allStoragesBuilder_.addMessage(builderForValue.build());
+        }
+        return this;
+      }
+      public Builder addAllStorages(
+          int index, com.lvl6.mobsters.noneventprotos.StructureProto.ResourceStorageProto.Builder builderForValue) {
+        if (allStoragesBuilder_ == null) {
+          ensureAllStoragesIsMutable();
+          allStorages_.add(index, builderForValue.build());
+          onChanged();
+        } else {
+          allStoragesBuilder_.addMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      public Builder addAllAllStorages(
+          java.lang.Iterable<? extends com.lvl6.mobsters.noneventprotos.StructureProto.ResourceStorageProto> values) {
+        if (allStoragesBuilder_ == null) {
+          ensureAllStoragesIsMutable();
+          super.addAll(values, allStorages_);
+          onChanged();
+        } else {
+          allStoragesBuilder_.addAllMessages(values);
+        }
+        return this;
+      }
+      public Builder clearAllStorages() {
+        if (allStoragesBuilder_ == null) {
+          allStorages_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000800);
+          onChanged();
+        } else {
+          allStoragesBuilder_.clear();
+        }
+        return this;
+      }
+      public Builder removeAllStorages(int index) {
+        if (allStoragesBuilder_ == null) {
+          ensureAllStoragesIsMutable();
+          allStorages_.remove(index);
+          onChanged();
+        } else {
+          allStoragesBuilder_.remove(index);
+        }
+        return this;
+      }
+      public com.lvl6.mobsters.noneventprotos.StructureProto.ResourceStorageProto.Builder getAllStoragesBuilder(
+          int index) {
+        return getAllStoragesFieldBuilder().getBuilder(index);
+      }
+      public com.lvl6.mobsters.noneventprotos.StructureProto.ResourceStorageProtoOrBuilder getAllStoragesOrBuilder(
+          int index) {
+        if (allStoragesBuilder_ == null) {
+          return allStorages_.get(index);  } else {
+          return allStoragesBuilder_.getMessageOrBuilder(index);
+        }
+      }
+      public java.util.List<? extends com.lvl6.mobsters.noneventprotos.StructureProto.ResourceStorageProtoOrBuilder> 
+           getAllStoragesOrBuilderList() {
+        if (allStoragesBuilder_ != null) {
+          return allStoragesBuilder_.getMessageOrBuilderList();
+        } else {
+          return java.util.Collections.unmodifiableList(allStorages_);
+        }
+      }
+      public com.lvl6.mobsters.noneventprotos.StructureProto.ResourceStorageProto.Builder addAllStoragesBuilder() {
+        return getAllStoragesFieldBuilder().addBuilder(
+            com.lvl6.mobsters.noneventprotos.StructureProto.ResourceStorageProto.getDefaultInstance());
+      }
+      public com.lvl6.mobsters.noneventprotos.StructureProto.ResourceStorageProto.Builder addAllStoragesBuilder(
+          int index) {
+        return getAllStoragesFieldBuilder().addBuilder(
+            index, com.lvl6.mobsters.noneventprotos.StructureProto.ResourceStorageProto.getDefaultInstance());
+      }
+      public java.util.List<com.lvl6.mobsters.noneventprotos.StructureProto.ResourceStorageProto.Builder> 
+           getAllStoragesBuilderList() {
+        return getAllStoragesFieldBuilder().getBuilderList();
+      }
+      private com.google.protobuf.RepeatedFieldBuilder<
+          com.lvl6.mobsters.noneventprotos.StructureProto.ResourceStorageProto, com.lvl6.mobsters.noneventprotos.StructureProto.ResourceStorageProto.Builder, com.lvl6.mobsters.noneventprotos.StructureProto.ResourceStorageProtoOrBuilder> 
+          getAllStoragesFieldBuilder() {
+        if (allStoragesBuilder_ == null) {
+          allStoragesBuilder_ = new com.google.protobuf.RepeatedFieldBuilder<
+              com.lvl6.mobsters.noneventprotos.StructureProto.ResourceStorageProto, com.lvl6.mobsters.noneventprotos.StructureProto.ResourceStorageProto.Builder, com.lvl6.mobsters.noneventprotos.StructureProto.ResourceStorageProtoOrBuilder>(
+                  allStorages_,
+                  ((bitField0_ & 0x00000800) == 0x00000800),
+                  getParentForChildren(),
+                  isClean());
+          allStorages_ = null;
+        }
+        return allStoragesBuilder_;
+      }
+      
+      // repeated .proto.HospitalProto allHospitals = 14;
+      private java.util.List<com.lvl6.mobsters.noneventprotos.StructureProto.HospitalProto> allHospitals_ =
+        java.util.Collections.emptyList();
+      private void ensureAllHospitalsIsMutable() {
+        if (!((bitField0_ & 0x00001000) == 0x00001000)) {
+          allHospitals_ = new java.util.ArrayList<com.lvl6.mobsters.noneventprotos.StructureProto.HospitalProto>(allHospitals_);
+          bitField0_ |= 0x00001000;
+         }
+      }
+      
+      private com.google.protobuf.RepeatedFieldBuilder<
+          com.lvl6.mobsters.noneventprotos.StructureProto.HospitalProto, com.lvl6.mobsters.noneventprotos.StructureProto.HospitalProto.Builder, com.lvl6.mobsters.noneventprotos.StructureProto.HospitalProtoOrBuilder> allHospitalsBuilder_;
+      
+      public java.util.List<com.lvl6.mobsters.noneventprotos.StructureProto.HospitalProto> getAllHospitalsList() {
+        if (allHospitalsBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(allHospitals_);
+        } else {
+          return allHospitalsBuilder_.getMessageList();
+        }
+      }
+      public int getAllHospitalsCount() {
+        if (allHospitalsBuilder_ == null) {
+          return allHospitals_.size();
+        } else {
+          return allHospitalsBuilder_.getCount();
+        }
+      }
+      public com.lvl6.mobsters.noneventprotos.StructureProto.HospitalProto getAllHospitals(int index) {
+        if (allHospitalsBuilder_ == null) {
+          return allHospitals_.get(index);
+        } else {
+          return allHospitalsBuilder_.getMessage(index);
+        }
+      }
+      public Builder setAllHospitals(
+          int index, com.lvl6.mobsters.noneventprotos.StructureProto.HospitalProto value) {
+        if (allHospitalsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureAllHospitalsIsMutable();
+          allHospitals_.set(index, value);
+          onChanged();
+        } else {
+          allHospitalsBuilder_.setMessage(index, value);
+        }
+        return this;
+      }
+      public Builder setAllHospitals(
+          int index, com.lvl6.mobsters.noneventprotos.StructureProto.HospitalProto.Builder builderForValue) {
+        if (allHospitalsBuilder_ == null) {
+          ensureAllHospitalsIsMutable();
+          allHospitals_.set(index, builderForValue.build());
+          onChanged();
+        } else {
+          allHospitalsBuilder_.setMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      public Builder addAllHospitals(com.lvl6.mobsters.noneventprotos.StructureProto.HospitalProto value) {
+        if (allHospitalsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureAllHospitalsIsMutable();
+          allHospitals_.add(value);
+          onChanged();
+        } else {
+          allHospitalsBuilder_.addMessage(value);
+        }
+        return this;
+      }
+      public Builder addAllHospitals(
+          int index, com.lvl6.mobsters.noneventprotos.StructureProto.HospitalProto value) {
+        if (allHospitalsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureAllHospitalsIsMutable();
+          allHospitals_.add(index, value);
+          onChanged();
+        } else {
+          allHospitalsBuilder_.addMessage(index, value);
+        }
+        return this;
+      }
+      public Builder addAllHospitals(
+          com.lvl6.mobsters.noneventprotos.StructureProto.HospitalProto.Builder builderForValue) {
+        if (allHospitalsBuilder_ == null) {
+          ensureAllHospitalsIsMutable();
+          allHospitals_.add(builderForValue.build());
+          onChanged();
+        } else {
+          allHospitalsBuilder_.addMessage(builderForValue.build());
+        }
+        return this;
+      }
+      public Builder addAllHospitals(
+          int index, com.lvl6.mobsters.noneventprotos.StructureProto.HospitalProto.Builder builderForValue) {
+        if (allHospitalsBuilder_ == null) {
+          ensureAllHospitalsIsMutable();
+          allHospitals_.add(index, builderForValue.build());
+          onChanged();
+        } else {
+          allHospitalsBuilder_.addMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      public Builder addAllAllHospitals(
+          java.lang.Iterable<? extends com.lvl6.mobsters.noneventprotos.StructureProto.HospitalProto> values) {
+        if (allHospitalsBuilder_ == null) {
+          ensureAllHospitalsIsMutable();
+          super.addAll(values, allHospitals_);
+          onChanged();
+        } else {
+          allHospitalsBuilder_.addAllMessages(values);
+        }
+        return this;
+      }
+      public Builder clearAllHospitals() {
+        if (allHospitalsBuilder_ == null) {
+          allHospitals_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00001000);
+          onChanged();
+        } else {
+          allHospitalsBuilder_.clear();
+        }
+        return this;
+      }
+      public Builder removeAllHospitals(int index) {
+        if (allHospitalsBuilder_ == null) {
+          ensureAllHospitalsIsMutable();
+          allHospitals_.remove(index);
+          onChanged();
+        } else {
+          allHospitalsBuilder_.remove(index);
+        }
+        return this;
+      }
+      public com.lvl6.mobsters.noneventprotos.StructureProto.HospitalProto.Builder getAllHospitalsBuilder(
+          int index) {
+        return getAllHospitalsFieldBuilder().getBuilder(index);
+      }
+      public com.lvl6.mobsters.noneventprotos.StructureProto.HospitalProtoOrBuilder getAllHospitalsOrBuilder(
+          int index) {
+        if (allHospitalsBuilder_ == null) {
+          return allHospitals_.get(index);  } else {
+          return allHospitalsBuilder_.getMessageOrBuilder(index);
+        }
+      }
+      public java.util.List<? extends com.lvl6.mobsters.noneventprotos.StructureProto.HospitalProtoOrBuilder> 
+           getAllHospitalsOrBuilderList() {
+        if (allHospitalsBuilder_ != null) {
+          return allHospitalsBuilder_.getMessageOrBuilderList();
+        } else {
+          return java.util.Collections.unmodifiableList(allHospitals_);
+        }
+      }
+      public com.lvl6.mobsters.noneventprotos.StructureProto.HospitalProto.Builder addAllHospitalsBuilder() {
+        return getAllHospitalsFieldBuilder().addBuilder(
+            com.lvl6.mobsters.noneventprotos.StructureProto.HospitalProto.getDefaultInstance());
+      }
+      public com.lvl6.mobsters.noneventprotos.StructureProto.HospitalProto.Builder addAllHospitalsBuilder(
+          int index) {
+        return getAllHospitalsFieldBuilder().addBuilder(
+            index, com.lvl6.mobsters.noneventprotos.StructureProto.HospitalProto.getDefaultInstance());
+      }
+      public java.util.List<com.lvl6.mobsters.noneventprotos.StructureProto.HospitalProto.Builder> 
+           getAllHospitalsBuilderList() {
+        return getAllHospitalsFieldBuilder().getBuilderList();
+      }
+      private com.google.protobuf.RepeatedFieldBuilder<
+          com.lvl6.mobsters.noneventprotos.StructureProto.HospitalProto, com.lvl6.mobsters.noneventprotos.StructureProto.HospitalProto.Builder, com.lvl6.mobsters.noneventprotos.StructureProto.HospitalProtoOrBuilder> 
+          getAllHospitalsFieldBuilder() {
+        if (allHospitalsBuilder_ == null) {
+          allHospitalsBuilder_ = new com.google.protobuf.RepeatedFieldBuilder<
+              com.lvl6.mobsters.noneventprotos.StructureProto.HospitalProto, com.lvl6.mobsters.noneventprotos.StructureProto.HospitalProto.Builder, com.lvl6.mobsters.noneventprotos.StructureProto.HospitalProtoOrBuilder>(
+                  allHospitals_,
+                  ((bitField0_ & 0x00001000) == 0x00001000),
+                  getParentForChildren(),
+                  isClean());
+          allHospitals_ = null;
+        }
+        return allHospitalsBuilder_;
+      }
+      
+      // repeated .proto.ResidenceProto allResidences = 15;
+      private java.util.List<com.lvl6.mobsters.noneventprotos.StructureProto.ResidenceProto> allResidences_ =
+        java.util.Collections.emptyList();
+      private void ensureAllResidencesIsMutable() {
+        if (!((bitField0_ & 0x00002000) == 0x00002000)) {
+          allResidences_ = new java.util.ArrayList<com.lvl6.mobsters.noneventprotos.StructureProto.ResidenceProto>(allResidences_);
+          bitField0_ |= 0x00002000;
+         }
+      }
+      
+      private com.google.protobuf.RepeatedFieldBuilder<
+          com.lvl6.mobsters.noneventprotos.StructureProto.ResidenceProto, com.lvl6.mobsters.noneventprotos.StructureProto.ResidenceProto.Builder, com.lvl6.mobsters.noneventprotos.StructureProto.ResidenceProtoOrBuilder> allResidencesBuilder_;
+      
+      public java.util.List<com.lvl6.mobsters.noneventprotos.StructureProto.ResidenceProto> getAllResidencesList() {
+        if (allResidencesBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(allResidences_);
+        } else {
+          return allResidencesBuilder_.getMessageList();
+        }
+      }
+      public int getAllResidencesCount() {
+        if (allResidencesBuilder_ == null) {
+          return allResidences_.size();
+        } else {
+          return allResidencesBuilder_.getCount();
+        }
+      }
+      public com.lvl6.mobsters.noneventprotos.StructureProto.ResidenceProto getAllResidences(int index) {
+        if (allResidencesBuilder_ == null) {
+          return allResidences_.get(index);
+        } else {
+          return allResidencesBuilder_.getMessage(index);
+        }
+      }
+      public Builder setAllResidences(
+          int index, com.lvl6.mobsters.noneventprotos.StructureProto.ResidenceProto value) {
+        if (allResidencesBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureAllResidencesIsMutable();
+          allResidences_.set(index, value);
+          onChanged();
+        } else {
+          allResidencesBuilder_.setMessage(index, value);
+        }
+        return this;
+      }
+      public Builder setAllResidences(
+          int index, com.lvl6.mobsters.noneventprotos.StructureProto.ResidenceProto.Builder builderForValue) {
+        if (allResidencesBuilder_ == null) {
+          ensureAllResidencesIsMutable();
+          allResidences_.set(index, builderForValue.build());
+          onChanged();
+        } else {
+          allResidencesBuilder_.setMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      public Builder addAllResidences(com.lvl6.mobsters.noneventprotos.StructureProto.ResidenceProto value) {
+        if (allResidencesBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureAllResidencesIsMutable();
+          allResidences_.add(value);
+          onChanged();
+        } else {
+          allResidencesBuilder_.addMessage(value);
+        }
+        return this;
+      }
+      public Builder addAllResidences(
+          int index, com.lvl6.mobsters.noneventprotos.StructureProto.ResidenceProto value) {
+        if (allResidencesBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureAllResidencesIsMutable();
+          allResidences_.add(index, value);
+          onChanged();
+        } else {
+          allResidencesBuilder_.addMessage(index, value);
+        }
+        return this;
+      }
+      public Builder addAllResidences(
+          com.lvl6.mobsters.noneventprotos.StructureProto.ResidenceProto.Builder builderForValue) {
+        if (allResidencesBuilder_ == null) {
+          ensureAllResidencesIsMutable();
+          allResidences_.add(builderForValue.build());
+          onChanged();
+        } else {
+          allResidencesBuilder_.addMessage(builderForValue.build());
+        }
+        return this;
+      }
+      public Builder addAllResidences(
+          int index, com.lvl6.mobsters.noneventprotos.StructureProto.ResidenceProto.Builder builderForValue) {
+        if (allResidencesBuilder_ == null) {
+          ensureAllResidencesIsMutable();
+          allResidences_.add(index, builderForValue.build());
+          onChanged();
+        } else {
+          allResidencesBuilder_.addMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      public Builder addAllAllResidences(
+          java.lang.Iterable<? extends com.lvl6.mobsters.noneventprotos.StructureProto.ResidenceProto> values) {
+        if (allResidencesBuilder_ == null) {
+          ensureAllResidencesIsMutable();
+          super.addAll(values, allResidences_);
+          onChanged();
+        } else {
+          allResidencesBuilder_.addAllMessages(values);
+        }
+        return this;
+      }
+      public Builder clearAllResidences() {
+        if (allResidencesBuilder_ == null) {
+          allResidences_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00002000);
+          onChanged();
+        } else {
+          allResidencesBuilder_.clear();
+        }
+        return this;
+      }
+      public Builder removeAllResidences(int index) {
+        if (allResidencesBuilder_ == null) {
+          ensureAllResidencesIsMutable();
+          allResidences_.remove(index);
+          onChanged();
+        } else {
+          allResidencesBuilder_.remove(index);
+        }
+        return this;
+      }
+      public com.lvl6.mobsters.noneventprotos.StructureProto.ResidenceProto.Builder getAllResidencesBuilder(
+          int index) {
+        return getAllResidencesFieldBuilder().getBuilder(index);
+      }
+      public com.lvl6.mobsters.noneventprotos.StructureProto.ResidenceProtoOrBuilder getAllResidencesOrBuilder(
+          int index) {
+        if (allResidencesBuilder_ == null) {
+          return allResidences_.get(index);  } else {
+          return allResidencesBuilder_.getMessageOrBuilder(index);
+        }
+      }
+      public java.util.List<? extends com.lvl6.mobsters.noneventprotos.StructureProto.ResidenceProtoOrBuilder> 
+           getAllResidencesOrBuilderList() {
+        if (allResidencesBuilder_ != null) {
+          return allResidencesBuilder_.getMessageOrBuilderList();
+        } else {
+          return java.util.Collections.unmodifiableList(allResidences_);
+        }
+      }
+      public com.lvl6.mobsters.noneventprotos.StructureProto.ResidenceProto.Builder addAllResidencesBuilder() {
+        return getAllResidencesFieldBuilder().addBuilder(
+            com.lvl6.mobsters.noneventprotos.StructureProto.ResidenceProto.getDefaultInstance());
+      }
+      public com.lvl6.mobsters.noneventprotos.StructureProto.ResidenceProto.Builder addAllResidencesBuilder(
+          int index) {
+        return getAllResidencesFieldBuilder().addBuilder(
+            index, com.lvl6.mobsters.noneventprotos.StructureProto.ResidenceProto.getDefaultInstance());
+      }
+      public java.util.List<com.lvl6.mobsters.noneventprotos.StructureProto.ResidenceProto.Builder> 
+           getAllResidencesBuilderList() {
+        return getAllResidencesFieldBuilder().getBuilderList();
+      }
+      private com.google.protobuf.RepeatedFieldBuilder<
+          com.lvl6.mobsters.noneventprotos.StructureProto.ResidenceProto, com.lvl6.mobsters.noneventprotos.StructureProto.ResidenceProto.Builder, com.lvl6.mobsters.noneventprotos.StructureProto.ResidenceProtoOrBuilder> 
+          getAllResidencesFieldBuilder() {
+        if (allResidencesBuilder_ == null) {
+          allResidencesBuilder_ = new com.google.protobuf.RepeatedFieldBuilder<
+              com.lvl6.mobsters.noneventprotos.StructureProto.ResidenceProto, com.lvl6.mobsters.noneventprotos.StructureProto.ResidenceProto.Builder, com.lvl6.mobsters.noneventprotos.StructureProto.ResidenceProtoOrBuilder>(
+                  allResidences_,
+                  ((bitField0_ & 0x00002000) == 0x00002000),
+                  getParentForChildren(),
+                  isClean());
+          allResidences_ = null;
+        }
+        return allResidencesBuilder_;
+      }
+      
+      // repeated .proto.LabProto allLabs = 17;
+      private java.util.List<com.lvl6.mobsters.noneventprotos.StructureProto.LabProto> allLabs_ =
+        java.util.Collections.emptyList();
+      private void ensureAllLabsIsMutable() {
+        if (!((bitField0_ & 0x00004000) == 0x00004000)) {
+          allLabs_ = new java.util.ArrayList<com.lvl6.mobsters.noneventprotos.StructureProto.LabProto>(allLabs_);
+          bitField0_ |= 0x00004000;
+         }
+      }
+      
+      private com.google.protobuf.RepeatedFieldBuilder<
+          com.lvl6.mobsters.noneventprotos.StructureProto.LabProto, com.lvl6.mobsters.noneventprotos.StructureProto.LabProto.Builder, com.lvl6.mobsters.noneventprotos.StructureProto.LabProtoOrBuilder> allLabsBuilder_;
+      
+      public java.util.List<com.lvl6.mobsters.noneventprotos.StructureProto.LabProto> getAllLabsList() {
+        if (allLabsBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(allLabs_);
+        } else {
+          return allLabsBuilder_.getMessageList();
+        }
+      }
+      public int getAllLabsCount() {
+        if (allLabsBuilder_ == null) {
+          return allLabs_.size();
+        } else {
+          return allLabsBuilder_.getCount();
+        }
+      }
+      public com.lvl6.mobsters.noneventprotos.StructureProto.LabProto getAllLabs(int index) {
+        if (allLabsBuilder_ == null) {
+          return allLabs_.get(index);
+        } else {
+          return allLabsBuilder_.getMessage(index);
+        }
+      }
+      public Builder setAllLabs(
+          int index, com.lvl6.mobsters.noneventprotos.StructureProto.LabProto value) {
+        if (allLabsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureAllLabsIsMutable();
+          allLabs_.set(index, value);
+          onChanged();
+        } else {
+          allLabsBuilder_.setMessage(index, value);
+        }
+        return this;
+      }
+      public Builder setAllLabs(
+          int index, com.lvl6.mobsters.noneventprotos.StructureProto.LabProto.Builder builderForValue) {
+        if (allLabsBuilder_ == null) {
+          ensureAllLabsIsMutable();
+          allLabs_.set(index, builderForValue.build());
+          onChanged();
+        } else {
+          allLabsBuilder_.setMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      public Builder addAllLabs(com.lvl6.mobsters.noneventprotos.StructureProto.LabProto value) {
+        if (allLabsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureAllLabsIsMutable();
+          allLabs_.add(value);
+          onChanged();
+        } else {
+          allLabsBuilder_.addMessage(value);
+        }
+        return this;
+      }
+      public Builder addAllLabs(
+          int index, com.lvl6.mobsters.noneventprotos.StructureProto.LabProto value) {
+        if (allLabsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureAllLabsIsMutable();
+          allLabs_.add(index, value);
+          onChanged();
+        } else {
+          allLabsBuilder_.addMessage(index, value);
+        }
+        return this;
+      }
+      public Builder addAllLabs(
+          com.lvl6.mobsters.noneventprotos.StructureProto.LabProto.Builder builderForValue) {
+        if (allLabsBuilder_ == null) {
+          ensureAllLabsIsMutable();
+          allLabs_.add(builderForValue.build());
+          onChanged();
+        } else {
+          allLabsBuilder_.addMessage(builderForValue.build());
+        }
+        return this;
+      }
+      public Builder addAllLabs(
+          int index, com.lvl6.mobsters.noneventprotos.StructureProto.LabProto.Builder builderForValue) {
+        if (allLabsBuilder_ == null) {
+          ensureAllLabsIsMutable();
+          allLabs_.add(index, builderForValue.build());
+          onChanged();
+        } else {
+          allLabsBuilder_.addMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      public Builder addAllAllLabs(
+          java.lang.Iterable<? extends com.lvl6.mobsters.noneventprotos.StructureProto.LabProto> values) {
+        if (allLabsBuilder_ == null) {
+          ensureAllLabsIsMutable();
+          super.addAll(values, allLabs_);
+          onChanged();
+        } else {
+          allLabsBuilder_.addAllMessages(values);
+        }
+        return this;
+      }
+      public Builder clearAllLabs() {
+        if (allLabsBuilder_ == null) {
+          allLabs_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00004000);
+          onChanged();
+        } else {
+          allLabsBuilder_.clear();
+        }
+        return this;
+      }
+      public Builder removeAllLabs(int index) {
+        if (allLabsBuilder_ == null) {
+          ensureAllLabsIsMutable();
+          allLabs_.remove(index);
+          onChanged();
+        } else {
+          allLabsBuilder_.remove(index);
+        }
+        return this;
+      }
+      public com.lvl6.mobsters.noneventprotos.StructureProto.LabProto.Builder getAllLabsBuilder(
+          int index) {
+        return getAllLabsFieldBuilder().getBuilder(index);
+      }
+      public com.lvl6.mobsters.noneventprotos.StructureProto.LabProtoOrBuilder getAllLabsOrBuilder(
+          int index) {
+        if (allLabsBuilder_ == null) {
+          return allLabs_.get(index);  } else {
+          return allLabsBuilder_.getMessageOrBuilder(index);
+        }
+      }
+      public java.util.List<? extends com.lvl6.mobsters.noneventprotos.StructureProto.LabProtoOrBuilder> 
+           getAllLabsOrBuilderList() {
+        if (allLabsBuilder_ != null) {
+          return allLabsBuilder_.getMessageOrBuilderList();
+        } else {
+          return java.util.Collections.unmodifiableList(allLabs_);
+        }
+      }
+      public com.lvl6.mobsters.noneventprotos.StructureProto.LabProto.Builder addAllLabsBuilder() {
+        return getAllLabsFieldBuilder().addBuilder(
+            com.lvl6.mobsters.noneventprotos.StructureProto.LabProto.getDefaultInstance());
+      }
+      public com.lvl6.mobsters.noneventprotos.StructureProto.LabProto.Builder addAllLabsBuilder(
+          int index) {
+        return getAllLabsFieldBuilder().addBuilder(
+            index, com.lvl6.mobsters.noneventprotos.StructureProto.LabProto.getDefaultInstance());
+      }
+      public java.util.List<com.lvl6.mobsters.noneventprotos.StructureProto.LabProto.Builder> 
+           getAllLabsBuilderList() {
+        return getAllLabsFieldBuilder().getBuilderList();
+      }
+      private com.google.protobuf.RepeatedFieldBuilder<
+          com.lvl6.mobsters.noneventprotos.StructureProto.LabProto, com.lvl6.mobsters.noneventprotos.StructureProto.LabProto.Builder, com.lvl6.mobsters.noneventprotos.StructureProto.LabProtoOrBuilder> 
+          getAllLabsFieldBuilder() {
+        if (allLabsBuilder_ == null) {
+          allLabsBuilder_ = new com.google.protobuf.RepeatedFieldBuilder<
+              com.lvl6.mobsters.noneventprotos.StructureProto.LabProto, com.lvl6.mobsters.noneventprotos.StructureProto.LabProto.Builder, com.lvl6.mobsters.noneventprotos.StructureProto.LabProtoOrBuilder>(
+                  allLabs_,
+                  ((bitField0_ & 0x00004000) == 0x00004000),
+                  getParentForChildren(),
+                  isClean());
+          allLabs_ = null;
+        }
+        return allLabsBuilder_;
+      }
+      
+      // repeated .proto.TownHallProto allTownHalls = 16;
+      private java.util.List<com.lvl6.mobsters.noneventprotos.StructureProto.TownHallProto> allTownHalls_ =
+        java.util.Collections.emptyList();
+      private void ensureAllTownHallsIsMutable() {
+        if (!((bitField0_ & 0x00008000) == 0x00008000)) {
+          allTownHalls_ = new java.util.ArrayList<com.lvl6.mobsters.noneventprotos.StructureProto.TownHallProto>(allTownHalls_);
+          bitField0_ |= 0x00008000;
+         }
+      }
+      
+      private com.google.protobuf.RepeatedFieldBuilder<
+          com.lvl6.mobsters.noneventprotos.StructureProto.TownHallProto, com.lvl6.mobsters.noneventprotos.StructureProto.TownHallProto.Builder, com.lvl6.mobsters.noneventprotos.StructureProto.TownHallProtoOrBuilder> allTownHallsBuilder_;
+      
+      public java.util.List<com.lvl6.mobsters.noneventprotos.StructureProto.TownHallProto> getAllTownHallsList() {
+        if (allTownHallsBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(allTownHalls_);
+        } else {
+          return allTownHallsBuilder_.getMessageList();
+        }
+      }
+      public int getAllTownHallsCount() {
+        if (allTownHallsBuilder_ == null) {
+          return allTownHalls_.size();
+        } else {
+          return allTownHallsBuilder_.getCount();
+        }
+      }
+      public com.lvl6.mobsters.noneventprotos.StructureProto.TownHallProto getAllTownHalls(int index) {
+        if (allTownHallsBuilder_ == null) {
+          return allTownHalls_.get(index);
+        } else {
+          return allTownHallsBuilder_.getMessage(index);
+        }
+      }
+      public Builder setAllTownHalls(
+          int index, com.lvl6.mobsters.noneventprotos.StructureProto.TownHallProto value) {
+        if (allTownHallsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureAllTownHallsIsMutable();
+          allTownHalls_.set(index, value);
+          onChanged();
+        } else {
+          allTownHallsBuilder_.setMessage(index, value);
+        }
+        return this;
+      }
+      public Builder setAllTownHalls(
+          int index, com.lvl6.mobsters.noneventprotos.StructureProto.TownHallProto.Builder builderForValue) {
+        if (allTownHallsBuilder_ == null) {
+          ensureAllTownHallsIsMutable();
+          allTownHalls_.set(index, builderForValue.build());
+          onChanged();
+        } else {
+          allTownHallsBuilder_.setMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      public Builder addAllTownHalls(com.lvl6.mobsters.noneventprotos.StructureProto.TownHallProto value) {
+        if (allTownHallsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureAllTownHallsIsMutable();
+          allTownHalls_.add(value);
+          onChanged();
+        } else {
+          allTownHallsBuilder_.addMessage(value);
+        }
+        return this;
+      }
+      public Builder addAllTownHalls(
+          int index, com.lvl6.mobsters.noneventprotos.StructureProto.TownHallProto value) {
+        if (allTownHallsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureAllTownHallsIsMutable();
+          allTownHalls_.add(index, value);
+          onChanged();
+        } else {
+          allTownHallsBuilder_.addMessage(index, value);
+        }
+        return this;
+      }
+      public Builder addAllTownHalls(
+          com.lvl6.mobsters.noneventprotos.StructureProto.TownHallProto.Builder builderForValue) {
+        if (allTownHallsBuilder_ == null) {
+          ensureAllTownHallsIsMutable();
+          allTownHalls_.add(builderForValue.build());
+          onChanged();
+        } else {
+          allTownHallsBuilder_.addMessage(builderForValue.build());
+        }
+        return this;
+      }
+      public Builder addAllTownHalls(
+          int index, com.lvl6.mobsters.noneventprotos.StructureProto.TownHallProto.Builder builderForValue) {
+        if (allTownHallsBuilder_ == null) {
+          ensureAllTownHallsIsMutable();
+          allTownHalls_.add(index, builderForValue.build());
+          onChanged();
+        } else {
+          allTownHallsBuilder_.addMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      public Builder addAllAllTownHalls(
+          java.lang.Iterable<? extends com.lvl6.mobsters.noneventprotos.StructureProto.TownHallProto> values) {
+        if (allTownHallsBuilder_ == null) {
+          ensureAllTownHallsIsMutable();
+          super.addAll(values, allTownHalls_);
+          onChanged();
+        } else {
+          allTownHallsBuilder_.addAllMessages(values);
+        }
+        return this;
+      }
+      public Builder clearAllTownHalls() {
+        if (allTownHallsBuilder_ == null) {
+          allTownHalls_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00008000);
+          onChanged();
+        } else {
+          allTownHallsBuilder_.clear();
+        }
+        return this;
+      }
+      public Builder removeAllTownHalls(int index) {
+        if (allTownHallsBuilder_ == null) {
+          ensureAllTownHallsIsMutable();
+          allTownHalls_.remove(index);
+          onChanged();
+        } else {
+          allTownHallsBuilder_.remove(index);
+        }
+        return this;
+      }
+      public com.lvl6.mobsters.noneventprotos.StructureProto.TownHallProto.Builder getAllTownHallsBuilder(
+          int index) {
+        return getAllTownHallsFieldBuilder().getBuilder(index);
+      }
+      public com.lvl6.mobsters.noneventprotos.StructureProto.TownHallProtoOrBuilder getAllTownHallsOrBuilder(
+          int index) {
+        if (allTownHallsBuilder_ == null) {
+          return allTownHalls_.get(index);  } else {
+          return allTownHallsBuilder_.getMessageOrBuilder(index);
+        }
+      }
+      public java.util.List<? extends com.lvl6.mobsters.noneventprotos.StructureProto.TownHallProtoOrBuilder> 
+           getAllTownHallsOrBuilderList() {
+        if (allTownHallsBuilder_ != null) {
+          return allTownHallsBuilder_.getMessageOrBuilderList();
+        } else {
+          return java.util.Collections.unmodifiableList(allTownHalls_);
+        }
+      }
+      public com.lvl6.mobsters.noneventprotos.StructureProto.TownHallProto.Builder addAllTownHallsBuilder() {
+        return getAllTownHallsFieldBuilder().addBuilder(
+            com.lvl6.mobsters.noneventprotos.StructureProto.TownHallProto.getDefaultInstance());
+      }
+      public com.lvl6.mobsters.noneventprotos.StructureProto.TownHallProto.Builder addAllTownHallsBuilder(
+          int index) {
+        return getAllTownHallsFieldBuilder().addBuilder(
+            index, com.lvl6.mobsters.noneventprotos.StructureProto.TownHallProto.getDefaultInstance());
+      }
+      public java.util.List<com.lvl6.mobsters.noneventprotos.StructureProto.TownHallProto.Builder> 
+           getAllTownHallsBuilderList() {
+        return getAllTownHallsFieldBuilder().getBuilderList();
+      }
+      private com.google.protobuf.RepeatedFieldBuilder<
+          com.lvl6.mobsters.noneventprotos.StructureProto.TownHallProto, com.lvl6.mobsters.noneventprotos.StructureProto.TownHallProto.Builder, com.lvl6.mobsters.noneventprotos.StructureProto.TownHallProtoOrBuilder> 
+          getAllTownHallsFieldBuilder() {
+        if (allTownHallsBuilder_ == null) {
+          allTownHallsBuilder_ = new com.google.protobuf.RepeatedFieldBuilder<
+              com.lvl6.mobsters.noneventprotos.StructureProto.TownHallProto, com.lvl6.mobsters.noneventprotos.StructureProto.TownHallProto.Builder, com.lvl6.mobsters.noneventprotos.StructureProto.TownHallProtoOrBuilder>(
+                  allTownHalls_,
+                  ((bitField0_ & 0x00008000) == 0x00008000),
+                  getParentForChildren(),
+                  isClean());
+          allTownHalls_ = null;
+        }
+        return allTownHallsBuilder_;
       }
       
       // @@protoc_insertion_point(builder_scope:proto.StaticDataProto)
@@ -3314,23 +4613,27 @@ public final class StaticDataStuffProto {
       "\n\020StaticData.proto\022\005proto\032\026BoosterPackSt" +
       "uff.proto\032\nCity.proto\032\022MonsterStuff.prot" +
       "o\032\020QuestStuff.proto\032\017Structure.proto\032\nTa" +
-      "sk.proto\032\nUser.proto\"\370\004\n\017StaticDataProto" +
+      "sk.proto\032\nUser.proto\"\230\006\n\017StaticDataProto" +
       "\022\'\n\006sender\030\001 \001(\0132\027.proto.MinimumUserProt" +
       "o\0225\n\016expansionCosts\030\002 \003(\0132\035.proto.CityEx" +
       "pansionCostProto\022\'\n\tallCities\030\003 \003(\0132\024.pr" +
-      "oto.FullCityProto\022-\n\nallStructs\030\004 \003(\0132\031." +
-      "proto.StructureInfoProto\022&\n\010allTasks\030\005 \003" +
-      "(\0132\024.proto.FullTaskProto\022(\n\013allMonsters\030",
-      "\006 \003(\0132\023.proto.MonsterProto\022-\n\004slip\030\007 \003(\013" +
-      "2\037.proto.StaticUserLevelInfoProto\022+\n\020inP" +
-      "rogressQuests\030\010 \003(\0132\021.proto.QuestProto\022+" +
-      "\n\020unredeemedQuests\030\t \003(\0132\021.proto.QuestPr" +
-      "oto\022*\n\017availableQuests\030\n \003(\0132\021.proto.Que" +
-      "stProto\022-\n\014boosterPacks\030\014 \003(\0132\027.proto.Bo" +
-      "osterPackProto\022?\n\006status\030\013 \001(\0162/.proto.S" +
-      "taticDataProto.RetrieveStaticDataStatus\"" +
+      "oto.FullCityProto\022&\n\010allTasks\030\004 \003(\0132\024.pr" +
+      "oto.FullTaskProto\022(\n\013allMonsters\030\005 \003(\0132\023" +
+      ".proto.MonsterProto\022-\n\004slip\030\006 \003(\0132\037.prot",
+      "o.StaticUserLevelInfoProto\022+\n\020inProgress" +
+      "Quests\030\007 \003(\0132\021.proto.QuestProto\022+\n\020unred" +
+      "eemedQuests\030\010 \003(\0132\021.proto.QuestProto\022*\n\017" +
+      "availableQuests\030\t \003(\0132\021.proto.QuestProto" +
+      "\022-\n\014boosterPacks\030\013 \003(\0132\027.proto.BoosterPa" +
+      "ckProto\0224\n\rallGenerators\030\014 \003(\0132\035.proto.R" +
+      "esourceGeneratorProto\0220\n\013allStorages\030\r \003" +
+      "(\0132\033.proto.ResourceStorageProto\022*\n\014allHo" +
+      "spitals\030\016 \003(\0132\024.proto.HospitalProto\022,\n\ra" +
+      "llResidences\030\017 \003(\0132\025.proto.ResidenceProt",
+      "o\022 \n\007allLabs\030\021 \003(\0132\017.proto.LabProto\022*\n\014a" +
+      "llTownHalls\030\020 \003(\0132\024.proto.TownHallProto\"" +
       "6\n\030RetrieveStaticDataStatus\022\013\n\007SUCCESS\020\001" +
-      "\022\r\n\tSOME_FAIL\020\002B8\n com.lvl6.mobsters.non",
+      "\022\r\n\tSOME_FAIL\020\002B8\n com.lvl6.mobsters.non" +
       "eventprotosB\024StaticDataStuffProto"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
@@ -3343,7 +4646,7 @@ public final class StaticDataStuffProto {
           internal_static_proto_StaticDataProto_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_proto_StaticDataProto_descriptor,
-              new java.lang.String[] { "Sender", "ExpansionCosts", "AllCities", "AllStructs", "AllTasks", "AllMonsters", "Slip", "InProgressQuests", "UnredeemedQuests", "AvailableQuests", "BoosterPacks", "Status", },
+              new java.lang.String[] { "Sender", "ExpansionCosts", "AllCities", "AllTasks", "AllMonsters", "Slip", "InProgressQuests", "UnredeemedQuests", "AvailableQuests", "BoosterPacks", "AllGenerators", "AllStorages", "AllHospitals", "AllResidences", "AllLabs", "AllTownHalls", },
               com.lvl6.mobsters.noneventprotos.StaticDataStuffProto.StaticDataProto.class,
               com.lvl6.mobsters.noneventprotos.StaticDataStuffProto.StaticDataProto.Builder.class);
           return null;

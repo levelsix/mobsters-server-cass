@@ -1,8 +1,13 @@
 package com.lvl6.mobsters.controller;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.UUID;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,18 +17,42 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.lvl6.mobsters.controller.utils.CreateNoneventProtoUtil;
 import com.lvl6.mobsters.controller.utils.MiscUtil;
+import com.lvl6.mobsters.entitymanager.staticdata.utils.AlertOnStartupRetrieveUtils;
+import com.lvl6.mobsters.entitymanager.staticdata.utils.QuestRetrieveUtils;
 import com.lvl6.mobsters.eventprotos.EventStartupProto.StartupRequestProto;
 import com.lvl6.mobsters.eventprotos.EventStartupProto.StartupResponseProto;
+import com.lvl6.mobsters.eventprotos.EventStartupProto.StartupResponseProto.Builder;
 import com.lvl6.mobsters.eventprotos.EventStartupProto.StartupResponseProto.StartupStatus;
 import com.lvl6.mobsters.eventprotos.EventStartupProto.StartupResponseProto.UpdateStatus;
 import com.lvl6.mobsters.events.RequestEvent;
 import com.lvl6.mobsters.events.request.StartupRequestEvent;
 import com.lvl6.mobsters.events.response.StartupResponseEvent;
 import com.lvl6.mobsters.noneventprotos.MobstersEventProtocolProto.MobstersEventProtocolRequest;
+import com.lvl6.mobsters.noneventprotos.MonsterStuffProto.FullUserMonsterProto;
+import com.lvl6.mobsters.noneventprotos.MonsterStuffProto.UserEnhancementItemProto;
+import com.lvl6.mobsters.noneventprotos.MonsterStuffProto.UserEnhancementProto;
+import com.lvl6.mobsters.noneventprotos.MonsterStuffProto.UserMonsterHealingProto;
+import com.lvl6.mobsters.noneventprotos.QuestStuffProto.FullUserQuestProto;
+import com.lvl6.mobsters.noneventprotos.StaticDataStuffProto.StaticDataProto;
+import com.lvl6.mobsters.noneventprotos.UserProto.FullUserProto;
+import com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProtoWithFacebookId;
+import com.lvl6.mobsters.noneventprotos.UserProto.UserFacebookInviteForSlotProto;
+import com.lvl6.mobsters.po.nonstaticdata.MonsterEnhancingForUser;
+import com.lvl6.mobsters.po.nonstaticdata.MonsterForUser;
+import com.lvl6.mobsters.po.nonstaticdata.MonsterHealingForUser;
+import com.lvl6.mobsters.po.nonstaticdata.QuestForUser;
 import com.lvl6.mobsters.po.nonstaticdata.User;
+import com.lvl6.mobsters.po.nonstaticdata.UserFacebookInviteForSlot;
+import com.lvl6.mobsters.po.staticdata.AlertOnStartup;
+import com.lvl6.mobsters.po.staticdata.Quest;
 import com.lvl6.mobsters.properties.Globals;
-import com.lvl6.mobsters.services.time.TimeUtils;
+import com.lvl6.mobsters.services.monsterenhancingforuser.MonsterEnhancingForUserService;
+import com.lvl6.mobsters.services.monsterforuser.MonsterForUserService;
+import com.lvl6.mobsters.services.monsterhealingforuser.MonsterHealingForUserService;
+import com.lvl6.mobsters.services.questforuser.QuestForUserService;
+import com.lvl6.mobsters.services.taskforusercompleted.TaskForUserCompletedService;
 import com.lvl6.mobsters.services.user.UserService;
+import com.lvl6.mobsters.userfacebookinviteforslot.UserFacebookInviteForSlotService;
 
 
 @Component
@@ -35,14 +64,38 @@ public class StartupController extends EventController {
 	Globals globals;
 
 	@Autowired
+	protected MiscUtil miscUtil;
+	
+	@Autowired
 	protected UserService userService;
+	
+	@Autowired
+	protected QuestForUserService questForUserService;
 
 	@Autowired
-	protected TimeUtils timeUtils;
-
+	protected QuestRetrieveUtils questRetrieveUtils;
+	
+	@Autowired
+	protected AlertOnStartupRetrieveUtils startupStuffRetrieveUtils;
+	
+	@Autowired
+	protected MonsterForUserService monsterForUserService;
+	
 	@Autowired
 	protected CreateNoneventProtoUtil createNoneventProtoUtil;
 
+	@Autowired
+	protected MonsterHealingForUserService monsterHealingForUserService;
+	
+	@Autowired
+	protected MonsterEnhancingForUserService monsterEnhancingForUserService;
+	
+	@Autowired
+	protected UserFacebookInviteForSlotService userFacebookInviteForSlotService;
+	
+	@Autowired
+	protected TaskForUserCompletedService taskForUserCompletedService;
+	
 	@Override
 	public RequestEvent createRequestEvent() {
 		return new StartupRequestEvent();
@@ -64,8 +117,10 @@ public class StartupController extends EventController {
 		String udid = reqProto.getUdid();
 		String apsalarId = reqProto.hasApsalarId() ? reqProto.getApsalarId() : null;
 		String fbId = reqProto.getFbId();
-
-		StartupResponseProto.Builder resBuilder = StartupResponseProto.newBuilder();
+		
+		//the player might be a new player with no user_id yet
+		UUID playerId = null;
+		getMiscUtil().setMDCProperties(udid, playerId);
 
 		double tempClientVersionNum = reqProto.getVersionNum() * 10;
 		//not sure if this is the right version number to use
@@ -81,71 +136,52 @@ public class StartupController extends EventController {
 	      updateStatus = UpdateStatus.NO_UPDATE;
 	    }
 	    
+	    //response to send back to client
+	    Builder resBuilder = StartupResponseProto.newBuilder();
 	    resBuilder.setUpdateStatus(updateStatus);
 	    resBuilder.setAppStoreURL(getGlobals().getAppStoreUrl());
 	    resBuilder.setReviewPageURL(getGlobals().getReviewPageUrl());
 	    resBuilder.setReviewPageConfirmationMessage(getGlobals().getReviewPageConfirmationMessage());
-
-
-	    User user = null;
+	    StartupResponseEvent resEvent = new StartupResponseEvent(udid);
+	    resEvent.setTag(event.getTag());
 
 	    // Don't fill in other fields if it is a major update
 	    StartupStatus startupStatus = StartupStatus.USER_NOT_IN_DB;
-
 	    Date now = new Date();
+	    User user = null;
 	    
-
-		//response to send back to client
-		StartupResponseProto.Builder responseBuilder = StartupResponseProto.newBuilder();
-		StartupResponseEvent resEvent = new StartupResponseEvent(udid);
-		resEvent.setTag(event.getTag());
-
-		//mup object might not have userId if user deleted app or something
-		List<User> userList = new ArrayList<User>();
-
 		try {
+			if (UpdateStatus.MAJOR_UPDATE.equals(updateStatus)) {
+				List<User> userList = getUserService().getUserByUDIDorFbId(udid, fbId);
+				user = getUserService().selectivelyChooseUser(userList, fbId, udid);
+				if (null != user) {
+					playerId = user.getId();
+					startupStatus = StartupStatus.USER_IN_DB;
+					log.info("No major update... getting user info");
+					loginExistingUser(resBuilder, user, playerId);
+				} else {
+					log.info("no user id: tutorial(?) player with udid " + udid);
+				}
+				
+				resBuilder.setStartupStatus(startupStatus);
+				setConstants(resBuilder, startupStatus);
+			}
 
-//			boolean validRequestArgs = isValidRequestArgs(responseBuilder,
-//					mup, lt, gameCenterId, udid);
-//
-//			boolean validRequest = false;
-//			boolean successful = false;
-//
-//			if (validRequestArgs) {
-//				validRequest = isValidRequest(responseBuilder, mup, lt,
-//						gameCenterId, udid, loginTime, userList);
-//			}
-//
-//			if (validRequest) {
-//				successful = writeChangesToDb(responseBuilder, mup,
-//						gameCenterId, loginTime, udid, userList);
-//			}
-//
-//			if (successful) {
-//				//set the recipient
-//				User u = userList.get(0);
-//				FullUserProto fup = getCreateNoneventProtoUtils().createFullUserProtoFromUser(u);
-//				responseBuilder.setFup(fup);
-//				//				setFacebookFriends(responseBuilder, facebookFriendIds);
-//			}
-//
-//			//TODO: CONSTRUCT THE LOGIN CONSTANTS
-//			//set the login constants
-//			setConstants(responseBuilder);
-
-			StartupResponseProto resProto = responseBuilder.build();
+			//startup time
+			resBuilder.setServerTimeMillis((new Date()).getTime());
+			StartupResponseProto resProto = resBuilder.build();
 			resEvent.setStartupResponseProto(resProto);
-
-
+			
 			log.info("Writing event: " + resEvent);
 			getEventWriter().processPreDBResponseEvent(resEvent, udid);
+			
 		} catch (Exception e) {
 			log.error("exception in LoginController processRequestEvent", e);
 
 			try {
 				//try to tell client that something failed
-				responseBuilder.setStartupStatus(StartupStatus.USER_NOT_IN_DB);
-				resEvent.setStartupResponseProto(responseBuilder.build());
+				resBuilder.setStartupStatus(StartupStatus.USER_NOT_IN_DB);
+				resEvent.setStartupResponseProto(resBuilder.build());
 				getEventWriter().processPreDBResponseEvent(resEvent, udid);
 
 			} catch (Exception e2) {
@@ -153,8 +189,227 @@ public class StartupController extends EventController {
 						" processRequestEvent", e2);
 			}
 		}
-
 	}
+	
+	private void loginExistingUser(Builder resBuilder, User user, UUID userId) {
+		setInProgressAndAvailableQuests(resBuilder, userId);
+//		setUserClanInfos(resBuilder, user);
+//        setNotifications(resBuilder, user);
+        setNoticesToPlayers(resBuilder);
+//        setChatMessages(resBuilder, user);
+//        setPrivateChatPosts(resBuilder, user);
+        setUserMonsterStuff(resBuilder, userId);
+//        setBoosterPurchases(resBuilder);
+        setFacebookAndExtraSlotsStuff(resBuilder, user);
+        setCompletedTasks(resBuilder, userId);
+        setAllStaticData(resBuilder, userId);
+        
+//        setWhetherPlayerCompletedInAppPurchase(resBuilder, user);
+//        setUnhandledForgeAttempts(resBuilder, user);
+//        setLockBoxEvents(resBuilder, user);
+//        setLeaderboardEventStuff(resBuilder);
+//        setAllies(resBuilder, user);
+//        setAllBosses(resBuilder, user.getType());
+
+        FullUserProto fup = getCreateNoneventProtoUtil().createFullUserProtoFromUser(user);
+        resBuilder.setSender(fup);
+	}
+	
+	private void setInProgressAndAvailableQuests(Builder resBuilder, UUID userId) {
+		//questIds to user quests
+		Map<Integer, QuestForUser> inProgressAndRedeemedUserQuests = getQuestForUserService()
+				.getQuestIdsToUserQuestsForUser(userId);
+		//		  	  log.info("user quests: " + inProgressAndRedeemedUserQuests);
+
+		List<QuestForUser> inProgressQuests = new ArrayList<QuestForUser>();
+		List<Integer> redeemedQuestIds = new ArrayList<Integer>();
+
+		Map<Integer, Quest> questIdToQuests = getQuestRetrieveUtils().getQuestIdsToQuests();
+		for (int questId : inProgressAndRedeemedUserQuests.keySet()) {
+			QuestForUser uq = inProgressAndRedeemedUserQuests.get(questId);
+
+			if (!uq.isRedeemed()) {
+				//unredeemed quest section
+				inProgressQuests.add(uq);
+			} else {
+				redeemedQuestIds.add(questId);
+			}
+		}
+
+		//generate the user quests
+		List<FullUserQuestProto> currentUserQuests = getCreateNoneventProtoUtil()
+				.createFullUserQuestProtos(inProgressQuests, questIdToQuests);
+		resBuilder.addAllUserQuests(currentUserQuests);
+
+		//generate the redeemed quest ids
+		resBuilder.addAllRedeemedQuestIds(redeemedQuestIds);
+	}
+	
+	private void setNoticesToPlayers(Builder resBuilder) {
+		List<AlertOnStartup> notices = getStartupStuffRetrieveUtils().getAllActiveAlerts();
+		if (null != notices) {
+			for (AlertOnStartup notice : notices) {
+				String noticeMsg = notice.getMessage();
+				resBuilder.addNoticesToPlayers(noticeMsg);
+			}
+		}
+	}
+	
+	private void setUserMonsterStuff(Builder resBuilder, UUID userId) {
+		List<MonsterForUser> userMonsters = getMonsterForUserService()
+				.getMonstersForUser(userId);
+
+		if (null != userMonsters && !userMonsters.isEmpty()) {
+			for (MonsterForUser mfu : userMonsters) {
+				FullUserMonsterProto fump = getCreateNoneventProtoUtil().createFullUserMonsterProtoFromUserMonster(mfu);
+				resBuilder.addUsersMonsters(fump);
+			}
+		}
+		
+		Map<UUID, MonsterHealingForUser> userMonstersHealing =
+				getMonsterHealingForUserService().getMonstersHealingForUser(userId);
+		if (null != userMonstersHealing && !userMonstersHealing.isEmpty()) {
+			
+			for (MonsterHealingForUser mhfu : userMonstersHealing.values()) {
+				UserMonsterHealingProto umhp = getCreateNoneventProtoUtil()
+						.createUserMonsterHealingProtoFromObj(mhfu);
+				resBuilder.addMonstersHealing(umhp);
+			}
+		}
+		
+		Map<UUID, MonsterEnhancingForUser> userMonstersEnhancing = getMonsterEnhancingForUserService()
+				.getMonstersEnhancingForUser(userId);
+		if (null != userMonstersEnhancing && !userMonstersEnhancing.isEmpty()) {
+			//find the monster that is being enhanced
+			Collection<MonsterEnhancingForUser> enhancingMonsters = userMonstersEnhancing.values();
+			UserEnhancementItemProto baseMonster = null;
+
+			List<UserEnhancementItemProto> feeders = new ArrayList<UserEnhancementItemProto>();
+			for (MonsterEnhancingForUser mefu : enhancingMonsters) {
+				UserEnhancementItemProto ueip = getCreateNoneventProtoUtil()
+						.createUserEnhancementItemProtoFromObj(mefu);
+
+				//TODO: if user has no monsters with null start time
+				//(if user has all monsters with a start time), or if user has more than one
+				//monster with a null start time
+				//STORE THEM AND DELETE THEM OR SOMETHING
+
+				//search for the monster that is being enhanced, the one with null start time
+				Date startTime = mefu.getExpectedStartTime();
+				if(null == startTime) {
+					//found him
+					baseMonster = ueip;
+				} else {
+					//just a feeder, add him to the list
+					feeders.add(ueip);
+				}
+			}
+
+			UserEnhancementProto uep = getCreateNoneventProtoUtil().createUserEnhancementProtoFromObj(
+					userId, baseMonster, feeders);
+
+			resBuilder.setEnhancements(uep);
+		}
+	}
+	
+	private void setFacebookAndExtraSlotsStuff (Builder resBuilder, User thisUser) {
+		UUID userId = thisUser.getId();
+		
+		//get the invites where this user is the recipient, get unaccepted, hence, unredeemed invites
+		Map<UUID, UserFacebookInviteForSlot> idsToInvitesToMe =
+				new HashMap<UUID, UserFacebookInviteForSlot>();
+		String fbId = thisUser.getFacebookId();
+		List<UUID> specificInviteIds = null;
+		boolean filterByAccepted = true;
+		boolean isAccepted = false;
+		boolean filterByRedeemed = false;
+		boolean isRedeemed = false; //doesn't matter
+		//base case where user does not have facebook id
+		if (null != fbId && !fbId.isEmpty()) {
+			idsToInvitesToMe = getUserFacebookInviteForSlotService()
+					.getSpecificOrAllInvitesForRecipient(fbId, specificInviteIds, filterByAccepted,
+							isAccepted, filterByRedeemed, isRedeemed);
+		}
+
+		//get the invites where this user is the inviter, get accepted, unredeemed does not matter 
+		isAccepted = true;
+		Map<UUID, UserFacebookInviteForSlot> idsToInvitesFromMe = 
+				getUserFacebookInviteForSlotService().getSpecificOrAllInvitesForInviter(
+						userId, specificInviteIds, filterByAccepted, isAccepted, filterByRedeemed, isRedeemed);
+
+		Collection<UserFacebookInviteForSlot> invites = idsToInvitesFromMe.values();
+		List<String> recipientFacebookIds = getUserFacebookInviteForSlotService()
+				.getRecipientFbIds(invites);
+
+		//to make it easier later on, get the inviter ids for these invites and
+		//map inviter id to an invite
+		Map<UUID, UserFacebookInviteForSlot> inviterIdsToInvites =
+				new HashMap<UUID, UserFacebookInviteForSlot>();
+		//inviterIdsToInvites will be populated by getInviterIds(...)
+		List<UUID> inviterUserIds = getUserFacebookInviteForSlotService()
+				.getInviterIds(idsToInvitesToMe, inviterIdsToInvites);
+
+
+		//base case where user never did any invites
+		if ((null == recipientFacebookIds || recipientFacebookIds.isEmpty()) &&
+				(null == inviterUserIds || inviterUserIds.isEmpty())) {
+			//no facebook stuff
+			return;
+		}
+
+
+		//GET THE USERS
+		Map<UUID, User> idsToUsers = getUserService()
+				.getUsersForFacebookIdsOrUserIds(recipientFacebookIds, inviterUserIds);
+		List<User> recipients = new ArrayList<User>();
+		List<User> inviters = new ArrayList<User>();
+		//given map of userIds to users, list of recipient facebook ids and list of inviter
+		//user ids, separate the map of users into recipient and inviter
+		getUserService().separateUsersIntoRecipientsAndInviters(idsToUsers,
+				recipientFacebookIds, inviterUserIds, recipients, inviters);
+
+
+		//send all the invites where this user is the one being invited
+		for (UUID inviterId : inviterUserIds) {
+			User inviter = idsToUsers.get(inviterId);
+			MinimumUserProtoWithFacebookId inviterProto = null;
+			UserFacebookInviteForSlot invite = inviterIdsToInvites.get(inviterId);
+			UserFacebookInviteForSlotProto inviteProto = getCreateNoneventProtoUtil()
+					.createUserFacebookInviteForSlotProtoFromInvite(invite, inviter, inviterProto);
+
+			resBuilder.addInvitesToMeForSlots(inviteProto);
+		}
+
+		//send all the invites where this user is the one inviting
+		MinimumUserProtoWithFacebookId thisUserProto = getCreateNoneventProtoUtil()
+				.createMinimumUserProtoWithFacebookIdFromUser(thisUser);
+		for (UserFacebookInviteForSlot invite : idsToInvitesFromMe.values()) {
+			UserFacebookInviteForSlotProto inviteProto = getCreateNoneventProtoUtil()
+					.createUserFacebookInviteForSlotProtoFromInvite(invite, thisUser, thisUserProto);
+			resBuilder.addInvitesFromMeForSlots(inviteProto);
+		}
+	}
+	
+	private void setCompletedTasks(Builder resBuilder, UUID userId) {
+		Set<Integer> taskIds = getTaskForUserCompletedService()
+				.getAllCompletedTaskIdsForUser(userId);
+		resBuilder.addAllCompletedTaskIds(taskIds);
+	}
+	
+	private void setAllStaticData(Builder resBuilder, UUID userId) {
+		StaticDataProto sdp = getMiscUtil().getAllStaticData(userId);
+		resBuilder.setStaticDataStuffProto(sdp);
+	}
+
+	
+	private void setConstants(Builder startupBuilder, StartupStatus startupStatus) {
+		startupBuilder.setStartupConstants(getMiscUtil().createStartupConstantsProto());
+		if (startupStatus == StartupStatus.USER_NOT_IN_DB) {
+//			setTutorialConstants(startupBuilder);
+		}
+	}
+	
+	
 /*
 	//sanity check for data sent by the client, making sure server 
 	//won't generate an null pointer exception (npe)
@@ -408,6 +663,14 @@ public class StartupController extends EventController {
 	public void setGlobals(Globals globals) {
 		this.globals = globals;
 	}
+	
+	public MiscUtil getMiscUtil() {
+		return miscUtil;
+	}
+
+	public void setMiscUtil(MiscUtil miscUtil) {
+		this.miscUtil = miscUtil;
+	}
 
 	public UserService getUserService() {
 		return userService;
@@ -416,22 +679,83 @@ public class StartupController extends EventController {
 	public void setUserService(UserService userService) {
 		this.userService = userService;
 	}
-
-	public TimeUtils getTimeUtils() {
-		return timeUtils;
+	
+	public QuestForUserService getQuestForUserService() {
+		return questForUserService;
 	}
 
-	public void setTimeUtils(TimeUtils timeUtils) {
-		this.timeUtils = timeUtils;
+	public void setQuestForUserService(QuestForUserService questForUserService) {
+		this.questForUserService = questForUserService;
 	}
 
-	public CreateNoneventProtoUtil getCreateNoneventProtoUtils() {
+	public QuestRetrieveUtils getQuestRetrieveUtils() {
+		return questRetrieveUtils;
+	}
+
+	public void setQuestRetrieveUtils(QuestRetrieveUtils questRetrieveUtils) {
+		this.questRetrieveUtils = questRetrieveUtils;
+	}
+
+	public AlertOnStartupRetrieveUtils getStartupStuffRetrieveUtils() {
+		return startupStuffRetrieveUtils;
+	}
+
+	public void setStartupStuffRetrieveUtils(
+			AlertOnStartupRetrieveUtils startupStuffRetrieveUtils) {
+		this.startupStuffRetrieveUtils = startupStuffRetrieveUtils;
+	}
+
+	public MonsterForUserService getMonsterForUserService() {
+		return monsterForUserService;
+	}
+
+	public void setMonsterForUserService(MonsterForUserService monsterForUserService) {
+		this.monsterForUserService = monsterForUserService;
+	}
+
+	public CreateNoneventProtoUtil getCreateNoneventProtoUtil() {
 		return createNoneventProtoUtil;
 	}
 
-	public void setCreateNoneventProtoUtils(
+	public void setCreateNoneventProtoUtil(
 			CreateNoneventProtoUtil createNoneventProtoUtil) {
 		this.createNoneventProtoUtil = createNoneventProtoUtil;
+	}
+
+	public MonsterHealingForUserService getMonsterHealingForUserService() {
+		return monsterHealingForUserService;
+	}
+
+	public void setMonsterHealingForUserService(
+			MonsterHealingForUserService monsterHealingForUserService) {
+		this.monsterHealingForUserService = monsterHealingForUserService;
+	}
+
+	public MonsterEnhancingForUserService getMonsterEnhancingForUserService() {
+		return monsterEnhancingForUserService;
+	}
+
+	public void setMonsterEnhancingForUserService(
+			MonsterEnhancingForUserService monsterEnhancingForUserService) {
+		this.monsterEnhancingForUserService = monsterEnhancingForUserService;
+	}
+
+	public UserFacebookInviteForSlotService getUserFacebookInviteForSlotService() {
+		return userFacebookInviteForSlotService;
+	}
+
+	public void setUserFacebookInviteForSlotService(
+			UserFacebookInviteForSlotService userFacebookInviteForSlotService) {
+		this.userFacebookInviteForSlotService = userFacebookInviteForSlotService;
+	}
+
+	public TaskForUserCompletedService getTaskForUserCompletedService() {
+		return taskForUserCompletedService;
+	}
+
+	public void setTaskForUserCompletedService(
+			TaskForUserCompletedService taskForUserCompletedService) {
+		this.taskForUserCompletedService = taskForUserCompletedService;
 	}
 
 }

@@ -59,10 +59,15 @@ public class MobstersTableConstants {
 	public static final String UCHRFC__UPGRADE_NORM_STRUCT = "upgrading norm struct";
 	
 	
-	
-
 	//SEND GROUP CHAT
 	public static final int SEND_GROUP_CHAT__MAX_LENGTH_OF_CHAT_STRING = 200;
+	
+	//LEVEL UP
+	public static final int LEVEL_UP__MAX_LEVEL_FOR_USER = 100; //add level up equipment for fake players if increasing
+
+	//PURCHASE NORM STRUCTURE
+	public static final int PURCHASE_NORM_STRUCTURE__MAX_NUM_OF_CERTAIN_STRUCTURE = 3;
+
 	
 	//AOC2 STUFF
 	//user_equip_repair
