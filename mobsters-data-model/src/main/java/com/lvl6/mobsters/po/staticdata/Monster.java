@@ -15,7 +15,8 @@ import com.dekayd.astyanax.cassandra.entitymanager.Index;
 @Entity
 public class Monster extends BasePersistentObject<Integer> implements Serializable {
 
-	private static final long serialVersionUID = -8302301850028521702L;
+
+	private static final long serialVersionUID = 683047278565720331L;
 
 	@Id
 	protected Integer id = 0;
@@ -68,6 +69,9 @@ public class Monster extends BasePersistentObject<Integer> implements Serializab
 	@Column(name="element_five_dmg")
 	protected int elementFiveDmg = 0;
 	
+	@Column(name="element_six_dmg")
+	protected int elementSixDmg = 0;
+	
 	@Column(name="hp_lvl_multiplier")
 	protected float hpLvlMultiplier = 0;
 	
@@ -97,7 +101,15 @@ public class Monster extends BasePersistentObject<Integer> implements Serializab
 	@Column(name="description")
 	protected String description = null;
 	
+	@Column(name="evolution_catalyst_monster_id")
+	protected int evolutionCatalystMonsterId = 0;
 	
+	@Column(name="minutes_to_evolve")
+	protected int minutesToEvolve = 0;
+	
+	//most likely will not be changed to something other than 1;
+	@Column(name="num_catalysts_required")
+	protected int numCatalystsRequired = 1;
 	
 	
 
@@ -229,6 +241,14 @@ public class Monster extends BasePersistentObject<Integer> implements Serializab
 		this.elementFiveDmg = elementFiveDmg;
 	}
 
+	public int getElementSixDmg() {
+		return elementSixDmg;
+	}
+
+	public void setElementSixDmg(int elementSixDmg) {
+		this.elementSixDmg = elementSixDmg;
+	}
+
 	public float getHpLvlMultiplier() {
 		return hpLvlMultiplier;
 	}
@@ -301,6 +321,30 @@ public class Monster extends BasePersistentObject<Integer> implements Serializab
 		this.description = description;
 	}
 
+	public int getEvolutionCatalystMonsterId() {
+		return evolutionCatalystMonsterId;
+	}
+
+	public void setEvolutionCatalystMonsterId(int evolutionCatalystMonsterId) {
+		this.evolutionCatalystMonsterId = evolutionCatalystMonsterId;
+	}
+
+	public int getMinutesToEvolve() {
+		return minutesToEvolve;
+	}
+
+	public void setMinutesToEvolve(int minutesToEvolve) {
+		this.minutesToEvolve = minutesToEvolve;
+	}
+
+	public int getNumCatalystsRequired() {
+		return numCatalystsRequired;
+	}
+
+	public void setNumCatalystsRequired(int numCatalystsRequired) {
+		this.numCatalystsRequired = numCatalystsRequired;
+	}
+
 	@Override
 	public String toString() {
 		return "Monster [id=" + id + ", name=" + name + ", monsterGroup="
@@ -313,12 +357,17 @@ public class Monster extends BasePersistentObject<Integer> implements Serializab
 				+ ", elementOneDmg=" + elementOneDmg + ", elementTwoDmg="
 				+ elementTwoDmg + ", elementThreeDmg=" + elementThreeDmg
 				+ ", elementFourDmg=" + elementFourDmg + ", elementFiveDmg="
-				+ elementFiveDmg + ", hpLvlMultiplier=" + hpLvlMultiplier
+				+ elementFiveDmg + ", elementSixDmg=" + elementSixDmg
+				+ ", hpLvlMultiplier=" + hpLvlMultiplier
 				+ ", attackLvlMultiplier=" + attackLvlMultiplier + ", maxLvl="
 				+ maxLvl + ", evolutionMonsterId=" + evolutionMonsterId
 				+ ", devolutionMonsterId=" + devolutionMonsterId
 				+ ", carrotRecruited=" + carrotRecruited + ", carrotDefeated="
 				+ carrotDefeated + ", carrotEvolved=" + carrotEvolved
-				+ ", description=" + description + "]";
+				+ ", description=" + description
+				+ ", evolutionCatalystMonsterId=" + evolutionCatalystMonsterId
+				+ ", minutesToEvolve=" + minutesToEvolve
+				+ ", numCatalystsRequired=" + numCatalystsRequired + "]";
 	}
+
 }

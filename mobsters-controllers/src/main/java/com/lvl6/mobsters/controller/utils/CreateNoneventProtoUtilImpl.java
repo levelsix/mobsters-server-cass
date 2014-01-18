@@ -427,6 +427,7 @@ public class CreateNoneventProtoUtilImpl implements CreateNoneventProtoUtil {
 		mpb.setElementThreeDmg(aMonster.getElementThreeDmg());
 		mpb.setElementFourDmg(aMonster.getElementFourDmg());
 		mpb.setElementFiveDmg(aMonster.getElementFiveDmg());
+		mpb.setElementSixDmg(aMonster.getElementSixDmg());
 		mpb.setHpLevelMultiplier(aMonster.getHpLvlMultiplier());
 		mpb.setAttackLevelMultiplier(aMonster.getAttackLvlMultiplier());
 		mpb.setMaxLevel(aMonster.getMaxLvl());
@@ -451,6 +452,14 @@ public class CreateNoneventProtoUtilImpl implements CreateNoneventProtoUtil {
 		if (null != description) {
 			mpb.setDescription(description);
 		}
+		
+		int evolutionCatalystMonsterId = aMonster.getEvolutionCatalystMonsterId();
+	    mpb.setEvolutionCatalystMonsterId(evolutionCatalystMonsterId);
+	    int minutesToEvolve = aMonster.getMinutesToEvolve();
+	    mpb.setMinutesToEvolve(minutesToEvolve);
+	    
+	    int num = aMonster.getNumCatalystsRequired();
+	    mpb.setNumCatalystMonstersRequired(num);
 
 		return mpb.build();
 	}
