@@ -3,6 +3,7 @@ package com.lvl6.mobsters.entitymanager.staticdata.utils;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import org.slf4j.Logger;
@@ -72,9 +73,18 @@ import com.lvl6.mobsters.utils.QueryConstructionUtil;
 				TABLE_NAME, equalityConditions, conditionDelimiter, values, preparedStatement);
 		List<StructureResourceGenerator> list = getStructureResourceGeneratorEntityManager().get().find(cqlquery);
 		structIdsToResourceGenerators = new HashMap<Integer, StructureResourceGenerator>();
-		for(StructureResourceGenerator s : list) {
-			Integer id= s.getId();
-			structIdsToResourceGenerators.put(id, s);
+		for(StructureResourceGenerator srg : list) {
+			Integer id = srg.getId();
+			structIdsToResourceGenerators.put(id, srg);
+			
+			//ensuring that enum string is stripped of white space and capitalized
+			String typeStr = srg.getResourceType();
+			String newTypeStr = typeStr.trim().toUpperCase(Locale.ENGLISH);
+			if (!typeStr.equals(newTypeStr)) {
+				log.error("struct resource generator resource type incorrectly set. srg=" + srg);
+			}
+			srg.setResourceType(newTypeStr);
+			
 		}		
 	}
 	

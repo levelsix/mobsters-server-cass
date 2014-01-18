@@ -3,6 +3,7 @@ package com.lvl6.mobsters.entitymanager.staticdata.utils;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import org.slf4j.Logger;
@@ -98,6 +99,14 @@ import com.lvl6.mobsters.utils.QueryConstructionUtil;
 		
 		structIdsToResourceStorages = new HashMap<Integer, StructureResourceStorage>();
 		for (StructureResourceStorage srs : list) {
+			//ensuring that enum string is stripped of white space and capitalized
+			String typeStr = srs.getResourceType();
+			String newTypeStr = typeStr.trim().toUpperCase(Locale.ENGLISH);
+			if (!typeStr.equals(newTypeStr)) {
+				log.error("struct resource storage resource type incorrectly set. srs=" + srs);
+			}
+			srs.setResourceType(newTypeStr);
+			
 			structIdsToResourceStorages.put(srs.getId(), srs);
 		}
 	}

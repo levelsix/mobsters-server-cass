@@ -3,6 +3,7 @@ package com.lvl6.mobsters.entitymanager.staticdata.utils;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import org.slf4j.Logger;
@@ -83,6 +84,14 @@ import com.lvl6.mobsters.utils.QueryConstructionUtil;
 		cityIdToCityElements = new HashMap<Integer, List<CityElement>>();
 		for(CityElement ce : cityElementList) {
 			Integer cityId = ce.getCityId();
+			
+			//ensuring that enum string is stripped of white space and capitalized
+			String typeStr = ce.getCityElemType();
+			String newTypeStr = typeStr.trim().toUpperCase(Locale.ENGLISH);
+			if (!typeStr.equals(newTypeStr)) {
+				log.error("city element type incorrectly set. city element=" + ce);
+			}
+			ce.setCityElemType(newTypeStr);
 
 			//check base case where no city elements for city id is recorded
 			if (!cityIdToCityElements.containsKey(cityId)) {

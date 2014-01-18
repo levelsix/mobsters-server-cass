@@ -3,6 +3,7 @@ package com.lvl6.mobsters.entitymanager.staticdata.utils;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 
@@ -81,6 +82,21 @@ import com.lvl6.mobsters.utils.QueryConstructionUtil;
 		//fill up the map
 		idsToMonsters = new HashMap<Integer, Monster>();
 		for(Monster m : monsterList) {
+			//ensuring that enum string is stripped of white space and capitalized
+			String typeStr = m.getMonsterQuality();
+			String newTypeStr = typeStr.trim().toUpperCase(Locale.ENGLISH);
+			if (!typeStr.equals(newTypeStr)) {
+				log.error("monster quality incorrectly set. monster=" + m);
+			}
+			m.setMonsterQuality(newTypeStr);
+			
+			typeStr = m.getMonsterElement();
+			newTypeStr = typeStr.trim().toUpperCase(Locale.ENGLISH);
+			if (!typeStr.equals(newTypeStr)) {
+				log.error("monster element incorrectly set. monster=" + m);
+			}
+			m.setMonsterElement(newTypeStr);
+			
 			Integer intId = m.getId();
 			idsToMonsters.put(intId, m);
 		}

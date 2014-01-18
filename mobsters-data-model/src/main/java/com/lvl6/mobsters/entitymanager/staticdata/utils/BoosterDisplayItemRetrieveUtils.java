@@ -3,6 +3,7 @@ package com.lvl6.mobsters.entitymanager.staticdata.utils;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import org.slf4j.Logger;
@@ -90,6 +91,14 @@ import com.lvl6.mobsters.utils.QueryConstructionUtil;
 				new HashMap<Integer, Map<Integer, BoosterDisplayItem>>();
 		for(BoosterDisplayItem bdi : boosterDisplayItemList) {
 			Integer intId = bdi.getId();
+			//ensuring that enum string is stripped of white space and capitalized
+			String typeStr = bdi.getMonsterQuality();
+			String newTypeStr = typeStr.trim().toUpperCase(Locale.ENGLISH);
+			if (!typeStr.equals(newTypeStr)) {
+				log.error("booster display item monster quality type incorrectly set. bdi=" + bdi);
+			}
+			bdi.setMonsterQuality(newTypeStr);
+			
 			boosterDisplayItemIdsToBoosterDisplayItems.put(intId, bdi);
 			
 			int packId = bdi.getBoosterPackId();

@@ -5,6 +5,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 
@@ -109,6 +110,14 @@ import com.lvl6.mobsters.utils.QuestGraph;
 			//Store it into the quest so we don't have to do this again 
 			//(well, at least until the next server restart or when static data is reloaded)
 			q.setQuestsRequiredForThisAsSet(requiredSet);
+			
+			//ensuring that enum string is stripped of white space and capitalized
+			String typeStr = q.getQuestType();
+			String newTypeStr = typeStr.trim().toUpperCase(Locale.ENGLISH);
+			if (!typeStr.equals(newTypeStr)) {
+				log.error("quest type incorrectly set. quest=" + q);
+			}
+			q.setQuestType(newTypeStr);
 			
 			Integer intId = q.getId();
 			idsToQuests.put(intId, q);

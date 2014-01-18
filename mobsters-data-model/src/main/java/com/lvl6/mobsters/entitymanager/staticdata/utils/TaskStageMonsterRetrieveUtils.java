@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Random;
 
@@ -88,6 +89,14 @@ import com.lvl6.mobsters.utils.QueryConstructionUtil;
 		Random rand = new Random();
 		for(TaskStageMonster tsm : list) {
 			tsm.setRand(rand);
+			
+			//ensuring that enum string is stripped of white space and capitalized
+			String monsterType = tsm.getMonsterType();
+			String newMonsterType = monsterType.trim().toUpperCase(Locale.ENGLISH);
+			if (!monsterType.equals(newMonsterType)) {
+				log.error("Monster type incorrectly set for task stage monster. monster=" + tsm);
+			}
+			tsm.setMonsterType(newMonsterType);
 			
 			int stageId = tsm.getStageId();
 			if (!taskStageIdsToTaskStageMonsters.containsKey(stageId)) {

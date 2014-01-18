@@ -3,6 +3,7 @@ package com.lvl6.mobsters.entitymanager.staticdata.utils;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import org.slf4j.Logger;
@@ -111,8 +112,24 @@ import com.lvl6.mobsters.utils.QueryConstructionUtil;
 		List <Structure> list = getStructureEntityManager().get().find(cqlquery);
 		
 		idsToStructures = new HashMap<Integer, Structure>();
-		for(Structure c : list) {
-			idsToStructures.put(c.getId(), c);
+		for(Structure s : list) {
+			//ensuring that enum string is stripped of white space and capitalized
+			String typeStr = s.getStructType();
+			String newTypeStr = typeStr.trim().toUpperCase(Locale.ENGLISH);
+			if (!typeStr.equals(newTypeStr)) {
+				log.error("struct type incorrectly set. struct=" + s);
+			}
+			s.setStructType(newTypeStr);
+			
+			typeStr = s.getBuildResourceType();
+			newTypeStr = typeStr.trim().toUpperCase(Locale.ENGLISH);
+			if (!typeStr.equals(newTypeStr)) {
+				log.error("build resource type incorrectly set. struct=" + s);
+			}
+			s.setBuildResourceType(newTypeStr);
+			
+			
+			idsToStructures.put(s.getId(), s);
 		}
 					
 	}
