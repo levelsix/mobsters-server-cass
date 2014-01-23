@@ -2566,6 +2566,923 @@ public final class TaskProto {
     // @@protoc_insertion_point(class_scope:proto.TaskStageMonsterProto)
   }
   
+  public interface PersistentEventProtoOrBuilder
+      extends com.google.protobuf.MessageOrBuilder {
+    
+    // optional int32 eventId = 1;
+    boolean hasEventId();
+    int getEventId();
+    
+    // optional .proto.PersistentEventProto.DayOfWeek dayOfWeek = 2;
+    boolean hasDayOfWeek();
+    com.lvl6.mobsters.noneventprotos.TaskProto.PersistentEventProto.DayOfWeek getDayOfWeek();
+    
+    // optional int32 startHour = 3;
+    boolean hasStartHour();
+    int getStartHour();
+    
+    // optional int32 eventDurationMinutes = 4;
+    boolean hasEventDurationMinutes();
+    int getEventDurationMinutes();
+    
+    // optional int32 taskId = 5;
+    boolean hasTaskId();
+    int getTaskId();
+    
+    // optional int32 cooldownMinutes = 6;
+    boolean hasCooldownMinutes();
+    int getCooldownMinutes();
+    
+    // optional .proto.PersistentEventProto.EventType type = 7;
+    boolean hasType();
+    com.lvl6.mobsters.noneventprotos.TaskProto.PersistentEventProto.EventType getType();
+    
+    // optional .proto.MonsterProto.MonsterElement monsterElement = 8;
+    boolean hasMonsterElement();
+    com.lvl6.mobsters.noneventprotos.MonsterStuffProto.MonsterProto.MonsterElement getMonsterElement();
+  }
+  public static final class PersistentEventProto extends
+      com.google.protobuf.GeneratedMessage
+      implements PersistentEventProtoOrBuilder {
+    // Use PersistentEventProto.newBuilder() to construct.
+    private PersistentEventProto(Builder builder) {
+      super(builder);
+    }
+    private PersistentEventProto(boolean noInit) {}
+    
+    private static final PersistentEventProto defaultInstance;
+    public static PersistentEventProto getDefaultInstance() {
+      return defaultInstance;
+    }
+    
+    public PersistentEventProto getDefaultInstanceForType() {
+      return defaultInstance;
+    }
+    
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.lvl6.mobsters.noneventprotos.TaskProto.internal_static_proto_PersistentEventProto_descriptor;
+    }
+    
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.lvl6.mobsters.noneventprotos.TaskProto.internal_static_proto_PersistentEventProto_fieldAccessorTable;
+    }
+    
+    public enum DayOfWeek
+        implements com.google.protobuf.ProtocolMessageEnum {
+      SUNDAY(0, 1),
+      MONDAY(1, 2),
+      TUESDAY(2, 3),
+      WEDNESDAY(3, 4),
+      THURSDAY(4, 5),
+      FRIDAY(5, 6),
+      SATURDAY(6, 7),
+      ;
+      
+      public static final int SUNDAY_VALUE = 1;
+      public static final int MONDAY_VALUE = 2;
+      public static final int TUESDAY_VALUE = 3;
+      public static final int WEDNESDAY_VALUE = 4;
+      public static final int THURSDAY_VALUE = 5;
+      public static final int FRIDAY_VALUE = 6;
+      public static final int SATURDAY_VALUE = 7;
+      
+      
+      public final int getNumber() { return value; }
+      
+      public static DayOfWeek valueOf(int value) {
+        switch (value) {
+          case 1: return SUNDAY;
+          case 2: return MONDAY;
+          case 3: return TUESDAY;
+          case 4: return WEDNESDAY;
+          case 5: return THURSDAY;
+          case 6: return FRIDAY;
+          case 7: return SATURDAY;
+          default: return null;
+        }
+      }
+      
+      public static com.google.protobuf.Internal.EnumLiteMap<DayOfWeek>
+          internalGetValueMap() {
+        return internalValueMap;
+      }
+      private static com.google.protobuf.Internal.EnumLiteMap<DayOfWeek>
+          internalValueMap =
+            new com.google.protobuf.Internal.EnumLiteMap<DayOfWeek>() {
+              public DayOfWeek findValueByNumber(int number) {
+                return DayOfWeek.valueOf(number);
+              }
+            };
+      
+      public final com.google.protobuf.Descriptors.EnumValueDescriptor
+          getValueDescriptor() {
+        return getDescriptor().getValues().get(index);
+      }
+      public final com.google.protobuf.Descriptors.EnumDescriptor
+          getDescriptorForType() {
+        return getDescriptor();
+      }
+      public static final com.google.protobuf.Descriptors.EnumDescriptor
+          getDescriptor() {
+        return com.lvl6.mobsters.noneventprotos.TaskProto.PersistentEventProto.getDescriptor().getEnumTypes().get(0);
+      }
+      
+      private static final DayOfWeek[] VALUES = {
+        SUNDAY, MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, 
+      };
+      
+      public static DayOfWeek valueOf(
+          com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
+        if (desc.getType() != getDescriptor()) {
+          throw new java.lang.IllegalArgumentException(
+            "EnumValueDescriptor is not for this type.");
+        }
+        return VALUES[desc.getIndex()];
+      }
+      
+      private final int index;
+      private final int value;
+      
+      private DayOfWeek(int index, int value) {
+        this.index = index;
+        this.value = value;
+      }
+      
+      // @@protoc_insertion_point(enum_scope:proto.PersistentEventProto.DayOfWeek)
+    }
+    
+    public enum EventType
+        implements com.google.protobuf.ProtocolMessageEnum {
+      ENHANCE(0, 1),
+      EVOLUTION(1, 2),
+      ;
+      
+      public static final int ENHANCE_VALUE = 1;
+      public static final int EVOLUTION_VALUE = 2;
+      
+      
+      public final int getNumber() { return value; }
+      
+      public static EventType valueOf(int value) {
+        switch (value) {
+          case 1: return ENHANCE;
+          case 2: return EVOLUTION;
+          default: return null;
+        }
+      }
+      
+      public static com.google.protobuf.Internal.EnumLiteMap<EventType>
+          internalGetValueMap() {
+        return internalValueMap;
+      }
+      private static com.google.protobuf.Internal.EnumLiteMap<EventType>
+          internalValueMap =
+            new com.google.protobuf.Internal.EnumLiteMap<EventType>() {
+              public EventType findValueByNumber(int number) {
+                return EventType.valueOf(number);
+              }
+            };
+      
+      public final com.google.protobuf.Descriptors.EnumValueDescriptor
+          getValueDescriptor() {
+        return getDescriptor().getValues().get(index);
+      }
+      public final com.google.protobuf.Descriptors.EnumDescriptor
+          getDescriptorForType() {
+        return getDescriptor();
+      }
+      public static final com.google.protobuf.Descriptors.EnumDescriptor
+          getDescriptor() {
+        return com.lvl6.mobsters.noneventprotos.TaskProto.PersistentEventProto.getDescriptor().getEnumTypes().get(1);
+      }
+      
+      private static final EventType[] VALUES = {
+        ENHANCE, EVOLUTION, 
+      };
+      
+      public static EventType valueOf(
+          com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
+        if (desc.getType() != getDescriptor()) {
+          throw new java.lang.IllegalArgumentException(
+            "EnumValueDescriptor is not for this type.");
+        }
+        return VALUES[desc.getIndex()];
+      }
+      
+      private final int index;
+      private final int value;
+      
+      private EventType(int index, int value) {
+        this.index = index;
+        this.value = value;
+      }
+      
+      // @@protoc_insertion_point(enum_scope:proto.PersistentEventProto.EventType)
+    }
+    
+    private int bitField0_;
+    // optional int32 eventId = 1;
+    public static final int EVENTID_FIELD_NUMBER = 1;
+    private int eventId_;
+    public boolean hasEventId() {
+      return ((bitField0_ & 0x00000001) == 0x00000001);
+    }
+    public int getEventId() {
+      return eventId_;
+    }
+    
+    // optional .proto.PersistentEventProto.DayOfWeek dayOfWeek = 2;
+    public static final int DAYOFWEEK_FIELD_NUMBER = 2;
+    private com.lvl6.mobsters.noneventprotos.TaskProto.PersistentEventProto.DayOfWeek dayOfWeek_;
+    public boolean hasDayOfWeek() {
+      return ((bitField0_ & 0x00000002) == 0x00000002);
+    }
+    public com.lvl6.mobsters.noneventprotos.TaskProto.PersistentEventProto.DayOfWeek getDayOfWeek() {
+      return dayOfWeek_;
+    }
+    
+    // optional int32 startHour = 3;
+    public static final int STARTHOUR_FIELD_NUMBER = 3;
+    private int startHour_;
+    public boolean hasStartHour() {
+      return ((bitField0_ & 0x00000004) == 0x00000004);
+    }
+    public int getStartHour() {
+      return startHour_;
+    }
+    
+    // optional int32 eventDurationMinutes = 4;
+    public static final int EVENTDURATIONMINUTES_FIELD_NUMBER = 4;
+    private int eventDurationMinutes_;
+    public boolean hasEventDurationMinutes() {
+      return ((bitField0_ & 0x00000008) == 0x00000008);
+    }
+    public int getEventDurationMinutes() {
+      return eventDurationMinutes_;
+    }
+    
+    // optional int32 taskId = 5;
+    public static final int TASKID_FIELD_NUMBER = 5;
+    private int taskId_;
+    public boolean hasTaskId() {
+      return ((bitField0_ & 0x00000010) == 0x00000010);
+    }
+    public int getTaskId() {
+      return taskId_;
+    }
+    
+    // optional int32 cooldownMinutes = 6;
+    public static final int COOLDOWNMINUTES_FIELD_NUMBER = 6;
+    private int cooldownMinutes_;
+    public boolean hasCooldownMinutes() {
+      return ((bitField0_ & 0x00000020) == 0x00000020);
+    }
+    public int getCooldownMinutes() {
+      return cooldownMinutes_;
+    }
+    
+    // optional .proto.PersistentEventProto.EventType type = 7;
+    public static final int TYPE_FIELD_NUMBER = 7;
+    private com.lvl6.mobsters.noneventprotos.TaskProto.PersistentEventProto.EventType type_;
+    public boolean hasType() {
+      return ((bitField0_ & 0x00000040) == 0x00000040);
+    }
+    public com.lvl6.mobsters.noneventprotos.TaskProto.PersistentEventProto.EventType getType() {
+      return type_;
+    }
+    
+    // optional .proto.MonsterProto.MonsterElement monsterElement = 8;
+    public static final int MONSTERELEMENT_FIELD_NUMBER = 8;
+    private com.lvl6.mobsters.noneventprotos.MonsterStuffProto.MonsterProto.MonsterElement monsterElement_;
+    public boolean hasMonsterElement() {
+      return ((bitField0_ & 0x00000080) == 0x00000080);
+    }
+    public com.lvl6.mobsters.noneventprotos.MonsterStuffProto.MonsterProto.MonsterElement getMonsterElement() {
+      return monsterElement_;
+    }
+    
+    private void initFields() {
+      eventId_ = 0;
+      dayOfWeek_ = com.lvl6.mobsters.noneventprotos.TaskProto.PersistentEventProto.DayOfWeek.SUNDAY;
+      startHour_ = 0;
+      eventDurationMinutes_ = 0;
+      taskId_ = 0;
+      cooldownMinutes_ = 0;
+      type_ = com.lvl6.mobsters.noneventprotos.TaskProto.PersistentEventProto.EventType.ENHANCE;
+      monsterElement_ = com.lvl6.mobsters.noneventprotos.MonsterStuffProto.MonsterProto.MonsterElement.FIRE;
+    }
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized != -1) return isInitialized == 1;
+      
+      memoizedIsInitialized = 1;
+      return true;
+    }
+    
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      getSerializedSize();
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        output.writeInt32(1, eventId_);
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        output.writeEnum(2, dayOfWeek_.getNumber());
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        output.writeInt32(3, startHour_);
+      }
+      if (((bitField0_ & 0x00000008) == 0x00000008)) {
+        output.writeInt32(4, eventDurationMinutes_);
+      }
+      if (((bitField0_ & 0x00000010) == 0x00000010)) {
+        output.writeInt32(5, taskId_);
+      }
+      if (((bitField0_ & 0x00000020) == 0x00000020)) {
+        output.writeInt32(6, cooldownMinutes_);
+      }
+      if (((bitField0_ & 0x00000040) == 0x00000040)) {
+        output.writeEnum(7, type_.getNumber());
+      }
+      if (((bitField0_ & 0x00000080) == 0x00000080)) {
+        output.writeEnum(8, monsterElement_.getNumber());
+      }
+      getUnknownFields().writeTo(output);
+    }
+    
+    private int memoizedSerializedSize = -1;
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+    
+      size = 0;
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(1, eventId_);
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeEnumSize(2, dayOfWeek_.getNumber());
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(3, startHour_);
+      }
+      if (((bitField0_ & 0x00000008) == 0x00000008)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(4, eventDurationMinutes_);
+      }
+      if (((bitField0_ & 0x00000010) == 0x00000010)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(5, taskId_);
+      }
+      if (((bitField0_ & 0x00000020) == 0x00000020)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(6, cooldownMinutes_);
+      }
+      if (((bitField0_ & 0x00000040) == 0x00000040)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeEnumSize(7, type_.getNumber());
+      }
+      if (((bitField0_ & 0x00000080) == 0x00000080)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeEnumSize(8, monsterElement_.getNumber());
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSerializedSize = size;
+      return size;
+    }
+    
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    protected java.lang.Object writeReplace()
+        throws java.io.ObjectStreamException {
+      return super.writeReplace();
+    }
+    
+    public static com.lvl6.mobsters.noneventprotos.TaskProto.PersistentEventProto parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data).buildParsed();
+    }
+    public static com.lvl6.mobsters.noneventprotos.TaskProto.PersistentEventProto parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data, extensionRegistry)
+               .buildParsed();
+    }
+    public static com.lvl6.mobsters.noneventprotos.TaskProto.PersistentEventProto parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data).buildParsed();
+    }
+    public static com.lvl6.mobsters.noneventprotos.TaskProto.PersistentEventProto parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data, extensionRegistry)
+               .buildParsed();
+    }
+    public static com.lvl6.mobsters.noneventprotos.TaskProto.PersistentEventProto parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input).buildParsed();
+    }
+    public static com.lvl6.mobsters.noneventprotos.TaskProto.PersistentEventProto parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input, extensionRegistry)
+               .buildParsed();
+    }
+    public static com.lvl6.mobsters.noneventprotos.TaskProto.PersistentEventProto parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      Builder builder = newBuilder();
+      if (builder.mergeDelimitedFrom(input)) {
+        return builder.buildParsed();
+      } else {
+        return null;
+      }
+    }
+    public static com.lvl6.mobsters.noneventprotos.TaskProto.PersistentEventProto parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      Builder builder = newBuilder();
+      if (builder.mergeDelimitedFrom(input, extensionRegistry)) {
+        return builder.buildParsed();
+      } else {
+        return null;
+      }
+    }
+    public static com.lvl6.mobsters.noneventprotos.TaskProto.PersistentEventProto parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input).buildParsed();
+    }
+    public static com.lvl6.mobsters.noneventprotos.TaskProto.PersistentEventProto parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input, extensionRegistry)
+               .buildParsed();
+    }
+    
+    public static Builder newBuilder() { return Builder.create(); }
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder(com.lvl6.mobsters.noneventprotos.TaskProto.PersistentEventProto prototype) {
+      return newBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() { return newBuilder(this); }
+    
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder>
+       implements com.lvl6.mobsters.noneventprotos.TaskProto.PersistentEventProtoOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.lvl6.mobsters.noneventprotos.TaskProto.internal_static_proto_PersistentEventProto_descriptor;
+      }
+      
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.lvl6.mobsters.noneventprotos.TaskProto.internal_static_proto_PersistentEventProto_fieldAccessorTable;
+      }
+      
+      // Construct using com.lvl6.mobsters.noneventprotos.TaskProto.PersistentEventProto.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+      
+      private Builder(BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+        }
+      }
+      private static Builder create() {
+        return new Builder();
+      }
+      
+      public Builder clear() {
+        super.clear();
+        eventId_ = 0;
+        bitField0_ = (bitField0_ & ~0x00000001);
+        dayOfWeek_ = com.lvl6.mobsters.noneventprotos.TaskProto.PersistentEventProto.DayOfWeek.SUNDAY;
+        bitField0_ = (bitField0_ & ~0x00000002);
+        startHour_ = 0;
+        bitField0_ = (bitField0_ & ~0x00000004);
+        eventDurationMinutes_ = 0;
+        bitField0_ = (bitField0_ & ~0x00000008);
+        taskId_ = 0;
+        bitField0_ = (bitField0_ & ~0x00000010);
+        cooldownMinutes_ = 0;
+        bitField0_ = (bitField0_ & ~0x00000020);
+        type_ = com.lvl6.mobsters.noneventprotos.TaskProto.PersistentEventProto.EventType.ENHANCE;
+        bitField0_ = (bitField0_ & ~0x00000040);
+        monsterElement_ = com.lvl6.mobsters.noneventprotos.MonsterStuffProto.MonsterProto.MonsterElement.FIRE;
+        bitField0_ = (bitField0_ & ~0x00000080);
+        return this;
+      }
+      
+      public Builder clone() {
+        return create().mergeFrom(buildPartial());
+      }
+      
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.lvl6.mobsters.noneventprotos.TaskProto.PersistentEventProto.getDescriptor();
+      }
+      
+      public com.lvl6.mobsters.noneventprotos.TaskProto.PersistentEventProto getDefaultInstanceForType() {
+        return com.lvl6.mobsters.noneventprotos.TaskProto.PersistentEventProto.getDefaultInstance();
+      }
+      
+      public com.lvl6.mobsters.noneventprotos.TaskProto.PersistentEventProto build() {
+        com.lvl6.mobsters.noneventprotos.TaskProto.PersistentEventProto result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+      
+      private com.lvl6.mobsters.noneventprotos.TaskProto.PersistentEventProto buildParsed()
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        com.lvl6.mobsters.noneventprotos.TaskProto.PersistentEventProto result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(
+            result).asInvalidProtocolBufferException();
+        }
+        return result;
+      }
+      
+      public com.lvl6.mobsters.noneventprotos.TaskProto.PersistentEventProto buildPartial() {
+        com.lvl6.mobsters.noneventprotos.TaskProto.PersistentEventProto result = new com.lvl6.mobsters.noneventprotos.TaskProto.PersistentEventProto(this);
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
+          to_bitField0_ |= 0x00000001;
+        }
+        result.eventId_ = eventId_;
+        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
+          to_bitField0_ |= 0x00000002;
+        }
+        result.dayOfWeek_ = dayOfWeek_;
+        if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
+          to_bitField0_ |= 0x00000004;
+        }
+        result.startHour_ = startHour_;
+        if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
+          to_bitField0_ |= 0x00000008;
+        }
+        result.eventDurationMinutes_ = eventDurationMinutes_;
+        if (((from_bitField0_ & 0x00000010) == 0x00000010)) {
+          to_bitField0_ |= 0x00000010;
+        }
+        result.taskId_ = taskId_;
+        if (((from_bitField0_ & 0x00000020) == 0x00000020)) {
+          to_bitField0_ |= 0x00000020;
+        }
+        result.cooldownMinutes_ = cooldownMinutes_;
+        if (((from_bitField0_ & 0x00000040) == 0x00000040)) {
+          to_bitField0_ |= 0x00000040;
+        }
+        result.type_ = type_;
+        if (((from_bitField0_ & 0x00000080) == 0x00000080)) {
+          to_bitField0_ |= 0x00000080;
+        }
+        result.monsterElement_ = monsterElement_;
+        result.bitField0_ = to_bitField0_;
+        onBuilt();
+        return result;
+      }
+      
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.lvl6.mobsters.noneventprotos.TaskProto.PersistentEventProto) {
+          return mergeFrom((com.lvl6.mobsters.noneventprotos.TaskProto.PersistentEventProto)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+      
+      public Builder mergeFrom(com.lvl6.mobsters.noneventprotos.TaskProto.PersistentEventProto other) {
+        if (other == com.lvl6.mobsters.noneventprotos.TaskProto.PersistentEventProto.getDefaultInstance()) return this;
+        if (other.hasEventId()) {
+          setEventId(other.getEventId());
+        }
+        if (other.hasDayOfWeek()) {
+          setDayOfWeek(other.getDayOfWeek());
+        }
+        if (other.hasStartHour()) {
+          setStartHour(other.getStartHour());
+        }
+        if (other.hasEventDurationMinutes()) {
+          setEventDurationMinutes(other.getEventDurationMinutes());
+        }
+        if (other.hasTaskId()) {
+          setTaskId(other.getTaskId());
+        }
+        if (other.hasCooldownMinutes()) {
+          setCooldownMinutes(other.getCooldownMinutes());
+        }
+        if (other.hasType()) {
+          setType(other.getType());
+        }
+        if (other.hasMonsterElement()) {
+          setMonsterElement(other.getMonsterElement());
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        return this;
+      }
+      
+      public final boolean isInitialized() {
+        return true;
+      }
+      
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder(
+            this.getUnknownFields());
+        while (true) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              this.setUnknownFields(unknownFields.build());
+              onChanged();
+              return this;
+            default: {
+              if (!parseUnknownField(input, unknownFields,
+                                     extensionRegistry, tag)) {
+                this.setUnknownFields(unknownFields.build());
+                onChanged();
+                return this;
+              }
+              break;
+            }
+            case 8: {
+              bitField0_ |= 0x00000001;
+              eventId_ = input.readInt32();
+              break;
+            }
+            case 16: {
+              int rawValue = input.readEnum();
+              com.lvl6.mobsters.noneventprotos.TaskProto.PersistentEventProto.DayOfWeek value = com.lvl6.mobsters.noneventprotos.TaskProto.PersistentEventProto.DayOfWeek.valueOf(rawValue);
+              if (value == null) {
+                unknownFields.mergeVarintField(2, rawValue);
+              } else {
+                bitField0_ |= 0x00000002;
+                dayOfWeek_ = value;
+              }
+              break;
+            }
+            case 24: {
+              bitField0_ |= 0x00000004;
+              startHour_ = input.readInt32();
+              break;
+            }
+            case 32: {
+              bitField0_ |= 0x00000008;
+              eventDurationMinutes_ = input.readInt32();
+              break;
+            }
+            case 40: {
+              bitField0_ |= 0x00000010;
+              taskId_ = input.readInt32();
+              break;
+            }
+            case 48: {
+              bitField0_ |= 0x00000020;
+              cooldownMinutes_ = input.readInt32();
+              break;
+            }
+            case 56: {
+              int rawValue = input.readEnum();
+              com.lvl6.mobsters.noneventprotos.TaskProto.PersistentEventProto.EventType value = com.lvl6.mobsters.noneventprotos.TaskProto.PersistentEventProto.EventType.valueOf(rawValue);
+              if (value == null) {
+                unknownFields.mergeVarintField(7, rawValue);
+              } else {
+                bitField0_ |= 0x00000040;
+                type_ = value;
+              }
+              break;
+            }
+            case 64: {
+              int rawValue = input.readEnum();
+              com.lvl6.mobsters.noneventprotos.MonsterStuffProto.MonsterProto.MonsterElement value = com.lvl6.mobsters.noneventprotos.MonsterStuffProto.MonsterProto.MonsterElement.valueOf(rawValue);
+              if (value == null) {
+                unknownFields.mergeVarintField(8, rawValue);
+              } else {
+                bitField0_ |= 0x00000080;
+                monsterElement_ = value;
+              }
+              break;
+            }
+          }
+        }
+      }
+      
+      private int bitField0_;
+      
+      // optional int32 eventId = 1;
+      private int eventId_ ;
+      public boolean hasEventId() {
+        return ((bitField0_ & 0x00000001) == 0x00000001);
+      }
+      public int getEventId() {
+        return eventId_;
+      }
+      public Builder setEventId(int value) {
+        bitField0_ |= 0x00000001;
+        eventId_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearEventId() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        eventId_ = 0;
+        onChanged();
+        return this;
+      }
+      
+      // optional .proto.PersistentEventProto.DayOfWeek dayOfWeek = 2;
+      private com.lvl6.mobsters.noneventprotos.TaskProto.PersistentEventProto.DayOfWeek dayOfWeek_ = com.lvl6.mobsters.noneventprotos.TaskProto.PersistentEventProto.DayOfWeek.SUNDAY;
+      public boolean hasDayOfWeek() {
+        return ((bitField0_ & 0x00000002) == 0x00000002);
+      }
+      public com.lvl6.mobsters.noneventprotos.TaskProto.PersistentEventProto.DayOfWeek getDayOfWeek() {
+        return dayOfWeek_;
+      }
+      public Builder setDayOfWeek(com.lvl6.mobsters.noneventprotos.TaskProto.PersistentEventProto.DayOfWeek value) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        bitField0_ |= 0x00000002;
+        dayOfWeek_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearDayOfWeek() {
+        bitField0_ = (bitField0_ & ~0x00000002);
+        dayOfWeek_ = com.lvl6.mobsters.noneventprotos.TaskProto.PersistentEventProto.DayOfWeek.SUNDAY;
+        onChanged();
+        return this;
+      }
+      
+      // optional int32 startHour = 3;
+      private int startHour_ ;
+      public boolean hasStartHour() {
+        return ((bitField0_ & 0x00000004) == 0x00000004);
+      }
+      public int getStartHour() {
+        return startHour_;
+      }
+      public Builder setStartHour(int value) {
+        bitField0_ |= 0x00000004;
+        startHour_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearStartHour() {
+        bitField0_ = (bitField0_ & ~0x00000004);
+        startHour_ = 0;
+        onChanged();
+        return this;
+      }
+      
+      // optional int32 eventDurationMinutes = 4;
+      private int eventDurationMinutes_ ;
+      public boolean hasEventDurationMinutes() {
+        return ((bitField0_ & 0x00000008) == 0x00000008);
+      }
+      public int getEventDurationMinutes() {
+        return eventDurationMinutes_;
+      }
+      public Builder setEventDurationMinutes(int value) {
+        bitField0_ |= 0x00000008;
+        eventDurationMinutes_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearEventDurationMinutes() {
+        bitField0_ = (bitField0_ & ~0x00000008);
+        eventDurationMinutes_ = 0;
+        onChanged();
+        return this;
+      }
+      
+      // optional int32 taskId = 5;
+      private int taskId_ ;
+      public boolean hasTaskId() {
+        return ((bitField0_ & 0x00000010) == 0x00000010);
+      }
+      public int getTaskId() {
+        return taskId_;
+      }
+      public Builder setTaskId(int value) {
+        bitField0_ |= 0x00000010;
+        taskId_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearTaskId() {
+        bitField0_ = (bitField0_ & ~0x00000010);
+        taskId_ = 0;
+        onChanged();
+        return this;
+      }
+      
+      // optional int32 cooldownMinutes = 6;
+      private int cooldownMinutes_ ;
+      public boolean hasCooldownMinutes() {
+        return ((bitField0_ & 0x00000020) == 0x00000020);
+      }
+      public int getCooldownMinutes() {
+        return cooldownMinutes_;
+      }
+      public Builder setCooldownMinutes(int value) {
+        bitField0_ |= 0x00000020;
+        cooldownMinutes_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearCooldownMinutes() {
+        bitField0_ = (bitField0_ & ~0x00000020);
+        cooldownMinutes_ = 0;
+        onChanged();
+        return this;
+      }
+      
+      // optional .proto.PersistentEventProto.EventType type = 7;
+      private com.lvl6.mobsters.noneventprotos.TaskProto.PersistentEventProto.EventType type_ = com.lvl6.mobsters.noneventprotos.TaskProto.PersistentEventProto.EventType.ENHANCE;
+      public boolean hasType() {
+        return ((bitField0_ & 0x00000040) == 0x00000040);
+      }
+      public com.lvl6.mobsters.noneventprotos.TaskProto.PersistentEventProto.EventType getType() {
+        return type_;
+      }
+      public Builder setType(com.lvl6.mobsters.noneventprotos.TaskProto.PersistentEventProto.EventType value) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        bitField0_ |= 0x00000040;
+        type_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearType() {
+        bitField0_ = (bitField0_ & ~0x00000040);
+        type_ = com.lvl6.mobsters.noneventprotos.TaskProto.PersistentEventProto.EventType.ENHANCE;
+        onChanged();
+        return this;
+      }
+      
+      // optional .proto.MonsterProto.MonsterElement monsterElement = 8;
+      private com.lvl6.mobsters.noneventprotos.MonsterStuffProto.MonsterProto.MonsterElement monsterElement_ = com.lvl6.mobsters.noneventprotos.MonsterStuffProto.MonsterProto.MonsterElement.FIRE;
+      public boolean hasMonsterElement() {
+        return ((bitField0_ & 0x00000080) == 0x00000080);
+      }
+      public com.lvl6.mobsters.noneventprotos.MonsterStuffProto.MonsterProto.MonsterElement getMonsterElement() {
+        return monsterElement_;
+      }
+      public Builder setMonsterElement(com.lvl6.mobsters.noneventprotos.MonsterStuffProto.MonsterProto.MonsterElement value) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        bitField0_ |= 0x00000080;
+        monsterElement_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearMonsterElement() {
+        bitField0_ = (bitField0_ & ~0x00000080);
+        monsterElement_ = com.lvl6.mobsters.noneventprotos.MonsterStuffProto.MonsterProto.MonsterElement.FIRE;
+        onChanged();
+        return this;
+      }
+      
+      // @@protoc_insertion_point(builder_scope:proto.PersistentEventProto)
+    }
+    
+    static {
+      defaultInstance = new PersistentEventProto(true);
+      defaultInstance.initFields();
+    }
+    
+    // @@protoc_insertion_point(class_scope:proto.PersistentEventProto)
+  }
+  
   private static com.google.protobuf.Descriptors.Descriptor
     internal_static_proto_FullTaskProto_descriptor;
   private static
@@ -2586,6 +3503,11 @@ public final class TaskProto {
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_proto_TaskStageMonsterProto_fieldAccessorTable;
+  private static com.google.protobuf.Descriptors.Descriptor
+    internal_static_proto_PersistentEventProto_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_proto_PersistentEventProto_fieldAccessorTable;
   
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -2610,8 +3532,19 @@ public final class TaskProto {
       "erType\022\021\n\texpReward\030\003 \001(\005\022\022\n\ncashReward\030" +
       "\004 \001(\005\022\032\n\022puzzlePieceDropped\030\005 \001(\010\022\r\n\005lev" +
       "el\030\006 \001(\005\"3\n\013MonsterType\022\013\n\007REGULAR\020\001\022\r\n\t" +
-      "MINI_BOSS\020\002\022\010\n\004BOSS\020\003B-\n com.lvl6.mobste" +
-      "rs.noneventprotosB\tTaskProto"
+      "MINI_BOSS\020\002\022\010\n\004BOSS\020\003\"\276\003\n\024PersistentEven" +
+      "tProto\022\017\n\007eventId\030\001 \001(\005\0228\n\tdayOfWeek\030\002 \001" +
+      "(\0162%.proto.PersistentEventProto.DayOfWee" +
+      "k\022\021\n\tstartHour\030\003 \001(\005\022\034\n\024eventDurationMin" +
+      "utes\030\004 \001(\005\022\016\n\006taskId\030\005 \001(\005\022\027\n\017cooldownMi",
+      "nutes\030\006 \001(\005\0223\n\004type\030\007 \001(\0162%.proto.Persis" +
+      "tentEventProto.EventType\022:\n\016monsterEleme" +
+      "nt\030\010 \001(\0162\".proto.MonsterProto.MonsterEle" +
+      "ment\"g\n\tDayOfWeek\022\n\n\006SUNDAY\020\001\022\n\n\006MONDAY\020" +
+      "\002\022\013\n\007TUESDAY\020\003\022\r\n\tWEDNESDAY\020\004\022\014\n\010THURSDA" +
+      "Y\020\005\022\n\n\006FRIDAY\020\006\022\014\n\010SATURDAY\020\007\"\'\n\tEventTy" +
+      "pe\022\013\n\007ENHANCE\020\001\022\r\n\tEVOLUTION\020\002B-\n com.lv" +
+      "l6.mobsters.noneventprotosB\tTaskProto"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -2650,6 +3583,14 @@ public final class TaskProto {
               new java.lang.String[] { "MonsterId", "MonsterType", "ExpReward", "CashReward", "PuzzlePieceDropped", "Level", },
               com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageMonsterProto.class,
               com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageMonsterProto.Builder.class);
+          internal_static_proto_PersistentEventProto_descriptor =
+            getDescriptor().getMessageTypes().get(4);
+          internal_static_proto_PersistentEventProto_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_proto_PersistentEventProto_descriptor,
+              new java.lang.String[] { "EventId", "DayOfWeek", "StartHour", "EventDurationMinutes", "TaskId", "CooldownMinutes", "Type", "MonsterElement", },
+              com.lvl6.mobsters.noneventprotos.TaskProto.PersistentEventProto.class,
+              com.lvl6.mobsters.noneventprotos.TaskProto.PersistentEventProto.Builder.class);
           return null;
         }
       };

@@ -16,7 +16,7 @@ import com.dekayd.astyanax.cassandra.entitymanager.Index;
 public class Monster extends BasePersistentObject<Integer> implements Serializable {
 
 
-	private static final long serialVersionUID = 683047278565720331L;
+	private static final long serialVersionUID = 281494424539297244L;
 
 	@Id
 	protected Integer id = 0;
@@ -111,6 +111,9 @@ public class Monster extends BasePersistentObject<Integer> implements Serializab
 	@Column(name="num_catalysts_required")
 	protected int numCatalystsRequired = 1;
 	
+	//how much exp this monster is worth if used to enhance a monster
+	@Column(name="enhancing_feeder_exp")
+	protected int enhancingFeederExp = 0;
 	
 
 	public Integer getId() {
@@ -345,6 +348,14 @@ public class Monster extends BasePersistentObject<Integer> implements Serializab
 		this.numCatalystsRequired = numCatalystsRequired;
 	}
 
+	public int getEnhancingFeederExp() {
+		return enhancingFeederExp;
+	}
+
+	public void setEnhancingFeederExp(int enhancingFeederExp) {
+		this.enhancingFeederExp = enhancingFeederExp;
+	}
+
 	@Override
 	public String toString() {
 		return "Monster [id=" + id + ", name=" + name + ", monsterGroup="
@@ -367,7 +378,8 @@ public class Monster extends BasePersistentObject<Integer> implements Serializab
 				+ ", description=" + description
 				+ ", evolutionCatalystMonsterId=" + evolutionCatalystMonsterId
 				+ ", minutesToEvolve=" + minutesToEvolve
-				+ ", numCatalystsRequired=" + numCatalystsRequired + "]";
+				+ ", numCatalystsRequired=" + numCatalystsRequired
+				+ ", enhancingFeederExp=" + enhancingFeederExp + "]";
 	}
 
 }

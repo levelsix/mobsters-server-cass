@@ -45,7 +45,7 @@ message MonsterProto {
 	//optional int32 minutesToEvolve = 26; //defined above
 	//optional int32 numCatalystMonstersRequired = 27; //defined above
 	//optional int32 elementSixDmg = 28; //defined above
-	
+	optional int32 enhancingFeederExp = 29;
 	
 	
 	enum MonsterQuality {

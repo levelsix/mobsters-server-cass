@@ -30,6 +30,7 @@ import com.lvl6.mobsters.noneventprotos.StructureProto.ResourceStorageProto;
 import com.lvl6.mobsters.noneventprotos.StructureProto.StructureInfoProto;
 import com.lvl6.mobsters.noneventprotos.StructureProto.TownHallProto;
 import com.lvl6.mobsters.noneventprotos.TaskProto.FullTaskProto;
+import com.lvl6.mobsters.noneventprotos.TaskProto.PersistentEventProto;
 import com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageMonsterProto;
 import com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageProto;
 import com.lvl6.mobsters.noneventprotos.UserProto.FullUserProto;
@@ -49,6 +50,7 @@ import com.lvl6.mobsters.po.staticdata.BoosterItem;
 import com.lvl6.mobsters.po.staticdata.BoosterPack;
 import com.lvl6.mobsters.po.staticdata.City;
 import com.lvl6.mobsters.po.staticdata.CityElement;
+import com.lvl6.mobsters.po.staticdata.EventPersistent;
 import com.lvl6.mobsters.po.staticdata.ExpansionCost;
 import com.lvl6.mobsters.po.staticdata.Monster;
 import com.lvl6.mobsters.po.staticdata.Quest;
@@ -147,6 +149,9 @@ public interface CreateNoneventProtoUtil {
 			TaskStageForUser tsfu);
 	
 	public abstract FullTaskProto createFullTaskProtoFromTask(Task task);
+	
+	public abstract PersistentEventProto createPersistentEventProtoFromEvent(
+	  		EventPersistent event);
 	
 	//USER PROTO****************************************************************
 	public abstract FullUserProto createFullUserProtoFromUser(User u);

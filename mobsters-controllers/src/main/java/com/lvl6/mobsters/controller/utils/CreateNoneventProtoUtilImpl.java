@@ -45,6 +45,9 @@ import com.lvl6.mobsters.noneventprotos.StructureProto.StructureInfoProto;
 import com.lvl6.mobsters.noneventprotos.StructureProto.StructureInfoProto.StructType;
 import com.lvl6.mobsters.noneventprotos.StructureProto.TownHallProto;
 import com.lvl6.mobsters.noneventprotos.TaskProto.FullTaskProto;
+import com.lvl6.mobsters.noneventprotos.TaskProto.PersistentEventProto;
+import com.lvl6.mobsters.noneventprotos.TaskProto.PersistentEventProto.DayOfWeek;
+import com.lvl6.mobsters.noneventprotos.TaskProto.PersistentEventProto.EventType;
 import com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageMonsterProto;
 import com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageMonsterProto.MonsterType;
 import com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageProto;
@@ -65,6 +68,7 @@ import com.lvl6.mobsters.po.staticdata.BoosterItem;
 import com.lvl6.mobsters.po.staticdata.BoosterPack;
 import com.lvl6.mobsters.po.staticdata.City;
 import com.lvl6.mobsters.po.staticdata.CityElement;
+import com.lvl6.mobsters.po.staticdata.EventPersistent;
 import com.lvl6.mobsters.po.staticdata.ExpansionCost;
 import com.lvl6.mobsters.po.staticdata.Monster;
 import com.lvl6.mobsters.po.staticdata.Quest;
@@ -460,7 +464,8 @@ public class CreateNoneventProtoUtilImpl implements CreateNoneventProtoUtil {
 	    
 	    int num = aMonster.getNumCatalystsRequired();
 	    mpb.setNumCatalystMonstersRequired(num);
-
+	    int enhancingFeederExp = aMonster.getEnhancingFeederExp();
+	    mpb.setEnhancingFeederExp(enhancingFeederExp);
 		return mpb.build();
 	}
 	
@@ -897,6 +902,50 @@ public class CreateNoneventProtoUtilImpl implements CreateNoneventProtoUtil {
 		}
 
 		return builder.build();
+	}
+	
+	@Override
+	public PersistentEventProto createPersistentEventProtoFromEvent(
+			EventPersistent event) {
+		PersistentEventProto.Builder pepb = PersistentEventProto.newBuilder();
+
+		int eventId = event.getId();
+		String dayOfWeekStr = event.getDayOfWeek();
+		int startHour = event.getStartHour();
+		int eventDurationMinutes = event.getEventDurationMinutes();
+		int taskId = event.getTaskId();
+		int cooldownMinutes = event.getCoolDownMinutes();
+		String eventTypeStr = event.getEventType();
+		String monsterElem = event.getMonsterElement();
+
+		pepb.setEventId(eventId);
+		try {
+			DayOfWeek dayOfWeek = DayOfWeek.valueOf(dayOfWeekStr);
+			pepb.setDayOfWeek(dayOfWeek);
+		} catch (Exception e) {
+			log.error("can't create enum type. dayOfWeek=" + dayOfWeekStr + ".\t event=" + event);
+		}
+
+		pepb.setStartHour(startHour);
+		pepb.setEventDurationMinutes(eventDurationMinutes);
+		pepb.setTaskId(taskId);
+		pepb.setCooldownMinutes(cooldownMinutes);
+
+		try {
+			EventType typ = EventType.valueOf(eventTypeStr);
+			pepb.setType(typ);
+		} catch (Exception e) {
+			log.error("can't create enum type. eventType=" + eventTypeStr + ".\t event=" + event);
+		}
+		try {
+			MonsterElement elem = MonsterElement.valueOf(monsterElem);
+			pepb.setMonsterElement(elem);
+		} catch (Exception e) {
+			log.error("can't create enum type. monster elem=" + monsterElem + 
+					".\t event=" + event);
+		}
+
+		return pepb.build();
 	}
 
 	//USER PROTO****************************************************************
