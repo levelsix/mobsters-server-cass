@@ -240,6 +240,7 @@ public final class MonsterStuffProto {
       WATER(2, 3),
       LIGHTNING(3, 4),
       DARKNESS(4, 5),
+      ROCK(5, 6),
       ;
       
       public static final int FIRE_VALUE = 1;
@@ -247,6 +248,7 @@ public final class MonsterStuffProto {
       public static final int WATER_VALUE = 3;
       public static final int LIGHTNING_VALUE = 4;
       public static final int DARKNESS_VALUE = 5;
+      public static final int ROCK_VALUE = 6;
       
       
       public final int getNumber() { return value; }
@@ -258,6 +260,7 @@ public final class MonsterStuffProto {
           case 3: return WATER;
           case 4: return LIGHTNING;
           case 5: return DARKNESS;
+          case 6: return ROCK;
           default: return null;
         }
       }
@@ -288,7 +291,7 @@ public final class MonsterStuffProto {
       }
       
       private static final MonsterElement[] VALUES = {
-        FIRE, GRASS, WATER, LIGHTNING, DARKNESS, 
+        FIRE, GRASS, WATER, LIGHTNING, DARKNESS, ROCK, 
       };
       
       public static MonsterElement valueOf(
@@ -7349,7 +7352,7 @@ public final class MonsterStuffProto {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\022MonsterStuff.proto\022\005proto\"\246\007\n\014MonsterP" +
+      "\n\022MonsterStuff.proto\022\005proto\"\260\007\n\014MonsterP" +
       "roto\022\021\n\tmonsterId\030\001 \001(\005\022\014\n\004name\030\002 \001(\t\022\024\n" +
       "\014monsterGroup\030\003 \001(\t\0223\n\007quality\030\004 \001(\0162\".p" +
       "roto.MonsterProto.MonsterQuality\022\026\n\016evol" +
@@ -7371,35 +7374,35 @@ public final class MonsterStuffProto {
       "\022\023\n\013description\030\030 \001(\t\022\032\n\022enhancingFeeder",
       "Exp\030\035 \001(\005\"J\n\016MonsterQuality\022\n\n\006COMMON\020\001\022" +
       "\010\n\004RARE\020\002\022\t\n\005ULTRA\020\003\022\010\n\004EPIC\020\004\022\r\n\tLEGEND" +
-      "ARY\020\005\"M\n\016MonsterElement\022\010\n\004FIRE\020\001\022\t\n\005GRA" +
+      "ARY\020\005\"W\n\016MonsterElement\022\010\n\004FIRE\020\001\022\t\n\005GRA" +
       "SS\020\002\022\t\n\005WATER\020\003\022\r\n\tLIGHTNING\020\004\022\014\n\010DARKNE" +
-      "SS\020\005\"\351\001\n\024FullUserMonsterProto\022\027\n\017userMon" +
-      "sterUuid\030\001 \001(\t\022\020\n\010userUuid\030\002 \001(\t\022\021\n\tmons" +
-      "terId\030\003 \001(\005\022\022\n\ncurrentExp\030\004 \001(\005\022\022\n\ncurre" +
-      "ntLvl\030\005 \001(\005\022\025\n\rcurrentHealth\030\006 \001(\005\022\021\n\tnu" +
-      "mPieces\030\007 \001(\005\022\022\n\nisComplete\030\010 \001(\010\022\030\n\020com" +
-      "bineStartTime\030\t \001(\003\022\023\n\013teamSlotNum\030\n \001(\005",
-      "\"\257\001\n\027UserMonsterHealingProto\022\020\n\010userUuid" +
-      "\030\001 \001(\t\022\027\n\017userMonsterUuid\030\002 \001(\t\022\037\n\027expec" +
-      "tedStartTimeMillis\030\003 \001(\003\022\036\n\026userHospital" +
-      "StructUuid\030\004 \001(\t\022\026\n\016healthProgress\030\005 \001(\005" +
-      "\022\020\n\010priority\030\006 \001(\005\"O\n\035UserMonsterCurrent" +
-      "HealthProto\022\027\n\017userMonsterUuid\030\001 \001(\t\022\025\n\r" +
-      "currentHealth\030\002 \001(\005\"\220\001\n\024UserEnhancementP" +
-      "roto\022\020\n\010userUuid\030\001 \001(\t\0224\n\013baseMonster\030\002 " +
-      "\001(\0132\037.proto.UserEnhancementItemProto\0220\n\007" +
-      "feeders\030\003 \003(\0132\037.proto.UserEnhancementIte",
-      "mProto\"T\n\030UserEnhancementItemProto\022\027\n\017us" +
-      "erMonsterUuid\030\001 \001(\t\022\037\n\027expectedStartTime" +
-      "Millis\030\002 \001(\003\"h\n\032UserMonsterCurrentExpPro" +
-      "to\022\027\n\017userMonsterUuid\030\001 \001(\t\022\032\n\022expectedE" +
-      "xperience\030\002 \001(\005\022\025\n\rexpectedLevel\030\003 \001(\005\"J" +
-      "\n\033MinimumUserMonsterSellProto\022\027\n\017userMon" +
-      "sterUuid\030\001 \001(\t\022\022\n\ncashAmount\030\002 \001(\005\"a\n\033Us" +
-      "erCurrentMonsterTeamProto\022\020\n\010userUuid\030\001 " +
-      "\001(\t\0220\n\013currentTeam\030\002 \003(\0132\033.proto.FullUse" +
-      "rMonsterProtoB5\n com.lvl6.mobsters.nonev",
-      "entprotosB\021MonsterStuffProto"
+      "SS\020\005\022\010\n\004ROCK\020\006\"\351\001\n\024FullUserMonsterProto\022" +
+      "\027\n\017userMonsterUuid\030\001 \001(\t\022\020\n\010userUuid\030\002 \001" +
+      "(\t\022\021\n\tmonsterId\030\003 \001(\005\022\022\n\ncurrentExp\030\004 \001(" +
+      "\005\022\022\n\ncurrentLvl\030\005 \001(\005\022\025\n\rcurrentHealth\030\006" +
+      " \001(\005\022\021\n\tnumPieces\030\007 \001(\005\022\022\n\nisComplete\030\010 " +
+      "\001(\010\022\030\n\020combineStartTime\030\t \001(\003\022\023\n\013teamSlo",
+      "tNum\030\n \001(\005\"\257\001\n\027UserMonsterHealingProto\022\020" +
+      "\n\010userUuid\030\001 \001(\t\022\027\n\017userMonsterUuid\030\002 \001(" +
+      "\t\022\037\n\027expectedStartTimeMillis\030\003 \001(\003\022\036\n\026us" +
+      "erHospitalStructUuid\030\004 \001(\t\022\026\n\016healthProg" +
+      "ress\030\005 \001(\005\022\020\n\010priority\030\006 \001(\005\"O\n\035UserMons" +
+      "terCurrentHealthProto\022\027\n\017userMonsterUuid" +
+      "\030\001 \001(\t\022\025\n\rcurrentHealth\030\002 \001(\005\"\220\001\n\024UserEn" +
+      "hancementProto\022\020\n\010userUuid\030\001 \001(\t\0224\n\013base" +
+      "Monster\030\002 \001(\0132\037.proto.UserEnhancementIte" +
+      "mProto\0220\n\007feeders\030\003 \003(\0132\037.proto.UserEnha",
+      "ncementItemProto\"T\n\030UserEnhancementItemP" +
+      "roto\022\027\n\017userMonsterUuid\030\001 \001(\t\022\037\n\027expecte" +
+      "dStartTimeMillis\030\002 \001(\003\"h\n\032UserMonsterCur" +
+      "rentExpProto\022\027\n\017userMonsterUuid\030\001 \001(\t\022\032\n" +
+      "\022expectedExperience\030\002 \001(\005\022\025\n\rexpectedLev" +
+      "el\030\003 \001(\005\"J\n\033MinimumUserMonsterSellProto\022" +
+      "\027\n\017userMonsterUuid\030\001 \001(\t\022\022\n\ncashAmount\030\002" +
+      " \001(\005\"a\n\033UserCurrentMonsterTeamProto\022\020\n\010u" +
+      "serUuid\030\001 \001(\t\0220\n\013currentTeam\030\002 \003(\0132\033.pro" +
+      "to.FullUserMonsterProtoB5\n com.lvl6.mobs",
+      "ters.noneventprotosB\021MonsterStuffProto"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
