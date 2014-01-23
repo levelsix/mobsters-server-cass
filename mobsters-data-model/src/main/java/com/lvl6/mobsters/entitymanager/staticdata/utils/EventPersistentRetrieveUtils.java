@@ -3,6 +3,7 @@ package com.lvl6.mobsters.entitymanager.staticdata.utils;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import org.slf4j.Logger;
@@ -66,6 +67,27 @@ import com.lvl6.mobsters.utils.QueryConstructionUtil;
 		eventIdToEvent = new HashMap<Integer, EventPersistent>();
 		for(EventPersistent ep : list) {
 			Integer id= ep.getId();
+			
+			String dayOfWeek = ep.getDayOfWeek();
+			String newDayOfWeek = dayOfWeek.trim().toUpperCase(Locale.ENGLISH);
+			if (!dayOfWeek.equals(newDayOfWeek)) {
+				log.error("DayOfWeek incorrectly set for EventPersistent. event=" + ep);
+			}
+			ep.setDayOfWeek(newDayOfWeek);
+			
+			String eventType = ep.getEventType();
+			String newEventType = eventType.trim().toUpperCase();
+			if (!eventType.equals(newEventType)) {
+				log.error("EventType incorrectly set for EventPersistent. event=" + ep);
+			}
+			ep.setEventType(newEventType);
+			
+			String monsterElem = ep.getMonsterElement();
+			String newMonsterElem = monsterElem.trim().toUpperCase();
+			if (!monsterElem.equals(newMonsterElem)) {
+				log.error("MonsterElement incorrectly set for EventPersistent. event=" + ep);
+			}
+			
 			eventIdToEvent.put(id, ep);
 		}		
 	}

@@ -624,10 +624,14 @@ public class CreateNoneventProtoUtilImpl implements CreateNoneventProtoUtil {
 		builder.setIsComplete(userStruct.isComplete());
 		builder.setCoordinates(createCoordinateProtoFromCoordinatePair(userStruct.getCoordinates()));
 		
-		aStr = userStruct.getStructOrientation();
-		StructOrientation orientation = StructOrientation.valueOf(aStr);
-		if (null != orientation) {
-			builder.setOrientation(orientation);
+		try {
+			aStr = userStruct.getStructOrientation();
+			StructOrientation orientation = StructOrientation.valueOf(aStr);
+			if (null != orientation) {
+				builder.setOrientation(orientation);
+			}
+		} catch (Exception e) {
+			log.error("user struct orientation incorrectly set. userStruct=" + userStruct);
 		}
 		
 		if (userStruct.getPurchaseTime() != null) {
