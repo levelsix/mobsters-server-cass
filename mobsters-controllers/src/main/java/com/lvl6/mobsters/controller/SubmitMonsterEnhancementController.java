@@ -110,7 +110,7 @@ public class SubmitMonsterEnhancementController extends EventController {
 		//positive value, need to convert to negative when updating user
 		int gemsSpent = reqProto.getGemsSpent();
 		//positive means refund, negative means charge user
-		int cashChange = reqProto.getCashChange();
+		int oilChange = reqProto.getOilChange();
 		Date clientTime = new Date();
 
 		//uuid's are not strings, need to convert from string to uuid, vice versa
@@ -152,11 +152,11 @@ public class SubmitMonsterEnhancementController extends EventController {
 			//validate request
 			boolean validRequest = checkLegit(responseBuilder, aUser, userId, existingUserMonsters, 
 					alreadyEnhancing, alreadyHealing, deleteMap, updateMap, newMap,
-					gemsSpent, cashChange);
+					gemsSpent, oilChange);
 
 			boolean successful = false;
 			if (validRequest) {
-				successful = writeChangesToDb(aUser, userId, gemsSpent, cashChange,
+				successful = writeChangesToDb(aUser, userId, gemsSpent, oilChange,
 						deleteMap, updateMap, newMap, clientTime);
 			}
 
@@ -222,7 +222,7 @@ public class SubmitMonsterEnhancementController extends EventController {
 			Map<UUID, MonsterHealingForUser> alreadyHealing,
 			Map<UUID, UserEnhancementItemProto> deleteMap,
 			Map<UUID, UserEnhancementItemProto> updateMap,
-			Map<UUID, UserEnhancementItemProto> newMap, int gemsSpent, int cashChange) {
+			Map<UUID, UserEnhancementItemProto> newMap, int gemsSpent, int oilChange) {
 		if (null == u ) {
 			log.error("unexpected error: user is null. user=" + u + "\t deleteMap="+ deleteMap +
 					"\t updateMap=" + updateMap + "\t newMap=" + newMap);
@@ -258,11 +258,11 @@ public class SubmitMonsterEnhancementController extends EventController {
 		}
 
 		//CHECK MONEY
-		if (!hasEnoughGems(resBuilder, u, gemsSpent, cashChange, deleteMap, updateMap, newMap)) {
+		if (!hasEnoughGems(resBuilder, u, gemsSpent, oilChange, deleteMap, updateMap, newMap)) {
 			return false;
 		}
 
-		if (!hasEnoughCash(resBuilder, u, cashChange, deleteMap, updateMap, newMap)) {
+		if (!hasEnoughOil(resBuilder, u, oilChange, deleteMap, updateMap, newMap)) {
 			return false;
 		}
 
@@ -270,7 +270,7 @@ public class SubmitMonsterEnhancementController extends EventController {
 	}
 	
 	private boolean hasEnoughGems(Builder resBuilder, User u, int gemsSpent,
-			int cashChange, Map<UUID, UserEnhancementItemProto> deleteMap,
+			int oilChange, Map<UUID, UserEnhancementItemProto> deleteMap,
 			Map<UUID, UserEnhancementItemProto> updateMap,
 			Map<UUID, UserEnhancementItemProto> newMap) {
 		int userGems = u.getGems();
@@ -278,7 +278,7 @@ public class SubmitMonsterEnhancementController extends EventController {
 		if (userGems < gemsSpent) {
 			log.error("user error: user does not have enough gems. userGems=" + userGems +
 					"\t gemsSpent=" + gemsSpent + "\t deleteMap=" + deleteMap + "\t newMap=" +
-					newMap + "\t updateMap=" + updateMap + "\t cashChange=" + cashChange +
+					newMap + "\t updateMap=" + updateMap + "\t oilChange=" + oilChange +
 					"\t user=" + u);
 			resBuilder.setStatus(SubmitMonsterEnhancementStatus.FAIL_INSUFFICIENT_GEMS);
 			return false;
@@ -286,18 +286,18 @@ public class SubmitMonsterEnhancementController extends EventController {
 		return true;
 	}
 
-	private boolean hasEnoughCash(Builder resBuilder, User u, int cashChange,
+	private boolean hasEnoughOil(Builder resBuilder, User u, int oilChange,
 			Map<UUID, UserEnhancementItemProto> deleteMap,
 			Map<UUID, UserEnhancementItemProto> updateMap,
 			Map<UUID, UserEnhancementItemProto> newMap) {
-		int userCash = u.getCash(); 
-		//positive 'cashChange' means refund, negative means charge user
-		int cost = -1 * cashChange;
-		if (userCash < cost) {
-			log.error("user error: user does not have enough cash. userCash=" + userCash +
+		int userOil = u.getOil(); 
+		//positive 'oilChange' means refund, negative means charge user
+		int cost = -1 * oilChange;
+		if (userOil < cost) {
+			log.error("user error: user does not have enough oil. userOil=" + userOil +
 					"\t cost=" + cost + "\t deleteMap=" + deleteMap + "\t newMap=" +
 					newMap + "\t updateMap=" + updateMap + "\t user=" + u);
-			resBuilder.setStatus(SubmitMonsterEnhancementStatus.FAIL_INSUFFICIENT_CASH);
+			resBuilder.setStatus(SubmitMonsterEnhancementStatus.FAIL_INSUFFICIENT_OIL);
 			return false;
 		}
 		return true;
@@ -305,16 +305,16 @@ public class SubmitMonsterEnhancementController extends EventController {
 	
 
 	private boolean writeChangesToDb(User user, UUID uId, int gemsSpent,
-			int cashChange, Map<UUID, UserEnhancementItemProto> protoDeleteMap,
-			  Map<UUID, UserEnhancementItemProto> protoUpdateMap,
-			  Map<UUID, UserEnhancementItemProto> protoNewMap, Date clientTime) {
+			int oilChange, Map<UUID, UserEnhancementItemProto> protoDeleteMap,
+			Map<UUID, UserEnhancementItemProto> protoUpdateMap,
+			Map<UUID, UserEnhancementItemProto> protoNewMap, Date clientTime) {
 		try {
 			//CHARGE THE USER
 			int gemChange = -1 * gemsSpent;
 			//create history first
 			List<UserCurrencyHistory> uchList = createCurrencyHistory(user, clientTime,
-					cashChange, gemChange, protoDeleteMap, protoUpdateMap, protoUpdateMap);
-			int oilChange = 0;
+					oilChange, gemChange, protoDeleteMap, protoUpdateMap, protoUpdateMap);
+			int cashChange = 0;
 			getUserService().updateUserResources(user, gemChange, oilChange, cashChange);
 
 			
@@ -352,11 +352,11 @@ public class SubmitMonsterEnhancementController extends EventController {
 	}
 
 	private List<UserCurrencyHistory> createCurrencyHistory(User aUser, Date date,
-			int cashChange, int gemChange,
+			int oilChange, int gemChange,
 			Map<UUID, UserEnhancementItemProto> protoDeleteMap,
 			Map<UUID, UserEnhancementItemProto> protoUpdateMap,
 			Map<UUID, UserEnhancementItemProto> protoNewMap) {
-		String cashStr = MobstersDbTables.USER__CASH;
+		String oilStr = MobstersDbTables.USER__OIL;
 		String gemsStr = MobstersDbTables.USER__GEMS;
 		String reasonForChange = MobstersTableConstants.UCHRFC__ENHANCING;
 		StringBuilder sb = new StringBuilder();
@@ -388,7 +388,7 @@ public class SubmitMonsterEnhancementController extends EventController {
 
 		boolean saveToDb = false;
 		UserCurrencyHistory cash = getUserCurrencyHistoryService()
-				.createNewUserCurrencyHistory(aUser, date, cashStr, cashChange,
+				.createNewUserCurrencyHistory(aUser, date, oilStr, oilChange,
 						reasonForChange, details, saveToDb);
 		UserCurrencyHistory gems = getUserCurrencyHistoryService()
 				.createNewUserCurrencyHistory(aUser, date, gemsStr, gemChange,
