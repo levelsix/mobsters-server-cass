@@ -674,10 +674,10 @@ public class CreateNoneventProtoUtilImpl implements CreateNoneventProtoUtil {
 		}
 
 		aStr = s.getBuildResourceType();
-		ResourceType rt = ResourceType.valueOf(aStr);
-		if (null != rt) {
+		try {
+			ResourceType rt = ResourceType.valueOf(aStr);
 			builder.setBuildResourceType(rt);
-		} else {
+		} catch (Exception e) {
 			log.error("can't create enum type. resourceType=" + aStr + ". structure=" + s);
 		}
 
