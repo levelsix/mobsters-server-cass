@@ -45,7 +45,7 @@ public class MonsterHealingForUserServiceImpl implements MonsterHealingForUserSe
 
 	//RETRIEVING STUFF****************************************************************
 	@Override
-	public Map<UUID, MonsterHealingForUser> getMonstersHealingForUser(UUID userId) {
+	public Map<UUID, MonsterHealingForUser> getUserMonsterIdsToUserMonstersHealingForUser(UUID userId) {
 		log.debug("retrieving user monsters for userId " + userId);
 
 		//construct the search parameters
@@ -66,7 +66,7 @@ public class MonsterHealingForUserServiceImpl implements MonsterHealingForUserSe
 		Map<UUID, MonsterHealingForUser> userMonsterIdsToUserMonstersHealing =
 				new HashMap<UUID, MonsterHealingForUser>();
 		for (MonsterHealingForUser mefu : mefuList) {
-			UUID userMonsterId = mefu.getId();
+			UUID userMonsterId = mefu.getMonsterForUserId();
 			userMonsterIdsToUserMonstersHealing.put(userMonsterId, mefu);
 		}
 		
@@ -111,7 +111,7 @@ public class MonsterHealingForUserServiceImpl implements MonsterHealingForUserSe
 		Map<UUID, MonsterHealingForUser> userMonsterIdsToUserMonsters =
 				new HashMap<UUID, MonsterHealingForUser>();
 		for (MonsterHealingForUser mfu : mfuList) {
-			UUID userMonsterId = mfu.getId();
+			UUID userMonsterId = mfu.getMonsterForUserId();
 			userMonsterIdsToUserMonsters.put(userMonsterId, mfu);
 		}
 		

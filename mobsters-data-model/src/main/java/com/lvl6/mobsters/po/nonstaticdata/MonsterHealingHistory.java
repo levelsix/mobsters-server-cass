@@ -34,12 +34,12 @@ public class MonsterHealingHistory extends BasePersistentObject<UUID>{
 	@Index
 	protected Date timeOfEntry = null;
 	
-	@Column(name="healing_start_time")
+	@Column(name="queued_time")
 	@Index
-	protected Date healingStartTime = null;
+	protected Date queuedTime = null;
 	
-	@Column(name="user_struct_hospital_id")
-	protected UUID userStructHospitalId = null;
+//	@Column(name="user_struct_hospital_id")
+//	protected UUID userStructHospitalId = null;
 	
 	@Column(name="cur_health")
 	protected int curHealth = 0;
@@ -90,20 +90,12 @@ public class MonsterHealingHistory extends BasePersistentObject<UUID>{
 		this.timeOfEntry = timeOfEntry;
 	}
 
-	public Date getHealingStartTime() {
-		return healingStartTime;
+	public Date getQueuedTime() {
+		return queuedTime;
 	}
 
-	public void setHealingStartTime(Date healingStartTime) {
-		this.healingStartTime = healingStartTime;
-	}
-
-	public UUID getUserStructHospitalId() {
-		return userStructHospitalId;
-	}
-
-	public void setUserStructHospitalId(UUID userStructHospitalId) {
-		this.userStructHospitalId = userStructHospitalId;
+	public void setQueuedTime(Date queuedTime) {
+		this.queuedTime = queuedTime;
 	}
 
 	public int getCurHealth() {
@@ -134,11 +126,9 @@ public class MonsterHealingHistory extends BasePersistentObject<UUID>{
 	public String toString() {
 		return "MonsterHealingHistory [id=" + id + ", userId=" + userId
 				+ ", monsterForUserId=" + monsterForUserId + ", monsterId="
-				+ monsterId + ", timeOfEntry=" + timeOfEntry
-				+ ", healingStartTime=" + healingStartTime
-				+ ", userStructHospitalId=" + userStructHospitalId
-				+ ", curHealth=" + curHealth + ", prevHealth=" + prevHealth
-				+ ", healingCancelled=" + healingCancelled + "]";
+				+ monsterId + ", timeOfEntry=" + timeOfEntry + ", queuedTime="
+				+ queuedTime + ", curHealth=" + curHealth + ", prevHealth="
+				+ prevHealth + ", healingCancelled=" + healingCancelled + "]";
 	}
 	
 }

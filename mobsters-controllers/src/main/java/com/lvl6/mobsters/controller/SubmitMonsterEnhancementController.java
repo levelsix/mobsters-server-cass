@@ -136,7 +136,7 @@ public class SubmitMonsterEnhancementController extends EventController {
 			Map<UUID, MonsterEnhancingForUser> alreadyEnhancing = getMonsterEnhancingForUserService()
 					.getMonstersEnhancingForUser(userId);
 			Map<UUID, MonsterHealingForUser> alreadyHealing = getMonsterHealingForUserService()
-					.getMonstersHealingForUser(userId);
+					.getUserMonsterIdsToUserMonstersHealingForUser(userId);
 			
 			//retrieve only the new monsters that will be used in enhancing and base
 			//enhancing monster (to be used for monster_enhancing_for_user history stuff)

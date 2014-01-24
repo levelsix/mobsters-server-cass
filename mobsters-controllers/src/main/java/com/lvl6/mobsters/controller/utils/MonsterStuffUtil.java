@@ -116,9 +116,14 @@ public class MonsterStuffUtil {
   			mhfu = mhfuIdToMonsterHealingForUser.get(monsterForUserId);
   		}
   		
-  		Date expectedStartTime = new Date(umhp.getExpectedStartTimeMillis());
-//  		Date queuedTime = new Date(umhp.getQueuedTimeMillis());
-  		mhfu.setExpectedStartTime(expectedStartTime);//, queuedTime);
+  		//maybe client not supposed to always set this?
+  		Date queuedTime = null;
+  		if (umhp.hasQueuedTimeMillis() && umhp.getQueuedTimeMillis() > 0) {
+  			queuedTime = new Date(umhp.getQueuedTimeMillis());
+  		}
+  		mhfu.setQueuedTime(queuedTime);
+  		mhfu.setHealthProgress(umhp.getHealthProgress());
+  		mhfu.setPriority(umhp.getPriority());
   		nonProtos.add(mhfu);
   	}
   	

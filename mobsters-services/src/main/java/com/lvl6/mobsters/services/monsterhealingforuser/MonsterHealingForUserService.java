@@ -16,7 +16,7 @@ public interface MonsterHealingForUserService {
 	//CONTROLLER LOGIC STUFF****************************************************************
 	
 	//RETRIEVING STUFF****************************************************************
-	public abstract Map<UUID, MonsterHealingForUser> getMonstersHealingForUser(UUID userId);
+	public abstract Map<UUID, MonsterHealingForUser> getUserMonsterIdsToUserMonstersHealingForUser(UUID userId);
 	
 //	public abstract MonsterHealingForUser getSpecificUserMonster(UUID userMonsterId);
 	

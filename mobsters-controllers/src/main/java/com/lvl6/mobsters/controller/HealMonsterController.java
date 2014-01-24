@@ -152,7 +152,7 @@ public class HealMonsterController extends EventController {
 			//get whatever we need from the database
 			User aUser = getUserService().getUserWithId(userId);
 			Map<UUID, MonsterHealingForUser> alreadyHealing =
-	    			getMonsterHealingForUserService().getMonstersHealingForUser(userId);
+	    			getMonsterHealingForUserService().getUserMonsterIdsToUserMonstersHealingForUser(userId);
 	    	Map<UUID, MonsterEnhancingForUser> alreadyEnhancing =
 						getMonsterEnhancingForUserService().getMonstersEnhancingForUser(userId);
 	    	

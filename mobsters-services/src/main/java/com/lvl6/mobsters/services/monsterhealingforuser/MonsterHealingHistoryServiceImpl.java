@@ -79,11 +79,11 @@ public class MonsterHealingHistoryServiceImpl implements MonsterHealingHistorySe
 		mhh.setMonsterId(monsterId);
 		mhh.setTimeOfEntry(timeOfEntry);
 		
-		Date healingStartTime = mhfu.getExpectedStartTime();
-		mhh.setHealingStartTime(healingStartTime);
+		Date queuedTime = mhfu.getQueuedTime();
+		mhh.setQueuedTime(queuedTime);
 		
-		UUID userStructHospitalId = mhfu.getUserStructHospitalId();
-		mhh.setUserStructHospitalId(userStructHospitalId);
+//		UUID userStructHospitalId = mhfu.getUserStructHospitalId();
+//		mhh.setUserStructHospitalId(userStructHospitalId);
 		
 		int curHealth = mfu.getCurrentHealth();
 		mhh.setCurHealth(curHealth);

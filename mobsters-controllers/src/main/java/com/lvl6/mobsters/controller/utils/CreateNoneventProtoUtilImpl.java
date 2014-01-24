@@ -336,14 +336,14 @@ public class CreateNoneventProtoUtilImpl implements CreateNoneventProtoUtil {
 		aUidStr = aUid.toString();
 		umhpb.setUserMonsterUuid(aUidStr);
 
-		Date aDate = mhfu.getExpectedStartTime();
+		Date aDate = mhfu.getQueuedTime();
 		if (null != aDate) {
-			umhpb.setExpectedStartTimeMillis(aDate.getTime());
+			umhpb.setQueuedTimeMillis(aDate.getTime());
 		}
 
-		aUid = mhfu.getUserStructHospitalId();
-		aUidStr = aUid.toString();
-		umhpb.setUserHospitalStructUuid(aUidStr);
+//		aUid = mhfu.getUserStructHospitalId();
+//		aUidStr = aUid.toString();
+//		umhpb.setUserHospitalStructUuid(aUidStr);
 		umhpb.setHealthProgress(mhfu.getHealthProgress());
 		umhpb.setPriority(mhfu.getPriority());
 

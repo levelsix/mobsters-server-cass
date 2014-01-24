@@ -27,16 +27,16 @@ public class MonsterHealingForUser extends BasePersistentObject<UUID>{
 	@Index
 	protected UUID monsterForUserId = null;
 
-	@Column(name="expected_start_time")
+	@Column(name="queued_time")
 	@Index
-	protected Date expectedStartTime = null;
+	protected Date queuedTime = null;
 
-	@Column(name="user_struct_hospital_id")
-	protected UUID userStructHospitalId = null;
+//	@Column(name="user_struct_hospital_id")
+//	protected UUID userStructHospitalId = null;
 	
 	//how much hp has been healed since last time
 	@Column(name="health_progress")
-	protected int healthProgress = 0;
+	protected float healthProgress = 0F;
 	
 	@Column(name="priority")
 	protected int priority = 0;
@@ -65,27 +65,19 @@ public class MonsterHealingForUser extends BasePersistentObject<UUID>{
 		this.monsterForUserId = monsterForUserId;
 	}
 
-	public Date getExpectedStartTime() {
-		return expectedStartTime;
+	public Date getQueuedTime() {
+		return queuedTime;
 	}
 
-	public void setExpectedStartTime(Date expectedStartTime) {
-		this.expectedStartTime = expectedStartTime;
+	public void setQueuedTime(Date queuedTime) {
+		this.queuedTime = queuedTime;
 	}
 
-	public UUID getUserStructHospitalId() {
-		return userStructHospitalId;
-	}
-
-	public void setUserStructHospitalId(UUID userStructHospitalId) {
-		this.userStructHospitalId = userStructHospitalId;
-	}
-
-	public int getHealthProgress() {
+	public float getHealthProgress() {
 		return healthProgress;
 	}
 
-	public void setHealthProgress(int healthProgress) {
+	public void setHealthProgress(float healthProgress) {
 		this.healthProgress = healthProgress;
 	}
 
@@ -97,16 +89,12 @@ public class MonsterHealingForUser extends BasePersistentObject<UUID>{
 		this.priority = priority;
 	}
 
-	
-	
 	@Override
 	public String toString() {
 		return "MonsterHealingForUser [id=" + id + ", userId=" + userId
-				+ ", monsterForUserId=" + monsterForUserId
-				+ ", expectedStartTime=" + expectedStartTime
-				+ ", userStructHospitalId=" + userStructHospitalId
-				+ ", healthProgress=" + healthProgress + ", priority="
-				+ priority + "]";
+				+ ", monsterForUserId=" + monsterForUserId + ", queuedTime="
+				+ queuedTime + ", healthProgress=" + healthProgress
+				+ ", priority=" + priority + "]";
 	}
 	
 }

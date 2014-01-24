@@ -257,18 +257,19 @@ public class MobstersDbTables {
 	public static final String MONSTER_HEALING_FOR_USER__ID = GENERIC__ID;
 	public static final String MONSTER_HEALING_FOR_USER__USER_ID = GENERIC__USER_ID;
 	public static final String MONSTER_HEALING_FOR_USER__MONSTER_FOR_USER_ID = "monster_for_user_id";
-	public static final String MONSTER_HEALING_FOR_USER__EXPECTED_START_TIME = "expected_start_time";
-	public static final String MONSTER_HEALING_FOR_USER__USER_STRUCT_HOSPITAL_ID = "user_struct_hospital_id";
+	public static final String MONSTER_HEALING_FOR_USER__QUEUED_TIME = "queued_time";
+	//  public static final String MONSTER_HEALING_FOR_USER__USER_STRUCT_HOSPITAL_ID = "user_struct_hospital_id";
 	public static final String MONSTER_HEALING_FOR_USER__HEALTH_PROGRESS = "health_progress";
 	public static final String MONSTER_HEALING_FOR_USER__PRIORITY = "priority";
+
 
 	/*MONSTER HEALING HISTORY*/
 	public static final String MONSTER_HEALING_HISTORY__USER_ID = "user_id";
 	public static final String MONSTER_HEALING_HISTORY__MONSTER_FOR_USER_ID = "monster_for_user_id";
 	public static final String MONSTER_HEALING_HISTORY__MONSTER_ID = "monster_id";
 	public static final String MONSTER_HEALING_HISTORY__TIME_OF_ENTRY = "time_of_entry";
-	public static final String MONSTER_HEALING_HISTORY__HEALING_START_TIME = "healing_start_time";
-	public static final String MONSTER_HEALING_HISTORY__USER_STRUCT_HOSPITAL_ID = "user_struct_hospital_id";
+	public static final String MONSTER_HEALING_HISTORY__QUEUED_TIME = "queued_time";
+//	public static final String MONSTER_HEALING_HISTORY__USER_STRUCT_HOSPITAL_ID = "user_struct_hospital_id";
 	public static final String MONSTER_HEALING_HISTORY__CUR_HEALTH = "cur_health";
 	public static final String MONSTER_HEALING_HISTORY__PREV_HEALTH = "prev_health";
 	public static final String MONSTER_HEALING_HISTORY__HEALING_CANCELLED = "healing_cancelled";

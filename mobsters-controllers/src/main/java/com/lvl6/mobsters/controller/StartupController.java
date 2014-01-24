@@ -267,7 +267,7 @@ public class StartupController extends EventController {
 		}
 		
 		Map<UUID, MonsterHealingForUser> userMonstersHealing =
-				getMonsterHealingForUserService().getMonstersHealingForUser(userId);
+				getMonsterHealingForUserService().getUserMonsterIdsToUserMonstersHealingForUser(userId);
 		if (null != userMonstersHealing && !userMonstersHealing.isEmpty()) {
 			
 			for (MonsterHealingForUser mhfu : userMonstersHealing.values()) {
