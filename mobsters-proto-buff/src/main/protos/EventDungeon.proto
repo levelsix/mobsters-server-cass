@@ -42,7 +42,7 @@ message BeginDungeonResponseProto {
 //------------------------------------------------------------------------------------------
 
 message EndDungeonRequestProto {
-	optional MinimumUserProto sender = 1;
+	optional MinimumUserProtoWithMaxResources sender = 1;
 	optional string userTaskUuid = 2;
 	optional bool userWon = 3; 
 	optional int64 clientTime = 4;
@@ -63,7 +63,7 @@ message EndDungeonRequestProto {
 }
 
 message EndDungeonResponseProto {
-	optional MinimumUserProto sender = 1;
+	optional MinimumUserProtoWithMaxResources sender = 1;
 	optional EndDungeonStatus status = 2;
 	//repeated FullUserMonsterProto newOrUpdated = 3; //BAD!!! DON'T START NAMES WITH NEW OR COPY
 	repeated FullUserMonsterProto updatedOrNew = 3;

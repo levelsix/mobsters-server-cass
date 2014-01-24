@@ -2391,10 +2391,10 @@ public final class EventQuestProto {
   public interface QuestRedeemRequestProtoOrBuilder
       extends com.google.protobuf.MessageOrBuilder {
     
-    // optional .proto.MinimumUserProto sender = 1;
+    // optional .proto.MinimumUserProtoWithMaxResources sender = 1;
     boolean hasSender();
-    com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto getSender();
-    com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProtoOrBuilder getSenderOrBuilder();
+    com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProtoWithMaxResources getSender();
+    com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProtoWithMaxResourcesOrBuilder getSenderOrBuilder();
     
     // optional int32 questId = 2;
     boolean hasQuestId();
@@ -2429,16 +2429,16 @@ public final class EventQuestProto {
     }
     
     private int bitField0_;
-    // optional .proto.MinimumUserProto sender = 1;
+    // optional .proto.MinimumUserProtoWithMaxResources sender = 1;
     public static final int SENDER_FIELD_NUMBER = 1;
-    private com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto sender_;
+    private com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProtoWithMaxResources sender_;
     public boolean hasSender() {
       return ((bitField0_ & 0x00000001) == 0x00000001);
     }
-    public com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto getSender() {
+    public com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProtoWithMaxResources getSender() {
       return sender_;
     }
-    public com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProtoOrBuilder getSenderOrBuilder() {
+    public com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProtoWithMaxResourcesOrBuilder getSenderOrBuilder() {
       return sender_;
     }
     
@@ -2453,7 +2453,7 @@ public final class EventQuestProto {
     }
     
     private void initFields() {
-      sender_ = com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto.getDefaultInstance();
+      sender_ = com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProtoWithMaxResources.getDefaultInstance();
       questId_ = 0;
     }
     private byte memoizedIsInitialized = -1;
@@ -2617,7 +2617,7 @@ public final class EventQuestProto {
       public Builder clear() {
         super.clear();
         if (senderBuilder_ == null) {
-          sender_ = com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto.getDefaultInstance();
+          sender_ = com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProtoWithMaxResources.getDefaultInstance();
         } else {
           senderBuilder_.clear();
         }
@@ -2728,7 +2728,7 @@ public final class EventQuestProto {
               break;
             }
             case 10: {
-              com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto.Builder subBuilder = com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto.newBuilder();
+              com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProtoWithMaxResources.Builder subBuilder = com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProtoWithMaxResources.newBuilder();
               if (hasSender()) {
                 subBuilder.mergeFrom(getSender());
               }
@@ -2747,21 +2747,21 @@ public final class EventQuestProto {
       
       private int bitField0_;
       
-      // optional .proto.MinimumUserProto sender = 1;
-      private com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto sender_ = com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto.getDefaultInstance();
+      // optional .proto.MinimumUserProtoWithMaxResources sender = 1;
+      private com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProtoWithMaxResources sender_ = com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProtoWithMaxResources.getDefaultInstance();
       private com.google.protobuf.SingleFieldBuilder<
-          com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto, com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto.Builder, com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProtoOrBuilder> senderBuilder_;
+          com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProtoWithMaxResources, com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProtoWithMaxResources.Builder, com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProtoWithMaxResourcesOrBuilder> senderBuilder_;
       public boolean hasSender() {
         return ((bitField0_ & 0x00000001) == 0x00000001);
       }
-      public com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto getSender() {
+      public com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProtoWithMaxResources getSender() {
         if (senderBuilder_ == null) {
           return sender_;
         } else {
           return senderBuilder_.getMessage();
         }
       }
-      public Builder setSender(com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto value) {
+      public Builder setSender(com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProtoWithMaxResources value) {
         if (senderBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -2775,7 +2775,7 @@ public final class EventQuestProto {
         return this;
       }
       public Builder setSender(
-          com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto.Builder builderForValue) {
+          com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProtoWithMaxResources.Builder builderForValue) {
         if (senderBuilder_ == null) {
           sender_ = builderForValue.build();
           onChanged();
@@ -2785,12 +2785,12 @@ public final class EventQuestProto {
         bitField0_ |= 0x00000001;
         return this;
       }
-      public Builder mergeSender(com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto value) {
+      public Builder mergeSender(com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProtoWithMaxResources value) {
         if (senderBuilder_ == null) {
           if (((bitField0_ & 0x00000001) == 0x00000001) &&
-              sender_ != com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto.getDefaultInstance()) {
+              sender_ != com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProtoWithMaxResources.getDefaultInstance()) {
             sender_ =
-              com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto.newBuilder(sender_).mergeFrom(value).buildPartial();
+              com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProtoWithMaxResources.newBuilder(sender_).mergeFrom(value).buildPartial();
           } else {
             sender_ = value;
           }
@@ -2803,7 +2803,7 @@ public final class EventQuestProto {
       }
       public Builder clearSender() {
         if (senderBuilder_ == null) {
-          sender_ = com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto.getDefaultInstance();
+          sender_ = com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProtoWithMaxResources.getDefaultInstance();
           onChanged();
         } else {
           senderBuilder_.clear();
@@ -2811,12 +2811,12 @@ public final class EventQuestProto {
         bitField0_ = (bitField0_ & ~0x00000001);
         return this;
       }
-      public com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto.Builder getSenderBuilder() {
+      public com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProtoWithMaxResources.Builder getSenderBuilder() {
         bitField0_ |= 0x00000001;
         onChanged();
         return getSenderFieldBuilder().getBuilder();
       }
-      public com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProtoOrBuilder getSenderOrBuilder() {
+      public com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProtoWithMaxResourcesOrBuilder getSenderOrBuilder() {
         if (senderBuilder_ != null) {
           return senderBuilder_.getMessageOrBuilder();
         } else {
@@ -2824,11 +2824,11 @@ public final class EventQuestProto {
         }
       }
       private com.google.protobuf.SingleFieldBuilder<
-          com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto, com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto.Builder, com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProtoOrBuilder> 
+          com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProtoWithMaxResources, com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProtoWithMaxResources.Builder, com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProtoWithMaxResourcesOrBuilder> 
           getSenderFieldBuilder() {
         if (senderBuilder_ == null) {
           senderBuilder_ = new com.google.protobuf.SingleFieldBuilder<
-              com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto, com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto.Builder, com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProtoOrBuilder>(
+              com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProtoWithMaxResources, com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProtoWithMaxResources.Builder, com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProtoWithMaxResourcesOrBuilder>(
                   sender_,
                   getParentForChildren(),
                   isClean());
@@ -2872,10 +2872,10 @@ public final class EventQuestProto {
   public interface QuestRedeemResponseProtoOrBuilder
       extends com.google.protobuf.MessageOrBuilder {
     
-    // optional .proto.MinimumUserProto sender = 1;
+    // optional .proto.MinimumUserProtoWithMaxResources sender = 1;
     boolean hasSender();
-    com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto getSender();
-    com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProtoOrBuilder getSenderOrBuilder();
+    com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProtoWithMaxResources getSender();
+    com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProtoWithMaxResourcesOrBuilder getSenderOrBuilder();
     
     // repeated .proto.QuestProto newlyAvailableQuests = 2;
     java.util.List<com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProto> 
@@ -3001,16 +3001,16 @@ public final class EventQuestProto {
     }
     
     private int bitField0_;
-    // optional .proto.MinimumUserProto sender = 1;
+    // optional .proto.MinimumUserProtoWithMaxResources sender = 1;
     public static final int SENDER_FIELD_NUMBER = 1;
-    private com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto sender_;
+    private com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProtoWithMaxResources sender_;
     public boolean hasSender() {
       return ((bitField0_ & 0x00000001) == 0x00000001);
     }
-    public com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto getSender() {
+    public com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProtoWithMaxResources getSender() {
       return sender_;
     }
-    public com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProtoOrBuilder getSenderOrBuilder() {
+    public com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProtoWithMaxResourcesOrBuilder getSenderOrBuilder() {
       return sender_;
     }
     
@@ -3069,7 +3069,7 @@ public final class EventQuestProto {
     }
     
     private void initFields() {
-      sender_ = com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto.getDefaultInstance();
+      sender_ = com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProtoWithMaxResources.getDefaultInstance();
       newlyAvailableQuests_ = java.util.Collections.emptyList();
       status_ = com.lvl6.mobsters.eventprotos.EventQuestProto.QuestRedeemResponseProto.QuestRedeemStatus.SUCCESS;
       fump_ = com.lvl6.mobsters.noneventprotos.MonsterStuffProto.FullUserMonsterProto.getDefaultInstance();
@@ -3259,7 +3259,7 @@ public final class EventQuestProto {
       public Builder clear() {
         super.clear();
         if (senderBuilder_ == null) {
-          sender_ = com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto.getDefaultInstance();
+          sender_ = com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProtoWithMaxResources.getDefaultInstance();
         } else {
           senderBuilder_.clear();
         }
@@ -3437,7 +3437,7 @@ public final class EventQuestProto {
               break;
             }
             case 10: {
-              com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto.Builder subBuilder = com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto.newBuilder();
+              com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProtoWithMaxResources.Builder subBuilder = com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProtoWithMaxResources.newBuilder();
               if (hasSender()) {
                 subBuilder.mergeFrom(getSender());
               }
@@ -3482,21 +3482,21 @@ public final class EventQuestProto {
       
       private int bitField0_;
       
-      // optional .proto.MinimumUserProto sender = 1;
-      private com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto sender_ = com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto.getDefaultInstance();
+      // optional .proto.MinimumUserProtoWithMaxResources sender = 1;
+      private com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProtoWithMaxResources sender_ = com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProtoWithMaxResources.getDefaultInstance();
       private com.google.protobuf.SingleFieldBuilder<
-          com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto, com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto.Builder, com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProtoOrBuilder> senderBuilder_;
+          com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProtoWithMaxResources, com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProtoWithMaxResources.Builder, com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProtoWithMaxResourcesOrBuilder> senderBuilder_;
       public boolean hasSender() {
         return ((bitField0_ & 0x00000001) == 0x00000001);
       }
-      public com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto getSender() {
+      public com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProtoWithMaxResources getSender() {
         if (senderBuilder_ == null) {
           return sender_;
         } else {
           return senderBuilder_.getMessage();
         }
       }
-      public Builder setSender(com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto value) {
+      public Builder setSender(com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProtoWithMaxResources value) {
         if (senderBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -3510,7 +3510,7 @@ public final class EventQuestProto {
         return this;
       }
       public Builder setSender(
-          com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto.Builder builderForValue) {
+          com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProtoWithMaxResources.Builder builderForValue) {
         if (senderBuilder_ == null) {
           sender_ = builderForValue.build();
           onChanged();
@@ -3520,12 +3520,12 @@ public final class EventQuestProto {
         bitField0_ |= 0x00000001;
         return this;
       }
-      public Builder mergeSender(com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto value) {
+      public Builder mergeSender(com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProtoWithMaxResources value) {
         if (senderBuilder_ == null) {
           if (((bitField0_ & 0x00000001) == 0x00000001) &&
-              sender_ != com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto.getDefaultInstance()) {
+              sender_ != com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProtoWithMaxResources.getDefaultInstance()) {
             sender_ =
-              com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto.newBuilder(sender_).mergeFrom(value).buildPartial();
+              com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProtoWithMaxResources.newBuilder(sender_).mergeFrom(value).buildPartial();
           } else {
             sender_ = value;
           }
@@ -3538,7 +3538,7 @@ public final class EventQuestProto {
       }
       public Builder clearSender() {
         if (senderBuilder_ == null) {
-          sender_ = com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto.getDefaultInstance();
+          sender_ = com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProtoWithMaxResources.getDefaultInstance();
           onChanged();
         } else {
           senderBuilder_.clear();
@@ -3546,12 +3546,12 @@ public final class EventQuestProto {
         bitField0_ = (bitField0_ & ~0x00000001);
         return this;
       }
-      public com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto.Builder getSenderBuilder() {
+      public com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProtoWithMaxResources.Builder getSenderBuilder() {
         bitField0_ |= 0x00000001;
         onChanged();
         return getSenderFieldBuilder().getBuilder();
       }
-      public com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProtoOrBuilder getSenderOrBuilder() {
+      public com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProtoWithMaxResourcesOrBuilder getSenderOrBuilder() {
         if (senderBuilder_ != null) {
           return senderBuilder_.getMessageOrBuilder();
         } else {
@@ -3559,11 +3559,11 @@ public final class EventQuestProto {
         }
       }
       private com.google.protobuf.SingleFieldBuilder<
-          com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto, com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto.Builder, com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProtoOrBuilder> 
+          com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProtoWithMaxResources, com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProtoWithMaxResources.Builder, com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProtoWithMaxResourcesOrBuilder> 
           getSenderFieldBuilder() {
         if (senderBuilder_ == null) {
           senderBuilder_ = new com.google.protobuf.SingleFieldBuilder<
-              com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto, com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto.Builder, com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProtoOrBuilder>(
+              com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProtoWithMaxResources, com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProtoWithMaxResources.Builder, com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProtoWithMaxResourcesOrBuilder>(
                   sender_,
                   getParentForChildren(),
                   isClean());
@@ -3966,19 +3966,19 @@ public final class EventQuestProto {
       "O_QUEST_EXISTS\020\002\022+\n\'FAIL_DELETE_AMOUNT_D" +
       "OES_NOT_MATCH_QUEST\020\003\022\"\n\036FAIL_NONEXISTEN" +
       "T_USER_MONSTERS\020\004\022!\n\035FAIL_INCOMPLETE_USE" +
-      "R_MONSTERS\020\005\022\016\n\nFAIL_OTHER\020\006\"S\n\027QuestRed" +
-      "eemRequestProto\022\'\n\006sender\030\001 \001(\0132\027.proto." +
-      "MinimumUserProto\022\017\n\007questId\030\002 \001(\005\"\274\002\n\030Qu" +
-      "estRedeemResponseProto\022\'\n\006sender\030\001 \001(\0132\027" +
-      ".proto.MinimumUserProto\022/\n\024newlyAvailabl" +
-      "eQuests\030\002 \003(\0132\021.proto.QuestProto\022A\n\006stat" +
-      "us\030\003 \001(\01621.proto.QuestRedeemResponseProt",
-      "o.QuestRedeemStatus\022)\n\004fump\030\004 \001(\0132\033.prot" +
-      "o.FullUserMonsterProto\022\017\n\007questId\030\005 \001(\005\"" +
-      "G\n\021QuestRedeemStatus\022\013\n\007SUCCESS\020\001\022\025\n\021FAI" +
-      "L_NOT_COMPLETE\020\002\022\016\n\nFAIL_OTHER\020\003B0\n\035com." +
-      "lvl6.mobsters.eventprotosB\017EventQuestPro" +
-      "to"
+      "R_MONSTERS\020\005\022\016\n\nFAIL_OTHER\020\006\"c\n\027QuestRed" +
+      "eemRequestProto\0227\n\006sender\030\001 \001(\0132\'.proto." +
+      "MinimumUserProtoWithMaxResources\022\017\n\007ques" +
+      "tId\030\002 \001(\005\"\314\002\n\030QuestRedeemResponseProto\0227" +
+      "\n\006sender\030\001 \001(\0132\'.proto.MinimumUserProtoW" +
+      "ithMaxResources\022/\n\024newlyAvailableQuests\030" +
+      "\002 \003(\0132\021.proto.QuestProto\022A\n\006status\030\003 \001(\016",
+      "21.proto.QuestRedeemResponseProto.QuestR" +
+      "edeemStatus\022)\n\004fump\030\004 \001(\0132\033.proto.FullUs" +
+      "erMonsterProto\022\017\n\007questId\030\005 \001(\005\"G\n\021Quest" +
+      "RedeemStatus\022\013\n\007SUCCESS\020\001\022\025\n\021FAIL_NOT_CO" +
+      "MPLETE\020\002\022\016\n\nFAIL_OTHER\020\003B0\n\035com.lvl6.mob" +
+      "sters.eventprotosB\017EventQuestProto"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {

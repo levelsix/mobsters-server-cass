@@ -99,6 +99,25 @@ public class UserServiceImpl implements UserService {
 
 	}
 	
+	@Override
+	public int calculateMaxResource(User u, String resourceType, int maxResource,
+			int resourceDelta) {
+		int userResource = 0;
+		
+		if (resourceType.equals(MobstersDbTables.USER__CASH)) {
+			userResource = u.getCash();
+		} else if (resourceType.equals(MobstersDbTables.USER__OIL)) {
+			userResource = u.getOil();
+		}
+		
+		//in case user's resource is more than maxResource
+		int curResource = Math.min(userResource, maxResource);
+		
+		int maxResourceUserCanGain = maxResource - curResource;
+		int newResourceDelta = Math.min(resourceDelta, maxResourceUserCanGain);
+		
+		return newResourceDelta;
+	}
 
 	//RETRIEVE STUFF****************************************************************
 	@Override

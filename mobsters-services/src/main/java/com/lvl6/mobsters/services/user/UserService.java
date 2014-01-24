@@ -24,6 +24,8 @@ public interface UserService {
 	  		List<String> recipientFacebookIds, List<UUID> inviterUserIds,
 	  		List<User> recipients, List<User> inviters);
 	
+	public abstract int calculateMaxResource(User u, String resourceType,
+			int maxResource, int resourceDelta);
 	
 	//RETRIEVE STUFF****************************************************************
 	public abstract User getUserWithId(UUID userId);

@@ -165,7 +165,7 @@ message NormStructWaitCompleteResponseProto {
 //------------------------------------------------------------------------------------------
 																						//DONE
 message RetrieveCurrencyFromNormStructureRequestProto {
-	optional MinimumUserProto sender = 1;
+	optional MinimumUserProtoWithMaxResources sender = 1;
 	repeated StructRetrieval structRetrievals = 2;
 	
 	message StructRetrieval {
@@ -177,7 +177,7 @@ message RetrieveCurrencyFromNormStructureRequestProto {
 
 																						//DONE
 message RetrieveCurrencyFromNormStructureResponseProto {
-	optional MinimumUserProto sender = 1;
+	optional MinimumUserProtoWithMaxResources sender = 1;
 	optional RetrieveCurrencyFromNormStructureStatus status = 2;
 	
 	enum RetrieveCurrencyFromNormStructureStatus {

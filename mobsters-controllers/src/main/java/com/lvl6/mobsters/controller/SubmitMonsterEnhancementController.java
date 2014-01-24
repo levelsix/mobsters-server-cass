@@ -28,6 +28,7 @@ import com.lvl6.mobsters.events.response.UpdateClientUserResponseEvent;
 import com.lvl6.mobsters.noneventprotos.MobstersEventProtocolProto.MobstersEventProtocolRequest;
 import com.lvl6.mobsters.noneventprotos.MonsterStuffProto.UserEnhancementItemProto;
 import com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto;
+import com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProtoWithMaxResources;
 import com.lvl6.mobsters.po.nonstaticdata.MonsterEnhancingForUser;
 import com.lvl6.mobsters.po.nonstaticdata.MonsterForUser;
 import com.lvl6.mobsters.po.nonstaticdata.MonsterHealingForUser;
@@ -102,7 +103,8 @@ public class SubmitMonsterEnhancementController extends EventController {
 				((SubmitMonsterEnhancementRequestEvent) event).getSubmitMonsterEnhancementRequestProto();
 		
 		//get the values client sent
-		MinimumUserProto senderProto = reqProto.getSender();
+		MinimumUserProtoWithMaxResources senderResourcesProto = reqProto.getSender();
+		MinimumUserProto senderProto = senderResourcesProto.getMinUserProto();
 		List<UserEnhancementItemProto> ueipDelete = reqProto.getUeipDeleteList();
 		List<UserEnhancementItemProto> ueipUpdated = reqProto.getUeipUpdateList();
 		List<UserEnhancementItemProto> ueipNew = reqProto.getUeipNewList();
@@ -112,6 +114,7 @@ public class SubmitMonsterEnhancementController extends EventController {
 		//positive means refund, negative means charge user
 		int oilChange = reqProto.getOilChange();
 		Date clientTime = new Date();
+		int maxOil = senderResourcesProto.getMaxOil();
 
 		//uuid's are not strings, need to convert from string to uuid, vice versa
 		UUID userId = UUID.fromString(userIdString);
@@ -125,6 +128,7 @@ public class SubmitMonsterEnhancementController extends EventController {
 		
 		//response to send back to client
 		Builder responseBuilder = SubmitMonsterEnhancementResponseProto.newBuilder();
+		responseBuilder.setSender(senderResourcesProto);
 		responseBuilder.setStatus(SubmitMonsterEnhancementStatus.FAIL_OTHER);
 		SubmitMonsterEnhancementResponseEvent resEvent =
 				new SubmitMonsterEnhancementResponseEvent(userIdString);
@@ -157,7 +161,7 @@ public class SubmitMonsterEnhancementController extends EventController {
 			boolean successful = false;
 			if (validRequest) {
 				successful = writeChangesToDb(aUser, userId, gemsSpent, oilChange,
-						deleteMap, updateMap, newMap, clientTime);
+						deleteMap, updateMap, newMap, clientTime, maxOil);
 			}
 
 			if (successful) {
@@ -307,10 +311,14 @@ public class SubmitMonsterEnhancementController extends EventController {
 	private boolean writeChangesToDb(User user, UUID uId, int gemsSpent,
 			int oilChange, Map<UUID, UserEnhancementItemProto> protoDeleteMap,
 			Map<UUID, UserEnhancementItemProto> protoUpdateMap,
-			Map<UUID, UserEnhancementItemProto> protoNewMap, Date clientTime) {
+			Map<UUID, UserEnhancementItemProto> protoNewMap, Date clientTime, int maxOil) {
 		try {
 			//CHARGE THE USER
 			int gemChange = -1 * gemsSpent;
+			//cap the user's oil
+			oilChange = getUserService().calculateMaxResource(user,
+	  				MobstersDbTables.USER__CASH, maxOil, oilChange);
+			
 			//create history first
 			List<UserCurrencyHistory> uchList = createCurrencyHistory(user, clientTime,
 					oilChange, gemChange, protoDeleteMap, protoUpdateMap, protoUpdateMap);

@@ -30,6 +30,7 @@ import com.lvl6.mobsters.noneventprotos.MobstersEventProtocolProto.MobstersEvent
 import com.lvl6.mobsters.noneventprotos.MonsterStuffProto.UserMonsterCurrentHealthProto;
 import com.lvl6.mobsters.noneventprotos.MonsterStuffProto.UserMonsterHealingProto;
 import com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto;
+import com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProtoWithMaxResources;
 import com.lvl6.mobsters.po.nonstaticdata.MonsterEnhancingForUser;
 import com.lvl6.mobsters.po.nonstaticdata.MonsterForUser;
 import com.lvl6.mobsters.po.nonstaticdata.MonsterHealingForUser;
@@ -109,7 +110,8 @@ public class HealMonsterController extends EventController {
 
 		//get the values client sent
 		//get values sent from the client (the request proto)
-	    MinimumUserProto senderProto = reqProto.getSender();
+	    MinimumUserProtoWithMaxResources senderResourcesProto = reqProto.getSender();
+	    MinimumUserProto senderProto = senderResourcesProto.getMinUserProto();
 	    String userIdString = senderProto.getUserUuid();
 	    List<UserMonsterHealingProto> umhDelete = reqProto.getUmhDeleteList();
 	    List<UserMonsterHealingProto> umhUpdate = reqProto.getUmhUpdateList();
@@ -130,6 +132,7 @@ public class HealMonsterController extends EventController {
 
 	    int totalGemCost = reqProto.getTotalGemCost();
 	    Date clientDate = new Date();
+	    int maxCash = senderResourcesProto.getMaxCash();
 	    
 	    Map<UUID, UserMonsterHealingProto> deleteMap = getMonsterStuffUtil()
 	    		.convertIntoUserMonsterIdToUmhpProtoMap(umhDelete);
@@ -143,6 +146,7 @@ public class HealMonsterController extends EventController {
 
 		//response to send back to client
 		Builder responseBuilder = HealMonsterResponseProto.newBuilder();
+		responseBuilder.setSender(senderResourcesProto);
 		responseBuilder.setStatus(HealMonsterStatus.FAIL_OTHER);
 		HealMonsterResponseEvent resEvent =
 				new HealMonsterResponseEvent(userIdString);
@@ -190,7 +194,7 @@ public class HealMonsterController extends EventController {
 				successful = writeChangesToDb(aUser, userId, cashChange, totalGemCost,
 						clientDate, alreadyHealing, deleteMap, updateMap, newMap,
 						userMonsterIds, userMonsterIdToExpectedHealth, existingUserMonsters,
-						gemCostForHealing, isSpeedup, gemsForSpeedup);
+						gemCostForHealing, isSpeedup, gemsForSpeedup, maxCash);
 			}
 
 			if (successful) {
@@ -332,9 +336,13 @@ public class HealMonsterController extends EventController {
 			Map<UUID, UserMonsterHealingProto> protoNewMap, List<UUID> userMonsterIds,
 			Map<UUID, Integer> userMonsterIdsToHealths,
 			Map<UUID, MonsterForUser> idsToUserMonsters, int gemCostForHealing, 
-			boolean isSpeedup, int gemsForSpeedup) {
+			boolean isSpeedup, int gemsForSpeedup, int maxCash) {
 
 		try {
+			//capping the user's cash
+			cashChange = getUserService().calculateMaxResource(user, 
+					MobstersDbTables.USER__CASH, maxCash, cashChange);
+			
 			//CHARGE THE USER
 			int gemChange = -1 * gemCost;
 			//create history first

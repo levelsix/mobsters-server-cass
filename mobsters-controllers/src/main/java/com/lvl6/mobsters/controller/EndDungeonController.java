@@ -25,6 +25,7 @@ import com.lvl6.mobsters.events.response.EndDungeonResponseEvent;
 import com.lvl6.mobsters.noneventprotos.MobstersEventProtocolProto.MobstersEventProtocolRequest;
 import com.lvl6.mobsters.noneventprotos.MonsterStuffProto.FullUserMonsterProto;
 import com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto;
+import com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProtoWithMaxResources;
 import com.lvl6.mobsters.po.nonstaticdata.MonsterForUser;
 import com.lvl6.mobsters.po.nonstaticdata.TaskForUserOngoing;
 import com.lvl6.mobsters.po.nonstaticdata.User;
@@ -92,13 +93,15 @@ public class EndDungeonController extends EventController {
 				((EndDungeonRequestEvent) event).getEndDungeonRequestProto();
 
 		//get the values client sent
-		MinimumUserProto senderProto = reqProto.getSender();
+		MinimumUserProtoWithMaxResources senderResourcesProto = reqProto.getSender();
+		MinimumUserProto senderProto = senderResourcesProto.getMinUserProto();
 		String userTaskUuidStr = reqProto.getUserTaskUuid();
 		boolean userWon = reqProto.getUserWon();
 		Date clientDate = new Date(reqProto.getClientTime());
 		boolean firstTimeUserWonTask = reqProto.getFirstTimeUserWonTask();
 //		boolean generateFirstBoss = reqProto.getGenerateFirstBoss();
 //		boolean respawnBoss = reqProto.getRespawnBoss();
+		int maxCash = senderResourcesProto.getMaxCash();
 		
 		//uuid's are not strings, need to convert from string to uuid, vice versa
 		UUID userTaskUuid = UUID.fromString(userTaskUuidStr);
@@ -107,7 +110,7 @@ public class EndDungeonController extends EventController {
 
 		//response to send back to client
 		Builder responseBuilder = EndDungeonResponseProto.newBuilder();
-		responseBuilder.setSender(senderProto);
+		responseBuilder.setSender(senderResourcesProto);
 		responseBuilder.setUserWon(userWon);
 		responseBuilder.setStatus(EndDungeonStatus.FAIL_OTHER);
 		
@@ -122,7 +125,8 @@ public class EndDungeonController extends EventController {
 			List<FullUserMonsterProto> protos = new ArrayList<FullUserMonsterProto>();
 			boolean successful = false;
 			if(legit) {
-				successful = writeChangesToDb(aUser, userId, ut, userWon, clientDate, protos);
+				successful = writeChangesToDb(aUser, userId, ut, userWon, clientDate,
+						protos, maxCash);
 				responseBuilder.setTaskId(ut.getTaskId());
 			}
 			
@@ -176,9 +180,11 @@ public class EndDungeonController extends EventController {
 	}
 
 	private boolean writeChangesToDb(User u, UUID uId, TaskForUserOngoing ut, boolean userWon,
-			  Date clientDate, List<FullUserMonsterProto> protos) {
+			  Date clientDate, List<FullUserMonsterProto> protos, int maxCash) {
 		try {
-			int cashChange = ut.getCashGained();
+			//capping the user's cash
+			int cashChange = getUserService().calculateMaxResource(u, 
+					MobstersDbTables.USER__CASH, maxCash, ut.getCashGained());
 			int gemChange = 0;
 			int expChange = ut.getExpGained();
 

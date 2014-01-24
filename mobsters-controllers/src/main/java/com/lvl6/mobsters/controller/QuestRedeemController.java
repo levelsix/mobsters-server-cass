@@ -25,6 +25,7 @@ import com.lvl6.mobsters.noneventprotos.MobstersEventProtocolProto.MobstersEvent
 import com.lvl6.mobsters.noneventprotos.MonsterStuffProto.FullUserMonsterProto;
 import com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProto;
 import com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto;
+import com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProtoWithMaxResources;
 import com.lvl6.mobsters.po.nonstaticdata.MonsterForUser;
 import com.lvl6.mobsters.po.nonstaticdata.QuestForUser;
 import com.lvl6.mobsters.po.nonstaticdata.User;
@@ -84,16 +85,18 @@ public class QuestRedeemController extends EventController {
 				((QuestRedeemRequestEvent) event).getQuestRedeemRequestProto();
 
 		//get the values client sent
-		MinimumUserProto senderProto = reqProto.getSender();
+		MinimumUserProtoWithMaxResources senderResourcesProto = reqProto.getSender();
+		MinimumUserProto senderProto = senderResourcesProto.getMinUserProto();
 		int questId = reqProto.getQuestId();
 		//uuid's are not strings, need to convert from string to uuid, vice versa
 		String userIdString = senderProto.getUserUuid();
 		UUID userId = UUID.fromString(userIdString);
 		Date timeRedeemed = new Date();
-
+		int maxCash = senderResourcesProto.getMaxCash();
+		
 		//response to send back to client
 		Builder responseBuilder = QuestRedeemResponseProto.newBuilder();
-		responseBuilder.setSender(senderProto);
+		responseBuilder.setSender(senderResourcesProto);
 		responseBuilder.setStatus(QuestRedeemStatus.FAIL_OTHER);
 		responseBuilder.setQuestId(questId);
 		QuestRedeemResponseEvent resEvent = new QuestRedeemResponseEvent(userIdString);
@@ -119,7 +122,7 @@ public class QuestRedeemController extends EventController {
 			if (legitRedeem) {
 				User u = getUserService().getUserWithId(userId);
 				successful = writeChangesToDb(u, userId, questId, quest, userQuest,
-						timeRedeemed);
+						timeRedeemed, maxCash);
 			}
 			
 			if (successful) {
@@ -206,8 +209,9 @@ public class QuestRedeemController extends EventController {
 	}
 	
 	private boolean writeChangesToDb(User u, UUID userId, int questId, Quest quest,
-			QuestForUser userQuest, Date timeRedeemed) {
+			QuestForUser userQuest, Date timeRedeemed, int maxCash) {
 		try {
+			
 			//complete the quest
 			userQuest.setTimeRedeemed(timeRedeemed);
 			getQuestForUserService().saveQuestForUser(userQuest);
@@ -218,6 +222,9 @@ public class QuestRedeemController extends EventController {
 			int expChange = quest.getExpReward();
 			
 			int newExp = expChange + u.getExp();
+			//cap the user's cash
+			cashChange = getUserService().calculateMaxResource(u, 
+					MobstersDbTables.USER__CASH, maxCash, cashChange);
 			
 			List<UserCurrencyHistory> uchList = createCurrencyHistory(u, questId,
 					timeRedeemed, cashChange, gemChange);

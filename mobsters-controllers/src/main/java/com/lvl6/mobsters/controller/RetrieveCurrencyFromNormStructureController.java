@@ -27,6 +27,7 @@ import com.lvl6.mobsters.events.response.UpdateClientUserResponseEvent;
 import com.lvl6.mobsters.noneventprotos.MobstersEventProtocolProto.MobstersEventProtocolRequest;
 import com.lvl6.mobsters.noneventprotos.StructureProto.ResourceType;
 import com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto;
+import com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProtoWithMaxResources;
 import com.lvl6.mobsters.po.nonstaticdata.StructureForUser;
 import com.lvl6.mobsters.po.nonstaticdata.User;
 import com.lvl6.mobsters.po.staticdata.StructureResourceGenerator;
@@ -83,9 +84,12 @@ public class RetrieveCurrencyFromNormStructureController extends EventController
 				((RetrieveCurrencyFromNormStructureRequestEvent) event).getRetrieveCurrencyFromNormStructureRequestProto();
 
 		//get stuff client sent
-	    MinimumUserProto senderProto = reqProto.getSender();
+	    MinimumUserProtoWithMaxResources senderResourcesProto = reqProto.getSender();
+	    MinimumUserProto senderProto = senderResourcesProto.getMinUserProto();
 	    List<StructRetrieval> structRetrievals = reqProto.getStructRetrievalsList();
 	    Date timeOfPurchase = new Date();
+	    int maxCash = senderResourcesProto.getMaxCash();
+	    int maxOil = senderResourcesProto.getMaxOil();
 
 		//uuid's are not strings, need to convert from string to uuid, vice versa
 		String userIdString = senderProto.getUserUuid();
@@ -100,6 +104,7 @@ public class RetrieveCurrencyFromNormStructureController extends EventController
 
 		//response to send back to client
 		Builder responseBuilder = RetrieveCurrencyFromNormStructureResponseProto.newBuilder();
+		responseBuilder.setSender(senderResourcesProto);
 		responseBuilder.setStatus(RetrieveCurrencyFromNormStructureStatus.FAIL_OTHER);
 		RetrieveCurrencyFromNormStructureResponseEvent resEvent = new RetrieveCurrencyFromNormStructureResponseEvent(userIdString);
 		resEvent.setTag(event.getTag());
@@ -133,6 +138,17 @@ public class RetrieveCurrencyFromNormStructureController extends EventController
 				
 				int cashGain = resourcesGained.get(MobstersDbTables.USER__CASH);
 				int oilGain = resourcesGained.get(MobstersDbTables.USER__OIL);
+
+				//capping user's resources
+				cashGain = getUserService().calculateMaxResource(user,
+		  				MobstersDbTables.USER__CASH, maxCash, cashGain);
+				oilGain = getUserService().calculateMaxResource(user,
+		  				MobstersDbTables.USER__CASH, maxOil, oilGain);
+				
+				resourcesGained.put(MobstersDbTables.USER__CASH, cashGain);
+				resourcesGained.put(MobstersDbTables.USER__OIL, oilGain);
+				
+				
 		      	successful = writeChangesToDb(user, cashGain, oilGain, userStructIdsToUserStructs,
 		        		userStructIdsToTimesOfRetrieval);
 			}
@@ -234,7 +250,7 @@ public class RetrieveCurrencyFromNormStructureController extends EventController
 
 			getStructureForUserService().updateUserStructsLastCollectedTime(
 					userStructIdsToTimesOfRetrieval, userStructIdsToUserStructs);
-
+			
 			//GIVE THE CORRECT RESOURCES
 			int gemChange = 0;
 			getUserService().updateUserResources(user, gemChange, oilGain, cashGain);

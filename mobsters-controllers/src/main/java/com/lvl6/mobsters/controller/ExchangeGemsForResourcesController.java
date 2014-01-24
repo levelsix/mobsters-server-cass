@@ -22,6 +22,7 @@ import com.lvl6.mobsters.events.response.UpdateClientUserResponseEvent;
 import com.lvl6.mobsters.noneventprotos.MobstersEventProtocolProto.MobstersEventProtocolRequest;
 import com.lvl6.mobsters.noneventprotos.StructureProto.ResourceType;
 import com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto;
+import com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProtoWithMaxResources;
 import com.lvl6.mobsters.po.nonstaticdata.User;
 import com.lvl6.mobsters.po.nonstaticdata.UserCurrencyHistory;
 import com.lvl6.mobsters.properties.MobstersDbTables;
@@ -67,11 +68,14 @@ public class ExchangeGemsForResourcesController extends EventController {
 				((ExchangeGemsForResourcesRequestEvent) event).getExchangeGemsForResourcesRequestProto();
 
 		//get the values client sent
-		MinimumUserProto sender = reqProto.getSender();
+		MinimumUserProtoWithMaxResources senderResources = reqProto.getSender();
+		MinimumUserProto sender = senderResources.getMinUserProto();
 	    int numGems = reqProto.getNumGems();
 	    int numResources = reqProto.getNumResources();
 	    ResourceType resourceType = reqProto.getResourceType();
 	    Date curTime = new Date(reqProto.getClientTime());
+	    int maxCash = senderResources.getMaxCash();
+	    int maxOil = senderResources.getMaxOil();
 
 
 		//uuid's are not strings, need to convert from string to uuid, vice versa
@@ -80,6 +84,7 @@ public class ExchangeGemsForResourcesController extends EventController {
 
 		//response to send back to client
 		Builder responseBuilder = ExchangeGemsForResourcesResponseProto.newBuilder();
+		responseBuilder.setSender(senderResources);
 		responseBuilder.setStatus(ExchangeGemsForResourcesStatus.FAIL_OTHER);
 		ExchangeGemsForResourcesResponseEvent resEvent =
 				new ExchangeGemsForResourcesResponseEvent(userIdString);
@@ -96,7 +101,7 @@ public class ExchangeGemsForResourcesController extends EventController {
 			boolean successful = false;
 			if (validRequest) {
 				successful = writeChangesToDb(aUser, numGems, resourceType, numResources,
-						curTime);
+						curTime, maxCash, maxOil);
 			}
 
 			if (successful) {
@@ -153,16 +158,19 @@ public class ExchangeGemsForResourcesController extends EventController {
 	  }
 
 	private boolean writeChangesToDb(User user, int numGems, ResourceType resourceType,
-	  		int numResources, Date clientTime) {
+	  		int numResources, Date clientTime, int maxCash, int maxOil) {
 		try {
 			int cashChange = 0;
 		  	int oilChange = 0;
 		  	int gemChange = -1 * numGems;
 		  	
+		  	//capping user's resources
 		  	if (ResourceType.CASH == resourceType) {
-		  		cashChange = numResources;
+		  		cashChange = getUserService().calculateMaxResource(user,
+		  				MobstersDbTables.USER__CASH, maxCash, numResources);
 		  	} else if (ResourceType.OIL == resourceType) {
-		  		oilChange = numResources;
+		  		oilChange = getUserService().calculateMaxResource(user,
+		  				MobstersDbTables.USER__CASH, maxOil, numResources);
 		  	}
 
 		  	//create history first

@@ -28,6 +28,7 @@ import com.lvl6.mobsters.events.response.UpdateClientUserResponseEvent;
 import com.lvl6.mobsters.noneventprotos.MobstersEventProtocolProto.MobstersEventProtocolRequest;
 import com.lvl6.mobsters.noneventprotos.MonsterStuffProto.MinimumUserMonsterSellProto;
 import com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto;
+import com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProtoWithMaxResources;
 import com.lvl6.mobsters.po.nonstaticdata.MonsterForUser;
 import com.lvl6.mobsters.po.nonstaticdata.User;
 import com.lvl6.mobsters.po.nonstaticdata.UserCurrencyHistory;
@@ -88,13 +89,15 @@ public class SellUserMonsterController extends EventController {
 				((SellUserMonsterRequestEvent) event).getSellUserMonsterRequestProto();
 
 		//get the values client sent
-		MinimumUserProto sender = reqProto.getSender();
+		MinimumUserProtoWithMaxResources senderResourcesProto = reqProto.getSender();
+		MinimumUserProto sender = senderResourcesProto.getMinUserProto();
 		List<MinimumUserMonsterSellProto> userMonsters = reqProto.getSalesList();
 		Map<UUID, Integer> userMonsterIdsToCashAmounts = getMonsterStuffUtil()
 				.convertToMonsterForUserIdToCashAmount(userMonsters);
 		Set<UUID> userMonsterIdsSet = userMonsterIdsToCashAmounts.keySet();
 		List<UUID> userMonsterIds = new ArrayList<UUID>(userMonsterIdsSet);
 		Date deleteDate = new Date();
+		int maxCash = senderResourcesProto.getMaxCash();
 
 		//uuid's are not strings, need to convert from string to uuid, vice versa
 		String userIdString = sender.getUserUuid();
@@ -102,6 +105,7 @@ public class SellUserMonsterController extends EventController {
 
 		//response to send back to client
 		Builder responseBuilder = SellUserMonsterResponseProto.newBuilder();
+		responseBuilder.setSender(senderResourcesProto);
 		responseBuilder.setStatus(SellUserMonsterStatus.FAIL_OTHER);
 		SellUserMonsterResponseEvent resEvent =
 				new SellUserMonsterResponseEvent(userIdString);
@@ -120,7 +124,7 @@ public class SellUserMonsterController extends EventController {
 			boolean successful = false;
 			if (validRequest) {
 				successful = writeChangesToDb(aUser, userMonsterIds,
-						userMonsterIdsToCashAmounts, idsToUserMonsters, deleteDate);
+						userMonsterIdsToCashAmounts, idsToUserMonsters, deleteDate, maxCash);
 			}
 
 			if (successful) {
@@ -198,10 +202,14 @@ public class SellUserMonsterController extends EventController {
 	
 	private boolean writeChangesToDb(User aUser, List<UUID> userMonsterIds,
 			Map<UUID, Integer> userMonsterIdsToCashAmounts,
-			Map<UUID, MonsterForUser> idsToUserMonsters, Date clientTime) {
+			Map<UUID, MonsterForUser> idsToUserMonsters, Date clientTime, int maxCash) {
 		try {
 			// sum up the monies and give it to the user
 			int cashChange = getMiscUtil().sumMapValues(userMonsterIdsToCashAmounts);
+			//cap the user's cash
+			cashChange = getUserService().calculateMaxResource(aUser,
+	  				MobstersDbTables.USER__CASH, maxCash, cashChange);
+			
 			if (0 != cashChange) {
 				//create history first
 				List<UserCurrencyHistory> uchList = createCurrencyHistory(aUser,

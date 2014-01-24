@@ -2484,6 +2484,544 @@ public final class UserProto {
     // @@protoc_insertion_point(class_scope:proto.MinimumUserProtoWithFacebookId)
   }
   
+  public interface MinimumUserProtoWithMaxResourcesOrBuilder
+      extends com.google.protobuf.MessageOrBuilder {
+    
+    // optional .proto.MinimumUserProto minUserProto = 1;
+    boolean hasMinUserProto();
+    com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto getMinUserProto();
+    com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProtoOrBuilder getMinUserProtoOrBuilder();
+    
+    // optional int32 maxCash = 2;
+    boolean hasMaxCash();
+    int getMaxCash();
+    
+    // optional int32 maxOil = 3;
+    boolean hasMaxOil();
+    int getMaxOil();
+  }
+  public static final class MinimumUserProtoWithMaxResources extends
+      com.google.protobuf.GeneratedMessage
+      implements MinimumUserProtoWithMaxResourcesOrBuilder {
+    // Use MinimumUserProtoWithMaxResources.newBuilder() to construct.
+    private MinimumUserProtoWithMaxResources(Builder builder) {
+      super(builder);
+    }
+    private MinimumUserProtoWithMaxResources(boolean noInit) {}
+    
+    private static final MinimumUserProtoWithMaxResources defaultInstance;
+    public static MinimumUserProtoWithMaxResources getDefaultInstance() {
+      return defaultInstance;
+    }
+    
+    public MinimumUserProtoWithMaxResources getDefaultInstanceForType() {
+      return defaultInstance;
+    }
+    
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.lvl6.mobsters.noneventprotos.UserProto.internal_static_proto_MinimumUserProtoWithMaxResources_descriptor;
+    }
+    
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.lvl6.mobsters.noneventprotos.UserProto.internal_static_proto_MinimumUserProtoWithMaxResources_fieldAccessorTable;
+    }
+    
+    private int bitField0_;
+    // optional .proto.MinimumUserProto minUserProto = 1;
+    public static final int MINUSERPROTO_FIELD_NUMBER = 1;
+    private com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto minUserProto_;
+    public boolean hasMinUserProto() {
+      return ((bitField0_ & 0x00000001) == 0x00000001);
+    }
+    public com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto getMinUserProto() {
+      return minUserProto_;
+    }
+    public com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProtoOrBuilder getMinUserProtoOrBuilder() {
+      return minUserProto_;
+    }
+    
+    // optional int32 maxCash = 2;
+    public static final int MAXCASH_FIELD_NUMBER = 2;
+    private int maxCash_;
+    public boolean hasMaxCash() {
+      return ((bitField0_ & 0x00000002) == 0x00000002);
+    }
+    public int getMaxCash() {
+      return maxCash_;
+    }
+    
+    // optional int32 maxOil = 3;
+    public static final int MAXOIL_FIELD_NUMBER = 3;
+    private int maxOil_;
+    public boolean hasMaxOil() {
+      return ((bitField0_ & 0x00000004) == 0x00000004);
+    }
+    public int getMaxOil() {
+      return maxOil_;
+    }
+    
+    private void initFields() {
+      minUserProto_ = com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto.getDefaultInstance();
+      maxCash_ = 0;
+      maxOil_ = 0;
+    }
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized != -1) return isInitialized == 1;
+      
+      memoizedIsInitialized = 1;
+      return true;
+    }
+    
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      getSerializedSize();
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        output.writeMessage(1, minUserProto_);
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        output.writeInt32(2, maxCash_);
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        output.writeInt32(3, maxOil_);
+      }
+      getUnknownFields().writeTo(output);
+    }
+    
+    private int memoizedSerializedSize = -1;
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+    
+      size = 0;
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(1, minUserProto_);
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(2, maxCash_);
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(3, maxOil_);
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSerializedSize = size;
+      return size;
+    }
+    
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    protected java.lang.Object writeReplace()
+        throws java.io.ObjectStreamException {
+      return super.writeReplace();
+    }
+    
+    public static com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProtoWithMaxResources parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data).buildParsed();
+    }
+    public static com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProtoWithMaxResources parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data, extensionRegistry)
+               .buildParsed();
+    }
+    public static com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProtoWithMaxResources parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data).buildParsed();
+    }
+    public static com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProtoWithMaxResources parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data, extensionRegistry)
+               .buildParsed();
+    }
+    public static com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProtoWithMaxResources parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input).buildParsed();
+    }
+    public static com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProtoWithMaxResources parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input, extensionRegistry)
+               .buildParsed();
+    }
+    public static com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProtoWithMaxResources parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      Builder builder = newBuilder();
+      if (builder.mergeDelimitedFrom(input)) {
+        return builder.buildParsed();
+      } else {
+        return null;
+      }
+    }
+    public static com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProtoWithMaxResources parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      Builder builder = newBuilder();
+      if (builder.mergeDelimitedFrom(input, extensionRegistry)) {
+        return builder.buildParsed();
+      } else {
+        return null;
+      }
+    }
+    public static com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProtoWithMaxResources parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input).buildParsed();
+    }
+    public static com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProtoWithMaxResources parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input, extensionRegistry)
+               .buildParsed();
+    }
+    
+    public static Builder newBuilder() { return Builder.create(); }
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder(com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProtoWithMaxResources prototype) {
+      return newBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() { return newBuilder(this); }
+    
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder>
+       implements com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProtoWithMaxResourcesOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.lvl6.mobsters.noneventprotos.UserProto.internal_static_proto_MinimumUserProtoWithMaxResources_descriptor;
+      }
+      
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.lvl6.mobsters.noneventprotos.UserProto.internal_static_proto_MinimumUserProtoWithMaxResources_fieldAccessorTable;
+      }
+      
+      // Construct using com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProtoWithMaxResources.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+      
+      private Builder(BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+          getMinUserProtoFieldBuilder();
+        }
+      }
+      private static Builder create() {
+        return new Builder();
+      }
+      
+      public Builder clear() {
+        super.clear();
+        if (minUserProtoBuilder_ == null) {
+          minUserProto_ = com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto.getDefaultInstance();
+        } else {
+          minUserProtoBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000001);
+        maxCash_ = 0;
+        bitField0_ = (bitField0_ & ~0x00000002);
+        maxOil_ = 0;
+        bitField0_ = (bitField0_ & ~0x00000004);
+        return this;
+      }
+      
+      public Builder clone() {
+        return create().mergeFrom(buildPartial());
+      }
+      
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProtoWithMaxResources.getDescriptor();
+      }
+      
+      public com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProtoWithMaxResources getDefaultInstanceForType() {
+        return com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProtoWithMaxResources.getDefaultInstance();
+      }
+      
+      public com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProtoWithMaxResources build() {
+        com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProtoWithMaxResources result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+      
+      private com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProtoWithMaxResources buildParsed()
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProtoWithMaxResources result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(
+            result).asInvalidProtocolBufferException();
+        }
+        return result;
+      }
+      
+      public com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProtoWithMaxResources buildPartial() {
+        com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProtoWithMaxResources result = new com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProtoWithMaxResources(this);
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
+          to_bitField0_ |= 0x00000001;
+        }
+        if (minUserProtoBuilder_ == null) {
+          result.minUserProto_ = minUserProto_;
+        } else {
+          result.minUserProto_ = minUserProtoBuilder_.build();
+        }
+        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
+          to_bitField0_ |= 0x00000002;
+        }
+        result.maxCash_ = maxCash_;
+        if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
+          to_bitField0_ |= 0x00000004;
+        }
+        result.maxOil_ = maxOil_;
+        result.bitField0_ = to_bitField0_;
+        onBuilt();
+        return result;
+      }
+      
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProtoWithMaxResources) {
+          return mergeFrom((com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProtoWithMaxResources)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+      
+      public Builder mergeFrom(com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProtoWithMaxResources other) {
+        if (other == com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProtoWithMaxResources.getDefaultInstance()) return this;
+        if (other.hasMinUserProto()) {
+          mergeMinUserProto(other.getMinUserProto());
+        }
+        if (other.hasMaxCash()) {
+          setMaxCash(other.getMaxCash());
+        }
+        if (other.hasMaxOil()) {
+          setMaxOil(other.getMaxOil());
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        return this;
+      }
+      
+      public final boolean isInitialized() {
+        return true;
+      }
+      
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder(
+            this.getUnknownFields());
+        while (true) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              this.setUnknownFields(unknownFields.build());
+              onChanged();
+              return this;
+            default: {
+              if (!parseUnknownField(input, unknownFields,
+                                     extensionRegistry, tag)) {
+                this.setUnknownFields(unknownFields.build());
+                onChanged();
+                return this;
+              }
+              break;
+            }
+            case 10: {
+              com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto.Builder subBuilder = com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto.newBuilder();
+              if (hasMinUserProto()) {
+                subBuilder.mergeFrom(getMinUserProto());
+              }
+              input.readMessage(subBuilder, extensionRegistry);
+              setMinUserProto(subBuilder.buildPartial());
+              break;
+            }
+            case 16: {
+              bitField0_ |= 0x00000002;
+              maxCash_ = input.readInt32();
+              break;
+            }
+            case 24: {
+              bitField0_ |= 0x00000004;
+              maxOil_ = input.readInt32();
+              break;
+            }
+          }
+        }
+      }
+      
+      private int bitField0_;
+      
+      // optional .proto.MinimumUserProto minUserProto = 1;
+      private com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto minUserProto_ = com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto.getDefaultInstance();
+      private com.google.protobuf.SingleFieldBuilder<
+          com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto, com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto.Builder, com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProtoOrBuilder> minUserProtoBuilder_;
+      public boolean hasMinUserProto() {
+        return ((bitField0_ & 0x00000001) == 0x00000001);
+      }
+      public com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto getMinUserProto() {
+        if (minUserProtoBuilder_ == null) {
+          return minUserProto_;
+        } else {
+          return minUserProtoBuilder_.getMessage();
+        }
+      }
+      public Builder setMinUserProto(com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto value) {
+        if (minUserProtoBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          minUserProto_ = value;
+          onChanged();
+        } else {
+          minUserProtoBuilder_.setMessage(value);
+        }
+        bitField0_ |= 0x00000001;
+        return this;
+      }
+      public Builder setMinUserProto(
+          com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto.Builder builderForValue) {
+        if (minUserProtoBuilder_ == null) {
+          minUserProto_ = builderForValue.build();
+          onChanged();
+        } else {
+          minUserProtoBuilder_.setMessage(builderForValue.build());
+        }
+        bitField0_ |= 0x00000001;
+        return this;
+      }
+      public Builder mergeMinUserProto(com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto value) {
+        if (minUserProtoBuilder_ == null) {
+          if (((bitField0_ & 0x00000001) == 0x00000001) &&
+              minUserProto_ != com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto.getDefaultInstance()) {
+            minUserProto_ =
+              com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto.newBuilder(minUserProto_).mergeFrom(value).buildPartial();
+          } else {
+            minUserProto_ = value;
+          }
+          onChanged();
+        } else {
+          minUserProtoBuilder_.mergeFrom(value);
+        }
+        bitField0_ |= 0x00000001;
+        return this;
+      }
+      public Builder clearMinUserProto() {
+        if (minUserProtoBuilder_ == null) {
+          minUserProto_ = com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto.getDefaultInstance();
+          onChanged();
+        } else {
+          minUserProtoBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000001);
+        return this;
+      }
+      public com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto.Builder getMinUserProtoBuilder() {
+        bitField0_ |= 0x00000001;
+        onChanged();
+        return getMinUserProtoFieldBuilder().getBuilder();
+      }
+      public com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProtoOrBuilder getMinUserProtoOrBuilder() {
+        if (minUserProtoBuilder_ != null) {
+          return minUserProtoBuilder_.getMessageOrBuilder();
+        } else {
+          return minUserProto_;
+        }
+      }
+      private com.google.protobuf.SingleFieldBuilder<
+          com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto, com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto.Builder, com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProtoOrBuilder> 
+          getMinUserProtoFieldBuilder() {
+        if (minUserProtoBuilder_ == null) {
+          minUserProtoBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+              com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto, com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto.Builder, com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProtoOrBuilder>(
+                  minUserProto_,
+                  getParentForChildren(),
+                  isClean());
+          minUserProto_ = null;
+        }
+        return minUserProtoBuilder_;
+      }
+      
+      // optional int32 maxCash = 2;
+      private int maxCash_ ;
+      public boolean hasMaxCash() {
+        return ((bitField0_ & 0x00000002) == 0x00000002);
+      }
+      public int getMaxCash() {
+        return maxCash_;
+      }
+      public Builder setMaxCash(int value) {
+        bitField0_ |= 0x00000002;
+        maxCash_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearMaxCash() {
+        bitField0_ = (bitField0_ & ~0x00000002);
+        maxCash_ = 0;
+        onChanged();
+        return this;
+      }
+      
+      // optional int32 maxOil = 3;
+      private int maxOil_ ;
+      public boolean hasMaxOil() {
+        return ((bitField0_ & 0x00000004) == 0x00000004);
+      }
+      public int getMaxOil() {
+        return maxOil_;
+      }
+      public Builder setMaxOil(int value) {
+        bitField0_ |= 0x00000004;
+        maxOil_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearMaxOil() {
+        bitField0_ = (bitField0_ & ~0x00000004);
+        maxOil_ = 0;
+        onChanged();
+        return this;
+      }
+      
+      // @@protoc_insertion_point(builder_scope:proto.MinimumUserProtoWithMaxResources)
+    }
+    
+    static {
+      defaultInstance = new MinimumUserProtoWithMaxResources(true);
+      defaultInstance.initFields();
+    }
+    
+    // @@protoc_insertion_point(class_scope:proto.MinimumUserProtoWithMaxResources)
+  }
+  
   public interface UserFacebookInviteForSlotProtoOrBuilder
       extends com.google.protobuf.MessageOrBuilder {
     
@@ -7010,6 +7548,11 @@ public final class UserProto {
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_proto_MinimumUserProtoWithFacebookId_fieldAccessorTable;
   private static com.google.protobuf.Descriptors.Descriptor
+    internal_static_proto_MinimumUserProtoWithMaxResources_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_proto_MinimumUserProtoWithMaxResources_fieldAccessorTable;
+  private static com.google.protobuf.Descriptors.Descriptor
     internal_static_proto_UserFacebookInviteForSlotProto_descriptor;
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
@@ -7044,41 +7587,44 @@ public final class UserProto {
       ".proto.MinimumUserProto\022\r\n\005level\030\002 \001(\005\"c" +
       "\n\036MinimumUserProtoWithFacebookId\022-\n\014minU",
       "serProto\030\001 \001(\0132\027.proto.MinimumUserProto\022" +
-      "\022\n\nfacebookId\030\002 \001(\t\"\370\001\n\036UserFacebookInvi" +
-      "teForSlotProto\022\022\n\ninviteUuid\030\001 \001(\t\0226\n\007in" +
-      "viter\030\002 \001(\0132%.proto.MinimumUserProtoWith" +
-      "FacebookId\022\033\n\023recipientFacebookId\030\003 \001(\t\022" +
-      "\024\n\014timeOfInvite\030\004 \001(\003\022\024\n\014timeAccepted\030\005 " +
-      "\001(\003\022\026\n\016userStructUuid\030\006 \001(\t\022\023\n\013structFbL" +
-      "vl\030\007 \001(\005\022\024\n\014redeemedTime\030\010 \001(\003\"\335\007\n\rFullU" +
-      "serProto\022\020\n\010userUuid\030\001 \001(\t\022\014\n\004name\030\002 \001(\t" +
-      "\022\r\n\005level\030\003 \001(\005\022\014\n\004gems\030\004 \001(\005\022\014\n\004cash\030\005 ",
-      "\001(\005\022\013\n\003oil\030* \001(\005\022\022\n\nexperience\030\006 \001(\005\022\026\n\016" +
-      "tasksCompleted\030\007 \001(\005\022\022\n\nbattlesWon\030\010 \001(\005" +
-      "\022\023\n\013battlesLost\030\t \001(\005\022\r\n\005flees\030\n \001(\005\022\024\n\014" +
-      "referralCode\030\013 \001(\t\022\024\n\014numReferrals\030\014 \001(\005" +
-      "\022\025\n\rlastLoginTime\030\016 \001(\003\022\026\n\016lastLogoutTim" +
-      "e\030\017 \001(\003\022\016\n\006isFake\030\023 \001(\010\022\017\n\007isAdmin\030\025 \001(\010" +
-      "\022#\n\033numCashRetrievedFromStructs\030\027 \001(\005\022\"\n" +
-      "\032numOilRetrievedFromStructs\030+ \001(\005\022%\n\004cla" +
-      "n\030\031 \001(\0132\027.proto.MinimumClanProto\022\033\n\023hasR" +
-      "eceivedfbReward\030\034 \001(\010\022!\n\031numAdditionalMo",
-      "nsterSlots\030\035 \001(\005\022!\n\031numBeginnerSalesPurc" +
-      "hased\030\036 \001(\005\022\027\n\017hasActiveShield\030\037 \001(\010\022\025\n\r" +
-      "shieldEndTime\030  \001(\003\022\013\n\003elo\030! \001(\005\022\014\n\004rank" +
-      "\030\" \001(\t\022\026\n\016lastTimeQueued\030# \001(\003\022\022\n\nattack" +
-      "sWon\030$ \001(\005\022\023\n\013defensesWon\030% \001(\005\022\023\n\013attac" +
-      "ksLost\030& \001(\005\022\024\n\014defensesLost\030\' \001(\005\022\022\n\nfa" +
-      "cebookId\030( \001(\t\022\014\n\004udid\030\r \001(\t\022\023\n\013deviceTo" +
-      "ken\030\020 \001(\t\022\"\n\032lastBattleNotificationTime\030" +
-      "\021 \001(\003\022\021\n\tnumBadges\030\022 \001(\005\022\022\n\ncreateTime\030\024" +
-      " \001(\003\022\021\n\tapsalarId\030\026 \001(\005\022 \n\030numConsecutiv",
-      "eDaysPlayed\030\030 \001(\005\022$\n\034lastWallPostNotific" +
-      "ationTime\030\032 \001(\003\022\021\n\tkabamNaid\030\033 \001(\t\022\032\n\022nt" +
-      "hExtraSlotsViaFb\030) \001(\005\"V\n\030StaticUserLeve" +
-      "lInfoProto\022\r\n\005level\030\001 \001(\005\022\032\n\022requiredExp" +
-      "erience\030\002 \001(\005\022\017\n\007maxCash\030\003 \001(\005B-\n com.lv" +
-      "l6.mobsters.noneventprotosB\tUserProto"
+      "\022\n\nfacebookId\030\002 \001(\t\"r\n MinimumUserProtoW" +
+      "ithMaxResources\022-\n\014minUserProto\030\001 \001(\0132\027." +
+      "proto.MinimumUserProto\022\017\n\007maxCash\030\002 \001(\005\022" +
+      "\016\n\006maxOil\030\003 \001(\005\"\370\001\n\036UserFacebookInviteFo" +
+      "rSlotProto\022\022\n\ninviteUuid\030\001 \001(\t\0226\n\007invite" +
+      "r\030\002 \001(\0132%.proto.MinimumUserProtoWithFace" +
+      "bookId\022\033\n\023recipientFacebookId\030\003 \001(\t\022\024\n\014t" +
+      "imeOfInvite\030\004 \001(\003\022\024\n\014timeAccepted\030\005 \001(\003\022" +
+      "\026\n\016userStructUuid\030\006 \001(\t\022\023\n\013structFbLvl\030\007",
+      " \001(\005\022\024\n\014redeemedTime\030\010 \001(\003\"\335\007\n\rFullUserP" +
+      "roto\022\020\n\010userUuid\030\001 \001(\t\022\014\n\004name\030\002 \001(\t\022\r\n\005" +
+      "level\030\003 \001(\005\022\014\n\004gems\030\004 \001(\005\022\014\n\004cash\030\005 \001(\005\022" +
+      "\013\n\003oil\030* \001(\005\022\022\n\nexperience\030\006 \001(\005\022\026\n\016task" +
+      "sCompleted\030\007 \001(\005\022\022\n\nbattlesWon\030\010 \001(\005\022\023\n\013" +
+      "battlesLost\030\t \001(\005\022\r\n\005flees\030\n \001(\005\022\024\n\014refe" +
+      "rralCode\030\013 \001(\t\022\024\n\014numReferrals\030\014 \001(\005\022\025\n\r" +
+      "lastLoginTime\030\016 \001(\003\022\026\n\016lastLogoutTime\030\017 " +
+      "\001(\003\022\016\n\006isFake\030\023 \001(\010\022\017\n\007isAdmin\030\025 \001(\010\022#\n\033" +
+      "numCashRetrievedFromStructs\030\027 \001(\005\022\"\n\032num",
+      "OilRetrievedFromStructs\030+ \001(\005\022%\n\004clan\030\031 " +
+      "\001(\0132\027.proto.MinimumClanProto\022\033\n\023hasRecei" +
+      "vedfbReward\030\034 \001(\010\022!\n\031numAdditionalMonste" +
+      "rSlots\030\035 \001(\005\022!\n\031numBeginnerSalesPurchase" +
+      "d\030\036 \001(\005\022\027\n\017hasActiveShield\030\037 \001(\010\022\025\n\rshie" +
+      "ldEndTime\030  \001(\003\022\013\n\003elo\030! \001(\005\022\014\n\004rank\030\" \001" +
+      "(\t\022\026\n\016lastTimeQueued\030# \001(\003\022\022\n\nattacksWon" +
+      "\030$ \001(\005\022\023\n\013defensesWon\030% \001(\005\022\023\n\013attacksLo" +
+      "st\030& \001(\005\022\024\n\014defensesLost\030\' \001(\005\022\022\n\nfacebo" +
+      "okId\030( \001(\t\022\014\n\004udid\030\r \001(\t\022\023\n\013deviceToken\030",
+      "\020 \001(\t\022\"\n\032lastBattleNotificationTime\030\021 \001(" +
+      "\003\022\021\n\tnumBadges\030\022 \001(\005\022\022\n\ncreateTime\030\024 \001(\003" +
+      "\022\021\n\tapsalarId\030\026 \001(\005\022 \n\030numConsecutiveDay" +
+      "sPlayed\030\030 \001(\005\022$\n\034lastWallPostNotificatio" +
+      "nTime\030\032 \001(\003\022\021\n\tkabamNaid\030\033 \001(\t\022\032\n\022nthExt" +
+      "raSlotsViaFb\030) \001(\005\"V\n\030StaticUserLevelInf" +
+      "oProto\022\r\n\005level\030\001 \001(\005\022\032\n\022requiredExperie" +
+      "nce\030\002 \001(\005\022\017\n\007maxCash\030\003 \001(\005B-\n com.lvl6.m" +
+      "obsters.noneventprotosB\tUserProto"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -7117,8 +7663,16 @@ public final class UserProto {
               new java.lang.String[] { "MinUserProto", "FacebookId", },
               com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProtoWithFacebookId.class,
               com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProtoWithFacebookId.Builder.class);
-          internal_static_proto_UserFacebookInviteForSlotProto_descriptor =
+          internal_static_proto_MinimumUserProtoWithMaxResources_descriptor =
             getDescriptor().getMessageTypes().get(4);
+          internal_static_proto_MinimumUserProtoWithMaxResources_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_proto_MinimumUserProtoWithMaxResources_descriptor,
+              new java.lang.String[] { "MinUserProto", "MaxCash", "MaxOil", },
+              com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProtoWithMaxResources.class,
+              com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProtoWithMaxResources.Builder.class);
+          internal_static_proto_UserFacebookInviteForSlotProto_descriptor =
+            getDescriptor().getMessageTypes().get(5);
           internal_static_proto_UserFacebookInviteForSlotProto_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_proto_UserFacebookInviteForSlotProto_descriptor,
@@ -7126,7 +7680,7 @@ public final class UserProto {
               com.lvl6.mobsters.noneventprotos.UserProto.UserFacebookInviteForSlotProto.class,
               com.lvl6.mobsters.noneventprotos.UserProto.UserFacebookInviteForSlotProto.Builder.class);
           internal_static_proto_FullUserProto_descriptor =
-            getDescriptor().getMessageTypes().get(5);
+            getDescriptor().getMessageTypes().get(6);
           internal_static_proto_FullUserProto_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_proto_FullUserProto_descriptor,
@@ -7134,7 +7688,7 @@ public final class UserProto {
               com.lvl6.mobsters.noneventprotos.UserProto.FullUserProto.class,
               com.lvl6.mobsters.noneventprotos.UserProto.FullUserProto.Builder.class);
           internal_static_proto_StaticUserLevelInfoProto_descriptor =
-            getDescriptor().getMessageTypes().get(6);
+            getDescriptor().getMessageTypes().get(7);
           internal_static_proto_StaticUserLevelInfoProto_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_proto_StaticUserLevelInfoProto_descriptor,
