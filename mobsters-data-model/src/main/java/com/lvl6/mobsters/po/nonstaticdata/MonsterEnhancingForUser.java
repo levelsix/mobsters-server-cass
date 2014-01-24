@@ -32,9 +32,9 @@ public class MonsterEnhancingForUser extends BasePersistentObject<UUID>{
 	@Index
 	protected Date expectedStartTime = null;
 
-	
-	
-	
+	@Column(name="enhancing_cost")
+	protected int enhancingCost = 0;
+
 	public UUID getId() {
 		return id;
 	}
@@ -67,10 +67,20 @@ public class MonsterEnhancingForUser extends BasePersistentObject<UUID>{
 		this.expectedStartTime = expectedStartTime;
 	}
 
+	public int getEnhancingCost() {
+		return enhancingCost;
+	}
+
+	public void setEnhancingCost(int enhancingCost) {
+		this.enhancingCost = enhancingCost;
+	}
+
 	@Override
 	public String toString() {
 		return "MonsterEnhancingForUser [id=" + id + ", userId=" + userId
 				+ ", monsterForUserId=" + monsterForUserId
-				+ ", expectedStartTime=" + expectedStartTime + "]";
+				+ ", expectedStartTime=" + expectedStartTime
+				+ ", enhancingCost=" + enhancingCost + "]";
 	}
+	
 }

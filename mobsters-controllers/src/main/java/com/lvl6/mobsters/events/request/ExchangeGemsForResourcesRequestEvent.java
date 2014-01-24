@@ -15,7 +15,7 @@ public class ExchangeGemsForResourcesRequestEvent extends RequestEvent {
   public void read(ByteBuffer bb) {
     try {
       exchangeGemsForResourcesRequestProto = ExchangeGemsForResourcesRequestProto.parseFrom(ByteString.copyFrom(bb));
-      playerId = exchangeGemsForResourcesRequestProto.getSender().getUserUuid();
+      playerId = exchangeGemsForResourcesRequestProto.getSender().getMinUserProto().getUserUuid();
     } catch (InvalidProtocolBufferException e) {
       e.printStackTrace();
     }

@@ -15,7 +15,7 @@ public class EndDungeonRequestEvent extends RequestEvent {
 	public void read(ByteBuffer bb) {
 		try {
 			endDungeonRequestProto = EndDungeonRequestProto.parseFrom(ByteString.copyFrom(bb));
-			playerId = endDungeonRequestProto.getSender().getUserUuid();
+			playerId = endDungeonRequestProto.getSender().getMinUserProto().getUserUuid();
 		} catch (InvalidProtocolBufferException e) {
 			e.printStackTrace();
 		}

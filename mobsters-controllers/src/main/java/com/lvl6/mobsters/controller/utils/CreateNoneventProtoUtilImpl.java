@@ -374,14 +374,16 @@ public class CreateNoneventProtoUtilImpl implements CreateNoneventProtoUtil {
 			MonsterEnhancingForUser mefu) {
 
 		UserEnhancementItemProto.Builder ueipb = UserEnhancementItemProto.newBuilder();
-		UUID mefuId = mefu.getMonsterForUserId();
-		String mefuIdStr = mefuId.toString();
-		ueipb.setUserMonsterUuid(mefuIdStr);
+		UUID mfuId = mefu.getMonsterForUserId();
+		String mfuIdStr = mfuId.toString();
+		ueipb.setUserMonsterUuid(mfuIdStr);
 
 		Date startTime = mefu.getExpectedStartTime();
 		if (null != startTime) {
 			ueipb.setExpectedStartTimeMillis(startTime.getTime());
 		}
+		
+		ueipb.setEnhancingCost(mefu.getEnhancingCost());
 
 		return ueipb.build();
 	}

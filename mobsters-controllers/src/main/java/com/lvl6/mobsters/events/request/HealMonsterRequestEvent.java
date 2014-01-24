@@ -15,7 +15,7 @@ public class HealMonsterRequestEvent extends RequestEvent {
 	public void read(ByteBuffer bb) {
 		try {
 			collectUserStructureRequestProto = HealMonsterRequestProto.parseFrom(ByteString.copyFrom(bb));
-			playerId = collectUserStructureRequestProto.getSender().getUserUuid();
+			playerId = collectUserStructureRequestProto.getSender().getMinUserProto().getUserUuid();
 		} catch (InvalidProtocolBufferException e) {
 			e.printStackTrace();
 		}

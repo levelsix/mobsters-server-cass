@@ -15,7 +15,7 @@ public class QuestRedeemRequestEvent extends RequestEvent {
 	public void read(ByteBuffer bb) {
 		try {
 			questRedeemRequestProto = QuestRedeemRequestProto.parseFrom(ByteString.copyFrom(bb));
-			playerId = questRedeemRequestProto.getSender().getUserUuid();
+			playerId = questRedeemRequestProto.getSender().getMinUserProto().getUserUuid();
 		} catch (InvalidProtocolBufferException e) {
 			e.printStackTrace();
 		}

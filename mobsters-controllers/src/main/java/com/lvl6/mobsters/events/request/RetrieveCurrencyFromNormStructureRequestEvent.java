@@ -15,7 +15,7 @@ public class RetrieveCurrencyFromNormStructureRequestEvent extends RequestEvent 
   public void read(ByteBuffer bb) {
     try {
       retrieveCurrencyFromNormStructureRequestProto = RetrieveCurrencyFromNormStructureRequestProto.parseFrom(ByteString.copyFrom(bb));
-      playerId = retrieveCurrencyFromNormStructureRequestProto.getSender().getUserUuid();
+      playerId = retrieveCurrencyFromNormStructureRequestProto.getSender().getMinUserProto().getUserUuid();
     } catch (InvalidProtocolBufferException e) {
       e.printStackTrace();
     }
