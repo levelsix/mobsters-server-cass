@@ -19,6 +19,7 @@ import com.lvl6.mobsters.entitymanager.staticdata.utils.BoosterItemRetrieveUtils
 import com.lvl6.mobsters.entitymanager.staticdata.utils.BoosterPackRetrieveUtils;
 import com.lvl6.mobsters.entitymanager.staticdata.utils.CityRetrieveUtils;
 import com.lvl6.mobsters.entitymanager.staticdata.utils.ExpansionCostRetrieveUtils;
+import com.lvl6.mobsters.entitymanager.staticdata.utils.MonsterLevelInfoRetrieveUtils;
 import com.lvl6.mobsters.entitymanager.staticdata.utils.MonsterRetrieveUtils;
 import com.lvl6.mobsters.entitymanager.staticdata.utils.QuestRetrieveUtils;
 import com.lvl6.mobsters.entitymanager.staticdata.utils.StructureHospitalRetrieveUtils;
@@ -49,6 +50,7 @@ import com.lvl6.mobsters.po.staticdata.BoosterPack;
 import com.lvl6.mobsters.po.staticdata.City;
 import com.lvl6.mobsters.po.staticdata.ExpansionCost;
 import com.lvl6.mobsters.po.staticdata.Monster;
+import com.lvl6.mobsters.po.staticdata.MonsterLevelInfo;
 import com.lvl6.mobsters.po.staticdata.Quest;
 import com.lvl6.mobsters.po.staticdata.Structure;
 import com.lvl6.mobsters.po.staticdata.StructureHospital;
@@ -116,6 +118,9 @@ public class MiscUtil {
 	
 	@Autowired
 	protected StructureLabRetrieveUtils structureLabRetrieveUtils;
+	
+	@Autowired
+	protected MonsterLevelInfoRetrieveUtils monsterLevelInfoRetrieveUtils;
 	
 	/*
 	 * aMap (the second argument) might be modified
@@ -305,7 +310,12 @@ public class MiscUtil {
 		Map<Integer, Monster> monsters = getMonsterRetrieveUtils()
 				.getMonsterIdsToMonsters();
 		for (Monster monster : monsters.values()) {
-			sdpb.addAllMonsters(getCreateNoneventProtoUtil().createMonsterProto(monster));
+			int monsterId = monster.getId();
+			Map<Integer, MonsterLevelInfo> levelToInfo = getMonsterLevelInfoRetrieveUtils()
+		  			.getMonsterLevelInfoForMonsterId(monsterId);
+			
+			sdpb.addAllMonsters(getCreateNoneventProtoUtil().createMonsterProto(monster,
+					levelToInfo));
 		}
 	}
 
@@ -661,6 +671,15 @@ public class MiscUtil {
 	public void setStructureLabRetrieveUtils(
 			StructureLabRetrieveUtils structureLabRetrieveUtils) {
 		this.structureLabRetrieveUtils = structureLabRetrieveUtils;
+	}
+
+	public MonsterLevelInfoRetrieveUtils getMonsterLevelInfoRetrieveUtils() {
+		return monsterLevelInfoRetrieveUtils;
+	}
+
+	public void setMonsterLevelInfoRetrieveUtils(
+			MonsterLevelInfoRetrieveUtils monsterLevelInfoRetrieveUtils) {
+		this.monsterLevelInfoRetrieveUtils = monsterLevelInfoRetrieveUtils;
 	}
 	
 }

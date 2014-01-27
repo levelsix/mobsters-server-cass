@@ -2,6 +2,7 @@ package com.lvl6.mobsters.controller.utils;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -20,6 +21,7 @@ import com.lvl6.mobsters.noneventprotos.CityProto.CityElementProto.CityElemType;
 import com.lvl6.mobsters.noneventprotos.CityProto.CityExpansionCostProto;
 import com.lvl6.mobsters.noneventprotos.CityProto.FullCityProto;
 import com.lvl6.mobsters.noneventprotos.MonsterStuffProto.FullUserMonsterProto;
+import com.lvl6.mobsters.noneventprotos.MonsterStuffProto.MonsterLevelInfoProto;
 import com.lvl6.mobsters.noneventprotos.MonsterStuffProto.MonsterProto;
 import com.lvl6.mobsters.noneventprotos.MonsterStuffProto.MonsterProto.MonsterElement;
 import com.lvl6.mobsters.noneventprotos.MonsterStuffProto.MonsterProto.MonsterQuality;
@@ -71,6 +73,7 @@ import com.lvl6.mobsters.po.staticdata.CityElement;
 import com.lvl6.mobsters.po.staticdata.EventPersistent;
 import com.lvl6.mobsters.po.staticdata.ExpansionCost;
 import com.lvl6.mobsters.po.staticdata.Monster;
+import com.lvl6.mobsters.po.staticdata.MonsterLevelInfo;
 import com.lvl6.mobsters.po.staticdata.Quest;
 import com.lvl6.mobsters.po.staticdata.Structure;
 import com.lvl6.mobsters.po.staticdata.StructureHospital;
@@ -389,7 +392,8 @@ public class CreateNoneventProtoUtilImpl implements CreateNoneventProtoUtil {
 	}
 	
 	@Override
-	public MonsterProto createMonsterProto(Monster aMonster) {
+	public MonsterProto createMonsterProto(Monster aMonster,
+			Map<Integer, MonsterLevelInfo> levelToInfo) {
 		MonsterProto.Builder mpb = MonsterProto.newBuilder();
 		mpb.setMonsterId(aMonster.getId());
 		
@@ -403,9 +407,11 @@ public class CreateNoneventProtoUtilImpl implements CreateNoneventProtoUtil {
 		}
 		
 		aStr = aMonster.getMonsterQuality();
-		MonsterQuality mq = MonsterQuality.valueOf(aStr);
-		if (null != mq) {
+		try {
+			MonsterQuality mq = MonsterQuality.valueOf(aStr);
 			mpb.setQuality(mq);
+		} catch (Exception e) {
+			log.error("monster quality incorrectly set. monster=" + aMonster);
 		}
 		
 		mpb.setEvolutionLevel(aMonster.getEvolutionLvl());
@@ -415,27 +421,18 @@ public class CreateNoneventProtoUtilImpl implements CreateNoneventProtoUtil {
 		}
 
 		aStr = aMonster.getMonsterElement();
-		MonsterElement me = MonsterElement.valueOf(aStr);
-		if (null != me) {
+		try {
+			MonsterElement me = MonsterElement.valueOf(aStr);
 			mpb.setElement(me);
-		} /*else{
-			log.error("monster element is null!!!!!! monster=" + aMonster);
-		}*/
-		mpb.setBaseHp(aMonster.getBaseHp());
+		} catch (Exception e) {
+			log.error("monster element incorrectly set. monster=" + aMonster);
+		}
 		aStr = aMonster.getImagePrefix(); 
 		if (null != aStr) {
 			mpb.setImagePrefix(aStr);
 		}
 		mpb.setNumPuzzlePieces(aMonster.getNumPuzzlePieces());
 		mpb.setMinutesToCombinePieces(aMonster.getMinutesToCombinePieces());
-		mpb.setElementOneDmg(aMonster.getElementOneDmg());
-		mpb.setElementTwoDmg(aMonster.getElementTwoDmg());
-		mpb.setElementThreeDmg(aMonster.getElementThreeDmg());
-		mpb.setElementFourDmg(aMonster.getElementFourDmg());
-		mpb.setElementFiveDmg(aMonster.getElementFiveDmg());
-		mpb.setElementSixDmg(aMonster.getElementSixDmg());
-		mpb.setHpLevelMultiplier(aMonster.getHpLvlMultiplier());
-		mpb.setAttackLevelMultiplier(aMonster.getAttackLvlMultiplier());
 		mpb.setMaxLevel(aMonster.getMaxLvl());
 
 		int evolId = aMonster.getEvolutionMonsterId();
@@ -466,11 +463,46 @@ public class CreateNoneventProtoUtilImpl implements CreateNoneventProtoUtil {
 	    
 	    int num = aMonster.getNumCatalystsRequired();
 	    mpb.setNumCatalystMonstersRequired(num);
-	    int enhancingFeederExp = aMonster.getEnhancingFeederExp();
-	    mpb.setEnhancingFeederExp(enhancingFeederExp);
+	    
+	    List<MonsterLevelInfoProto> lvlInfoProtos = createMonsterLevelInfoFromInfo(levelToInfo);
+	    mpb.addAllLvlInfo(lvlInfoProtos);
 		return mpb.build();
 	}
 	
+	public List<MonsterLevelInfoProto> createMonsterLevelInfoFromInfo(
+			Map<Integer, MonsterLevelInfo> lvlToInfo) {
+
+		if (null == lvlToInfo || lvlToInfo.isEmpty()) {
+			return new ArrayList<MonsterLevelInfoProto>();
+		}
+
+		//order the MonsterLevelInfoProto by ascending lvl
+		Set<Integer> lvls = lvlToInfo.keySet();
+		List<Integer> ascendingLvls = new ArrayList<Integer>(lvls);
+		Collections.sort(ascendingLvls);
+
+		List<MonsterLevelInfoProto> lvlInfoProtos = new ArrayList<MonsterLevelInfoProto>();
+		for (Integer lvl : ascendingLvls) {
+			MonsterLevelInfo info = lvlToInfo.get(lvl);
+
+			//create the proto
+			MonsterLevelInfoProto.Builder mlipb = MonsterLevelInfoProto.newBuilder();
+			mlipb.setLvl(lvl);
+			mlipb.setHp(info.getHp());
+			mlipb.setCurLvlRequiredExp(info.getCurLvlRequiredExp());
+			mlipb.setFeederExp(info.getFeederExp());
+			mlipb.setFireDmg(info.getFireDmg());
+			mlipb.setGrassDmg(info.getGrassDmg());
+			mlipb.setWaterDmg(info.getWaterDmg());
+			mlipb.setLightningDmg(info.getLightningDmg());
+			mlipb.setDarknessDmg(info.getDarknessDmg());
+			mlipb.setRockDmg(info.getRockDmg());
+
+			lvlInfoProtos.add(mlipb.build());
+		}
+
+		return lvlInfoProtos;
+	}
 
 	//QUEST PROTO****************************************************************
 	@Override

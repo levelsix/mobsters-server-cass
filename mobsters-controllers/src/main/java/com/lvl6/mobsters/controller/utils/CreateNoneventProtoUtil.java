@@ -53,6 +53,7 @@ import com.lvl6.mobsters.po.staticdata.CityElement;
 import com.lvl6.mobsters.po.staticdata.EventPersistent;
 import com.lvl6.mobsters.po.staticdata.ExpansionCost;
 import com.lvl6.mobsters.po.staticdata.Monster;
+import com.lvl6.mobsters.po.staticdata.MonsterLevelInfo;
 import com.lvl6.mobsters.po.staticdata.Quest;
 import com.lvl6.mobsters.po.staticdata.Structure;
 import com.lvl6.mobsters.po.staticdata.StructureHospital;
@@ -102,7 +103,8 @@ public interface CreateNoneventProtoUtil {
 	public abstract UserEnhancementItemProto createUserEnhancementItemProtoFromObj(
 	  		MonsterEnhancingForUser mefu);
 	
-	public abstract MonsterProto createMonsterProto(Monster aMonster);
+	public abstract MonsterProto createMonsterProto(Monster aMonster,
+			Map<Integer, MonsterLevelInfo> levelToInfo);
 	
 	//QUEST PROTO****************************************************************
 	public abstract QuestProto createQuestProtoFromQuest(Quest q);

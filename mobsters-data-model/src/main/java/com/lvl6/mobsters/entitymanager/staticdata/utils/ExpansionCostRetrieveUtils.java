@@ -17,11 +17,11 @@ import com.lvl6.mobsters.utils.QueryConstructionUtil;
 
 @Component public class ExpansionCostRetrieveUtils {
 
-	private  Logger log = LoggerFactory.getLogger(new Object() { }.getClass().getEnclosingClass());
+	private Logger log = LoggerFactory.getLogger(new Object() { }.getClass().getEnclosingClass());
 
-	private static Map<Integer, ExpansionCost> expansionNumToExpansionCost;
+	private Map<Integer, ExpansionCost> expansionNumToExpansionCost;
 	
-	private  final String TABLE_NAME = MobstersDbTables.TABLE_EXPANSION_COST;
+	private final String TABLE_NAME = MobstersDbTables.TABLE_EXPANSION_COST;
 
 	@Autowired
 	protected ExpansionCostEntityManager expansionCostEntityManager;
@@ -44,6 +44,9 @@ import com.lvl6.mobsters.utils.QueryConstructionUtil;
 			setStaticExpansionNumToCityExpansionCost();
 		}
 
+		if (!expansionNumToExpansionCost.containsKey(id)) {
+			log.error("no city expansion cost with cityId=" + id);
+		}
 		return expansionNumToExpansionCost.get(id);
 	}
 	

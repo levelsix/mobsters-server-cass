@@ -16,7 +16,7 @@ import com.dekayd.astyanax.cassandra.entitymanager.Index;
 public class Monster extends BasePersistentObject<Integer> implements Serializable {
 
 
-	private static final long serialVersionUID = 281494424539297244L;
+	private static final long serialVersionUID = -3800660131249389671L;
 
 	@Id
 	protected Integer id = 0;
@@ -54,36 +54,23 @@ public class Monster extends BasePersistentObject<Integer> implements Serializab
 	@Column(name="minutes_to_combine_pieces")
 	protected int minutesToCombinePieces = 0;
 	
-	@Column(name="element_one_dmg")
-	protected int elementOneDmg = 0;
-	
-	@Column(name="element_two_dmg")
-	protected int elementTwoDmg = 0;
-	
-	@Column(name="element_three_dmg")
-	protected int elementThreeDmg = 0;
-	
-	@Column(name="element_four_dmg")
-	protected int elementFourDmg = 0;
-	
-	@Column(name="element_five_dmg")
-	protected int elementFiveDmg = 0;
-	
-	@Column(name="element_six_dmg")
-	protected int elementSixDmg = 0;
-	
-	@Column(name="hp_lvl_multiplier")
-	protected float hpLvlMultiplier = 0;
-	
-	@Column(name="attack_lvl_multiplier")
-	protected float attackLvlMultiplier = 0;
-	
+	//aka max enhancing level
 	@Column(name="max_lvl")
 	protected int maxLvl = 0;
 	
 	//monster id this monster becomes after evolving
 	@Column(name="evolution_monster_id")
 	protected int evolutionMonsterId = 0;
+	
+	@Column(name="evolution_catalyst_monster_id")
+	protected int evolutionCatalystMonsterId = 0;
+	
+	@Column(name="minutes_to_evolve")
+	protected int minutesToEvolve = 0;
+	
+	//most likely will not be changed to something other than 1;
+	@Column(name="num_catalysts_required")
+	protected int numCatalystsRequired = 1;
 	
 	//monster id this monster was before evolving
 	@Column(name="devolution_monster_id")
@@ -100,21 +87,6 @@ public class Monster extends BasePersistentObject<Integer> implements Serializab
 	
 	@Column(name="description")
 	protected String description = null;
-	
-	@Column(name="evolution_catalyst_monster_id")
-	protected int evolutionCatalystMonsterId = 0;
-	
-	@Column(name="minutes_to_evolve")
-	protected int minutesToEvolve = 0;
-	
-	//most likely will not be changed to something other than 1;
-	@Column(name="num_catalysts_required")
-	protected int numCatalystsRequired = 1;
-	
-	//how much exp this monster is worth if used to enhance a monster
-	@Column(name="enhancing_feeder_exp")
-	protected int enhancingFeederExp = 0;
-	
 
 	public Integer getId() {
 		return id;
@@ -204,70 +176,6 @@ public class Monster extends BasePersistentObject<Integer> implements Serializab
 		this.minutesToCombinePieces = minutesToCombinePieces;
 	}
 
-	public int getElementOneDmg() {
-		return elementOneDmg;
-	}
-
-	public void setElementOneDmg(int elementOneDmg) {
-		this.elementOneDmg = elementOneDmg;
-	}
-
-	public int getElementTwoDmg() {
-		return elementTwoDmg;
-	}
-
-	public void setElementTwoDmg(int elementTwoDmg) {
-		this.elementTwoDmg = elementTwoDmg;
-	}
-
-	public int getElementThreeDmg() {
-		return elementThreeDmg;
-	}
-
-	public void setElementThreeDmg(int elementThreeDmg) {
-		this.elementThreeDmg = elementThreeDmg;
-	}
-
-	public int getElementFourDmg() {
-		return elementFourDmg;
-	}
-
-	public void setElementFourDmg(int elementFourDmg) {
-		this.elementFourDmg = elementFourDmg;
-	}
-
-	public int getElementFiveDmg() {
-		return elementFiveDmg;
-	}
-
-	public void setElementFiveDmg(int elementFiveDmg) {
-		this.elementFiveDmg = elementFiveDmg;
-	}
-
-	public int getElementSixDmg() {
-		return elementSixDmg;
-	}
-
-	public void setElementSixDmg(int elementSixDmg) {
-		this.elementSixDmg = elementSixDmg;
-	}
-
-	public float getHpLvlMultiplier() {
-		return hpLvlMultiplier;
-	}
-
-	public void setHpLvlMultiplier(float hpLvlMultiplier) {
-		this.hpLvlMultiplier = hpLvlMultiplier;
-	}
-
-	public float getAttackLvlMultiplier() {
-		return attackLvlMultiplier;
-	}
-
-	public void setAttackLvlMultiplier(float attackLvlMultiplier) {
-		this.attackLvlMultiplier = attackLvlMultiplier;
-	}
-
 	public int getMaxLvl() {
 		return maxLvl;
 	}
@@ -282,6 +190,30 @@ public class Monster extends BasePersistentObject<Integer> implements Serializab
 
 	public void setEvolutionMonsterId(int evolutionMonsterId) {
 		this.evolutionMonsterId = evolutionMonsterId;
+	}
+
+	public int getEvolutionCatalystMonsterId() {
+		return evolutionCatalystMonsterId;
+	}
+
+	public void setEvolutionCatalystMonsterId(int evolutionCatalystMonsterId) {
+		this.evolutionCatalystMonsterId = evolutionCatalystMonsterId;
+	}
+
+	public int getMinutesToEvolve() {
+		return minutesToEvolve;
+	}
+
+	public void setMinutesToEvolve(int minutesToEvolve) {
+		this.minutesToEvolve = minutesToEvolve;
+	}
+
+	public int getNumCatalystsRequired() {
+		return numCatalystsRequired;
+	}
+
+	public void setNumCatalystsRequired(int numCatalystsRequired) {
+		this.numCatalystsRequired = numCatalystsRequired;
 	}
 
 	public int getDevolutionMonsterId() {
@@ -324,38 +256,6 @@ public class Monster extends BasePersistentObject<Integer> implements Serializab
 		this.description = description;
 	}
 
-	public int getEvolutionCatalystMonsterId() {
-		return evolutionCatalystMonsterId;
-	}
-
-	public void setEvolutionCatalystMonsterId(int evolutionCatalystMonsterId) {
-		this.evolutionCatalystMonsterId = evolutionCatalystMonsterId;
-	}
-
-	public int getMinutesToEvolve() {
-		return minutesToEvolve;
-	}
-
-	public void setMinutesToEvolve(int minutesToEvolve) {
-		this.minutesToEvolve = minutesToEvolve;
-	}
-
-	public int getNumCatalystsRequired() {
-		return numCatalystsRequired;
-	}
-
-	public void setNumCatalystsRequired(int numCatalystsRequired) {
-		this.numCatalystsRequired = numCatalystsRequired;
-	}
-
-	public int getEnhancingFeederExp() {
-		return enhancingFeederExp;
-	}
-
-	public void setEnhancingFeederExp(int enhancingFeederExp) {
-		this.enhancingFeederExp = enhancingFeederExp;
-	}
-
 	@Override
 	public String toString() {
 		return "Monster [id=" + id + ", name=" + name + ", monsterGroup="
@@ -365,21 +265,14 @@ public class Monster extends BasePersistentObject<Integer> implements Serializab
 				+ ", baseHp=" + baseHp + ", imagePrefix=" + imagePrefix
 				+ ", numPuzzlePieces=" + numPuzzlePieces
 				+ ", minutesToCombinePieces=" + minutesToCombinePieces
-				+ ", elementOneDmg=" + elementOneDmg + ", elementTwoDmg="
-				+ elementTwoDmg + ", elementThreeDmg=" + elementThreeDmg
-				+ ", elementFourDmg=" + elementFourDmg + ", elementFiveDmg="
-				+ elementFiveDmg + ", elementSixDmg=" + elementSixDmg
-				+ ", hpLvlMultiplier=" + hpLvlMultiplier
-				+ ", attackLvlMultiplier=" + attackLvlMultiplier + ", maxLvl="
-				+ maxLvl + ", evolutionMonsterId=" + evolutionMonsterId
-				+ ", devolutionMonsterId=" + devolutionMonsterId
-				+ ", carrotRecruited=" + carrotRecruited + ", carrotDefeated="
-				+ carrotDefeated + ", carrotEvolved=" + carrotEvolved
-				+ ", description=" + description
-				+ ", evolutionCatalystMonsterId=" + evolutionCatalystMonsterId
-				+ ", minutesToEvolve=" + minutesToEvolve
-				+ ", numCatalystsRequired=" + numCatalystsRequired
-				+ ", enhancingFeederExp=" + enhancingFeederExp + "]";
+				+ ", maxLvl=" + maxLvl + ", evolutionMonsterId="
+				+ evolutionMonsterId + ", evolutionCatalystMonsterId="
+				+ evolutionCatalystMonsterId + ", minutesToEvolve="
+				+ minutesToEvolve + ", numCatalystsRequired="
+				+ numCatalystsRequired + ", devolutionMonsterId="
+				+ devolutionMonsterId + ", carrotRecruited=" + carrotRecruited
+				+ ", carrotDefeated=" + carrotDefeated + ", carrotEvolved="
+				+ carrotEvolved + ", description=" + description + "]";
 	}
-
+	
 }
