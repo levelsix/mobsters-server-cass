@@ -211,19 +211,27 @@ public class EndDungeonController extends EventController {
 					userWon, cancelled, ut);
 			
 			//delete from task stage for user and put it into task stage history
-			//give the user his monsters
-			boolean getMonsterPieces = true;
+			boolean calculateMonsterPieces = false; //determines whether or not to calculate
+											  //how many monster pieces the user gets
+			if (userWon) {
+				calculateMonsterPieces = true;
+			}
+			//this can get populated by deleteExistingTaskStagesForUserTaskId
 			Map<Integer, Integer> monsterIdToNumPieces = new HashMap<Integer, Integer>();
 			getTaskStageForUserService().deleteExistingTaskStagesForUserTaskId(userTaskId,
-					getMonsterPieces, monsterIdToNumPieces);
-			String mfusop = MobstersTableConstants.MFUSOP__END_DUNGEON + " " + userTaskId;
-			List<MonsterForUser> rewardList = getMonsterForUserService()
-					.updateUserMonstersForUser(uId, monsterIdToNumPieces, mfusop, clientDate);
-			List<FullUserMonsterProto> rewardProtoList = getCreateNoneventProtoUtil()
-					.createFullUserMonsterProtoList(rewardList);
+					calculateMonsterPieces, monsterIdToNumPieces);
 			
-			//send awarded monsters back up to sender
-			protos.addAll(rewardProtoList);
+			if (userWon) {
+				//give the user his monsters
+				String mfusop = MobstersTableConstants.MFUSOP__END_DUNGEON + " " + userTaskId;
+				List<MonsterForUser> rewardList = getMonsterForUserService()
+						.updateUserMonstersForUser(uId, monsterIdToNumPieces, mfusop, clientDate);
+				List<FullUserMonsterProto> rewardProtoList = getCreateNoneventProtoUtil()
+						.createFullUserMonsterProtoList(rewardList);
+
+				//send awarded monsters back up to sender
+				protos.addAll(rewardProtoList);
+			}
 			
 			return true;
 

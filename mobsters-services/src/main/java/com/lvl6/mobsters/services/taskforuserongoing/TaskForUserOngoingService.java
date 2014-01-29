@@ -31,6 +31,7 @@ public interface TaskForUserOngoingService {
 	public abstract void saveTaskForUserOngoingList(List<TaskForUserOngoing> tfuoList);
 	
 	//UPDATING STUFF****************************************************************
+	public abstract void updateIncrementUserTaskNumRevives(UUID userTaskId, int numRevivesDelta);
 
 	//DELETING STUFF****************************************************************
 	

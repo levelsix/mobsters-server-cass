@@ -87,6 +87,11 @@ message ReviveInDungeonRequestProto {
 	optional MinimumUserProto sender = 1;
 	optional string userTaskUuid = 2;
 	optional int64 clientTime = 3; //tracking purposes 
+	repeated UserMonsterCurrentHealthProto reviveMe = 4;
+	
+	//can only spend gems to revive, so this must be set
+	//(positive number, server will convert it to negative)
+	optional int32 gemsSpent = 5;
 }
 
 message ReviveInDungeonResponseProto {

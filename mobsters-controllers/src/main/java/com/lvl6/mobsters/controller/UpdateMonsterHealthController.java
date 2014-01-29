@@ -113,7 +113,7 @@ public class UpdateMonsterHealthController extends EventController {
 				getEventWriter().handleEvent(resEvent);
 
 			} catch (Exception e2) {
-				log.error("exception in UpdateMonsterHealthController processRequestEvent", e2);
+				log.error("exception2 in UpdateMonsterHealthController processRequestEvent", e2);
 			}
 		}
 	}

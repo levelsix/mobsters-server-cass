@@ -191,6 +191,7 @@ public class HealMonsterController extends EventController {
 				//mappings (valid mappings determined by the list "userMonsterIds")
 				userMonsterIdToExpectedHealth = getMiscUtil().getValidMapEntries(
 						userMonsterIds, userMonsterIdToExpectedHealth);
+				
 				successful = writeChangesToDb(aUser, userId, cashChange, totalGemCost,
 						clientDate, alreadyHealing, deleteMap, updateMap, newMap,
 						userMonsterIds, userMonsterIdToExpectedHealth, existingUserMonsters,
@@ -230,7 +231,7 @@ public class HealMonsterController extends EventController {
 				getEventWriter().handleEvent(resEvent);
 
 			} catch (Exception e2) {
-				log.error("exception in HealMonsterController processRequestEvent", e2);
+				log.error("exception2 in HealMonsterController processRequestEvent", e2);
 			}
 		}
 	}

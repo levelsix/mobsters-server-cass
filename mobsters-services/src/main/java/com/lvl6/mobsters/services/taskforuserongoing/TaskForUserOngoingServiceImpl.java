@@ -96,6 +96,12 @@ public class TaskForUserOngoingServiceImpl implements TaskForUserOngoingService 
 
 	
 	//UPDATING STUFF****************************************************************
+	@Override
+	public void updateIncrementUserTaskNumRevives(UUID userTaskId, int numRevivesDelta) {
+		TaskForUserOngoing tfuo = getSpecificUserTask(userTaskId);
+		int numRevives = tfuo.getNumRevives() + numRevivesDelta;
+		tfuo.setNumRevives(numRevives);
+	}
 
 	//DELETING STUFF****************************************************************
 	@Override
