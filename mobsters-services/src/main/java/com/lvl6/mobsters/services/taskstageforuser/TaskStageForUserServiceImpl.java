@@ -14,9 +14,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.lvl6.mobsters.entitymanager.nonstaticdata.TaskStageForUserEntityManager;
+import com.lvl6.mobsters.entitymanager.staticdata.utils.QuestMonsterItemRetrieveUtils;
 import com.lvl6.mobsters.entitymanager.staticdata.utils.TaskStageMonsterRetrieveUtils;
 import com.lvl6.mobsters.po.nonstaticdata.TaskStageForUser;
 import com.lvl6.mobsters.po.nonstaticdata.TaskStageHistory;
+import com.lvl6.mobsters.po.staticdata.QuestMonsterItem;
 import com.lvl6.mobsters.po.staticdata.TaskStage;
 import com.lvl6.mobsters.po.staticdata.TaskStageMonster;
 import com.lvl6.mobsters.properties.MobstersDbTables;
@@ -44,11 +46,16 @@ public class TaskStageForUserServiceImpl implements TaskStageForUserService {
 	@Autowired
 	protected TaskStageMonsterRetrieveUtils taskStageMonsterRetrieveUtils;
 	
+	@Autowired
+	protected QuestMonsterItemRetrieveUtils questMonsterItemRetrieveUtils;
+	
 	//CONTROLLER LOGIC STUFF****************************************************************
 	
-	//returns map(stageId ---> List<TaskStageForUser>); also returns
-	//expGained (contains the sum of the exp across all stages), same with cashGained,
-	//map(stageNum ---> stageId)
+	//returns map(stageNum ---> List<TaskStageForUser>). In English, the map will  
+	//contain a stageNum tied to a list of monsters the user faces in this stage;
+	//also returns
+	//expGained (contains the sum of the exp across all stages),
+	//and same with cashGained,
 	//(given that these taskStages are for one task, stageNum and stageId are one-to-one)
 	@Override
 	public Map<Integer, List<TaskStageForUser>> generateUserTaskStagesFromTaskStages(
@@ -67,6 +74,7 @@ public class TaskStageForUserServiceImpl implements TaskStageForUserService {
 			int stageNum = ts.getStageNum();
 			
 			//calculate the monster(s) the user will face for this stage
+			//at the moment only one monster will be generated
 			List<TaskStageMonster> spawnedTaskStageMonsters = generateSpawnedMonsters(
 					tsId, 1);
 			
@@ -207,6 +215,51 @@ public class TaskStageForUserServiceImpl implements TaskStageForUserService {
 		
 		return tsfu;
 	}
+	
+	
+	//item refers to special quest items that only tied to a special monster which
+	//are only tied to a certain quest. Read comments in QuestMonsterItem.java
+	//one TaskStageForUser represents one monster in the current stage
+	@Override
+	public void generateItemDrops(List<Integer> questIds, 
+			Map<Integer, List<TaskStageForUser>> stageNumToStages) {
+		
+		//need to loop through all stages to compute whether an item dropped or not
+		for (Integer stageNum : stageNumToStages.keySet()) {
+			
+			List<TaskStageForUser> stages = stageNumToStages.get(stageNum);
+			
+			for(TaskStageForUser tsfu : stages) {
+				generateItemDrop(questIds, tsfu);
+			}
+		}
+	}
+	
+	
+	private void generateItemDrop(List<Integer> questIds, TaskStageForUser tsfu) {
+		int monsterId = tsfu.getMonsterId();
+		
+		for (int questId : questIds) {
+			QuestMonsterItem qmi = getQuestMonsterItemRetrieveUtils()
+					.getItemForQuestAndMonsterId(questId, monsterId);
+			
+			if (null == qmi) {
+				continue;
+			}
+			
+			//roll to see if item should drop
+			if (!qmi.didItemDrop()) {
+				continue;
+			}
+			
+			//since quest and monster have item associated with it and the item "dropped"
+	  		//set item id 
+			tsfu.setItemDropped(true);
+			int itemId = qmi.getItemId();
+			tsfu.setItemId(itemId);
+		}
+	}
+
 	
 	//RETRIEVING STUFF****************************************************************
 	@Override
@@ -387,6 +440,15 @@ public class TaskStageForUserServiceImpl implements TaskStageForUserService {
 	public void setTaskStageMonsterRetrieveUtils(
 			TaskStageMonsterRetrieveUtils taskStageMonsterRetrieveUtils) {
 		this.taskStageMonsterRetrieveUtils = taskStageMonsterRetrieveUtils;
+	}
+	@Override
+	public QuestMonsterItemRetrieveUtils getQuestMonsterItemRetrieveUtils() {
+		return questMonsterItemRetrieveUtils;
+	}
+	@Override
+	public void setQuestMonsterItemRetrieveUtils(
+			QuestMonsterItemRetrieveUtils questMonsterItemRetrieveUtils) {
+		this.questMonsterItemRetrieveUtils = questMonsterItemRetrieveUtils;
 	}
 	
 }

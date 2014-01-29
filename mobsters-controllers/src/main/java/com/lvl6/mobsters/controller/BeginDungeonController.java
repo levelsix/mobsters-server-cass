@@ -63,7 +63,7 @@ public class BeginDungeonController extends EventController {
 
 
 	public BeginDungeonController() {
-		numAllocatedThreads = 4;
+		numAllocatedThreads = 8;
 	}
 	
 	@Override
@@ -86,7 +86,14 @@ public class BeginDungeonController extends EventController {
 		MinimumUserProto senderProto = reqProto.getSender();
 		Date clientDate = new Date(reqProto.getClientTime());
 		int taskId = reqProto.getTaskId();
-		boolean spawnBoss = reqProto.getSpawnBoss();
+//		boolean spawnBoss = reqProto.getSpawnBoss();
+		
+		//if is event, start the cool down timer in event_persistent_for_user
+//	    boolean isEvent = reqProto.getIsEvent();
+//	    int eventId = reqProto.getPersistentEventId();
+//	    int gemsSpent = reqProto.getGemsSpent();
+		List<Integer> questIds = reqProto.getQuestIdsList();
+		
 		//uuid's are not strings, need to convert from string to uuid, vice versa
 		String userIdString = senderProto.getUserUuid();
 		UUID userId = UUID.fromString(userIdString);
@@ -115,7 +122,7 @@ public class BeginDungeonController extends EventController {
 		      	//determine the specifics for each stage (stored in stageNumsToProtos)
 		      	//then record specifics in db
 		    	  successful = writeChangesToDb(aUser, userId, aTask, taskId, tsMap, clientDate,
-		    			  userTaskIdList, stageNumsToProtos);
+		    			  userTaskIdList, stageNumsToProtos, questIds);
 			}
 			
 			if (successful) {
@@ -186,7 +193,7 @@ public class BeginDungeonController extends EventController {
 
 	private boolean writeChangesToDb(User u, UUID userId, Task t, int taskId,
 			  Map<Integer, TaskStage> tsMap, Date clientDate, List<UUID> utIdList,
-			  Map<Integer, TaskStageProto> stageNumsToProtos) {
+			  Map<Integer, TaskStageProto> stageNumsToProtos, List<Integer> questIds) {
 		try {
 			//create user task
 			TaskForUserOngoing tfuo = new TaskForUserOngoing();
@@ -197,8 +204,9 @@ public class BeginDungeonController extends EventController {
 			
 			//generate the stages for this task
 			UUID userTaskId = tfuo.getId();
-			Map<Integer, List<TaskStageForUser>> stageNumToStages = getTaskStageForUserService()
-					.generateUserTaskStagesFromTaskStages(userTaskId, tsMap, expList, cashList);
+			Map<Integer, List<TaskStageForUser>> stageNumToStages =
+					getTaskStageForUserService().generateUserTaskStagesFromTaskStages(
+							userTaskId, tsMap, expList, cashList);
 			
 			//save the user task
 			tfuo.setTaskId(taskId);
@@ -222,7 +230,7 @@ public class BeginDungeonController extends EventController {
 	}
 	
 	//save these task stage for user objects; convert into protos and store into
-	//stageNumsToProtos
+	//stageNumsToProtos. one TaskStageForUser represents one monster in the current stage
 	private void recordStages(Map<Integer, List<TaskStageForUser>> stageNumToStages,
 			Map<Integer, TaskStageProto> stageNumsToProtos) {
 		Set<Integer> stageNums = stageNumToStages.keySet();

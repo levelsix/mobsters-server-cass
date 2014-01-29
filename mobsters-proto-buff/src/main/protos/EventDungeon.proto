@@ -20,6 +20,16 @@ message BeginDungeonRequestProto {
 	//AND HAS A BOSS IN IT, this user task needs to be deleted and the BOSS WILL
 	//NEED TO BE RELOCATED and will not be in this task anymore
 	optional bool spawnBoss = 4;
+	
+	//used for PersistentEvent stuff
+	optional bool isEvent = 5;
+	optional int32 persistentEventId = 6;
+	
+	//if the user is going to speed up the persistent event cool down timer
+	//(positive number, server will convert it to negative)
+	optional int32 gemsSpent = 7;
+	
+	repeated int32 questIds = 8;
 }
 
 message BeginDungeonResponseProto {

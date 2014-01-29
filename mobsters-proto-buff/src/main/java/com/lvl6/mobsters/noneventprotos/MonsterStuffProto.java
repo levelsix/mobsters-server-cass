@@ -71,6 +71,10 @@ public final class MonsterStuffProto {
     boolean hasNumCatalystMonstersRequired();
     int getNumCatalystMonstersRequired();
     
+    // optional int32 evolutionCost = 21;
+    boolean hasEvolutionCost();
+    int getEvolutionCost();
+    
     // optional string carrotRecruited = 16;
     boolean hasCarrotRecruited();
     String getCarrotRecruited();
@@ -96,10 +100,6 @@ public final class MonsterStuffProto {
         getLvlInfoOrBuilderList();
     com.lvl6.mobsters.noneventprotos.MonsterStuffProto.MonsterLevelInfoProtoOrBuilder getLvlInfoOrBuilder(
         int index);
-    
-    // optional int32 evolutionCost = 21;
-    boolean hasEvolutionCost();
-    int getEvolutionCost();
   }
   public static final class MonsterProto extends
       com.google.protobuf.GeneratedMessage
@@ -530,11 +530,21 @@ public final class MonsterStuffProto {
       return numCatalystMonstersRequired_;
     }
     
+    // optional int32 evolutionCost = 21;
+    public static final int EVOLUTIONCOST_FIELD_NUMBER = 21;
+    private int evolutionCost_;
+    public boolean hasEvolutionCost() {
+      return ((bitField0_ & 0x00008000) == 0x00008000);
+    }
+    public int getEvolutionCost() {
+      return evolutionCost_;
+    }
+    
     // optional string carrotRecruited = 16;
     public static final int CARROTRECRUITED_FIELD_NUMBER = 16;
     private java.lang.Object carrotRecruited_;
     public boolean hasCarrotRecruited() {
-      return ((bitField0_ & 0x00008000) == 0x00008000);
+      return ((bitField0_ & 0x00010000) == 0x00010000);
     }
     public String getCarrotRecruited() {
       java.lang.Object ref = carrotRecruited_;
@@ -566,7 +576,7 @@ public final class MonsterStuffProto {
     public static final int CARROTDEFEATED_FIELD_NUMBER = 17;
     private java.lang.Object carrotDefeated_;
     public boolean hasCarrotDefeated() {
-      return ((bitField0_ & 0x00010000) == 0x00010000);
+      return ((bitField0_ & 0x00020000) == 0x00020000);
     }
     public String getCarrotDefeated() {
       java.lang.Object ref = carrotDefeated_;
@@ -598,7 +608,7 @@ public final class MonsterStuffProto {
     public static final int CARROTEVOLVED_FIELD_NUMBER = 18;
     private java.lang.Object carrotEvolved_;
     public boolean hasCarrotEvolved() {
-      return ((bitField0_ & 0x00020000) == 0x00020000);
+      return ((bitField0_ & 0x00040000) == 0x00040000);
     }
     public String getCarrotEvolved() {
       java.lang.Object ref = carrotEvolved_;
@@ -630,7 +640,7 @@ public final class MonsterStuffProto {
     public static final int DESCRIPTION_FIELD_NUMBER = 19;
     private java.lang.Object description_;
     public boolean hasDescription() {
-      return ((bitField0_ & 0x00040000) == 0x00040000);
+      return ((bitField0_ & 0x00080000) == 0x00080000);
     }
     public String getDescription() {
       java.lang.Object ref = description_;
@@ -679,16 +689,6 @@ public final class MonsterStuffProto {
       return lvlInfo_.get(index);
     }
     
-    // optional int32 evolutionCost = 21;
-    public static final int EVOLUTIONCOST_FIELD_NUMBER = 21;
-    private int evolutionCost_;
-    public boolean hasEvolutionCost() {
-      return ((bitField0_ & 0x00080000) == 0x00080000);
-    }
-    public int getEvolutionCost() {
-      return evolutionCost_;
-    }
-    
     private void initFields() {
       monsterId_ = 0;
       name_ = "";
@@ -705,12 +705,12 @@ public final class MonsterStuffProto {
       evolutionCatalystMonsterId_ = 0;
       minutesToEvolve_ = 0;
       numCatalystMonstersRequired_ = 0;
+      evolutionCost_ = 0;
       carrotRecruited_ = "";
       carrotDefeated_ = "";
       carrotEvolved_ = "";
       description_ = "";
       lvlInfo_ = java.util.Collections.emptyList();
-      evolutionCost_ = 0;
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -769,22 +769,22 @@ public final class MonsterStuffProto {
       if (((bitField0_ & 0x00004000) == 0x00004000)) {
         output.writeInt32(15, numCatalystMonstersRequired_);
       }
-      if (((bitField0_ & 0x00008000) == 0x00008000)) {
+      if (((bitField0_ & 0x00010000) == 0x00010000)) {
         output.writeBytes(16, getCarrotRecruitedBytes());
       }
-      if (((bitField0_ & 0x00010000) == 0x00010000)) {
+      if (((bitField0_ & 0x00020000) == 0x00020000)) {
         output.writeBytes(17, getCarrotDefeatedBytes());
       }
-      if (((bitField0_ & 0x00020000) == 0x00020000)) {
+      if (((bitField0_ & 0x00040000) == 0x00040000)) {
         output.writeBytes(18, getCarrotEvolvedBytes());
       }
-      if (((bitField0_ & 0x00040000) == 0x00040000)) {
+      if (((bitField0_ & 0x00080000) == 0x00080000)) {
         output.writeBytes(19, getDescriptionBytes());
       }
       for (int i = 0; i < lvlInfo_.size(); i++) {
         output.writeMessage(20, lvlInfo_.get(i));
       }
-      if (((bitField0_ & 0x00080000) == 0x00080000)) {
+      if (((bitField0_ & 0x00008000) == 0x00008000)) {
         output.writeInt32(21, evolutionCost_);
       }
       getUnknownFields().writeTo(output);
@@ -856,19 +856,19 @@ public final class MonsterStuffProto {
         size += com.google.protobuf.CodedOutputStream
           .computeInt32Size(15, numCatalystMonstersRequired_);
       }
-      if (((bitField0_ & 0x00008000) == 0x00008000)) {
+      if (((bitField0_ & 0x00010000) == 0x00010000)) {
         size += com.google.protobuf.CodedOutputStream
           .computeBytesSize(16, getCarrotRecruitedBytes());
       }
-      if (((bitField0_ & 0x00010000) == 0x00010000)) {
+      if (((bitField0_ & 0x00020000) == 0x00020000)) {
         size += com.google.protobuf.CodedOutputStream
           .computeBytesSize(17, getCarrotDefeatedBytes());
       }
-      if (((bitField0_ & 0x00020000) == 0x00020000)) {
+      if (((bitField0_ & 0x00040000) == 0x00040000)) {
         size += com.google.protobuf.CodedOutputStream
           .computeBytesSize(18, getCarrotEvolvedBytes());
       }
-      if (((bitField0_ & 0x00040000) == 0x00040000)) {
+      if (((bitField0_ & 0x00080000) == 0x00080000)) {
         size += com.google.protobuf.CodedOutputStream
           .computeBytesSize(19, getDescriptionBytes());
       }
@@ -876,7 +876,7 @@ public final class MonsterStuffProto {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(20, lvlInfo_.get(i));
       }
-      if (((bitField0_ & 0x00080000) == 0x00080000)) {
+      if (((bitField0_ & 0x00008000) == 0x00008000)) {
         size += com.google.protobuf.CodedOutputStream
           .computeInt32Size(21, evolutionCost_);
       }
@@ -1035,22 +1035,22 @@ public final class MonsterStuffProto {
         bitField0_ = (bitField0_ & ~0x00002000);
         numCatalystMonstersRequired_ = 0;
         bitField0_ = (bitField0_ & ~0x00004000);
-        carrotRecruited_ = "";
+        evolutionCost_ = 0;
         bitField0_ = (bitField0_ & ~0x00008000);
-        carrotDefeated_ = "";
+        carrotRecruited_ = "";
         bitField0_ = (bitField0_ & ~0x00010000);
-        carrotEvolved_ = "";
+        carrotDefeated_ = "";
         bitField0_ = (bitField0_ & ~0x00020000);
-        description_ = "";
+        carrotEvolved_ = "";
         bitField0_ = (bitField0_ & ~0x00040000);
+        description_ = "";
+        bitField0_ = (bitField0_ & ~0x00080000);
         if (lvlInfoBuilder_ == null) {
           lvlInfo_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00080000);
+          bitField0_ = (bitField0_ & ~0x00100000);
         } else {
           lvlInfoBuilder_.clear();
         }
-        evolutionCost_ = 0;
-        bitField0_ = (bitField0_ & ~0x00100000);
         return this;
       }
       
@@ -1152,32 +1152,32 @@ public final class MonsterStuffProto {
         if (((from_bitField0_ & 0x00008000) == 0x00008000)) {
           to_bitField0_ |= 0x00008000;
         }
-        result.carrotRecruited_ = carrotRecruited_;
+        result.evolutionCost_ = evolutionCost_;
         if (((from_bitField0_ & 0x00010000) == 0x00010000)) {
           to_bitField0_ |= 0x00010000;
         }
-        result.carrotDefeated_ = carrotDefeated_;
+        result.carrotRecruited_ = carrotRecruited_;
         if (((from_bitField0_ & 0x00020000) == 0x00020000)) {
           to_bitField0_ |= 0x00020000;
         }
-        result.carrotEvolved_ = carrotEvolved_;
+        result.carrotDefeated_ = carrotDefeated_;
         if (((from_bitField0_ & 0x00040000) == 0x00040000)) {
           to_bitField0_ |= 0x00040000;
         }
+        result.carrotEvolved_ = carrotEvolved_;
+        if (((from_bitField0_ & 0x00080000) == 0x00080000)) {
+          to_bitField0_ |= 0x00080000;
+        }
         result.description_ = description_;
         if (lvlInfoBuilder_ == null) {
-          if (((bitField0_ & 0x00080000) == 0x00080000)) {
+          if (((bitField0_ & 0x00100000) == 0x00100000)) {
             lvlInfo_ = java.util.Collections.unmodifiableList(lvlInfo_);
-            bitField0_ = (bitField0_ & ~0x00080000);
+            bitField0_ = (bitField0_ & ~0x00100000);
           }
           result.lvlInfo_ = lvlInfo_;
         } else {
           result.lvlInfo_ = lvlInfoBuilder_.build();
         }
-        if (((from_bitField0_ & 0x00100000) == 0x00100000)) {
-          to_bitField0_ |= 0x00080000;
-        }
-        result.evolutionCost_ = evolutionCost_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -1239,6 +1239,9 @@ public final class MonsterStuffProto {
         if (other.hasNumCatalystMonstersRequired()) {
           setNumCatalystMonstersRequired(other.getNumCatalystMonstersRequired());
         }
+        if (other.hasEvolutionCost()) {
+          setEvolutionCost(other.getEvolutionCost());
+        }
         if (other.hasCarrotRecruited()) {
           setCarrotRecruited(other.getCarrotRecruited());
         }
@@ -1255,7 +1258,7 @@ public final class MonsterStuffProto {
           if (!other.lvlInfo_.isEmpty()) {
             if (lvlInfo_.isEmpty()) {
               lvlInfo_ = other.lvlInfo_;
-              bitField0_ = (bitField0_ & ~0x00080000);
+              bitField0_ = (bitField0_ & ~0x00100000);
             } else {
               ensureLvlInfoIsMutable();
               lvlInfo_.addAll(other.lvlInfo_);
@@ -1268,7 +1271,7 @@ public final class MonsterStuffProto {
               lvlInfoBuilder_.dispose();
               lvlInfoBuilder_ = null;
               lvlInfo_ = other.lvlInfo_;
-              bitField0_ = (bitField0_ & ~0x00080000);
+              bitField0_ = (bitField0_ & ~0x00100000);
               lvlInfoBuilder_ = 
                 com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders ?
                    getLvlInfoFieldBuilder() : null;
@@ -1276,9 +1279,6 @@ public final class MonsterStuffProto {
               lvlInfoBuilder_.addAllMessages(other.lvlInfo_);
             }
           }
-        }
-        if (other.hasEvolutionCost()) {
-          setEvolutionCost(other.getEvolutionCost());
         }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
@@ -1399,22 +1399,22 @@ public final class MonsterStuffProto {
               break;
             }
             case 130: {
-              bitField0_ |= 0x00008000;
+              bitField0_ |= 0x00010000;
               carrotRecruited_ = input.readBytes();
               break;
             }
             case 138: {
-              bitField0_ |= 0x00010000;
+              bitField0_ |= 0x00020000;
               carrotDefeated_ = input.readBytes();
               break;
             }
             case 146: {
-              bitField0_ |= 0x00020000;
+              bitField0_ |= 0x00040000;
               carrotEvolved_ = input.readBytes();
               break;
             }
             case 154: {
-              bitField0_ |= 0x00040000;
+              bitField0_ |= 0x00080000;
               description_ = input.readBytes();
               break;
             }
@@ -1425,7 +1425,7 @@ public final class MonsterStuffProto {
               break;
             }
             case 168: {
-              bitField0_ |= 0x00100000;
+              bitField0_ |= 0x00008000;
               evolutionCost_ = input.readInt32();
               break;
             }
@@ -1816,10 +1816,31 @@ public final class MonsterStuffProto {
         return this;
       }
       
+      // optional int32 evolutionCost = 21;
+      private int evolutionCost_ ;
+      public boolean hasEvolutionCost() {
+        return ((bitField0_ & 0x00008000) == 0x00008000);
+      }
+      public int getEvolutionCost() {
+        return evolutionCost_;
+      }
+      public Builder setEvolutionCost(int value) {
+        bitField0_ |= 0x00008000;
+        evolutionCost_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearEvolutionCost() {
+        bitField0_ = (bitField0_ & ~0x00008000);
+        evolutionCost_ = 0;
+        onChanged();
+        return this;
+      }
+      
       // optional string carrotRecruited = 16;
       private java.lang.Object carrotRecruited_ = "";
       public boolean hasCarrotRecruited() {
-        return ((bitField0_ & 0x00008000) == 0x00008000);
+        return ((bitField0_ & 0x00010000) == 0x00010000);
       }
       public String getCarrotRecruited() {
         java.lang.Object ref = carrotRecruited_;
@@ -1835,19 +1856,19 @@ public final class MonsterStuffProto {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00008000;
+  bitField0_ |= 0x00010000;
         carrotRecruited_ = value;
         onChanged();
         return this;
       }
       public Builder clearCarrotRecruited() {
-        bitField0_ = (bitField0_ & ~0x00008000);
+        bitField0_ = (bitField0_ & ~0x00010000);
         carrotRecruited_ = getDefaultInstance().getCarrotRecruited();
         onChanged();
         return this;
       }
       void setCarrotRecruited(com.google.protobuf.ByteString value) {
-        bitField0_ |= 0x00008000;
+        bitField0_ |= 0x00010000;
         carrotRecruited_ = value;
         onChanged();
       }
@@ -1855,7 +1876,7 @@ public final class MonsterStuffProto {
       // optional string carrotDefeated = 17;
       private java.lang.Object carrotDefeated_ = "";
       public boolean hasCarrotDefeated() {
-        return ((bitField0_ & 0x00010000) == 0x00010000);
+        return ((bitField0_ & 0x00020000) == 0x00020000);
       }
       public String getCarrotDefeated() {
         java.lang.Object ref = carrotDefeated_;
@@ -1871,19 +1892,19 @@ public final class MonsterStuffProto {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00010000;
+  bitField0_ |= 0x00020000;
         carrotDefeated_ = value;
         onChanged();
         return this;
       }
       public Builder clearCarrotDefeated() {
-        bitField0_ = (bitField0_ & ~0x00010000);
+        bitField0_ = (bitField0_ & ~0x00020000);
         carrotDefeated_ = getDefaultInstance().getCarrotDefeated();
         onChanged();
         return this;
       }
       void setCarrotDefeated(com.google.protobuf.ByteString value) {
-        bitField0_ |= 0x00010000;
+        bitField0_ |= 0x00020000;
         carrotDefeated_ = value;
         onChanged();
       }
@@ -1891,7 +1912,7 @@ public final class MonsterStuffProto {
       // optional string carrotEvolved = 18;
       private java.lang.Object carrotEvolved_ = "";
       public boolean hasCarrotEvolved() {
-        return ((bitField0_ & 0x00020000) == 0x00020000);
+        return ((bitField0_ & 0x00040000) == 0x00040000);
       }
       public String getCarrotEvolved() {
         java.lang.Object ref = carrotEvolved_;
@@ -1907,19 +1928,19 @@ public final class MonsterStuffProto {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00020000;
+  bitField0_ |= 0x00040000;
         carrotEvolved_ = value;
         onChanged();
         return this;
       }
       public Builder clearCarrotEvolved() {
-        bitField0_ = (bitField0_ & ~0x00020000);
+        bitField0_ = (bitField0_ & ~0x00040000);
         carrotEvolved_ = getDefaultInstance().getCarrotEvolved();
         onChanged();
         return this;
       }
       void setCarrotEvolved(com.google.protobuf.ByteString value) {
-        bitField0_ |= 0x00020000;
+        bitField0_ |= 0x00040000;
         carrotEvolved_ = value;
         onChanged();
       }
@@ -1927,7 +1948,7 @@ public final class MonsterStuffProto {
       // optional string description = 19;
       private java.lang.Object description_ = "";
       public boolean hasDescription() {
-        return ((bitField0_ & 0x00040000) == 0x00040000);
+        return ((bitField0_ & 0x00080000) == 0x00080000);
       }
       public String getDescription() {
         java.lang.Object ref = description_;
@@ -1943,19 +1964,19 @@ public final class MonsterStuffProto {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00040000;
+  bitField0_ |= 0x00080000;
         description_ = value;
         onChanged();
         return this;
       }
       public Builder clearDescription() {
-        bitField0_ = (bitField0_ & ~0x00040000);
+        bitField0_ = (bitField0_ & ~0x00080000);
         description_ = getDefaultInstance().getDescription();
         onChanged();
         return this;
       }
       void setDescription(com.google.protobuf.ByteString value) {
-        bitField0_ |= 0x00040000;
+        bitField0_ |= 0x00080000;
         description_ = value;
         onChanged();
       }
@@ -1964,9 +1985,9 @@ public final class MonsterStuffProto {
       private java.util.List<com.lvl6.mobsters.noneventprotos.MonsterStuffProto.MonsterLevelInfoProto> lvlInfo_ =
         java.util.Collections.emptyList();
       private void ensureLvlInfoIsMutable() {
-        if (!((bitField0_ & 0x00080000) == 0x00080000)) {
+        if (!((bitField0_ & 0x00100000) == 0x00100000)) {
           lvlInfo_ = new java.util.ArrayList<com.lvl6.mobsters.noneventprotos.MonsterStuffProto.MonsterLevelInfoProto>(lvlInfo_);
-          bitField0_ |= 0x00080000;
+          bitField0_ |= 0x00100000;
          }
       }
       
@@ -2082,7 +2103,7 @@ public final class MonsterStuffProto {
       public Builder clearLvlInfo() {
         if (lvlInfoBuilder_ == null) {
           lvlInfo_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00080000);
+          bitField0_ = (bitField0_ & ~0x00100000);
           onChanged();
         } else {
           lvlInfoBuilder_.clear();
@@ -2138,33 +2159,12 @@ public final class MonsterStuffProto {
           lvlInfoBuilder_ = new com.google.protobuf.RepeatedFieldBuilder<
               com.lvl6.mobsters.noneventprotos.MonsterStuffProto.MonsterLevelInfoProto, com.lvl6.mobsters.noneventprotos.MonsterStuffProto.MonsterLevelInfoProto.Builder, com.lvl6.mobsters.noneventprotos.MonsterStuffProto.MonsterLevelInfoProtoOrBuilder>(
                   lvlInfo_,
-                  ((bitField0_ & 0x00080000) == 0x00080000),
+                  ((bitField0_ & 0x00100000) == 0x00100000),
                   getParentForChildren(),
                   isClean());
           lvlInfo_ = null;
         }
         return lvlInfoBuilder_;
-      }
-      
-      // optional int32 evolutionCost = 21;
-      private int evolutionCost_ ;
-      public boolean hasEvolutionCost() {
-        return ((bitField0_ & 0x00100000) == 0x00100000);
-      }
-      public int getEvolutionCost() {
-        return evolutionCost_;
-      }
-      public Builder setEvolutionCost(int value) {
-        bitField0_ |= 0x00100000;
-        evolutionCost_ = value;
-        onChanged();
-        return this;
-      }
-      public Builder clearEvolutionCost() {
-        bitField0_ = (bitField0_ & ~0x00100000);
-        evolutionCost_ = 0;
-        onChanged();
-        return this;
       }
       
       // @@protoc_insertion_point(builder_scope:proto.MonsterProto)
@@ -7945,11 +7945,11 @@ public final class MonsterStuffProto {
       "es\030\n \001(\005\022\020\n\010maxLevel\030\013 \001(\005\022\032\n\022evolutionM" +
       "onsterId\030\014 \001(\005\022\"\n\032evolutionCatalystMonst",
       "erId\030\r \001(\005\022\027\n\017minutesToEvolve\030\016 \001(\005\022#\n\033n" +
-      "umCatalystMonstersRequired\030\017 \001(\005\022\027\n\017carr" +
-      "otRecruited\030\020 \001(\t\022\026\n\016carrotDefeated\030\021 \001(" +
-      "\t\022\025\n\rcarrotEvolved\030\022 \001(\t\022\023\n\013description\030" +
-      "\023 \001(\t\022-\n\007lvlInfo\030\024 \003(\0132\034.proto.MonsterLe" +
-      "velInfoProto\022\025\n\revolutionCost\030\025 \001(\005\"S\n\016M" +
+      "umCatalystMonstersRequired\030\017 \001(\005\022\025\n\revol" +
+      "utionCost\030\025 \001(\005\022\027\n\017carrotRecruited\030\020 \001(\t" +
+      "\022\026\n\016carrotDefeated\030\021 \001(\t\022\025\n\rcarrotEvolve" +
+      "d\030\022 \001(\t\022\023\n\013description\030\023 \001(\t\022-\n\007lvlInfo\030" +
+      "\024 \003(\0132\034.proto.MonsterLevelInfoProto\"S\n\016M" +
       "onsterQuality\022\n\n\006COMMON\020\001\022\010\n\004RARE\020\002\022\t\n\005U" +
       "LTRA\020\003\022\010\n\004EPIC\020\004\022\r\n\tLEGENDARY\020\005\022\007\n\003EVO\020\006" +
       "\"W\n\016MonsterElement\022\010\n\004FIRE\020\001\022\t\n\005GRASS\020\002\022" +
@@ -7997,7 +7997,7 @@ public final class MonsterStuffProto {
           internal_static_proto_MonsterProto_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_proto_MonsterProto_descriptor,
-              new java.lang.String[] { "MonsterId", "Name", "MonsterGroup", "Quality", "EvolutionLevel", "DisplayName", "Element", "ImagePrefix", "NumPuzzlePieces", "MinutesToCombinePieces", "MaxLevel", "EvolutionMonsterId", "EvolutionCatalystMonsterId", "MinutesToEvolve", "NumCatalystMonstersRequired", "CarrotRecruited", "CarrotDefeated", "CarrotEvolved", "Description", "LvlInfo", "EvolutionCost", },
+              new java.lang.String[] { "MonsterId", "Name", "MonsterGroup", "Quality", "EvolutionLevel", "DisplayName", "Element", "ImagePrefix", "NumPuzzlePieces", "MinutesToCombinePieces", "MaxLevel", "EvolutionMonsterId", "EvolutionCatalystMonsterId", "MinutesToEvolve", "NumCatalystMonstersRequired", "EvolutionCost", "CarrotRecruited", "CarrotDefeated", "CarrotEvolved", "Description", "LvlInfo", },
               com.lvl6.mobsters.noneventprotos.MonsterStuffProto.MonsterProto.class,
               com.lvl6.mobsters.noneventprotos.MonsterStuffProto.MonsterProto.Builder.class);
           internal_static_proto_MonsterLevelInfoProto_descriptor =

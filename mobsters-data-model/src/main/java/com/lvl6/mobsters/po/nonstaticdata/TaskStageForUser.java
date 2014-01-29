@@ -45,7 +45,9 @@ public class TaskStageForUser extends BasePersistentObject<UUID>{
 	protected int taskStageId = 0;
 	protected int monsterId = 0;
 	protected int monsterLvl = 0;
-	
+	//will always be false if monsterPieceDropped == true;
+	protected boolean itemDropped = false;
+	protected int itemId = -1;
 	
 	
 	public UUID getId() {
@@ -134,6 +136,22 @@ public class TaskStageForUser extends BasePersistentObject<UUID>{
 
 	public void setMonsterLvl(int monsterLvl) {
 		this.monsterLvl = monsterLvl;
+	}
+
+	public boolean isItemDropped() {
+		return itemDropped;
+	}
+
+	public void setItemDropped(boolean itemDropped) {
+		this.itemDropped = itemDropped;
+	}
+
+	public int getItemId() {
+		return itemId;
+	}
+
+	public void setItemId(int itemId) {
+		this.itemId = itemId;
 	}
 
 	@Override

@@ -5,6 +5,7 @@ import java.util.Map;
 import java.util.UUID;
 
 import com.lvl6.mobsters.entitymanager.nonstaticdata.TaskStageForUserEntityManager;
+import com.lvl6.mobsters.entitymanager.staticdata.utils.QuestMonsterItemRetrieveUtils;
 import com.lvl6.mobsters.entitymanager.staticdata.utils.TaskStageMonsterRetrieveUtils;
 import com.lvl6.mobsters.po.nonstaticdata.TaskStageForUser;
 import com.lvl6.mobsters.po.staticdata.TaskStage;
@@ -17,8 +18,11 @@ public interface TaskStageForUserService {
 	
 	//CONTROLLER LOGIC STUFF****************************************************************
 	
-	//returns map(stageNum ---> List<TaskStageForUser>); also returns
-	//expGained (contains the sum of the exp across all stages), same with cashGained,
+	//returns map(stageNum ---> List<TaskStageForUser>). In English, the map will  
+	//contain a stageNum tied to a list of monsters the user faces in this stage;
+	//also returns
+	//expGained (contains the sum of the exp across all stages),
+	//and same with cashGained,
 	//(given that these taskStages are for one task, stageNum and stageId are one-to-one)
 	public abstract Map<Integer, List<TaskStageForUser>> generateUserTaskStagesFromTaskStages(
 			UUID userTaskId, Map<Integer, TaskStage> tsIdToTs, List<Integer> expGained,
@@ -28,6 +32,12 @@ public interface TaskStageForUserService {
 			int quantity);
 	
 	public abstract float sumProbabilities(List<TaskStageMonster> taskStageMonsters);
+	
+	//item refers to special quest items that only tied to a special monster which
+	//are only tied to a certain quest. Read comments in QuestMonsterItem.java
+	//one TaskStageForUser represents one monster in the current stage
+	public abstract void generateItemDrops(List<Integer> questIds, 
+			Map<Integer, List<TaskStageForUser>> stageNumToStages);
 	
 	//RETRIEVING STUFF****************************************************************
 	public abstract List<TaskStageForUser> getAllUserTaskStagesForUserTask(UUID userTaskId);
@@ -71,4 +81,8 @@ public interface TaskStageForUserService {
 
 	public abstract void setTaskStageMonsterRetrieveUtils(
 			TaskStageMonsterRetrieveUtils taskStageMonsterRetrieveUtils);
+	
+	public QuestMonsterItemRetrieveUtils getQuestMonsterItemRetrieveUtils();
+	public void setQuestMonsterItemRetrieveUtils(
+			QuestMonsterItemRetrieveUtils questMonsterItemRetrieveUtils);
 }

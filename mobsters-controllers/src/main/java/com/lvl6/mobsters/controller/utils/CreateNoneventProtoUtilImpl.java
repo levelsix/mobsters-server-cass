@@ -912,6 +912,11 @@ public class CreateNoneventProtoUtilImpl implements CreateNoneventProtoUtil {
 		int lvl = tsfu.getMonsterLvl();
 		tsmpb.setLevel(lvl);
 		
+		if (tsfu.isItemDropped()) {
+			int itemId = tsfu.getItemId();
+			tsmpb.setItemId(itemId);
+		}
+		
 		return tsmpb.build();
 	}
 	
