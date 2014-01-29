@@ -466,6 +466,10 @@ public class CreateNoneventProtoUtilImpl implements CreateNoneventProtoUtil {
 	    
 	    List<MonsterLevelInfoProto> lvlInfoProtos = createMonsterLevelInfoFromInfo(levelToInfo);
 	    mpb.addAllLvlInfo(lvlInfoProtos);
+	    
+	    int evolutionCost = aMonster.getEvolutionCost();
+	    mpb.setEvolutionCost(evolutionCost);
+	    
 		return mpb.build();
 	}
 	

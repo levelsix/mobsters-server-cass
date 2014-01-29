@@ -26,6 +26,7 @@ message MonsterProto {
 	optional int32 evolutionCatalystMonsterId = 13;
 	optional int32 minutesToEvolve = 14;
 	optional int32 numCatalystMonstersRequired = 15; //will most likely be 1
+	optional int32 evolutionCost = 21;
 	
 	optional string carrotRecruited = 16;
 	optional string carrotDefeated = 17;
@@ -35,6 +36,8 @@ message MonsterProto {
 	//stores lvl determined hp, attack, exp, amont other things
 	repeated MonsterLevelInfoProto lvlInfo = 20;
 	
+	//optional int32 evolutionCost = 21; //defined above with other evolution stuff
+										 //below "numCatalystMonstersRequired = 15"
 	enum MonsterQuality {
 		COMMON = 1;
 		RARE = 2;

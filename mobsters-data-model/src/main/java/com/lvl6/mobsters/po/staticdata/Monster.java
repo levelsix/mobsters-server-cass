@@ -15,8 +15,7 @@ import com.dekayd.astyanax.cassandra.entitymanager.Index;
 @Entity
 public class Monster extends BasePersistentObject<Integer> implements Serializable {
 
-
-	private static final long serialVersionUID = -3800660131249389671L;
+	private static final long serialVersionUID = -4535334715807617293L;
 
 	@Id
 	protected Integer id = 0;
@@ -41,9 +40,6 @@ public class Monster extends BasePersistentObject<Integer> implements Serializab
 	
 	@Column(name="monster_element")
 	protected String monsterElement = null;
-	
-	@Column(name="bash_hp")
-	protected int baseHp = 0;
 	
 	@Column(name="image_prefix")
 	protected String imagePrefix = null;
@@ -76,6 +72,9 @@ public class Monster extends BasePersistentObject<Integer> implements Serializab
 	@Column(name="devolution_monster_id")
 	protected int devolutionMonsterId = 0;
 	
+	@Column(name="evolution_cost")
+	protected int evolutionCost = 0;
+	
 	@Column(name="carrot_recruited")
 	protected String carrotRecruited = null;
 	
@@ -87,6 +86,8 @@ public class Monster extends BasePersistentObject<Integer> implements Serializab
 	
 	@Column(name="description")
 	protected String description = null;
+	
+	
 
 	public Integer getId() {
 		return id;
@@ -142,14 +143,6 @@ public class Monster extends BasePersistentObject<Integer> implements Serializab
 
 	public void setMonsterElement(String monsterElement) {
 		this.monsterElement = monsterElement;
-	}
-
-	public int getBaseHp() {
-		return baseHp;
-	}
-
-	public void setBaseHp(int baseHp) {
-		this.baseHp = baseHp;
 	}
 
 	public String getImagePrefix() {
@@ -224,6 +217,14 @@ public class Monster extends BasePersistentObject<Integer> implements Serializab
 		this.devolutionMonsterId = devolutionMonsterId;
 	}
 
+	public int getEvolutionCost() {
+		return evolutionCost;
+	}
+
+	public void setEvolutionCost(int evolutionCost) {
+		this.evolutionCost = evolutionCost;
+	}
+
 	public String getCarrotRecruited() {
 		return carrotRecruited;
 	}
@@ -262,17 +263,18 @@ public class Monster extends BasePersistentObject<Integer> implements Serializab
 				+ monsterGroup + ", monsterQuality=" + monsterQuality
 				+ ", evolutionLvl=" + evolutionLvl + ", displayName="
 				+ displayName + ", monsterElement=" + monsterElement
-				+ ", baseHp=" + baseHp + ", imagePrefix=" + imagePrefix
-				+ ", numPuzzlePieces=" + numPuzzlePieces
-				+ ", minutesToCombinePieces=" + minutesToCombinePieces
-				+ ", maxLvl=" + maxLvl + ", evolutionMonsterId="
-				+ evolutionMonsterId + ", evolutionCatalystMonsterId="
-				+ evolutionCatalystMonsterId + ", minutesToEvolve="
-				+ minutesToEvolve + ", numCatalystsRequired="
-				+ numCatalystsRequired + ", devolutionMonsterId="
-				+ devolutionMonsterId + ", carrotRecruited=" + carrotRecruited
-				+ ", carrotDefeated=" + carrotDefeated + ", carrotEvolved="
-				+ carrotEvolved + ", description=" + description + "]";
+				+ ", imagePrefix=" + imagePrefix + ", numPuzzlePieces="
+				+ numPuzzlePieces + ", minutesToCombinePieces="
+				+ minutesToCombinePieces + ", maxLvl=" + maxLvl
+				+ ", evolutionMonsterId=" + evolutionMonsterId
+				+ ", evolutionCatalystMonsterId=" + evolutionCatalystMonsterId
+				+ ", minutesToEvolve=" + minutesToEvolve
+				+ ", numCatalystsRequired=" + numCatalystsRequired
+				+ ", devolutionMonsterId=" + devolutionMonsterId
+				+ ", evolutionCost=" + evolutionCost + ", carrotRecruited="
+				+ carrotRecruited + ", carrotDefeated=" + carrotDefeated
+				+ ", carrotEvolved=" + carrotEvolved + ", description="
+				+ description + "]";
 	}
 	
 }
