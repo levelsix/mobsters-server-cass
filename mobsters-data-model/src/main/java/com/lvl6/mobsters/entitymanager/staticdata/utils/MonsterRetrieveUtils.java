@@ -44,16 +44,16 @@ import com.lvl6.mobsters.utils.QueryConstructionUtil;
 
 	public Monster getMonsterForMonsterId(Integer id) {
 		log.debug("retrieve monster data for id " + id);
-		if (idsToMonsters == null) {
+		if (null == idsToMonsters) {
 			setStaticIdsToMonsters();      
 		}
 		return idsToMonsters.get(id);
 	}
 
 	//maybe make Set into a collection
-	public  Map<Integer, Monster> getMonsterIdsToMonstersForMonsterIds(Set<Integer> ids) {
+	public Map<Integer, Monster> getMonsterIdsToMonstersForMonsterIds(Set<Integer> ids) {
 		log.debug("retrieve monsters data for ids " + ids);
-		if (idsToMonsters == null) {
+		if (null == idsToMonsters) {
 			setStaticIdsToMonsters();      
 		}
 		Map<Integer, Monster> toreturn = new HashMap<Integer, Monster>();
@@ -61,6 +61,26 @@ import com.lvl6.mobsters.utils.QueryConstructionUtil;
 			toreturn.put(id,  idsToMonsters.get(id));
 		}
 		return toreturn;
+	}
+	
+	public Monster getEvolvedMonster(Monster curMonzter, int monzterId) {
+		log.debug("retrieving evolved form of monster:" + curMonzter);
+		if (null == idsToMonsters) {
+			setStaticIdsToMonsters();
+		}
+		if (null == curMonzter) {
+			curMonzter = getMonsterForMonsterId(monzterId);
+		}
+		
+		int evolvedMonzterId = curMonzter.getEvolutionMonsterId();
+		
+		Monster evolvedMonzter = null;
+		//gotta watch out for monsters with id of 0 or less
+		if (evolvedMonzterId > 0 && idsToMonsters.containsKey(evolvedMonzterId)) {
+			evolvedMonzter = idsToMonsters.get(evolvedMonzterId);
+		}
+	
+		return evolvedMonzter;
 	}
 
 	private  void setStaticIdsToMonsters() {

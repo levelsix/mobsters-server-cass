@@ -16,9 +16,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.lvl6.mobsters.entitymanager.nonstaticdata.MonsterForUserEntityManager;
+import com.lvl6.mobsters.entitymanager.staticdata.utils.MonsterLevelInfoRetrieveUtils;
 import com.lvl6.mobsters.entitymanager.staticdata.utils.MonsterRetrieveUtils;
+import com.lvl6.mobsters.po.nonstaticdata.MonsterEvolvingForUser;
 import com.lvl6.mobsters.po.nonstaticdata.MonsterForUser;
 import com.lvl6.mobsters.po.staticdata.Monster;
+import com.lvl6.mobsters.po.staticdata.MonsterLevelInfo;
 import com.lvl6.mobsters.po.staticdata.TaskStageMonster;
 import com.lvl6.mobsters.properties.MobstersDbTables;
 import com.lvl6.mobsters.utils.QueryConstructionUtil;
@@ -40,6 +43,8 @@ public class MonsterForUserServiceImpl implements MonsterForUserService {
 	@Autowired
 	protected QueryConstructionUtil queryConstructionUtil;
 	
+	@Autowired
+	protected MonsterLevelInfoRetrieveUtils monsterLevelInfoRetrieveUtils;
 	
 	//CONTROLLER LOGIC STUFF****************************************************************
 	
@@ -174,13 +179,18 @@ public class MonsterForUserServiceImpl implements MonsterForUserService {
 			Monster monzter, int quantity, Date combineStartTime) {
 		List<MonsterForUser> returnList = new ArrayList<MonsterForUser>();
 
+		Map<Integer, MonsterLevelInfo> levelToInfo = getMonsterLevelInfoRetrieveUtils()
+	  			.getMonsterLevelInfoForMonsterId(monzter.getId());
+	  	MonsterLevelInfo info = levelToInfo.get(1); //not sure if this is right
+	  	
+		
 		int numPiecesForCompletion = monzter.getNumPuzzlePieces();
 
 		//default values for creating a monster for user
 		int monsterId = monzter.getId();
 		int currentExp = 0; //not sure if this is right
 		int currentLvl = 1; //not sure if this is right
-		int currentHealth = monzter.getBaseHp();
+		int currentHealth = info.getHp();
 		int teamSlotNum = 0;
 		String sourceOfPieces = "";
 
@@ -300,7 +310,33 @@ public class MonsterForUserServiceImpl implements MonsterForUserService {
 		return modifiedMfuList;
 	}
 
-	
+	@Override
+	public MonsterForUser createEvolvedMonster(UUID userId, MonsterForUser mfu,
+			MonsterEvolvingForUser mefu, Date combineStartTime, String sourceOfPieces) {
+		
+		int monsterId = mfu.getMonsterId();
+		Monster monzter = null;
+		
+		Monster evolvedMonzter = getMonsterRetrieveUtils().getEvolvedMonster(monzter, monsterId);
+		int evolvedMonzterId = evolvedMonzter.getId();
+		Map<Integer, MonsterLevelInfo> lvlToInfo = getMonsterLevelInfoRetrieveUtils()
+				.getMonsterLevelInfoForMonsterId(evolvedMonzterId);
+		
+		int curLvl = 1;
+		MonsterLevelInfo info = lvlToInfo.get(curLvl);
+		
+		//TODO: FIGURE OUT IF THESE NUMBERS ARE RIGHT
+		int curExp = 0;
+		int curHealth = info.getHp();
+		int numPieces = evolvedMonzter.getNumPuzzlePieces();
+		boolean isComplete = true;
+		int teamSlotNum = 0;
+		
+		MonsterForUser evolvedMfu = createMonsterForUser(userId, monsterId, curExp,
+				curLvl, curHealth, numPieces, isComplete, combineStartTime,
+				teamSlotNum, sourceOfPieces);
+		return evolvedMfu;
+	}
 	
 
 	//RETRIEVING STUFF****************************************************************
@@ -499,7 +535,19 @@ public class MonsterForUserServiceImpl implements MonsterForUserService {
 		return monsterIdsToUserMonsters;
 	}
 	
-	
+	public Map<UUID, MonsterForUser> getUserMonstersInEvolution(UUID userId,
+			MonsterEvolvingForUser mefu) {
+		List<UUID> userMonsterIds = new ArrayList<UUID>();
+		
+		userMonsterIds.add(mefu.getCatalystMonsterForUserId());
+		userMonsterIds.add(mefu.getMonsterForUserIdOne());
+		userMonsterIds.add(mefu.getMonsterForUserIdTwo());
+		
+		Map<UUID, MonsterForUser> mfuIdToMfu = getSpecificOrAllUserMonstersForUser(
+				userId, userMonsterIds);
+		return mfuIdToMfu;
+		
+	}
 	
 	//INSERTING STUFF****************************************************************
 	
@@ -666,95 +714,14 @@ public class MonsterForUserServiceImpl implements MonsterForUserService {
 	public void setQueryConstructionUtil(QueryConstructionUtil queryConstructionUtil) {
 		this.queryConstructionUtil = queryConstructionUtil;
 	}
-
-	
-	
-	
-	
-	
-	/*
-	//OLD AOC2 STUFF****************************************************************
 	@Override
-	public Map<UUID, MonsterForUser> getUserEquipsByUserEquipIds(Collection<UUID> ids) {
-		Map<UUID, MonsterForUser> returnVal = new HashMap<UUID, MonsterForUser>();
-		
-		List<MonsterForUser> ueList = monsterForUserEntityManager.get().get(ids);
-		for (MonsterForUser ue : ueList) {
-			UUID id = ue.getId();
-			returnVal.put(id, ue);
-		}
-		
-		return returnVal;
+	public MonsterLevelInfoRetrieveUtils getMonsterLevelInfoRetrieveUtils() {
+		return monsterLevelInfoRetrieveUtils;
 	}
-	
 	@Override
-	public void saveEquips(Collection<MonsterForUser> newEquips) {
-		getMonsterForUserEntityManager().get().put(newEquips);
-	}
-	
-	@Override
-	public void getEquippedUserEquips(List<MonsterForUser> allUserEquips, List<MonsterForUser> equippedUserEquips) {
-		for(MonsterForUser ue : allUserEquips) {
-			if(ue.isEquipped())
-				equippedUserEquips.add(ue);
-		}
-	}
-	
-	public  MonsterForUser getUserEquipForId(UUID id) {
-		log.debug("retrieve MonsterForUser data for id " + id);
-		if (idsToUserEquips == null) {
-			setStaticIdsToUserEquips();      
-		}
-		return idsToUserEquips.get(id);
+	public void setMonsterLevelInfoRetrieveUtils(
+			MonsterLevelInfoRetrieveUtils monsterLevelInfoRetrieveUtils) {
+		this.monsterLevelInfoRetrieveUtils = monsterLevelInfoRetrieveUtils;
 	}
 
-	public  Map<UUID, MonsterForUser> getUserEquipsForIds(List<UUID> ids) {
-		log.debug("retrieve UserEquips data for ids " + ids);
-		if (idsToUserEquips == null) {
-			setStaticIdsToUserEquips();      
-		}
-		Map<UUID, MonsterForUser> toreturn = new HashMap<UUID, MonsterForUser>();
-		for (UUID id : ids) {
-			toreturn.put(id,  idsToUserEquips.get(id));
-		}
-		return toreturn;
-	}
-
-	private  void setStaticIdsToUserEquips() {
-		log.debug("setting  map of UserEquipIds to UserEquips");
-
-		String cqlquery = "select * from user_equip;"; 
-		List <MonsterForUser> list = getMonsterForUserEntityManager().get().find(cqlquery);
-		idsToUserEquips = new HashMap<UUID, MonsterForUser>();
-		for(MonsterForUser us : list) {
-			UUID id= us.getId();
-			idsToUserEquips.put(id, us);
-		}
-					
-	}
-
-	public  List<MonsterForUser> getAllUserEquipsForUser(UUID userId) {
-		String cqlquery = "select * from user_equip where user_id=" + userId + ";"; 
-		List <MonsterForUser> list = getMonsterForUserEntityManager().get().find(cqlquery);
-		return list;
-	}
-	
-	public StructureLab getEquipmentCorrespondingToUserEquip(MonsterForUser ue) {
-		UUID equipId = ue.getEquipId();
-		return getEquipmentRetrieveUtils().getEquipmentForId(equipId);
-	}
-	
-	public List<MonsterForUser> getAllEquippedUserEquipsForUser(UUID userId) {
-		List<MonsterForUser> ueList = getAllUserEquipsForUser(userId);
-		List<MonsterForUser> equippedList = new ArrayList<>();
-		for(MonsterForUser ue : ueList) {
-			if(ue.isEquipped()) {
-				equippedList.add(ue);
-			}
-		}
-		return equippedList;
-	}
-	*/
-	
-		
 }

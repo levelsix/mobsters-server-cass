@@ -7,7 +7,9 @@ import java.util.Map;
 import java.util.UUID;
 
 import com.lvl6.mobsters.entitymanager.nonstaticdata.MonsterForUserEntityManager;
+import com.lvl6.mobsters.entitymanager.staticdata.utils.MonsterLevelInfoRetrieveUtils;
 import com.lvl6.mobsters.entitymanager.staticdata.utils.MonsterRetrieveUtils;
+import com.lvl6.mobsters.po.nonstaticdata.MonsterEvolvingForUser;
 import com.lvl6.mobsters.po.nonstaticdata.MonsterForUser;
 import com.lvl6.mobsters.po.staticdata.Monster;
 import com.lvl6.mobsters.po.staticdata.TaskStageMonster;
@@ -41,6 +43,8 @@ public interface MonsterForUserService {
 	public abstract List<MonsterForUser> replaceBattleTeamSlot(int oldTeamSlotNum,
 			int newTeamSlotNum, Map<UUID, MonsterForUser> idsToUserMonsters);
 	
+	public abstract MonsterForUser createEvolvedMonster(UUID userId, MonsterForUser mfu,
+			MonsterEvolvingForUser mefu, Date combineStartTime, String sourceOfPieces);
 	
 	//RETRIEVING STUFF****************************************************************
 	public abstract List<MonsterForUser> getMonstersForUser(UUID userId);
@@ -56,7 +60,8 @@ public interface MonsterForUserService {
 	public abstract Map<Integer, MonsterForUser> getIncompleteMonstersWithUserAndMonsterIds(
 			UUID userId, Collection<Integer> monsterIds);
 	
-	
+	public abstract Map<UUID, MonsterForUser> getUserMonstersInEvolution(UUID userId,
+			MonsterEvolvingForUser mefu);
 			
 	
 	//INSERTING STUFF****************************************************************
@@ -103,24 +108,8 @@ public interface MonsterForUserService {
 	
 	public abstract void setQueryConstructionUtil(QueryConstructionUtil queryConstructionUtil);
 	
-	/*
-	//OLD AOC2 STUFF
-	public abstract Map<UUID, MonsterForUser> getUserEquipsByUserEquipIds (Collection<UUID> ids);
-	
-	public abstract void saveEquips(Collection<MonsterForUser> newEquips);
-	
-	public abstract void getEquippedUserEquips(List<MonsterForUser> allUserEquips, List<MonsterForUser> equippedUserEquips);
-	
-	
-	public abstract MonsterForUser getUserEquipForId(UUID id);
-	
-	public abstract Map<UUID, MonsterForUser> getUserEquipsForIds(List<UUID> ids);
-	
-	public abstract List<MonsterForUser> getAllUserEquipsForUser(UUID userId);
-	
-	public abstract StructureLab getEquipmentCorrespondingToUserEquip(MonsterForUser ue);
-	
-	public abstract List<MonsterForUser> getAllEquippedUserEquipsForUser(UUID userId);
-	*/
-	
+	public MonsterLevelInfoRetrieveUtils getMonsterLevelInfoRetrieveUtils();
+
+	public void setMonsterLevelInfoRetrieveUtils(
+			MonsterLevelInfoRetrieveUtils monsterLevelInfoRetrieveUtils);	
 }

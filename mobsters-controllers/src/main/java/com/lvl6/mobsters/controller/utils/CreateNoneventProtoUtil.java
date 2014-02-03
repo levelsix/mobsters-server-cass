@@ -12,6 +12,7 @@ import com.lvl6.mobsters.noneventprotos.CityProto.CityElementProto;
 import com.lvl6.mobsters.noneventprotos.CityProto.CityExpansionCostProto;
 import com.lvl6.mobsters.noneventprotos.CityProto.FullCityProto;
 import com.lvl6.mobsters.noneventprotos.MonsterStuffProto.FullUserMonsterProto;
+import com.lvl6.mobsters.noneventprotos.MonsterStuffProto.MonsterLevelInfoProto;
 import com.lvl6.mobsters.noneventprotos.MonsterStuffProto.MonsterProto;
 import com.lvl6.mobsters.noneventprotos.MonsterStuffProto.UserEnhancementItemProto;
 import com.lvl6.mobsters.noneventprotos.MonsterStuffProto.UserEnhancementProto;
@@ -105,6 +106,9 @@ public interface CreateNoneventProtoUtil {
 	
 	public abstract MonsterProto createMonsterProto(Monster aMonster,
 			Map<Integer, MonsterLevelInfo> levelToInfo);
+	
+	public abstract List<MonsterLevelInfoProto> createMonsterLevelInfoFromInfo(
+			Map<Integer, MonsterLevelInfo> lvlToInfo);
 	
 	//QUEST PROTO****************************************************************
 	public abstract QuestProto createQuestProtoFromQuest(Quest q);

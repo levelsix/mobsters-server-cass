@@ -110,7 +110,7 @@ message UserMonsterHealingProto {
 }
 
 //------------------------------------------------------------------------------------------
-
+// used in UpdateMonsterHealthRequestProto
 message UserMonsterCurrentHealthProto {
 	optional string userMonsterUuid = 1;
 	optional int32 currentHealth = 2; //what the health should be
@@ -154,4 +154,15 @@ message MinimumUserMonsterSellProto {
 message UserCurrentMonsterTeamProto {
 	optional string userUuid = 1;
 	repeated FullUserMonsterProto currentTeam = 2;
+}
+
+//------------------------------------------------------------------------------------------
+message UserMonsterEvolutionProto {
+	//the monster that is required to combine 2 monsters
+	optional string catalystUserMonsterId = 1;
+	
+	//the 2 monsters that are combined
+	repeated string userMonsterIds = 2;
+	
+	optional int64 startTime = 3;
 }

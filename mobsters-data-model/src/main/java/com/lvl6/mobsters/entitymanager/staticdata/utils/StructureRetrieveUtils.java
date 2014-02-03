@@ -41,7 +41,7 @@ import com.lvl6.mobsters.utils.QueryConstructionUtil;
 
 	public  Structure getStructureForId(Integer id) {
 		log.debug("retrieve structure data for id " + id);
-		if (idsToStructures == null) {
+		if (null == idsToStructures) {
 			setStaticIdsToStructures();      
 		}
 		return idsToStructures.get(id);
@@ -49,7 +49,7 @@ import com.lvl6.mobsters.utils.QueryConstructionUtil;
 
 	public  Map<Integer, Structure> getStructuresForIds(List<Integer> ids) {
 		log.debug("retrieve structures data for ids " + ids);
-		if (idsToStructures == null) {
+		if (null == idsToStructures) {
 			setStaticIdsToStructures();      
 		}
 		Map<Integer, Structure> toreturn = new HashMap<Integer, Structure>();
@@ -60,7 +60,7 @@ import com.lvl6.mobsters.utils.QueryConstructionUtil;
 	}
 	
 	public Structure getUpgradedStructure(Structure currentStructure, int structId) {
-		if(idsToStructures == null) {
+		if (null == idsToStructures) {
 			setStaticIdsToStructures();
 		}
 		if (null == currentStructure) {
@@ -70,7 +70,7 @@ import com.lvl6.mobsters.utils.QueryConstructionUtil;
 		
 		Structure upgradedStructure = null;
 		//gotta watch out for structures with id of 0 or less.
-		if (upgradedStructId > 0 &&idsToStructures.containsKey(upgradedStructId)) {
+		if (upgradedStructId > 0 && idsToStructures.containsKey(upgradedStructId)) {
 			upgradedStructure = idsToStructures.get(upgradedStructId);
 		}
 		
@@ -78,7 +78,7 @@ import com.lvl6.mobsters.utils.QueryConstructionUtil;
 	}
 	
 	public Structure getPredecessorStructure(Structure currentStructure, int structId) {
-		if(idsToStructures == null) {
+		if (null == idsToStructures) {
 			setStaticIdsToStructures();
 		}
 		if (null == currentStructure) {

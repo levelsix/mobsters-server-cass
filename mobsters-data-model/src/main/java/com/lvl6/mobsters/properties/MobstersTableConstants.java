@@ -25,6 +25,7 @@ public class MobstersTableConstants {
 
 	//MFUDR = monster_for_user_delete_reasons
 	public static final String MFUDR__ENHANCING = "enhancing";
+	public static final String MFUDR__EVOLVING = "evolving";
 	public static final String MFUDR__QUEST = "quest";
 	public static final String MFUDR__SELL = "sold for cash";
 
@@ -43,6 +44,7 @@ public class MobstersTableConstants {
 	public static final String UCHRFC__EARN_FREE_DIAMONDS_FB_CONNECT = "connecting to facebook";
 	public static final String UCHRFC__END_TASK = "end task";
 	public static final String UCHRFC__ENHANCING = "enhancing user monsters";
+	public static final String UCHRFC__EVOLVING = "evolving user monsters";
 	public static final String UCHRFC__HEAL_MONSTER_OR_SPED_UP_HEALING = "healing or sped up healing user monsters";
 	public static final String UCHRFC__INCREASE_MONSTER_INVENTORY = "increased user monster inventory";
 	public static final String UCHRFC__PURHCASED_BOOSTER_PACK = "purchased booster pack";
@@ -55,6 +57,7 @@ public class MobstersTableConstants {
 	public static final String UCHRFC__SPED_UP_CITY_EXPANSION = "sped up city expansion";
 	public static final String UCHRFC__SPED_UP_COMBINING_MONSTER = "sped up combining user monsters";
 	public static final String UCHRFC__SPED_UP_ENHANCING = "sped up enhancing user monsters";
+	public static final String UCHRFC__SPED_UP_EVOLVING = "sped up evolving user monster";
 //	public static final String UCHRFC__SPED_UP_HEALING = "sped up healing user monster";
 	public static final String UCHRFC__SPED_UP_NORM_STRUCT = "sped up norm struct";
 	public static final String UCHRFC__UPGRADE_NORM_STRUCT = "upgrading norm struct";
