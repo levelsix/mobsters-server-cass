@@ -3,6 +3,7 @@ package com.lvl6.mobsters.services.monsterevolvingforuser;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.UUID;
 
 import com.lvl6.mobsters.entitymanager.nonstaticdata.MonsterEvolvingForUserEntityManager;
@@ -13,7 +14,7 @@ import com.lvl6.mobsters.utils.QueryConstructionUtil;
 public interface MonsterEvolvingForUserService {
 	
 	//CONTROLLER LOGIC STUFF****************************************************************
-	
+	public abstract Set<UUID> getMonsterForUserIdsFromEvolution(MonsterEvolvingForUser mefu);
 	
 	//RETRIEVING STUFF****************************************************************
 	public abstract Map<UUID, MonsterEvolvingForUser> getCatalystIdsToEvolutionsForUser(UUID userId);

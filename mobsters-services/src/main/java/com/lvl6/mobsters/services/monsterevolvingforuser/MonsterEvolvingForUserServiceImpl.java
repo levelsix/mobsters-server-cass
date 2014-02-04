@@ -5,8 +5,10 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.UUID;
 
 import org.slf4j.Logger;
@@ -64,6 +66,16 @@ public class MonsterEvolvingForUserServiceImpl implements MonsterEvolvingForUser
 		});
 	}
 	
+	@Override
+	public Set<UUID> getMonsterForUserIdsFromEvolution(MonsterEvolvingForUser mefu) {
+		Set<UUID> mfuIds = new HashSet<UUID>();
+		
+		mfuIds.add(mefu.getCatalystMonsterForUserId());
+		mfuIds.add(mefu.getMonsterForUserIdOne());
+		mfuIds.add(mefu.getMonsterForUserIdTwo());
+		
+		return mfuIds;
+	}
 
 	//RETRIEVING STUFF****************************************************************
 	

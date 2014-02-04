@@ -32,6 +32,7 @@ import com.lvl6.mobsters.noneventprotos.MonsterStuffProto.UserMonsterHealingProt
 import com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto;
 import com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProtoWithMaxResources;
 import com.lvl6.mobsters.po.nonstaticdata.MonsterEnhancingForUser;
+import com.lvl6.mobsters.po.nonstaticdata.MonsterEvolvingForUser;
 import com.lvl6.mobsters.po.nonstaticdata.MonsterForUser;
 import com.lvl6.mobsters.po.nonstaticdata.MonsterHealingForUser;
 import com.lvl6.mobsters.po.nonstaticdata.User;
@@ -39,6 +40,7 @@ import com.lvl6.mobsters.po.nonstaticdata.UserCurrencyHistory;
 import com.lvl6.mobsters.properties.MobstersDbTables;
 import com.lvl6.mobsters.properties.MobstersTableConstants;
 import com.lvl6.mobsters.services.monsterenhancingforuser.MonsterEnhancingForUserService;
+import com.lvl6.mobsters.services.monsterevolvingforuser.MonsterEvolvingForUserService;
 import com.lvl6.mobsters.services.monsterforuser.MonsterForUserService;
 import com.lvl6.mobsters.services.monsterhealingforuser.MonsterHealingForUserService;
 import com.lvl6.mobsters.services.monsterhealingforuser.MonsterHealingHistoryService;
@@ -63,6 +65,9 @@ public class HealMonsterController extends EventController {
 	
 	@Autowired
 	protected MonsterEnhancingForUserService monsterEnhancingForUserService;
+	
+	@Autowired
+	protected MonsterEvolvingForUserService monsterEvolvingForUserService;
 	
 	@Autowired
 	protected MonsterForUserService monsterForUserService;
@@ -159,6 +164,8 @@ public class HealMonsterController extends EventController {
 	    			getMonsterHealingForUserService().getUserMonsterIdsToUserMonstersHealingForUser(userId);
 	    	Map<UUID, MonsterEnhancingForUser> alreadyEnhancing =
 						getMonsterEnhancingForUserService().getMonstersEnhancingForUser(userId);
+	    	MonsterEvolvingForUser evolution = getMonsterEvolvingForUserService()
+	    			.getEvolutionForUser(userId);
 	    	
 	    	//retrieve only the new monsters that will be healed
 	    	//also get the ones that correspond to the ones that are going to be deleted
@@ -182,7 +189,8 @@ public class HealMonsterController extends EventController {
 	    	//will be retained
 			boolean validRequest = checkLegit(responseBuilder, aUser, userId,
 		      		cashChange, totalGemCost, existingUserMonsters, alreadyHealing,
-		      		alreadyEnhancing, deleteMap, updateMap, newMap, userMonsterIds);
+		      		alreadyEnhancing, deleteMap, updateMap, newMap, userMonsterIds,
+		      		evolution);
 
 
 			boolean successful = false;
@@ -265,7 +273,8 @@ public class HealMonsterController extends EventController {
 			Map<UUID, MonsterEnhancingForUser> alreadyEnhancing,
 			Map<UUID, UserMonsterHealingProto> deleteMap,
 			Map<UUID, UserMonsterHealingProto> updateMap,
-			Map<UUID, UserMonsterHealingProto> newMap, List<UUID> healedUp) {
+			Map<UUID, UserMonsterHealingProto> newMap, List<UUID> healedUp,
+			MonsterEvolvingForUser evolution) {
 		if (null == u ) {
 			log.error("unexpected error: user is null. user=" + u + "\t deleteMap="+ deleteMap +
 					"\t updateMap=" + updateMap + "\t newMap=" + newMap);
@@ -317,6 +326,13 @@ public class HealMonsterController extends EventController {
 		getMiscUtil().retainValidMapEntries(alreadyEnhancingIds, newMap,
 				keepThingsInDomain, keepThingsNotInDomain);
 
+		//retain only the userMonsters, the client sent, that are not in evolutions
+	    Set<UUID> idsInEvolutions = getMonsterEvolvingForUserService()
+	    		.getMonsterForUserIdsFromEvolution(evolution);
+	    getMiscUtil().retainValidMapEntries(idsInEvolutions, newMap,
+	    		keepThingsInDomain, keepThingsNotInDomain);
+	    
+		
 		
 		log.info("alreadyHealing=" + alreadyHealing);
 		//don't really need to do empty-check, but eh
@@ -553,6 +569,15 @@ public class HealMonsterController extends EventController {
 	public void setMonsterEnhancingForUserService(
 			MonsterEnhancingForUserService monsterEnhancingForUserService) {
 		this.monsterEnhancingForUserService = monsterEnhancingForUserService;
+	}
+	
+	public MonsterEvolvingForUserService getMonsterEvolvingForUserService() {
+		return monsterEvolvingForUserService;
+	}
+
+	public void setMonsterEvolvingForUserService(
+			MonsterEvolvingForUserService monsterEvolvingForUserService) {
+		this.monsterEvolvingForUserService = monsterEvolvingForUserService;
 	}
 
 	public MonsterForUserService getMonsterForUserService() {
