@@ -18,6 +18,7 @@ import com.lvl6.mobsters.entitymanager.staticdata.utils.BoosterDisplayItemRetrie
 import com.lvl6.mobsters.entitymanager.staticdata.utils.BoosterItemRetrieveUtils;
 import com.lvl6.mobsters.entitymanager.staticdata.utils.BoosterPackRetrieveUtils;
 import com.lvl6.mobsters.entitymanager.staticdata.utils.CityRetrieveUtils;
+import com.lvl6.mobsters.entitymanager.staticdata.utils.EventPersistentRetrieveUtils;
 import com.lvl6.mobsters.entitymanager.staticdata.utils.ExpansionCostRetrieveUtils;
 import com.lvl6.mobsters.entitymanager.staticdata.utils.MonsterLevelInfoRetrieveUtils;
 import com.lvl6.mobsters.entitymanager.staticdata.utils.MonsterRetrieveUtils;
@@ -43,11 +44,13 @@ import com.lvl6.mobsters.noneventprotos.StructureProto.ResourceStorageProto;
 import com.lvl6.mobsters.noneventprotos.StructureProto.StructureInfoProto;
 import com.lvl6.mobsters.noneventprotos.StructureProto.TownHallProto;
 import com.lvl6.mobsters.noneventprotos.TaskProto.FullTaskProto;
+import com.lvl6.mobsters.noneventprotos.TaskProto.PersistentEventProto;
 import com.lvl6.mobsters.po.nonstaticdata.QuestForUser;
 import com.lvl6.mobsters.po.staticdata.BoosterDisplayItem;
 import com.lvl6.mobsters.po.staticdata.BoosterItem;
 import com.lvl6.mobsters.po.staticdata.BoosterPack;
 import com.lvl6.mobsters.po.staticdata.City;
+import com.lvl6.mobsters.po.staticdata.EventPersistent;
 import com.lvl6.mobsters.po.staticdata.ExpansionCost;
 import com.lvl6.mobsters.po.staticdata.Monster;
 import com.lvl6.mobsters.po.staticdata.MonsterLevelInfo;
@@ -118,6 +121,9 @@ public class MiscUtil {
 	
 	@Autowired
 	protected StructureLabRetrieveUtils structureLabRetrieveUtils;
+	
+	@Autowired
+	protected EventPersistentRetrieveUtils eventPersistentRetrieveUtils;
 	
 	@Autowired
 	protected MonsterLevelInfoRetrieveUtils monsterLevelInfoRetrieveUtils;
@@ -269,6 +275,7 @@ public class MiscUtil {
 		setInProgressAndAvailableQuests(sdpb, userId);
 		setBoosterPackStuff(sdpb);
 		setStructures(sdpb);
+		setEvents(sdpb);
 		
 		return sdpb.build();
 	}
@@ -507,6 +514,18 @@ public class MiscUtil {
 			sdpb.addAllLabs(rgp);
 		}		
 	}
+	
+	private void setEvents(StaticDataProto.Builder sdpb) {
+		Map<Integer, EventPersistent> idsToEvents = getEventPersistentRetrieveUtils()
+				.getAllEventIdsToEvents();
+		for (Integer eventId: idsToEvents.keySet()) {
+			EventPersistent event  = idsToEvents.get(eventId);
+			PersistentEventProto eventProto = getCreateNoneventProtoUtil()
+					.createPersistentEventProtoFromEvent(event);
+			sdpb.addEvents(eventProto);
+		}
+	}
+	
 
 	//TODO: FINISH IMPLEMENTING THIS METHOD
 	public StartupConstants createStartupConstantsProto() {
@@ -671,6 +690,15 @@ public class MiscUtil {
 	public void setStructureLabRetrieveUtils(
 			StructureLabRetrieveUtils structureLabRetrieveUtils) {
 		this.structureLabRetrieveUtils = structureLabRetrieveUtils;
+	}
+
+	public EventPersistentRetrieveUtils getEventPersistentRetrieveUtils() {
+		return eventPersistentRetrieveUtils;
+	}
+
+	public void setEventPersistentRetrieveUtils(
+			EventPersistentRetrieveUtils eventPersistentRetrieveUtils) {
+		this.eventPersistentRetrieveUtils = eventPersistentRetrieveUtils;
 	}
 
 	public MonsterLevelInfoRetrieveUtils getMonsterLevelInfoRetrieveUtils() {
