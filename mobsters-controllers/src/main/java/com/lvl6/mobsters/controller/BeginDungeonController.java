@@ -14,6 +14,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.lvl6.mobsters.controller.utils.CreateEventProtoUtil;
 import com.lvl6.mobsters.controller.utils.CreateNoneventProtoUtil;
 import com.lvl6.mobsters.entitymanager.staticdata.utils.TaskRetrieveUtils;
 import com.lvl6.mobsters.entitymanager.staticdata.utils.TaskStageRetrieveUtils;
@@ -24,6 +25,7 @@ import com.lvl6.mobsters.eventprotos.EventDungeonProto.BeginDungeonResponseProto
 import com.lvl6.mobsters.events.RequestEvent;
 import com.lvl6.mobsters.events.request.BeginDungeonRequestEvent;
 import com.lvl6.mobsters.events.response.BeginDungeonResponseEvent;
+import com.lvl6.mobsters.events.response.UpdateClientUserResponseEvent;
 import com.lvl6.mobsters.noneventprotos.MobstersEventProtocolProto.MobstersEventProtocolRequest;
 import com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageProto;
 import com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto;
@@ -70,6 +72,10 @@ public class BeginDungeonController extends EventController {
 
 	@Autowired
 	protected UserCurrencyHistoryService userCurrencyHistoryService;
+	
+	@Autowired
+	protected CreateEventProtoUtil createEventProtoUtil;
+	
 
 	public BeginDungeonController() {
 		numAllocatedThreads = 8;
@@ -146,6 +152,13 @@ public class BeginDungeonController extends EventController {
 			log.info("Writing event: " + resEvent);
 			getEventWriter().handleEvent(resEvent);	
 
+			if (successful && 0 != gemsSpent) {
+				//notify client that his currency changed
+				UpdateClientUserResponseEvent update = getCreateEventProtoUtil()
+						.createUpdateClientUserResponseEvent(aUser);
+				getEventWriter().handleEvent(update);
+			}
+			
 		} catch (Exception e) {
 			log.error("exception in BeginDungeonController processRequestEvent", e);
 
@@ -428,6 +441,14 @@ public class BeginDungeonController extends EventController {
 	public void setUserCurrencyHistoryService(
 			UserCurrencyHistoryService userCurrencyHistoryService) {
 		this.userCurrencyHistoryService = userCurrencyHistoryService;
+	}
+
+	public CreateEventProtoUtil getCreateEventProtoUtil() {
+		return createEventProtoUtil;
+	}
+
+	public void setCreateEventProtoUtil(CreateEventProtoUtil createEventProtoUtil) {
+		this.createEventProtoUtil = createEventProtoUtil;
 	}
 	
 }

@@ -6450,6 +6450,1414 @@ public final class EventUserProto {
     // @@protoc_insertion_point(class_scope:proto.SetFacebookIdResponseProto)
   }
   
+  public interface UpdateUserCurrencyRequestProtoOrBuilder
+      extends com.google.protobuf.MessageOrBuilder {
+    
+    // optional .proto.MinimumUserProto sender = 1;
+    boolean hasSender();
+    com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto getSender();
+    com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProtoOrBuilder getSenderOrBuilder();
+    
+    // optional sint32 cashSpent = 2;
+    boolean hasCashSpent();
+    int getCashSpent();
+    
+    // optional sint32 oilSpent = 3;
+    boolean hasOilSpent();
+    int getOilSpent();
+    
+    // optional sint32 gemsSpent = 4;
+    boolean hasGemsSpent();
+    int getGemsSpent();
+    
+    // optional int64 clientTime = 5;
+    boolean hasClientTime();
+    long getClientTime();
+    
+    // optional string reason = 6;
+    boolean hasReason();
+    String getReason();
+    
+    // optional string details = 7;
+    boolean hasDetails();
+    String getDetails();
+  }
+  public static final class UpdateUserCurrencyRequestProto extends
+      com.google.protobuf.GeneratedMessage
+      implements UpdateUserCurrencyRequestProtoOrBuilder {
+    // Use UpdateUserCurrencyRequestProto.newBuilder() to construct.
+    private UpdateUserCurrencyRequestProto(Builder builder) {
+      super(builder);
+    }
+    private UpdateUserCurrencyRequestProto(boolean noInit) {}
+    
+    private static final UpdateUserCurrencyRequestProto defaultInstance;
+    public static UpdateUserCurrencyRequestProto getDefaultInstance() {
+      return defaultInstance;
+    }
+    
+    public UpdateUserCurrencyRequestProto getDefaultInstanceForType() {
+      return defaultInstance;
+    }
+    
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.lvl6.mobsters.eventprotos.EventUserProto.internal_static_proto_UpdateUserCurrencyRequestProto_descriptor;
+    }
+    
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.lvl6.mobsters.eventprotos.EventUserProto.internal_static_proto_UpdateUserCurrencyRequestProto_fieldAccessorTable;
+    }
+    
+    private int bitField0_;
+    // optional .proto.MinimumUserProto sender = 1;
+    public static final int SENDER_FIELD_NUMBER = 1;
+    private com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto sender_;
+    public boolean hasSender() {
+      return ((bitField0_ & 0x00000001) == 0x00000001);
+    }
+    public com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto getSender() {
+      return sender_;
+    }
+    public com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProtoOrBuilder getSenderOrBuilder() {
+      return sender_;
+    }
+    
+    // optional sint32 cashSpent = 2;
+    public static final int CASHSPENT_FIELD_NUMBER = 2;
+    private int cashSpent_;
+    public boolean hasCashSpent() {
+      return ((bitField0_ & 0x00000002) == 0x00000002);
+    }
+    public int getCashSpent() {
+      return cashSpent_;
+    }
+    
+    // optional sint32 oilSpent = 3;
+    public static final int OILSPENT_FIELD_NUMBER = 3;
+    private int oilSpent_;
+    public boolean hasOilSpent() {
+      return ((bitField0_ & 0x00000004) == 0x00000004);
+    }
+    public int getOilSpent() {
+      return oilSpent_;
+    }
+    
+    // optional sint32 gemsSpent = 4;
+    public static final int GEMSSPENT_FIELD_NUMBER = 4;
+    private int gemsSpent_;
+    public boolean hasGemsSpent() {
+      return ((bitField0_ & 0x00000008) == 0x00000008);
+    }
+    public int getGemsSpent() {
+      return gemsSpent_;
+    }
+    
+    // optional int64 clientTime = 5;
+    public static final int CLIENTTIME_FIELD_NUMBER = 5;
+    private long clientTime_;
+    public boolean hasClientTime() {
+      return ((bitField0_ & 0x00000010) == 0x00000010);
+    }
+    public long getClientTime() {
+      return clientTime_;
+    }
+    
+    // optional string reason = 6;
+    public static final int REASON_FIELD_NUMBER = 6;
+    private java.lang.Object reason_;
+    public boolean hasReason() {
+      return ((bitField0_ & 0x00000020) == 0x00000020);
+    }
+    public String getReason() {
+      java.lang.Object ref = reason_;
+      if (ref instanceof String) {
+        return (String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        String s = bs.toStringUtf8();
+        if (com.google.protobuf.Internal.isValidUtf8(bs)) {
+          reason_ = s;
+        }
+        return s;
+      }
+    }
+    private com.google.protobuf.ByteString getReasonBytes() {
+      java.lang.Object ref = reason_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8((String) ref);
+        reason_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    
+    // optional string details = 7;
+    public static final int DETAILS_FIELD_NUMBER = 7;
+    private java.lang.Object details_;
+    public boolean hasDetails() {
+      return ((bitField0_ & 0x00000040) == 0x00000040);
+    }
+    public String getDetails() {
+      java.lang.Object ref = details_;
+      if (ref instanceof String) {
+        return (String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        String s = bs.toStringUtf8();
+        if (com.google.protobuf.Internal.isValidUtf8(bs)) {
+          details_ = s;
+        }
+        return s;
+      }
+    }
+    private com.google.protobuf.ByteString getDetailsBytes() {
+      java.lang.Object ref = details_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8((String) ref);
+        details_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    
+    private void initFields() {
+      sender_ = com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto.getDefaultInstance();
+      cashSpent_ = 0;
+      oilSpent_ = 0;
+      gemsSpent_ = 0;
+      clientTime_ = 0L;
+      reason_ = "";
+      details_ = "";
+    }
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized != -1) return isInitialized == 1;
+      
+      memoizedIsInitialized = 1;
+      return true;
+    }
+    
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      getSerializedSize();
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        output.writeMessage(1, sender_);
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        output.writeSInt32(2, cashSpent_);
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        output.writeSInt32(3, oilSpent_);
+      }
+      if (((bitField0_ & 0x00000008) == 0x00000008)) {
+        output.writeSInt32(4, gemsSpent_);
+      }
+      if (((bitField0_ & 0x00000010) == 0x00000010)) {
+        output.writeInt64(5, clientTime_);
+      }
+      if (((bitField0_ & 0x00000020) == 0x00000020)) {
+        output.writeBytes(6, getReasonBytes());
+      }
+      if (((bitField0_ & 0x00000040) == 0x00000040)) {
+        output.writeBytes(7, getDetailsBytes());
+      }
+      getUnknownFields().writeTo(output);
+    }
+    
+    private int memoizedSerializedSize = -1;
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+    
+      size = 0;
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(1, sender_);
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeSInt32Size(2, cashSpent_);
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeSInt32Size(3, oilSpent_);
+      }
+      if (((bitField0_ & 0x00000008) == 0x00000008)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeSInt32Size(4, gemsSpent_);
+      }
+      if (((bitField0_ & 0x00000010) == 0x00000010)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(5, clientTime_);
+      }
+      if (((bitField0_ & 0x00000020) == 0x00000020)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(6, getReasonBytes());
+      }
+      if (((bitField0_ & 0x00000040) == 0x00000040)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(7, getDetailsBytes());
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSerializedSize = size;
+      return size;
+    }
+    
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    protected java.lang.Object writeReplace()
+        throws java.io.ObjectStreamException {
+      return super.writeReplace();
+    }
+    
+    public static com.lvl6.mobsters.eventprotos.EventUserProto.UpdateUserCurrencyRequestProto parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data).buildParsed();
+    }
+    public static com.lvl6.mobsters.eventprotos.EventUserProto.UpdateUserCurrencyRequestProto parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data, extensionRegistry)
+               .buildParsed();
+    }
+    public static com.lvl6.mobsters.eventprotos.EventUserProto.UpdateUserCurrencyRequestProto parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data).buildParsed();
+    }
+    public static com.lvl6.mobsters.eventprotos.EventUserProto.UpdateUserCurrencyRequestProto parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data, extensionRegistry)
+               .buildParsed();
+    }
+    public static com.lvl6.mobsters.eventprotos.EventUserProto.UpdateUserCurrencyRequestProto parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input).buildParsed();
+    }
+    public static com.lvl6.mobsters.eventprotos.EventUserProto.UpdateUserCurrencyRequestProto parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input, extensionRegistry)
+               .buildParsed();
+    }
+    public static com.lvl6.mobsters.eventprotos.EventUserProto.UpdateUserCurrencyRequestProto parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      Builder builder = newBuilder();
+      if (builder.mergeDelimitedFrom(input)) {
+        return builder.buildParsed();
+      } else {
+        return null;
+      }
+    }
+    public static com.lvl6.mobsters.eventprotos.EventUserProto.UpdateUserCurrencyRequestProto parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      Builder builder = newBuilder();
+      if (builder.mergeDelimitedFrom(input, extensionRegistry)) {
+        return builder.buildParsed();
+      } else {
+        return null;
+      }
+    }
+    public static com.lvl6.mobsters.eventprotos.EventUserProto.UpdateUserCurrencyRequestProto parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input).buildParsed();
+    }
+    public static com.lvl6.mobsters.eventprotos.EventUserProto.UpdateUserCurrencyRequestProto parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input, extensionRegistry)
+               .buildParsed();
+    }
+    
+    public static Builder newBuilder() { return Builder.create(); }
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder(com.lvl6.mobsters.eventprotos.EventUserProto.UpdateUserCurrencyRequestProto prototype) {
+      return newBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() { return newBuilder(this); }
+    
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder>
+       implements com.lvl6.mobsters.eventprotos.EventUserProto.UpdateUserCurrencyRequestProtoOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.lvl6.mobsters.eventprotos.EventUserProto.internal_static_proto_UpdateUserCurrencyRequestProto_descriptor;
+      }
+      
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.lvl6.mobsters.eventprotos.EventUserProto.internal_static_proto_UpdateUserCurrencyRequestProto_fieldAccessorTable;
+      }
+      
+      // Construct using com.lvl6.mobsters.eventprotos.EventUserProto.UpdateUserCurrencyRequestProto.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+      
+      private Builder(BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+          getSenderFieldBuilder();
+        }
+      }
+      private static Builder create() {
+        return new Builder();
+      }
+      
+      public Builder clear() {
+        super.clear();
+        if (senderBuilder_ == null) {
+          sender_ = com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto.getDefaultInstance();
+        } else {
+          senderBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000001);
+        cashSpent_ = 0;
+        bitField0_ = (bitField0_ & ~0x00000002);
+        oilSpent_ = 0;
+        bitField0_ = (bitField0_ & ~0x00000004);
+        gemsSpent_ = 0;
+        bitField0_ = (bitField0_ & ~0x00000008);
+        clientTime_ = 0L;
+        bitField0_ = (bitField0_ & ~0x00000010);
+        reason_ = "";
+        bitField0_ = (bitField0_ & ~0x00000020);
+        details_ = "";
+        bitField0_ = (bitField0_ & ~0x00000040);
+        return this;
+      }
+      
+      public Builder clone() {
+        return create().mergeFrom(buildPartial());
+      }
+      
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.lvl6.mobsters.eventprotos.EventUserProto.UpdateUserCurrencyRequestProto.getDescriptor();
+      }
+      
+      public com.lvl6.mobsters.eventprotos.EventUserProto.UpdateUserCurrencyRequestProto getDefaultInstanceForType() {
+        return com.lvl6.mobsters.eventprotos.EventUserProto.UpdateUserCurrencyRequestProto.getDefaultInstance();
+      }
+      
+      public com.lvl6.mobsters.eventprotos.EventUserProto.UpdateUserCurrencyRequestProto build() {
+        com.lvl6.mobsters.eventprotos.EventUserProto.UpdateUserCurrencyRequestProto result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+      
+      private com.lvl6.mobsters.eventprotos.EventUserProto.UpdateUserCurrencyRequestProto buildParsed()
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        com.lvl6.mobsters.eventprotos.EventUserProto.UpdateUserCurrencyRequestProto result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(
+            result).asInvalidProtocolBufferException();
+        }
+        return result;
+      }
+      
+      public com.lvl6.mobsters.eventprotos.EventUserProto.UpdateUserCurrencyRequestProto buildPartial() {
+        com.lvl6.mobsters.eventprotos.EventUserProto.UpdateUserCurrencyRequestProto result = new com.lvl6.mobsters.eventprotos.EventUserProto.UpdateUserCurrencyRequestProto(this);
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
+          to_bitField0_ |= 0x00000001;
+        }
+        if (senderBuilder_ == null) {
+          result.sender_ = sender_;
+        } else {
+          result.sender_ = senderBuilder_.build();
+        }
+        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
+          to_bitField0_ |= 0x00000002;
+        }
+        result.cashSpent_ = cashSpent_;
+        if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
+          to_bitField0_ |= 0x00000004;
+        }
+        result.oilSpent_ = oilSpent_;
+        if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
+          to_bitField0_ |= 0x00000008;
+        }
+        result.gemsSpent_ = gemsSpent_;
+        if (((from_bitField0_ & 0x00000010) == 0x00000010)) {
+          to_bitField0_ |= 0x00000010;
+        }
+        result.clientTime_ = clientTime_;
+        if (((from_bitField0_ & 0x00000020) == 0x00000020)) {
+          to_bitField0_ |= 0x00000020;
+        }
+        result.reason_ = reason_;
+        if (((from_bitField0_ & 0x00000040) == 0x00000040)) {
+          to_bitField0_ |= 0x00000040;
+        }
+        result.details_ = details_;
+        result.bitField0_ = to_bitField0_;
+        onBuilt();
+        return result;
+      }
+      
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.lvl6.mobsters.eventprotos.EventUserProto.UpdateUserCurrencyRequestProto) {
+          return mergeFrom((com.lvl6.mobsters.eventprotos.EventUserProto.UpdateUserCurrencyRequestProto)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+      
+      public Builder mergeFrom(com.lvl6.mobsters.eventprotos.EventUserProto.UpdateUserCurrencyRequestProto other) {
+        if (other == com.lvl6.mobsters.eventprotos.EventUserProto.UpdateUserCurrencyRequestProto.getDefaultInstance()) return this;
+        if (other.hasSender()) {
+          mergeSender(other.getSender());
+        }
+        if (other.hasCashSpent()) {
+          setCashSpent(other.getCashSpent());
+        }
+        if (other.hasOilSpent()) {
+          setOilSpent(other.getOilSpent());
+        }
+        if (other.hasGemsSpent()) {
+          setGemsSpent(other.getGemsSpent());
+        }
+        if (other.hasClientTime()) {
+          setClientTime(other.getClientTime());
+        }
+        if (other.hasReason()) {
+          setReason(other.getReason());
+        }
+        if (other.hasDetails()) {
+          setDetails(other.getDetails());
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        return this;
+      }
+      
+      public final boolean isInitialized() {
+        return true;
+      }
+      
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder(
+            this.getUnknownFields());
+        while (true) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              this.setUnknownFields(unknownFields.build());
+              onChanged();
+              return this;
+            default: {
+              if (!parseUnknownField(input, unknownFields,
+                                     extensionRegistry, tag)) {
+                this.setUnknownFields(unknownFields.build());
+                onChanged();
+                return this;
+              }
+              break;
+            }
+            case 10: {
+              com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto.Builder subBuilder = com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto.newBuilder();
+              if (hasSender()) {
+                subBuilder.mergeFrom(getSender());
+              }
+              input.readMessage(subBuilder, extensionRegistry);
+              setSender(subBuilder.buildPartial());
+              break;
+            }
+            case 16: {
+              bitField0_ |= 0x00000002;
+              cashSpent_ = input.readSInt32();
+              break;
+            }
+            case 24: {
+              bitField0_ |= 0x00000004;
+              oilSpent_ = input.readSInt32();
+              break;
+            }
+            case 32: {
+              bitField0_ |= 0x00000008;
+              gemsSpent_ = input.readSInt32();
+              break;
+            }
+            case 40: {
+              bitField0_ |= 0x00000010;
+              clientTime_ = input.readInt64();
+              break;
+            }
+            case 50: {
+              bitField0_ |= 0x00000020;
+              reason_ = input.readBytes();
+              break;
+            }
+            case 58: {
+              bitField0_ |= 0x00000040;
+              details_ = input.readBytes();
+              break;
+            }
+          }
+        }
+      }
+      
+      private int bitField0_;
+      
+      // optional .proto.MinimumUserProto sender = 1;
+      private com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto sender_ = com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto.getDefaultInstance();
+      private com.google.protobuf.SingleFieldBuilder<
+          com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto, com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto.Builder, com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProtoOrBuilder> senderBuilder_;
+      public boolean hasSender() {
+        return ((bitField0_ & 0x00000001) == 0x00000001);
+      }
+      public com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto getSender() {
+        if (senderBuilder_ == null) {
+          return sender_;
+        } else {
+          return senderBuilder_.getMessage();
+        }
+      }
+      public Builder setSender(com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto value) {
+        if (senderBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          sender_ = value;
+          onChanged();
+        } else {
+          senderBuilder_.setMessage(value);
+        }
+        bitField0_ |= 0x00000001;
+        return this;
+      }
+      public Builder setSender(
+          com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto.Builder builderForValue) {
+        if (senderBuilder_ == null) {
+          sender_ = builderForValue.build();
+          onChanged();
+        } else {
+          senderBuilder_.setMessage(builderForValue.build());
+        }
+        bitField0_ |= 0x00000001;
+        return this;
+      }
+      public Builder mergeSender(com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto value) {
+        if (senderBuilder_ == null) {
+          if (((bitField0_ & 0x00000001) == 0x00000001) &&
+              sender_ != com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto.getDefaultInstance()) {
+            sender_ =
+              com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto.newBuilder(sender_).mergeFrom(value).buildPartial();
+          } else {
+            sender_ = value;
+          }
+          onChanged();
+        } else {
+          senderBuilder_.mergeFrom(value);
+        }
+        bitField0_ |= 0x00000001;
+        return this;
+      }
+      public Builder clearSender() {
+        if (senderBuilder_ == null) {
+          sender_ = com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto.getDefaultInstance();
+          onChanged();
+        } else {
+          senderBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000001);
+        return this;
+      }
+      public com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto.Builder getSenderBuilder() {
+        bitField0_ |= 0x00000001;
+        onChanged();
+        return getSenderFieldBuilder().getBuilder();
+      }
+      public com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProtoOrBuilder getSenderOrBuilder() {
+        if (senderBuilder_ != null) {
+          return senderBuilder_.getMessageOrBuilder();
+        } else {
+          return sender_;
+        }
+      }
+      private com.google.protobuf.SingleFieldBuilder<
+          com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto, com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto.Builder, com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProtoOrBuilder> 
+          getSenderFieldBuilder() {
+        if (senderBuilder_ == null) {
+          senderBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+              com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto, com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto.Builder, com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProtoOrBuilder>(
+                  sender_,
+                  getParentForChildren(),
+                  isClean());
+          sender_ = null;
+        }
+        return senderBuilder_;
+      }
+      
+      // optional sint32 cashSpent = 2;
+      private int cashSpent_ ;
+      public boolean hasCashSpent() {
+        return ((bitField0_ & 0x00000002) == 0x00000002);
+      }
+      public int getCashSpent() {
+        return cashSpent_;
+      }
+      public Builder setCashSpent(int value) {
+        bitField0_ |= 0x00000002;
+        cashSpent_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearCashSpent() {
+        bitField0_ = (bitField0_ & ~0x00000002);
+        cashSpent_ = 0;
+        onChanged();
+        return this;
+      }
+      
+      // optional sint32 oilSpent = 3;
+      private int oilSpent_ ;
+      public boolean hasOilSpent() {
+        return ((bitField0_ & 0x00000004) == 0x00000004);
+      }
+      public int getOilSpent() {
+        return oilSpent_;
+      }
+      public Builder setOilSpent(int value) {
+        bitField0_ |= 0x00000004;
+        oilSpent_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearOilSpent() {
+        bitField0_ = (bitField0_ & ~0x00000004);
+        oilSpent_ = 0;
+        onChanged();
+        return this;
+      }
+      
+      // optional sint32 gemsSpent = 4;
+      private int gemsSpent_ ;
+      public boolean hasGemsSpent() {
+        return ((bitField0_ & 0x00000008) == 0x00000008);
+      }
+      public int getGemsSpent() {
+        return gemsSpent_;
+      }
+      public Builder setGemsSpent(int value) {
+        bitField0_ |= 0x00000008;
+        gemsSpent_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearGemsSpent() {
+        bitField0_ = (bitField0_ & ~0x00000008);
+        gemsSpent_ = 0;
+        onChanged();
+        return this;
+      }
+      
+      // optional int64 clientTime = 5;
+      private long clientTime_ ;
+      public boolean hasClientTime() {
+        return ((bitField0_ & 0x00000010) == 0x00000010);
+      }
+      public long getClientTime() {
+        return clientTime_;
+      }
+      public Builder setClientTime(long value) {
+        bitField0_ |= 0x00000010;
+        clientTime_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearClientTime() {
+        bitField0_ = (bitField0_ & ~0x00000010);
+        clientTime_ = 0L;
+        onChanged();
+        return this;
+      }
+      
+      // optional string reason = 6;
+      private java.lang.Object reason_ = "";
+      public boolean hasReason() {
+        return ((bitField0_ & 0x00000020) == 0x00000020);
+      }
+      public String getReason() {
+        java.lang.Object ref = reason_;
+        if (!(ref instanceof String)) {
+          String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
+          reason_ = s;
+          return s;
+        } else {
+          return (String) ref;
+        }
+      }
+      public Builder setReason(String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000020;
+        reason_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearReason() {
+        bitField0_ = (bitField0_ & ~0x00000020);
+        reason_ = getDefaultInstance().getReason();
+        onChanged();
+        return this;
+      }
+      void setReason(com.google.protobuf.ByteString value) {
+        bitField0_ |= 0x00000020;
+        reason_ = value;
+        onChanged();
+      }
+      
+      // optional string details = 7;
+      private java.lang.Object details_ = "";
+      public boolean hasDetails() {
+        return ((bitField0_ & 0x00000040) == 0x00000040);
+      }
+      public String getDetails() {
+        java.lang.Object ref = details_;
+        if (!(ref instanceof String)) {
+          String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
+          details_ = s;
+          return s;
+        } else {
+          return (String) ref;
+        }
+      }
+      public Builder setDetails(String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000040;
+        details_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearDetails() {
+        bitField0_ = (bitField0_ & ~0x00000040);
+        details_ = getDefaultInstance().getDetails();
+        onChanged();
+        return this;
+      }
+      void setDetails(com.google.protobuf.ByteString value) {
+        bitField0_ |= 0x00000040;
+        details_ = value;
+        onChanged();
+      }
+      
+      // @@protoc_insertion_point(builder_scope:proto.UpdateUserCurrencyRequestProto)
+    }
+    
+    static {
+      defaultInstance = new UpdateUserCurrencyRequestProto(true);
+      defaultInstance.initFields();
+    }
+    
+    // @@protoc_insertion_point(class_scope:proto.UpdateUserCurrencyRequestProto)
+  }
+  
+  public interface UpdateUserCurrencyResponseProtoOrBuilder
+      extends com.google.protobuf.MessageOrBuilder {
+    
+    // optional .proto.MinimumUserProto sender = 1;
+    boolean hasSender();
+    com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto getSender();
+    com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProtoOrBuilder getSenderOrBuilder();
+    
+    // optional .proto.UpdateUserCurrencyResponseProto.UpdateUserCurrencyStatus status = 2;
+    boolean hasStatus();
+    com.lvl6.mobsters.eventprotos.EventUserProto.UpdateUserCurrencyResponseProto.UpdateUserCurrencyStatus getStatus();
+  }
+  public static final class UpdateUserCurrencyResponseProto extends
+      com.google.protobuf.GeneratedMessage
+      implements UpdateUserCurrencyResponseProtoOrBuilder {
+    // Use UpdateUserCurrencyResponseProto.newBuilder() to construct.
+    private UpdateUserCurrencyResponseProto(Builder builder) {
+      super(builder);
+    }
+    private UpdateUserCurrencyResponseProto(boolean noInit) {}
+    
+    private static final UpdateUserCurrencyResponseProto defaultInstance;
+    public static UpdateUserCurrencyResponseProto getDefaultInstance() {
+      return defaultInstance;
+    }
+    
+    public UpdateUserCurrencyResponseProto getDefaultInstanceForType() {
+      return defaultInstance;
+    }
+    
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.lvl6.mobsters.eventprotos.EventUserProto.internal_static_proto_UpdateUserCurrencyResponseProto_descriptor;
+    }
+    
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.lvl6.mobsters.eventprotos.EventUserProto.internal_static_proto_UpdateUserCurrencyResponseProto_fieldAccessorTable;
+    }
+    
+    public enum UpdateUserCurrencyStatus
+        implements com.google.protobuf.ProtocolMessageEnum {
+      SUCCESS(0, 1),
+      FAIL_OTHER(1, 2),
+      FAIL_INSUFFICIENT_CASH(2, 3),
+      FAIL_INSUFFICIENT_OIL(3, 4),
+      FAIL_INSUFFICIENT_GEMS(4, 5),
+      ;
+      
+      public static final int SUCCESS_VALUE = 1;
+      public static final int FAIL_OTHER_VALUE = 2;
+      public static final int FAIL_INSUFFICIENT_CASH_VALUE = 3;
+      public static final int FAIL_INSUFFICIENT_OIL_VALUE = 4;
+      public static final int FAIL_INSUFFICIENT_GEMS_VALUE = 5;
+      
+      
+      public final int getNumber() { return value; }
+      
+      public static UpdateUserCurrencyStatus valueOf(int value) {
+        switch (value) {
+          case 1: return SUCCESS;
+          case 2: return FAIL_OTHER;
+          case 3: return FAIL_INSUFFICIENT_CASH;
+          case 4: return FAIL_INSUFFICIENT_OIL;
+          case 5: return FAIL_INSUFFICIENT_GEMS;
+          default: return null;
+        }
+      }
+      
+      public static com.google.protobuf.Internal.EnumLiteMap<UpdateUserCurrencyStatus>
+          internalGetValueMap() {
+        return internalValueMap;
+      }
+      private static com.google.protobuf.Internal.EnumLiteMap<UpdateUserCurrencyStatus>
+          internalValueMap =
+            new com.google.protobuf.Internal.EnumLiteMap<UpdateUserCurrencyStatus>() {
+              public UpdateUserCurrencyStatus findValueByNumber(int number) {
+                return UpdateUserCurrencyStatus.valueOf(number);
+              }
+            };
+      
+      public final com.google.protobuf.Descriptors.EnumValueDescriptor
+          getValueDescriptor() {
+        return getDescriptor().getValues().get(index);
+      }
+      public final com.google.protobuf.Descriptors.EnumDescriptor
+          getDescriptorForType() {
+        return getDescriptor();
+      }
+      public static final com.google.protobuf.Descriptors.EnumDescriptor
+          getDescriptor() {
+        return com.lvl6.mobsters.eventprotos.EventUserProto.UpdateUserCurrencyResponseProto.getDescriptor().getEnumTypes().get(0);
+      }
+      
+      private static final UpdateUserCurrencyStatus[] VALUES = {
+        SUCCESS, FAIL_OTHER, FAIL_INSUFFICIENT_CASH, FAIL_INSUFFICIENT_OIL, FAIL_INSUFFICIENT_GEMS, 
+      };
+      
+      public static UpdateUserCurrencyStatus valueOf(
+          com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
+        if (desc.getType() != getDescriptor()) {
+          throw new java.lang.IllegalArgumentException(
+            "EnumValueDescriptor is not for this type.");
+        }
+        return VALUES[desc.getIndex()];
+      }
+      
+      private final int index;
+      private final int value;
+      
+      private UpdateUserCurrencyStatus(int index, int value) {
+        this.index = index;
+        this.value = value;
+      }
+      
+      // @@protoc_insertion_point(enum_scope:proto.UpdateUserCurrencyResponseProto.UpdateUserCurrencyStatus)
+    }
+    
+    private int bitField0_;
+    // optional .proto.MinimumUserProto sender = 1;
+    public static final int SENDER_FIELD_NUMBER = 1;
+    private com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto sender_;
+    public boolean hasSender() {
+      return ((bitField0_ & 0x00000001) == 0x00000001);
+    }
+    public com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto getSender() {
+      return sender_;
+    }
+    public com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProtoOrBuilder getSenderOrBuilder() {
+      return sender_;
+    }
+    
+    // optional .proto.UpdateUserCurrencyResponseProto.UpdateUserCurrencyStatus status = 2;
+    public static final int STATUS_FIELD_NUMBER = 2;
+    private com.lvl6.mobsters.eventprotos.EventUserProto.UpdateUserCurrencyResponseProto.UpdateUserCurrencyStatus status_;
+    public boolean hasStatus() {
+      return ((bitField0_ & 0x00000002) == 0x00000002);
+    }
+    public com.lvl6.mobsters.eventprotos.EventUserProto.UpdateUserCurrencyResponseProto.UpdateUserCurrencyStatus getStatus() {
+      return status_;
+    }
+    
+    private void initFields() {
+      sender_ = com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto.getDefaultInstance();
+      status_ = com.lvl6.mobsters.eventprotos.EventUserProto.UpdateUserCurrencyResponseProto.UpdateUserCurrencyStatus.SUCCESS;
+    }
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized != -1) return isInitialized == 1;
+      
+      memoizedIsInitialized = 1;
+      return true;
+    }
+    
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      getSerializedSize();
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        output.writeMessage(1, sender_);
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        output.writeEnum(2, status_.getNumber());
+      }
+      getUnknownFields().writeTo(output);
+    }
+    
+    private int memoizedSerializedSize = -1;
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+    
+      size = 0;
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(1, sender_);
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeEnumSize(2, status_.getNumber());
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSerializedSize = size;
+      return size;
+    }
+    
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    protected java.lang.Object writeReplace()
+        throws java.io.ObjectStreamException {
+      return super.writeReplace();
+    }
+    
+    public static com.lvl6.mobsters.eventprotos.EventUserProto.UpdateUserCurrencyResponseProto parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data).buildParsed();
+    }
+    public static com.lvl6.mobsters.eventprotos.EventUserProto.UpdateUserCurrencyResponseProto parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data, extensionRegistry)
+               .buildParsed();
+    }
+    public static com.lvl6.mobsters.eventprotos.EventUserProto.UpdateUserCurrencyResponseProto parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data).buildParsed();
+    }
+    public static com.lvl6.mobsters.eventprotos.EventUserProto.UpdateUserCurrencyResponseProto parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data, extensionRegistry)
+               .buildParsed();
+    }
+    public static com.lvl6.mobsters.eventprotos.EventUserProto.UpdateUserCurrencyResponseProto parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input).buildParsed();
+    }
+    public static com.lvl6.mobsters.eventprotos.EventUserProto.UpdateUserCurrencyResponseProto parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input, extensionRegistry)
+               .buildParsed();
+    }
+    public static com.lvl6.mobsters.eventprotos.EventUserProto.UpdateUserCurrencyResponseProto parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      Builder builder = newBuilder();
+      if (builder.mergeDelimitedFrom(input)) {
+        return builder.buildParsed();
+      } else {
+        return null;
+      }
+    }
+    public static com.lvl6.mobsters.eventprotos.EventUserProto.UpdateUserCurrencyResponseProto parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      Builder builder = newBuilder();
+      if (builder.mergeDelimitedFrom(input, extensionRegistry)) {
+        return builder.buildParsed();
+      } else {
+        return null;
+      }
+    }
+    public static com.lvl6.mobsters.eventprotos.EventUserProto.UpdateUserCurrencyResponseProto parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input).buildParsed();
+    }
+    public static com.lvl6.mobsters.eventprotos.EventUserProto.UpdateUserCurrencyResponseProto parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input, extensionRegistry)
+               .buildParsed();
+    }
+    
+    public static Builder newBuilder() { return Builder.create(); }
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder(com.lvl6.mobsters.eventprotos.EventUserProto.UpdateUserCurrencyResponseProto prototype) {
+      return newBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() { return newBuilder(this); }
+    
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder>
+       implements com.lvl6.mobsters.eventprotos.EventUserProto.UpdateUserCurrencyResponseProtoOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.lvl6.mobsters.eventprotos.EventUserProto.internal_static_proto_UpdateUserCurrencyResponseProto_descriptor;
+      }
+      
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.lvl6.mobsters.eventprotos.EventUserProto.internal_static_proto_UpdateUserCurrencyResponseProto_fieldAccessorTable;
+      }
+      
+      // Construct using com.lvl6.mobsters.eventprotos.EventUserProto.UpdateUserCurrencyResponseProto.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+      
+      private Builder(BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+          getSenderFieldBuilder();
+        }
+      }
+      private static Builder create() {
+        return new Builder();
+      }
+      
+      public Builder clear() {
+        super.clear();
+        if (senderBuilder_ == null) {
+          sender_ = com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto.getDefaultInstance();
+        } else {
+          senderBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000001);
+        status_ = com.lvl6.mobsters.eventprotos.EventUserProto.UpdateUserCurrencyResponseProto.UpdateUserCurrencyStatus.SUCCESS;
+        bitField0_ = (bitField0_ & ~0x00000002);
+        return this;
+      }
+      
+      public Builder clone() {
+        return create().mergeFrom(buildPartial());
+      }
+      
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.lvl6.mobsters.eventprotos.EventUserProto.UpdateUserCurrencyResponseProto.getDescriptor();
+      }
+      
+      public com.lvl6.mobsters.eventprotos.EventUserProto.UpdateUserCurrencyResponseProto getDefaultInstanceForType() {
+        return com.lvl6.mobsters.eventprotos.EventUserProto.UpdateUserCurrencyResponseProto.getDefaultInstance();
+      }
+      
+      public com.lvl6.mobsters.eventprotos.EventUserProto.UpdateUserCurrencyResponseProto build() {
+        com.lvl6.mobsters.eventprotos.EventUserProto.UpdateUserCurrencyResponseProto result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+      
+      private com.lvl6.mobsters.eventprotos.EventUserProto.UpdateUserCurrencyResponseProto buildParsed()
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        com.lvl6.mobsters.eventprotos.EventUserProto.UpdateUserCurrencyResponseProto result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(
+            result).asInvalidProtocolBufferException();
+        }
+        return result;
+      }
+      
+      public com.lvl6.mobsters.eventprotos.EventUserProto.UpdateUserCurrencyResponseProto buildPartial() {
+        com.lvl6.mobsters.eventprotos.EventUserProto.UpdateUserCurrencyResponseProto result = new com.lvl6.mobsters.eventprotos.EventUserProto.UpdateUserCurrencyResponseProto(this);
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
+          to_bitField0_ |= 0x00000001;
+        }
+        if (senderBuilder_ == null) {
+          result.sender_ = sender_;
+        } else {
+          result.sender_ = senderBuilder_.build();
+        }
+        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
+          to_bitField0_ |= 0x00000002;
+        }
+        result.status_ = status_;
+        result.bitField0_ = to_bitField0_;
+        onBuilt();
+        return result;
+      }
+      
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.lvl6.mobsters.eventprotos.EventUserProto.UpdateUserCurrencyResponseProto) {
+          return mergeFrom((com.lvl6.mobsters.eventprotos.EventUserProto.UpdateUserCurrencyResponseProto)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+      
+      public Builder mergeFrom(com.lvl6.mobsters.eventprotos.EventUserProto.UpdateUserCurrencyResponseProto other) {
+        if (other == com.lvl6.mobsters.eventprotos.EventUserProto.UpdateUserCurrencyResponseProto.getDefaultInstance()) return this;
+        if (other.hasSender()) {
+          mergeSender(other.getSender());
+        }
+        if (other.hasStatus()) {
+          setStatus(other.getStatus());
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        return this;
+      }
+      
+      public final boolean isInitialized() {
+        return true;
+      }
+      
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder(
+            this.getUnknownFields());
+        while (true) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              this.setUnknownFields(unknownFields.build());
+              onChanged();
+              return this;
+            default: {
+              if (!parseUnknownField(input, unknownFields,
+                                     extensionRegistry, tag)) {
+                this.setUnknownFields(unknownFields.build());
+                onChanged();
+                return this;
+              }
+              break;
+            }
+            case 10: {
+              com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto.Builder subBuilder = com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto.newBuilder();
+              if (hasSender()) {
+                subBuilder.mergeFrom(getSender());
+              }
+              input.readMessage(subBuilder, extensionRegistry);
+              setSender(subBuilder.buildPartial());
+              break;
+            }
+            case 16: {
+              int rawValue = input.readEnum();
+              com.lvl6.mobsters.eventprotos.EventUserProto.UpdateUserCurrencyResponseProto.UpdateUserCurrencyStatus value = com.lvl6.mobsters.eventprotos.EventUserProto.UpdateUserCurrencyResponseProto.UpdateUserCurrencyStatus.valueOf(rawValue);
+              if (value == null) {
+                unknownFields.mergeVarintField(2, rawValue);
+              } else {
+                bitField0_ |= 0x00000002;
+                status_ = value;
+              }
+              break;
+            }
+          }
+        }
+      }
+      
+      private int bitField0_;
+      
+      // optional .proto.MinimumUserProto sender = 1;
+      private com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto sender_ = com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto.getDefaultInstance();
+      private com.google.protobuf.SingleFieldBuilder<
+          com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto, com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto.Builder, com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProtoOrBuilder> senderBuilder_;
+      public boolean hasSender() {
+        return ((bitField0_ & 0x00000001) == 0x00000001);
+      }
+      public com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto getSender() {
+        if (senderBuilder_ == null) {
+          return sender_;
+        } else {
+          return senderBuilder_.getMessage();
+        }
+      }
+      public Builder setSender(com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto value) {
+        if (senderBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          sender_ = value;
+          onChanged();
+        } else {
+          senderBuilder_.setMessage(value);
+        }
+        bitField0_ |= 0x00000001;
+        return this;
+      }
+      public Builder setSender(
+          com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto.Builder builderForValue) {
+        if (senderBuilder_ == null) {
+          sender_ = builderForValue.build();
+          onChanged();
+        } else {
+          senderBuilder_.setMessage(builderForValue.build());
+        }
+        bitField0_ |= 0x00000001;
+        return this;
+      }
+      public Builder mergeSender(com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto value) {
+        if (senderBuilder_ == null) {
+          if (((bitField0_ & 0x00000001) == 0x00000001) &&
+              sender_ != com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto.getDefaultInstance()) {
+            sender_ =
+              com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto.newBuilder(sender_).mergeFrom(value).buildPartial();
+          } else {
+            sender_ = value;
+          }
+          onChanged();
+        } else {
+          senderBuilder_.mergeFrom(value);
+        }
+        bitField0_ |= 0x00000001;
+        return this;
+      }
+      public Builder clearSender() {
+        if (senderBuilder_ == null) {
+          sender_ = com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto.getDefaultInstance();
+          onChanged();
+        } else {
+          senderBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000001);
+        return this;
+      }
+      public com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto.Builder getSenderBuilder() {
+        bitField0_ |= 0x00000001;
+        onChanged();
+        return getSenderFieldBuilder().getBuilder();
+      }
+      public com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProtoOrBuilder getSenderOrBuilder() {
+        if (senderBuilder_ != null) {
+          return senderBuilder_.getMessageOrBuilder();
+        } else {
+          return sender_;
+        }
+      }
+      private com.google.protobuf.SingleFieldBuilder<
+          com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto, com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto.Builder, com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProtoOrBuilder> 
+          getSenderFieldBuilder() {
+        if (senderBuilder_ == null) {
+          senderBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+              com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto, com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto.Builder, com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProtoOrBuilder>(
+                  sender_,
+                  getParentForChildren(),
+                  isClean());
+          sender_ = null;
+        }
+        return senderBuilder_;
+      }
+      
+      // optional .proto.UpdateUserCurrencyResponseProto.UpdateUserCurrencyStatus status = 2;
+      private com.lvl6.mobsters.eventprotos.EventUserProto.UpdateUserCurrencyResponseProto.UpdateUserCurrencyStatus status_ = com.lvl6.mobsters.eventprotos.EventUserProto.UpdateUserCurrencyResponseProto.UpdateUserCurrencyStatus.SUCCESS;
+      public boolean hasStatus() {
+        return ((bitField0_ & 0x00000002) == 0x00000002);
+      }
+      public com.lvl6.mobsters.eventprotos.EventUserProto.UpdateUserCurrencyResponseProto.UpdateUserCurrencyStatus getStatus() {
+        return status_;
+      }
+      public Builder setStatus(com.lvl6.mobsters.eventprotos.EventUserProto.UpdateUserCurrencyResponseProto.UpdateUserCurrencyStatus value) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        bitField0_ |= 0x00000002;
+        status_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearStatus() {
+        bitField0_ = (bitField0_ & ~0x00000002);
+        status_ = com.lvl6.mobsters.eventprotos.EventUserProto.UpdateUserCurrencyResponseProto.UpdateUserCurrencyStatus.SUCCESS;
+        onChanged();
+        return this;
+      }
+      
+      // @@protoc_insertion_point(builder_scope:proto.UpdateUserCurrencyResponseProto)
+    }
+    
+    static {
+      defaultInstance = new UpdateUserCurrencyResponseProto(true);
+      defaultInstance.initFields();
+    }
+    
+    // @@protoc_insertion_point(class_scope:proto.UpdateUserCurrencyResponseProto)
+  }
+  
   private static com.google.protobuf.Descriptors.Descriptor
     internal_static_proto_UserCreateRequestProto_descriptor;
   private static
@@ -6500,6 +7908,16 @@ public final class EventUserProto {
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_proto_SetFacebookIdResponseProto_fieldAccessorTable;
+  private static com.google.protobuf.Descriptors.Descriptor
+    internal_static_proto_UpdateUserCurrencyRequestProto_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_proto_UpdateUserCurrencyRequestProto_fieldAccessorTable;
+  private static com.google.protobuf.Descriptors.Descriptor
+    internal_static_proto_UpdateUserCurrencyResponseProto_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_proto_UpdateUserCurrencyResponseProto_fieldAccessorTable;
   
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -6552,8 +7970,21 @@ public final class EventUserProto {
       "2\027.proto.MinimumUserProto\022E\n\006status\030\002 \001(" +
       "\01625.proto.SetFacebookIdResponseProto.Set" +
       "FacebookIdStatus\"2\n\023SetFacebookIdStatus\022" +
-      "\013\n\007SUCCESS\020\001\022\016\n\nFAIL_OTHER\020\002B/\n\035com.lvl6" +
-      ".mobsters.eventprotosB\016EventUserProto"
+      "\013\n\007SUCCESS\020\001\022\016\n\nFAIL_OTHER\020\002\"\266\001\n\036UpdateU" +
+      "serCurrencyRequestProto\022\'\n\006sender\030\001 \001(\0132" +
+      "\027.proto.MinimumUserProto\022\021\n\tcashSpent\030\002 " +
+      "\001(\021\022\020\n\010oilSpent\030\003 \001(\021\022\021\n\tgemsSpent\030\004 \001(\021" +
+      "\022\022\n\nclientTime\030\005 \001(\003\022\016\n\006reason\030\006 \001(\t\022\017\n\007" +
+      "details\030\007 \001(\t\"\250\002\n\037UpdateUserCurrencyResp" +
+      "onseProto\022\'\n\006sender\030\001 \001(\0132\027.proto.Minimu",
+      "mUserProto\022O\n\006status\030\002 \001(\0162?.proto.Updat" +
+      "eUserCurrencyResponseProto.UpdateUserCur" +
+      "rencyStatus\"\212\001\n\030UpdateUserCurrencyStatus" +
+      "\022\013\n\007SUCCESS\020\001\022\016\n\nFAIL_OTHER\020\002\022\032\n\026FAIL_IN" +
+      "SUFFICIENT_CASH\020\003\022\031\n\025FAIL_INSUFFICIENT_O" +
+      "IL\020\004\022\032\n\026FAIL_INSUFFICIENT_GEMS\020\005B/\n\035com." +
+      "lvl6.mobsters.eventprotosB\016EventUserProt" +
+      "o"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -6640,6 +8071,22 @@ public final class EventUserProto {
               new java.lang.String[] { "Sender", "Status", },
               com.lvl6.mobsters.eventprotos.EventUserProto.SetFacebookIdResponseProto.class,
               com.lvl6.mobsters.eventprotos.EventUserProto.SetFacebookIdResponseProto.Builder.class);
+          internal_static_proto_UpdateUserCurrencyRequestProto_descriptor =
+            getDescriptor().getMessageTypes().get(10);
+          internal_static_proto_UpdateUserCurrencyRequestProto_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_proto_UpdateUserCurrencyRequestProto_descriptor,
+              new java.lang.String[] { "Sender", "CashSpent", "OilSpent", "GemsSpent", "ClientTime", "Reason", "Details", },
+              com.lvl6.mobsters.eventprotos.EventUserProto.UpdateUserCurrencyRequestProto.class,
+              com.lvl6.mobsters.eventprotos.EventUserProto.UpdateUserCurrencyRequestProto.Builder.class);
+          internal_static_proto_UpdateUserCurrencyResponseProto_descriptor =
+            getDescriptor().getMessageTypes().get(11);
+          internal_static_proto_UpdateUserCurrencyResponseProto_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_proto_UpdateUserCurrencyResponseProto_descriptor,
+              new java.lang.String[] { "Sender", "Status", },
+              com.lvl6.mobsters.eventprotos.EventUserProto.UpdateUserCurrencyResponseProto.class,
+              com.lvl6.mobsters.eventprotos.EventUserProto.UpdateUserCurrencyResponseProto.Builder.class);
           return null;
         }
       };
