@@ -166,14 +166,14 @@ public final class StaticDataStuffProto {
     com.lvl6.mobsters.noneventprotos.StructureProto.TownHallProtoOrBuilder getAllTownHallsOrBuilder(
         int index);
     
-    // repeated .proto.PersistentEventProto events = 18;
+    // repeated .proto.PersistentEventProto persistentEvents = 18;
     java.util.List<com.lvl6.mobsters.noneventprotos.TaskProto.PersistentEventProto> 
-        getEventsList();
-    com.lvl6.mobsters.noneventprotos.TaskProto.PersistentEventProto getEvents(int index);
-    int getEventsCount();
+        getPersistentEventsList();
+    com.lvl6.mobsters.noneventprotos.TaskProto.PersistentEventProto getPersistentEvents(int index);
+    int getPersistentEventsCount();
     java.util.List<? extends com.lvl6.mobsters.noneventprotos.TaskProto.PersistentEventProtoOrBuilder> 
-        getEventsOrBuilderList();
-    com.lvl6.mobsters.noneventprotos.TaskProto.PersistentEventProtoOrBuilder getEventsOrBuilder(
+        getPersistentEventsOrBuilderList();
+    com.lvl6.mobsters.noneventprotos.TaskProto.PersistentEventProtoOrBuilder getPersistentEventsOrBuilder(
         int index);
   }
   public static final class StaticDataProto extends
@@ -202,75 +202,6 @@ public final class StaticDataStuffProto {
     protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
       return com.lvl6.mobsters.noneventprotos.StaticDataStuffProto.internal_static_proto_StaticDataProto_fieldAccessorTable;
-    }
-    
-    public enum RetrieveStaticDataStatus
-        implements com.google.protobuf.ProtocolMessageEnum {
-      SUCCESS(0, 1),
-      SOME_FAIL(1, 2),
-      ;
-      
-      public static final int SUCCESS_VALUE = 1;
-      public static final int SOME_FAIL_VALUE = 2;
-      
-      
-      public final int getNumber() { return value; }
-      
-      public static RetrieveStaticDataStatus valueOf(int value) {
-        switch (value) {
-          case 1: return SUCCESS;
-          case 2: return SOME_FAIL;
-          default: return null;
-        }
-      }
-      
-      public static com.google.protobuf.Internal.EnumLiteMap<RetrieveStaticDataStatus>
-          internalGetValueMap() {
-        return internalValueMap;
-      }
-      private static com.google.protobuf.Internal.EnumLiteMap<RetrieveStaticDataStatus>
-          internalValueMap =
-            new com.google.protobuf.Internal.EnumLiteMap<RetrieveStaticDataStatus>() {
-              public RetrieveStaticDataStatus findValueByNumber(int number) {
-                return RetrieveStaticDataStatus.valueOf(number);
-              }
-            };
-      
-      public final com.google.protobuf.Descriptors.EnumValueDescriptor
-          getValueDescriptor() {
-        return getDescriptor().getValues().get(index);
-      }
-      public final com.google.protobuf.Descriptors.EnumDescriptor
-          getDescriptorForType() {
-        return getDescriptor();
-      }
-      public static final com.google.protobuf.Descriptors.EnumDescriptor
-          getDescriptor() {
-        return com.lvl6.mobsters.noneventprotos.StaticDataStuffProto.StaticDataProto.getDescriptor().getEnumTypes().get(0);
-      }
-      
-      private static final RetrieveStaticDataStatus[] VALUES = {
-        SUCCESS, SOME_FAIL, 
-      };
-      
-      public static RetrieveStaticDataStatus valueOf(
-          com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
-        if (desc.getType() != getDescriptor()) {
-          throw new java.lang.IllegalArgumentException(
-            "EnumValueDescriptor is not for this type.");
-        }
-        return VALUES[desc.getIndex()];
-      }
-      
-      private final int index;
-      private final int value;
-      
-      private RetrieveStaticDataStatus(int index, int value) {
-        this.index = index;
-        this.value = value;
-      }
-      
-      // @@protoc_insertion_point(enum_scope:proto.StaticDataProto.RetrieveStaticDataStatus)
     }
     
     private int bitField0_;
@@ -602,25 +533,25 @@ public final class StaticDataStuffProto {
       return allTownHalls_.get(index);
     }
     
-    // repeated .proto.PersistentEventProto events = 18;
-    public static final int EVENTS_FIELD_NUMBER = 18;
-    private java.util.List<com.lvl6.mobsters.noneventprotos.TaskProto.PersistentEventProto> events_;
-    public java.util.List<com.lvl6.mobsters.noneventprotos.TaskProto.PersistentEventProto> getEventsList() {
-      return events_;
+    // repeated .proto.PersistentEventProto persistentEvents = 18;
+    public static final int PERSISTENTEVENTS_FIELD_NUMBER = 18;
+    private java.util.List<com.lvl6.mobsters.noneventprotos.TaskProto.PersistentEventProto> persistentEvents_;
+    public java.util.List<com.lvl6.mobsters.noneventprotos.TaskProto.PersistentEventProto> getPersistentEventsList() {
+      return persistentEvents_;
     }
     public java.util.List<? extends com.lvl6.mobsters.noneventprotos.TaskProto.PersistentEventProtoOrBuilder> 
-        getEventsOrBuilderList() {
-      return events_;
+        getPersistentEventsOrBuilderList() {
+      return persistentEvents_;
     }
-    public int getEventsCount() {
-      return events_.size();
+    public int getPersistentEventsCount() {
+      return persistentEvents_.size();
     }
-    public com.lvl6.mobsters.noneventprotos.TaskProto.PersistentEventProto getEvents(int index) {
-      return events_.get(index);
+    public com.lvl6.mobsters.noneventprotos.TaskProto.PersistentEventProto getPersistentEvents(int index) {
+      return persistentEvents_.get(index);
     }
-    public com.lvl6.mobsters.noneventprotos.TaskProto.PersistentEventProtoOrBuilder getEventsOrBuilder(
+    public com.lvl6.mobsters.noneventprotos.TaskProto.PersistentEventProtoOrBuilder getPersistentEventsOrBuilder(
         int index) {
-      return events_.get(index);
+      return persistentEvents_.get(index);
     }
     
     private void initFields() {
@@ -640,7 +571,7 @@ public final class StaticDataStuffProto {
       allResidences_ = java.util.Collections.emptyList();
       allLabs_ = java.util.Collections.emptyList();
       allTownHalls_ = java.util.Collections.emptyList();
-      events_ = java.util.Collections.emptyList();
+      persistentEvents_ = java.util.Collections.emptyList();
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -702,8 +633,8 @@ public final class StaticDataStuffProto {
       for (int i = 0; i < allLabs_.size(); i++) {
         output.writeMessage(17, allLabs_.get(i));
       }
-      for (int i = 0; i < events_.size(); i++) {
-        output.writeMessage(18, events_.get(i));
+      for (int i = 0; i < persistentEvents_.size(); i++) {
+        output.writeMessage(18, persistentEvents_.get(i));
       }
       getUnknownFields().writeTo(output);
     }
@@ -778,9 +709,9 @@ public final class StaticDataStuffProto {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(17, allLabs_.get(i));
       }
-      for (int i = 0; i < events_.size(); i++) {
+      for (int i = 0; i < persistentEvents_.size(); i++) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(18, events_.get(i));
+          .computeMessageSize(18, persistentEvents_.get(i));
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -914,7 +845,7 @@ public final class StaticDataStuffProto {
           getAllResidencesFieldBuilder();
           getAllLabsFieldBuilder();
           getAllTownHallsFieldBuilder();
-          getEventsFieldBuilder();
+          getPersistentEventsFieldBuilder();
         }
       }
       private static Builder create() {
@@ -1019,11 +950,11 @@ public final class StaticDataStuffProto {
         } else {
           allTownHallsBuilder_.clear();
         }
-        if (eventsBuilder_ == null) {
-          events_ = java.util.Collections.emptyList();
+        if (persistentEventsBuilder_ == null) {
+          persistentEvents_ = java.util.Collections.emptyList();
           bitField0_ = (bitField0_ & ~0x00010000);
         } else {
-          eventsBuilder_.clear();
+          persistentEventsBuilder_.clear();
         }
         return this;
       }
@@ -1206,14 +1137,14 @@ public final class StaticDataStuffProto {
         } else {
           result.allTownHalls_ = allTownHallsBuilder_.build();
         }
-        if (eventsBuilder_ == null) {
+        if (persistentEventsBuilder_ == null) {
           if (((bitField0_ & 0x00010000) == 0x00010000)) {
-            events_ = java.util.Collections.unmodifiableList(events_);
+            persistentEvents_ = java.util.Collections.unmodifiableList(persistentEvents_);
             bitField0_ = (bitField0_ & ~0x00010000);
           }
-          result.events_ = events_;
+          result.persistentEvents_ = persistentEvents_;
         } else {
-          result.events_ = eventsBuilder_.build();
+          result.persistentEvents_ = persistentEventsBuilder_.build();
         }
         result.bitField0_ = to_bitField0_;
         onBuilt();
@@ -1624,29 +1555,29 @@ public final class StaticDataStuffProto {
             }
           }
         }
-        if (eventsBuilder_ == null) {
-          if (!other.events_.isEmpty()) {
-            if (events_.isEmpty()) {
-              events_ = other.events_;
+        if (persistentEventsBuilder_ == null) {
+          if (!other.persistentEvents_.isEmpty()) {
+            if (persistentEvents_.isEmpty()) {
+              persistentEvents_ = other.persistentEvents_;
               bitField0_ = (bitField0_ & ~0x00010000);
             } else {
-              ensureEventsIsMutable();
-              events_.addAll(other.events_);
+              ensurePersistentEventsIsMutable();
+              persistentEvents_.addAll(other.persistentEvents_);
             }
             onChanged();
           }
         } else {
-          if (!other.events_.isEmpty()) {
-            if (eventsBuilder_.isEmpty()) {
-              eventsBuilder_.dispose();
-              eventsBuilder_ = null;
-              events_ = other.events_;
+          if (!other.persistentEvents_.isEmpty()) {
+            if (persistentEventsBuilder_.isEmpty()) {
+              persistentEventsBuilder_.dispose();
+              persistentEventsBuilder_ = null;
+              persistentEvents_ = other.persistentEvents_;
               bitField0_ = (bitField0_ & ~0x00010000);
-              eventsBuilder_ = 
+              persistentEventsBuilder_ = 
                 com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders ?
-                   getEventsFieldBuilder() : null;
+                   getPersistentEventsFieldBuilder() : null;
             } else {
-              eventsBuilder_.addAllMessages(other.events_);
+              persistentEventsBuilder_.addAllMessages(other.persistentEvents_);
             }
           }
         }
@@ -1783,7 +1714,7 @@ public final class StaticDataStuffProto {
             case 146: {
               com.lvl6.mobsters.noneventprotos.TaskProto.PersistentEventProto.Builder subBuilder = com.lvl6.mobsters.noneventprotos.TaskProto.PersistentEventProto.newBuilder();
               input.readMessage(subBuilder, extensionRegistry);
-              addEvents(subBuilder.buildPartial());
+              addPersistentEvents(subBuilder.buildPartial());
               break;
             }
           }
@@ -4672,190 +4603,190 @@ public final class StaticDataStuffProto {
         return allTownHallsBuilder_;
       }
       
-      // repeated .proto.PersistentEventProto events = 18;
-      private java.util.List<com.lvl6.mobsters.noneventprotos.TaskProto.PersistentEventProto> events_ =
+      // repeated .proto.PersistentEventProto persistentEvents = 18;
+      private java.util.List<com.lvl6.mobsters.noneventprotos.TaskProto.PersistentEventProto> persistentEvents_ =
         java.util.Collections.emptyList();
-      private void ensureEventsIsMutable() {
+      private void ensurePersistentEventsIsMutable() {
         if (!((bitField0_ & 0x00010000) == 0x00010000)) {
-          events_ = new java.util.ArrayList<com.lvl6.mobsters.noneventprotos.TaskProto.PersistentEventProto>(events_);
+          persistentEvents_ = new java.util.ArrayList<com.lvl6.mobsters.noneventprotos.TaskProto.PersistentEventProto>(persistentEvents_);
           bitField0_ |= 0x00010000;
          }
       }
       
       private com.google.protobuf.RepeatedFieldBuilder<
-          com.lvl6.mobsters.noneventprotos.TaskProto.PersistentEventProto, com.lvl6.mobsters.noneventprotos.TaskProto.PersistentEventProto.Builder, com.lvl6.mobsters.noneventprotos.TaskProto.PersistentEventProtoOrBuilder> eventsBuilder_;
+          com.lvl6.mobsters.noneventprotos.TaskProto.PersistentEventProto, com.lvl6.mobsters.noneventprotos.TaskProto.PersistentEventProto.Builder, com.lvl6.mobsters.noneventprotos.TaskProto.PersistentEventProtoOrBuilder> persistentEventsBuilder_;
       
-      public java.util.List<com.lvl6.mobsters.noneventprotos.TaskProto.PersistentEventProto> getEventsList() {
-        if (eventsBuilder_ == null) {
-          return java.util.Collections.unmodifiableList(events_);
+      public java.util.List<com.lvl6.mobsters.noneventprotos.TaskProto.PersistentEventProto> getPersistentEventsList() {
+        if (persistentEventsBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(persistentEvents_);
         } else {
-          return eventsBuilder_.getMessageList();
+          return persistentEventsBuilder_.getMessageList();
         }
       }
-      public int getEventsCount() {
-        if (eventsBuilder_ == null) {
-          return events_.size();
+      public int getPersistentEventsCount() {
+        if (persistentEventsBuilder_ == null) {
+          return persistentEvents_.size();
         } else {
-          return eventsBuilder_.getCount();
+          return persistentEventsBuilder_.getCount();
         }
       }
-      public com.lvl6.mobsters.noneventprotos.TaskProto.PersistentEventProto getEvents(int index) {
-        if (eventsBuilder_ == null) {
-          return events_.get(index);
+      public com.lvl6.mobsters.noneventprotos.TaskProto.PersistentEventProto getPersistentEvents(int index) {
+        if (persistentEventsBuilder_ == null) {
+          return persistentEvents_.get(index);
         } else {
-          return eventsBuilder_.getMessage(index);
+          return persistentEventsBuilder_.getMessage(index);
         }
       }
-      public Builder setEvents(
+      public Builder setPersistentEvents(
           int index, com.lvl6.mobsters.noneventprotos.TaskProto.PersistentEventProto value) {
-        if (eventsBuilder_ == null) {
+        if (persistentEventsBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
           }
-          ensureEventsIsMutable();
-          events_.set(index, value);
+          ensurePersistentEventsIsMutable();
+          persistentEvents_.set(index, value);
           onChanged();
         } else {
-          eventsBuilder_.setMessage(index, value);
+          persistentEventsBuilder_.setMessage(index, value);
         }
         return this;
       }
-      public Builder setEvents(
+      public Builder setPersistentEvents(
           int index, com.lvl6.mobsters.noneventprotos.TaskProto.PersistentEventProto.Builder builderForValue) {
-        if (eventsBuilder_ == null) {
-          ensureEventsIsMutable();
-          events_.set(index, builderForValue.build());
+        if (persistentEventsBuilder_ == null) {
+          ensurePersistentEventsIsMutable();
+          persistentEvents_.set(index, builderForValue.build());
           onChanged();
         } else {
-          eventsBuilder_.setMessage(index, builderForValue.build());
+          persistentEventsBuilder_.setMessage(index, builderForValue.build());
         }
         return this;
       }
-      public Builder addEvents(com.lvl6.mobsters.noneventprotos.TaskProto.PersistentEventProto value) {
-        if (eventsBuilder_ == null) {
+      public Builder addPersistentEvents(com.lvl6.mobsters.noneventprotos.TaskProto.PersistentEventProto value) {
+        if (persistentEventsBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
           }
-          ensureEventsIsMutable();
-          events_.add(value);
+          ensurePersistentEventsIsMutable();
+          persistentEvents_.add(value);
           onChanged();
         } else {
-          eventsBuilder_.addMessage(value);
+          persistentEventsBuilder_.addMessage(value);
         }
         return this;
       }
-      public Builder addEvents(
+      public Builder addPersistentEvents(
           int index, com.lvl6.mobsters.noneventprotos.TaskProto.PersistentEventProto value) {
-        if (eventsBuilder_ == null) {
+        if (persistentEventsBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
           }
-          ensureEventsIsMutable();
-          events_.add(index, value);
+          ensurePersistentEventsIsMutable();
+          persistentEvents_.add(index, value);
           onChanged();
         } else {
-          eventsBuilder_.addMessage(index, value);
+          persistentEventsBuilder_.addMessage(index, value);
         }
         return this;
       }
-      public Builder addEvents(
+      public Builder addPersistentEvents(
           com.lvl6.mobsters.noneventprotos.TaskProto.PersistentEventProto.Builder builderForValue) {
-        if (eventsBuilder_ == null) {
-          ensureEventsIsMutable();
-          events_.add(builderForValue.build());
+        if (persistentEventsBuilder_ == null) {
+          ensurePersistentEventsIsMutable();
+          persistentEvents_.add(builderForValue.build());
           onChanged();
         } else {
-          eventsBuilder_.addMessage(builderForValue.build());
+          persistentEventsBuilder_.addMessage(builderForValue.build());
         }
         return this;
       }
-      public Builder addEvents(
+      public Builder addPersistentEvents(
           int index, com.lvl6.mobsters.noneventprotos.TaskProto.PersistentEventProto.Builder builderForValue) {
-        if (eventsBuilder_ == null) {
-          ensureEventsIsMutable();
-          events_.add(index, builderForValue.build());
+        if (persistentEventsBuilder_ == null) {
+          ensurePersistentEventsIsMutable();
+          persistentEvents_.add(index, builderForValue.build());
           onChanged();
         } else {
-          eventsBuilder_.addMessage(index, builderForValue.build());
+          persistentEventsBuilder_.addMessage(index, builderForValue.build());
         }
         return this;
       }
-      public Builder addAllEvents(
+      public Builder addAllPersistentEvents(
           java.lang.Iterable<? extends com.lvl6.mobsters.noneventprotos.TaskProto.PersistentEventProto> values) {
-        if (eventsBuilder_ == null) {
-          ensureEventsIsMutable();
-          super.addAll(values, events_);
+        if (persistentEventsBuilder_ == null) {
+          ensurePersistentEventsIsMutable();
+          super.addAll(values, persistentEvents_);
           onChanged();
         } else {
-          eventsBuilder_.addAllMessages(values);
+          persistentEventsBuilder_.addAllMessages(values);
         }
         return this;
       }
-      public Builder clearEvents() {
-        if (eventsBuilder_ == null) {
-          events_ = java.util.Collections.emptyList();
+      public Builder clearPersistentEvents() {
+        if (persistentEventsBuilder_ == null) {
+          persistentEvents_ = java.util.Collections.emptyList();
           bitField0_ = (bitField0_ & ~0x00010000);
           onChanged();
         } else {
-          eventsBuilder_.clear();
+          persistentEventsBuilder_.clear();
         }
         return this;
       }
-      public Builder removeEvents(int index) {
-        if (eventsBuilder_ == null) {
-          ensureEventsIsMutable();
-          events_.remove(index);
+      public Builder removePersistentEvents(int index) {
+        if (persistentEventsBuilder_ == null) {
+          ensurePersistentEventsIsMutable();
+          persistentEvents_.remove(index);
           onChanged();
         } else {
-          eventsBuilder_.remove(index);
+          persistentEventsBuilder_.remove(index);
         }
         return this;
       }
-      public com.lvl6.mobsters.noneventprotos.TaskProto.PersistentEventProto.Builder getEventsBuilder(
+      public com.lvl6.mobsters.noneventprotos.TaskProto.PersistentEventProto.Builder getPersistentEventsBuilder(
           int index) {
-        return getEventsFieldBuilder().getBuilder(index);
+        return getPersistentEventsFieldBuilder().getBuilder(index);
       }
-      public com.lvl6.mobsters.noneventprotos.TaskProto.PersistentEventProtoOrBuilder getEventsOrBuilder(
+      public com.lvl6.mobsters.noneventprotos.TaskProto.PersistentEventProtoOrBuilder getPersistentEventsOrBuilder(
           int index) {
-        if (eventsBuilder_ == null) {
-          return events_.get(index);  } else {
-          return eventsBuilder_.getMessageOrBuilder(index);
+        if (persistentEventsBuilder_ == null) {
+          return persistentEvents_.get(index);  } else {
+          return persistentEventsBuilder_.getMessageOrBuilder(index);
         }
       }
       public java.util.List<? extends com.lvl6.mobsters.noneventprotos.TaskProto.PersistentEventProtoOrBuilder> 
-           getEventsOrBuilderList() {
-        if (eventsBuilder_ != null) {
-          return eventsBuilder_.getMessageOrBuilderList();
+           getPersistentEventsOrBuilderList() {
+        if (persistentEventsBuilder_ != null) {
+          return persistentEventsBuilder_.getMessageOrBuilderList();
         } else {
-          return java.util.Collections.unmodifiableList(events_);
+          return java.util.Collections.unmodifiableList(persistentEvents_);
         }
       }
-      public com.lvl6.mobsters.noneventprotos.TaskProto.PersistentEventProto.Builder addEventsBuilder() {
-        return getEventsFieldBuilder().addBuilder(
+      public com.lvl6.mobsters.noneventprotos.TaskProto.PersistentEventProto.Builder addPersistentEventsBuilder() {
+        return getPersistentEventsFieldBuilder().addBuilder(
             com.lvl6.mobsters.noneventprotos.TaskProto.PersistentEventProto.getDefaultInstance());
       }
-      public com.lvl6.mobsters.noneventprotos.TaskProto.PersistentEventProto.Builder addEventsBuilder(
+      public com.lvl6.mobsters.noneventprotos.TaskProto.PersistentEventProto.Builder addPersistentEventsBuilder(
           int index) {
-        return getEventsFieldBuilder().addBuilder(
+        return getPersistentEventsFieldBuilder().addBuilder(
             index, com.lvl6.mobsters.noneventprotos.TaskProto.PersistentEventProto.getDefaultInstance());
       }
       public java.util.List<com.lvl6.mobsters.noneventprotos.TaskProto.PersistentEventProto.Builder> 
-           getEventsBuilderList() {
-        return getEventsFieldBuilder().getBuilderList();
+           getPersistentEventsBuilderList() {
+        return getPersistentEventsFieldBuilder().getBuilderList();
       }
       private com.google.protobuf.RepeatedFieldBuilder<
           com.lvl6.mobsters.noneventprotos.TaskProto.PersistentEventProto, com.lvl6.mobsters.noneventprotos.TaskProto.PersistentEventProto.Builder, com.lvl6.mobsters.noneventprotos.TaskProto.PersistentEventProtoOrBuilder> 
-          getEventsFieldBuilder() {
-        if (eventsBuilder_ == null) {
-          eventsBuilder_ = new com.google.protobuf.RepeatedFieldBuilder<
+          getPersistentEventsFieldBuilder() {
+        if (persistentEventsBuilder_ == null) {
+          persistentEventsBuilder_ = new com.google.protobuf.RepeatedFieldBuilder<
               com.lvl6.mobsters.noneventprotos.TaskProto.PersistentEventProto, com.lvl6.mobsters.noneventprotos.TaskProto.PersistentEventProto.Builder, com.lvl6.mobsters.noneventprotos.TaskProto.PersistentEventProtoOrBuilder>(
-                  events_,
+                  persistentEvents_,
                   ((bitField0_ & 0x00010000) == 0x00010000),
                   getParentForChildren(),
                   isClean());
-          events_ = null;
+          persistentEvents_ = null;
         }
-        return eventsBuilder_;
+        return persistentEventsBuilder_;
       }
       
       // @@protoc_insertion_point(builder_scope:proto.StaticDataProto)
@@ -4886,7 +4817,7 @@ public final class StaticDataStuffProto {
       "\n\020StaticData.proto\022\005proto\032\026BoosterPackSt" +
       "uff.proto\032\nCity.proto\032\022MonsterStuff.prot" +
       "o\032\020QuestStuff.proto\032\017Structure.proto\032\nTa" +
-      "sk.proto\032\nUser.proto\"\305\006\n\017StaticDataProto" +
+      "sk.proto\032\nUser.proto\"\227\006\n\017StaticDataProto" +
       "\022\'\n\006sender\030\001 \001(\0132\027.proto.MinimumUserProt" +
       "o\0225\n\016expansionCosts\030\002 \003(\0132\035.proto.CityEx" +
       "pansionCostProto\022\'\n\tallCities\030\003 \003(\0132\024.pr" +
@@ -4905,10 +4836,9 @@ public final class StaticDataStuffProto {
       "llResidences\030\017 \003(\0132\025.proto.ResidenceProt",
       "o\022 \n\007allLabs\030\021 \003(\0132\017.proto.LabProto\022*\n\014a" +
       "llTownHalls\030\020 \003(\0132\024.proto.TownHallProto\022" +
-      "+\n\006events\030\022 \003(\0132\033.proto.PersistentEventP" +
-      "roto\"6\n\030RetrieveStaticDataStatus\022\013\n\007SUCC" +
-      "ESS\020\001\022\r\n\tSOME_FAIL\020\002B8\n com.lvl6.mobster" +
-      "s.noneventprotosB\024StaticDataStuffProto"
+      "5\n\020persistentEvents\030\022 \003(\0132\033.proto.Persis" +
+      "tentEventProtoB8\n com.lvl6.mobsters.none" +
+      "ventprotosB\024StaticDataStuffProto"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -4920,7 +4850,7 @@ public final class StaticDataStuffProto {
           internal_static_proto_StaticDataProto_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_proto_StaticDataProto_descriptor,
-              new java.lang.String[] { "Sender", "ExpansionCosts", "AllCities", "AllTasks", "AllMonsters", "Slip", "InProgressQuests", "UnredeemedQuests", "AvailableQuests", "BoosterPacks", "AllGenerators", "AllStorages", "AllHospitals", "AllResidences", "AllLabs", "AllTownHalls", "Events", },
+              new java.lang.String[] { "Sender", "ExpansionCosts", "AllCities", "AllTasks", "AllMonsters", "Slip", "InProgressQuests", "UnredeemedQuests", "AvailableQuests", "BoosterPacks", "AllGenerators", "AllStorages", "AllHospitals", "AllResidences", "AllLabs", "AllTownHalls", "PersistentEvents", },
               com.lvl6.mobsters.noneventprotos.StaticDataStuffProto.StaticDataProto.class,
               com.lvl6.mobsters.noneventprotos.StaticDataStuffProto.StaticDataProto.Builder.class);
           return null;

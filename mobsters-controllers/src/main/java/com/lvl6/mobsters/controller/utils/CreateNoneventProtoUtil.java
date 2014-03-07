@@ -34,10 +34,12 @@ import com.lvl6.mobsters.noneventprotos.TaskProto.FullTaskProto;
 import com.lvl6.mobsters.noneventprotos.TaskProto.PersistentEventProto;
 import com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageMonsterProto;
 import com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageProto;
+import com.lvl6.mobsters.noneventprotos.TaskProto.UserPersistentEventProto;
 import com.lvl6.mobsters.noneventprotos.UserProto.FullUserProto;
 import com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto;
 import com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProtoWithFacebookId;
 import com.lvl6.mobsters.noneventprotos.UserProto.UserFacebookInviteForSlotProto;
+import com.lvl6.mobsters.po.nonstaticdata.EventPersistentForUser;
 import com.lvl6.mobsters.po.nonstaticdata.MonsterEnhancingForUser;
 import com.lvl6.mobsters.po.nonstaticdata.MonsterForUser;
 import com.lvl6.mobsters.po.nonstaticdata.MonsterHealingForUser;
@@ -158,6 +160,9 @@ public interface CreateNoneventProtoUtil {
 	
 	public abstract PersistentEventProto createPersistentEventProtoFromEvent(
 	  		EventPersistent event);
+	
+	public abstract UserPersistentEventProto createUserPersistentEventProto(
+	  		EventPersistentForUser epfu);
 	
 	//USER PROTO****************************************************************
 	public abstract FullUserProto createFullUserProtoFromUser(User u);

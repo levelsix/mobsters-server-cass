@@ -34,9 +34,11 @@ import com.lvl6.mobsters.noneventprotos.MonsterStuffProto.UserEnhancementProto;
 import com.lvl6.mobsters.noneventprotos.MonsterStuffProto.UserMonsterHealingProto;
 import com.lvl6.mobsters.noneventprotos.QuestStuffProto.FullUserQuestProto;
 import com.lvl6.mobsters.noneventprotos.StaticDataStuffProto.StaticDataProto;
+import com.lvl6.mobsters.noneventprotos.TaskProto.UserPersistentEventProto;
 import com.lvl6.mobsters.noneventprotos.UserProto.FullUserProto;
 import com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProtoWithFacebookId;
 import com.lvl6.mobsters.noneventprotos.UserProto.UserFacebookInviteForSlotProto;
+import com.lvl6.mobsters.po.nonstaticdata.EventPersistentForUser;
 import com.lvl6.mobsters.po.nonstaticdata.MonsterEnhancingForUser;
 import com.lvl6.mobsters.po.nonstaticdata.MonsterForUser;
 import com.lvl6.mobsters.po.nonstaticdata.MonsterHealingForUser;
@@ -46,6 +48,7 @@ import com.lvl6.mobsters.po.nonstaticdata.UserFacebookInviteForSlot;
 import com.lvl6.mobsters.po.staticdata.AlertOnStartup;
 import com.lvl6.mobsters.po.staticdata.Quest;
 import com.lvl6.mobsters.properties.Globals;
+import com.lvl6.mobsters.services.eventpersistentforuser.EventPersistentForUserService;
 import com.lvl6.mobsters.services.monsterenhancingforuser.MonsterEnhancingForUserService;
 import com.lvl6.mobsters.services.monsterforuser.MonsterForUserService;
 import com.lvl6.mobsters.services.monsterhealingforuser.MonsterHealingForUserService;
@@ -95,6 +98,9 @@ public class StartupController extends EventController {
 	
 	@Autowired
 	protected TaskForUserCompletedService taskForUserCompletedService;
+	
+	@Autowired
+	protected EventPersistentForUserService eventPersistentForUserService;
 	
 	@Override
 	public RequestEvent createRequestEvent() {
@@ -151,7 +157,7 @@ public class StartupController extends EventController {
 	    User user = null;
 	    
 		try {
-			if (UpdateStatus.MAJOR_UPDATE.equals(updateStatus)) {
+			if (!UpdateStatus.MAJOR_UPDATE.equals(updateStatus)) {
 				List<User> userList = getUserService().getUserByUDIDorFbId(udid, fbId);
 				user = getUserService().selectivelyChooseUser(userList, fbId, udid);
 				if (null != user) {
@@ -203,7 +209,7 @@ public class StartupController extends EventController {
         setFacebookAndExtraSlotsStuff(resBuilder, user);
         setCompletedTasks(resBuilder, userId);
         setAllStaticData(resBuilder, userId);
-        
+        setEventStuff(resBuilder, userId);
 //        setWhetherPlayerCompletedInAppPurchase(resBuilder, user);
 //        setUnhandledForgeAttempts(resBuilder, user);
 //        setLockBoxEvents(resBuilder, user);
@@ -393,6 +399,10 @@ public class StartupController extends EventController {
 	private void setCompletedTasks(Builder resBuilder, UUID userId) {
 		Set<Integer> taskIds = getTaskForUserCompletedService()
 				.getAllCompletedTaskIdsForUser(userId);
+		
+		if (null == taskIds || taskIds.isEmpty()) {
+			return;
+		}
 		resBuilder.addAllCompletedTaskIds(taskIds);
 	}
 	
@@ -401,6 +411,20 @@ public class StartupController extends EventController {
 		resBuilder.setStaticDataStuffProto(sdp);
 	}
 
+	private void setEventStuff(Builder resBuilder, UUID userId) {
+		List<EventPersistentForUser> events = getEventPersistentForUserService()
+				.getUserPersistentEventsForUserId(userId);
+		
+		if (null == events || events.isEmpty()) {
+			return;
+		}
+		
+		for (EventPersistentForUser epfu : events) {
+			UserPersistentEventProto upep = getCreateNoneventProtoUtil()
+					.createUserPersistentEventProto(epfu);
+			resBuilder.addUserEvents(upep);
+		}
+	}
 	
 	private void setConstants(Builder startupBuilder, StartupStatus startupStatus) {
 		startupBuilder.setStartupConstants(getMiscUtil().createStartupConstantsProto());
@@ -756,6 +780,15 @@ public class StartupController extends EventController {
 	public void setTaskForUserCompletedService(
 			TaskForUserCompletedService taskForUserCompletedService) {
 		this.taskForUserCompletedService = taskForUserCompletedService;
+	}
+
+	public EventPersistentForUserService getEventPersistentForUserService() {
+		return eventPersistentForUserService;
+	}
+
+	public void setEventPersistentForUserService(
+			EventPersistentForUserService eventPersistentForUserService) {
+		this.eventPersistentForUserService = eventPersistentForUserService;
 	}
 
 }

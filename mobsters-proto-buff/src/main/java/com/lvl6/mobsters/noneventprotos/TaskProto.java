@@ -8,6 +8,90 @@ public final class TaskProto {
   public static void registerAllExtensions(
       com.google.protobuf.ExtensionRegistry registry) {
   }
+  public enum DayOfWeek
+      implements com.google.protobuf.ProtocolMessageEnum {
+    SUNDAY(0, 1),
+    MONDAY(1, 2),
+    TUESDAY(2, 3),
+    WEDNESDAY(3, 4),
+    THURSDAY(4, 5),
+    FRIDAY(5, 6),
+    SATURDAY(6, 7),
+    ;
+    
+    public static final int SUNDAY_VALUE = 1;
+    public static final int MONDAY_VALUE = 2;
+    public static final int TUESDAY_VALUE = 3;
+    public static final int WEDNESDAY_VALUE = 4;
+    public static final int THURSDAY_VALUE = 5;
+    public static final int FRIDAY_VALUE = 6;
+    public static final int SATURDAY_VALUE = 7;
+    
+    
+    public final int getNumber() { return value; }
+    
+    public static DayOfWeek valueOf(int value) {
+      switch (value) {
+        case 1: return SUNDAY;
+        case 2: return MONDAY;
+        case 3: return TUESDAY;
+        case 4: return WEDNESDAY;
+        case 5: return THURSDAY;
+        case 6: return FRIDAY;
+        case 7: return SATURDAY;
+        default: return null;
+      }
+    }
+    
+    public static com.google.protobuf.Internal.EnumLiteMap<DayOfWeek>
+        internalGetValueMap() {
+      return internalValueMap;
+    }
+    private static com.google.protobuf.Internal.EnumLiteMap<DayOfWeek>
+        internalValueMap =
+          new com.google.protobuf.Internal.EnumLiteMap<DayOfWeek>() {
+            public DayOfWeek findValueByNumber(int number) {
+              return DayOfWeek.valueOf(number);
+            }
+          };
+    
+    public final com.google.protobuf.Descriptors.EnumValueDescriptor
+        getValueDescriptor() {
+      return getDescriptor().getValues().get(index);
+    }
+    public final com.google.protobuf.Descriptors.EnumDescriptor
+        getDescriptorForType() {
+      return getDescriptor();
+    }
+    public static final com.google.protobuf.Descriptors.EnumDescriptor
+        getDescriptor() {
+      return com.lvl6.mobsters.noneventprotos.TaskProto.getDescriptor().getEnumTypes().get(0);
+    }
+    
+    private static final DayOfWeek[] VALUES = {
+      SUNDAY, MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, 
+    };
+    
+    public static DayOfWeek valueOf(
+        com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
+      if (desc.getType() != getDescriptor()) {
+        throw new java.lang.IllegalArgumentException(
+          "EnumValueDescriptor is not for this type.");
+      }
+      return VALUES[desc.getIndex()];
+    }
+    
+    private final int index;
+    private final int value;
+    
+    private DayOfWeek(int index, int value) {
+      this.index = index;
+      this.value = value;
+    }
+    
+    // @@protoc_insertion_point(enum_scope:proto.DayOfWeek)
+  }
+  
   public interface FullTaskProtoOrBuilder
       extends com.google.protobuf.MessageOrBuilder {
     
@@ -2630,9 +2714,9 @@ public final class TaskProto {
     boolean hasEventId();
     int getEventId();
     
-    // optional .proto.PersistentEventProto.DayOfWeek dayOfWeek = 2;
+    // optional .proto.DayOfWeek dayOfWeek = 2;
     boolean hasDayOfWeek();
-    com.lvl6.mobsters.noneventprotos.TaskProto.PersistentEventProto.DayOfWeek getDayOfWeek();
+    com.lvl6.mobsters.noneventprotos.TaskProto.DayOfWeek getDayOfWeek();
     
     // optional int32 startHour = 3;
     boolean hasStartHour();
@@ -2686,90 +2770,6 @@ public final class TaskProto {
       return com.lvl6.mobsters.noneventprotos.TaskProto.internal_static_proto_PersistentEventProto_fieldAccessorTable;
     }
     
-    public enum DayOfWeek
-        implements com.google.protobuf.ProtocolMessageEnum {
-      SUNDAY(0, 1),
-      MONDAY(1, 2),
-      TUESDAY(2, 3),
-      WEDNESDAY(3, 4),
-      THURSDAY(4, 5),
-      FRIDAY(5, 6),
-      SATURDAY(6, 7),
-      ;
-      
-      public static final int SUNDAY_VALUE = 1;
-      public static final int MONDAY_VALUE = 2;
-      public static final int TUESDAY_VALUE = 3;
-      public static final int WEDNESDAY_VALUE = 4;
-      public static final int THURSDAY_VALUE = 5;
-      public static final int FRIDAY_VALUE = 6;
-      public static final int SATURDAY_VALUE = 7;
-      
-      
-      public final int getNumber() { return value; }
-      
-      public static DayOfWeek valueOf(int value) {
-        switch (value) {
-          case 1: return SUNDAY;
-          case 2: return MONDAY;
-          case 3: return TUESDAY;
-          case 4: return WEDNESDAY;
-          case 5: return THURSDAY;
-          case 6: return FRIDAY;
-          case 7: return SATURDAY;
-          default: return null;
-        }
-      }
-      
-      public static com.google.protobuf.Internal.EnumLiteMap<DayOfWeek>
-          internalGetValueMap() {
-        return internalValueMap;
-      }
-      private static com.google.protobuf.Internal.EnumLiteMap<DayOfWeek>
-          internalValueMap =
-            new com.google.protobuf.Internal.EnumLiteMap<DayOfWeek>() {
-              public DayOfWeek findValueByNumber(int number) {
-                return DayOfWeek.valueOf(number);
-              }
-            };
-      
-      public final com.google.protobuf.Descriptors.EnumValueDescriptor
-          getValueDescriptor() {
-        return getDescriptor().getValues().get(index);
-      }
-      public final com.google.protobuf.Descriptors.EnumDescriptor
-          getDescriptorForType() {
-        return getDescriptor();
-      }
-      public static final com.google.protobuf.Descriptors.EnumDescriptor
-          getDescriptor() {
-        return com.lvl6.mobsters.noneventprotos.TaskProto.PersistentEventProto.getDescriptor().getEnumTypes().get(0);
-      }
-      
-      private static final DayOfWeek[] VALUES = {
-        SUNDAY, MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, 
-      };
-      
-      public static DayOfWeek valueOf(
-          com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
-        if (desc.getType() != getDescriptor()) {
-          throw new java.lang.IllegalArgumentException(
-            "EnumValueDescriptor is not for this type.");
-        }
-        return VALUES[desc.getIndex()];
-      }
-      
-      private final int index;
-      private final int value;
-      
-      private DayOfWeek(int index, int value) {
-        this.index = index;
-        this.value = value;
-      }
-      
-      // @@protoc_insertion_point(enum_scope:proto.PersistentEventProto.DayOfWeek)
-    }
-    
     public enum EventType
         implements com.google.protobuf.ProtocolMessageEnum {
       ENHANCE(0, 1),
@@ -2812,7 +2812,7 @@ public final class TaskProto {
       }
       public static final com.google.protobuf.Descriptors.EnumDescriptor
           getDescriptor() {
-        return com.lvl6.mobsters.noneventprotos.TaskProto.PersistentEventProto.getDescriptor().getEnumTypes().get(1);
+        return com.lvl6.mobsters.noneventprotos.TaskProto.PersistentEventProto.getDescriptor().getEnumTypes().get(0);
       }
       
       private static final EventType[] VALUES = {
@@ -2850,13 +2850,13 @@ public final class TaskProto {
       return eventId_;
     }
     
-    // optional .proto.PersistentEventProto.DayOfWeek dayOfWeek = 2;
+    // optional .proto.DayOfWeek dayOfWeek = 2;
     public static final int DAYOFWEEK_FIELD_NUMBER = 2;
-    private com.lvl6.mobsters.noneventprotos.TaskProto.PersistentEventProto.DayOfWeek dayOfWeek_;
+    private com.lvl6.mobsters.noneventprotos.TaskProto.DayOfWeek dayOfWeek_;
     public boolean hasDayOfWeek() {
       return ((bitField0_ & 0x00000002) == 0x00000002);
     }
-    public com.lvl6.mobsters.noneventprotos.TaskProto.PersistentEventProto.DayOfWeek getDayOfWeek() {
+    public com.lvl6.mobsters.noneventprotos.TaskProto.DayOfWeek getDayOfWeek() {
       return dayOfWeek_;
     }
     
@@ -2922,7 +2922,7 @@ public final class TaskProto {
     
     private void initFields() {
       eventId_ = 0;
-      dayOfWeek_ = com.lvl6.mobsters.noneventprotos.TaskProto.PersistentEventProto.DayOfWeek.SUNDAY;
+      dayOfWeek_ = com.lvl6.mobsters.noneventprotos.TaskProto.DayOfWeek.SUNDAY;
       startHour_ = 0;
       eventDurationMinutes_ = 0;
       taskId_ = 0;
@@ -3133,7 +3133,7 @@ public final class TaskProto {
         super.clear();
         eventId_ = 0;
         bitField0_ = (bitField0_ & ~0x00000001);
-        dayOfWeek_ = com.lvl6.mobsters.noneventprotos.TaskProto.PersistentEventProto.DayOfWeek.SUNDAY;
+        dayOfWeek_ = com.lvl6.mobsters.noneventprotos.TaskProto.DayOfWeek.SUNDAY;
         bitField0_ = (bitField0_ & ~0x00000002);
         startHour_ = 0;
         bitField0_ = (bitField0_ & ~0x00000004);
@@ -3295,7 +3295,7 @@ public final class TaskProto {
             }
             case 16: {
               int rawValue = input.readEnum();
-              com.lvl6.mobsters.noneventprotos.TaskProto.PersistentEventProto.DayOfWeek value = com.lvl6.mobsters.noneventprotos.TaskProto.PersistentEventProto.DayOfWeek.valueOf(rawValue);
+              com.lvl6.mobsters.noneventprotos.TaskProto.DayOfWeek value = com.lvl6.mobsters.noneventprotos.TaskProto.DayOfWeek.valueOf(rawValue);
               if (value == null) {
                 unknownFields.mergeVarintField(2, rawValue);
               } else {
@@ -3373,15 +3373,15 @@ public final class TaskProto {
         return this;
       }
       
-      // optional .proto.PersistentEventProto.DayOfWeek dayOfWeek = 2;
-      private com.lvl6.mobsters.noneventprotos.TaskProto.PersistentEventProto.DayOfWeek dayOfWeek_ = com.lvl6.mobsters.noneventprotos.TaskProto.PersistentEventProto.DayOfWeek.SUNDAY;
+      // optional .proto.DayOfWeek dayOfWeek = 2;
+      private com.lvl6.mobsters.noneventprotos.TaskProto.DayOfWeek dayOfWeek_ = com.lvl6.mobsters.noneventprotos.TaskProto.DayOfWeek.SUNDAY;
       public boolean hasDayOfWeek() {
         return ((bitField0_ & 0x00000002) == 0x00000002);
       }
-      public com.lvl6.mobsters.noneventprotos.TaskProto.PersistentEventProto.DayOfWeek getDayOfWeek() {
+      public com.lvl6.mobsters.noneventprotos.TaskProto.DayOfWeek getDayOfWeek() {
         return dayOfWeek_;
       }
-      public Builder setDayOfWeek(com.lvl6.mobsters.noneventprotos.TaskProto.PersistentEventProto.DayOfWeek value) {
+      public Builder setDayOfWeek(com.lvl6.mobsters.noneventprotos.TaskProto.DayOfWeek value) {
         if (value == null) {
           throw new NullPointerException();
         }
@@ -3392,7 +3392,7 @@ public final class TaskProto {
       }
       public Builder clearDayOfWeek() {
         bitField0_ = (bitField0_ & ~0x00000002);
-        dayOfWeek_ = com.lvl6.mobsters.noneventprotos.TaskProto.PersistentEventProto.DayOfWeek.SUNDAY;
+        dayOfWeek_ = com.lvl6.mobsters.noneventprotos.TaskProto.DayOfWeek.SUNDAY;
         onChanged();
         return this;
       }
@@ -3543,9 +3543,9 @@ public final class TaskProto {
   public interface UserPersistentEventProtoOrBuilder
       extends com.google.protobuf.MessageOrBuilder {
     
-    // optional int32 userId = 1;
-    boolean hasUserId();
-    int getUserId();
+    // optional string userUuid = 1;
+    boolean hasUserUuid();
+    String getUserUuid();
     
     // optional int32 eventId = 2;
     boolean hasEventId();
@@ -3584,14 +3584,36 @@ public final class TaskProto {
     }
     
     private int bitField0_;
-    // optional int32 userId = 1;
-    public static final int USERID_FIELD_NUMBER = 1;
-    private int userId_;
-    public boolean hasUserId() {
+    // optional string userUuid = 1;
+    public static final int USERUUID_FIELD_NUMBER = 1;
+    private java.lang.Object userUuid_;
+    public boolean hasUserUuid() {
       return ((bitField0_ & 0x00000001) == 0x00000001);
     }
-    public int getUserId() {
-      return userId_;
+    public String getUserUuid() {
+      java.lang.Object ref = userUuid_;
+      if (ref instanceof String) {
+        return (String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        String s = bs.toStringUtf8();
+        if (com.google.protobuf.Internal.isValidUtf8(bs)) {
+          userUuid_ = s;
+        }
+        return s;
+      }
+    }
+    private com.google.protobuf.ByteString getUserUuidBytes() {
+      java.lang.Object ref = userUuid_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8((String) ref);
+        userUuid_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
     }
     
     // optional int32 eventId = 2;
@@ -3615,7 +3637,7 @@ public final class TaskProto {
     }
     
     private void initFields() {
-      userId_ = 0;
+      userUuid_ = "";
       eventId_ = 0;
       coolDownStartTime_ = 0L;
     }
@@ -3632,7 +3654,7 @@ public final class TaskProto {
                         throws java.io.IOException {
       getSerializedSize();
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        output.writeInt32(1, userId_);
+        output.writeBytes(1, getUserUuidBytes());
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         output.writeInt32(2, eventId_);
@@ -3651,7 +3673,7 @@ public final class TaskProto {
       size = 0;
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(1, userId_);
+          .computeBytesSize(1, getUserUuidBytes());
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         size += com.google.protobuf.CodedOutputStream
@@ -3785,7 +3807,7 @@ public final class TaskProto {
       
       public Builder clear() {
         super.clear();
-        userId_ = 0;
+        userUuid_ = "";
         bitField0_ = (bitField0_ & ~0x00000001);
         eventId_ = 0;
         bitField0_ = (bitField0_ & ~0x00000002);
@@ -3832,7 +3854,7 @@ public final class TaskProto {
         if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
           to_bitField0_ |= 0x00000001;
         }
-        result.userId_ = userId_;
+        result.userUuid_ = userUuid_;
         if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
           to_bitField0_ |= 0x00000002;
         }
@@ -3857,8 +3879,8 @@ public final class TaskProto {
       
       public Builder mergeFrom(com.lvl6.mobsters.noneventprotos.TaskProto.UserPersistentEventProto other) {
         if (other == com.lvl6.mobsters.noneventprotos.TaskProto.UserPersistentEventProto.getDefaultInstance()) return this;
-        if (other.hasUserId()) {
-          setUserId(other.getUserId());
+        if (other.hasUserUuid()) {
+          setUserUuid(other.getUserUuid());
         }
         if (other.hasEventId()) {
           setEventId(other.getEventId());
@@ -3897,9 +3919,9 @@ public final class TaskProto {
               }
               break;
             }
-            case 8: {
+            case 10: {
               bitField0_ |= 0x00000001;
-              userId_ = input.readInt32();
+              userUuid_ = input.readBytes();
               break;
             }
             case 16: {
@@ -3918,25 +3940,40 @@ public final class TaskProto {
       
       private int bitField0_;
       
-      // optional int32 userId = 1;
-      private int userId_ ;
-      public boolean hasUserId() {
+      // optional string userUuid = 1;
+      private java.lang.Object userUuid_ = "";
+      public boolean hasUserUuid() {
         return ((bitField0_ & 0x00000001) == 0x00000001);
       }
-      public int getUserId() {
-        return userId_;
+      public String getUserUuid() {
+        java.lang.Object ref = userUuid_;
+        if (!(ref instanceof String)) {
+          String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
+          userUuid_ = s;
+          return s;
+        } else {
+          return (String) ref;
+        }
       }
-      public Builder setUserId(int value) {
-        bitField0_ |= 0x00000001;
-        userId_ = value;
+      public Builder setUserUuid(String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000001;
+        userUuid_ = value;
         onChanged();
         return this;
       }
-      public Builder clearUserId() {
+      public Builder clearUserUuid() {
         bitField0_ = (bitField0_ & ~0x00000001);
-        userId_ = 0;
+        userUuid_ = getDefaultInstance().getUserUuid();
         onChanged();
         return this;
+      }
+      void setUserUuid(com.google.protobuf.ByteString value) {
+        bitField0_ |= 0x00000001;
+        userUuid_ = value;
+        onChanged();
       }
       
       // optional int32 eventId = 2;
@@ -4046,22 +4083,22 @@ public final class TaskProto {
       "erType\022\021\n\texpReward\030\003 \001(\005\022\022\n\ncashReward\030" +
       "\004 \001(\005\022\032\n\022puzzlePieceDropped\030\005 \001(\010\022\r\n\005lev" +
       "el\030\006 \001(\005\022\016\n\006itemId\030\007 \001(\005\"3\n\013MonsterType\022" +
-      "\013\n\007REGULAR\020\001\022\r\n\tMINI_BOSS\020\002\022\010\n\004BOSS\020\003\"\276\003" +
+      "\013\n\007REGULAR\020\001\022\r\n\tMINI_BOSS\020\002\022\010\n\004BOSS\020\003\"\300\002" +
       "\n\024PersistentEventProto\022\017\n\007eventId\030\001 \001(\005\022" +
-      "8\n\tdayOfWeek\030\002 \001(\0162%.proto.PersistentEve" +
-      "ntProto.DayOfWeek\022\021\n\tstartHour\030\003 \001(\005\022\034\n\024" +
-      "eventDurationMinutes\030\004 \001(\005\022\016\n\006taskId\030\005 \001",
-      "(\005\022\027\n\017cooldownMinutes\030\006 \001(\005\0223\n\004type\030\007 \001(" +
-      "\0162%.proto.PersistentEventProto.EventType" +
-      "\022:\n\016monsterElement\030\010 \001(\0162\".proto.Monster" +
-      "Proto.MonsterElement\"g\n\tDayOfWeek\022\n\n\006SUN" +
-      "DAY\020\001\022\n\n\006MONDAY\020\002\022\013\n\007TUESDAY\020\003\022\r\n\tWEDNES" +
-      "DAY\020\004\022\014\n\010THURSDAY\020\005\022\n\n\006FRIDAY\020\006\022\014\n\010SATUR" +
-      "DAY\020\007\"\'\n\tEventType\022\013\n\007ENHANCE\020\001\022\r\n\tEVOLU" +
-      "TION\020\002\"V\n\030UserPersistentEventProto\022\016\n\006us" +
-      "erId\030\001 \001(\005\022\017\n\007eventId\030\002 \001(\005\022\031\n\021coolDownS" +
-      "tartTime\030\003 \001(\003B-\n com.lvl6.mobsters.none",
-      "ventprotosB\tTaskProto"
+      "#\n\tdayOfWeek\030\002 \001(\0162\020.proto.DayOfWeek\022\021\n\t" +
+      "startHour\030\003 \001(\005\022\034\n\024eventDurationMinutes\030" +
+      "\004 \001(\005\022\016\n\006taskId\030\005 \001(\005\022\027\n\017cooldownMinutes",
+      "\030\006 \001(\005\0223\n\004type\030\007 \001(\0162%.proto.PersistentE" +
+      "ventProto.EventType\022:\n\016monsterElement\030\010 " +
+      "\001(\0162\".proto.MonsterProto.MonsterElement\"" +
+      "\'\n\tEventType\022\013\n\007ENHANCE\020\001\022\r\n\tEVOLUTION\020\002" +
+      "\"X\n\030UserPersistentEventProto\022\020\n\010userUuid" +
+      "\030\001 \001(\t\022\017\n\007eventId\030\002 \001(\005\022\031\n\021coolDownStart" +
+      "Time\030\003 \001(\003*g\n\tDayOfWeek\022\n\n\006SUNDAY\020\001\022\n\n\006M" +
+      "ONDAY\020\002\022\013\n\007TUESDAY\020\003\022\r\n\tWEDNESDAY\020\004\022\014\n\010T" +
+      "HURSDAY\020\005\022\n\n\006FRIDAY\020\006\022\014\n\010SATURDAY\020\007B-\n c" +
+      "om.lvl6.mobsters.noneventprotosB\tTaskPro",
+      "to"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -4113,7 +4150,7 @@ public final class TaskProto {
           internal_static_proto_UserPersistentEventProto_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_proto_UserPersistentEventProto_descriptor,
-              new java.lang.String[] { "UserId", "EventId", "CoolDownStartTime", },
+              new java.lang.String[] { "UserUuid", "EventId", "CoolDownStartTime", },
               com.lvl6.mobsters.noneventprotos.TaskProto.UserPersistentEventProto.class,
               com.lvl6.mobsters.noneventprotos.TaskProto.UserPersistentEventProto.Builder.class);
           return null;

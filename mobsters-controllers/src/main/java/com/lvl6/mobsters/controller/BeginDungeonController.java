@@ -30,11 +30,16 @@ import com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto;
 import com.lvl6.mobsters.po.nonstaticdata.TaskForUserOngoing;
 import com.lvl6.mobsters.po.nonstaticdata.TaskStageForUser;
 import com.lvl6.mobsters.po.nonstaticdata.User;
+import com.lvl6.mobsters.po.nonstaticdata.UserCurrencyHistory;
 import com.lvl6.mobsters.po.staticdata.Task;
 import com.lvl6.mobsters.po.staticdata.TaskStage;
+import com.lvl6.mobsters.properties.MobstersDbTables;
+import com.lvl6.mobsters.properties.MobstersTableConstants;
+import com.lvl6.mobsters.services.eventpersistentforuser.EventPersistentForUserService;
 import com.lvl6.mobsters.services.taskforuserongoing.TaskForUserOngoingService;
 import com.lvl6.mobsters.services.taskstageforuser.TaskStageForUserService;
 import com.lvl6.mobsters.services.user.UserService;
+import com.lvl6.mobsters.services.usercurrencyhistory.UserCurrencyHistoryService;
 
 
 @Component
@@ -60,7 +65,11 @@ public class BeginDungeonController extends EventController {
 	@Autowired
 	protected CreateNoneventProtoUtil createNoneventProtoUtil;
 
+	@Autowired
+	protected EventPersistentForUserService eventPersistentForUserService;
 
+	@Autowired
+	protected UserCurrencyHistoryService userCurrencyHistoryService;
 
 	public BeginDungeonController() {
 		numAllocatedThreads = 8;
@@ -89,9 +98,9 @@ public class BeginDungeonController extends EventController {
 //		boolean spawnBoss = reqProto.getSpawnBoss();
 		
 		//if is event, start the cool down timer in event_persistent_for_user
-//	    boolean isEvent = reqProto.getIsEvent();
-//	    int eventId = reqProto.getPersistentEventId();
-//	    int gemsSpent = reqProto.getGemsSpent();
+	    boolean isEvent = reqProto.getIsEvent();
+	    int eventId = reqProto.getPersistentEventId();
+	    int gemsSpent = reqProto.getGemsSpent();
 		List<Integer> questIds = reqProto.getQuestIdsList();
 		
 		//uuid's are not strings, need to convert from string to uuid, vice versa
@@ -104,7 +113,7 @@ public class BeginDungeonController extends EventController {
 		responseBuilder.setTaskId(taskId);
 		responseBuilder.setStatus(BeginDungeonStatus.FAIL_OTHER);
 		
-
+		//don't think need a lock
 		try {
 			//get whatever we need from the database
 			User aUser = getUserService().getUserWithId(userId);
@@ -112,17 +121,18 @@ public class BeginDungeonController extends EventController {
 			Map<Integer, TaskStage> tsMap = getTaskStageRetrieveUtils()
 					.getTaskStagesForTaskId(taskId);
 
-			boolean legitRedeem = checkLegit(responseBuilder, aUser, userId, aTask,
-					taskId, clientDate, tsMap);
+			boolean legitRequest = checkLegit(responseBuilder, aUser, userId, aTask,
+					taskId, clientDate, tsMap, isEvent, eventId, gemsSpent);
 			
 			List<UUID> userTaskIdList = new ArrayList<UUID>();
 			Map<Integer, TaskStageProto> stageNumsToProtos = new HashMap<Integer, TaskStageProto>();
 			boolean successful = false;
-			if(legitRedeem) {
+			if(legitRequest) {
 		      	//determine the specifics for each stage (stored in stageNumsToProtos)
 		      	//then record specifics in db
-		    	  successful = writeChangesToDb(aUser, userId, aTask, taskId, tsMap, clientDate,
-		    			  userTaskIdList, stageNumsToProtos, questIds);
+		    	  successful = writeChangesToDb(aUser, userId, aTask, taskId, tsMap,
+		    			  clientDate, isEvent, eventId, gemsSpent, userTaskIdList,
+		    			  stageNumsToProtos, questIds);
 			}
 			
 			if (successful) {
@@ -154,7 +164,8 @@ public class BeginDungeonController extends EventController {
 	}
 
 	private boolean checkLegit(Builder resBuilder, User u, UUID userId, Task aTask,
-			int taskId, Date clientDate, Map<Integer, TaskStage> tsMap) {
+			int taskId, Date clientDate, Map<Integer, TaskStage> tsMap, boolean isEvent,
+			int eventId, int gemsSpent) {
 		if (null == u || null == aTask) {
 			log.error("unexpected error: user or task is null. user=" + u + "\t task="+ aTask);
 			return false;
@@ -186,13 +197,26 @@ public class BeginDungeonController extends EventController {
 			getTaskStageForUserService().deleteExistingTaskStagesForUserTaskId(userTaskId,
 					getMonsterPieces, monsterIdToNumPieces);
 		}
+		
+		//TODO: if event, maybe somehow check if user has enough gems to reset event
+	    //right now just relying on user
+	    if (isEvent) {
+	    	if (eventId > 0) {
+	    		log.info("user initiating persistent event");
+	    	} else {
+	    		log.error("isEvent set to true but eventId not positive " + "\t eventId=" +
+	    				eventId + "\t gemsSpent=" + gemsSpent);
+	    		return false;
+	    	}
+	    }
 
 		resBuilder.setStatus(BeginDungeonStatus.SUCCESS);
 	    return true;  
 	}
 
 	private boolean writeChangesToDb(User u, UUID userId, Task t, int taskId,
-			  Map<Integer, TaskStage> tsMap, Date clientDate, List<UUID> utIdList,
+			  Map<Integer, TaskStage> tsMap, Date clientDate, boolean isEvent,
+			  int eventId, int gemsSpent, List<UUID> utIdList,
 			  Map<Integer, TaskStageProto> stageNumsToProtos, List<Integer> questIds) {
 		try {
 			//create user task
@@ -217,9 +241,17 @@ public class BeginDungeonController extends EventController {
 			tfuo.setStartDate(clientDate);
 			getTaskForUserOngoingService().saveTaskForUserOngoing(tfuo);
 			
+			//send stuff back up to caller
 			utIdList.add(userTaskId);
 			//save the user task stages and create the protos
 			recordStages(stageNumToStages, stageNumsToProtos);
+			
+			//start the cool down timer if for event
+			if (isEvent) {
+				getEventPersistentForUserService()
+				.createOrUpdateUserEventPersistentForUser(userId, eventId, clientDate);
+				chargeUser(u, clientDate, gemsSpent, eventId, taskId);
+			}
 			
 			return true;
 
@@ -253,13 +285,58 @@ public class BeginDungeonController extends EventController {
 			//create the proto
 			TaskStageForUser tsfu = tsfuList.get(0);
 			int taskStageId = tsfu.getTaskStageId();
-			TaskStageProto tsp = getCreateNoneventProtoUtils()
+			TaskStageProto tsp = getCreateNoneventProtoUtil()
 					.createTaskStageProtoFromTaskStageForUser(taskStageId, tsfuList);
 			
 			//return to sender
 			stageNumsToProtos.put(stageNum, tsp);
 		}
 	}
+	
+	private void chargeUser(User user, Date now, int gemsSpent, int eventId, int taskId) {
+		
+		//charge user if client says so
+		if (0 == gemsSpent) {
+			return;
+		}
+		int gemChange = -1 * gemsSpent;
+		List<UserCurrencyHistory> uchList = createCurrencyHistory(user, now, gemChange,
+				eventId, taskId);
+		
+		int oilChange = 0;
+		int cashChange = 0;
+		getUserService().updateUserResources(user, gemChange, oilChange, cashChange);
+		
+		//record user currency
+		if (!uchList.isEmpty()) {
+			getUserCurrencyHistoryService().saveCurrencyHistories(uchList);
+		}
+	}
+	
+	private List<UserCurrencyHistory> createCurrencyHistory(User u, Date timeRedeemed,
+			int gemChange, int eventPersistentId, int taskId) {
+		String gemsStr = MobstersDbTables.USER__GEMS;
+		String reasonForChange = MobstersTableConstants.UCHRFC__SPED_UP_PERSISTENT_EVENT_TIMER;
+		StringBuilder sb = new StringBuilder();
+		sb.append("eventId=");
+		sb.append(eventPersistentId);
+		sb.append(" taskId=");
+		sb.append(taskId);
+		String details = sb.toString();
+
+		boolean saveToDb = false;
+		UserCurrencyHistory gems = getUserCurrencyHistoryService()
+				.createNewUserCurrencyHistory(u, timeRedeemed, gemsStr, gemChange,
+						reasonForChange, details, saveToDb);
+		
+		List<UserCurrencyHistory> uchList = new ArrayList<UserCurrencyHistory>();
+		if (null != gems) {
+			uchList.add(gems);
+		}
+		return uchList;
+	}
+	
+	
 
 	private void setResponseBuilder(Builder resBuilder, List<UUID> userTaskIdList,
 			Map<Integer, TaskStageProto> stageNumsToProtos) {
@@ -326,12 +403,31 @@ public class BeginDungeonController extends EventController {
 		this.taskStageForUserService = taskStageForUserService;
 	}
 
-	public CreateNoneventProtoUtil getCreateNoneventProtoUtils() {
+	public CreateNoneventProtoUtil getCreateNoneventProtoUtil() {
 		return createNoneventProtoUtil;
 	}
 
-	public void setCreateNoneventProtoUtils(
+	public void setCreateNoneventProtoUtil(
 			CreateNoneventProtoUtil createNoneventProtoUtil) {
 		this.createNoneventProtoUtil = createNoneventProtoUtil;
 	}
+
+	public EventPersistentForUserService getEventPersistentForUserService() {
+		return eventPersistentForUserService;
+	}
+
+	public void setEventPersistentForUserService(
+			EventPersistentForUserService eventPersistentForUserService) {
+		this.eventPersistentForUserService = eventPersistentForUserService;
+	}
+
+	public UserCurrencyHistoryService getUserCurrencyHistoryService() {
+		return userCurrencyHistoryService;
+	}
+
+	public void setUserCurrencyHistoryService(
+			UserCurrencyHistoryService userCurrencyHistoryService) {
+		this.userCurrencyHistoryService = userCurrencyHistoryService;
+	}
+	
 }

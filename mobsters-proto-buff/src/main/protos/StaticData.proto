@@ -41,13 +41,7 @@ message StaticDataProto {
 	//repeated LabProto allLabs = 17; //defined above
 	
 	//the daily events where users can gain evolution and enhancement materials
-	repeated PersistentEventProto events = 18;
-	
-	//mysql mobsters does not use this, so probably not used
-	enum RetrieveStaticDataStatus {
-		SUCCESS = 1;
-		SOME_FAIL = 2;
-	}
+	repeated PersistentEventProto persistentEvents = 18;
 	
 }
 	

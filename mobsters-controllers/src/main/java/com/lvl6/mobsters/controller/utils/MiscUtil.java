@@ -522,7 +522,7 @@ public class MiscUtil {
 			EventPersistent event  = idsToEvents.get(eventId);
 			PersistentEventProto eventProto = getCreateNoneventProtoUtil()
 					.createPersistentEventProtoFromEvent(event);
-			sdpb.addEvents(eventProto);
+			sdpb.addPersistentEvents(eventProto);
 		}
 	}
 	

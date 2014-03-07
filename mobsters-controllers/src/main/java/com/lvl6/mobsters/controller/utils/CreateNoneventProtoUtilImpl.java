@@ -46,17 +46,19 @@ import com.lvl6.mobsters.noneventprotos.StructureProto.StructOrientation;
 import com.lvl6.mobsters.noneventprotos.StructureProto.StructureInfoProto;
 import com.lvl6.mobsters.noneventprotos.StructureProto.StructureInfoProto.StructType;
 import com.lvl6.mobsters.noneventprotos.StructureProto.TownHallProto;
+import com.lvl6.mobsters.noneventprotos.TaskProto.DayOfWeek;
 import com.lvl6.mobsters.noneventprotos.TaskProto.FullTaskProto;
 import com.lvl6.mobsters.noneventprotos.TaskProto.PersistentEventProto;
-import com.lvl6.mobsters.noneventprotos.TaskProto.PersistentEventProto.DayOfWeek;
 import com.lvl6.mobsters.noneventprotos.TaskProto.PersistentEventProto.EventType;
 import com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageMonsterProto;
 import com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageMonsterProto.MonsterType;
 import com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageProto;
+import com.lvl6.mobsters.noneventprotos.TaskProto.UserPersistentEventProto;
 import com.lvl6.mobsters.noneventprotos.UserProto.FullUserProto;
 import com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto;
 import com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProtoWithFacebookId;
 import com.lvl6.mobsters.noneventprotos.UserProto.UserFacebookInviteForSlotProto;
+import com.lvl6.mobsters.po.nonstaticdata.EventPersistentForUser;
 import com.lvl6.mobsters.po.nonstaticdata.MonsterEnhancingForUser;
 import com.lvl6.mobsters.po.nonstaticdata.MonsterForUser;
 import com.lvl6.mobsters.po.nonstaticdata.MonsterHealingForUser;
@@ -995,6 +997,26 @@ public class CreateNoneventProtoUtilImpl implements CreateNoneventProtoUtil {
 
 		return pepb.build();
 	}
+	
+	@Override
+	public UserPersistentEventProto createUserPersistentEventProto(
+	  		EventPersistentForUser epfu) {
+	  	UserPersistentEventProto.Builder upepb = UserPersistentEventProto.newBuilder();
+	  	
+	  	UUID userUuid = epfu.getUserId();
+	  	String userId = userUuid.toString();
+	  	int eventId = epfu.getEventPersistentId();
+	  	Date timeOfEntry = epfu.getTimeOfEntry();
+	  	
+	  	upepb.setUserUuid(userId);
+	  	upepb.setEventId(eventId);
+	  	
+	  	if (null != timeOfEntry) {
+	  		upepb.setCoolDownStartTime(timeOfEntry.getTime());
+	  	}
+	  	
+	  	return upepb.build();
+	  }
 
 	//USER PROTO****************************************************************
 	@Override

@@ -62,6 +62,7 @@ message EndDungeonRequestProto {
 	//user FIRST BEATS a task. 
 	optional bool firstTimeUserWonTask = 5;
 	
+	/*BEGIN: NOT USED */
 	//when user has JUST BEATEN ALL TASKS in a city
 	//this should be set (should only ever be set, at max, once per city)
 	optional bool generateFirstBoss = 6;
@@ -69,7 +70,7 @@ message EndDungeonRequestProto {
 	//not really needed since server can calculate as well
 	//true if there was a boss for this userTask
 	optional bool respawnBoss = 7;
-
+	/*END*/
 }
 
 message EndDungeonResponseProto {

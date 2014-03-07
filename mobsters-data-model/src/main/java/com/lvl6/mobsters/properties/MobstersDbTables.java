@@ -10,13 +10,14 @@ public class MobstersDbTables {
 	public static final String TABLE_BOOSTER_PACK = "booster_pack";
 	public static final String TABLE_BOOSTER_PACK_PURCHASE_HISTORY = "booster_pack_purchase_history";
 	public static final String TABLE_CITY = "city";
-	public static final String TABLE_CITY_BOSS = "city_boss";
-	public static final String TABLE_CITY_BOSS_SITE_FOR_USER = "city_boss_site_for_user";
+//	public static final String TABLE_CITY_BOSS = "city_boss";
+//	public static final String TABLE_CITY_BOSS_SITE_FOR_USER = "city_boss_site_for_user";
 	public static final String TABLE_CITY_ELEMENT = "city_element";
 	public static final String TABLE_CLANS = "clan";
 	public static final String TABLE_CLAN_CHAT_POST = "clan_chat_post";
 	public static final String TABLE_CLAN_FOR_USER = "clan_for_user";
 	public static final String TABLE_EVENT_PERSISTENT = "event_persistent";
+	public static final String TABLE_EVENT_PERSISTENT_FOR_USER = "event_persistent_for_user";
 	public static final String TABLE_EXPANSION_COST = "expansion_cost";
 	public static final String TABLE_EXPANSION_PURCHASE_FOR_USER = "expansion_purchase_for_user";
 	public static final String TABLE_GOLD_SALE = "gold_sale";	
@@ -139,6 +140,11 @@ public class MobstersDbTables {
 	public static final String CLAN_FOR_USER__STATUS = "status";
 	public static final String CLAN_FOR_USER__REQUEST_TIME = "request_time";
 
+	/*EVENT PERSISTENT FOR USER*/
+	public static final String EVENT_PERSISTENT_FOR_USER__USER_ID = "user_id";
+	public static final String EVENT_PERSISTENT_FOR_USER__EVENT_PERSISTENT_ID = "event_persistent_id";
+	public static final String EVENT_PERSISTENT_FOR_USER__TIME_OF_ENTRY = "time_of_entry";
+	  
 	/*EXPANSION PURCHASE FOR USER*/
 	public static final String EXPANSION_PURCHASE_FOR_USER__USER_ID = GENERIC__USER_ID;
 	public static final String EXPANSION_PURCHASE_FOR_USER__X_POSITION = "x_position";

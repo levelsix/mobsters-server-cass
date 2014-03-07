@@ -60,6 +60,7 @@ public class MobstersTableConstants {
 	public static final String UCHRFC__SPED_UP_EVOLVING = "sped up evolving user monster";
 //	public static final String UCHRFC__SPED_UP_HEALING = "sped up healing user monster";
 	public static final String UCHRFC__SPED_UP_NORM_STRUCT = "sped up norm struct";
+	public static final String UCHRFC__SPED_UP_PERSISTENT_EVENT_TIMER = "sped up peristent event timer";
 	public static final String UCHRFC__UPGRADE_NORM_STRUCT = "upgrading norm struct";
 	
 	
