@@ -855,7 +855,8 @@ public class CreateNoneventProtoUtilImpl implements CreateNoneventProtoUtil {
 		thpb.setNumResidences(sth.getNumResidences());
 		thpb.setNumMonsterSlots(sth.getNumMonsterSlots());
 		thpb.setNumLabs(sth.getNumLabs());
-
+		thpb.setPvpQueueCashCost(sth.getPvpQueueCashCost());
+		
 		return thpb.build();
 	}
 	

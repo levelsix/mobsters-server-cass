@@ -4604,6 +4604,10 @@ public final class StructureProto {
     // optional int32 numLabs = 9;
     boolean hasNumLabs();
     int getNumLabs();
+    
+    // optional int32 pvpQueueCashCost = 10;
+    boolean hasPvpQueueCashCost();
+    int getPvpQueueCashCost();
   }
   public static final class TownHallProto extends
       com.google.protobuf.GeneratedMessage
@@ -4727,6 +4731,16 @@ public final class StructureProto {
       return numLabs_;
     }
     
+    // optional int32 pvpQueueCashCost = 10;
+    public static final int PVPQUEUECASHCOST_FIELD_NUMBER = 10;
+    private int pvpQueueCashCost_;
+    public boolean hasPvpQueueCashCost() {
+      return ((bitField0_ & 0x00000200) == 0x00000200);
+    }
+    public int getPvpQueueCashCost() {
+      return pvpQueueCashCost_;
+    }
+    
     private void initFields() {
       structInfo_ = com.lvl6.mobsters.noneventprotos.StructureProto.StructureInfoProto.getDefaultInstance();
       numResourceOneGenerators_ = 0;
@@ -4737,6 +4751,7 @@ public final class StructureProto {
       numResidences_ = 0;
       numMonsterSlots_ = 0;
       numLabs_ = 0;
+      pvpQueueCashCost_ = 0;
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -4776,6 +4791,9 @@ public final class StructureProto {
       }
       if (((bitField0_ & 0x00000100) == 0x00000100)) {
         output.writeInt32(9, numLabs_);
+      }
+      if (((bitField0_ & 0x00000200) == 0x00000200)) {
+        output.writeInt32(10, pvpQueueCashCost_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -4821,6 +4839,10 @@ public final class StructureProto {
       if (((bitField0_ & 0x00000100) == 0x00000100)) {
         size += com.google.protobuf.CodedOutputStream
           .computeInt32Size(9, numLabs_);
+      }
+      if (((bitField0_ & 0x00000200) == 0x00000200)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(10, pvpQueueCashCost_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -4969,6 +4991,8 @@ public final class StructureProto {
         bitField0_ = (bitField0_ & ~0x00000080);
         numLabs_ = 0;
         bitField0_ = (bitField0_ & ~0x00000100);
+        pvpQueueCashCost_ = 0;
+        bitField0_ = (bitField0_ & ~0x00000200);
         return this;
       }
       
@@ -5047,6 +5071,10 @@ public final class StructureProto {
           to_bitField0_ |= 0x00000100;
         }
         result.numLabs_ = numLabs_;
+        if (((from_bitField0_ & 0x00000200) == 0x00000200)) {
+          to_bitField0_ |= 0x00000200;
+        }
+        result.pvpQueueCashCost_ = pvpQueueCashCost_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -5089,6 +5117,9 @@ public final class StructureProto {
         }
         if (other.hasNumLabs()) {
           setNumLabs(other.getNumLabs());
+        }
+        if (other.hasPvpQueueCashCost()) {
+          setPvpQueueCashCost(other.getPvpQueueCashCost());
         }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
@@ -5168,6 +5199,11 @@ public final class StructureProto {
             case 72: {
               bitField0_ |= 0x00000100;
               numLabs_ = input.readInt32();
+              break;
+            }
+            case 80: {
+              bitField0_ |= 0x00000200;
+              pvpQueueCashCost_ = input.readInt32();
               break;
             }
           }
@@ -5430,6 +5466,27 @@ public final class StructureProto {
       public Builder clearNumLabs() {
         bitField0_ = (bitField0_ & ~0x00000100);
         numLabs_ = 0;
+        onChanged();
+        return this;
+      }
+      
+      // optional int32 pvpQueueCashCost = 10;
+      private int pvpQueueCashCost_ ;
+      public boolean hasPvpQueueCashCost() {
+        return ((bitField0_ & 0x00000200) == 0x00000200);
+      }
+      public int getPvpQueueCashCost() {
+        return pvpQueueCashCost_;
+      }
+      public Builder setPvpQueueCashCost(int value) {
+        bitField0_ |= 0x00000200;
+        pvpQueueCashCost_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearPvpQueueCashCost() {
+        bitField0_ = (bitField0_ & ~0x00000200);
+        pvpQueueCashCost_ = 0;
         onChanged();
         return this;
       }
@@ -6889,25 +6946,26 @@ public final class StructureProto {
       "sterSlots\030\002 \001(\005\022\034\n\024numBonusMonsterSlots\030",
       "\003 \001(\005\022\027\n\017numGemsRequired\030\004 \001(\005\022\034\n\024numAcc" +
       "eptedFbInvites\030\005 \001(\005\022\026\n\016occupationName\030\006" +
-      " \001(\t\"\231\002\n\rTownHallProto\022-\n\nstructInfo\030\001 \001" +
+      " \001(\t\"\263\002\n\rTownHallProto\022-\n\nstructInfo\030\001 \001" +
       "(\0132\031.proto.StructureInfoProto\022 \n\030numReso" +
       "urceOneGenerators\030\002 \001(\005\022\036\n\026numResourceOn" +
       "eStorages\030\003 \001(\005\022 \n\030numResourceTwoGenerat" +
       "ors\030\004 \001(\005\022\036\n\026numResourceTwoStorages\030\005 \001(" +
       "\005\022\024\n\014numHospitals\030\006 \001(\005\022\025\n\rnumResidences" +
       "\030\007 \001(\005\022\027\n\017numMonsterSlots\030\010 \001(\005\022\017\n\007numLa" +
-      "bs\030\t \001(\005\"\214\002\n\026FullUserStructureProto\022\026\n\016u",
-      "serStructUuid\030\001 \001(\t\022\020\n\010userUuid\030\002 \001(\t\022\020\n" +
-      "\010structId\030\003 \001(\005\022\025\n\rlastRetrieved\030\004 \001(\003\022\024" +
-      "\n\014purchaseTime\030\005 \001(\003\022\022\n\nisComplete\030\006 \001(\010" +
-      "\022+\n\013coordinates\030\007 \001(\0132\026.proto.Coordinate" +
-      "Proto\022-\n\013orientation\030\010 \001(\0162\030.proto.Struc" +
-      "tOrientation\022\031\n\021fbInviteStructLvl\030\t \001(\005\"" +
-      "\'\n\017CoordinateProto\022\t\n\001x\030\001 \001(\002\022\t\n\001y\030\002 \001(\002" +
-      "*+\n\014ResourceType\022\010\n\004CASH\020\001\022\007\n\003OIL\020\002\022\010\n\004G" +
-      "EMS\020\003*3\n\021StructOrientation\022\016\n\nPOSITION_1" +
-      "\020\001\022\016\n\nPOSITION_2\020\002B2\n com.lvl6.mobsters.",
-      "noneventprotosB\016StructureProto"
+      "bs\030\t \001(\005\022\030\n\020pvpQueueCashCost\030\n \001(\005\"\214\002\n\026F",
+      "ullUserStructureProto\022\026\n\016userStructUuid\030" +
+      "\001 \001(\t\022\020\n\010userUuid\030\002 \001(\t\022\020\n\010structId\030\003 \001(" +
+      "\005\022\025\n\rlastRetrieved\030\004 \001(\003\022\024\n\014purchaseTime" +
+      "\030\005 \001(\003\022\022\n\nisComplete\030\006 \001(\010\022+\n\013coordinate" +
+      "s\030\007 \001(\0132\026.proto.CoordinateProto\022-\n\013orien" +
+      "tation\030\010 \001(\0162\030.proto.StructOrientation\022\031" +
+      "\n\021fbInviteStructLvl\030\t \001(\005\"\'\n\017CoordinateP" +
+      "roto\022\t\n\001x\030\001 \001(\002\022\t\n\001y\030\002 \001(\002*+\n\014ResourceTy" +
+      "pe\022\010\n\004CASH\020\001\022\007\n\003OIL\020\002\022\010\n\004GEMS\020\003*3\n\021Struc" +
+      "tOrientation\022\016\n\nPOSITION_1\020\001\022\016\n\nPOSITION",
+      "_2\020\002B2\n com.lvl6.mobsters.noneventprotos" +
+      "B\016StructureProto"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -6967,7 +7025,7 @@ public final class StructureProto {
           internal_static_proto_TownHallProto_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_proto_TownHallProto_descriptor,
-              new java.lang.String[] { "StructInfo", "NumResourceOneGenerators", "NumResourceOneStorages", "NumResourceTwoGenerators", "NumResourceTwoStorages", "NumHospitals", "NumResidences", "NumMonsterSlots", "NumLabs", },
+              new java.lang.String[] { "StructInfo", "NumResourceOneGenerators", "NumResourceOneStorages", "NumResourceTwoGenerators", "NumResourceTwoStorages", "NumHospitals", "NumResidences", "NumMonsterSlots", "NumLabs", "PvpQueueCashCost", },
               com.lvl6.mobsters.noneventprotos.StructureProto.TownHallProto.class,
               com.lvl6.mobsters.noneventprotos.StructureProto.TownHallProto.Builder.class);
           internal_static_proto_FullUserStructureProto_descriptor =

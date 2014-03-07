@@ -130,6 +130,10 @@ message TownHallProto {
 	//how many monster slots this town hall gives the user (absolute number)
 	optional int32 numMonsterSlots = 8;
 	optional int32 numLabs = 9; 
+	
+	//Cost for seeing one possible enemy to attack for pvp battles.
+	optional int32 pvpQueueCashCost = 10;
+	
 }
 
 //------------------------------------------------------------------------------------------

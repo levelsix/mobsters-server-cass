@@ -47,7 +47,11 @@ public class StructureTownHall extends BasePersistentObject<Integer> implements 
 	
 	@Column(name="num_labs")
 	protected int numLabs = 0;
+	
+	@Column(name="pvp_queue_cash_cost")
+	protected int pvpQueueCashCost = 0;
 
+	
 	
 	public Integer getId() {
 		return id;
@@ -121,6 +125,14 @@ public class StructureTownHall extends BasePersistentObject<Integer> implements 
 		this.numLabs = numLabs;
 	}
 
+	public int getPvpQueueCashCost() {
+		return pvpQueueCashCost;
+	}
+
+	public void setPvpQueueCashCost(int pvpQueueCashCost) {
+		this.pvpQueueCashCost = pvpQueueCashCost;
+	}
+
 	@Override
 	public String toString() {
 		return "StructureTownHall [id=" + id + ", numResourceOneGenerators="
@@ -129,7 +141,8 @@ public class StructureTownHall extends BasePersistentObject<Integer> implements 
 				+ numResourceTwoGenerators + ", numResourceTwoStorages="
 				+ numResourceTwoStorages + ", numHospitals=" + numHospitals
 				+ ", numResidences=" + numResidences + ", numMonsterSlots="
-				+ numMonsterSlots + ", numLabs=" + numLabs + "]";
+				+ numMonsterSlots + ", numLabs=" + numLabs
+				+ ", pvpQueueCashCost=" + pvpQueueCashCost + "]";
 	}
 
 }
