@@ -14,7 +14,7 @@ import com.dekayd.astyanax.cassandra.entitymanager.Index;
 @Entity
 public class MonsterLevelInfo extends BasePersistentObject<Integer> implements Serializable{
 	
-	private static final long serialVersionUID = -4857768449650385594L;
+	private static final long serialVersionUID = -8084916065884193782L;
 
 	@Id
 	protected Integer id = 0;
@@ -53,6 +53,10 @@ public class MonsterLevelInfo extends BasePersistentObject<Integer> implements S
 	@Column(name="rock_dmg")
 	protected int rockDmg = 0;
 
+	@Column(name="speed")
+	protected int speed = 0;
+	
+	
 	public Integer getId() {
 		return id;
 	}
@@ -149,6 +153,14 @@ public class MonsterLevelInfo extends BasePersistentObject<Integer> implements S
 		this.rockDmg = rockDmg;
 	}
 
+	public int getSpeed() {
+		return speed;
+	}
+
+	public void setSpeed(int speed) {
+		this.speed = speed;
+	}
+
 	@Override
 	public String toString() {
 		return "MonsterLevelInfo [id=" + id + ", monsterId=" + monsterId
@@ -156,7 +168,8 @@ public class MonsterLevelInfo extends BasePersistentObject<Integer> implements S
 				+ curLvlRequiredExp + ", feederExp=" + feederExp + ", fireDmg="
 				+ fireDmg + ", grassDmg=" + grassDmg + ", waterDmg=" + waterDmg
 				+ ", lightningDmg=" + lightningDmg + ", darknessDmg="
-				+ darknessDmg + ", rockDmg=" + rockDmg + "]";
+				+ darknessDmg + ", rockDmg=" + rockDmg + ", speed=" + speed
+				+ "]";
 	}
 
 }

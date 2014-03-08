@@ -14,7 +14,7 @@ import com.dekayd.astyanax.cassandra.entitymanager.Index;
 @Entity
 public class StructureTownHall extends BasePersistentObject<Integer> implements Serializable {
 
-	private static final long serialVersionUID = 5145075440988063641L;
+	private static final long serialVersionUID = -5664365697909646485L;
 
 	@Id
 	protected Integer id = 0;
