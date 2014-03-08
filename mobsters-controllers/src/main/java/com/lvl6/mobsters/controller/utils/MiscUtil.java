@@ -539,6 +539,8 @@ public class MiscUtil {
 	    scb.setMaxNameLength(MobstersTableConstants.USER_CREATE__MAX_NAME_LENGTH);
 	    scb.setMaxLengthOfChatString(MobstersTableConstants.SEND_GROUP_CHAT__MAX_LENGTH_OF_CHAT_STRING);
 	    
+	    scb.setGemsPerResource(MobstersTableConstants.GEMS_PER_RESOURCE);
+	    scb.setContinueBattleGemCostMultiplier(MobstersTableConstants.BATTLE__CONTINUE_GEM_COST_MULTIPLIER);
 	    
 	    return scb.build();
 	}

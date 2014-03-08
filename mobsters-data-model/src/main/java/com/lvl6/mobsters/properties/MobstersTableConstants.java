@@ -3,11 +3,18 @@ package com.lvl6.mobsters.properties;
 public class MobstersTableConstants {
 	//CONSTANTS PERTAINING TO THE DATABASE TABLES
 	//MOBSTERS CONSTANTS
-	public static final float GEMS_PER_DOLLAR = 10f;//client doesn't need this
-	public static final float MINUTES_PER_GEM = 10f;
+	
+	//includes oil and cash, 1 gem per 1000 resource? 
+	public static final float GEMS_PER_RESOURCE = 0.001F;
+	public static final float GEMS_PER_DOLLAR = 10F;//client doesn't need this
+	public static final float MINUTES_PER_GEM = 10F;
+	
+	//this multiplies with the cost to heal all monsters on user's battle team
+	//BATTLE, DUNGEON
+	public static final float BATTLE__CONTINUE_GEM_COST_MULTIPLIER = 1.2F; 
 
-	public static final float MONSTER__CASH_PER_HEALTH_POINT = 0.5f;
-	public static final float MONSTER__SECONDS_TO_HEAL_PER_HEALTH_POINT = 2f;
+	public static final float MONSTER__CASH_PER_HEALTH_POINT = 0.5F;
+	public static final float MONSTER__SECONDS_TO_HEAL_PER_HEALTH_POINT = 2F;
 	public static final float MONSTER__ELEMENTAL_STRENGTH = 1.2F;
 	public static final float MONSTER__ELEMENTAL_WEAKNESS = 0.8F;
 
