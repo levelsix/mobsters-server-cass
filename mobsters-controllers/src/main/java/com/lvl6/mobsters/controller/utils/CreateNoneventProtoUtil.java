@@ -12,6 +12,7 @@ import com.lvl6.mobsters.noneventprotos.CityProto.CityElementProto;
 import com.lvl6.mobsters.noneventprotos.CityProto.CityExpansionCostProto;
 import com.lvl6.mobsters.noneventprotos.CityProto.FullCityProto;
 import com.lvl6.mobsters.noneventprotos.MonsterStuffProto.FullUserMonsterProto;
+import com.lvl6.mobsters.noneventprotos.MonsterStuffProto.MonsterBattleDialogueProto;
 import com.lvl6.mobsters.noneventprotos.MonsterStuffProto.MonsterLevelInfoProto;
 import com.lvl6.mobsters.noneventprotos.MonsterStuffProto.MonsterProto;
 import com.lvl6.mobsters.noneventprotos.MonsterStuffProto.UserEnhancementItemProto;
@@ -56,6 +57,7 @@ import com.lvl6.mobsters.po.staticdata.CityElement;
 import com.lvl6.mobsters.po.staticdata.EventPersistent;
 import com.lvl6.mobsters.po.staticdata.ExpansionCost;
 import com.lvl6.mobsters.po.staticdata.Monster;
+import com.lvl6.mobsters.po.staticdata.MonsterBattleDialogue;
 import com.lvl6.mobsters.po.staticdata.MonsterLevelInfo;
 import com.lvl6.mobsters.po.staticdata.Quest;
 import com.lvl6.mobsters.po.staticdata.Structure;
@@ -111,6 +113,9 @@ public interface CreateNoneventProtoUtil {
 	
 	public abstract List<MonsterLevelInfoProto> createMonsterLevelInfoFromInfo(
 			Map<Integer, MonsterLevelInfo> lvlToInfo);
+
+	public abstract MonsterBattleDialogueProto createMonsterBattleDialogueProto(
+			MonsterBattleDialogue mbd);
 	
 	//QUEST PROTO****************************************************************
 	public abstract QuestProto createQuestProtoFromQuest(Quest q);

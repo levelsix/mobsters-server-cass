@@ -42,6 +42,7 @@ message StaticDataProto {
 	
 	//the daily events where users can gain evolution and enhancement materials
 	repeated PersistentEventProto persistentEvents = 18;
+	repeated MonsterBattleDialogueProto mbds = 19;
 	
 }
 	

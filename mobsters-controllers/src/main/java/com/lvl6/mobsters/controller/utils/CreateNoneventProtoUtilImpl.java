@@ -21,6 +21,8 @@ import com.lvl6.mobsters.noneventprotos.CityProto.CityElementProto.CityElemType;
 import com.lvl6.mobsters.noneventprotos.CityProto.CityExpansionCostProto;
 import com.lvl6.mobsters.noneventprotos.CityProto.FullCityProto;
 import com.lvl6.mobsters.noneventprotos.MonsterStuffProto.FullUserMonsterProto;
+import com.lvl6.mobsters.noneventprotos.MonsterStuffProto.MonsterBattleDialogueProto;
+import com.lvl6.mobsters.noneventprotos.MonsterStuffProto.MonsterBattleDialogueProto.DialogueType;
 import com.lvl6.mobsters.noneventprotos.MonsterStuffProto.MonsterLevelInfoProto;
 import com.lvl6.mobsters.noneventprotos.MonsterStuffProto.MonsterProto;
 import com.lvl6.mobsters.noneventprotos.MonsterStuffProto.MonsterProto.MonsterElement;
@@ -75,6 +77,7 @@ import com.lvl6.mobsters.po.staticdata.CityElement;
 import com.lvl6.mobsters.po.staticdata.EventPersistent;
 import com.lvl6.mobsters.po.staticdata.ExpansionCost;
 import com.lvl6.mobsters.po.staticdata.Monster;
+import com.lvl6.mobsters.po.staticdata.MonsterBattleDialogue;
 import com.lvl6.mobsters.po.staticdata.MonsterLevelInfo;
 import com.lvl6.mobsters.po.staticdata.Quest;
 import com.lvl6.mobsters.po.staticdata.Structure;
@@ -511,6 +514,25 @@ public class CreateNoneventProtoUtilImpl implements CreateNoneventProtoUtil {
 
 		return lvlInfoProtos;
 	}
+	
+	@Override
+	public MonsterBattleDialogueProto createMonsterBattleDialogueProto(MonsterBattleDialogue mbd) {
+	  	MonsterBattleDialogueProto.Builder mbdpb = MonsterBattleDialogueProto.newBuilder();
+	  	mbdpb.setMonsterId(mbd.getMonsterId());
+	  	
+	  	String aStr = mbd.getDialogueType();
+	  	try {
+	  		DialogueType type = DialogueType.valueOf(aStr);
+	  		mbdpb.setDialogueType(type);
+	  	} catch (Exception e) {
+	  		log.error("could not create DialogueType enum", e);
+	  	}
+	  	
+	  	mbdpb.setDialogue(mbd.getDialogue());
+	  	mbdpb.setProbabilityUttered(mbd.getProbabilityUttered());
+	  	
+	  	return mbdpb.build();
+	  }
 
 	//QUEST PROTO****************************************************************
 	@Override

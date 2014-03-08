@@ -20,6 +20,7 @@ import com.lvl6.mobsters.entitymanager.staticdata.utils.BoosterPackRetrieveUtils
 import com.lvl6.mobsters.entitymanager.staticdata.utils.CityRetrieveUtils;
 import com.lvl6.mobsters.entitymanager.staticdata.utils.EventPersistentRetrieveUtils;
 import com.lvl6.mobsters.entitymanager.staticdata.utils.ExpansionCostRetrieveUtils;
+import com.lvl6.mobsters.entitymanager.staticdata.utils.MonsterBattleDialogueRetrieveUtils;
 import com.lvl6.mobsters.entitymanager.staticdata.utils.MonsterLevelInfoRetrieveUtils;
 import com.lvl6.mobsters.entitymanager.staticdata.utils.MonsterRetrieveUtils;
 import com.lvl6.mobsters.entitymanager.staticdata.utils.QuestRetrieveUtils;
@@ -34,6 +35,7 @@ import com.lvl6.mobsters.entitymanager.staticdata.utils.TaskRetrieveUtils;
 import com.lvl6.mobsters.eventprotos.EventStartupProto.StartupResponseProto.StartupConstants;
 import com.lvl6.mobsters.noneventprotos.BoosterPackStuffProto.BoosterPackProto;
 import com.lvl6.mobsters.noneventprotos.CityProto.CityExpansionCostProto;
+import com.lvl6.mobsters.noneventprotos.MonsterStuffProto.MonsterBattleDialogueProto;
 import com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProto;
 import com.lvl6.mobsters.noneventprotos.StaticDataStuffProto.StaticDataProto;
 import com.lvl6.mobsters.noneventprotos.StructureProto.HospitalProto;
@@ -53,6 +55,7 @@ import com.lvl6.mobsters.po.staticdata.City;
 import com.lvl6.mobsters.po.staticdata.EventPersistent;
 import com.lvl6.mobsters.po.staticdata.ExpansionCost;
 import com.lvl6.mobsters.po.staticdata.Monster;
+import com.lvl6.mobsters.po.staticdata.MonsterBattleDialogue;
 import com.lvl6.mobsters.po.staticdata.MonsterLevelInfo;
 import com.lvl6.mobsters.po.staticdata.Quest;
 import com.lvl6.mobsters.po.staticdata.Structure;
@@ -127,6 +130,9 @@ public class MiscUtil {
 	
 	@Autowired
 	protected MonsterLevelInfoRetrieveUtils monsterLevelInfoRetrieveUtils;
+	
+	@Autowired
+	protected MonsterBattleDialogueRetrieveUtils monsterBattleDialogueRetrieveUtils;
 	
 	/*
 	 * aMap (the second argument) might be modified
@@ -276,6 +282,7 @@ public class MiscUtil {
 		setBoosterPackStuff(sdpb);
 		setStructures(sdpb);
 		setEvents(sdpb);
+		setMonsterDialogue(sdpb);
 		
 		return sdpb.build();
 	}
@@ -526,6 +533,24 @@ public class MiscUtil {
 		}
 	}
 	
+	private void setMonsterDialogue(StaticDataProto.Builder sdpb) {
+	  	Map<Integer, List<MonsterBattleDialogue>> monsterIdToDialogue =
+	  			getMonsterBattleDialogueRetrieveUtils().getMonsterIdToBattleDialogue();
+	  	
+	  	List<MonsterBattleDialogueProto> dialogueList = new ArrayList<MonsterBattleDialogueProto>();
+	  	for (List<MonsterBattleDialogue> dialogue : monsterIdToDialogue.values()) {
+	  		
+	  		for (MonsterBattleDialogue mbd : dialogue) {
+	  			MonsterBattleDialogueProto dialogueProto = getCreateNoneventProtoUtil()
+	  					.createMonsterBattleDialogueProto(mbd);
+	  			dialogueList.add(dialogueProto);
+	  		}
+	  	}
+	  	
+	  	sdpb.addAllMbds(dialogueList);
+	  }
+	
+	
 
 	//TODO: FINISH IMPLEMENTING THIS METHOD
 	public StartupConstants createStartupConstantsProto() {
@@ -710,6 +735,15 @@ public class MiscUtil {
 	public void setMonsterLevelInfoRetrieveUtils(
 			MonsterLevelInfoRetrieveUtils monsterLevelInfoRetrieveUtils) {
 		this.monsterLevelInfoRetrieveUtils = monsterLevelInfoRetrieveUtils;
+	}
+
+	public MonsterBattleDialogueRetrieveUtils getMonsterBattleDialogueRetrieveUtils() {
+		return monsterBattleDialogueRetrieveUtils;
+	}
+
+	public void setMonsterBattleDialogueRetrieveUtils(
+			MonsterBattleDialogueRetrieveUtils monsterBattleDialogueRetrieveUtils) {
+		this.monsterBattleDialogueRetrieveUtils = monsterBattleDialogueRetrieveUtils;
 	}
 	
 }
