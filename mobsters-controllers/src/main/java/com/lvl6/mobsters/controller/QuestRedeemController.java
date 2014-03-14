@@ -12,6 +12,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.lvl6.mobsters.controller.utils.CreateEventProtoUtil;
 import com.lvl6.mobsters.controller.utils.CreateNoneventProtoUtil;
 import com.lvl6.mobsters.entitymanager.staticdata.utils.QuestRetrieveUtils;
 import com.lvl6.mobsters.eventprotos.EventQuestProto.QuestRedeemRequestProto;
@@ -21,6 +22,7 @@ import com.lvl6.mobsters.eventprotos.EventQuestProto.QuestRedeemResponseProto.Qu
 import com.lvl6.mobsters.events.RequestEvent;
 import com.lvl6.mobsters.events.request.QuestRedeemRequestEvent;
 import com.lvl6.mobsters.events.response.QuestRedeemResponseEvent;
+import com.lvl6.mobsters.events.response.UpdateClientUserResponseEvent;
 import com.lvl6.mobsters.noneventprotos.MobstersEventProtocolProto.MobstersEventProtocolRequest;
 import com.lvl6.mobsters.noneventprotos.MonsterStuffProto.FullUserMonsterProto;
 import com.lvl6.mobsters.noneventprotos.QuestStuffProto.QuestProto;
@@ -62,7 +64,8 @@ public class QuestRedeemController extends EventController {
 	@Autowired
 	protected UserCurrencyHistoryService userCurrencyHistoryService;
 	
-
+	@Autowired
+	protected CreateEventProtoUtil createEventProtoUtil;
 	
 	public QuestRedeemController() {
 		numAllocatedThreads = 4;
@@ -103,6 +106,7 @@ public class QuestRedeemController extends EventController {
 		resEvent.setTag(event.getTag());
 
 		try {
+			User u = null;
 			//get whatever we need from the database
 			QuestForUser userQuest = getQuestForUserService()
 					.getSpecificUnredeemedUserQuest(userId, questId);
@@ -120,7 +124,7 @@ public class QuestRedeemController extends EventController {
 			}
 			
 			if (legitRedeem) {
-				User u = getUserService().getUserWithId(userId);
+				u = getUserService().getUserWithId(userId);
 				successful = writeChangesToDb(u, userId, questId, quest, userQuest,
 						timeRedeemed, maxCash);
 			}
@@ -134,6 +138,12 @@ public class QuestRedeemController extends EventController {
 			log.info("Writing event: " + resEvent);
 			getEventWriter().handleEvent(resEvent);	
 
+			if (successful) {
+				UpdateClientUserResponseEvent update = getCreateEventProtoUtil()
+						.createUpdateClientUserResponseEvent(u);
+				getEventWriter().handleEvent(update);
+			}
+			
 		} catch (Exception e) {
 			log.error("exception in QuestRedeemController processRequestEvent", e);
 
@@ -174,7 +184,7 @@ public class QuestRedeemController extends EventController {
 				availableQuestIds, questIdJustRedeemed);
 		
 		for (Quest q : availableQuests) {
-			QuestProto qp = getCreateNoneventProtoUtils().createQuestProtoFromQuest(q);
+			QuestProto qp = getCreateNoneventProtoUtil().createQuestProtoFromQuest(q);
 			responseBuilder.addNewlyAvailableQuests(qp);
 		}
 	}
@@ -191,7 +201,7 @@ public class QuestRedeemController extends EventController {
 	    	String mfusop = MobstersTableConstants.MFUSOP__QUEST + " " + questId;
 	    	List<MonsterForUser> rewardList = getMonsterForUserService()
 	    			.updateUserMonstersForUser(userId, monsterIdToNumPieces, mfusop, combineStartDate);
-	    	List<FullUserMonsterProto> rewardProtoList = getCreateNoneventProtoUtils()
+	    	List<FullUserMonsterProto> rewardProtoList = getCreateNoneventProtoUtil()
 	    			.createFullUserMonsterProtoList(rewardList);
 	    	
 	      if (rewardProtoList.isEmpty()) {
@@ -302,12 +312,12 @@ public class QuestRedeemController extends EventController {
 	public void setQuestForUserService(QuestForUserService questForUserService) {
 		this.questForUserService = questForUserService;
 	}
-
-	public CreateNoneventProtoUtil getCreateNoneventProtoUtils() {
+	
+	public CreateNoneventProtoUtil getCreateNoneventProtoUtil() {
 		return createNoneventProtoUtil;
 	}
-
-	public void setCreateNoneventProtoUtils(
+	
+	public void setCreateNoneventProtoUtil(
 			CreateNoneventProtoUtil createNoneventProtoUtil) {
 		this.createNoneventProtoUtil = createNoneventProtoUtil;
 	}
@@ -328,4 +338,13 @@ public class QuestRedeemController extends EventController {
 			UserCurrencyHistoryService userCurrencyHistoryService) {
 		this.userCurrencyHistoryService = userCurrencyHistoryService;
 	}
+
+	public CreateEventProtoUtil getCreateEventProtoUtil() {
+		return createEventProtoUtil;
+	}
+
+	public void setCreateEventProtoUtil(CreateEventProtoUtil createEventProtoUtil) {
+		this.createEventProtoUtil = createEventProtoUtil;
+	}
+	
 }

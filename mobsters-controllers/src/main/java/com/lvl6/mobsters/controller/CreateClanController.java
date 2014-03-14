@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.lvl6.mobsters.controller.utils.CreateEventProtoUtil;
+import com.lvl6.mobsters.controller.utils.CreateNoneventProtoUtil;
 import com.lvl6.mobsters.eventprotos.EventClanProto.CreateClanRequestProto;
 import com.lvl6.mobsters.eventprotos.EventClanProto.CreateClanResponseProto;
 import com.lvl6.mobsters.eventprotos.EventClanProto.CreateClanResponseProto.Builder;
@@ -19,8 +20,10 @@ import com.lvl6.mobsters.eventprotos.EventClanProto.CreateClanResponseProto.Crea
 import com.lvl6.mobsters.events.RequestEvent;
 import com.lvl6.mobsters.events.request.CreateClanRequestEvent;
 import com.lvl6.mobsters.events.response.CreateClanResponseEvent;
+import com.lvl6.mobsters.events.response.UpdateClientUserResponseEvent;
 import com.lvl6.mobsters.noneventprotos.ClanProto.UserClanStatus;
 import com.lvl6.mobsters.noneventprotos.MobstersEventProtocolProto.MobstersEventProtocolRequest;
+import com.lvl6.mobsters.noneventprotos.UserProto.MinimumClanProto;
 import com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto;
 import com.lvl6.mobsters.po.nonstaticdata.Clan;
 import com.lvl6.mobsters.po.nonstaticdata.ClanForUser;
@@ -51,6 +54,9 @@ public class CreateClanController extends EventController {
 	@Autowired
 	protected UserCurrencyHistoryService userCurrencyHistoryService;
 
+	@Autowired
+	protected CreateNoneventProtoUtil createNoneventProtoUtil;
+	
 	@Autowired
 	protected CreateEventProtoUtil createEventProtoUtil;
 	
@@ -122,6 +128,12 @@ public class CreateClanController extends EventController {
 			resEvent.setCreateClanResponseProto(responseBuilder.build());
 			log.info("Writing event: " + resEvent);
 			getEventWriter().handleEvent(resEvent);
+
+			if (successful) {
+				UpdateClientUserResponseEvent update = getCreateEventProtoUtil()
+						.createUpdateClientUserResponseEvent(user);
+				getEventWriter().handleEvent(update);
+			}
 			
 		} catch (Exception e) {
 			log.error("exception in CreateClanController processRequestEvent", e);
@@ -240,6 +252,11 @@ public class CreateClanController extends EventController {
 				log.info("recorded user currency change, change=" + uchList);
 			}
 			
+			//giving the clan to the client
+			MinimumClanProto mcp = getCreateNoneventProtoUtil()
+					.createMinimumClanProtoFromClan(aClan);
+			resBuilder.setClanInfo(mcp);
+			
 			return true;
 
 		} catch (Exception e) {
@@ -309,10 +326,19 @@ public class CreateClanController extends EventController {
 		this.userCurrencyHistoryService = userCurrencyHistoryService;
 	}
 
+	public CreateNoneventProtoUtil getCreateNoneventProtoUtil() {
+		return createNoneventProtoUtil;
+	}
+
+	public void setCreateNoneventProtoUtil(
+			CreateNoneventProtoUtil createNoneventProtoUtil) {
+		this.createNoneventProtoUtil = createNoneventProtoUtil;
+	}
+	
 	public CreateEventProtoUtil getCreateEventProtoUtil() {
 		return createEventProtoUtil;
 	}
-
+	
 	public void setCreateEventProtoUtil(CreateEventProtoUtil createEventProtoUtil) {
 		this.createEventProtoUtil = createEventProtoUtil;
 	}
