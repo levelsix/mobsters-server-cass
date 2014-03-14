@@ -16,6 +16,13 @@ message CreateClanRequestProto {
 	optional string tag = 3;
 	optional bool requestToJoinClanRequired = 4;
 	optional string description = 5;
+	
+	//if user needs, say, five more cash, then user can spend gems to replace
+	//said five cash. (positive number, server will convert it to negative)
+	optional int32 gemsSpent = 6;
+	
+	//positive means refund, negative means charge user
+	optional sint32 cashChange = 7;
 }
 
 message CreateClanResponseProto {
@@ -25,12 +32,12 @@ message CreateClanResponseProto {
 	
 	enum CreateClanStatus {
 		SUCCESS = 1;
-		OTHER_FAIL = 2;
-		NOT_ENOUGH_COINS = 3;
-		NAME_TAKEN = 4;
-		ALREADY_IN_CLAN = 5;
-		INVALID_TAG_LENGTH = 6;
-		TAG_TAKEN = 7;
+		FAIL_OTHER = 2;
+		FAIL_NOT_ENOUGH_CASH = 3;
+		FAIL_NAME_TAKEN = 4;
+		FAIL_ALREADY_IN_CLAN = 5;
+		FAIL_INVALID_TAG_LENGTH = 6;
+		FAIL_TAG_TAKEN = 7;
 	}	
 }
 
@@ -255,3 +262,24 @@ message ChangeClanJoinTypeResponseProto {
 }
 
 //------------------------------------------------------------------------------------------
+
+message PromoteDemoteClanMemberRequestProto {
+	optional MinimumUserProto sender = 1;
+	optional string victimUuid = 2;
+	optional UserClanStatus userClanStatus = 3 [default = MEMBER];
+}
+
+message PromoteDemoteClanMemberResponseProto {
+	optional MinimumUserProto sender = 1;
+	optional string victimUuid = 2;
+	optional UserClanStatus userClanStatus = 3 [default = MEMBER];
+	
+	optional PromoteDemoteClanMemberStatus status = 4;
+	
+	enum PromoteDemoteClanMemberStatus {
+		SUCCESS = 1;
+		FAIL_NOT_IN_CLAN = 2;
+		FAIL_NOT_AUTHORIZED = 3;
+		FAIL_OTHER = 4;		
+	}
+}

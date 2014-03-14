@@ -37,9 +37,11 @@ import com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageMonsterProto;
 import com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageProto;
 import com.lvl6.mobsters.noneventprotos.TaskProto.UserPersistentEventProto;
 import com.lvl6.mobsters.noneventprotos.UserProto.FullUserProto;
+import com.lvl6.mobsters.noneventprotos.UserProto.MinimumClanProto;
 import com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto;
 import com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProtoWithFacebookId;
 import com.lvl6.mobsters.noneventprotos.UserProto.UserFacebookInviteForSlotProto;
+import com.lvl6.mobsters.po.nonstaticdata.Clan;
 import com.lvl6.mobsters.po.nonstaticdata.EventPersistentForUser;
 import com.lvl6.mobsters.po.nonstaticdata.MonsterEnhancingForUser;
 import com.lvl6.mobsters.po.nonstaticdata.MonsterForUser;
@@ -68,6 +70,7 @@ import com.lvl6.mobsters.po.staticdata.StructureResourceGenerator;
 import com.lvl6.mobsters.po.staticdata.StructureResourceStorage;
 import com.lvl6.mobsters.po.staticdata.StructureTownHall;
 import com.lvl6.mobsters.po.staticdata.Task;
+import com.lvl6.mobsters.services.clan.ClanService;
 import com.lvl6.mobsters.utils.CoordinatePair;
 import com.lvl6.mobsters.utils.Dialogue;
 
@@ -91,6 +94,9 @@ public interface CreateNoneventProtoUtil {
 	
 	public abstract FullCityProto createFullCityProtoFromCity(City c,
 			List<Task> allTasksForCity);
+	
+	//CLAN PROTO****************************************************************
+	public abstract MinimumClanProto createMinimumClanProtoFromClan(Clan c);
 	
 	//MONSTER PROTO****************************************************************
 	public abstract List<FullUserMonsterProto> createFullUserMonsterProtoList(
@@ -179,4 +185,8 @@ public interface CreateNoneventProtoUtil {
 	public abstract UserFacebookInviteForSlotProto createUserFacebookInviteForSlotProtoFromInvite(
 			UserFacebookInviteForSlot invite, User inviter,
 			MinimumUserProtoWithFacebookId inviterProto);
+	
+	//for the setter dependency injection or something
+	public abstract ClanService getClanService();
+	public abstract void setClanService(ClanService clanService);
 }

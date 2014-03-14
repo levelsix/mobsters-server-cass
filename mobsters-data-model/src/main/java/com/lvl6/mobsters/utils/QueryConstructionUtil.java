@@ -12,23 +12,27 @@ import org.slf4j.LoggerFactory;
 public class QueryConstructionUtil {
 
 	private static final Logger log = LoggerFactory.getLogger(QueryConstructionUtil.class);
-	private final String and = " AND ";
-	private final String notNull = " NOT NULL ";
-	private final String nullStr = " NULL ";
-	private final String or = " OR ";
-	private final String comma = ",";
-	private final String equality = "=";
-	private final String greaterThan = ">";
-	private final String in = "IN"; 
-	private final String is = "IS"; 
-	private final String question = "?";
-	private final String space = " ";
-	private final int spaceLength = 1;
+	private final String COMMA = ",";
+	private final String EQUALITY = "=";
+	private final String GREATERTHAN = ">";
+	private final String PERCENT = "%";
+	
+	private final String AND = " AND ";
+	private final String NOTNULL = " NOT NULL ";
+	private final String NULLSTR = " NULL ";
+	private final String OR = " OR ";
+	private final String IN = "IN"; 
+	private final String IS = "IS"; 
+	private final String LIKE = "LIKE";
+	private final String QUESTION = "?";
+	private final String SPACE = " ";
+	private final int SPACELENGTH = 1;
 
 
-	//at the moment, just equality conditions and greater than conditions and 
-	//"in ()" conditions, the argument "values" is another return value. It will contain
-	//the values to be set into the CqlPreparedStatement in the proper order
+	//at the moment, just EQUALITY conditions, GREATER THAN conditions,  "IN ()" and IS
+	//conditions. the argument "values" is another return value. It will contain
+	//the values to be set into the CqlPreparedStatement IN the proper order, but is not
+	//used at the moment
 	public String selectRowsQueryAllConditions(String tableName, Map<String, ?> equalityConditions,
 			String equalityCondDelim, Map<String, ?> greaterThanConditions,
 			String greaterThanCondDelim, Map<String, Collection<?>> inConditions,
@@ -44,7 +48,7 @@ public class QueryConstructionUtil {
 		boolean emptyIsConditions = (null == isConditions || isConditions.isEmpty());
 
 		//(paranoia) if caller doesn't provide anything, select whole table
-		if (emptyEqConditions && emptyGtConditions && emptyInConditions) {
+		if (emptyEqConditions && emptyGtConditions && emptyInConditions && emptyIsConditions) {
 			sb.append(";");
 			String query = sb.toString();
 			log.info("no args provided. query=" + query);
@@ -55,16 +59,16 @@ public class QueryConstructionUtil {
 		//EQUALITY CONDITIONS
 		String conjunction = "";
 		if (!emptyEqConditions) {
-			String equalityConditionsStr = createComparisonConditionsString(
-					equalityConditions, values, equality, equalityCondDelim);
-			sb.append(equalityConditionsStr);
+			String eqConditionsStr = createComparisonConditionsString(equalityConditions,
+					EQUALITY, equalityCondDelim);
+			sb.append(eqConditionsStr);
 
 			conjunction = delimAcrossConditions;
 		}
 		//GREATER THAN CONDITIONS
 		if (!emptyGtConditions) {
 			String gtConditionsStr = createComparisonConditionsString(greaterThanConditions,
-					values, greaterThan, greaterThanCondDelim);
+					GREATERTHAN, greaterThanCondDelim);
 			sb.append(conjunction);
 			sb.append(gtConditionsStr);
 
@@ -88,7 +92,7 @@ public class QueryConstructionUtil {
 		}
 		// IS CONDITIONS
 		if (!emptyIsConditions) {
-			String strConditionStr = createIsConditionString(isConditions, values, isCondDelim);
+			String strConditionStr = createIsConditionString(isConditions, isCondDelim);
 			sb.append(conjunction);
 			sb.append(strConditionStr);
 			
@@ -103,9 +107,8 @@ public class QueryConstructionUtil {
 		return sb.toString();
 	}
 
-
-	//generalized method to construct a query, the argument "values" is another return
-	//value. It will contain the values to be set into the CqlPreparedStatement in the
+	//generalized method to construct a query, the argument "values" IS another return
+	//value. It will contain the values to be set into the CqlPreparedStatement IN the
 	//proper order
 	public String selectRowsQueryEqualityConditions(String tableName,
 			Map<String, ?> equalityConditions, String conditionDelimiter,
@@ -123,11 +126,11 @@ public class QueryConstructionUtil {
 
 		if (preparedStatement) {
 			String preparedEqualityConditionsStr = createPreparedComparisonConditionsString(
-					equalityConditions, values, equality, conditionDelimiter);
+					equalityConditions, values, EQUALITY, conditionDelimiter);
 			sb.append(preparedEqualityConditionsStr);
 		} else {
 			String equalityConditionsStr = createComparisonConditionsString(
-					equalityConditions, values, equality, conditionDelimiter);
+					equalityConditions, EQUALITY, conditionDelimiter);
 			sb.append(equalityConditionsStr);
 		}
 
@@ -137,18 +140,86 @@ public class QueryConstructionUtil {
 		return sb.toString();
 	}
 
-	//look at createComparisonConditionsString() for details. This is just a copy of it.
-	public String createPreparedComparisonConditionsString(Map<String, ?> equalityConditions,
+	//generalized method to construct a query, the argument "values" is another return
+	//value. It will contain the values to be set into the CqlPreparedStatement in the
+	//proper order, but not used at the moment
+	public String selectRowsQueryLikeConditions(String tableName, Map<String, ?> beginsWith,
+			String beginsWithCondDelim, Map<String, ?> beginsAndEndsWith,
+			String beginsAndEndsWithCondDelim, Map<String, ?> endsWith,
+			String endsWithCondDelim, String overallDelimiter, List<Object> values,
+			boolean preparedStatement) {
+		StringBuilder sb = new StringBuilder();
+		sb.append("select * from ");
+		sb.append(tableName);
+		
+		boolean emptyBeginsWith = (null == beginsWith || beginsWith.isEmpty());
+		boolean emptyBeginsAndEndsWith = (null == beginsAndEndsWith || beginsAndEndsWith.isEmpty());
+		boolean emptyEndsWith = (null == endsWith || endsWith.isEmpty());
+		
+		if (emptyBeginsWith && emptyBeginsAndEndsWith && emptyEndsWith) {
+			sb.append(";");
+			log.info("selectRowsQuery=" + sb.toString());
+			return sb.toString();
+		}
+		sb.append(" where ");
+		
+		String conjunction = "";
+		//PERCENT SIGN AT THE END
+		if (!emptyBeginsWith) {
+			String beginsWithConditionsStr = createLikeConditionsString(
+					beginsWith, beginsWithCondDelim, true, false);
+			sb.append(beginsWithConditionsStr);
+			
+			conjunction = overallDelimiter;
+		}
+		//PERCENT SIGN AT THE BEGINNING AND END
+		if (!emptyBeginsAndEndsWith) {
+			String beginsAndEndsWithCondStr = createLikeConditionsString(beginsAndEndsWith,
+					beginsAndEndsWithCondDelim, true, true);
+			sb.append(conjunction);
+			sb.append(beginsAndEndsWithCondStr);
+			
+			conjunction = overallDelimiter;
+		} else {
+			conjunction = "";
+		}
+		//PERCENT SIGN AT THE BEGINNING
+		if (!emptyEndsWith) {
+			String endsWithCondStr = createLikeConditionsString(beginsAndEndsWith,
+					beginsAndEndsWithCondDelim, true, true);
+			sb.append(conjunction);
+			sb.append(endsWithCondStr);
+			
+			conjunction = overallDelimiter;
+		} else {
+			conjunction = "";
+		}
+		
+		//close the query
+		sb.append(";");
+		log.info("(LIKE) selectRowsQuery=" + sb.toString() + "\t values=" + values);
+		return sb.toString();
+	}
+	
+	
+	
+	
+	
+
+	//the argument "values" is another return value. It will contain the values
+	//to be set into the CqlPreparedStatement IN the proper order.
+	//look at createComparisonConditionsString() for details. This IS just a copy of it.
+	public String createPreparedComparisonConditionsString(Map<String, ?> conditions,
 			List<Object> values, String comparator, String conditionDelimiter) {
 		List<Object> clauses = new ArrayList<Object>();
 
-		for (String key : equalityConditions.keySet()) {
+		for (String key : conditions.keySet()) {
 			StringBuilder clauseSb = new StringBuilder();
-			Object obj = equalityConditions.get(key);
+			Object obj = conditions.get(key);
 
 			clauseSb.append(key);
 			clauseSb.append(comparator);
-			clauseSb.append(question);
+			clauseSb.append(QUESTION);
 
 			values.add(obj);
 
@@ -161,26 +232,21 @@ public class QueryConstructionUtil {
 		return equalityConditionsStr;
 	}
 
-	//the argument "values" is another return value. It will contain the values
-	//to be set into the CqlPreparedStatement in the proper order. string
-	//will not be a prepared statement unless specified by boolean "preparedStatement"
-	public String createComparisonConditionsString(Map<String, ?> equalityConditions,
-			List<Object> values, String comparator, String conditionDelimiter) {
+	public String createComparisonConditionsString(Map<String, ?> conditions,
+			String comparator, String conditionDelimiter) {
 
 		List<Object> clauses = new ArrayList<Object>();
 
-		//stringify the equality conditions. 
+		//stringify the EQUALITY conditions. 
 		//e.g. Map(col1=>x, col2=>y,...,colN=>something) 
 		//col1 => x, now becomes String(col1) + String(=) + String(x)
-		for (String key : equalityConditions.keySet()) {
+		for (String key : conditions.keySet()) {
 			StringBuilder clauseSb = new StringBuilder();
-			Object obj = equalityConditions.get(key);
+			Object obj = conditions.get(key);
 
 			clauseSb.append(key);
 			clauseSb.append(comparator);
 			clauseSb.append(obj);
-
-			values.add(obj);
 
 			String clause = clauseSb.toString();
 			clauses.add(clause);
@@ -188,34 +254,31 @@ public class QueryConstructionUtil {
 
 		//We made Map(col1=>x, col2=>y,...,colN=>something) into 
 		//List(String(col1=x), String(col2=y),..., String(colN=Something))
-		//implode (join together) the equality conditions with "AND"
+		//implode (join together) the EQUALITY conditions with "AND"
 
 		//e.g. List becomes String(String(col1=x) + AND +...+String(colN=something))
 		String equalityConditionsStr = implode(clauses, conditionDelimiter); 
 
-		log.info("equalityConditionsStr=" + equalityConditionsStr + "\t values=" + values);
+		log.info("equalityConditionsStr=" + equalityConditionsStr);
 		return equalityConditionsStr;
 	}
 
 
-	public String createColInValuesString(String column, Collection<?> values) {
+	public String createColInValuesString(String column, Collection<?> inValues) {
 		StringBuilder sb = new StringBuilder();
 		sb.append(column);
-		sb.append(space);
-		sb.append(in);
-		sb.append(space);
+		sb.append(SPACE);
+		sb.append(IN);
+		sb.append(SPACE);
 
-		String valuesStr = implode(values, comma);
+		String valuesStr = implode(inValues, COMMA);
 		sb.append(valuesStr);
 
 		String result = sb.toString();
 		return result;
 	}
 	
-	//the argument "values" is another return value. It will contain the values
-	//to be set into the CqlPreparedStatement in the proper order. string
-	//will not be a prepared statement unless specified by boolean "preparedStatement"
-	public String createIsConditionString(Map<String, ?> isConditions, List<Object> values,
+	public String createIsConditionString(Map<String, ?> isConditions,
 			String conditionDelimiter) {
 		List<Object> clauses = new ArrayList<Object>();
 
@@ -224,12 +287,10 @@ public class QueryConstructionUtil {
 			Object obj = isConditions.get(key);
 
 			clauseSb.append(key);
-			clauseSb.append(space);
-			clauseSb.append(is);
-			clauseSb.append(space);
+			clauseSb.append(SPACE);
+			clauseSb.append(IS);
+			clauseSb.append(SPACE);
 			clauseSb.append(obj);
-
-			values.add(obj);
 
 			String clause = clauseSb.toString();
 			clauses.add(clause);
@@ -238,11 +299,75 @@ public class QueryConstructionUtil {
 
 		String isConditionsStr = implode(clauses, conditionDelimiter); 
 
-		log.info("equalityConditionsStr=" + isConditionsStr + "\t values=" + values);
+		log.info("equalityConditionsStr=" + isConditionsStr);
 		return isConditionsStr;
 	}
+	
+	public String createPreparedLikeConditionsString(Map<String, ?> likeCondition,
+			String likeCondDelim, boolean beginsWith, boolean endsWith, List<Object> values) {
+		List<Object> clauses = new ArrayList<Object>();
 
+		for (String key : likeCondition.keySet()) {
+			StringBuilder clauseSb = new StringBuilder();
+			Object obj = likeCondition.get(key);
 
+			clauseSb.append(key);
+			clauseSb.append(SPACE);
+			clauseSb.append(LIKE);
+			clauseSb.append(SPACE);
+			
+			if (endsWith) {
+				clauseSb.append(PERCENT);
+			}
+			clauseSb.append(QUESTION);
+			if (beginsWith) {
+				clauseSb.append(PERCENT);
+			}
+			values.add(obj);
+
+			String clause = clauseSb.toString();
+			clauses.add(clause);
+		}
+		String likeConditionsStr = implode(clauses, likeCondDelim); 
+
+		log.info("equalityConditionsStr=" + likeConditionsStr + "\t values=" + values);
+		return likeConditionsStr;
+	}
+	
+	public String createLikeConditionsString(Map<String, ?> likeCondition,
+			String likeCondDelim, boolean beginsWith, boolean endsWith) {
+		List<Object> clauses = new ArrayList<Object>();
+
+		for (String key : likeCondition.keySet()) {
+			StringBuilder clauseSb = new StringBuilder();
+			Object obj = likeCondition.get(key);
+
+			clauseSb.append(key);
+			clauseSb.append(SPACE);
+			clauseSb.append(LIKE);
+			clauseSb.append(SPACE);
+
+			if (endsWith) {
+				clauseSb.append(PERCENT);
+			}
+			clauseSb.append(obj);
+			if (beginsWith) {
+				clauseSb.append(PERCENT);
+			}
+
+			String clause = clauseSb.toString();
+			clauses.add(clause);
+		}
+		String likeConditionsStr = implode(clauses, likeCondDelim); 
+
+		log.info("equalityConditionsStr=" + likeConditionsStr);
+		return likeConditionsStr;
+	}
+
+	
+	
+	
+	
 	public String implode(Collection<?> thingsToImplode, String delimiter) {
 		if (null == thingsToImplode || thingsToImplode.isEmpty()) {
 			log.error("invalid parameters passed into StringUtils getListInString. clauses=" +
@@ -253,14 +378,14 @@ public class QueryConstructionUtil {
 
 		for (Object thing : thingsToImplode) {
 			strBuilder.append(thing);
-			strBuilder.append(space);
+			strBuilder.append(SPACE);
 			strBuilder.append(delimiter);
-			strBuilder.append(space);
+			strBuilder.append(SPACE);
 		}
 
 		int length = strBuilder.length();
 		int delimLength = delimiter.length(); 
-		return strBuilder.substring(0, length - delimLength - spaceLength);
+		return strBuilder.substring(0, length - delimLength - SPACELENGTH);
 	}
 
 	public List<Integer> explodeIntoInts(String stringToExplode, 
@@ -275,19 +400,19 @@ public class QueryConstructionUtil {
 
 
 	public String getAnd() {
-		return and;
+		return AND;
 	}
 
 	public String getNotNull() {
-		return notNull;
+		return NOTNULL;
 	}
 
 	public String getNullStr() {
-		return nullStr;
+		return NULLSTR;
 	}
 
 	public String getOr() {
-		return or;
+		return OR;
 	}
 	
 }

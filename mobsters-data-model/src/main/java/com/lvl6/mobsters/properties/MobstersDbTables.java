@@ -13,7 +13,7 @@ public class MobstersDbTables {
 //	public static final String TABLE_CITY_BOSS = "city_boss";
 //	public static final String TABLE_CITY_BOSS_SITE_FOR_USER = "city_boss_site_for_user";
 	public static final String TABLE_CITY_ELEMENT = "city_element";
-	public static final String TABLE_CLANS = "clan";
+	public static final String TABLE_CLAN = "clan";
 	public static final String TABLE_CLAN_CHAT_POST = "clan_chat_post";
 	public static final String TABLE_CLAN_FOR_USER = "clan_for_user";
 	public static final String TABLE_EVENT_PERSISTENT = "event_persistent";
@@ -120,13 +120,12 @@ public class MobstersDbTables {
 	public static final String CITY_BOSS_SITE_FOR_USER__TIME_OF_ENTRY = "time_of_entry";
 
 	/*CLANS*/
-	public static final String CLANS__ID = "id";
-	public static final String CLANS__OWNER_ID = "owner_id";
-	public static final String CLANS__NAME = "name";
-	public static final String CLANS__CREATE_TIME = "create_time";
-	public static final String CLANS__DESCRIPTION = "description";
-	public static final String CLANS__TAG = "tag";
-	public static final String CLANS__REQUEST_TO_JOIN_REQUIRED = "request_to_join_required";
+	public static final String CLAN__ID = "id";
+	public static final String CLAN__NAME = "name";
+	public static final String CLAN__CREATE_TIME = "create_time";
+	public static final String CLAN__DESCRIPTION = "description";
+	public static final String CLAN__TAG = "tag";
+	public static final String CLAN__REQUEST_TO_JOIN_REQUIRED = "request_to_join_required";
 
 	/*CLAN_CHAT_POSTS*/
 	public static final String CLAN_CHAT_POST__ID = GENERIC__ID;

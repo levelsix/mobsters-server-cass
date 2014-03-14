@@ -11,6 +11,7 @@ import java.util.UUID;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.lvl6.mobsters.noneventprotos.BoosterPackStuffProto.BoosterDisplayItemProto;
@@ -57,9 +58,11 @@ import com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageMonsterProto.MonsterT
 import com.lvl6.mobsters.noneventprotos.TaskProto.TaskStageProto;
 import com.lvl6.mobsters.noneventprotos.TaskProto.UserPersistentEventProto;
 import com.lvl6.mobsters.noneventprotos.UserProto.FullUserProto;
+import com.lvl6.mobsters.noneventprotos.UserProto.MinimumClanProto;
 import com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto;
 import com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProtoWithFacebookId;
 import com.lvl6.mobsters.noneventprotos.UserProto.UserFacebookInviteForSlotProto;
+import com.lvl6.mobsters.po.nonstaticdata.Clan;
 import com.lvl6.mobsters.po.nonstaticdata.EventPersistentForUser;
 import com.lvl6.mobsters.po.nonstaticdata.MonsterEnhancingForUser;
 import com.lvl6.mobsters.po.nonstaticdata.MonsterForUser;
@@ -88,6 +91,7 @@ import com.lvl6.mobsters.po.staticdata.StructureResourceGenerator;
 import com.lvl6.mobsters.po.staticdata.StructureResourceStorage;
 import com.lvl6.mobsters.po.staticdata.StructureTownHall;
 import com.lvl6.mobsters.po.staticdata.Task;
+import com.lvl6.mobsters.services.clan.ClanService;
 import com.lvl6.mobsters.utils.CoordinatePair;
 import com.lvl6.mobsters.utils.Dialogue;
 
@@ -106,6 +110,11 @@ public class CreateNoneventProtoUtilImpl implements CreateNoneventProtoUtil {
     }*/
 	
 	private static Logger log = LoggerFactory.getLogger(new Object() { }.getClass().getEnclosingClass());
+	
+	
+	@Autowired
+	protected ClanService clanService;
+	
 	
 	//BOOSTER PACK PROTO****************************************************************
 	@Override
@@ -286,6 +295,20 @@ public class CreateNoneventProtoUtilImpl implements CreateNoneventProtoUtil {
 		}
 
 		return builder.build();
+	}
+	
+	@Override
+	public MinimumClanProto createMinimumClanProtoFromClan(Clan c) {
+		MinimumClanProto.Builder mcp = MinimumClanProto.newBuilder();
+		
+		String clanUuidStr = c.getId().toString();
+		mcp.setClanUuid(clanUuidStr);
+		mcp.setName(c.getName());
+		//    mcp.setOwnerId(c.getOwnerId());
+		mcp.setCreateTime(c.getCreateTime().getTime());
+		mcp.setDescription(c.getDescription());
+		mcp.setTag(c.getTag());
+		return mcp.setRequestToJoinRequired(c.isRequestToJoinRequired()).build();
 	}
 
 	//MONSTER PROTO****************************************************************
@@ -1115,6 +1138,11 @@ public class CreateNoneventProtoUtilImpl implements CreateNoneventProtoUtil {
 		
 		//TODO: make the clan proto
 		UUID clanId = u.getClanId();
+		if (null != clanId) {
+			Clan c = getClanService().getClanWithId(clanId);
+			MinimumClanProto mcp = createMinimumClanProtoFromClan(c);
+			fupb.setClan(mcp);
+		}
 		
 		aBool = u.isHasReceivedFbReward();
 		fupb.setHasReceivedfbReward(aBool);
@@ -1248,4 +1276,16 @@ public class CreateNoneventProtoUtilImpl implements CreateNoneventProtoUtil {
 
 		return inviteProtoBuilder.build();
 	}
+
+	
+	
+	
+	public ClanService getClanService() {
+		return clanService;
+	}
+
+	public void setClanService(ClanService clanService) {
+		this.clanService = clanService;
+	}
+	
 }

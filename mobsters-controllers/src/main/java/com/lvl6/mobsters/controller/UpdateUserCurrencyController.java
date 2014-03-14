@@ -44,7 +44,7 @@ public class UpdateUserCurrencyController extends EventController {
 	protected CreateEventProtoUtil createEventProtoUtil;
 	
 	public UpdateUserCurrencyController() {
-		numAllocatedThreads = 1;
+		numAllocatedThreads = 4;
 	}
 	
 	@Override

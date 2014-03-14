@@ -12,6 +12,11 @@ public class MobstersTableConstants {
 	//this multiplies with the cost to heal all monsters on user's battle team
 	//BATTLE, DUNGEON
 	public static final float BATTLE__CONTINUE_GEM_COST_MULTIPLIER = 1.2F; 
+	
+	//CLAN CONSTANTS
+	public static final int CLAN__CREATE_CLAN_CASH_PRICE = 1000;
+	public static final int CLAN__MAX_NAME_LENGTH = 15;
+	public static final int CLAN__MAX_CLAN_TAG_LENGTH = 5;
 
 	public static final float MONSTER__CASH_PER_HEALTH_POINT = 0.5F;
 	public static final float MONSTER__SECONDS_TO_HEAL_PER_HEALTH_POINT = 2F;
