@@ -2069,15 +2069,15 @@ public final class EventClanProto {
     public enum LeaveClanStatus
         implements com.google.protobuf.ProtocolMessageEnum {
       SUCCESS(0, 1),
-      OTHER_FAIL(1, 2),
-      NOT_IN_CLAN(2, 3),
-      OWNER_OF_CLAN_WITH_OTHERS_STILL_IN(3, 4),
+      FAIL_OTHER(1, 2),
+      FAIL_NOT_IN_CLAN(2, 3),
+      FAIL_OWNER_OF_CLAN_WITH_OTHERS_STILL_IN(3, 4),
       ;
       
       public static final int SUCCESS_VALUE = 1;
-      public static final int OTHER_FAIL_VALUE = 2;
-      public static final int NOT_IN_CLAN_VALUE = 3;
-      public static final int OWNER_OF_CLAN_WITH_OTHERS_STILL_IN_VALUE = 4;
+      public static final int FAIL_OTHER_VALUE = 2;
+      public static final int FAIL_NOT_IN_CLAN_VALUE = 3;
+      public static final int FAIL_OWNER_OF_CLAN_WITH_OTHERS_STILL_IN_VALUE = 4;
       
       
       public final int getNumber() { return value; }
@@ -2085,9 +2085,9 @@ public final class EventClanProto {
       public static LeaveClanStatus valueOf(int value) {
         switch (value) {
           case 1: return SUCCESS;
-          case 2: return OTHER_FAIL;
-          case 3: return NOT_IN_CLAN;
-          case 4: return OWNER_OF_CLAN_WITH_OTHERS_STILL_IN;
+          case 2: return FAIL_OTHER;
+          case 3: return FAIL_NOT_IN_CLAN;
+          case 4: return FAIL_OWNER_OF_CLAN_WITH_OTHERS_STILL_IN;
           default: return null;
         }
       }
@@ -2118,7 +2118,7 @@ public final class EventClanProto {
       }
       
       private static final LeaveClanStatus[] VALUES = {
-        SUCCESS, OTHER_FAIL, NOT_IN_CLAN, OWNER_OF_CLAN_WITH_OTHERS_STILL_IN, 
+        SUCCESS, FAIL_OTHER, FAIL_NOT_IN_CLAN, FAIL_OWNER_OF_CLAN_WITH_OTHERS_STILL_IN, 
       };
       
       public static LeaveClanStatus valueOf(
@@ -16073,127 +16073,128 @@ public final class EventClanProto {
       "_ALREADY_IN_CLAN\020\005\022\033\n\027FAIL_INVALID_TAG_L" +
       "ENGTH\020\006\022\022\n\016FAIL_TAG_TAKEN\020\007\"@\n\025LeaveClan" +
       "RequestProto\022\'\n\006sender\030\001 \001(\0132\027.proto.Min" +
-      "imumUserProto\"\351\001\n\026LeaveClanResponseProto" +
+      "imumUserProto\"\363\001\n\026LeaveClanResponseProto" +
       "\022\'\n\006sender\030\001 \001(\0132\027.proto.MinimumUserProt" +
       "o\022=\n\006status\030\002 \001(\0162-.proto.LeaveClanRespo" +
-      "nseProto.LeaveClanStatus\"g\n\017LeaveClanSta",
-      "tus\022\013\n\007SUCCESS\020\001\022\016\n\nOTHER_FAIL\020\002\022\017\n\013NOT_" +
-      "IN_CLAN\020\003\022&\n\"OWNER_OF_CLAN_WITH_OTHERS_S" +
-      "TILL_IN\020\004\"X\n\033RequestJoinClanRequestProto" +
-      "\022\'\n\006sender\030\001 \001(\0132\027.proto.MinimumUserProt" +
-      "o\022\020\n\010clanUuid\030\002 \001(\t\"\311\003\n\034RequestJoinClanR" +
-      "esponseProto\022\'\n\006sender\030\001 \001(\0132\027.proto.Min" +
-      "imumUserProto\022I\n\006status\030\002 \001(\01629.proto.Re" +
-      "questJoinClanResponseProto.RequestJoinCl" +
-      "anStatus\022\020\n\010clanUuid\030\003 \001(\t\0222\n\trequester\030" +
-      "\004 \001(\0132\037.proto.MinimumUserProtoForClans\022(",
-      "\n\007minClan\030\005 \001(\0132\027.proto.MinimumClanProto" +
-      "\0222\n\010fullClan\030\006 \001(\0132 .proto.FullClanProto" +
-      "WithClanSize\"\220\001\n\025RequestJoinClanStatus\022\023" +
-      "\n\017REQUEST_SUCCESS\020\001\022\016\n\nOTHER_FAIL\020\002\022\023\n\017A" +
-      "LREADY_IN_CLAN\020\003\022\031\n\025REQUEST_ALREADY_FILE" +
-      "D\020\004\022\020\n\014JOIN_SUCCESS\020\005\022\020\n\014CLAN_IS_FULL\020\006\"" +
-      "_\n\"RetractRequestJoinClanRequestProto\022\'\n" +
-      "\006sender\030\001 \001(\0132\027.proto.MinimumUserProto\022\020" +
-      "\n\010clanUuid\030\002 \001(\t\"\240\002\n#RetractRequestJoinC" +
-      "lanResponseProto\022\'\n\006sender\030\001 \001(\0132\027.proto",
-      ".MinimumUserProto\022W\n\006status\030\002 \001(\0162G.prot" +
-      "o.RetractRequestJoinClanResponseProto.Re" +
-      "tractRequestJoinClanStatus\022\020\n\010clanUuid\030\003" +
-      " \001(\t\"e\n\034RetractRequestJoinClanStatus\022\013\n\007" +
-      "SUCCESS\020\001\022\016\n\nOTHER_FAIL\020\002\022\023\n\017ALREADY_IN_" +
-      "CLAN\020\003\022\023\n\017DID_NOT_REQUEST\020\004\"~\n,ApproveOr" +
-      "RejectRequestToJoinClanRequestProto\022\'\n\006s" +
-      "ender\030\001 \001(\0132\027.proto.MinimumUserProto\022\025\n\r" +
-      "requesterUuid\030\002 \001(\t\022\016\n\006accept\030\003 \001(\010\"\315\003\n-" +
-      "ApproveOrRejectRequestToJoinClanResponse",
-      "Proto\022\'\n\006sender\030\001 \001(\0132\027.proto.MinimumUse" +
-      "rProto\022k\n\006status\030\002 \001(\0162[.proto.ApproveOr" +
-      "RejectRequestToJoinClanResponseProto.App" +
-      "roveOrRejectRequestToJoinClanStatus\022\025\n\rr" +
-      "equesterUuid\030\003 \001(\t\022\016\n\006accept\030\004 \001(\010\022(\n\007mi" +
-      "nClan\030\005 \001(\0132\027.proto.MinimumClanProto\0222\n\010" +
-      "fullClan\030\006 \001(\0132 .proto.FullClanProtoWith" +
-      "ClanSize\"\200\001\n&ApproveOrRejectRequestToJoi" +
-      "nClanStatus\022\013\n\007SUCCESS\020\001\022\016\n\nOTHER_FAIL\020\002" +
-      "\022\r\n\tNOT_OWNER\020\003\022\023\n\017NOT_A_REQUESTER\020\004\022\025\n\021",
-      "ALREADY_IN_A_CLAN\020\005\"\250\002\n\034RetrieveClanInfo" +
-      "RequestProto\022\'\n\006sender\030\001 \001(\0132\027.proto.Min" +
-      "imumUserProto\022\020\n\010clanUuid\030\002 \001(\t\022\020\n\010clanN" +
-      "ame\030\003 \001(\t\022F\n\010grabType\030\004 \001(\01624.proto.Retr" +
-      "ieveClanInfoRequestProto.ClanInfoGrabTyp" +
-      "e\022\037\n\027excludingTheseClanUuids\030\005 \003(\t\022\031\n\021is" +
-      "ForBrowsingList\030\006 \001(\010\"7\n\020ClanInfoGrabTyp" +
-      "e\022\007\n\003ALL\020\001\022\r\n\tCLAN_INFO\020\002\022\013\n\007MEMBERS\020\003\"\246" +
-      "\003\n\035RetrieveClanInfoResponseProto\022\'\n\006send" +
-      "er\030\001 \001(\0132\027.proto.MinimumUserProto\0220\n\007mem",
-      "bers\030\002 \003(\0132\037.proto.MinimumUserProtoForCl" +
-      "ans\0222\n\010clanInfo\030\003 \003(\0132 .proto.FullClanPr" +
-      "otoWithClanSize\022K\n\006status\030\004 \001(\0162;.proto." +
-      "RetrieveClanInfoResponseProto.RetrieveCl" +
-      "anInfoStatus\022\023\n\013isForSearch\030\005 \001(\010\022\031\n\021isF" +
-      "orBrowsingList\030\006 \001(\010\022\021\n\tclanUuiId\030\007 \001(\t\022" +
-      "\020\n\010clanName\030\010 \001(\t\022\035\n\025excludingThisClanUu" +
-      "id\030\t \001(\t\"5\n\026RetrieveClanInfoStatus\022\013\n\007SU" +
-      "CCESS\020\001\022\016\n\nOTHER_FAIL\020\002\"f\n!TransferClanO" +
-      "wnershipRequestProto\022\'\n\006sender\030\001 \001(\0132\027.p",
-      "roto.MinimumUserProto\022\030\n\020clanOwnerUuidNe" +
-      "w\030\002 \001(\t\"\350\002\n\"TransferClanOwnershipRespons" +
-      "eProto\022\'\n\006sender\030\001 \001(\0132\027.proto.MinimumUs" +
-      "erProto\022U\n\006status\030\002 \001(\0162E.proto.Transfer" +
-      "ClanOwnershipResponseProto.TransferClanO" +
-      "wnershipStatus\022(\n\007minClan\030\003 \001(\0132\027.proto." +
-      "MinimumClanProto\0222\n\010fullClan\030\004 \001(\0132 .pro" +
-      "to.FullClanProtoWithClanSize\"d\n\033Transfer" +
-      "ClanOwnershipStatus\022\013\n\007SUCCESS\020\001\022\016\n\nOTHE" +
-      "R_FAIL\020\002\022\r\n\tNOT_OWNER\020\003\022\031\n\025NEW_OWNER_NOT",
-      "_IN_CLAN\020\004\"a\n!ChangeClanDescriptionReque" +
+      "nseProto.LeaveClanStatus\"q\n\017LeaveClanSta",
+      "tus\022\013\n\007SUCCESS\020\001\022\016\n\nFAIL_OTHER\020\002\022\024\n\020FAIL" +
+      "_NOT_IN_CLAN\020\003\022+\n\'FAIL_OWNER_OF_CLAN_WIT" +
+      "H_OTHERS_STILL_IN\020\004\"X\n\033RequestJoinClanRe" +
+      "questProto\022\'\n\006sender\030\001 \001(\0132\027.proto.Minim" +
+      "umUserProto\022\020\n\010clanUuid\030\002 \001(\t\"\311\003\n\034Reques" +
+      "tJoinClanResponseProto\022\'\n\006sender\030\001 \001(\0132\027" +
+      ".proto.MinimumUserProto\022I\n\006status\030\002 \001(\0162" +
+      "9.proto.RequestJoinClanResponseProto.Req" +
+      "uestJoinClanStatus\022\020\n\010clanUuid\030\003 \001(\t\0222\n\t" +
+      "requester\030\004 \001(\0132\037.proto.MinimumUserProto",
+      "ForClans\022(\n\007minClan\030\005 \001(\0132\027.proto.Minimu" +
+      "mClanProto\0222\n\010fullClan\030\006 \001(\0132 .proto.Ful" +
+      "lClanProtoWithClanSize\"\220\001\n\025RequestJoinCl" +
+      "anStatus\022\023\n\017REQUEST_SUCCESS\020\001\022\016\n\nOTHER_F" +
+      "AIL\020\002\022\023\n\017ALREADY_IN_CLAN\020\003\022\031\n\025REQUEST_AL" +
+      "READY_FILED\020\004\022\020\n\014JOIN_SUCCESS\020\005\022\020\n\014CLAN_" +
+      "IS_FULL\020\006\"_\n\"RetractRequestJoinClanReque" +
       "stProto\022\'\n\006sender\030\001 \001(\0132\027.proto.MinimumU" +
-      "serProto\022\023\n\013description\030\002 \001(\t\"\354\002\n\"Change" +
-      "ClanDescriptionResponseProto\022\'\n\006sender\030\001" +
-      " \001(\0132\027.proto.MinimumUserProto\022U\n\006status\030" +
-      "\002 \001(\0162E.proto.ChangeClanDescriptionRespo" +
-      "nseProto.ChangeClanDescriptionStatus\022(\n\007" +
-      "minClan\030\003 \001(\0132\027.proto.MinimumClanProto\0222" +
-      "\n\010fullClan\030\004 \001(\0132 .proto.FullClanProtoWi" +
-      "thClanSize\"h\n\033ChangeClanDescriptionStatu",
-      "s\022\013\n\007SUCCESS\020\001\022\016\n\nOTHER_FAIL\020\002\022\014\n\010TOO_LO" +
-      "NG\020\003\022\017\n\013NOT_IN_CLAN\020\004\022\r\n\tNOT_OWNER\020\005\"c\n\036" +
-      "BootPlayerFromClanRequestProto\022\'\n\006sender" +
-      "\030\001 \001(\0132\027.proto.MinimumUserProto\022\030\n\020playe" +
-      "rUuidToBoot\030\002 \001(\t\"\235\002\n\037BootPlayerFromClan" +
-      "ResponseProto\022\'\n\006sender\030\001 \001(\0132\027.proto.Mi" +
-      "nimumUserProto\022\030\n\020playerUuidToBoot\030\002 \001(\t" +
-      "\022O\n\006status\030\003 \001(\0162?.proto.BootPlayerFromC" +
-      "lanResponseProto.BootPlayerFromClanStatu" +
-      "s\"f\n\030BootPlayerFromClanStatus\022\013\n\007SUCCESS",
-      "\020\001\022\016\n\nOTHER_FAIL\020\002\022\025\n\021NOT_OWNER_OF_CLAN\020" +
-      "\003\022\026\n\022BOOTED_NOT_IN_CLAN\020\004\"h\n\036ChangeClanJ" +
-      "oinTypeRequestProto\022\'\n\006sender\030\001 \001(\0132\027.pr" +
-      "oto.MinimumUserProto\022\035\n\025requestToJoinReq" +
-      "uired\030\002 \001(\010\"\322\002\n\037ChangeClanJoinTypeRespon" +
-      "seProto\022\'\n\006sender\030\001 \001(\0132\027.proto.MinimumU" +
-      "serProto\022O\n\006status\030\002 \001(\0162?.proto.ChangeC" +
-      "lanJoinTypeResponseProto.ChangeClanJoinT" +
-      "ypeStatus\022(\n\007minClan\030\003 \001(\0132\027.proto.Minim" +
-      "umClanProto\0222\n\010fullClan\030\004 \001(\0132 .proto.Fu",
-      "llClanProtoWithClanSize\"W\n\030ChangeClanJoi" +
-      "nTypeStatus\022\013\n\007SUCCESS\020\001\022\016\n\nOTHER_FAIL\020\002" +
-      "\022\017\n\013NOT_IN_CLAN\020\003\022\r\n\tNOT_OWNER\020\004\"\231\001\n#Pro" +
-      "moteDemoteClanMemberRequestProto\022\'\n\006send" +
-      "er\030\001 \001(\0132\027.proto.MinimumUserProto\022\022\n\nvic" +
-      "timUuid\030\002 \001(\t\0225\n\016userClanStatus\030\003 \001(\0162\025." +
-      "proto.UserClanStatus:\006MEMBER\"\342\002\n$Promote" +
-      "DemoteClanMemberResponseProto\022\'\n\006sender\030" +
-      "\001 \001(\0132\027.proto.MinimumUserProto\022\022\n\nvictim" +
-      "Uuid\030\002 \001(\t\0225\n\016userClanStatus\030\003 \001(\0162\025.pro",
-      "to.UserClanStatus:\006MEMBER\022Y\n\006status\030\004 \001(" +
-      "\0162I.proto.PromoteDemoteClanMemberRespons" +
-      "eProto.PromoteDemoteClanMemberStatus\"k\n\035" +
-      "PromoteDemoteClanMemberStatus\022\013\n\007SUCCESS" +
-      "\020\001\022\024\n\020FAIL_NOT_IN_CLAN\020\002\022\027\n\023FAIL_NOT_AUT" +
-      "HORIZED\020\003\022\016\n\nFAIL_OTHER\020\004B/\n\035com.lvl6.mo" +
-      "bsters.eventprotosB\016EventClanProto"
+      "serProto\022\020\n\010clanUuid\030\002 \001(\t\"\240\002\n#RetractRe" +
+      "questJoinClanResponseProto\022\'\n\006sender\030\001 \001",
+      "(\0132\027.proto.MinimumUserProto\022W\n\006status\030\002 " +
+      "\001(\0162G.proto.RetractRequestJoinClanRespon" +
+      "seProto.RetractRequestJoinClanStatus\022\020\n\010" +
+      "clanUuid\030\003 \001(\t\"e\n\034RetractRequestJoinClan" +
+      "Status\022\013\n\007SUCCESS\020\001\022\016\n\nOTHER_FAIL\020\002\022\023\n\017A" +
+      "LREADY_IN_CLAN\020\003\022\023\n\017DID_NOT_REQUEST\020\004\"~\n" +
+      ",ApproveOrRejectRequestToJoinClanRequest" +
+      "Proto\022\'\n\006sender\030\001 \001(\0132\027.proto.MinimumUse" +
+      "rProto\022\025\n\rrequesterUuid\030\002 \001(\t\022\016\n\006accept\030" +
+      "\003 \001(\010\"\315\003\n-ApproveOrRejectRequestToJoinCl",
+      "anResponseProto\022\'\n\006sender\030\001 \001(\0132\027.proto." +
+      "MinimumUserProto\022k\n\006status\030\002 \001(\0162[.proto" +
+      ".ApproveOrRejectRequestToJoinClanRespons" +
+      "eProto.ApproveOrRejectRequestToJoinClanS" +
+      "tatus\022\025\n\rrequesterUuid\030\003 \001(\t\022\016\n\006accept\030\004" +
+      " \001(\010\022(\n\007minClan\030\005 \001(\0132\027.proto.MinimumCla" +
+      "nProto\0222\n\010fullClan\030\006 \001(\0132 .proto.FullCla" +
+      "nProtoWithClanSize\"\200\001\n&ApproveOrRejectRe" +
+      "questToJoinClanStatus\022\013\n\007SUCCESS\020\001\022\016\n\nOT" +
+      "HER_FAIL\020\002\022\r\n\tNOT_OWNER\020\003\022\023\n\017NOT_A_REQUE",
+      "STER\020\004\022\025\n\021ALREADY_IN_A_CLAN\020\005\"\250\002\n\034Retrie" +
+      "veClanInfoRequestProto\022\'\n\006sender\030\001 \001(\0132\027" +
+      ".proto.MinimumUserProto\022\020\n\010clanUuid\030\002 \001(" +
+      "\t\022\020\n\010clanName\030\003 \001(\t\022F\n\010grabType\030\004 \001(\01624." +
+      "proto.RetrieveClanInfoRequestProto.ClanI" +
+      "nfoGrabType\022\037\n\027excludingTheseClanUuids\030\005" +
+      " \003(\t\022\031\n\021isForBrowsingList\030\006 \001(\010\"7\n\020ClanI" +
+      "nfoGrabType\022\007\n\003ALL\020\001\022\r\n\tCLAN_INFO\020\002\022\013\n\007M" +
+      "EMBERS\020\003\"\246\003\n\035RetrieveClanInfoResponsePro" +
+      "to\022\'\n\006sender\030\001 \001(\0132\027.proto.MinimumUserPr",
+      "oto\0220\n\007members\030\002 \003(\0132\037.proto.MinimumUser" +
+      "ProtoForClans\0222\n\010clanInfo\030\003 \003(\0132 .proto." +
+      "FullClanProtoWithClanSize\022K\n\006status\030\004 \001(" +
+      "\0162;.proto.RetrieveClanInfoResponseProto." +
+      "RetrieveClanInfoStatus\022\023\n\013isForSearch\030\005 " +
+      "\001(\010\022\031\n\021isForBrowsingList\030\006 \001(\010\022\021\n\tclanUu" +
+      "iId\030\007 \001(\t\022\020\n\010clanName\030\010 \001(\t\022\035\n\025excluding" +
+      "ThisClanUuid\030\t \001(\t\"5\n\026RetrieveClanInfoSt" +
+      "atus\022\013\n\007SUCCESS\020\001\022\016\n\nOTHER_FAIL\020\002\"f\n!Tra" +
+      "nsferClanOwnershipRequestProto\022\'\n\006sender",
+      "\030\001 \001(\0132\027.proto.MinimumUserProto\022\030\n\020clanO" +
+      "wnerUuidNew\030\002 \001(\t\"\350\002\n\"TransferClanOwners" +
+      "hipResponseProto\022\'\n\006sender\030\001 \001(\0132\027.proto" +
+      ".MinimumUserProto\022U\n\006status\030\002 \001(\0162E.prot" +
+      "o.TransferClanOwnershipResponseProto.Tra" +
+      "nsferClanOwnershipStatus\022(\n\007minClan\030\003 \001(" +
+      "\0132\027.proto.MinimumClanProto\0222\n\010fullClan\030\004" +
+      " \001(\0132 .proto.FullClanProtoWithClanSize\"d" +
+      "\n\033TransferClanOwnershipStatus\022\013\n\007SUCCESS" +
+      "\020\001\022\016\n\nOTHER_FAIL\020\002\022\r\n\tNOT_OWNER\020\003\022\031\n\025NEW",
+      "_OWNER_NOT_IN_CLAN\020\004\"a\n!ChangeClanDescri" +
+      "ptionRequestProto\022\'\n\006sender\030\001 \001(\0132\027.prot" +
+      "o.MinimumUserProto\022\023\n\013description\030\002 \001(\t\"" +
+      "\354\002\n\"ChangeClanDescriptionResponseProto\022\'" +
+      "\n\006sender\030\001 \001(\0132\027.proto.MinimumUserProto\022" +
+      "U\n\006status\030\002 \001(\0162E.proto.ChangeClanDescri" +
+      "ptionResponseProto.ChangeClanDescription" +
+      "Status\022(\n\007minClan\030\003 \001(\0132\027.proto.MinimumC" +
+      "lanProto\0222\n\010fullClan\030\004 \001(\0132 .proto.FullC" +
+      "lanProtoWithClanSize\"h\n\033ChangeClanDescri",
+      "ptionStatus\022\013\n\007SUCCESS\020\001\022\016\n\nOTHER_FAIL\020\002" +
+      "\022\014\n\010TOO_LONG\020\003\022\017\n\013NOT_IN_CLAN\020\004\022\r\n\tNOT_O" +
+      "WNER\020\005\"c\n\036BootPlayerFromClanRequestProto" +
+      "\022\'\n\006sender\030\001 \001(\0132\027.proto.MinimumUserProt" +
+      "o\022\030\n\020playerUuidToBoot\030\002 \001(\t\"\235\002\n\037BootPlay" +
+      "erFromClanResponseProto\022\'\n\006sender\030\001 \001(\0132" +
+      "\027.proto.MinimumUserProto\022\030\n\020playerUuidTo" +
+      "Boot\030\002 \001(\t\022O\n\006status\030\003 \001(\0162?.proto.BootP" +
+      "layerFromClanResponseProto.BootPlayerFro" +
+      "mClanStatus\"f\n\030BootPlayerFromClanStatus\022",
+      "\013\n\007SUCCESS\020\001\022\016\n\nOTHER_FAIL\020\002\022\025\n\021NOT_OWNE" +
+      "R_OF_CLAN\020\003\022\026\n\022BOOTED_NOT_IN_CLAN\020\004\"h\n\036C" +
+      "hangeClanJoinTypeRequestProto\022\'\n\006sender\030" +
+      "\001 \001(\0132\027.proto.MinimumUserProto\022\035\n\025reques" +
+      "tToJoinRequired\030\002 \001(\010\"\322\002\n\037ChangeClanJoin" +
+      "TypeResponseProto\022\'\n\006sender\030\001 \001(\0132\027.prot" +
+      "o.MinimumUserProto\022O\n\006status\030\002 \001(\0162?.pro" +
+      "to.ChangeClanJoinTypeResponseProto.Chang" +
+      "eClanJoinTypeStatus\022(\n\007minClan\030\003 \001(\0132\027.p" +
+      "roto.MinimumClanProto\0222\n\010fullClan\030\004 \001(\0132",
+      " .proto.FullClanProtoWithClanSize\"W\n\030Cha" +
+      "ngeClanJoinTypeStatus\022\013\n\007SUCCESS\020\001\022\016\n\nOT" +
+      "HER_FAIL\020\002\022\017\n\013NOT_IN_CLAN\020\003\022\r\n\tNOT_OWNER" +
+      "\020\004\"\231\001\n#PromoteDemoteClanMemberRequestPro" +
+      "to\022\'\n\006sender\030\001 \001(\0132\027.proto.MinimumUserPr" +
+      "oto\022\022\n\nvictimUuid\030\002 \001(\t\0225\n\016userClanStatu" +
+      "s\030\003 \001(\0162\025.proto.UserClanStatus:\006MEMBER\"\342" +
+      "\002\n$PromoteDemoteClanMemberResponseProto\022" +
+      "\'\n\006sender\030\001 \001(\0132\027.proto.MinimumUserProto" +
+      "\022\022\n\nvictimUuid\030\002 \001(\t\0225\n\016userClanStatus\030\003",
+      " \001(\0162\025.proto.UserClanStatus:\006MEMBER\022Y\n\006s" +
+      "tatus\030\004 \001(\0162I.proto.PromoteDemoteClanMem" +
+      "berResponseProto.PromoteDemoteClanMember" +
+      "Status\"k\n\035PromoteDemoteClanMemberStatus\022" +
+      "\013\n\007SUCCESS\020\001\022\024\n\020FAIL_NOT_IN_CLAN\020\002\022\027\n\023FA" +
+      "IL_NOT_AUTHORIZED\020\003\022\016\n\nFAIL_OTHER\020\004B/\n\035c" +
+      "om.lvl6.mobsters.eventprotosB\016EventClanP" +
+      "roto"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {

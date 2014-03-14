@@ -4,8 +4,10 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.UUID;
 
 import org.slf4j.Logger;
@@ -14,7 +16,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.lvl6.mobsters.entitymanager.nonstaticdata.ClanForUserEntityManager;
-import com.lvl6.mobsters.po.nonstaticdata.Clan;
 import com.lvl6.mobsters.po.nonstaticdata.ClanForUser;
 import com.lvl6.mobsters.properties.MobstersDbTables;
 import com.lvl6.mobsters.utils.QueryConstructionUtil;
@@ -35,12 +36,49 @@ public class ClanForUserServiceImpl implements ClanForUserService {
 	
 
 	//CONTROLLER LOGIC STUFF****************************************************************
+	@Override
+	public Set<UUID> getUserIdsFromUserClans(Collection<ClanForUser> userClans) {
+		Set<UUID> userIds = new HashSet<UUID>();
+		
+		for (ClanForUser cfu : userClans) {
+			UUID userId = cfu.getUserId();
+			userIds.add(userId);
+		}
+		
+		return userIds;
+	}
 	
+	@Override
+	public Set<UUID> getUserIdsForStatuses(Collection<ClanForUser> userClans,
+			Set<String> statuses) {
+		Set<UUID> userIds = new HashSet<UUID>();
+		
+		for (ClanForUser uc : userClans) {
+			UUID userId = uc.getUserId();
+			
+			if (!statuses.contains(uc.getStatus())) {
+				continue;
+			}
+			userIds.add(userId);
+		}
+		
+		return userIds;
+	}
+	
+	@Override
+	public ClanForUser getClanForUserForUserId(UUID userId, List<ClanForUser> cfuList) {
+		for(ClanForUser cfu : cfuList) {
+			UUID cfuUserId = cfu.getUserId();
+			
+			if (userId.equals(cfuUserId)) {
+				return cfu;
+			}
+		}
+		return null;
+	}
 
 
 	//RETRIEVING STUFF****************************************************************
-	
-	
 	@Override
 	public ClanForUser getSpecificClanForUserWithId(UUID userClanId) {
 		log.debug("retrieving clan with id " + userClanId);
@@ -107,6 +145,42 @@ public class ClanForUserServiceImpl implements ClanForUserService {
 		}
 		return userIdsToUserClans;
 	}
+	
+	@Override
+	public List<ClanForUser> getUserClansForStatuses(UUID clanId, Collection<String> statuses) {
+		log.debug("retrieving user clan info for clan " + clanId + "\t statuses=" + statuses);
+		//construct the search parameters
+		Map<String, Object> equalityConditions = new HashMap<String, Object>();
+		equalityConditions.put(MobstersDbTables.CLAN_FOR_USER__CLAN_ID, clanId);
+		String equalityCondDelim = getQueryConstructionUtil().getAnd();
+
+		Map<String, Object> greaterThanConditions = null;
+		String greaterThanCondDelim = getQueryConstructionUtil().getAnd();
+
+		Map<String, Collection<?>> inConditions = null;
+		if(null != statuses && !statuses.isEmpty()) {
+			inConditions = new HashMap<String, Collection<?>>();
+			inConditions.put(MobstersDbTables.CLAN_FOR_USER__STATUS, statuses);
+		}
+		String inCondDelim = getQueryConstructionUtil().getAnd();
+
+		Map<String, Collection<?>> isConditions = null;
+		String isCondDelim = null;
+		String delimAcrossConditions = getQueryConstructionUtil().getAnd();
+
+		//query db, "values" is not used
+		//(its purpose is to hold the values that were supposed to be put
+		//into a prepared statement)
+		List<Object> values = new ArrayList<Object>();
+		String cqlQuery = getQueryConstructionUtil().selectRowsQueryAllConditions(
+				TABLE_NAME, equalityConditions, equalityCondDelim, greaterThanConditions,
+				greaterThanCondDelim, isConditions, isCondDelim, inConditions,
+				inCondDelim, delimAcrossConditions, values);
+		List<ClanForUser> cfuList = getClanForUserEntityManager().get().find(cqlQuery);
+		
+		return cfuList;
+	}
+	
 
 	//INSERTING STUFF****************************************************************
 	@Override
@@ -146,6 +220,12 @@ public class ClanForUserServiceImpl implements ClanForUserService {
 		}
 	}
 
+	@Override
+	public void deleteUserClan(ClanForUser cfu) {
+		UUID id = cfu.getId();
+		getClanForUserEntityManager().get().delete(id);
+	}
+	
 
 	//for the setter dependency injection or something
 	@Override

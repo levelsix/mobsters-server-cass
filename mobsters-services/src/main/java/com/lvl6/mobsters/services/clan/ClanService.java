@@ -7,6 +7,8 @@ import java.util.UUID;
 
 import com.lvl6.mobsters.entitymanager.nonstaticdata.ClanEntityManager;
 import com.lvl6.mobsters.po.nonstaticdata.Clan;
+import com.lvl6.mobsters.po.nonstaticdata.ClanForUser;
+import com.lvl6.mobsters.services.clanforuser.ClanForUserService;
 import com.lvl6.mobsters.utils.QueryConstructionUtil;
 
 
@@ -16,7 +18,7 @@ public interface ClanService {
 
 
 	//RETRIEVING STUFF****************************************************************
-	public abstract Clan getClanWithId(UUID wallPostId);
+	public abstract Clan getClanWithId(UUID clanId);
 	
 	public abstract Map<UUID, Clan> getClansByIds(List<UUID> clanIds);
 	
@@ -32,13 +34,13 @@ public interface ClanService {
 	
 
 	//SAVING STUFF****************************************************************
-	public abstract void saveClan(Clan ccp);
+	public abstract void saveClan(Clan c);
 
 	//UPDATING STUFF****************************************************************
-	public abstract void updateUserClanStatus(Clan cfu, String newStatus);
+	public abstract void updateUserClanStatus(Clan c, String newStatus);
 
 	//DELETING STUFF****************************************************************
-
+	public abstract void deleteClan(Clan c, List<ClanForUser> clanPpl);
 
 	//for the setter dependency injection or something
 	public abstract ClanEntityManager getClanEntityManager();
@@ -48,6 +50,7 @@ public interface ClanService {
 	public abstract QueryConstructionUtil getQueryConstructionUtil();
 	public abstract void setQueryConstructionUtil(QueryConstructionUtil queryConstructionUtil);
 
-
+	public abstract ClanForUserService getClanForUserService();
+	public abstract void setClanForUserService(ClanForUserService clanForUserService);
 
 }

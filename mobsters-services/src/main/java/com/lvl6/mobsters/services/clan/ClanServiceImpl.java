@@ -15,8 +15,9 @@ import org.springframework.stereotype.Component;
 
 import com.lvl6.mobsters.entitymanager.nonstaticdata.ClanEntityManager;
 import com.lvl6.mobsters.po.nonstaticdata.Clan;
-import com.lvl6.mobsters.po.nonstaticdata.MonsterForUser;
+import com.lvl6.mobsters.po.nonstaticdata.ClanForUser;
 import com.lvl6.mobsters.properties.MobstersDbTables;
+import com.lvl6.mobsters.services.clanforuser.ClanForUserService;
 import com.lvl6.mobsters.utils.QueryConstructionUtil;
 
 @Component
@@ -33,6 +34,8 @@ public class ClanServiceImpl implements ClanService {
 	@Autowired
 	protected QueryConstructionUtil queryConstructionUtil;
 	
+	@Autowired
+	protected ClanForUserService clanForUserService;
 
 	//CONTROLLER LOGIC STUFF****************************************************************
 	
@@ -44,6 +47,9 @@ public class ClanServiceImpl implements ClanService {
 	@Override
 	public Clan getClanWithId(UUID clanId) {
 		log.debug("retrieving clan with id " + clanId);
+		if (null == clanId) {
+			return null;
+		}
 		
 	    Clan ccp = getClanEntityManager().get().get(clanId);
 	    return ccp;
@@ -185,6 +191,16 @@ public class ClanServiceImpl implements ClanService {
 
 	
 	//DELETING STUFF****************************************************************
+	public void deleteClan(Clan c, List<ClanForUser> clanPpl) {
+		UUID clanId = c.getId();
+		
+		getClanEntityManager().get().delete(clanId);
+		
+		if (null != clanPpl && !clanPpl.isEmpty()) {
+			//when deleting clan need to delete all the entries relating to it
+			getClanForUserService().deleteUserClans(clanPpl);
+		}
+	}
 
 
 	//for the setter dependency injection or something
@@ -205,6 +221,15 @@ public class ClanServiceImpl implements ClanService {
 	@Override
 	public void setQueryConstructionUtil(QueryConstructionUtil queryConstructionUtil) {
 		this.queryConstructionUtil = queryConstructionUtil;
+	}
+	
+	@Override
+	public ClanForUserService getClanForUserService() {
+		return clanForUserService;
+	}
+	@Override
+	public void setClanForUserService(ClanForUserService clanForUserService) {
+		this.clanForUserService = clanForUserService;
 	}
 	
 }

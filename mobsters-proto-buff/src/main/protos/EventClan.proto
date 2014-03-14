@@ -54,9 +54,9 @@ message LeaveClanResponseProto {
 	
 	enum LeaveClanStatus {
 		SUCCESS = 1;
-		OTHER_FAIL = 2;
-		NOT_IN_CLAN = 3;
-		OWNER_OF_CLAN_WITH_OTHERS_STILL_IN = 4;
+		FAIL_OTHER = 2;
+		FAIL_NOT_IN_CLAN = 3;
+		FAIL_OWNER_OF_CLAN_WITH_OTHERS_STILL_IN = 4;
 	}	
 }
 

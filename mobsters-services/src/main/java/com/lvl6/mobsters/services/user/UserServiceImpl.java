@@ -372,6 +372,11 @@ public class UserServiceImpl implements UserService {
 		saveUser(u);
 	}
 	
+	@Override
+	public void updateDeleteClanId(User u) {
+		u.setClanId(null);
+		saveUser(u);
+	}
 	
 	//setters and getters for the Setter Dependency Injection (or something)****************************************************************
 	@Override

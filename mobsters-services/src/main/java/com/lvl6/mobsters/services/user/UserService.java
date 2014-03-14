@@ -58,6 +58,8 @@ public interface UserService {
 
 	public abstract void updateFacebookId(User u, String fbId);
 	
+	public abstract void updateDeleteClanId(User u);
+	
 	//setters and getters for the Setter Dependency Injection (or something)****************************************************************
 	public abstract UserEntityManager getUserEntityManager();
 
