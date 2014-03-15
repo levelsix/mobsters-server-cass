@@ -180,6 +180,33 @@ public class ClanForUserServiceImpl implements ClanForUserService {
 		
 		return cfuList;
 	}
+	@Override
+	public ClanForUser getUserClanForUserAndClanId(UUID userId, UUID clanId) {
+		log.debug("retrieving user clan info for clan " + clanId + "\t userId=" + userId);
+		//construct the search parameters
+		Map<String, Object> equalityConditions = new HashMap<String, Object>();
+		equalityConditions.put(MobstersDbTables.CLAN_FOR_USER__CLAN_ID, clanId);
+		equalityConditions.put(MobstersDbTables.CLAN_FOR_USER__USER_ID, userId);
+		String eqCondDelim = getQueryConstructionUtil().getAnd();
+
+		//query db, "values" is not used 
+		//(its purpose is to hold the values that were supposed to be put
+		// into a prepared statement)
+		List<Object> values = new ArrayList<Object>();
+		boolean preparedStatement = false;
+		String cqlQuery = getQueryConstructionUtil().selectRowsQueryEqualityConditions(
+				TABLE_NAME, equalityConditions, eqCondDelim, values, preparedStatement);
+		List<ClanForUser> cfuList = getClanForUserEntityManager().get().find(cqlQuery);
+
+		if (null != cfuList && !cfuList.isEmpty()) {
+			if (1 == cfuList.size()) {
+				return cfuList.get(0);
+			}
+			log.error("user clan entries total more than one. entries=" + cfuList);
+		}
+		//no entries in this clan for this user
+		return null;
+	}
 	
 
 	//INSERTING STUFF****************************************************************
@@ -224,6 +251,14 @@ public class ClanForUserServiceImpl implements ClanForUserService {
 	public void deleteUserClan(ClanForUser cfu) {
 		UUID id = cfu.getId();
 		getClanForUserEntityManager().get().delete(id);
+	}
+	
+	@Override
+	public void deleteUserClansForUserProspective(UUID userId) {
+		ClanForUser cfu = new ClanForUser();
+		cfu.setId(null);
+		cfu.setUserId(userId);
+		getClanForUserEntityManager().get().remove(cfu);
 	}
 	
 

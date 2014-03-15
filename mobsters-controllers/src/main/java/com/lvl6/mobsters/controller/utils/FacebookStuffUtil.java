@@ -5,10 +5,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
+import org.springframework.stereotype.Component;
+
 import com.lvl6.mobsters.eventprotos.EventMonsterProto.InviteFbFriendsForSlotsRequestProto.FacebookInviteStructure;
-
-
 //utility class that messes with protos
+@Component
 public class FacebookStuffUtil {
 	
 	public List<String> demultiplexFacebookInviteStructure(List<FacebookInviteStructure> invites,

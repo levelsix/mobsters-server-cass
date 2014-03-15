@@ -11,6 +11,8 @@ import com.lvl6.mobsters.noneventprotos.BoosterPackStuffProto.BoosterPackProto;
 import com.lvl6.mobsters.noneventprotos.CityProto.CityElementProto;
 import com.lvl6.mobsters.noneventprotos.CityProto.CityExpansionCostProto;
 import com.lvl6.mobsters.noneventprotos.CityProto.FullCityProto;
+import com.lvl6.mobsters.noneventprotos.ClanProto.FullUserClanProto;
+import com.lvl6.mobsters.noneventprotos.ClanProto.MinimumUserProtoForClans;
 import com.lvl6.mobsters.noneventprotos.MonsterStuffProto.FullUserMonsterProto;
 import com.lvl6.mobsters.noneventprotos.MonsterStuffProto.MonsterBattleDialogueProto;
 import com.lvl6.mobsters.noneventprotos.MonsterStuffProto.MonsterLevelInfoProto;
@@ -42,6 +44,7 @@ import com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto;
 import com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProtoWithFacebookId;
 import com.lvl6.mobsters.noneventprotos.UserProto.UserFacebookInviteForSlotProto;
 import com.lvl6.mobsters.po.nonstaticdata.Clan;
+import com.lvl6.mobsters.po.nonstaticdata.ClanForUser;
 import com.lvl6.mobsters.po.nonstaticdata.EventPersistentForUser;
 import com.lvl6.mobsters.po.nonstaticdata.MonsterEnhancingForUser;
 import com.lvl6.mobsters.po.nonstaticdata.MonsterForUser;
@@ -96,7 +99,10 @@ public interface CreateNoneventProtoUtil {
 			List<Task> allTasksForCity);
 	
 	//CLAN PROTO****************************************************************
-	public abstract MinimumClanProto createMinimumClanProtoFromClan(Clan c);
+	//not building FullClanProto because MinimumClanProto is the same thing
+	public abstract FullUserClanProto createFullUserClanProtoFromUserClan(ClanForUser cfu);
+	
+//	public abstract MinimumUserProtoForClans createMinimumUserProtoForClans();
 	
 	//MONSTER PROTO****************************************************************
 	public abstract List<FullUserMonsterProto> createFullUserMonsterProtoList(
@@ -176,6 +182,8 @@ public interface CreateNoneventProtoUtil {
 	  		EventPersistentForUser epfu);
 	
 	//USER PROTO****************************************************************
+	public abstract MinimumClanProto createMinimumClanProtoFromClan(Clan c);
+	
 	public abstract FullUserProto createFullUserProtoFromUser(User u);
 	
 	public abstract MinimumUserProto createMinimumUserProtoFromUser(User u);

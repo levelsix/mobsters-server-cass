@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
+import org.springframework.stereotype.Component;
 //import org.slf4j.Logger;
 //import org.slf4j.LoggerFactory;
 
@@ -21,6 +22,7 @@ import com.lvl6.mobsters.po.nonstaticdata.MonsterForUser;
 import com.lvl6.mobsters.po.nonstaticdata.MonsterHealingForUser;
 
 //utility class that messes with protos
+@Component
 public class MonsterStuffUtil {
 	
 //	private static Logger log = LoggerFactory.getLogger(new Object() { }.getClass().getEnclosingClass());

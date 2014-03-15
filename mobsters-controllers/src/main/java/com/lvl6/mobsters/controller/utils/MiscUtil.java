@@ -13,6 +13,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.slf4j.MDC;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import com.lvl6.mobsters.entitymanager.staticdata.utils.BoosterDisplayItemRetrieveUtils;
 import com.lvl6.mobsters.entitymanager.staticdata.utils.BoosterItemRetrieveUtils;
@@ -70,6 +71,7 @@ import com.lvl6.mobsters.properties.MDCKeys;
 import com.lvl6.mobsters.properties.MobstersTableConstants;
 import com.lvl6.mobsters.services.questforuser.QuestForUserService;
 
+@Component
 public class MiscUtil {
 
 	private Logger log = LoggerFactory.getLogger(new Object() { }.getClass().getEnclosingClass());

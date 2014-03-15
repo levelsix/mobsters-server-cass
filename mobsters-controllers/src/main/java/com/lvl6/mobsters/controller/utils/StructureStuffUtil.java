@@ -1,6 +1,7 @@
 package com.lvl6.mobsters.controller.utils;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import com.lvl6.mobsters.entitymanager.staticdata.utils.StructureResidenceRetrieveUtils;
 import com.lvl6.mobsters.entitymanager.staticdata.utils.StructureRetrieveUtils;
@@ -8,9 +9,8 @@ import com.lvl6.mobsters.noneventprotos.StructureProto.StructureInfoProto.Struct
 import com.lvl6.mobsters.po.nonstaticdata.StructureForUser;
 import com.lvl6.mobsters.po.staticdata.Structure;
 import com.lvl6.mobsters.po.staticdata.StructureResidence;
-
-
 //utility class that messes with protos
+@Component
 public class StructureStuffUtil {
 	
 	@Autowired

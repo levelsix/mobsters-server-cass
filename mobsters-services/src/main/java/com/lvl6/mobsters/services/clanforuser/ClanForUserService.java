@@ -22,20 +22,22 @@ public interface ClanForUserService {
 	public abstract ClanForUser getClanForUserForUserId(UUID userId, List<ClanForUser> cfuList);
 
 	//RETRIEVING STUFF****************************************************************
-	public abstract ClanForUser getSpecificClanForUserWithId(UUID wallPostId);
+	public abstract ClanForUser getSpecificClanForUserWithId(UUID cfuId);
 	
 	public abstract List<ClanForUser> getAllUserClansForUser(UUID userId);
 
 	public abstract Map<UUID, ClanForUser> getSpecificOrAllUserClansForClan(UUID clanId, List<UUID> userIds);
 	
 	public abstract List<ClanForUser> getUserClansForStatuses(UUID clanId, Collection<String> statues);
+	
+	public abstract ClanForUser getUserClanForUserAndClanId(UUID userId, UUID clanId);
 
 	//INSERTING STUFF****************************************************************
 	public abstract ClanForUser insertClanForUser(UUID userId, UUID clanId, String status,
 			Date timeOfEntry);
 
 	//SAVING STUFF****************************************************************
-	public abstract void saveClanForUser(ClanForUser ccp);
+	public abstract void saveClanForUser(ClanForUser cfu);
 
 	//UPDATING STUFF****************************************************************
 	public abstract void updateUserClanStatus(ClanForUser cfu, String newStatus);
@@ -45,6 +47,7 @@ public interface ClanForUserService {
 	
 	public abstract void deleteUserClan(ClanForUser cfu);
 	
+	public abstract void deleteUserClansForUserProspective(UUID userId);
 	
 	//for the setter dependency injection or something
 	public abstract ClanForUserEntityManager getClanForUserEntityManager();

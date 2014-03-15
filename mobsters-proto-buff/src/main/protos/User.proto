@@ -16,7 +16,7 @@ option java_outer_classname = "UserProto";
 message MinimumClanProto {
 	optional string clanUuid = 1;
 	optional string name = 2;
-	optional string ownerUuid = 3;
+	//optional string ownerUuid = 3;
 	optional int64 createTime = 4;
 	optional string description = 5;
 	optional string tag = 6;

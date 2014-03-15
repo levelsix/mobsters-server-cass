@@ -2,10 +2,11 @@ package com.lvl6.mobsters.controller.utils;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 
 import com.lvl6.mobsters.noneventprotos.ClanProto.UserClanStatus;
 
-
+@Component
 public class ClanStuffUtil {
 
 	private static Logger log = LoggerFactory.getLogger(new Object() { }.getClass().getEnclosingClass());

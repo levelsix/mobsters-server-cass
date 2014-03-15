@@ -21,6 +21,9 @@ import com.lvl6.mobsters.noneventprotos.CityProto.CityElementProto;
 import com.lvl6.mobsters.noneventprotos.CityProto.CityElementProto.CityElemType;
 import com.lvl6.mobsters.noneventprotos.CityProto.CityExpansionCostProto;
 import com.lvl6.mobsters.noneventprotos.CityProto.FullCityProto;
+import com.lvl6.mobsters.noneventprotos.ClanProto.FullUserClanProto;
+import com.lvl6.mobsters.noneventprotos.ClanProto.MinimumUserProtoForClans;
+import com.lvl6.mobsters.noneventprotos.ClanProto.UserClanStatus;
 import com.lvl6.mobsters.noneventprotos.MonsterStuffProto.FullUserMonsterProto;
 import com.lvl6.mobsters.noneventprotos.MonsterStuffProto.MonsterBattleDialogueProto;
 import com.lvl6.mobsters.noneventprotos.MonsterStuffProto.MonsterBattleDialogueProto.DialogueType;
@@ -63,6 +66,7 @@ import com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProto;
 import com.lvl6.mobsters.noneventprotos.UserProto.MinimumUserProtoWithFacebookId;
 import com.lvl6.mobsters.noneventprotos.UserProto.UserFacebookInviteForSlotProto;
 import com.lvl6.mobsters.po.nonstaticdata.Clan;
+import com.lvl6.mobsters.po.nonstaticdata.ClanForUser;
 import com.lvl6.mobsters.po.nonstaticdata.EventPersistentForUser;
 import com.lvl6.mobsters.po.nonstaticdata.MonsterEnhancingForUser;
 import com.lvl6.mobsters.po.nonstaticdata.MonsterForUser;
@@ -297,20 +301,40 @@ public class CreateNoneventProtoUtilImpl implements CreateNoneventProtoUtil {
 		return builder.build();
 	}
 	
+	//CLAN PROTO****************************************************************
+	//not building FullClanProto because MinimumClanProto is the same thing
 	@Override
-	public MinimumClanProto createMinimumClanProtoFromClan(Clan c) {
-		MinimumClanProto.Builder mcp = MinimumClanProto.newBuilder();
+	public FullUserClanProto createFullUserClanProtoFromUserClan(ClanForUser cfu) {
+		FullUserClanProto.Builder fucpb = FullUserClanProto.newBuilder();
 		
-		String clanUuidStr = c.getId().toString();
-		mcp.setClanUuid(clanUuidStr);
-		mcp.setName(c.getName());
-		//    mcp.setOwnerId(c.getOwnerId());
-		mcp.setCreateTime(c.getCreateTime().getTime());
-		mcp.setDescription(c.getDescription());
-		mcp.setTag(c.getTag());
-		return mcp.setRequestToJoinRequired(c.isRequestToJoinRequired()).build();
+		String aStr = cfu.getUserId().toString();
+		fucpb.setUserUuid(aStr);
+		
+		aStr = cfu.getClanId().toString();
+		fucpb.setClanUuid(aStr);
+		
+		aStr = cfu.getStatus();
+		try {
+			UserClanStatus ucs = UserClanStatus.valueOf(aStr);
+			fucpb.setStatus(ucs);
+		} catch (Exception e) {
+			log.error("invalid user clan status string. status=" + aStr);
+		}
+		
+		Date timeOfEntry = cfu.getTimeOfEntry();
+		if (null != timeOfEntry) {
+			fucpb.setTimeOfEntry(timeOfEntry.getTime());
+		}
+		return fucpb.build();
 	}
-
+	
+	//full clan proto with clan size
+//	@Override
+//	public MinimumUserProtoForClans createMinimumUserProtoForClans() {
+//		
+//		
+//	}
+	
 	//MONSTER PROTO****************************************************************
 	@Override
 	public List<FullUserMonsterProto> createFullUserMonsterProtoList(
@@ -1066,6 +1090,20 @@ public class CreateNoneventProtoUtilImpl implements CreateNoneventProtoUtil {
 	  }
 
 	//USER PROTO****************************************************************
+	@Override
+	public MinimumClanProto createMinimumClanProtoFromClan(Clan c) {
+		MinimumClanProto.Builder mcp = MinimumClanProto.newBuilder();
+		
+		String clanUuidStr = c.getId().toString();
+		mcp.setClanUuid(clanUuidStr);
+		mcp.setName(c.getName());
+		//    mcp.setOwnerId(c.getOwnerId());
+		mcp.setCreateTime(c.getCreateTime().getTime());
+		mcp.setDescription(c.getDescription());
+		mcp.setTag(c.getTag());
+		return mcp.setRequestToJoinRequired(c.isRequestToJoinRequired()).build();
+	}
+	
 	@Override
 	public FullUserProto createFullUserProtoFromUser(User u) {
 		// TODO Auto-generated method stub

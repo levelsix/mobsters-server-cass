@@ -17,6 +17,7 @@ public class MobstersTableConstants {
 	public static final int CLAN__CREATE_CLAN_CASH_PRICE = 1000;
 	public static final int CLAN__MAX_NAME_LENGTH = 15;
 	public static final int CLAN__MAX_CLAN_TAG_LENGTH = 5;
+	public static final int CLAN__MAX_NUM_MEMBERS = 50;
 
 	public static final float MONSTER__CASH_PER_HEALTH_POINT = 0.5F;
 	public static final float MONSTER__SECONDS_TO_HEAL_PER_HEALTH_POINT = 2F;

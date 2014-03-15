@@ -8,10 +8,11 @@ import java.util.Random;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 
 import com.lvl6.mobsters.po.staticdata.BoosterItem;
 
-
+@Component
 public class BoosterPackStuffUtils {
 	
 	private static Logger log = LoggerFactory.getLogger(new Object() { }.getClass().getEnclosingClass());
