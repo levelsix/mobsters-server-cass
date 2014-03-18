@@ -274,9 +274,12 @@ public class TaskStageForUserServiceImpl implements TaskStageForUserService {
 		//query db, "values" is not used
 		List<Object> values = new ArrayList<Object>();
 		boolean preparedStatement = false;
-		String cqlquery = getQueryConstructionUtil().selectRowsQueryEqualityConditions(
-				TABLE_NAME, equalityConditions, conditionDelimiter, values, preparedStatement);
-		List<TaskStageForUser> tsfuList = getTaskStageForUserEntityManager().get().find(cqlquery);
+		boolean allowFiltering = true; //need cassandra to query with non row keys
+		String cqlQuery = getQueryConstructionUtil().selectRowsQueryEqualityConditions(
+				TABLE_NAME, equalityConditions, conditionDelimiter, values,
+				preparedStatement, allowFiltering);
+		List<TaskStageForUser> tsfuList = getTaskStageForUserEntityManager().get()
+				.find(cqlQuery);
 		
 		return tsfuList;
 	}

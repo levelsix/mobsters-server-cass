@@ -299,11 +299,11 @@ public class UserFacebookInviteForSlotServiceImpl implements UserFacebookInviteF
 		String inCondDelim = getQueryConstructionUtil().getAnd();
 		String delimAcrossConditions = inCondDelim;
 		
+		boolean allowFiltering = true; //need cassandra to query with non row keys
 		String cqlQuery = getQueryConstructionUtil().selectRowsQueryAllConditions(
 				TABLE_NAME, equalityConditions, equalityCondDelim, greaterThanConditions,
-				greaterThanCondDelim, inConditions, inCondDelim, isConditions, isCondDelim,
-				delimAcrossConditions,
-				null);
+				greaterThanCondDelim, inConditions, inCondDelim, isConditions, isCondDelim, 
+				delimAcrossConditions, null, allowFiltering);
 		List<UserFacebookInviteForSlot> ufifsList =
 				getUserFacebookInviteForSlotEntityManager().get().find(cqlQuery);
 		
@@ -363,11 +363,13 @@ public class UserFacebookInviteForSlotServiceImpl implements UserFacebookInviteF
 		//(its purpose is to hold the values that were supposed to be put
 		// into a prepared statement)
 		List<Object> values = new ArrayList<Object>();
+		boolean allowFiltering = true; //need cassandra to query with non row keys
 		String cqlQuery = getQueryConstructionUtil().selectRowsQueryAllConditions(
 				TABLE_NAME, equalityConditions, equalityCondDelim, greaterThanConditions,
-				greaterThanCondDelim, inConditions, inCondDelim, isConditions,
-				isCondDelim, delimAcrossConditions, values);
-		List<UserFacebookInviteForSlot> mefuList = getUserFacebookInviteForSlotEntityManager().get().find(cqlQuery);
+				greaterThanCondDelim, inConditions, inCondDelim, isConditions, isCondDelim, 
+				delimAcrossConditions, values, allowFiltering);
+		List<UserFacebookInviteForSlot> mefuList = getUserFacebookInviteForSlotEntityManager()
+				.get().find(cqlQuery);
 		
 		
 		Map<UUID, UserFacebookInviteForSlot> idsToInvites =
@@ -430,10 +432,11 @@ public class UserFacebookInviteForSlotServiceImpl implements UserFacebookInviteF
 		//(its purpose is to hold the values that were supposed to be put
 		// into a prepared statement)
 		List<Object> values = new ArrayList<Object>();
+		boolean allowFiltering = true; //need cassandra to query with non row keys
 		String cqlQuery = getQueryConstructionUtil().selectRowsQueryAllConditions(
 				TABLE_NAME, equalityConditions, equalityCondDelim, greaterThanConditions,
-				greaterThanCondDelim, inConditions, inCondDelim, isConditions,
-				isCondDelim, delimAcrossConditions, values);
+				greaterThanCondDelim, inConditions, inCondDelim, isConditions, isCondDelim,
+				delimAcrossConditions, values, allowFiltering);
 		List<UserFacebookInviteForSlot> mefuList = getUserFacebookInviteForSlotEntityManager()
 				.get().find(cqlQuery);
 

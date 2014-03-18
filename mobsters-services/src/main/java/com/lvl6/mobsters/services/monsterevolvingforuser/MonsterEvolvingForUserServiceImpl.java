@@ -93,8 +93,10 @@ public class MonsterEvolvingForUserServiceImpl implements MonsterEvolvingForUser
 		// into a prepared statement)
 		List<Object> values = new ArrayList<Object>();
 		boolean preparedStatement = false;
+		boolean allowFiltering = true; //need cassandra to query with non row keys
 		String cqlQuery = getQueryConstructionUtil().selectRowsQueryEqualityConditions(
-				TABLE_NAME, equalityConditions, conditionDelimiter, values, preparedStatement);
+				TABLE_NAME, equalityConditions, conditionDelimiter, values,
+				preparedStatement, allowFiltering);
 		List<MonsterEvolvingForUser> mefuList = getMonsterEvolvingForUserEntityManager().get().find(cqlQuery);
 		
 		
@@ -123,8 +125,10 @@ public class MonsterEvolvingForUserServiceImpl implements MonsterEvolvingForUser
 		// into a prepared statement)
 		List<Object> values = new ArrayList<Object>();
 		boolean preparedStatement = false;
+		boolean allowFiltering = true; //need cassandra to query with non row keys
 		String cqlQuery = getQueryConstructionUtil().selectRowsQueryEqualityConditions(
-				TABLE_NAME, equalityConditions, conditionDelimiter, values, preparedStatement);
+				TABLE_NAME, equalityConditions, conditionDelimiter, values,
+				preparedStatement, allowFiltering);
 		List<MonsterEvolvingForUser> mefuList = getMonsterEvolvingForUserEntityManager().get().find(cqlQuery);
 
 		

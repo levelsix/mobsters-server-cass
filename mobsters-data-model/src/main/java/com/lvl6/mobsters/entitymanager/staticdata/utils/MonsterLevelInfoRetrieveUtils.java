@@ -64,8 +64,10 @@ import com.lvl6.mobsters.utils.QueryConstructionUtil;
 		// into a prepared statement) 
 		List<Object> values = new ArrayList<Object>();
 		boolean preparedStatement = false;
+		boolean allowFiltering = false; //don't let cassandra query with non row keys
 		String cqlquery = getQueryConstructionUtil().selectRowsQueryEqualityConditions(
-				TABLE_NAME, equalityConditions, conditionDelimiter, values, preparedStatement);
+				TABLE_NAME, equalityConditions, conditionDelimiter, values,
+				preparedStatement, allowFiltering);
 		List<MonsterLevelInfo> list = getMonsterLevelInfoEntityManager().get().find(cqlquery);
 		monsterIdToLevelToInfo = new HashMap<Integer, Map<Integer, MonsterLevelInfo>>();
 		for(MonsterLevelInfo mli : list) {

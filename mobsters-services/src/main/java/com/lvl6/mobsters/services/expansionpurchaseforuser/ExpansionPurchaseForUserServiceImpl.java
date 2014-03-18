@@ -91,8 +91,10 @@ public class ExpansionPurchaseForUserServiceImpl implements ExpansionPurchaseFor
 		// into a prepared statement)
 		List<Object> values = new ArrayList<Object>();
 		boolean preparedStatement = false;
+		boolean allowFiltering = true; //need cassandra to query with non row keys
 		String cqlquery = getQueryConstructionUtil().selectRowsQueryEqualityConditions(
-				TABLE_NAME, equalityConditions, conditionDelimiter, values, preparedStatement); 
+				TABLE_NAME, equalityConditions, conditionDelimiter, values,
+				preparedStatement, allowFiltering); 
 		List<ExpansionPurchaseForUser> epfuList = getExpansionPurchaseForUserEntityManager()
 				.get().find(cqlquery);
 
@@ -117,8 +119,10 @@ public class ExpansionPurchaseForUserServiceImpl implements ExpansionPurchaseFor
 		// into a prepared statement)
 		List<Object> values = new ArrayList<Object>();
 		boolean preparedStatement = false;
+		boolean allowFiltering = true; //need cassandra to query with non row keys
 		String cqlquery = getQueryConstructionUtil().selectRowsQueryEqualityConditions(
-				TABLE_NAME, equalityConditions, conditionDelimiter, values, preparedStatement); 
+				TABLE_NAME, equalityConditions, conditionDelimiter, values,
+				preparedStatement, allowFiltering); 
 		List<ExpansionPurchaseForUser> epfuList = getExpansionPurchaseForUserEntityManager()
 				.get().find(cqlquery);
 		if (null == epfuList || epfuList.isEmpty()) {

@@ -354,8 +354,10 @@ public class MonsterForUserServiceImpl implements MonsterForUserService {
 		// into a prepared statement)
 		List<Object> values = new ArrayList<Object>();
 		boolean preparedStatement = false;
+		boolean allowFiltering = true; //need cassandra to query with non row keys
 		String cqlQuery = getQueryConstructionUtil().selectRowsQueryEqualityConditions(
-				TABLE_NAME, equalityConditions, conditionDelimiter, values, preparedStatement);
+				TABLE_NAME, equalityConditions, conditionDelimiter, values,
+				preparedStatement, allowFiltering);
 		List<MonsterForUser> mfuList = getMonsterForUserEntityManager().get().find(cqlQuery);
 		
 		return mfuList;
@@ -386,10 +388,11 @@ public class MonsterForUserServiceImpl implements MonsterForUserService {
 		//(its purpose is to hold the values that were supposed to be put
 		// into a prepared statement)
 		List<Object> values = new ArrayList<Object>();
+		boolean allowFiltering = true; //need cassandra to query with non row keys
 		String cqlQuery = getQueryConstructionUtil().selectRowsQueryAllConditions(
 				TABLE_NAME, equalityConditions, equalityCondDelim, greaterThanConditions,
-				greaterThanCondDelim, isConditions, isCondDelim, inConditions,
-				inCondDelim, delimAcrossConditions, values);
+				greaterThanCondDelim, inConditions, inCondDelim, isConditions, isCondDelim,
+				delimAcrossConditions, values, allowFiltering);
 		List<MonsterForUser> mfuList = getMonsterForUserEntityManager().get().find(cqlQuery);
 		
 		
@@ -473,10 +476,11 @@ public class MonsterForUserServiceImpl implements MonsterForUserService {
 		//(its purpose is to hold the values that were supposed to be put
 		//into a prepared statement)
 		List<Object> values = new ArrayList<Object>();
+		boolean allowFiltering = true; //need cassandra to query with non row keys
 		String cqlQuery = getQueryConstructionUtil().selectRowsQueryAllConditions(
 				TABLE_NAME, equalityConditions, equalityCondDelim, greaterThanConditions,
-				greaterThanCondDelim, isConditions, isCondDelim, inConditions,
-				inCondDelim, delimAcrossConditions, values);
+				greaterThanCondDelim, inConditions, inCondDelim, isConditions, isCondDelim,
+				delimAcrossConditions, values, allowFiltering);
 		List<MonsterForUser> mfuList = getMonsterForUserEntityManager().get().find(cqlQuery);
 		
 		Map<UUID, MonsterForUser> userMonsterIdsToUserMonsters =
@@ -514,10 +518,11 @@ public class MonsterForUserServiceImpl implements MonsterForUserService {
 		
 		//query db, "values" is not used
 		List<Object> values = new ArrayList<Object>();
+		boolean allowFiltering = true; //need cassandra to query with non row keys
 		String cqlQuery = getQueryConstructionUtil().selectRowsQueryAllConditions(
 				TABLE_NAME, equalityConditions, equalityCondDelim, greaterThanConditions,
-				greaterThanCondDelim, isConditions, isCondDelim, inConditions,
-				inCondDelim, delimAcrossConditions, values);
+				greaterThanCondDelim, inConditions, inCondDelim, isConditions, isCondDelim,
+				delimAcrossConditions, values, allowFiltering);
 		List<MonsterForUser> mfuList = getMonsterForUserEntityManager().get().find(cqlQuery);
 		
 		Map<Integer, MonsterForUser> monsterIdsToUserMonsters =

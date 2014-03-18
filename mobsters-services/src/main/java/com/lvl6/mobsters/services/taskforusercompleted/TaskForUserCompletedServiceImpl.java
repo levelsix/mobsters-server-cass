@@ -57,9 +57,12 @@ public class TaskForUserCompletedServiceImpl implements TaskForUserCompletedServ
 		//query db, "values" is not used
 		List<Object> values = new ArrayList<Object>();
 		boolean preparedStatement = false;
-		String cqlquery = getQueryConstructionUtil().selectRowsQueryEqualityConditions(
-				TABLE_NAME, equalityConditions, equalityCondDelim, values, preparedStatement);
-		List<TaskForUserCompleted> tfucList = getTaskForUserCompletedEntityManager().get().find(cqlquery);
+		boolean allowFiltering = true; //need cassandra to query with non row keys
+		String cqlQuery = getQueryConstructionUtil().selectRowsQueryEqualityConditions(
+				TABLE_NAME, equalityConditions, equalityCondDelim, values,
+				preparedStatement, allowFiltering);
+		List<TaskForUserCompleted> tfucList = getTaskForUserCompletedEntityManager()
+				.get().find(cqlQuery);
 		
 		Set<Integer> completedTaskIds = new HashSet<Integer>();
 		

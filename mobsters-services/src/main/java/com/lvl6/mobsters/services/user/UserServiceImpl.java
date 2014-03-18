@@ -140,15 +140,19 @@ public class UserServiceImpl implements UserService {
 		if (null != gameCenterId) {
 			equalityConditions.put(MobstersDbTables.USER__GAME_CENTER_ID, gameCenterId);
 			
+			boolean allowFiltering = false; //don't let cassandra query with non row keys
 			String cqlQuery = getQueryConstructionUtil().selectRowsQueryEqualityConditions(
-					TABLE_NAME, equalityConditions, conditionDelimiter, values, preparedStatement);
+					TABLE_NAME, equalityConditions, conditionDelimiter, values,
+					preparedStatement, allowFiltering);
 			uList = getUserEntityManager().get().find(cqlQuery);
 
 		} else if (null != userId){
 			equalityConditions.put(MobstersDbTables.USER__ID, userId);
 			
+			boolean allowFiltering = false; //don't let cassandra query with non row keys
 			String cqlQuery = getQueryConstructionUtil().selectRowsQueryEqualityConditions(
-					TABLE_NAME, equalityConditions, conditionDelimiter, values, preparedStatement);
+					TABLE_NAME, equalityConditions, conditionDelimiter, values,
+					preparedStatement, allowFiltering);
 			uList = getUserEntityManager().get().find(cqlQuery);
 
 		}
@@ -181,8 +185,10 @@ public class UserServiceImpl implements UserService {
 			equalityConditions.put(MobstersDbTables.USER__FACEBOOK_ID, facebookId);
 		}
 		String conditionDelimiter = getQueryConstructionUtil().getOr();
+		boolean allowFiltering = false; //don't let cassandra query with non row keys
 		String cqlQuery = getQueryConstructionUtil().selectRowsQueryEqualityConditions(
-				TABLE_NAME, equalityConditions, conditionDelimiter, values, preparedStatement);
+				TABLE_NAME, equalityConditions, conditionDelimiter, values,
+				preparedStatement, allowFiltering);
 		List<User> uList = getUserEntityManager().get().find(cqlQuery);
 		return uList;
 	}
@@ -208,10 +214,11 @@ public class UserServiceImpl implements UserService {
 		//(its purpose is to hold the values that were supposed to be put
 		// into a prepared statement)
 		List<Object> values = new ArrayList<Object>();
+		boolean allowFiltering = true; //need cassandra to query with non row keys
 		String cqlQuery = getQueryConstructionUtil().selectRowsQueryAllConditions(
 				TABLE_NAME, equalityConditions, equalityCondDelim, greaterThanConditions,
-				greaterThanCondDelim, isConditions, isCondDelim, inConditions,
-				inCondDelim, delimAcrossConditions, values);
+				greaterThanCondDelim, inConditions, inCondDelim, isConditions, isCondDelim,
+				delimAcrossConditions, values, allowFiltering);
 		List<User> uList = getUserEntityManager().get().find(cqlQuery);
 		
 		return uList;
@@ -251,10 +258,11 @@ public class UserServiceImpl implements UserService {
 		//(its purpose is to hold the values that were supposed to be put
 		// into a prepared statement)
 		List<Object> values = new ArrayList<Object>();
+		boolean allowFiltering = true; //need cassandra to query with non row keys
 		String cqlQuery = getQueryConstructionUtil().selectRowsQueryAllConditions(
 				TABLE_NAME, equalityConditions, equalityCondDelim, greaterThanConditions,
-				greaterThanCondDelim, isConditions, isCondDelim, inConditions,
-				inCondDelim, delimAcrossConditions, values);
+				greaterThanCondDelim, inConditions, inCondDelim, isConditions, isCondDelim,
+				delimAcrossConditions, values, allowFiltering);
 		List<User> uList = getUserEntityManager().get().find(cqlQuery);
 		
 		//mapify the list of users with the key being the userId
@@ -288,10 +296,11 @@ public class UserServiceImpl implements UserService {
 		//(its purpose is to hold the values that were supposed to be put
 		// into a prepared statement)
 		List<Object> values = new ArrayList<Object>();
+		boolean allowFiltering = true; //need cassandra to query with non row keys
 		String cqlQuery = getQueryConstructionUtil().selectRowsQueryAllConditions(
 				TABLE_NAME, equalityConditions, equalityCondDelim, greaterThanConditions,
-				greaterThanCondDelim, isConditions, isCondDelim, inConditions,
-				inCondDelim, delimAcrossConditions, values);
+				greaterThanCondDelim, inConditions, inCondDelim, isConditions, isCondDelim,
+				delimAcrossConditions, values, allowFiltering);
 		List<User> uList = getUserEntityManager().get().find(cqlQuery);
 
 		//mapify the list of users with the key being the userId

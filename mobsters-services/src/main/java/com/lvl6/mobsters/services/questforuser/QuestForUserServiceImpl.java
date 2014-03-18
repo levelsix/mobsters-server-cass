@@ -58,9 +58,11 @@ public class QuestForUserServiceImpl implements QuestForUserService {
 		// into a prepared statement)
 		List<Object> values = new ArrayList<Object>();
 		boolean preparedStatement = false;
-		String cqlquery = getQueryConstructionUtil().selectRowsQueryEqualityConditions(
-				TABLE_NAME, equalityConditions, conditionDelimiter, values, preparedStatement); 
-		List<QuestForUser> qfuList = getQuestForUserEntityManager().get().find(cqlquery);
+		boolean allowFiltering = true; //need cassandra to query with non row keys
+		String cqlQuery = getQueryConstructionUtil().selectRowsQueryEqualityConditions(
+				TABLE_NAME, equalityConditions, conditionDelimiter, values,
+				preparedStatement, allowFiltering); 
+		List<QuestForUser> qfuList = getQuestForUserEntityManager().get().find(cqlQuery);
 		
 		Map<Integer, QuestForUser> questIdsToUserQuests = new HashMap<Integer, QuestForUser>();
 		for(QuestForUser qfu : qfuList) {
@@ -117,8 +119,10 @@ public class QuestForUserServiceImpl implements QuestForUserService {
 		// into a prepared statement)
 		List<Object> values = new ArrayList<Object>();
 		boolean preparedStatement = false;
+		boolean allowFiltering = true; //need cassandra to query with non row keys
 		String cqlQuery = getQueryConstructionUtil().selectRowsQueryEqualityConditions(
-				TABLE_NAME, equalityConditions, conditionDelimiter, values, preparedStatement);
+				TABLE_NAME, equalityConditions, conditionDelimiter, values,
+				preparedStatement, allowFiltering);
 		List<QuestForUser> qfuList = getQuestForUserEntityManager().get().find(cqlQuery);
 		
 		if (null == qfuList || qfuList.isEmpty()) {

@@ -66,8 +66,10 @@ public class MonsterEnhancingForUserServiceImpl implements MonsterEnhancingForUs
 		// into a prepared statement)
 		List<Object> values = new ArrayList<Object>();
 		boolean preparedStatement = false;
+		boolean allowFiltering = true; //need cassandra to query with non row keys
 		String cqlQuery = getQueryConstructionUtil().selectRowsQueryEqualityConditions(
-				TABLE_NAME, equalityConditions, conditionDelimiter, values, preparedStatement);
+				TABLE_NAME, equalityConditions, conditionDelimiter, values,
+				preparedStatement, allowFiltering);
 		List<MonsterEnhancingForUser> mefuList = getMonsterEnhancingForUserEntityManager().get().find(cqlQuery);
 		
 		
@@ -144,10 +146,11 @@ public class MonsterEnhancingForUserServiceImpl implements MonsterEnhancingForUs
 		//(its purpose is to hold the values that were supposed to be put
 		//into a prepared statement)
 		List<Object> values = new ArrayList<Object>();
+		boolean allowFiltering = true; //need cassandra to query with non row keys
 		String cqlQuery = getQueryConstructionUtil().selectRowsQueryAllConditions(
 				TABLE_NAME, equalityConditions, equalityCondDelim, greaterThanConditions,
-				greaterThanCondDelim, isConditions, isCondDelim, inConditions,
-				inCondDelim, delimAcrossConditions, values);
+				greaterThanCondDelim, inConditions, inCondDelim, isConditions, isCondDelim,
+				delimAcrossConditions, values, allowFiltering);
 		List<MonsterEnhancingForUser> mfuList = getMonsterEnhancingForUserEntityManager().get().find(cqlQuery);
 		
 		Map<UUID, MonsterEnhancingForUser> userMonsterIdsToUserMonsters =

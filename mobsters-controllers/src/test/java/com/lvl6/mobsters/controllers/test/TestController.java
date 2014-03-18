@@ -1,12 +1,9 @@
 package com.lvl6.mobsters.controllers.test;
 
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
+import java.util.List;
 
-import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mortbay.log.Log;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,9 +13,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import com.dekayd.astyanax.cassandra.Cassandra;
 import com.lvl6.mobsters.entitymanager.nonstaticdata.UserEntityManager;
 import com.lvl6.mobsters.po.nonstaticdata.User;
+import com.lvl6.mobsters.services.user.UserService;
 import com.netflix.astyanax.connectionpool.exceptions.ConnectionException;
-import com.netflix.astyanax.model.Column;
-import com.netflix.astyanax.model.ColumnList;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -50,33 +46,132 @@ public class TestController {
 	public void setUm(UserEntityManager um) {
 		this.um = um;
 	}
+	
+	@Autowired
+	protected UserService userService;
+
+	public UserService getUserService() {
+		return userService;
+	}
+
+	public void setUserService(UserService userService) {
+		this.userService = userService;
+	}
+	
 
 	@Test
-	public void testCreatingUser() throws ConnectionException{
-		User user = new User();
-		//user.setEmail("anyone@anyserver.com");
-		user.setName("someUser");
-		log.info("Saving user: {}", user);
-		um.get().put(user);
-		ColumnList<String> cl = cassandra.getKeyspace().prepareQuery(um.getColumnFamily()).getKey(user.getId()).execute().getResult();
-		Assert.assertNotSame(0, cl.size());
-		for (Column<String> c : cl) {
-			Log.info("Got column : " + c.getName());
+	public void testRetrieveUser() throws ConnectionException {
+		String allUsersQuery = "select * from user;";
+		List<User> allUsers = getUm().get().find(allUsersQuery);
+		log.info("***************checking to see if ids are populated. users=" + allUsers);
+		
+		
+		//there is already a user with facebook_id and udid = boo
+		try {
+			log.info("retrieving user by facebook_id, with allow filtering absent" +
+					" and facebook_id does not have index");
+			List<User> fbUsers = getUserService().getUserByUDIDorFbId(null, "boo");
+			log.info("************************************facebook users=" + fbUsers);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			log.info("1could not retrieve by udid, with allow filtering absent", e);
 		}
-		User user2 = um.get().get(user.getId());
-		assertNotNull(user2);
-		assertTrue("Usernames equal", user.getName().equals(user2.getName()));
-		//assertTrue("Emails equal", user.getEmail().equals(user2.getEmail()));
+		
+		try {
+			String query = "select * from user where facebook_id=boo allow filtering;";
+			log.info("retrieving user by facebook_id, with allow filtering inserted" +
+					" and facebook_id does not have index");
+			log.info("query=" + query);
+			List<User> fbUsers = getUm().get().find(query);
+			log.info("************************************facebook users=" + fbUsers);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			log.info("2could not retrieve by udid, with allow filtering inserted", e);
+		}
 		
 		
-		//checking to see if this is how to update an object
-		//update name
-		user.setName("hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh");
-		um.get().put(user);
+		try {
+			String query = "select * from user where udid=boo and facebook_id = boo;";
+			log.info("retrieving user by udid and facebook_id, with allow filtering absent" +
+					" udid has index, but facebook_id does not have index");
+			log.info("query=" + query);
+			List<User> users = getUm().get().find(query);
+			log.info("************************************users=" + users);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			log.info("3could not retrieve by udid and facebook_id with allow filtering absent", e);
+		}
 		
-		user2 = um.get().get(user2.getId());
-		assertTrue("Usernames equal", user.getName().equals(user2.getName()));
+		
+		try {
+			String query = "select * from user where udid=boo and facebook_id=boo allow filtering;";
+			log.info("retrieving user by udid and facebook_id, with allow filtering inserted" +
+					" udid has index, but facebook_id does not have index");
+			log.info("query=" + query);
+			List<User> users = getUm().get().find(query);
+			log.info("************************************users=" + users);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			log.info("4could not retrieve by udid and facebook_id with allow filtering inserted", e);
+		}
+		
 	}
+	
+	//DO NOT QUOTE STRINGS
+	@Test
+	public void testRetrieveUserQuotedStrings() throws ConnectionException {
+		/*
+		//there is already a user with facebook_id and udid = boo
+		try {
+			log.info("retrieving user by facebook_id, with allow filtering absent" +
+					" and facebook_id does not have index");
+			List<User> fbUsers = getUserService().getUserByUDIDorFbId(null, "'boo'");
+			log.info("-------------------------------------facebook users=" + fbUsers);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			log.info("-------1could not retrieve by udid, with allow filtering absent", e);
+		}
+		
+		try {
+			String query = "select * from user where facebook_id='boo' allow filtering;";
+			log.info("retrieving user by facebook_id, with allow filtering inserted" +
+					" and facebook_id does not have index");
+			log.info("query=" + query);
+			List<User> fbUsers = getUm().get().find(query);
+			log.info("-------------------------------------facebook users=" + fbUsers);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			log.info("-------2could not retrieve by udid, with allow filtering inserted", e);
+		}
+		
+		
+		try {
+			String query = "select * from user where udid='boo' and facebook_id = 'boo';";
+			log.info("retrieving user by udid and facebook_id, with allow filtering absent" +
+					" udid has index, but facebook_id does not have index");
+			log.info("query=" + query);
+			List<User> users = getUm().get().find(query);
+			log.info("-------------------------------------users=" + users);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			log.info("-------3could not retrieve by udid and facebook_id with allow filtering absent", e);
+		}
+		
+		
+		try {
+			String query = "select * from user where udid='boo' and facebook_id='boo' allow filtering;";
+			log.info("retrieving user by udid and facebook_id, with allow filtering inserted" +
+					" udid has index, but facebook_id does not have index");
+			log.info("query=" + query);
+			List<User> users = getUm().get().find(query);
+			log.info("-------------------------------------users=" + users);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			log.info("-------4could not retrieve by udid and facebook_id with allow filtering inserted", e);
+		}
+		*/
+	}
+	
 	
 	public void deleteAllDataFromAllColumnFamilies() {
 		

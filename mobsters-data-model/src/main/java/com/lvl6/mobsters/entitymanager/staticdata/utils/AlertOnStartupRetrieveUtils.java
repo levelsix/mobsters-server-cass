@@ -25,12 +25,17 @@ import com.lvl6.mobsters.utils.QueryConstructionUtil;
 
 	private final String TABLE_NAME = MobstersDbTables.TABLE_ALERT_ON_STARTUP;
 
-	@Autowired
-	private AlertOnStartupEntityManager alertOnStartupEntityManager;
+//	@Autowired
+//	private AlertOnStartupEntityManager alertOnStartupEntityManager;
+//
+//	@Autowired
+//	private QueryConstructionUtil queryConstructionUtil;
 
 	@Autowired
-	private QueryConstructionUtil queryConstructionUtil;
+	protected AlertOnStartupEntityManager alertOnStartupEntityManager;
 
+	@Autowired
+	protected QueryConstructionUtil queryConstructionUtil;
 
 //	public User getAdminChatUser() {
 //		log.debug("retrieving adminChatUserProto");
@@ -68,8 +73,10 @@ import com.lvl6.mobsters.utils.QueryConstructionUtil;
 		// into a prepared statement) 
 		List<Object> values = new ArrayList<Object>();
 		boolean preparedStatement = false;
+		boolean allowFiltering = false; //don't let cassandra query with non row keys
 		String cqlquery = getQueryConstructionUtil().selectRowsQueryEqualityConditions(
-				TABLE_NAME, equalityConditions, conditionDelimiter, values, preparedStatement);
+				TABLE_NAME, equalityConditions, conditionDelimiter, values,
+				preparedStatement, allowFiltering);
 		notices = getAlertOnStartupEntityManager().get().find(cqlquery);
 	}
 

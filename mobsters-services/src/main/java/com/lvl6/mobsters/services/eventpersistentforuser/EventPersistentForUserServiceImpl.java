@@ -87,8 +87,10 @@ public class EventPersistentForUserServiceImpl implements EventPersistentForUser
 		// into a prepared statement)
 		List<Object> values = new ArrayList<Object>();
 		boolean preparedStatement = false;
+		boolean allowFiltering = true; //need cassandra to query with non row keys
 		String cqlquery = getQueryConstructionUtil().selectRowsQueryEqualityConditions(
-				TABLE_NAME, equalityConditions, conditionDelimiter, values, preparedStatement); 
+				TABLE_NAME, equalityConditions, conditionDelimiter, values,
+				preparedStatement, allowFiltering); 
 		List<EventPersistentForUser> epfuList = getEventPersistentForUserEntityManager()
 				.get().find(cqlquery);
 		EventPersistentForUser epfu = null;
@@ -128,8 +130,10 @@ public class EventPersistentForUserServiceImpl implements EventPersistentForUser
 		// into a prepared statement)
 		List<Object> values = new ArrayList<Object>();
 		boolean preparedStatement = false;
+		boolean allowFiltering = true; //need cassandra to query with non row keys
 		String cqlquery = getQueryConstructionUtil().selectRowsQueryEqualityConditions(
-				TABLE_NAME, equalityConditions, conditionDelimiter, values, preparedStatement); 
+				TABLE_NAME, equalityConditions, conditionDelimiter, values,
+				preparedStatement, allowFiltering); 
 		List<EventPersistentForUser> epfuList = getEventPersistentForUserEntityManager()
 				.get().find(cqlquery);
 		

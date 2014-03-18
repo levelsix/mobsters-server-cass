@@ -79,10 +79,11 @@ public class ClanServiceImpl implements ClanService {
 		//(its purpose is to hold the values that were supposed to be put
 		//into a prepared statement)
 		List<Object> values = new ArrayList<Object>();
+		boolean allowFiltering = false; //don't let cassandra query with non row keys
 		String cqlQuery = getQueryConstructionUtil().selectRowsQueryAllConditions(
 				TABLE_NAME, equalityConditions, equalityCondDelim, greaterThanConditions,
-				greaterThanCondDelim, isConditions, isCondDelim, inConditions,
-				inCondDelim, delimAcrossConditions, values);
+				greaterThanCondDelim, inConditions, inCondDelim, isConditions, isCondDelim,
+				delimAcrossConditions, values, allowFiltering);
 		List<Clan> clanList = getClanEntityManager().get().find(cqlQuery);
 		
 		Map<UUID, Clan> clanIdToClans = new HashMap<UUID, Clan>();
@@ -117,10 +118,11 @@ public class ClanServiceImpl implements ClanService {
 		//into a prepared statement)
 		List<Object> values = new ArrayList<Object>();
 		boolean preparedStatement = false;
+		boolean allowFiltering = true; //need cassandra to query with non row keys
 		String cqlQuery = getQueryConstructionUtil().selectRowsQueryLikeConditions(
 				TABLE_NAME, beginsWith, beginsWithCondDelim, beginsAndEndsWith,
 				beginsAndEndsWithCondDelim, endsWith, endsWithCondDelim,
-				overallDelimiter, values, preparedStatement);
+				overallDelimiter, values, preparedStatement, allowFiltering);
 		List<Clan> clanList = getClanEntityManager().get().find(cqlQuery);
 		
 		return clanList;
@@ -143,8 +145,10 @@ public class ClanServiceImpl implements ClanService {
 		// into a prepared statement)
 		List<Object> values = new ArrayList<Object>();
 		boolean preparedStatement = false;
+		boolean allowFiltering = true; //need cassandra to query with non row keys
 		String cqlQuery = getQueryConstructionUtil().selectRowsQueryEqualityConditions(
-				TABLE_NAME, equalityConditions, conditionDelimiter, values, preparedStatement);
+				TABLE_NAME, equalityConditions, conditionDelimiter, values,
+				preparedStatement, allowFiltering);
 		List<Clan> clanList = getClanEntityManager().get().find(cqlQuery);
 
 		if (null == clanList || clanList.isEmpty()) {

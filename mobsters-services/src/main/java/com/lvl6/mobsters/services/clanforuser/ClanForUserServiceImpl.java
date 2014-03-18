@@ -99,8 +99,10 @@ public class ClanForUserServiceImpl implements ClanForUserService {
 		// into a prepared statement)
 		List<Object> values = new ArrayList<Object>();
 		boolean preparedStatement = false;
+		boolean allowFiltering = true; //need cassandra to query with non row keys
 		String cqlQuery = getQueryConstructionUtil().selectRowsQueryEqualityConditions(
-				TABLE_NAME, equalityConditions, conditionDelimiter, values, preparedStatement);
+				TABLE_NAME, equalityConditions, conditionDelimiter, values,
+				preparedStatement, allowFiltering);
 		List<ClanForUser> cfuList = getClanForUserEntityManager().get().find(cqlQuery);
 		
 		return cfuList;
@@ -132,10 +134,11 @@ public class ClanForUserServiceImpl implements ClanForUserService {
 		//(its purpose is to hold the values that were supposed to be put
 		//into a prepared statement)
 		List<Object> values = new ArrayList<Object>();
+		boolean allowFiltering = true; //need cassandra to query with non row keys
 		String cqlQuery = getQueryConstructionUtil().selectRowsQueryAllConditions(
 				TABLE_NAME, equalityConditions, equalityCondDelim, greaterThanConditions,
-				greaterThanCondDelim, isConditions, isCondDelim, inConditions,
-				inCondDelim, delimAcrossConditions, values);
+				greaterThanCondDelim, inConditions, inCondDelim, isConditions, isCondDelim,
+				delimAcrossConditions, values, allowFiltering);
 		List<ClanForUser> cfuList = getClanForUserEntityManager().get().find(cqlQuery);
 		
 		Map<UUID, ClanForUser> userIdsToUserClans = new HashMap<UUID, ClanForUser>();
@@ -172,10 +175,11 @@ public class ClanForUserServiceImpl implements ClanForUserService {
 		//(its purpose is to hold the values that were supposed to be put
 		//into a prepared statement)
 		List<Object> values = new ArrayList<Object>();
+		boolean allowFiltering = true; //need cassandra to query with non row keys
 		String cqlQuery = getQueryConstructionUtil().selectRowsQueryAllConditions(
 				TABLE_NAME, equalityConditions, equalityCondDelim, greaterThanConditions,
-				greaterThanCondDelim, isConditions, isCondDelim, inConditions,
-				inCondDelim, delimAcrossConditions, values);
+				greaterThanCondDelim, inConditions, inCondDelim, isConditions, isCondDelim,
+				delimAcrossConditions, values, allowFiltering);
 		List<ClanForUser> cfuList = getClanForUserEntityManager().get().find(cqlQuery);
 		
 		return cfuList;
@@ -187,15 +191,17 @@ public class ClanForUserServiceImpl implements ClanForUserService {
 		Map<String, Object> equalityConditions = new HashMap<String, Object>();
 		equalityConditions.put(MobstersDbTables.CLAN_FOR_USER__CLAN_ID, clanId);
 		equalityConditions.put(MobstersDbTables.CLAN_FOR_USER__USER_ID, userId);
-		String eqCondDelim = getQueryConstructionUtil().getAnd();
+		String conditionDelimiter = getQueryConstructionUtil().getAnd();
 
 		//query db, "values" is not used 
 		//(its purpose is to hold the values that were supposed to be put
 		// into a prepared statement)
 		List<Object> values = new ArrayList<Object>();
 		boolean preparedStatement = false;
+		boolean allowFiltering = true; //need cassandra to query with non row keys
 		String cqlQuery = getQueryConstructionUtil().selectRowsQueryEqualityConditions(
-				TABLE_NAME, equalityConditions, eqCondDelim, values, preparedStatement);
+				TABLE_NAME, equalityConditions, conditionDelimiter, values,
+				preparedStatement, allowFiltering);
 		List<ClanForUser> cfuList = getClanForUserEntityManager().get().find(cqlQuery);
 
 		if (null != cfuList && !cfuList.isEmpty()) {

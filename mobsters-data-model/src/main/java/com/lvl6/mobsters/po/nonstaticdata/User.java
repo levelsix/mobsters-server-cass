@@ -158,7 +158,7 @@ public class User extends BasePersistentObject<UUID>{
 	@Column(name="defenses_lost")
 	protected int defensesLost = 0;
 	
-	@Column(name="facebookId")
+	@Column(name="facebook_id")
 	protected String facebookId = null;
 	
 	@Column(name="nth_extra_slots_via_fb")
@@ -169,7 +169,6 @@ public class User extends BasePersistentObject<UUID>{
 	protected String gameCenterId = "";
 	
 	@Column(name="account_initialized")
-	@Index
 	protected boolean accountInitialized = false;
 
 	public UUID getId() {

@@ -211,8 +211,7 @@ public class RequestJoinClanController extends EventController {
 		    }
 		    
 		    if (!requestToJoinRequired) {
-		    	//delete all clan requests this user made since is going to join clan
-		    	
+		    	//TODO:delete all clan requests this user made since going to join clan
 		    }
 		    
 		    String status = userClanStatus.name();

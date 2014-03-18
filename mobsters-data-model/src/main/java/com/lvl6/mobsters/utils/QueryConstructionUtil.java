@@ -29,7 +29,7 @@ public class QueryConstructionUtil {
 	private final String QUESTION = "?";
 	private final String SPACE = " ";
 	private final int SPACELENGTH = 1;
-
+	private final String ALLOWFILTERING = "allow filtering";
 
 	//at the moment, just EQUALITY conditions, GREATER THAN conditions,  "IN ()" and IS
 	//conditions. the argument "values" is another return value. It will contain
@@ -39,7 +39,7 @@ public class QueryConstructionUtil {
 			String equalityCondDelim, Map<String, ?> greaterThanConditions,
 			String greaterThanCondDelim, Map<String, Collection<?>> inConditions,
 			String inCondDelim, Map<String, ?> isConditions, String isCondDelim,
-			String delimAcrossConditions, List<Object> values) {
+			String delimAcrossConditions, List<Object> values, boolean allowFiltering) {
 		StringBuilder sb = new StringBuilder();
 		sb.append("select * from ");
 		sb.append(tableName);
@@ -103,6 +103,11 @@ public class QueryConstructionUtil {
 			conjunction = "";
 		}
 
+		//this is to tell cassandra even though searching by non row keys, it's alright
+		if (allowFiltering) {
+			sb.append(SPACE);
+			sb.append(ALLOWFILTERING);
+		}
 		//CLOSE THE QUERY
 		sb.append(";");
 		log.info("conditional selectRowsQuery=" + sb.toString() + "\t values=" + values);
@@ -114,7 +119,7 @@ public class QueryConstructionUtil {
 	//proper order
 	public String selectRowsQueryEqualityConditions(String tableName,
 			Map<String, ?> equalityConditions, String conditionDelimiter,
-			List<Object> values, boolean preparedStatement) {
+			List<Object> values, boolean preparedStatement, boolean allowFiltering) {
 		StringBuilder sb = new StringBuilder();
 		sb.append("select * from ");
 		sb.append(tableName);
@@ -136,6 +141,11 @@ public class QueryConstructionUtil {
 			sb.append(equalityConditionsStr);
 		}
 
+		//this is to tell cassandra even though searching by non row keys, it's alright
+		if (allowFiltering) {
+			sb.append(SPACE);
+			sb.append(ALLOWFILTERING);
+		}
 		//close the query
 		sb.append(";");
 		log.info("conditional selectRowsQuery=" + sb.toString() + "\t values=" + values);
@@ -149,7 +159,7 @@ public class QueryConstructionUtil {
 			String beginsWithCondDelim, Map<String, ?> beginsAndEndsWith,
 			String beginsAndEndsWithCondDelim, Map<String, ?> endsWith,
 			String endsWithCondDelim, String overallDelimiter, List<Object> values,
-			boolean preparedStatement) {
+			boolean preparedStatement, boolean allowFiltering) {
 		StringBuilder sb = new StringBuilder();
 		sb.append("select * from ");
 		sb.append(tableName);
@@ -197,6 +207,11 @@ public class QueryConstructionUtil {
 			conjunction = "";
 		}
 		
+		//this is to tell cassandra even though searching by non row keys, it's alright
+		if (allowFiltering) {
+			sb.append(SPACE);
+			sb.append(ALLOWFILTERING);
+		}
 		//close the query
 		sb.append(";");
 		log.info("(LIKE) selectRowsQuery=" + sb.toString() + "\t values=" + values);

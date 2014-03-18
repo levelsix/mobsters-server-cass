@@ -183,9 +183,11 @@ public class StructureForUserServiceImpl implements StructureForUserService {
 		//query db, "values" is not used
 		List<Object> values = new ArrayList<Object>();
 		boolean preparedStatement = false;
-		String cqlquery = getQueryConstructionUtil().selectRowsQueryEqualityConditions(
-				TABLE_NAME, equalityConditions, conditionDelimiter, values, preparedStatement);
-		List<StructureForUser> list = getStructureForUserEntityManager().get().find(cqlquery);
+		boolean allowFiltering = true; //need cassandra to query with non row keys
+		String cqlQuery = getQueryConstructionUtil().selectRowsQueryEqualityConditions(
+				TABLE_NAME, equalityConditions, conditionDelimiter, values,
+				preparedStatement, allowFiltering);
+		List<StructureForUser> list = getStructureForUserEntityManager().get().find(cqlQuery);
 		return list;
 	}
 	
@@ -253,10 +255,11 @@ public class StructureForUserServiceImpl implements StructureForUserService {
 		//(its purpose is to hold the values that were supposed to be put
 		//into a prepared statement)
 		List<Object> values = new ArrayList<Object>();
+		boolean allowFiltering = true; //need cassandra to query with non row keys
 		String cqlQuery = getQueryConstructionUtil().selectRowsQueryAllConditions(
 				TABLE_NAME, equalityConditions, equalityCondDelim, greaterThanConditions,
-				greaterThanCondDelim, inConditions, inCondDelim, isConditions,
-				isCondDelim, delimAcrossConditions, values);
+				greaterThanCondDelim, inConditions, inCondDelim, isConditions, isCondDelim,
+				delimAcrossConditions, values, allowFiltering);
 		List<StructureForUser> sfuList = getStructureForUserEntityManager().get().find(cqlQuery);
 		
 		Map<UUID, StructureForUser> userStructureIdsToUserStructures =

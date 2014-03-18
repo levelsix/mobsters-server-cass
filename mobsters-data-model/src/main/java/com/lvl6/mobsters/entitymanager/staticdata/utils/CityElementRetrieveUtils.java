@@ -76,8 +76,10 @@ import com.lvl6.mobsters.utils.QueryConstructionUtil;
 		// into a prepared statement) 
 		List<Object> values = new ArrayList<Object>();
 		boolean preparedStatement = false;
+		boolean allowFiltering = false;
 		String cqlquery = getQueryConstructionUtil().selectRowsQueryEqualityConditions(
-				TABLE_NAME, equalityConditions, conditionDelimiter, values, preparedStatement);
+				TABLE_NAME, equalityConditions, conditionDelimiter, values,
+				preparedStatement, allowFiltering);
 		List<CityElement> cityElementList = getCityElementEntityManager().get().find(cqlquery);
 
 		//fill up the map

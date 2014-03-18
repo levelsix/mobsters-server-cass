@@ -3,6 +3,8 @@ package com.lvl6.mobsters.entitymanager.test;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
+import java.util.List;
+
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -76,5 +78,12 @@ public class TestUserEntityManager {
 		
 		user2 = um.get().get(user2.getId());
 		assertTrue("Usernames equal", user.getName().equals(user2.getName()));
+		
+		log.info("selecting whole users table");
+		String allUsersQuery = "select * from user;";
+		List<User> allUsers = getUm().get().find(allUsersQuery);
+		log.info("***************checking to see if ids are populated. users=" + allUsers);
+		
 	}
+	
 }
